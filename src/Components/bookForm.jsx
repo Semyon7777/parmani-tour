@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Card, Row, Col, Form, Button, Alert, Modal } from 'react-bootstrap';
-import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import "./BookForm.css";
 import termsContent from "../terms"; // Assuming this is a placeholder; update as needed
@@ -11,38 +10,37 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useParams } from 'react-router-dom';
 import { FaCalendarAlt } from 'react-icons/fa';
 import { useRef } from 'react';
-import toursData from "../toursPage/toursData.json"
+import emailjs from '@emailjs/browser';
+import toursData from "../toursPage/toursData.json";
 
 
 function BookForm() {
-  const { t, i18n } = useTranslation();
+const { t, i18n } = useTranslation();
   const { tourName } = useParams(); // Получаем название тура из параметров
   const cleanTourName = tourName.replace("-reservation", "");
   console.log(cleanTourName);
 
-      useEffect(() => {
-        window.scrollTo(0, 0);
-      }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-    const datePickerRef = useRef();
-  
-    const handleIconClick = () => {
-      if (datePickerRef.current) {
-        datePickerRef.current.setOpen(true); // Открытие DatePicker при нажатии на иконку
-      }
-    };
+  const datePickerRef = useRef();
 
-    const currentTour = toursData.find(tour => tour.id === cleanTourName);
+  const handleIconClick = () => {
+    if (datePickerRef.current) {
+      datePickerRef.current.setOpen(true); // Открытие DatePicker при нажатии на иконку
+    }
+  };
 
-  
+  const currentTour = toursData.find(tour => tour.id === cleanTourName);
 
   const [formData, setFormData] = useState({
-    tourName: cleanTourName, // Добавьте это поле
+    tourName: cleanTourName,
     firstName: '',
     lastName: '',
     year: '',
-    from: '', // corrected from 'form' to 'from'
-    startDate: new Date(), // Добавлено новое поле для начала курса
+    from: '', 
+    startDate: new Date(),
     days: '',
     state: '',
     city: '',
@@ -50,7 +48,7 @@ function BookForm() {
     course: false,
     email: ''
   });
-  
+
   const [error, setError] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -59,13 +57,12 @@ function BookForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
-
   const incrementPeople = () => {
     if (numberOfPeople < 5) {
       setNumberOfPeople(numberOfPeople + 1);
     }
   };
-  
+
   const decrementPeople = () => {
     if (numberOfPeople > 1) {
       setNumberOfPeople(numberOfPeople - 1);
@@ -75,7 +72,6 @@ function BookForm() {
   const handleStartDateChange = (date) => {
     setFormData({ ...formData, startDate: date });
   };
-  
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -98,50 +94,81 @@ function BookForm() {
     return emailRegex.test(email);
   };
 
+  // ОСНОВНАЯ ЛОГИКА ОТПРАВКИ
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true); // Включаем режим загрузки
     
-
     if (!agreedToTerms) {
-      setError(t('bookForm.errorAgreeToTerms')); // Translated error message
+      setError(t('bookForm.errorAgreeToTerms'));
       return;
     }
 
     const requiredFields = ['firstName', 'lastName', 'year', 'from', 'days', 'state', 'city', 'email'];
     for (let field of requiredFields) {
       if (!formData[field]) {
-        setError(t('bookForm.errorEmptyField', { field: t(`bookForm.fields.${field}`) })); // Translated error message
+        setError(t('bookForm.errorEmptyField', { field: t(`bookForm.fields.${field}`) }));
         return;
       }
     }
 
     if (!validateEmail(formData.email)) {
-      setError(t('bookForm.errorInvalidEmail')); // Translated error message
+      setError(t('bookForm.errorInvalidEmail'));
       return;
     }
 
     setError('');
+    setIsSubmitting(true); // Включаем спиннер
+
+    // Подготовка данных для EmailJS (аналог dataToSend)
+    const templateParams = {
+      tourName: cleanTourName,
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      phone_number: formData.state, // ты используешь поле state как телефон или страну?
+      city: formData.city,
+      from: formData.from,
+      year: formData.year,
+      startDate: formData.startDate.toLocaleDateString(),
+      people: numberOfPeople,
+      pincode: formData.pincode ? "Tickets included" : "No tickets",
+      course: formData.course ? "Food included" : "No food"
+    };
+
     try {
+      // --- НОВЫЙ КОД EMAILJS ---
+      await emailjs.send(
+        'service_fkaou6c', // serviceID
+        'template_ut3xykg', // templateID
+        templateParams, 
+        'IUMzWx8Tsm9hYF3UR' // publicKey
+      );
+
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+        navigate("/tours");
+      }, 5000);
+
+      /* --- СТАРЫЙ AXIOS (ЗАКОММЕНТИРОВАН) ---
       await axios.post("https://tour-agency-api-la71.onrender.com/send-email", formData, dataToSend);
       setShowAlert(true);
       setTimeout(() => {
         setShowAlert(false);
         navigate("/tours");
       }, 5000);
-    } catch (error) {
-      alert(t('bookForm.errorSendingEmail') + error); // Translated error message
+      */
+      
+    } catch (err) {
+      console.error("Booking Error:", err);
+      alert(t('bookForm.errorSendingEmail') + " " + (err.text || err));
+    } finally {
+      setIsSubmitting(false); // Выключаем спиннер в любом случае
     }
   };
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
-  const dataToSend = {
-    ...formData,
-    tourName: cleanTourName,
-    pincode: formData.pincode ? "Tickets included" : "No tickets",
-    course: formData.course ? "Food included" : "No food"
-  };
 
   return (
     

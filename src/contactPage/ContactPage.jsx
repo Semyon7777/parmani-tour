@@ -3,8 +3,8 @@ import Footer from "../Components/Footer";
 import { Container, Row, Col, Card, Accordion, Form, Button, Spinner, Alert, Modal } from "react-bootstrap";
 import { FaWhatsapp, FaTelegramPlane, FaInstagram, FaMapMarkerAlt, FaClock, FaPhoneAlt } from 'react-icons/fa';
 import NavbarCustom from "../Components/Navbar";
-import axios from "axios";
 import { useTranslation } from "react-i18next";
+import emailjs from '@emailjs/browser';
 import "./ContactPage.css";
 
 function ContactPage() {
@@ -138,8 +138,8 @@ function ContactWithUs() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
+    // Валидация
     if (!formData.name || !formData.email || !formData.message) {
       setErrorMessage(t("contact_page.error_fill_all"));
       return;
@@ -153,16 +153,42 @@ function ContactWithUs() {
     setIsSubmitting(true);
     setErrorMessage("");
 
-    axios
-      .post("https://tour-agency-api-la71.onrender.com/contact", formData)
-      .then(() => {
+    // --- НАСТРОЙКИ EMAILJS ---
+    const serviceID = "service_fkaou6c";   
+    const templateID = "template_taw2p8j"; 
+    const publicKey = "IUMzWx8Tsm9hYF3UR";   
+
+    // Объект данных (должен совпадать с {{тегами}} в шаблоне)
+    const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+      subject: "New Message from Website"
+    };
+
+    // Инициализация и отправка
+    emailjs.init(publicKey); 
+    
+    emailjs.send(serviceID, templateID, templateParams, publicKey)
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
         setShowAlert(true);
         setFormData({ name: "", email: "", message: "" });
       })
-      .catch(() => {
-        setErrorMessage(t("contact_page.error_send"));
+      .catch((err) => {
+        console.error('FAILED...', err);
+        // Выводим текст ошибки в консоль, чтобы понять причину 400
+        console.log("Error details:", err.text); 
+        setErrorMessage(t("contact_page.error_send") + " (" + (err.text || "Check console") + ")");
       })
       .finally(() => setIsSubmitting(false));
+
+    /* СТАРЫЙ AXIOS ДЛЯ БУДУЩЕГО
+    axios.post("https://tour-agency-api-la71.onrender.com/contact", formData)
+      .then(() => { setShowAlert(true); setFormData({ name: "", email: "", message: "" }); })
+      .catch(() => { setErrorMessage(t("contact_page.error_send")); })
+      .finally(() => setIsSubmitting(false));
+    */
   };
 
   useEffect(() => {
@@ -174,28 +200,19 @@ function ContactWithUs() {
       },
       { threshold: 0.2 }
     );
-
     document.querySelectorAll(".contactContent, .contactInfoBlock").forEach((el) => observer.observe(el));
   }, []);
 
   return (
     <Container fluid="md" className="contactContent fade-in-scroll">
       <Row className="gy-4">
-        {/* Контактная информация */}
         <Col md={6} className="contactInfoBlock fade-in-scroll">
           <h3>{t("contact_page.info_title")}</h3>
-          <p>
-            <strong>{t("contact_page.phone")}:</strong> +123 456 7890
-          </p>
-          <p>
-            <strong>{t("contact_page.email")}:</strong> info@armeniajourney.com
-          </p>
-          <p>
-            <strong>{t("contact_page.address")}:</strong> 123 Armenia St, Yerevan
-          </p>
+          <p><strong>{t("contact_page.phone")}:</strong> +123 456 7890</p>
+          <p><strong>{t("contact_page.email")}:</strong> info@armeniajourney.com</p>
+          <p><strong>{t("contact_page.address")}:</strong> 123 Armenia St, Yerevan</p>
         </Col>
 
-        {/* Форма */}
         <Col md={6} className="fade-in-scroll">
           <h3>{t("contact_page.form_title")}</h3>
           <Form onSubmit={handleSubmit} className="contactForm">
@@ -206,11 +223,11 @@ function ContactWithUs() {
               <Form.Control
                 className="custom-input"
                 type="text"
-                placeholder={t("contact_page.name_placeholder")}
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 disabled={isSubmitting}
+                placeholder={t("contact_page.name_placeholder")}
               />
             </Form.Group>
 
@@ -219,11 +236,11 @@ function ContactWithUs() {
               <Form.Control
                 className="custom-input"
                 type="email"
-                placeholder={t("contact_page.email_placeholder")}
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 disabled={isSubmitting}
+                placeholder={t("contact_page.email_placeholder")}
               />
             </Form.Group>
 
@@ -233,11 +250,11 @@ function ContactWithUs() {
                 className="custom-input"
                 as="textarea"
                 rows={6}
-                placeholder={t("contact_page.message_placeholder")}
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 disabled={isSubmitting}
+                placeholder={t("contact_page.message_placeholder")}
               />
             </Form.Group>
 
@@ -248,7 +265,6 @@ function ContactWithUs() {
         </Col>
       </Row>
 
-      {/* Modal */}
       <Modal show={showAlert} onHide={() => setShowAlert(false)} centered>
         <Modal.Header closeButton style={{ backgroundColor: "#4CAF50", color: "#fff" }}>
           <Modal.Title>{t("contact_page.modal_title")}</Modal.Title>
