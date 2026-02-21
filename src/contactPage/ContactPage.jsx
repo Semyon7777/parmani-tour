@@ -138,6 +138,7 @@ function ContactWithUs() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     if (!formData.name || !formData.email || !formData.message) {
       setErrorMessage(t("contact_page.error_fill_all"));
@@ -153,7 +154,7 @@ function ContactWithUs() {
     setErrorMessage("");
 
     axios
-      .post("http://localhost:3001/contact", formData)
+      .post("https://tour-agency-api-la71.onrender.com/contact", formData)
       .then(() => {
         setShowAlert(true);
         setFormData({ name: "", email: "", message: "" });

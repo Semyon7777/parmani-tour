@@ -56,6 +56,7 @@ function BookForm() {
   const [showModal, setShowModal] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [numberOfPeople, setNumberOfPeople] = useState(1); // Default to 1 person
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
 
@@ -99,6 +100,8 @@ function BookForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true); // Включаем режим загрузки
+    
 
     if (!agreedToTerms) {
       setError(t('bookForm.errorAgreeToTerms')); // Translated error message
@@ -120,7 +123,7 @@ function BookForm() {
 
     setError('');
     try {
-      await axios.post("http://localhost:3001/send-email", formData, dataToSend);
+      await axios.post("https://tour-agency-api-la71.onrender.com/send-email", formData, dataToSend);
       setShowAlert(true);
       setTimeout(() => {
         setShowAlert(false);
@@ -307,7 +310,7 @@ function BookForm() {
                       <Link to="/tours">
                         <Button variant='light' size='lg'>{t('bookForm.goBack')}</Button>
                       </Link>
-                      <Button className='ms-2' variant='warning' size='lg' type="submit">{t('bookForm.submitForm')}</Button>
+                      <Button className='ms-2' variant='warning' size='lg' type="submit" disabled={isSubmitting}>{t('bookForm.submitForm')}</Button>
                     </div>
                   </Form>
                 </Card.Body>

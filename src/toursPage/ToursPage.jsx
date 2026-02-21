@@ -30,7 +30,7 @@ function ToursPage() {
             a: t('toursPage.faq.a3', 'We offer both! Most of the prices listed are for private tours, but we can also organize group trips for larger teams upon request.')
         }
     ];
-
+    
     return (
         <div id="toursPage" className="tour-page-container">
             <NavbarCustom />

@@ -15,7 +15,7 @@ import Footer from "../Components/Footer";
 import "./firstPage.css";
 
 function HomePage() {
-  const { t } = useTranslation();
+  useTranslation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
