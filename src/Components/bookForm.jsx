@@ -11,24 +11,26 @@ import { useParams } from 'react-router-dom';
 import { FaCalendarAlt } from 'react-icons/fa';
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import ReCAPTCHA from "react-google-recaptcha";
 import toursData from "../toursPage/toursData.json";
 
 
 function BookForm() {
 const { t, i18n } = useTranslation();
-  const { tourName } = useParams(); // Получаем название тура из параметров
+  const { tourName } = useParams(); 
   const cleanTourName = tourName.replace("-reservation", "");
-  console.log(cleanTourName);
+  
+  // 1. Создаем реф для капчи
+  const recaptchaRef = useRef(); 
+  const datePickerRef = useRef();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const datePickerRef = useRef();
-
   const handleIconClick = () => {
     if (datePickerRef.current) {
-      datePickerRef.current.setOpen(true); // Открытие DatePicker при нажатии на иконку
+      datePickerRef.current.setOpen(true);
     }
   };
 
@@ -53,48 +55,22 @@ const { t, i18n } = useTranslation();
   const [showAlert, setShowAlert] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
-  const [numberOfPeople, setNumberOfPeople] = useState(1); // Default to 1 person
+  const [numberOfPeople, setNumberOfPeople] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  const incrementPeople = () => {
-    if (numberOfPeople < 5) {
-      setNumberOfPeople(numberOfPeople + 1);
-    }
-  };
-
-  const decrementPeople = () => {
-    if (numberOfPeople > 1) {
-      setNumberOfPeople(numberOfPeople - 1);
-    }
-  };
-
-  const handleStartDateChange = (date) => {
-    setFormData({ ...formData, startDate: date });
-  };
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
-  };
-
+  const incrementPeople = () => { if (numberOfPeople < 5) setNumberOfPeople(numberOfPeople + 1); };
+  const decrementPeople = () => { if (numberOfPeople > 1) setNumberOfPeople(numberOfPeople - 1); };
+  const handleStartDateChange = (date) => { setFormData({ ...formData, startDate: date }); };
+  const handleChange = (e) => { setFormData({ ...formData, [e.target.id]: e.target.value }); };
   const handleCheckboxChange = (e) => {
     const { id, checked } = e.target;
-    setFormData({
-      ...formData,
-      [id]: checked
-    });
+    setFormData({ ...formData, [id]: checked });
   };
+  const handleRadioChange = (e) => { setFormData({ ...formData, days: e.target.id }); };
+  const validateEmail = (email) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
 
-  const handleRadioChange = (e) => {
-    setFormData({ ...formData, days: e.target.id });
-  };
-
-  const validateEmail = (email) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
-  };
-
-  // ОСНОВНАЯ ЛОГИКА ОТПРАВКИ
+  // --- ОБНОВЛЕННАЯ ЛОГИКА ОТПРАВКИ С CAPTCHA ---
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -117,58 +93,71 @@ const { t, i18n } = useTranslation();
     }
 
     setError('');
-    setIsSubmitting(true); // Включаем спиннер
-
-    // Подготовка данных для EmailJS (аналог dataToSend)
-    const templateParams = {
-      tourName: cleanTourName,
-      firstName: formData.firstName,
-      lastName: formData.lastName,
-      email: formData.email,
-      phone_number: formData.state, // ты используешь поле state как телефон или страну?
-      city: formData.city,
-      from: formData.from,
-      year: formData.year,
-      startDate: formData.startDate.toLocaleDateString(),
-      people: numberOfPeople,
-      pincode: formData.pincode ? "Tickets included" : "No tickets",
-      course: formData.course ? "Food included" : "No food"
-    };
+    setIsSubmitting(true);
 
     try {
-      // --- НОВЫЙ КОД EMAILJS ---
+      // 2. Получаем токен капчи
+      const token = await recaptchaRef.current.executeAsync();
+
+      if (!token) {
+        setError("Captcha verification failed. Please try again.");
+        setIsSubmitting(false);
+        return;
+      }
+
+      // 3. Подготовка данных для EmailJS
+      const templateParams = {
+        tourName: cleanTourName,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        phone_number: formData.state, 
+        city: formData.city,
+        from: formData.from,
+        year: formData.year,
+        startDate: formData.startDate.toLocaleDateString(),
+        people: numberOfPeople,
+        pincode: formData.pincode ? "Tickets included" : "No tickets",
+        course: formData.course ? "Food included" : "No food",
+        'g-recaptcha-response': token // Передаем токен
+      };
+
+      // 4. Отправка через EmailJS
       await emailjs.send(
-        'service_fkaou6c', // serviceID
-        'template_ut3xykg', // templateID
+        'service_fkaou6c', 
+        'template_ut3xykg', 
         templateParams, 
-        'IUMzWx8Tsm9hYF3UR' // publicKey
+        'IUMzWx8Tsm9hYF3UR' 
       );
 
       setShowAlert(true);
+      recaptchaRef.current.reset(); // Сброс капчи
+
       setTimeout(() => {
         setShowAlert(false);
         navigate("/tours");
       }, 5000);
 
-      /* --- СТАРЫЙ AXIOS (ЗАКОММЕНТИРОВАН) ---
-      await axios.post("https://tour-agency-api-la71.onrender.com/send-email", formData, dataToSend);
-      setShowAlert(true);
-      setTimeout(() => {
-        setShowAlert(false);
-        navigate("/tours");
-      }, 5000);
-      */
-      
     } catch (err) {
       console.error("Booking Error:", err);
       alert(t('bookForm.errorSendingEmail') + " " + (err.text || err));
     } finally {
-      setIsSubmitting(false); // Выключаем спиннер в любом случае
+      setIsSubmitting(false);
     }
   };
 
   const handleShow = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
+
+  // --- В JSX КОМПОНЕНТА ---
+  // Не забудь вставить это в самый конец return (перед последним </Container> или </div>):
+  /*
+    <ReCAPTCHA
+      ref={recaptchaRef}
+      size="invisible"
+      sitekey="ТВОЙ_SITE_KEY_ОТ_GOOGLE"
+    />
+  */
 
   return (
     
@@ -367,6 +356,11 @@ const { t, i18n } = useTranslation();
           <Button variant="success" onClick={() => setShowAlert(false)}>{t('bookForm.closeButton')}</Button>
         </Modal.Footer>
       </Modal>
+          <ReCAPTCHA
+            ref={recaptchaRef}
+            size="invisible"
+            sitekey="6Lc3ZHMsAAAAAOWWtv3oxB3DtuzHbvNZrdrSOdU1"
+          />
     </Container>
   );
 }

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Footer from "../Components/Footer";
 import { Container, Row, Col, Card, Accordion, Form, Button, Spinner, Alert, Modal } from "react-bootstrap";
 import { FaWhatsapp, FaTelegramPlane, FaInstagram, FaMapMarkerAlt, FaClock, FaPhoneAlt } from 'react-icons/fa';
 import NavbarCustom from "../Components/Navbar";
 import { useTranslation } from "react-i18next";
 import emailjs from '@emailjs/browser';
+import ReCAPTCHA from "react-google-recaptcha";
 import "./ContactPage.css";
 
 function ContactPage() {
@@ -122,7 +123,9 @@ function ContactPage() {
 }
 
 function ContactWithUs() {
-  const { t } = useTranslation();
+const { t } = useTranslation();
+  // 1. Создаем реф для капчи
+  const recaptchaRef = useRef(); 
 
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -136,7 +139,8 @@ function ContactWithUs() {
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  const handleSubmit = (e) => {
+  // 2. Делаем функцию асинхронной (async)
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Валидация
@@ -153,42 +157,49 @@ function ContactWithUs() {
     setIsSubmitting(true);
     setErrorMessage("");
 
-    // --- НАСТРОЙКИ EMAILJS ---
-    const serviceID = "service_fkaou6c";   
-    const templateID = "template_taw2p8j"; 
-    const publicKey = "IUMzWx8Tsm9hYF3UR";   
+    try {
+      // 3. Запускаем проверку капчи и ждем токен
+      const token = await recaptchaRef.current.executeAsync();
 
-    // Объект данных (должен совпадать с {{тегами}} в шаблоне)
-    const templateParams = {
-      name: formData.name,
-      email: formData.email,
-      message: formData.message,
-      subject: "New Message from Website"
-    };
+      if (!token) {
+        setErrorMessage("Captcha verification failed.");
+        setIsSubmitting(false);
+        return;
+      }
 
-    // Инициализация и отправка
-    emailjs.init(publicKey); 
-    
-    emailjs.send(serviceID, templateID, templateParams, publicKey)
-      .then((response) => {
-        console.log('SUCCESS!', response.status, response.text);
-        setShowAlert(true);
-        setFormData({ name: "", email: "", message: "" });
-      })
-      .catch((err) => {
-        console.error('FAILED...', err);
-        // Выводим текст ошибки в консоль, чтобы понять причину 400
-        console.log("Error details:", err.text); 
-        setErrorMessage(t("contact_page.error_send") + " (" + (err.text || "Check console") + ")");
-      })
-      .finally(() => setIsSubmitting(false));
+      // --- НАСТРОЙКИ EMAILJS ---
+      const serviceID = "service_fkaou6c";   
+      const templateID = "template_taw2p8j"; 
+      const publicKey = "IUMzWx8Tsm9hYF3UR";   
 
-    /* СТАРЫЙ AXIOS ДЛЯ БУДУЩЕГО
-    axios.post("https://tour-agency-api-la71.onrender.com/contact", formData)
-      .then(() => { setShowAlert(true); setFormData({ name: "", email: "", message: "" }); })
-      .catch(() => { setErrorMessage(t("contact_page.error_send")); })
-      .finally(() => setIsSubmitting(false));
-    */
+      // 4. Добавляем токен в параметры
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        subject: "New Message from Website",
+        'g-recaptcha-response': token // Это поле нужно EmailJS для проверки капчи
+      };
+
+      // Инициализация и отправка
+      emailjs.init(publicKey); 
+      
+      const response = await emailjs.send(serviceID, templateID, templateParams, publicKey);
+      
+      console.log('SUCCESS!', response.status, response.text);
+      setShowAlert(true);
+      setFormData({ name: "", email: "", message: "" });
+      
+      // 5. Сбрасываем капчу после успеха
+      recaptchaRef.current.reset();
+
+    } catch (err) {
+      console.error('FAILED...', err);
+      console.log("Error details:", err.text); 
+      setErrorMessage(t("contact_page.error_send") + " (" + (err.text || "Check console") + ")");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   useEffect(() => {
@@ -276,6 +287,13 @@ function ContactWithUs() {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      <ReCAPTCHA
+        ref={recaptchaRef}
+        size="invisible"
+        sitekey="6Lc3ZHMsAAAAAOWWtv3oxB3DtuzHbvNZrdrSOdU1" 
+      />
+
     </Container>
   );
 }
