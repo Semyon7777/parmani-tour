@@ -42,7 +42,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "postinstall": "cd client && npm install && npm run build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "predeploy": "npm run build",
