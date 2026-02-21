@@ -1,0 +1,304 @@
+[
+  {
+    "id": "bjni-tsaghkadzor",
+    "routeMap": "/TourImages/kotayq_region/BjniTsaghkadzorTourLine.webp",
+    "routeSummary": "Yerevan → Bjni → Tsaghkadzor → Yerevan",
+    "imageUrl": "/TourImages/kotayq_region/bjni-tsaghkadzor.jpg",
+    "price": "33000 AMD",
+    "title": {
+      "en": "BJNI – TSAGHKADZOR",
+      "ru": "БДЖНИ – ЦАХКАДЗОР",
+      "hy": "ԲՋՆԻ – ԾԱՂԿԱՁՈՐ"
+    },
+    "description": {
+      "en": "Discover medieval fortresses, ancient monasteries, and the mountain resort of Tsaghkadzor in a full-day cultural and scenic journey.",
+      "ru": "Откройте для себя средневековые крепости, древние монастыри и горный курорт Цахкадзор в рамках однодневного культурного путешествия.",
+      "hy": "Բացահայտեք միջնադարյան բերդերը, հնագույն վանքերը և Ծաղկաձորի լեռնային հանգստավայրը մեկօրյա մշակութային և գեղատեսիլ ուղևորության ընթացքում։"
+    },
+    "sections": [
+      {
+        "header": {
+          "en": "Bjni Fortress",
+          "ru": "Крепость Бджни",
+          "hy": "Բջնի Բերդ"
+        },
+        "content": {
+          "en": "Medieval fortress overlooking the Hrazdan River gorge.",
+          "ru": "Средневековая крепость над ущельем реки Раздан.",
+          "hy": "Միջնադարյան բերդ Հրազդանի կիրճի վերևում։"
+        },
+        "fullContent": {
+          "en": "Built between the 9th and 11th centuries, Bjni Fortress was an important defensive structure of the Bagratuni Kingdom. The ruins stand on a rocky promontory above the Hrazdan River, offering panoramic views of the surrounding mountains and valley. Remains of fortification walls and church structures reflect its former strategic importance.",
+          "ru": "Построенная в IX–XI веках, крепость Бджни была важным оборонительным сооружением Багратидского царства. Руины расположены на скалистом выступе над рекой Раздан и открывают панорамный вид на окрестные горы и долину. Сохранившиеся стены и остатки построек свидетельствуют о её стратегическом значении.",
+          "hy": "Կառուցված IX–XI դարերում՝ Բջնի բերդը Բագրատունյաց թագավորության կարևոր պաշտպանական կառույցներից էր։ Այն գտնվում է ժայռոտ բարձունքի վրա՝ Հրազդան գետի կիրճի վերևում՝ բացելով համայնապատկերային տեսարաններ։ Պահպանված պարիսպներն ու շինությունների ավերակները վկայում են դրա ռազմավարական նշանակության մասին։"
+        },
+        "image": "/TourImages/kotayq_region/bjni-fortress.webp"
+      },
+      {
+        "header": {
+          "en": "Bjni Surb Astvatsatsin Church",
+          "ru": "Церковь Сурб Аствацацин в Бджни",
+          "hy": "Բջնի Սուրբ Աստվածածին Եկեղեցի"
+        },
+        "content": {
+          "en": "11th-century Armenian Apostolic church.",
+          "ru": "Армянская апостольская церковь XI века.",
+          "hy": "XI դարի հայկական առաքելական եկեղեցի։"
+        },
+        "fullContent": {
+          "en": "The Surb Astvatsatsin Church of Bjni dates back to 1031 and represents classic Armenian medieval architecture. The structure features a domed hall design and finely carved decorative elements. It remains an active place of worship and an important spiritual landmark for the local community.",
+          "ru": "Церковь Сурб Аствацацин в Бджни была построена в 1031 году и является образцом средневековой армянской архитектуры. Храм имеет купольную композицию и украшен резными декоративными элементами. Сегодня он остаётся действующим и духовным центром общины.",
+          "hy": "Բջնիի Սուրբ Աստվածածին եկեղեցին կառուցվել է 1031 թվականին և հանդիսանում է հայկական միջնադարյան ճարտարապետության օրինակ։ Այն ունի գմբեթավոր հորինվածք և զարդարված է նուրբ քանդակազարդերով։ Եկեղեցին մինչ օրս գործող է և համայնքի հոգևոր կենտրոններից մեկը։"
+        },
+        "image": "/TourImages/kotayq_region/bjni-church.jpg"
+      },
+      {
+        "header": {
+          "en": "Makravank Monastery",
+          "ru": "Монастырь Макраванк",
+          "hy": "Մաքրավանք"
+        },
+        "content": {
+          "en": "Monastic complex of the 11th–13th centuries.",
+          "ru": "Монастырский комплекс XI–XIII веков.",
+          "hy": "XI–XIII դարերի վանական համալիր։"
+        },
+        "fullContent": {
+          "en": "Located near Tsaghkadzor, Makravank is a medieval monastic complex known for its intricate stone carvings and red-tinted volcanic stone. The main church, built in the 13th century, contains unique sculptural details and inscriptions reflecting Armenia’s rich ecclesiastical heritage.",
+          "ru": "Расположенный недалеко от Цахкадзора, Макраванк — средневековый монастырский комплекс, известный тонкой каменной резьбой и использованием красноватого вулканического туфа. Главная церковь XIII века украшена уникальными скульптурными деталями и надписями.",
+          "hy": "Ծաղկաձորի մերձակայքում գտնվող Մաքրավանքը միջնադարյան վանական համալիր է, հայտնի իր նուրբ քանդակազարդերով և կարմրավուն տուֆ քարով։ XIII դարի գլխավոր եկեղեցին առանձնանում է եզակի քանդակներով և արձանագրություններով։"
+        },
+        "image": "/TourImages/kotayq_region/makravank.jpg"
+      },
+      {
+        "header": {
+          "en": "Orbeli Brothers House-Museum",
+          "ru": "Дом-музей братьев Орбели",
+          "hy": "Օրբելի Եղբայրների Տուն-Թանգարան"
+        },
+        "content": {
+          "en": "Museum dedicated to three prominent Armenian scholars.",
+          "ru": "Музей, посвящённый трём выдающимся армянским учёным.",
+          "hy": "Թանգարան՝ նվիրված երեք նշանավոր հայ գիտնականներին։"
+        },
+        "fullContent": {
+          "en": "This museum honors the Orbeli brothers—Ruben, Levon, and Joseph—renowned scientists in archaeology, oriental studies, and physiology. The restored 19th-century house exhibits personal belongings, manuscripts, and archival materials illustrating their contribution to science and culture.",
+          "ru": "Музей посвящён братьям Орбели — Рубену, Левону и Иосифу, известным учёным в области археологии, востоковедения и физиологии. В восстановленном доме XIX века представлены личные вещи, рукописи и архивные материалы.",
+          "hy": "Թանգարանը նվիրված է Օրբելի եղբայրներին՝ Ռուբենին, Լևոնին և Հովսեփին, որոնք մեծ ներդրում են ունեցել հնագիտության, արևելագիտության և ֆիզիոլոգիայի ոլորտներում։ Վերականգնված XIX դարի տանը ցուցադրված են նրանց անձնական իրերն ու ձեռագրերը։"
+        },
+        "image": "/TourImages/kotayq_region/orbeli-museum.jpg"
+      },
+      {
+        "header": {
+          "en": "Kecharis Monastery",
+          "ru": "Монастырь Кечарис",
+          "hy": "Կեչառիս Վանք"
+        },
+        "content": {
+          "en": "Medieval monastic complex in Tsaghkadzor.",
+          "ru": "Средневековый монастырский комплекс в Цахкадзоре.",
+          "hy": "Միջնադարյան վանական համալիր Ծաղկաձորում։"
+        },
+        "fullContent": {
+          "en": "Founded in the 11th century by the Pahlavuni princes, Kecharis Monastery was a major religious and educational center. The complex includes several churches and chapels built between the 11th and 13th centuries. Its harmonious architecture blends with the mountainous landscape of Tsaghkadzor.",
+          "ru": "Основанный в XI веке князьями Пахлавуни, монастырь Кечарис был важным религиозным и образовательным центром. Комплекс включает несколько церквей и часовен XI–XIII веков и гармонично вписывается в горный ландшафт Цахкадзора.",
+          "hy": "XI դարում Պահլավունիների կողմից հիմնադրված Կեչառիս վանքը կարևոր կրոնական և կրթական կենտրոն էր։ Համալիրը ներառում է մի քանի եկեղեցիներ և մատուռներ (XI–XIII դդ.), որոնք ներդաշնակորեն միաձուլվում են լեռնային բնապատկերին։"
+        },
+        "image": "/TourImages/kotayq_region/kecharis_church.jpg"
+      },
+      {
+        "header": {
+          "en": "Tsaghkadzor Ropeway",
+          "ru": "Канатная дорога Цахкадзора",
+          "hy": "Ծաղկաձորի Ճոպանուղի"
+        },
+        "content": {
+          "en": "Panoramic ascent to Mount Teghenis.",
+          "ru": "Подъём с панорамным видом на гору Тегенис.",
+          "hy": "Համայնապատկերային բարձրացում դեպի Թեղենիս լեռ։"
+        },
+        "fullContent": {
+          "en": "The Tsaghkadzor ropeway takes visitors up the slopes of Mount Teghenis to an altitude of over 2,800 meters. From the top station, you can enjoy sweeping views of the surrounding mountain ranges. In winter it serves skiers, while in other seasons it offers scenic rides and fresh alpine air.",
+          "ru": "Канатная дорога Цахкадзора поднимает гостей на склоны горы Тегенис на высоту более 2800 метров. С верхней станции открываются впечатляющие виды на горные хребты. Зимой она обслуживает лыжников, а в тёплое время года предлагает живописные прогулки.",
+          "hy": "Ծաղկաձորի ճոպանուղին այցելուներին բարձրացնում է Թեղենիս լեռան լանջերը՝ ավելի քան 2800 մ բարձրություն։ Վերին կայարանից բացվում են տպավորիչ տեսարաններ։ Ձմռանը այն սպասարկում է դահուկորդներին, իսկ մյուս եղանակներին ապահովում է գեղատեսիլ զբոսանք։"
+        },
+        "image": "/TourImages/kotayq_region/tsaghkadzor-ropeway.jpg"
+      }
+    ],
+    "carousel": [
+      { "id": 0, "src": "/TourImages/carousel/bjni-1.jpg" },
+      { "id": 1, "src": "/TourImages/carousel/makravank-1.jpg" },
+      { "id": 2, "src": "/TourImages/carousel/kecharis-1.jpg" },
+      { "id": 3, "src": "/TourImages/carousel/tsaghkadzor-1.jpg" }
+    ],
+    "features": {
+      "include": {
+        "en": ["Comfortable transportation", "Professional guide service", "Hotel pickup and drop-off", "Bottled water"],
+        "ru": ["Комфортабельный транспорт", "Услуги профессионального гида", "Трансфер из/в отель", "Бутилированная вода"],
+        "hy": ["Հարմարավետ տրանսպորտ", "Պրոֆեսիոնալ գիդի ծառայություն", "Տրանսֆեր հյուրանոցից և հյուրանոց", "Շշալցված ջուր"]
+      },
+      "exclude": {
+        "en": ["Lunch", "Ropeway ticket", "Personal expenses"],
+        "ru": ["Обед", "Билет на канатную дорогу", "Личные расходы"],
+        "hy": ["Ճաշ", "Ճոպանուղու տոմս", "Անձնական ծախսեր"]
+      }
+    },
+    "budget-1": {
+      "title": "Բյուջե 1",
+      "pricing": {
+        "transfer_only": [
+          { "min": 1, "max": 4, "price": 33000 },
+          { "min": 5, "max": 7, "price": 45000 }
+        ],
+        "transfer_guide": [
+          { "min": 1, "max": 3, "price": 56000 },
+          { "min": 4, "max": 6, "price": 78000 }
+        ],
+        "food_per_person": 5000,
+        "ticket_per_person": 5000
+      }
+    }
+  },
+  {
+    "id": "sevan-dilijan",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Sevanavank_Monastery_Armenia.jpg/800px-Sevanavank_Monastery_Armenia.jpg",
+    "price": "130$",
+    "title": {
+      "en": "Lake Sevan & Dilijan",
+      "ru": "Озеро Севан и Дилижан",
+      "hy": "Սևանա լիճ և Դիլիջան"
+    },
+    "description": {
+      "en": "The pearl of Armenia and the 'Little Switzerland' forest region.",
+      "ru": "Жемчужина Армении и лесной регион 'Маленькая Швейцария'.",
+      "hy": "Հայաստանի մարգարիտը և 'Փոքրիկ Շվեյցարիան':"
+    },
+    "sections": [
+      {
+        "header": { "en": "Nature", "ru": "Природа", "hy": "Բնություն" },
+        "content": { "en": "Enjoy the fresh air...", "ru": "Насладитесь свежим воздухом...", "hy": "Վայելեք թարմ օդը..." }
+      }
+    ],
+    "carousel": [
+      { "id": 0, "src": "https://placehold.co/800x400?text=Lake+Sevan" },
+      { "id": 1, "src": "https://placehold.co/800x400?text=Old+Dilijan" }
+    ],
+    "features": {
+      "include": {
+        "en": ["Transport", "Guide"],
+        "ru": ["Транспорт", "Гид"],
+        "hy": ["Տրանսպորտ", "Գիդ"]
+      },
+      "exclude": {
+        "en": ["Boat Ride"],
+        "ru": ["Прогулка на лодке"],
+        "hy": ["Նավակով զբոսանք"]
+      }
+    }
+  },
+  {
+    "id": "tatev-monastery",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Tatev_Monastery_Armenia.jpg/800px-Tatev_Monastery_Armenia.jpg",
+    "price": "180$",
+    "title": {
+      "en": "Wings of Tatev",
+      "ru": "Крылья Татева",
+      "hy": "Տաթևի թևեր"
+    },
+    "description": {
+      "en": "Ride the longest reversible cable car in the world to the ancient monastery.",
+      "ru": "Прокатитесь на самой длинной канатной дороге в мире.",
+      "hy": "Ուղևորություն աշխարհի ամենաերկար ճոպանուղով:"
+    },
+    "sections": [],
+    "carousel": [],
+    "features": {
+      "include": { "en": [], "ru": [], "hy": [] },
+      "exclude": { "en": [], "ru": [], "hy": [] }
+    }
+  },
+  {
+    "id": "gyumri-city",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Vardanants_Square_Gyumri.jpg/800px-Vardanants_Square_Gyumri.jpg",
+    "price": "110$",
+    "title": {
+      "en": "Gyumri City Tour",
+      "ru": "Тур по Гюмри",
+      "hy": "Գյումրիի քաղաքային տուր"
+    },
+    "description": {
+      "en": "Discover the cultural capital of Armenia, its architecture and humor.",
+      "ru": "Откройте для себя культурную столицу Армении, ее архитектуру и юмор.",
+      "hy": "Բացահայտեք Հայաստանի մշակութային մայրաքաղաքը:"
+    },
+    "sections": [],
+    "carousel": [],
+    "features": {
+      "include": { "en": [], "ru": [], "hy": [] },
+      "exclude": { "en": [], "ru": [], "hy": [] }
+    }
+  },
+  {
+    "id": "noravank-areni",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Noravank_Monastery_Armenia.jpg/800px-Noravank_Monastery_Armenia.jpg",
+    "price": "140$",
+    "title": {
+      "en": "Noravank & Wine Tasting",
+      "ru": "Нораванк и Дегустация Вин",
+      "hy": "Նորավանք և Գինու Համտես"
+    },
+    "description": {
+      "en": "Red rocks, ancient history, and the best local wine in Areni.",
+      "ru": "Красные скалы, древняя история и лучшее местное вино в Арени.",
+      "hy": "Կարմիր ժայռեր, հին պատմություն և լավագույն տեղական գինին:"
+    },
+    "sections": [],
+    "carousel": [],
+    "features": {
+      "include": { "en": [], "ru": [], "hy": [] },
+      "exclude": { "en": [], "ru": [], "hy": [] }
+    }
+  },
+  {
+    "id": "yerevan-walk",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Republic_Square_Yerevan.jpg/800px-Republic_Square_Yerevan.jpg",
+    "price": "50$",
+    "title": {
+      "en": "Yerevan Evening Walk",
+      "ru": "Вечерний Ереван",
+      "hy": "Երեկոյան Երևան"
+    },
+    "description": {
+      "en": "Walking tour through the pink city, Cascade, and Republic Square.",
+      "ru": "Пешеходная экскурсия по розовому городу, Каскаду и площади Республики.",
+      "hy": "Քայլարշավ վարդագույն քաղաքով՝ Կասկադ և Հանրապետության հրապարակ:"
+    },
+    "sections": [],
+    "carousel": [],
+    "features": {
+      "include": { "en": [], "ru": [], "hy": [] },
+      "exclude": { "en": [], "ru": [], "hy": [] }
+    }
+  },
+  {
+    "id": "lastiver-hiking",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Lastiver.jpg/800px-Lastiver.jpg",
+    "price": "90$",
+    "title": {
+      "en": "Lastiver Hiking",
+      "ru": "Поход в Ластивер",
+      "hy": "Արշավ դեպի Լաստիվեր"
+    },
+    "description": {
+      "en": "Active hiking tour to waterfalls and caves in the deep forest.",
+      "ru": "Активный пеший тур к водопадам и пещерам в глубоком лесу.",
+      "hy": "Ակտիվ արշավ դեպի ջրվեժներ և քարանձավներ խոր անտառում:"
+    },
+    "sections": [],
+    "carousel": [],
+    "features": {
+      "include": { "en": [], "ru": [], "hy": [] },
+      "exclude": { "en": [], "ru": [], "hy": [] }
+    }
+  }
+]

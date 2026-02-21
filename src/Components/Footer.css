@@ -1,0 +1,109 @@
+/* Footer */
+
+.footerContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 50vh;
+    justify-content: flex-end;
+}
+
+.social-icon:hover .fab.fa-facebook-f {
+    color: #3b5998;
+}
+  
+.social-icon:hover .fab.fa-telegram {
+    color: #0A66C2;
+}
+
+.social-icon:hover .fab.fa-instagram {
+    color: #c13584;
+}
+
+.social-icon:hover .fab.fa-whatsapp {
+    color: #4FCE5D;
+}
+
+/* .social-icon:hover .fab.fa-tiktok {
+    color: #000000;
+} */
+
+.social-icon {
+    font-size: 1.3rem; 
+}
+
+@media(max-width: 768px){
+    .footerContainer {
+        margin-top: 200px !important;
+    }
+}
+
+/* weather api */
+
+.weather-container {
+    background: linear-gradient(135deg, #2ecc71, #27ae60); /* Зеленый градиентный фон */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    max-width: 250px;
+    margin: -20px 20px 20px 20px;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: transform 0.3s ease;
+  }
+  
+  .weather-container:hover {
+    transform: scale(1.05); /* Плавное увеличение при наведении */
+  }
+  
+  .weather-info i {
+    margin-right: 8px;
+    font-size: 1.3rem; /* Увеличенные иконки */
+  }
+  
+  .weather-city {
+    display: flex;
+    justify-content: end;
+    margin-right: 5px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #fff;
+  }
+  
+  .weather-temp {
+    font-size: 1.4rem;
+    margin: 10px 0;
+    color: #ffeaa7; /* Акцент на температуре */
+  }
+  
+  .weather-desc {
+    font-size: 1rem;
+    color: #dfe6e9;
+  }
+  
+  .error-message {
+    color: #e74c3c;
+    font-weight: bold;
+    margin: 8px 0;
+    font-size: 1rem;
+  }
+  
+  .loading-message {
+    font-size: 1rem;
+    color: #74b9ff;
+  }
+  
+  /* Плавные переходы для всех элементов */
+  .weather-info, .error-message, .loading-message {
+    transition: all 0.3s ease;
+  }
+  
+  @media (max-width: 1024px) {
+    
+    .weather-container {
+      display: none; /* Hide weather container on screens 1024px and below */
+    }
+
+  }
+  

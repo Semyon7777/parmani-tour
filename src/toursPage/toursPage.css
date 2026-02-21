@@ -1,0 +1,484 @@
+
+/* --- GLOBAL LAYOUT --- */
+.tour-page-container .toursPageFirstPart {
+  height: auto;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px;
+}
+
+#toursPage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- HEADINGS --- */
+.tour-page-container .ToursPageHeadText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 110px;
+  font-size: 5rem;
+  font-weight: bold;
+  font-family: serif;
+  color: #031d03;
+  margin-bottom: -60px;
+}
+
+/* --- SEARCH BAR --- */
+.tour-page-container .search-container {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem; /* Increased spacing for better look */
+}
+
+.tour-page-container .search-input {
+  width: 30rem;
+  max-width: 90vw; /* Mobile safety */
+  border-radius: 2rem;
+  padding: 0.8rem 1.5rem;
+  text-align: center;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+
+.tour-page-container .search-input:focus {
+  outline: none;
+  box-shadow: 0 4px 12px rgba(62, 160, 62, 0.4);
+  border-color: #3ea03e;
+}
+
+/* Hero Section для списка туров */
+.tour-page-container .tours-hero-simple {
+  height: 60vh;
+  min-height: 400px;
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), 
+              url('./axtala-img.jpeg') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.tour-page-container .hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.tour-page-container .hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+/* Умный Поиск */
+.tour-page-container .search-box-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.tour-page-container .search-bar-modern {
+  background: white;
+  padding: 10px 10px 10px 25px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.tour-page-container .search-bar-modern input {
+  border: none;
+  flex: 1;
+  padding: 10px;
+  font-size: 1.1rem;
+  color: #333;
+  outline: none;
+}
+
+.tour-page-container .search-icon {
+  color: #3ea03e;
+}
+
+.tour-page-container .search-btn-modern {
+  border-radius: 100px !important;
+  padding: 12px 35px !important;
+  font-weight: 600;
+}
+
+/* Карточки Туров */
+.tour-page-container .tour-card-modern {
+  border-radius: 20px !important;
+  overflow: hidden;
+  transition: 0.3s;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Заставляет все карточки в ряду быть одной высоты */
+}
+
+/* .tour-card-modern:hover {
+  transform: translateY(-10px);
+} */
+
+.tour-page-container .card-img-container {
+  position: relative;
+  height: 220px;
+}
+
+.tour-page-container .tour-card-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.tour-page-container .card-price-badge {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: #3ea03e;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 50px;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Пагинация кружочками */
+.tour-page-container .pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.tour-page-container .pagination-circle {
+  width: 45px;
+  height: 45px;
+  border-radius: 50% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white !important;
+  border: 2px solid #3ea03e !important;
+  color: #3ea03e !important;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.tour-page-container .pagination-circle.active {
+  background: #3ea03e !important;
+  color: white !important;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .tour-page-container .hero-title { font-size: 2.5rem; }
+  .tour-page-container .search-bar-modern { padding: 5px 5px 5px 15px; }
+  .tour-page-container .search-btn-modern { display: none; } /* На мобилках оставим только иконку или уменьшим */
+}
+
+/* --- CARD CONTAINER --- */
+.tour-page-container .toursPageToursCards {
+  margin: 0 auto; /* Centered */
+  max-width: 1400px; /* Prevent it from getting too wide on huge screens */
+  padding: 0 30px;
+}
+
+/* --- TOUR CARDS (ALBUM CARD) --- */
+.tour-page-container .album-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none; /* Remove default bootstrap border */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Soft shadow by default */
+}
+
+.tour-page-container .album-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Image styling to match your previous 60% look */
+.tour-page-container .album-img {
+  width: 100%;
+  height: 250px; /* Fixed height for consistency */
+  object-fit: cover;
+  border-radius: 1.3rem 1.3rem 0 0; /* Matches card border radius */
+  margin-bottom: 5px;
+}
+
+.tour-page-container .card-title {
+  font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  color: #031d03;
+}
+
+.tour-page-container .album-price {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #333;
+}
+
+/* BUTTONS inside Card */
+.tour-page-container .CardCustombutton {
+  background-color: #5cb85c;
+  color: #ffffff;
+  border: none;
+  padding: 8px 25px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.tour-page-container .CardCustombutton:hover {
+  background-color: #4cae4c;
+  transform: scale(1.05);
+}
+
+/* --- PAGINATION --- */
+.tour-page-container .pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  gap: 10px;
+}
+
+/* Фиксируем размер контейнера картинки */
+.tour-page-container .card-img-wrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 65%; /* Соотношение сторон 16:10 или 4:3 */
+  overflow: hidden;
+  border-radius: 1.3rem 1.3rem 0 0;
+  aspect-ratio: 16 / 10; /* Современный способ фиксации пропорций */
+}
+
+/* Картинка заполняет всё пространство без искажений */
+.tour-page-container .tour-card-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ключевое свойство: обрезает лишнее, сохраняя пропорции */
+  transition: transform 0.5s ease;
+}
+
+.tour-page-container .tour-card-modern:hover .tour-card-img {
+  transform: scale(1.1); /* Эффект зума при наведении */
+}
+
+/* Ограничиваем описание, чтобы кнопки были на одном уровне */
+.tour-page-container .tour-description-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Показывает только 3 строки текста */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 4.5em; /* Резервирует место под текст */
+}
+
+/* --- ADAPTIVITY (MEDIA QUERIES) --- */
+/* --- ТАРГЕТИРОВАННЫЕ МЕДИА-ЗАПРОСЫ --- */
+
+/* Ноутбуки (Laptops) - около 1024px */
+@media (max-width: 1100px) and (min-width: 769px) {
+
+  .tour-page-container .tour-card-modern {
+    width: 100%;
+  }
+  /* Если 3 колонки тесные, уменьшаем шрифт и отступы */
+  .tour-page-container .tour-card-modern .card-title {
+    font-size: 1.1rem;
+    min-height: 2.4em; /* Резервируем 2 строки для заголовка */
+  }
+  
+  .tour-page-container .tour-card-modern .card-body {
+    padding: 1.2rem !important;
+  }
+  
+  .tour-page-container .tour-description-text {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 2; /* Уменьшаем до 2 строк, чтобы сэкономить место */
+  }
+}
+
+/* Планшеты (от 768px до 991px) */
+@media (max-width: 991px) {
+  .tour-page-container .card-img-wrapper {
+    padding-top: 55%; /* Делаем картинку чуть ниже на планшетах */
+  }
+  
+  .tour-page-container .tour-card-modern {
+    margin-bottom: 20px;
+  }
+}
+
+/* Мобильные устройства (до 767px) */
+@media (max-width: 768px) {
+
+      .tour-page-container .search-bar-modern > input {
+        border-radius: 50%;
+    }
+
+  .tour-page-container .tours-grid-header h2 {
+    font-size: 1.5rem; /* Уменьшаем заголовок на мобилках */
+    text-align: center;
+  }
+
+  .tour-page-container .tours-count {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .tour-page-container .card-img-wrapper {
+    padding-top: 50%; /* На смартфонах фото может быть более узким */
+  }
+
+  .tour-page-container .tour-card-modern {
+    max-width: 450px; /* Чтобы карточка не растягивалась слишком сильно на всю ширину */
+    margin: 0 auto 25px; /* Центрируем карточки */
+  }
+}
+
+/* Очень маленькие экраны (до 400px) */
+@media (max-width: 400px) {
+  .tour-page-container .card-img-wrapper {
+    padding-top: 60%;
+  }
+  
+  .tour-page-container .p-4 {
+    padding: 1.5rem !important; /* Уменьшаем внутренние отступы */
+  }
+}
+
+/* --- INFO TEXT AREAS (Green Boxes) --- */
+/* --- СЕКЦИЯ CUSTOM TOUR (CTA) --- */
+.tour-page-container .custom-tour-cta {
+  padding: 80px 0;
+  background: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070') center/cover fixed;
+  position: relative;
+}
+
+.tour-page-container .custom-tour-cta::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(3, 29, 3, 0.7); /* Темно-зеленый оверлей */
+}
+
+.tour-page-container .cta-glass-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 50px;
+  border-radius: 30px;
+  color: white;
+}
+
+.tour-page-container .cta-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.tour-page-container .cta-text {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.tour-page-container .cta-btn-modern {
+  background: white !important;
+  color: #031d03 !important;
+  padding: 15px 35px !important;
+  border-radius: 50px !important;
+  font-weight: 700 !important;
+  border: none !important;
+  transition: 0.3s ease !important;
+}
+
+.tour-page-container .cta-btn-modern:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* --- СЕКЦИЯ FAQ --- */
+.tour-page-container .tours-faq-section {
+  background-color: #fff;
+}
+
+.tour-page-container .modern-faq-accordion .accordion-item {
+  border: none;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
+}
+
+.tour-page-container .modern-faq-accordion .accordion-button {
+  font-weight: 600;
+  color: #031d03;
+  padding: 20px 10px;
+}
+
+.tour-page-container .modern-faq-accordion .accordion-button:not(.collapsed) {
+  background: transparent;
+  color: #3ea03e;
+  box-shadow: none;
+}
+
+.tour-page-container .modern-faq-accordion .accordion-button:focus {
+  box-shadow: none;
+}
+
+
+/* 3. Убираем эффект свечения, даже если аккордеон открыт */
+.accordion-button {
+    box-shadow: none !important;
+}
+
+.tour-page-container .modern-faq-accordion .accordion-body {
+  color: #555;
+  padding-bottom: 25px;
+  line-height: 1.6;
+}
+
+/* Адаптивность */
+@media (max-width: 991px) {
+  .tour-page-container .cta-glass-card { padding: 30px; text-align: center; }
+  .tour-page-container .cta-title { font-size: 1.8rem; }
+  .tour-page-container .cta-btn-modern { margin-top: 20px; }
+}
+
+
+/* --- RESPONSIVE MEDIA QUERIES --- */
+/* Use this to make sure it looks good on mobile too */
+@media (max-width: 992px) {
+  .tour-page-container .ToursPageInfoTextContainer {
+    grid-template-columns: 1fr; /* Stack them on smaller screens */
+    margin: 30px 20px;
+  }
+  
+  .tour-page-container .ToursPageHeadText {
+    font-size: 3rem;
+    margin-top: 80px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tour-page-container .search-input {
+    width: 90%;
+  }
+  
+  .tour-page-container .album-card {
+    margin-bottom: 30px;
+    height: auto !important; /* Allow card to grow if text is long */
+  }
+}
+
+

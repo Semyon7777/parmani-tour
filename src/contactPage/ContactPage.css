@@ -1,0 +1,268 @@
+/* ---------- Верхний блок ---------- */
+/* Переменные для быстрой настройки цветов */
+:root {
+  --tour-dark-green: #1b4332;
+  --tour-main-green: #2d6a4f;
+  --tour-medium-green: #52b788;
+  --tour-light-mint: #d8f3dc;
+  --tour-soft-bg: #f8faf9;
+}
+
+.tour-contact-page-root {
+  background-color: var(--tour-soft-bg);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Header */
+.tour-hero-header {
+  background: linear-gradient(180deg, #ffffff 0%, var(--tour-light-mint) 100%);
+  padding: 60px 0;
+  border-bottom: 1px solid #e0eee0;
+}
+
+.tour-main-title {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--tour-dark-green);
+  font-weight: 800 !important;
+  text-shadow: none;
+}
+
+.tour-main-subtitle {
+  color: #555;
+  max-width: 650px;
+}
+
+/* Containers */
+.tour-form-container {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.tour-side-card {
+  border-radius: 20px !important;
+}
+
+.tour-bg-mint {
+  background-color: var(--tour-light-mint) !important;
+}
+
+/* Icons and Text */
+.tour-text-green {
+  color: var(--tour-main-green);
+}
+
+.tour-icon-circle {
+  background: white;
+  color: var(--tour-main-green);
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Социальные кнопки - ФИКС ЦВЕТОВ */
+.tour-social-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 12px !important;
+  border-radius: 50px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  color: white !important;
+  transition: transform 0.2s ease, filter 0.2s ease !important;
+  border: none !important;
+}
+
+.tour-btn-wa {
+  background-color: #25D366 !important;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25) !important;
+}
+
+.tour-btn-tg {
+  background-color: #0088CC !important;
+  box-shadow: 0 4px 12px rgba(0, 136, 204, 0.25) !important;
+}
+
+.tour-btn-ig {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+  box-shadow: 0 4px 12px rgba(220, 39, 67, 0.25) !important;
+}
+
+.tour-social-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  color: white !important;
+}
+
+/* Accordion */
+.tour-faq-wrapper {
+  background-color: white;
+}
+
+.tour-accordion .accordion-item {
+  border: none !important;
+  border-bottom: 1px solid #eee !important;
+}
+
+.tour-accordion .accordion-button:not(.collapsed) {
+  background-color: var(--tour-light-mint) !important;
+  color: var(--tour-dark-green) !important;
+  box-shadow: none !important;
+}
+
+.tour-accordion .accordion-button:focus {
+  box-shadow: none !important;
+}
+
+/* ---------- Контент ---------- */
+.contactPage .contactContent {
+  background: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  margin-top: 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+
+.contactPage .contactContent.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Заголовки */
+.contactPage .contactContent h3 {
+  color: #145d04;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Инфо блок */
+.contactPage .contactInfoBlock p {
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 991.98px) {
+
+  .messenger-block-container {
+    align-items: center;
+  }
+
+  .tour-hero-header {
+    margin-top: 40px;
+  }
+
+
+  .tour-main-title {
+    font-size: 2rem;
+  }
+  
+  .tour-hero-header {
+    padding: 40px 0;
+  }
+
+  .tour-form-container {
+    padding: 20px;
+  }
+}
+
+/* Только мобильные (меньше 768px) */
+@media (max-width: 767.98px) {
+  .tour-main-title {
+    font-size: 1.75rem;
+    margin-bottom: 10px;
+  }
+
+  .tour-main-subtitle {
+    font-size: 0.95rem;
+  }
+
+  /* На мобильных кнопки можно сделать в ряд или сеткой 2х1 */
+  .tour-social-grid {
+    gap: 10px;
+  }
+
+  .tour-social-btn {
+    padding: 10px !important;
+    font-size: 0.9rem !important;
+  }
+
+  .tour-faq-title {
+    font-size: 1.5rem;
+  }
+
+  .tour-info-item small {
+    font-size: 0.85rem;
+  }
+
+  /* Убираем лишние отступы контейнера на мобилках */
+  .tour-content-container {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+/* Очень маленькие экраны (iPhone SE и т.д.) */
+@media (max-width: 375px) {
+  .tour-social-btn {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* ---------- Форма ---------- */
+.contactPage .custom-input {
+  border: 1px solid #AEE57D;
+  border-radius: 8px;
+  padding: 10px 15px;
+  transition: all 0.3s ease;
+  background-color: #f5f9f4;
+}
+
+.contactPage .custom-input:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+  background-color: #fff;
+}
+
+.contactPage button[type="submit"] {
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.contactPage button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Alert */
+.contactPage .alert-danger {
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+/* Modal */
+.contactPage .modal-content {
+  border-radius: 12px;
+}
+
+@media (max-width: 767px) {
+  .contactPage .contactPageTopTitle {
+    font-size: 1.6rem;
+  }
+  .contactPage .contactPageTopText {
+    font-size: 1rem;
+  }
+  .contactPage .contactContent {
+    padding: 20px;
+  }
+}

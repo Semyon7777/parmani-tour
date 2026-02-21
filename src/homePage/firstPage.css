@@ -1,0 +1,1058 @@
+#homePage {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    text-shadow: 2px 4px #0a3304;
+}
+
+.first-container {
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+    border: 0;
+    position: relative;
+}
+
+.video-container {
+    max-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#myVideo {
+    position: absolute;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    object-fit: cover;
+}
+
+.top-buttons.buttons-fixed {
+    position: fixed;
+    width: 100%;
+    transform: translateY(0);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    z-index: 100;
+}
+
+@keyframes slideInFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.top-buttons.show {
+    animation: slideInFromTop 0.5s ease forwards;
+}
+
+.center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    font-size: 2.8rem;
+    text-align: center;
+    color: #7cde0c;
+}
+
+.animated-text {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: appearAnimation 7s forwards;
+    font-family: "Merienda", cursive;
+    font-optical-sizing: auto;
+    font-weight: bold !important;
+    font-style: normal;
+    font-size: 4rem;
+}
+
+/* Для русского (Montserrat) */
+html[lang="ru"] .animated-text {
+    font-family: "PT Sans", Arial, Helvetica, sans-serif;
+    font-weight: 800 !important; /* Делаем чуть жирнее для компенсации стиля */
+}
+
+/* Для армянского (Noto Sans Armenian) */
+html[lang="hy"] .animated-text {
+    font-family: "Noto Sans Armenian", sans-serif;
+    font-weight: 700 !important;
+    line-height: 1.2; /* Армянские буквы высокие, лучше добавить межстрочный интервал */
+}
+
+@keyframes appearAnimation {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* Responsive styles */
+
+@media (max-width: 768px) {
+
+
+    .top-title {
+        font-size: 2rem !important;
+        margin-right: 0;
+        margin-bottom: 20px !important;
+        margin-top: 5px;
+        text-align: center;
+    }
+
+    .center-text {
+        font-size: 2rem;
+    }
+
+    .custom-button {
+        width: 100%;
+        margin: 5px 0;
+        box-shadow: 0 4px 6px rgba(255, 255, 255, 0);
+        margin-bottom: 20px !important;
+    }
+
+    .custom-button-one {
+        margin-bottom: 10px !important;
+    }
+
+    .custom-button:hover {
+        background-color:transparent !important;
+        transform: none !important;
+    }
+
+    .dropdown-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    body, html {
+        overflow-x: hidden !important;
+      }
+
+
+
+    .center-text {
+        font-size: 1.5rem;
+        padding: 0 10px;
+        text-align: center;
+    }
+
+    .animated-text {
+        font-size: 2rem;
+    }
+
+    .first-container, .video-container, #myVideo {
+        height: 100vh;
+        max-height: 100vh;
+        width: 100%;
+        
+    }
+}
+
+
+
+/* second container */
+
+.second-container {
+    height: 100vh;
+}
+
+.carouselContainer {
+    height: 90vh;
+    margin-top: 70px;
+    display: grid;
+    grid-template-columns: 1fr 1.28fr;
+    gap: 10px;
+    margin-right: 0;
+}
+
+.carouselContainerHeadText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left; /* Выровнять текст по левому краю */
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 0; /* Обнуление внешних отступов */
+    line-height: 1.2; /* Межстрочный интервал */
+    padding-left: 50px; /* Отступ слева */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 2.5s ease-out, transform 2.5s ease-out;
+    margin-left: 10px;
+    font-family: "Merienda", cursive;
+    font-optical-sizing: auto;
+    font-weight: 990;
+    font-style: normal;
+}
+
+/* Для русского (Montserrat) */
+html[lang="ru"] .carouselContainerHeadText {
+    font-family: "Times New Roman", Georgia, serif;
+    font-weight: 800 !important; /* Делаем чуть жирнее для компенсации стиля */
+}
+
+/* Для армянского (Noto Sans Armenian) */
+html[lang="hy"] .carouselContainerHeadText {
+    font-family: "Noto Sans Armenian", sans-serif;
+    font-weight: 700 !important;
+    line-height: 1.2; /* Армянские буквы высокие, лучше добавить межстрочный интервал */
+}
+
+.carouselContainerHeadText span {
+    text-shadow: 1px 1px #023918;
+    font-weight: bold;
+}
+
+.carouselContainerHeadText.fade-in {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.headline {
+    font-size: 2.9rem;
+    font-weight: 900 !important;
+    color: #7cde0c; /* Коралловый цвет */
+    text-transform: uppercase; /* Верхний регистр */
+    letter-spacing: 2px; /* Расстояние между буквами */
+}
+
+.headline-ru-hy {
+    margin-left: 20px;
+}
+
+.subHeadline {
+    text-align: center;
+    font-size: 2.3rem;
+    font-weight: 400;
+    color: #4682b4; /* Цвета стали (синий) */
+}
+
+.subHeadline-ru-hy {
+    font-size: 2.05rem;
+}
+
+.carouselArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 650px; /* Фиксированная ширина контейнера карусели */
+    height: 400px;
+    margin-left: 120px; /* Сдвиг вправо */
+    margin-top: 35px;
+    border: 2px solid #ddd; /* Легкая граница вокруг карусели */
+    border-radius: 10px; /* Закругленные углы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+    overflow: hidden; /* Обрезка содержимого */
+}
+
+.carousel .carousel-indicators {
+    position: absolute;
+    bottom: 20px; /* Поднимите индикаторы выше */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2; /* Убедитесь, что они находятся выше содержимого */
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Разделите кнопки для лучшей видимости */
+}
+
+.carousel .carousel-indicators li {
+    background-color: rgba(255, 255, 255, 0); /* Прозрачный фон */
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.carousel .carousel-indicators li.active {
+    background-color: rgba(0, 0, 0, 0.9); /* Сделайте активную кнопку более видимой */
+}
+
+.carousel .carousel-indicators li:hover,
+.carousel .carousel-indicators li:focus,
+.carousel .carousel-indicators li:active {
+    background-color: rgba(255, 255, 255, 0); /* Прозрачный фон при наведении, фокусе и нажатии */
+}
+
+.carousel .carousel-control-prev,
+.carousel .carousel-control-next {
+    width: 5%;
+}
+
+.carousel .carousel-control-prev-icon,
+.carousel .carousel-control-next-icon {
+    background-size: 100%, 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 450px; /* Установите желаемую высоту */
+    object-fit: cover; /* Позволяет масштабировать изображение и обрезать его, чтобы заполнить заданные размеры */
+    border-radius: 10px 10px 0 0; /* Закругленные углы для изображений */
+}
+
+.carousel-fade .carousel-item {
+    opacity: 0;
+    transition: opacity 3s ease-in-out; /* Плавный переход */
+}
+
+.carousel-fade .carousel-item.active {
+    opacity: 1;
+}
+
+.carousel .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон для подписей */
+    padding: 10px;
+    border-radius: 10px 10px 10px 10px; /* Закругленные углы */
+}
+
+.planeToArmenia {
+    margin-top: 15px;
+    grid-row: span 2;
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 70px;
+}
+
+.firstPageCarouselCaptionTitle {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.firstPageCarouselCaptionInfo {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+/* Мобильные стили */
+
+@media (max-width: 1266px) {
+    
+    .carouselArea {
+        width: 93%;
+        height: 83%;
+        margin-left: 15px;
+    }
+
+    .carouselContainerHeadText {
+        margin-left: -50px;
+    }
+
+    .planeToArmenia {
+        margin-left: 0;
+    }
+
+    .planeToArmenia img {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .carouselContainer {
+        grid-template-rows: 1fr 0.279fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+    }
+
+    .card {
+        width: 10rem ;
+    }
+
+    .thirdContainerHeadOfText {
+        font-size: 3rem;
+    }
+
+    .EndbtnContainerButton {
+        margin-left: -65px;
+        width: 150px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .top-title.box {
+        margin-top: 10px !important;
+        font-size: 21px !important; /* Уменьшаем размер шрифта для маленьких экранов */
+      }
+
+    .carouselContainer {
+        margin-top: 90px !important;
+    }
+
+    .carouselContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .carouselContainerHeadText {
+        margin: 10px;
+        padding-left: 20px;
+        text-align: center;
+        padding-right: 20px;
+    }
+
+    .headline {
+        font-size: 2rem;
+    }
+
+    .subHeadline {
+        font-size: 1.5rem;
+    }
+
+    .carouselArea {
+        width: 90%;
+        height: 300px;
+        margin-left: 0;
+        margin-top: 20px;
+    }
+
+    .planeToArmenia {
+        margin-top: 20px;
+        margin-left: 0;
+    }
+
+    .planeToArmenia img {
+        max-width: 100%;
+    }
+
+    .carousel-item img {
+        height: 300px; /* Уменьшение высоты изображений на мобильных устройствах */
+    }
+
+    .carousel .carousel-indicators {
+        bottom: 10px; /* Поднимите индикаторы выше на мобильных устройствах */
+    }
+
+    .carousel .carousel-caption {
+        padding: 5px; /* Уменьшение отступов в подписях на мобильных устройствах */
+    }
+
+    .carousel-fade .carousel-item {
+        opacity: 0;
+        transition: opacity 3s ease-in-out; /* Плавный переход */
+    }
+
+    .planeToArmeniaPhoto {
+        width: 330px;
+    }
+}
+
+
+
+/* third-container */
+
+
+
+.thirdContainer {
+    padding: 20px;
+    margin-top: 50px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+
+.thirdContainerHeadOfText {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: #3c9d0b;
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 2px 1.2px #0a3304;
+    font-family: "Merienda", cursive;
+    font-optical-sizing: auto;
+    font-weight: 990;
+    font-style: normal;
+}
+
+/* Для русского (Montserrat) */
+html[lang="ru"] .thirdContainerHeadOfText {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800 !important; /* Делаем чуть жирнее для компенсации стиля */
+}
+
+/* Для армянского (Noto Sans Armenian) */
+html[lang="hy"] .thirdContainerHeadOfText {
+    font-family: "Noto Sans Armenian", sans-serif;
+    font-weight: 700 !important;
+    line-height: 1.2; /* Армянские буквы высокие, лучше добавить межстрочный интервал */
+}
+
+.cards .card {
+    margin-bottom: 20px;
+}
+
+.card {
+    height: 100%; /* или фиксированная высота */
+    border: none;
+    border-radius: 1.3rem !important;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s;
+}
+
+.card img:hover {
+    transform: scale(1.1);
+}
+
+.card-title {
+    font-family:Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+    font-weight: 540;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.card-text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    color: #666;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+    border: none;
+    border-radius: 20px;
+    transition: background 0.3s;
+    background-color: #205A31;
+}
+
+.EndbtnContainerButton-ru-hy {
+    font-size: 17.9px !important;
+    margin-left: -40px;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #ff8e53, #ff6b6b);
+}
+
+/* ============================ */
+/* ===== SECTION HEADERS ===== */
+.home-section-header {
+  margin-bottom: 50px;
+}
+
+.home-section-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #143c2d;
+}
+
+.home-section-subtitle {
+  max-width: 600px;
+  margin: 15px auto 0;
+  color: #5f7f72;
+}
+
+/* ===== TRUST SECTION ===== */
+/* ===== REFINED TRUST SECTION ===== */
+.home-trust-section {
+  padding: 30px 0;
+  background: #ffffff; /* Clean white background looks more trustworthy */
+}
+
+.home-trust-section .container {
+    padding: 40px;
+    border-radius: 2rem;
+    background-color: #3a7d4447;
+}
+
+.home-section-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.trust-badge {
+  color: #3a7d44;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.home-section-title {
+  font-size: 42px;
+  font-weight: 800;
+  color: #0d1a0f;
+  margin-bottom: 15px;
+}
+
+.title-underline {
+  width: 60px;
+  height: 4px;
+  background: #3a7d44;
+  margin: 0 auto 25px;
+  border-radius: 2px;
+}
+
+.home-section-subtitle {
+  color: #5c6b5e;
+  max-width: 650px;
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* --- THE CARDS --- */
+.home-trust-card {
+  background: #fcfdfc;
+  border: 1px solid #f0f3f1;
+  border-radius: 24px;
+  padding: 40px 30px;
+  height: 100%;
+  text-align: center;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  overflow: hidden;
+}
+
+.icon-wrapper {
+  width: 70px;
+  height: 70px;
+  background: #f0f7f1; /* Light green circle */
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 25px;
+  transition: transform 0.8s ease;
+}
+
+.home-trust-card h5 {
+  color: #0d1a0f;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.home-trust-card p {
+  color: #5c6b5e;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* Card Visual Feedback */
+.card-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #3a7d44;
+  transform: scaleX(0);
+  transition: transform 0.8s ease;
+}
+
+/* --- HOVER EFFECTS --- */
+.home-trust-card:hover {
+  background: #ffffff;
+  box-shadow: 0 30px 60px rgba(13, 26, 15, 0.08);
+  border-color: transparent;
+}
+
+.home-trust-card:hover .icon-wrapper {
+  transform: rotateY(180deg); /* Subtle modern flip */
+  background: #3a7d44;
+  color: white !important;
+}
+
+.home-trust-card:hover .card-indicator {
+  transform: scaleX(1);
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .home-section-title { font-size: 32px; }
+  .home-trust-card { padding: 30px 20px; }
+}
+
+/* ===== EXPLORE SECTION ===== */
+.home-explore-section {
+  padding: 100px 0;
+  position: relative;
+}
+
+/* ===== CARD ===== */
+.home-explore-card {
+  height: 270px;
+  border-radius: 26px;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.25);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
+}
+
+.home-explore-card:hover {
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== OVERLAY ===== */
+.home-explore-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.45) 55%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+
+  color: #ffffff;
+  z-index: 2;
+}
+
+/* ===== LIGHT SWEEP EFFECT ===== */
+.home-explore-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.25),
+    transparent 80%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.8s ease;
+  z-index: 1;
+}
+
+.home-explore-card:hover::before {
+  transform: translateX(120%);
+}
+
+/* ===== TEXT ===== */
+.home-explore-overlay h5 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  line-height: 1.2;
+  letter-spacing: 0.4px;
+  text-shadow: 0 6px 20px rgba(0, 0, 0, 0.55);
+}
+
+.home-explore-overlay span {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  letter-spacing: 0.3px;
+}
+
+/* ===== BACKGROUNDS ===== */
+.explore-yerevan {
+  background-image: url("./first page images/exploreImg1.jpg");
+}
+
+.explore-sevan {
+  background-image: url("./first page images/exploreImg2.jpg");
+}
+
+.explore-dilijan {
+  background-image: url("./first page images/exploreImg3.jpg");
+}
+
+.explore-heritage {
+  background-image: url("./first page images/exploreImg4.webp");
+}
+
+/* Upcoming Events Section */
+.home-upcoming-section {
+    background-color: #fcfcfc;
+}
+
+/* Пульсирующий индикатор Live */
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.live-indicator .dot {
+    width: 10px;
+    height: 10px;
+    background-color: #ff4d4d;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 1.5s infinite;
+}
+
+.live-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #ff4d4d;
+    letter-spacing: 1px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 77, 77, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 77, 77, 0); }
+}
+
+/* Карточка события */
+.event-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.event-card:hover {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+}
+
+.event-image-wrapper {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.event-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+}
+
+.event-card:hover .event-img {
+    transform: scale(1.1);
+}
+
+.event-date-badge {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    padding: 8px 15px !important;
+    border-radius: 50px !important;
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.event-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #1a3c17;
+    margin: 0;
+}
+
+.from-text {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+.price-value {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #3ea03e;
+}
+
+.view-all-link {
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.3s;
+}
+
+.view-all-link:hover {
+    gap: 10px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .home-explore-card {
+    height: 240px;
+  }
+
+  .home-explore-overlay {
+    padding: 22px;
+  }
+
+  .home-explore-overlay h5 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-explore-section {
+    padding: 70px 0;
+  }
+
+  .home-explore-card {
+    height: 210px;
+    border-radius: 20px;
+  }
+
+  .home-explore-overlay h5 {
+    font-size: 1.15rem;
+  }
+
+  .home-explore-overlay span {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-explore-card {
+    height: 190px;
+  }
+}
+
+
+/* Медиа-запросы для адаптивного дизайна */
+
+@media (max-width: 768px) {
+    .thirdContainer {
+        padding: 10px;
+        margin-top: 50px;
+    }
+
+    .thirdContainerHeadOfText {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        margin: 10px auto;
+        width: 100%; /* Увеличить ширину карточки на мобильных устройствах */
+        max-width: 300px; /* Максимальная ширина для маленьких экранов */
+    }
+
+    .card img {
+        transition: none;
+        transform: none;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+
+    .card img:hover {
+        transform: none;
+    }
+
+    .btn-primary {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+
+    .EndbtnContainerButton {
+        margin-left: -115px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .thirdContainerHeadOfText {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+    }
+
+    .btn-primary {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 768px) and (min-width: 768px) {
+    .carouselArea {
+        width: 65%;
+    }
+
+    .planeToArmeniaPhoto {
+        width: 80%;
+    }
+}
+
+
+  /* General responsiveness */
+@media (max-width: 768px) {
+    .homePageList-wrapper {
+      width: 100%; /* Full width on mobile */
+      overflow: hidden;
+    }
+  
+    .homePageList-content {
+      width: 90vw; /* Make each card fill most of the viewport width */
+      height: auto;
+    }
+  
+    .homePageList-inner {
+      display: flex;
+      transition: transform 0.5s ease-in-out; /* Smooth sliding transition */
+      height: auto;
+      gap: 0;
+    }
+  
+    .homePageList-card {
+      flex: 0 0 100%; /* Each card takes full width on mobile */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  

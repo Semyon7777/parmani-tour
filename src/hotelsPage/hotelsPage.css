@@ -1,0 +1,264 @@
+/* HERO */
+.hotels-hero-section {
+  background: linear-gradient(
+      rgba(20, 60, 45, 0.65),
+      rgba(20, 60, 45, 0.65)
+    ),
+    url("./hotel-hero.jpg") center / cover no-repeat;
+  color: #fff;
+  padding: 120px 0;
+}
+
+.hotels-hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.hotels-hero-subtitle {
+  max-width: 550px;
+  margin: 20px 0 30px;
+}
+
+/* SEARCH */
+.hotels-search-box {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr auto;
+  gap: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* INPUTS */
+.hotels-input {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #d6e0db;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  min-width: 0; /* IMPORTANT: prevents overflow */
+}
+
+.hotels-input:focus {
+  outline: none;
+  border-color: #2e8b57;
+  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.15);
+}
+
+/* BUTTON */
+.hotels-btn {
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+}
+
+.hotels-btn-primary {
+  padding: 12px 22px;
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.hotels-btn-primary:hover {
+  background-color: #256f46;
+}
+
+.hotels-btn-primary:active {
+  transform: scale(0.97);
+}
+
+.hotels-btn-primary {
+  background-color: #2e8b57;
+  color: #fff;
+}
+
+.hotels-btn-outline {
+  background: transparent;
+  border: 2px solid #2e8b57;
+  color: #2e8b57;
+}
+
+/* CONTENT */
+.hotels-content-section {
+  padding: 80px 0;
+}
+
+/* FILTERS */
+.hotels-filter-box {
+  background: #f8fdfb;
+  border-radius: 20px;
+  padding: 25px;
+}
+
+.hotels-filter-group {
+  margin-bottom: 20px;
+}
+
+.hotels-select,
+.hotels-range {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* HOTEL CARD */
+.hotel-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+.hotel-card-image {
+  height: 180px;
+  background: #ccc url("./hotel-placeholder.webp") center / cover no-repeat;
+}
+
+.hotel-card-body {
+  padding: 20px;
+}
+
+.hotel-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* TRUST */
+.hotels-trust-section {
+  background: #1e4632;
+  color: #fff;
+  padding: 60px 0;
+}
+
+
+@media (max-width: 992px) {
+  /* HERO */
+  .hotels-hero-section {
+    padding: 100px 0;
+  }
+
+  .hotels-hero-section .container {
+    margin-top: 20px;
+  }
+
+  .hotels-hero-title {
+    font-size: 2.4rem;
+  }
+
+  .hotels-hero-subtitle {
+    font-size: 1rem;
+  }
+
+  /* SEARCH */
+  .hotels-search-box {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* FILTERS */
+  .hotels-filter-box {
+    padding: 20px;
+  }
+
+  /* HOTEL CARD */
+  .hotel-card-image {
+    height: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* HERO */
+  .hotels-hero-section {
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .hotels-hero-title {
+    font-size: 2rem;
+  }
+
+  .hotels-hero-subtitle {
+    margin: 16px auto 24px;
+  }
+
+  /* SEARCH */
+  .hotels-search-box {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  /* CONTENT */
+  .hotels-content-section {
+    padding: 60px 0;
+  }
+
+  /* FILTERS */
+  .hotels-filter-box {
+    margin-bottom: 30px;
+  }
+
+  /* HOTEL CARD */
+  .hotel-card-body {
+    padding: 18px;
+  }
+
+  .hotel-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  /* TRUST */
+  .hotels-trust-section {
+    padding: 50px 0;
+  }
+
+  .hotels-trust-section h5 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  /* HERO */
+  .hotels-hero-title {
+    font-size: 1.8rem;
+  }
+
+  .hotels-hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  /* SEARCH */
+  .hotels-search-box {
+    padding: 16px;
+  }
+
+  .hotels-input {
+    font-size: 0.9rem;
+    padding: 11px 12px;
+  }
+
+  /* BUTTONS */
+  .hotels-btn {
+    width: 100%;
+  }
+
+  /* HOTEL CARD */
+  .hotel-card-image {
+    height: 160px;
+  }
+
+  .hotel-card-title {
+    font-size: 1.05rem;
+  }
+
+  .hotel-card-text {
+    font-size: 0.9rem;
+  }
+
+  /* TRUST */
+  .hotels-trust-section p {
+    font-size: 0.9rem;
+  }
+}

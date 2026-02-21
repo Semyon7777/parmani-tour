@@ -1,0 +1,635 @@
+.scheduled-page {
+  background-color: #f9f9f9;
+}
+
+/* HERO */
+.scheduled-hero {
+  height: 60vh;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://placehold.co/1920x600?text=Nature+Background');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: -40px; /* Чтобы табы наехали на фото */
+}
+
+/* TABS */
+.tabs-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+}
+
+.custom-tabs {
+  background: white;
+  padding: 10px;
+  border-radius: 50px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  display: inline-flex;
+  gap: 10px;
+}
+
+.tab-btn {
+  padding: 12px 30px;
+  border: none;
+  background: transparent;
+  border-radius: 40px;
+  font-weight: 600;
+  color: #666;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab-btn.active {
+  background: #333;
+  color: white;
+}
+
+/* Спец цвета для активных табов */
+.tab-btn.eco-tab.active { background: #3a7d44; } /* Зеленый */
+.tab-btn.group-tab.active { background: #e67e22; } /* Оранжевый */
+
+/* TOUR LIST */
+.tours-list-section {
+  margin-top: 4%;
+}
+
+/* CARDS */
+.tour-card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: 0.3s;
+  border: 1px solid #eee;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tour-card:hover {
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.tour-img-wrapper {
+  height: 220px;
+  position: relative;
+}
+
+.tour-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.tour-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Разные цвета бейджей */
+.card-eco .tour-badge { background: #3a7d44; }
+.card-group .tour-badge { background: #e67e22; }
+
+.tour-content {
+  padding: 25px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.tour-date {
+  color: #999;
+  font-size: 13px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.tour-content h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.eco-impact-box {
+  background: #f0f9f4;
+  color: #3a7d44;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto; /* Прижать к низу контента */
+  margin-bottom: 15px;
+}
+
+.tour-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #222;
+}
+
+.join-btn {
+  background: #525452;
+  color: white;
+  border: none;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  border-radius: 20px;
+}
+
+.tour-card:hover .join-btn {
+  width: 120px;
+  border-radius: 20px;
+}
+
+/* Хитрая анимация кнопки: сначала кружок, потом текст */
+.join-btn span { display: none; } /* Если захочешь добавить текст внутрь */
+
+
+@media (min-width: 576px) {
+    .card-group {
+        display: flex !important;
+        flex-flow: column !important;
+    }
+}
+
+/* ECO TOUR DETAILS */
+
+:root {
+  --eco-green: #2d6a4f;
+  --eco-light-green: #e9f5ee;
+  --text-dark: #1b4332;
+  --text-gray: #6b7280;
+}
+
+.eco-details-page {
+  background-color: #ffffff;
+}
+
+/* HERO SECTION */
+.eco-hero {
+  height: 70vh;
+  min-height: 500px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.eco-hero-overlay {
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 80px;
+}
+
+.back-btn {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 50px;
+  margin-bottom: 40px;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background: white;
+  color: black;
+}
+
+.hero-content-box h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: white;
+  margin: 15px 0;
+}
+
+.eco-badge-top {
+  background: var(--eco-green);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quick-stats {
+  display: flex;
+  gap: 30px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 20px;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+/* CONTENT BLOCKS */
+.eco-content-container {
+  margin-top: -50px; /* Наложение на Hero */
+  position: relative;
+  z-index: 5;
+}
+
+.info-block {
+  margin-bottom: 60px;
+}
+
+.info-block h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 25px;
+}
+
+.block-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.icon-green {
+  color: var(--eco-green);
+}
+
+.mission-highlight {
+  background: var(--eco-light-green);
+  padding: 40px;
+  border-radius: 24px;
+}
+
+.mission-text {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: var(--text-dark);
+  font-style: italic;
+}
+
+.description-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-gray);
+}
+
+/* INCLUDED LIST */
+.included-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.inc-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+.inc-item svg {
+  color: var(--eco-green);
+}
+
+/* BOOKING CARD */
+.eco-booking-card {
+  background: white;
+  border: 1px solid #f0f0f0;
+  border-radius: 24px;
+  padding: 35px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 100px;
+}
+
+.price-label {
+  font-size: 14px;
+  color: var(--text-gray);
+  display: block;
+}
+
+.price-value {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  margin-bottom: 25px;
+}
+
+.card-features {
+  margin-bottom: 30px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 20px;
+}
+
+.feat-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: var(--text-dark);
+}
+
+.feat-line svg {
+  color: var(--eco-green);
+}
+
+.eco-main-btn {
+  background: var(--eco-green);
+  color: white;
+  width: 100%;
+  border: none;
+  padding: 16px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.eco-main-btn:hover {
+  background: #1b4332;
+  transform: translateY(-2px);
+}
+
+.guarantee-text {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-gray);
+  margin-top: 15px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+  .eco-hero { height: 50vh; }
+  .hero-content-box h1 { font-size: 2.5rem; }
+  .eco-content-container { margin-top: 20px; }
+  .eco-booking-card { margin-top: 40px; position: static; }
+}
+
+/* GROUP TOUR DETAILS */
+
+:root {
+  --group-orange: #f97316; /* Насыщенный оранжевый */
+  --group-dark: #0f172a;   /* Глубокий темный */
+  --bg-light: #f8fafc;
+}
+
+.group-details-page {
+  background-color: white;
+}
+
+/* HERO SECTION - Геометричный и яркий */
+.group-hero {
+  height: 55vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.group-hero-overlay {
+  height: 100%;
+  background: rgba(15, 23, 42, 0.4); /* Затемнение */
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 50px;
+}
+
+.group-back-btn {
+  background: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  transition: 0.3s;
+}
+
+.group-back-btn:hover {
+  background: var(--group-orange);
+  color: white;
+}
+
+.group-type-badge {
+  background: var(--group-orange) !important;
+  padding: 8px 15px;
+  font-size: 12px;
+  letter-spacing: 2px;
+  border-radius: 4px;
+}
+
+.group-type-badge .bg-primary 
+
+.group-title {
+  color: white;
+  font-size: 4rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-top: 15px;
+  text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+}
+
+/* QUICK INFO STRIP */
+.info-strip {
+  background: var(--group-dark);
+  color: white;
+  padding: 25px 0;
+}
+
+.strip-grid {
+  display: flex;
+  justify-content: space-around;
+}
+
+.strip-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.strip-item small {
+  display: block;
+  color: #94a3b8;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.strip-item span {
+  font-weight: 700;
+}
+
+/* TIMELINE (Таймлайн программы) */
+.itinerary-section {
+  margin-top: 60px;
+}
+
+.section-title {
+  font-weight: 800;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.timeline {
+  border-left: 2px solid var(--bg-light);
+  padding-left: 30px;
+  margin-left: 10px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -39px;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border: 4px solid var(--group-orange);
+  border-radius: 50%;
+}
+
+.time {
+  font-weight: 800;
+  color: var(--group-orange);
+  margin-bottom: 5px;
+}
+
+.timeline-item h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* BOOKING PANEL - Уникальный "плавающий" блок */
+.group-booking-panel {
+  background: white;
+  border: 2px solid var(--group-dark);
+  padding: 40px;
+  border-radius: 0; /* Четкие углы для контраста с эко */
+  box-shadow: 15px 15px 0px var(--group-orange); /* Ретро-тень */
+  position: sticky;
+  top: 100px;
+  margin-top: 60px;
+}
+
+.price-box {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.price-circle {
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--group-dark);
+}
+
+.booking-details {
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+}
+
+.group-action-btn {
+  background: var(--group-dark);
+  color: white;
+  width: 100%;
+  border: none;
+  padding: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+
+.group-action-btn:hover {
+  background: var(--group-orange);
+  transform: translate(-3px, -3px);
+}
+
+/* PROGRESS BAR */
+.spots-counter {
+  margin-top: 25px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #eee;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--group-orange);
+  border-radius: 10px;
+}
+
+.info-card {
+  display: flex;
+  gap: 20px;
+  background: var(--bg-light);
+  padding: 25px;
+  margin-top: 40px;
+}
+
+.text-orange { color: var(--group-orange); }
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+  .group-title { font-size: 2.5rem; }
+  .strip-grid { flex-direction: column; gap: 20px; }
+  .group-booking-panel { position: static; box-shadow: 8px 8px 0px var(--group-orange); }
+}

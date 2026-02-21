@@ -1,0 +1,194 @@
+:root {
+  --deep-moss: #0d1a0f;
+  --forest-green: #2d4a31;
+  --leaf-accent: #5e8c61;
+  --soft-cream: #f4f7f2;
+  --text-dark: #1a241b;
+}
+
+.cuisine-page {
+  background-color: var(--soft-cream);
+  color: var(--text-dark);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* --- HERO: Modern Cinematic --- */
+.cuisine-hero-editorial {
+  height: 80vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-bg-wrapper {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+}
+
+.hero-parallax-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.1); /* Slight zoom for quality feel */
+}
+
+.hero-overlay-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(13,26,15,0.3), var(--deep-moss));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: white;
+}
+
+.hero-subtitle {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 14px;
+  color: var(--leaf-accent);
+  display: block;
+  margin-bottom: 15px;
+}
+
+.hero-content h1 {
+  font-size: clamp(40px, 8vw, 80px);
+  font-weight: 800;
+  margin: 0;
+}
+
+/* --- INTRO --- */
+.cuisine-intro-refined {
+  padding: 100px 5%;
+  text-align: center;
+}
+
+.intro-container p {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 20px;
+  line-height: 1.8;
+  color: var(--forest-green);
+  font-weight: 400;
+}
+
+/* --- THE EDITORIAL GRID --- */
+.cuisine-feature-grid {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding-bottom: 120px;
+}
+
+.feature-row {
+  display: flex;
+  align-items: center;
+  gap: 8%;
+  margin-bottom: 150px; /* Large spacing looks high-end */
+}
+
+.feature-row.row-reverse {
+  flex-direction: row-reverse;
+}
+
+.feature-image-block {
+  flex: 1.2;
+}
+
+.image-frame {
+  position: relative;
+  padding: 20px;
+}
+
+.image-frame img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 4px; /* Sharp but slightly softened */
+  display: block;
+  z-index: 2;
+  position: relative;
+}
+
+/* Decorative Green box behind image */
+.image-border-deco {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70%;
+  height: 70%;
+  border: 2px solid var(--leaf-accent);
+  z-index: 1;
+}
+
+.row-reverse .image-border-deco {
+  left: auto;
+  right: 0;
+}
+
+.feature-text-block {
+  flex: 1;
+  padding: 40px;
+}
+
+.dish-label {
+  color: var(--leaf-accent);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.feature-text-block h2 {
+  font-size: 44px;
+  margin-bottom: 25px;
+  color: var(--deep-moss);
+}
+
+.feature-text-block p {
+  font-size: 17px;
+  line-height: 1.9;
+  color: #4a5d4e;
+}
+
+/* --- FINAL CTA --- */
+.cuisine-footer-cta {
+  background: var(--deep-moss);
+  color: white;
+  padding: 120px 5%;
+  text-align: center;
+  border-radius: 100px 100px 0 0; /* Modern curve */
+}
+
+.cta-content h2 {
+  font-size: 48px;
+  margin-bottom: 20px;
+}
+
+.cta-content p {
+  max-width: 600px;
+  margin: 0 auto;
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+/* --- MOBILE RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .feature-row, .feature-row.row-reverse {
+    flex-direction: column;
+    margin-bottom: 80px;
+  }
+  .feature-text-block {
+    text-align: center;
+    padding: 20px;
+  }
+  .image-frame img {
+    height: 350px;
+  }
+}

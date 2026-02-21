@@ -1,0 +1,19 @@
+.LanguageSwitcherContainer {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction:row;
+}
+
+.LanguageSwitcherButton {
+    margin-top: -5px;
+    overflow: hidden; /* Это гарантирует, что изображение не выйдет за пределы кнопки */
+    border: none;
+    background-color: rgba(240, 255, 246, 0);
+}
+
+.LanguageSwitcherButton img {
+    width: 20px;
+    object-fit: cover; /* Это позволяет изображению масштабироваться, сохраняя пропорции и не выходя за границы кнопки */
+}
+ 

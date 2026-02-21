@@ -1,0 +1,328 @@
+:root {
+  --primary-green: #3ea03e;
+  --dark-green: #1a3c17;
+  --light-bg: #f8f9fa;
+  --text-muted: #6c757d;
+}
+
+.tour-details-wrapper {
+  background-color: #fcfcfc;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Hero Section */
+.tour-hero-section {
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+.tour-hero-overlay {
+  width: 100%;
+  padding: 80px 0 40px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+}
+
+.tour-details-wrapper .tour-hero-section .tour-main-title {
+  color: white !important;
+  font-weight: 800;
+  font-size: 3.5rem;
+  margin-top: 20px;
+}
+
+.tour-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  transition: 0.3s;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.tour-back-btn:hover {
+  background: white;
+  color: var(--dark-green);
+  transform: translateX(-5px);
+}
+
+/* Quick Stats */
+.tour-quick-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+  border: 1px solid #f0f0f0;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.stat-item svg {
+  color: var(--primary-green);
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  display: block;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Route & Timeline */
+.map-wrapper {
+  position: relative;
+}
+
+.map-badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: white;
+  padding: 5px 15px;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.simple-timeline {
+  padding-left: 20px;
+  border-left: 2px dashed #e0e0e0;
+  margin-left: 10px;
+}
+
+.timeline-step {
+  position: relative;
+  padding-bottom: 25px;
+}
+
+.timeline-step:last-child {
+  padding-bottom: 0;
+}
+
+.step-dot {
+  position: absolute;
+  left: -27px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background: var(--primary-green);
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 0 0 2px var(--primary-green);
+}
+
+.step-title {
+  font-weight: 600;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+/* Custom Itinerary (Read More) */
+.itinerary-item {
+  background: white;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  border: 1px solid #eee;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.itinerary-item.active {
+  border-color: var(--primary-green);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.itinerary-trigger {
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.trigger-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.itinerary-number {
+  background: var(--light-bg);
+  color: var(--primary-green);
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-weight: 800;
+}
+
+.itinerary-item.active .itinerary-number {
+  background: var(--primary-green);
+  color: white;
+}
+
+.itinerary-trigger h5 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.itinerary-collapse {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-10px); /* Легкий сдвиг вверх для эффекта выплывания */
+
+  /* Увеличиваем время и делаем более "вязкую" анимацию */
+  transition: 
+    max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1), 
+    opacity 0.5s ease-in-out,
+    transform 0.5s ease-out;
+}
+
+.itinerary-collapse.open {
+  max-height: 1200px; /* Запас по высоте */
+  opacity: 1;
+  transform: translateY(0); /* Возвращаем на место */
+}
+
+.itinerary-text {
+  color: #555;
+  line-height: 1.7;
+}
+
+/* Добавляем задержку для появления самого текста, чтобы он не "дергался" */
+.itinerary-content {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out 0.2s; /* Появляется чуть позже (0.2s задержка) */
+}
+
+.itinerary-collapse.open .itinerary-content {
+  opacity: 1;
+}
+
+/* Анимация самой карточки при активации */
+.itinerary-item {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.itinerary-item.active {
+  border-color: var(--primary-green);
+  box-shadow: 0 15px 35px rgba(62, 160, 62, 0.08); /* Мягкая тень при открытии */
+  transform: scale(1.01); /* Легкое увеличение всей карточки */
+}
+
+/* Sticky Booking Card */
+.sticky-booking-card {
+  position: sticky;
+  top: 100px;
+  background: white;
+  border-radius: 24px;
+}
+
+.booking-price {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--primary-green);
+  line-height: 1;
+}
+
+.booking-main-btn {
+  border-radius: 15px;
+  font-size: 1.1rem;
+  padding: 18px !important;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 20px rgba(62, 160, 62, 0.2);
+}
+
+.b-feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.section-title {
+  font-weight: 800;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* FAQ AND INSTRUCTION PART */
+
+.instruction-list {
+  list-style: none;
+}
+
+.bullet-point {
+  color: var(--primary-green);
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.common-faq-accordion .accordion-button {
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 1.2rem;
+}
+
+.common-faq-accordion .accordion-button:not(.collapsed) {
+  background-color: #f0f7f0;
+  color: var(--dark-green);
+}
+
+.common-faq-accordion .accordion-item {
+  border: none;
+  border-bottom: 1px solid #eee;
+}
+
+.common-faq-accordion .accordion-item:last-child {
+  border-bottom: none;
+}
+
+/* Adaptivity */
+@media (max-width: 991px) {
+  .sticky-booking-card {
+    position: static;
+    margin-top: 40px;
+  }
+  .tour-main-title {
+    font-size: 2.5rem;
+  }
+  .tour-quick-stats {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}

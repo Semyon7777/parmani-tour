@@ -1,0 +1,151 @@
+.about-page {
+  font-family: 'Poppins', sans-serif;
+  background: #ffffff;
+  color: #2c2c2c;
+}
+
+/* HERO */
+
+.about-hero {
+  height: 70vh;
+  background: linear-gradient(rgba(20,20,40,0.7), rgba(20,20,40,0.7)),
+              url("./images/about-hero.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.about-hero-content h1 {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.about-hero-content p {
+  font-size: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* MISSION */
+
+.about-mission {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  padding: 120px 0;
+}
+
+.about-mission img {
+  width: 45%;
+  border-radius: 15px;
+}
+
+.about-mission-text {
+  width: 55%;
+}
+
+.about-mission-text h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.about-mission-text p {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* VALUES */
+
+.about-values {
+  background: #f4f6f9;
+  padding: 100px 0;
+  text-align: center;
+}
+
+.about-values h2 {
+  font-size: 36px;
+  margin-bottom: 60px;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+}
+
+.values-grid h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #1d3557;
+}
+
+.values-grid p {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* TEAM */
+
+.about-team {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  padding: 120px 0;
+}
+
+.about-team img {
+  width: 50%;
+  border-radius: 15px;
+}
+
+.about-team-text {
+  width: 50%;
+}
+
+.about-team-text h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.about-team-text p {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* CTA */
+
+.about-cta {
+  background: #1d3557;
+  color: white;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.about-cta h2 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+.about-cta p {
+  font-size: 18px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 992px) {
+  .about-mission,
+  .about-team {
+    flex-direction: column;
+  }
+
+  .about-mission img,
+  .about-team img,
+  .about-mission-text,
+  .about-team-text {
+    width: 100%;
+  }
+}

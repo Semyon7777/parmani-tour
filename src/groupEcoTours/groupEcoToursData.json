@@ -1,0 +1,27 @@
+{
+  "ecoTours": [
+    {
+      "id": "dilijan-cleanup",
+      "date": "20.05.2026",
+      "price": "5000 AMD",
+      "image": "/images/eco-1.jpg",
+      "location": "Dilijan"
+    },
+    {
+      "id": "sevan-cleanup",
+      "date": "23.05.2026",
+      "price": "8000 AMD",
+      "image": "/images/eco-2.jpg",
+      "location": "Sevan"
+    }
+  ],
+  "groupTours": [
+    {
+      "id": "garni-temple",
+      "date": "22.05.2026",
+      "price": "12000 AMD",
+      "image": "/images/group-1.jpg",
+      "location": "Garni"
+    }
+  ]
+}

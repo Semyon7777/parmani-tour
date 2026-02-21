@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Madimi+One&display=swap');
+
+/* ================= BASE NAVBAR ================= */
+.navbar-container .custom-navbar {
+  background-color: rgb(7, 66, 4);
+  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0.4rem 0;
+  border-bottom: 1px solid rgba(208, 240, 192, 0.1);
+}
+
+.navbar-container .navbar-scrolled {
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  font-size: 1rem;
+}
+
+/* Для всех остальных страниц: фиксированный navbar */
+.navbar-fixed {
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  z-index: 1050; /* чтобы перекрывал контент */
+}
+
+/* ================= LOGO ================= */
+.navbar-container .brand-logo {
+  font-family: "Madimi One", sans-serif;
+  font-size: 1.6rem !important;
+  color: #7F9F80 !important;
+}
+
+.navbar-container .brand-logo span {
+  color: #AEE57D;
+}
+
+/* ================= TRANSPARENT (HOME TOP) ================= */
+.navbar-container .custom-navbar.navbar-transparent {
+  background-color: transparent !important;
+  border-bottom: none;
+}
+
+.navbar-container .navbar-transparent .nav-link-item,
+.navbar-container .navbar-transparent .dropdown-toggle {
+  color: #7cde0c !important;
+  font-weight: 500;
+}
+
+/* ================= LINKS ================= */
+.navbar-container .nav-link-item,
+.navbar-container .custom-dropdown .dropdown-toggle,
+.navbar-container .lang-dropdown-btn .dropdown-toggle {
+  color: #7cde0c !important;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: color 0.35s ease;
+}
+
+.navbar-container .nav-link-item {
+  font-size: 0.9rem;
+  margin: 0 10px;
+  position: relative;
+}
+
+/* underline animation */
+.navbar-container .nav-link-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #AEE57D;
+  transform: translateX(-50%);
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navbar-container .nav-link-item:hover::after {
+  width: 80%;
+}
+
+.navbar-container .navbar-transparent .nav-link-item:hover {
+  color: #145d04 !important;
+}
+
+/* ================= DROPDOWN MENU ================= */
+.navbar-container .dropdown-menu {
+  background: linear-gradient(
+    180deg,
+    #113a11,
+    #0b2f0b
+  ) !important;
+  border: 1px solid #205A31 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 22px 45px rgba(0,0,0,0.55);
+  margin-top: 16px !important;
+  padding: 10px 0;
+}
+
+/* ================= DROPDOWN ITEMS ================= */
+.navbar-container .dropdown-item {
+  color: #E0F8C0 !important; /* светло-зелёный, контрастнее на тёмном фоне */
+  padding: 12px 24px !important;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: none;
+}
+
+.navbar-container .custom-dropdown .dropdown-item {
+  color: #E0F8C0 !important; /* светло-зелёный, контрастнее на тёмном фоне */
+}
+
+/* magnetic glow */
+.navbar-container .dropdown-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at left center,
+    rgba(174, 229, 125, 0.25),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.navbar-container .dropdown-item:hover::before {
+  opacity: 1;
+}
+
+.navbar-container .dropdown-item:hover {
+  background-color: #AEE57D !important;
+  color: #074204 !important;
+  transform: translateX(2px) scale(1.02);
+  transition: background-color 0.15s ease !important;
+}
+
+/* ================= DESKTOP CINEMATIC OPEN ================= */
+
+@media (min-width: 992px) {
+
+  .navbar-container .dropdown-menu {
+    display: block !important;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(26px) scale(0.94);
+
+    transition:
+      opacity 0.5s ease,
+      transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+
+    transition-delay: 0.08s;
+  }
+
+  .navbar-container .dropdown.show .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+
+  /* items appear AFTER container */
+  .navbar-container .dropdown.show .dropdown-item {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .navbar-container .dropdown.show .dropdown-item:nth-child(1) { transition-delay: 0.22s; }
+  .navbar-container .dropdown.show .dropdown-item:nth-child(2) { transition-delay: 0.30s; }
+  .navbar-container .dropdown.show .dropdown-item:nth-child(3) { transition-delay: 0.38s; }
+  .navbar-container .dropdown.show .dropdown-item:nth-child(4) { transition-delay: 0.46s; }
+  .navbar-container .dropdown.show .dropdown-item:nth-child(5) { transition-delay: 0.54s; }
+}
+
+/* ================= ACTIVE DROPDOWN TITLE ================= */
+.navbar-container .custom-dropdown.show > .dropdown-toggle {
+  color: #AEE57D !important;
+  text-shadow: 0 0 1px rgba(174, 229, 125, 0.65);
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: rgba(174, 229, 125, 0.65) !important;
+}
+
+/* ================= LANGUAGE DIVIDER ================= */
+.navbar-container .language-divider {
+  width: 1.5px;
+  height: 20px;
+  background-color: rgb(208, 240, 192);
+  margin: 0 15px;
+}
+.navbar-container .lang-dropdown-btn {
+  text-align: center;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 991px) {
+
+  .navbar-container .dropdown-menu {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(12px); /* лёгкий сдвиг вниз */
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+
+  .navbar-fixed {
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  z-index: 1050; /* чтобы перекрывал контент */
+  }
+
+  .navbar-container .dropdown.show .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0); /* возвращаем на место */
+  }
+  
+  .navbar-container .custom-navbar .container-fluid {
+    margin-left: 0;
+    padding: 10px !important;
+  }
+
+
+  /* Прозрачный фон только для главной, пока не проскроллили */
+  .navbar-container .navbar-transparent {
+    background-color: transparent !important;
+    border-bottom: none !important;
+  }
+
+  .navbar-container .custom-dropdown  {
+    text-align: center;
+    width: 80%;
+  }
+
+  .navbar-container .navbar-collapse {
+    background: linear-gradient(
+      180deg,
+      rgb(7, 66, 4),
+      rgb(9, 80, 6)
+    );
+    border-radius: 0 0 18px 18px;
+    padding: 16px 0;
+  }
+
+  .navbar-container .navbar-scrolled {
+    background-color: rgb(7, 66, 4) !important;
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    font-size: 1rem;
+  }
+
+  .navbar-container .nav-link-item {
+    margin: 1px ;
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  .navbar-container .dropdown-item {
+    opacity: 0;
+    transform: translateY(8px); /* лёгкий сдвиг вниз */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    text-align: center;
+    font-size: 1.05rem;
+  }
+
+  .navbar-container .dropdown.show .dropdown-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+  .navbar-container .dropdown-menu {
+    filter: none !important;
+  }
+
+  .navbar-container .language-divider {
+    display: none;
+  }
+
+  
+}
+
+/* ================= BURGER ================= */
+.navbar-container .custom-toggler {
+  border: none !important;
+  background: rgba(208, 240, 192, 0.15);
+}
+
+.navbar-container .dropdown-divider {
+  border-top:2px solid #0aa01b9e;
+  margin-left: 10px;
+  margin-right: 10px;
+}

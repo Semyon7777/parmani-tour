@@ -1,0 +1,238 @@
+/* styles.css */
+
+/* BookForm.css */
+
+
+.bookFormContainer {
+  max-width: 60%;
+  width: 1000px;
+  transition: none !important;
+}
+
+.terms {
+  border: 0;
+  background-color: #fff;
+  color: blue;
+  font-weight: 50;
+}
+
+.bg-dark {
+    background-color: #343a40;
+    color: #fff;
+  }
+  
+  .text-black {
+    color: #000;
+  }
+  
+  .card {
+    border: none;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
+  
+  .pt-3 {
+    padding-top: 0.75rem;
+  }
+
+  .card-img {
+    max-width: 100%;
+    height: auto;
+    transition: none; /* Disable transition effect */
+  }
+
+  /* BookForm.css */
+
+/* Custom input styles */
+
+
+.custom-input:focus {
+  border-color: green; /* Change border color to green */
+  box-shadow: 0 0 0 0.2rem rgba(0, 128, 0, 0.25); /* Optional: add shadow effect */
+}
+
+.form-check-input:checked {
+  background-color: #1e6a0b;
+  border-color: #18840a;
+  border-color: green; /* Change border color to green */
+  box-shadow: 0 0 0 0.2rem rgba(0, 128, 0, 0.25); /* Optional: add shadow effect */
+}
+
+  /* number of people */
+
+  .bookFormNumberOfPeopleContainer {
+    display: flex;
+    width: 50%;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+  }
+  
+  .bookFormNumberOfPeopleContainer .minus {
+    width: 20%;
+    border: none;
+  }
+
+  .bookFormNumberOfPeopleContainer .plus {
+    width: 20%;
+    border: none;
+  }
+
+  .bookFormNumberOfPeopleBox {
+    width: 60%;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    text-align: center;
+    border: none;
+  }
+  /* src/BookForm.css */
+
+  .addon-option {
+  padding: 8px 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.addon-option:last-child {
+  border-bottom: none;
+}
+
+.addon-option .form-check-label {
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Стили для мобильных устройств */
+
+@media (max-width: 767px) {
+  .container-fluid {
+    max-width: 100% !important;
+    padding: 15px !important;
+    margin-left: 24px;
+  }
+
+  .card {
+    margin: 10px 0 !important;
+  }
+
+  .card-img {
+    display: none;
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+
+  .form-control {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .form-check-label {
+    font-size: 14px;
+  }
+
+  .d-md-flex {
+    display: block;
+  }
+
+  .terms {
+    font-size: 14px;
+  }
+
+  .modal-dialog {
+    margin: 15px;
+  }
+
+  .modal-header, .modal-body, .modal-footer {
+    padding: 15px;
+  }
+
+  .google-auth-container {
+    display: block; /* Ensure the container is displayed on small screens */
+  }
+
+  .google-auth-button {
+    font-size: 14px;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .login-info, .registration-section {
+    margin: 15px;
+  }
+  
+  .login-info p {
+    font-size: 17px !important; /* Adjust font size for better readability on phones */
+    margin: 20px !important;
+  }
+
+  .registration-section p {
+    font-size: 14px;
+  }
+
+  .modal-body h2 {
+    margin-left: 0;
+  }
+
+}
+
+@media(max-width: 1024px) {
+  .BookFormCard {
+    width: 100%;
+  }
+}
+
+@media(max-width:768px) and (min-width:768px) {
+  .BookFormCard {
+    max-width: 100%;
+  }
+}
+
+/* Стили для устройств с экранами шириной от 768px и выше */
+@media (max-width: 768px) {
+
+  .container-fluid {
+    max-width: 80%;
+    width: 1000px;
+  }
+
+  .card-img {
+    max-width: 100%;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+
+  .google-auth-container {
+    text-align: left;
+    margin: 20px 0;
+  }
+
+  .google-auth-button {
+    font-size: 16px;
+    padding: 12px;
+    width: auto;
+  }
+
+}
+
+@media (max-width: 320px) {
+  .container-fluid {
+    max-width: 100% !important;
+    padding: 15px !important;
+    margin: 0 !important;
+  }
+}
+
+
+/* BookForm.css */
+
+
+  

@@ -1,0 +1,367 @@
+:root {
+  --aio-primary: #1a2e1f; /* Deep Forest */
+  --aio-accent: #c5a059;  /* Gold/Sand for premium feel */
+  --aio-light: #f4f7f5;
+  --aio-white: #ffffff;
+}
+
+.aio-page {
+  background-color: var(--aio-white);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--aio-primary);
+}
+
+/* --- HERO --- */
+.aio-hero {
+  position: relative;
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden;
+}
+
+.aio-hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  animation: aioZoom 20s infinite alternate;
+  z-index: 0;
+}
+
+@keyframes aioZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+.aio-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(11, 22, 13, 0.5); /* Dark overlay */
+  z-index: 1;
+}
+
+.aio-hero-badge {
+  background: var(--aio-accent);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.aio-hero-title {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 20px;
+}
+
+.aio-hero-subtitle {
+  font-size: clamp(16px, 2vw, 20px);
+  max-width: 600px;
+  opacity: 0.9;
+  margin-bottom: 40px;
+}
+
+.aio-cta-btn {
+  background: white;
+  color: var(--aio-primary);
+  border: none;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
+}
+
+.aio-cta-btn:hover {
+  background: var(--aio-accent);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* --- CONCEPT SECTION --- */
+.aio-concept-section {
+  padding: 100px 0;
+  background: var(--aio-light);
+}
+
+.aio-section-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 60px;
+}
+
+.aio-section-header h2 {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.aio-service-card {
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: center;
+  transition: 0.3s;
+  height: 100%;
+  border: 1px solid transparent;
+}
+
+.aio-service-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  border-color: rgba(197, 160, 89, 0.2);
+}
+
+.aio-icon-circle {
+  width: 70px;
+  height: 70px;
+  background: var(--aio-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  color: var(--aio-accent);
+}
+
+.aio-service-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.aio-service-card p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* --- VISUAL SPLIT SECTION --- */
+.aio-visual-section {
+  background: white;
+}
+
+.aio-visual-img {
+  height: 500px;
+  overflow: hidden;
+}
+
+.aio-visual-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.aio-visual-img:hover img {
+  transform: scale(1.05);
+}
+
+.aio-visual-content {
+  padding: 80px;
+}
+
+.aio-visual-content h3 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--aio-primary);
+}
+
+.aio-check-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 30px;
+}
+
+.aio-check-list li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.aio-check-list li svg {
+  color: var(--aio-accent);
+}
+
+/* --- PROCESS SECTION --- */
+.aio-process-section {
+  padding: 100px 0;
+  background: var(--aio-primary);
+  color: white;
+}
+
+.aio-process-section .aio-section-header h2 {
+  color: white;
+}
+
+.aio-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.aio-step {
+  background: rgba(255,255,255,0.05);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.aio-step-num {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--aio-accent);
+  opacity: 0.5;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.aio-step h4 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.aio-step p {
+  font-size: 14px;
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+/* --- FORM SECTION --- */
+.aio-form-section {
+  padding: 100px 0;
+  background: var(--aio-light);
+}
+
+.aio-form-wrapper {
+  background: white;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+}
+
+.aio-form-info {
+  background: var(--aio-primary);
+  color: white;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.aio-form-info h3 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.aio-trust-badges {
+  margin-top: 40px;
+}
+
+.badge-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.badge-item svg {
+  color: var(--aio-accent);
+}
+
+.aio-main-form {
+  padding: 60px;
+}
+
+.aio-input-group {
+  margin-bottom: 25px;
+}
+
+.aio-input-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #666;
+}
+
+.aio-input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  background: #fcfcfc;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.aio-input:focus {
+  outline: none;
+  border-color: var(--aio-accent);
+  background: white;
+}
+
+.aio-icon-input {
+  position: relative;
+}
+
+.aio-icon-input svg {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  pointer-events: none;
+}
+
+.aio-icon-input .aio-input {
+  padding-left: 45px;
+}
+
+.aio-submit-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--aio-accent);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.aio-submit-btn:hover {
+  background: #b08d4b;
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .aio-visual-content, .aio-form-info, .aio-main-form {
+    padding: 40px;
+  }
+  .aio-hero-title {
+    font-size: 36px;
+  }
+  .aio-visual-img {
+    height: 300px;
+  }
+}

@@ -1,0 +1,91 @@
+.culture-page {
+  font-family: 'Poppins', sans-serif;
+  background: #f9f9f9;
+  color: #2a2a2a;
+}
+
+/* HERO */
+
+.culture-hero {
+  height: 80vh;
+  background: linear-gradient(rgba(10,10,20,0.6), rgba(10,10,20,0.6)),
+              url("./images/culture-hero.webp") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+}
+
+.culture-hero-content h1 {
+  font-size: 60px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.culture-hero-content p {
+  font-size: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* SECTIONS */
+
+.culture-section {
+  padding: 120px 10%;
+  background: #ffffff;
+}
+
+.culture-section.light {
+  background: #f2f4f7;
+}
+
+.culture-container {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.culture-container.reverse {
+  flex-direction: row-reverse;
+}
+
+.culture-container img {
+  width: 50%;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+}
+
+.culture-text {
+  width: 50%;
+}
+
+.culture-text h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: #1d3557;
+}
+
+.culture-text p {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 992px) {
+  .culture-container,
+  .culture-container.reverse {
+    flex-direction: column;
+  }
+
+  .culture-container img,
+  .culture-text {
+    width: 100%;
+  }
+
+  .culture-section {
+    padding: 80px 5%;
+  }
+}

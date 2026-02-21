@@ -1,0 +1,757 @@
+{
+  "navbar_custom": {
+    "home_button": "Home",
+    "tours_button": "Tours",
+    "services": "Services",
+    "hotels": "Hotels",
+    "transport": "Transport",
+    "all_in_one": "All in One",
+    "special": "Special Offers",
+    "group_&_eco_tours": "Group & Eco Tours",
+    "contact_button": "Contact",
+    "about": "About",
+    "history": "History",
+    "cuisine": "Cuisine",
+    "culture": "Culture",
+    "nature": "Nature",
+    "about_us": "About Us"
+  },
+
+  "home_page": {
+    "why_choose_us": {
+      "title": "Why travelers choose us",
+      "subtitle": "Trusted travel services across Armenia",
+      "items": {
+        "local_experts": {
+          "title": "Local Experts",
+          "text": "We know Armenia inside and out"
+        },
+        "best_price": {
+          "title": "Best Price Guarantee",
+          "text": "No hidden fees or surprises"
+        },
+        "handpicked": {
+          "title": "Handpicked Services",
+          "text": "Carefully selected tours & hotels"
+        },
+        "support": {
+          "title": "24/7 Support",
+          "text": "We are always here for you"
+        }
+      }
+    },
+
+    "explore": {
+      "title": "Explore Armenia",
+      "subtitle": "Discover the most popular destinations",
+      "items": {
+        "yerevan": {
+          "title": "Yerevan",
+          "text": "City & culture"
+        },
+        "sevan": {
+          "title": "Lake Sevan",
+          "text": "Nature & relax"
+        },
+        "dilijan": {
+          "title": "Dilijan",
+          "text": "Mountains & forests"
+        },
+        "heritage": {
+          "title": "Heritage",
+          "text": "History & traditions"
+        }
+      }
+    }
+  },
+  
+    "your_journey": "Your Journey",
+    "in_armenia": "IN ARMENIA",
+    "video_not_supported": "Your browser does not support the video tag.",
+    "your_opportunities": "Everything",
+    "while_traveling_in_armenia": "in one place",
+    "sub_headline": "Tours, transfers, accommodation and experiences in Armenia",
+
+    "first_page_slides": {
+      "first_slide_title": "Tours in Armenia",
+      "first_slide_description": "Group, private and family tours across Armenia.",
+
+      "second_slide_title": "Transport & Taxi",
+      "second_slide_description": "Airport transfers, city rides, and trips anywhere in Armenia.",
+
+      "third_slide_title": "Hotel Booking",
+      "third_slide_description": "Book hotels and guesthouses across Armenia.",
+
+      "fourth_slide_title": "All in One Place",
+      "fourth_slide_description": "Tours, transport and accommodation together."
+    },
+
+    "first_page_cards": {
+    "section_title": "What we offer",
+    "explore_all": "Explore all services",
+
+    "tours_title": "Tours & Excursions",
+    "tours_text": "Discover Armenia with guided tours and unforgettable experiences.",
+    "tours_button": "Book",
+
+    "transfer_title": "Transfers & Taxi",
+    "transfer_text": "Comfortable and reliable transportation across the country.",
+    "transfer_button": "Book",
+
+    "hotels_title": "Hotel Booking",
+    "hotels_text": "Find and book the best hotels at the best prices.",
+    "hotels_button": "Book",
+
+    "custom_title": "All in One",
+    "custom_text": "Get tours, hotel booking, transfers and more in a single service.",
+    "custom_button": "Book"
+    },
+
+    "plane_to_armenia_alt": "Plane to Armenia",
+    "where_do_they_go_most_often": "Where do they go most often",
+    "see_more": "See more",
+    "khor_virap_title": "Khor Virap",
+    "khor_virap_text": "A beautiful beach destination.",
+    "devils_bridge_title": "Devil's bridge",
+    "devils_bridge_text": "A serene mountain retreat.",
+    "garni_temple_title": "Garni Temple",
+    "garni_temple_text": "An exciting city adventure.",
+    "wings_of_tatev_title": "Wings of Tatev",
+    "wings_of_tatev_text": "Ropeway",
+    "viewTour": "View Tour",
+    "priceLabel": "Price: {{price}}",
+    "price": "{{price}}",
+    "searchTours": "Search Tour",
+    "loadMore": "Load More",
+    "toursPage": {
+    "headInfo": "blabla",
+    "headText": "Find your journey here!",
+    "infoText1": "blabla",
+    "infoText2": "blabla",
+    "buttonText": "Reserve"
+  },
+
+  "Special": {
+    "headTitle": "SPECIAL TOURES",
+    "info": "Here is some information about us."
+  },
+
+  "tour_info_page": {
+    "back_button":"Back",
+    "duration": "duration",
+    "hours": "hours",
+    "group_size": "group size",
+    "location": "location",
+    "up_to": "up to",
+    "people": "people",
+    "route_overview": "route overview",
+    "view_route": "view route",
+    "itinerary": "itinerary",
+    "whats_included": "whats included",
+    "starting_from": "starting from",
+    "daily_tours": "daily tours",
+    "free_cancel": "free cancel",
+    "instant_confirm": "instant confirm",
+    "no_prepayment": "no prepayment",
+    "tour_book_button": "Book now"
+  },
+
+
+
+  "bookForm": {
+    "title": "Student Registration Form",
+    "errorNotLoggedIn": "Please log in with Google to submit the form.",
+    "errorEmptyField": "Please fill in the {{field}}.",
+    "errorInvalidEmail": "Invalid email address",
+    "errorSendingEmail": "Error sending email: ",
+    "samplePhotoAlt": "Sample photo",
+    "loggedInAs": "Logged in as:",
+    "loginPrompt": "For reserve, please log in with your Google Account. If you don't have an account, please contact us on social networks for more information.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "year": "Year",
+    "from": "From",
+    "numberOfPeople": "Number of people",
+    "startDate": "Date",
+    "days": "Days",
+    "state": "State",
+    "city": "City",
+    "bookform_additional_services": "Additional Services",
+    "bookform_tickets": "Tickets",
+    "bookform_lunch": "Lunch Included",
+    "email": "Email ID",
+    "choose": "Choose...",
+    "option1": "Option 1",
+    "option2": "Option 2",
+    "option3": "Option 3",
+    "goBack": "Go back",
+    "submitForm": "Submit form",
+    "modalTitle": "Registration successful!",
+    "modalBody": "Your form has been submitted successfully.",
+    "close": "Close",
+    "agreeTermsPart1": "I agree with",
+    "agreeTermsLink": "the terms and conditions",
+    "agreeTermsPart2": ".",
+    "termsTitle": "Politic and configuration",
+    "closeButton": "Close",
+    "errorAgreeToTerms": "You must agree to the terms and conditions before submitting the form.",
+    "fields": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "year": "Year",
+      "from": "From",
+      "birthday": "Birthday",
+      "days": "Days",
+      "state": "State",
+      "city": "City",
+      "pincode": "Pincode",
+      "course": "Course",
+      "email": "Email ID"
+    }
+  },
+
+
+
+  "contact_page": {
+    "title": "Contact Us",
+    "description": "Plan your next adventure with ArmeniaJourney. Tours, hotels, taxis — all in one place!",
+    "sub_description": "We provide country-wide travel services, airport transfers, hotel bookings, and all-inclusive packages.",
+    "form_intro": "Fill out the form below and we’ll help you plan your perfect trip.",
+    "info_title": "Our Contact Information",
+    "phone": "Phone",
+    "email": "Email",
+    "address": "Address",
+    "form_title": "Send Us a Message",
+    "name": "Name",
+    "name_placeholder": "Your full name",
+    "email_label": "Email",
+    "email_placeholder": "Your email address",
+    "message": "Message",
+    "message_placeholder": "Write your message here",
+    "send_button": "Send Message",
+    "modal_title": "Message Sent Successfully!",
+    "modal_body": "We will get back to you within 1-2 workdays.",
+    "modal_close": "Close",
+    "error_fill_all": "Please fill out all fields.",
+    "error_email": "Please enter a valid email.",
+    "error_send": "Error sending message. Please try again."
+  },
+
+  "hotels_page": {
+    "hero_title": "Hotels in Armenia",
+    "hero_subtitle": "Handpicked hotels, best prices and unforgettable stays across Armenia.",
+
+    "items": {
+      "luxury_yerevan": {
+        "title": "Luxury Hotel Yerevan",
+        "description": "Modern hotel in the heart of Yerevan, breakfast included."
+      },
+      "sevan_resort": {
+        "title": "Sevan Lake Resort",
+        "description": "Beautiful lakeside resort with stunning views and fresh air."
+      },
+      "dilijan_lodge": {
+        "title": "Dilijan Eco Lodge",
+        "description": "Cozy eco-friendly lodge surrounded by forests and mountains."
+      }
+    },
+
+    "search_city": "City or hotel name",
+    "search_checkin": "Check-in",
+    "search_checkout": "Check-out",
+    "search_guests": "Guests",
+    "search_button": "Search Hotels",
+
+    "filters_title": "Filters",
+    "filter_price": "Price range",
+    "filter_rating": "Hotel rating",
+    "filter_location": "Location",
+    "filter_any": "Any",
+    "filter_5": "5 stars",
+    "filter_4": "4 stars",
+    "filter_3": "3 stars",
+
+    "hotel_price_from": "from €{{price}} / night",
+    "view_details": "View Details",
+
+    "trust_best_price": "Best Price Guarantee",
+    "trust_no_fees": "No hidden fees",
+    "trust_verified": "Verified Hotels",
+    "trust_partners": "Carefully selected partners",
+    "trust_support": "24/7 Support",
+    "trust_support_text": "We are always here for you"
+  },
+
+  "transport_page": {
+    "hero_title": "Transfers & Taxi in Armenia",
+    "hero_subtitle": "Comfortable, safe and reliable transportation anywhere in Armenia — airport transfers, city rides and custom routes.",
+
+    "book_transfer": "Book Transfer",
+    "contact_us": "Contact Us",
+
+    "services_title": "Our Transport Services",
+    "services_subtitle": "Everything you need to travel across Armenia",
+
+    "services": {
+      "taxi_title": "Taxi Service",
+      "taxi_desc": "Fast and convenient taxi service in any city.",
+
+      "airport_title": "Airport Transfers",
+      "airport_desc": "Pick-up and drop-off from Zvartnots Airport.",
+
+      "city_title": "City to City",
+      "city_desc": "Yerevan, Sevan, Dilijan and other destinations.",
+
+      "custom_title": "Custom Routes",
+      "custom_desc": "Create your own route anywhere in Armenia."
+    },
+
+    "routes_title": "Popular Routes",
+    "routes": {
+      "airport_yerevan": "Airport → Yerevan",
+      "yerevan_sevan": "Yerevan → Sevan",
+      "yerevan_dilijan": "Yerevan → Dilijan",
+      "available": "24/7 available",
+      "lake": "Lake & nature trips",
+      "mountains": "Mountain roads"
+    },
+
+    "cta_title": "Ready to travel across Armenia?",
+    "cta_text": "Book your transfer now and enjoy the journey.",
+    "book_now": "Book Now"
+  },
+
+  "history_page": {
+    "hero": {
+      "title": "The History of Armenia",
+      "subtitle": "A journey through one of the world's oldest civilizations"
+    },
+    "intro": {
+      "title": "A Land of Ancient Heritage",
+      "text": "Armenia is one of the oldest countries in the world, with a history that spans thousands of years. From powerful ancient kingdoms to cultural and spiritual milestones, Armenia has preserved its identity through centuries of change."
+    },
+    "timeline": {
+      "urartu": {
+      "year": "IX–VI BC",
+      "title": "Kingdom of Urartu",
+      "text": "Between the 9th and 6th centuries BC, the Kingdom of Urartu rose in the Armenian Highlands. It built powerful fortresses, advanced irrigation systems, and laid the foundations of Armenian statehood and culture."
+      },
+      "christianity": {
+        "year": "301 AD",
+        "title": "First Christian Nation",
+        "text": "In 301 AD, Armenia became the first country in the world to adopt Christianity as a state religion. This decision shaped the nation's identity, architecture, and spiritual heritage for centuries."
+      },
+      "medieval": {
+        "year": "Middle Ages",
+        "title": "Medieval Armenia",
+        "text": "During the Middle Ages, Armenia flourished as a center of culture, education, and trade. Magnificent monasteries, stone churches, and illuminated manuscripts became symbols of national resilience."
+      },
+      "modern": {
+        "year": "Modern Era",
+        "title": "Modern Armenia",
+        "text": "After centuries of challenges, Armenia regained independence in 1991. Today, it stands as a proud nation that carefully preserves its ancient traditions while moving confidently toward the future."
+      }
+    }
+  },
+
+  "cuisine": {
+    "hero": {
+      "title": "Armenian Cuisine",
+      "subtitle": "A taste shaped by fire, mountains, and centuries of tradition."
+    },
+    "intro": {
+      "title": "More Than Food",
+      "text": "Armenian cuisine is not just about dishes — it is about family, hospitality, and sharing. Recipes have been passed from generation to generation, preserving authentic flavors and techniques."
+    },
+    "dishes": {
+      "khorovats": {
+        "title": "Khorovats",
+        "text": "Traditional Armenian barbecue cooked over open flame. Juicy, smoky, and served during celebrations and gatherings."
+      },
+      "lavash": {
+        "title": "Lavash",
+        "text": "Thin traditional bread baked in a tonir oven. Recognized by UNESCO as intangible cultural heritage."
+      },
+      "dolma": {
+        "title": "Dolma",
+        "text": "Grape leaves stuffed with meat, rice, and aromatic herbs. A perfect balance of flavor and tradition."
+      },
+      "gata": {
+        "title": "Gata",
+        "text": "Sweet layered pastry with delicate filling. A symbol of Armenian warmth and hospitality."
+      }
+    },
+    "experience": {
+      "title": "Experience the Armenian Table",
+      "text": "A traditional Armenian table is generous and welcoming. Meals are long, conversations are warm, and guests are always treated like family."
+    }
+  },
+
+  "culture": {
+    "hero": {
+      "title": "Armenian Culture",
+      "subtitle": "A heritage shaped by faith, art, music, and centuries of resilience."
+    },
+    "sections": {
+      "dance": {
+        "title": "Traditional Dance & Music",
+        "text": "Armenian dances reflect strength, unity, and celebration. Each movement tells a story of mountains, warriors, and community spirit passed down through generations."
+      },
+      "crafts": {
+        "title": "Carpets & Handicrafts",
+        "text": "Handwoven carpets and traditional crafts represent symbols, stories, and regional identity. Every ornament carries meaning rooted in history."
+      },
+      "architecture": {
+        "title": "Sacred Architecture",
+        "text": "Ancient monasteries and stone churches define the Armenian landscape. Their minimalist yet powerful design reflects spiritual depth and timeless beauty."
+      },
+      "art": {
+        "title": "Manuscripts & Fine Arts",
+        "text": "Illuminated manuscripts and classical art preserved knowledge, faith, and identity. Armenian calligraphy and miniature painting remain cultural treasures."
+      }
+    }
+  },
+
+  "nature": {
+    "hero": {
+      "title": "Nature of Armenia",
+      "subtitle": "Mountains, lakes, forests, and landscapes untouched by time."
+    },
+    "sections": {
+      "mountains": {
+        "title": "Majestic Mountains",
+        "text": "Armenia is a land of highlands and dramatic peaks, offering breathtaking views and unforgettable hiking experiences."
+      },
+      "lakes": {
+        "title": "Crystal Lakes",
+        "text": "Lake Sevan and alpine waters reflect the sky and create peaceful escapes surrounded by nature."
+      },
+      "forests": {
+        "title": "Green Forests",
+        "text": "Dense forests provide fresh air, wildlife, and hidden trails waiting to be explored."
+      },
+      "canyons": {
+        "title": "Wild Canyons",
+        "text": "Deep gorges and rock formations reveal the raw beauty shaped by centuries of natural forces."
+      }
+    },
+    "final": {
+      "title": "Discover Untouched Beauty",
+      "text": "From sunrise over the mountains to sunset by the lakes, Armenia’s nature offers serenity and adventure in equal measure."
+    }
+  },
+
+  "about": {
+    "hero": {
+      "title": "About Our Company",
+      "subtitle": "Creating meaningful journeys across Armenia with professionalism and care."
+    },
+    "mission": {
+      "title": "Our Mission",
+      "text": "Our mission is to provide authentic, safe, and unforgettable travel experiences. We combine local knowledge with international service standards to deliver excellence."
+    },
+    "values": {
+      "title": "Our Core Values",
+      "professionalism": {
+        "title": "Professionalism",
+        "text": "We operate with responsibility, precision, and attention to every detail."
+      },
+      "trust": {
+        "title": "Trust & Transparency",
+        "text": "Clear communication and honest pricing are the foundation of our relationships."
+      },
+      "local": {
+        "title": "Local Expertise",
+        "text": "Our deep understanding of Armenia allows us to create unique and meaningful journeys."
+      }
+    },
+    "team": {
+      "title": "Our Team",
+      "text": "Our team consists of passionate travel specialists who love Armenia and are dedicated to sharing its beauty with the world."
+    },
+    "cta": {
+      "title": "Let’s Plan Your Journey",
+      "text": "Contact us today and allow us to create a travel experience tailored just for you."
+    }
+  },
+
+
+  "special": {
+    "hero": {
+      "title": "Special Offers",
+      "subtitle": "Create your perfect journey or organize the best school trip"
+    },
+    "tabs": {
+      "custom": "Custom Tour Builder",
+      "school": "School Excursions"
+    },
+    "custom": {
+      "badge": "Be Your Own Guide",
+      "title": "Didn't find the perfect route? Create it!",
+      "desc": "Do you have unique ideas? Want to visit specific places in Armenia that are not in standard tours? Describe your wishes, and we will develop logistics, provide transport, and the best guides especially for you.",
+      "benefit1": "Flexible Schedule",
+      "benefit2": "Any Locations (X, Y, Z)",
+      "benefit3": "Premium Transport"
+    },
+    "form": {
+      "header": "Route Request",
+      "places_label": "Where do you want to go?",
+      "places_placeholder": "Garni, Tatev, Forest...",
+      "people_label": "People count",
+      "date_label": "Date",
+      "contact_label": "Your Contact (Email/Tel)",
+      "contact_placeholder": "+374...",
+      "wishes_label": "Wishes",
+      "wishes_placeholder": "I want a picnic in the mountains...",
+      "submit_btn": "Calculate Route",
+      "add_place": "Add Another Place",
+      "place_placeholder": "Location",
+      "email_label": "Email Address",
+      "phone_label": "Phone Number",
+      "success_msg": "Your request has been sent successfully!"
+    },
+    "modal": {
+      "title": "Review Your Route",
+      "edit": "Edit Details",
+      "confirm": "Confirm & Send"
+    },
+    "school": {
+      "title": "Educational Journeys",
+      "subtitle": "Safe, educational, and fun for any class.",
+      "feat1_title": "Safe Transfer",
+      "feat1_text": "Licensed drivers and comfortable buses for groups.",
+      "feat2_title": "Nature Lessons",
+      "feat2_text": "Professional guides who know how to work with children and tell stories interestingly.",
+      "feat3_title": "Tasty Meals",
+      "feat3_text": "Organization of lunch boxes or a full hot lunch.",
+      "cta_title": "Planning an excursion for a class?",
+      "cta_text": "Download our catalog of school tours or contact us for organization.",
+      "cta_btn": "Contact Manager"
+    },
+    "faq": {
+      "custom_title": "Tailored to Your Desires",
+      "custom_q1": "How is the price calculated for a custom tour?",
+      "custom_a1": "Pricing is transparent, based on mileage, vehicle class, and duration. You receive a fixed quote within hours—no hidden fees.",
+      "custom_q2": "Can we change the itinerary during the trip?",
+      "custom_a2": "Absolutely. Flexibility is our signature. Want to stay longer at a view or skip a museum? Your driver will adapt to your flow instantly.",
+      "custom_q3": "Are your tours pet-friendly?",
+      "custom_a3": "Yes! We love pets. Just let us know in advance so we can provide a vehicle that ensures a comfortable ride for your furry friend.",
+      "custom_q4": "Do you organize multi-day trips across Armenia?",
+      "custom_a4": "Yes, we handle everything: logistics, boutique hotel bookings, and daily activities to ensure a seamless cross-country experience.",
+      "custom_q5": "What if I don't know where to go?",
+      "custom_a5": "Tell us your interests (hiking, wine, history, or relaxation), and our experts will design 3 unique route options for you at no cost.",
+      "custom_q6": "Are guides available in languages other than English?",
+      "custom_a6": "We provide professional guides fluent in Armenian, English, Russian, French, German, and more upon request.",
+      
+      "school_title": "Safety & Educational Value",
+      "school_q1": "Are the buses safe for group transport?",
+      "school_a1": "Safety is our priority. Our fleet features modern safety belts, speed limiters, and drivers with over 10 years of experience with children.",
+      "school_q2": "Do you provide legal documentation for schools?",
+      "school_a2": "We handle all the paperwork. From insurance and contracts to permits for school administrations, we make the process hassle-free.",
+      "school_q3": "Are there free seats for teachers?",
+      "school_a3": "Yes, we provide 1 complimentary seat for every 10-12 students for teachers or chaperones.",
+      "school_q4": "Is there an educational component to the tours?",
+      "school_a4": "We can align our trips with the school curriculum, making history, geography, or science come alive through interactive storytelling.",
+      "school_q5": "How is catering handled for school groups?",
+      "school_a5": "We partner with certified restaurants that specialize in child-safe catering. Menus are pre-approved and account for all allergies.",
+      "school_q6": "What happens in case of a medical emergency?",
+      "school_a6": "All drivers are trained in basic first aid, and our routes are planned with proximity to medical centers in mind for complete peace of mind."
+    }
+  },
+
+  "aio": {
+    "hero": {
+      "badge": "Premium Concierge Service",
+      "title": "Armenia 'All-in-One': We Care for Everything",
+      "subtitle": "From airport pickup to the best hotel and gastro discoveries.",
+      "btn": "Calculate My Trip"
+    },
+    "concept": {
+      "title": "What's in the Package?",
+      "desc": "No need to find different contractors. We combined everything into one seamless service."
+    },
+    "services": {
+      "transport_title": "VIP Transfer",
+      "transport_desc": "Airport pickup and trips in business-class cars.",
+      "hotel_title": "Accommodation",
+      "hotel_desc": "Best hotels and boutique apartments for your budget.",
+      "tours_title": "Signature Tours",
+      "tours_desc": "Living history, secret locations, and flexible schedule.",
+      "food_title": "Gastronomy",
+      "food_desc": "Top restaurant bookings and authentic lunches."
+    },
+    "details": {
+      "hotel_header": "Rest Without Compromise",
+      "hotel_text": "We personally checked hundreds of hotels to offer you only the best.",
+      "check1": "Verified 4* and 5* hotels",
+      "check2": "Best price guarantee",
+      "check3": "Early check-in & late check-out",
+      "food_header": "Taste of Armenia",
+      "food_text": "Food is culture. We organize masterclasses and wine tastings.",
+      "check4": "Wine tours and tastings",
+      "check5": "Chef masterclasses"
+    },
+    "process": {
+      "title": "How it Works?",
+      "step1_title": "Request",
+      "step1_desc": "You fill out the form with your wishes.",
+      "step2_title": "Plan",
+      "step2_desc": "We create a quote within 24 hours.",
+      "step3_title": "Booking",
+      "step3_desc": "We book hotels, cars, and guides.",
+      "step4_title": "Arrival",
+      "step4_desc": "We meet you at the airport. Let's go!"
+    },
+    "form": {
+      "info_title": "Start Planning Now",
+      "info_desc": "Fill out the form, and a manager will contact you.",
+      "label_name": "Your Name",
+      "label_email": "Email",
+      "label_phone": "Phone",
+      "label_guests": "Guests",
+      "label_date": "Arrival Date",
+      "label_budget": "Budget Level",
+      "budget_standard": "Standard",
+      "budget_economy": "Economy",
+      "budget_luxury": "Premium",
+      "label_notes": "Wishes",
+      "placeholder_notes": "What do you like?",
+      "submit_btn": "Get an Offer",
+      "success_alert": "Thank you! We will contact you soon."
+    },
+    "badges": {
+      "secure": "Secure",
+      "quality": "Quality",
+      "support": "24/7"
+    }
+  },
+
+  "group_eco_tours": {
+    "dilijan-cleanup": {
+      "title": "Clean Dilijan",
+      "description": "Helping the forest together...",
+      "mission": "Plant 20 pine trees"
+    },
+    "garni-temple": {
+      "title": "Garni and Geghard",
+      "description": "Classic tour around Armenia...",
+      "itinerary": "Departure at 10:00, Lunch at 13:00"
+    }
+  },
+  
+
+
+
+  "footer": {
+    "getConnected": "Get connected with us on social networks:",
+    "description": "Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+    "products": "Company",
+    "tours": "Tours",
+    "aboutUs": "About Us",
+    "terms&Conditions": "Terms & Conditions",
+    "privacyPolicy": "Privacy Policy",
+    "specialTours": "Special Collections",
+    "bonus": "All-in-One (Premium Service)",
+    "eco": "Special Offers",
+    "group": "Group & Eco Tours",
+    "armenia": "Discover Armenia",
+    "history": "History",
+    "cuisine": "Cuisine",
+    "culture": "Culture",
+    "nature": "Nature",
+    "weather": {
+      "error": "Failed to load weather data",
+      "loading": "Loading data...",
+      "city": "Weather in {{city}}",
+      "temperature": "Temperature: {{temp}}°C",
+      "description": "Description: {{description}}"
+    }
+  },
+
+  "legal": {
+    "terms": {
+      "title": "Terms & Conditions",
+      "intro": "These Terms & Conditions govern your access to and use of our website and services. By booking a tour or using our platform, you agree to be bound by these terms.",
+      "sections": [
+        {
+          "header": "1. Definitions",
+          "content": "“Company”, “we”, “our” refers to the tour service provider operating this platform. “Customer” refers to any individual booking or participating in a tour. “Services” refers to all tours and related travel services offered through our website."
+        },
+        {
+          "header": "2. Booking Process",
+          "content": "All bookings are subject to availability and confirmation. A booking is considered confirmed only after receiving written confirmation from us."
+        },
+        {
+          "header": "3. Pricing and Payments",
+          "content": "All prices are listed in the applicable currency and may change without prior notice. Full or partial payment may be required to confirm a booking."
+        },
+        {
+          "header": "4. Cancellation and Refund Policy",
+          "content": "Cancellation terms vary depending on the selected tour. Refund eligibility and timelines will be communicated at the time of booking."
+        },
+        {
+          "header": "5. Changes by the Company",
+          "content": "We reserve the right to modify itineraries, schedules, or services due to operational needs, weather conditions, or safety concerns."
+        },
+        {
+          "header": "6. Customer Responsibilities",
+          "content": "Customers are responsible for ensuring valid travel documents, visas, insurance, and compliance with local laws and health regulations."
+        },
+        {
+          "header": "7. Limitation of Liability",
+          "content": "The Company shall not be liable for indirect damages, personal losses, or circumstances beyond reasonable control, including force majeure events."
+        },
+        {
+          "header": "8. Force Majeure",
+          "content": "We are not responsible for delays or cancellations caused by events beyond our control, including natural disasters, government actions, or transportation disruptions."
+        },
+        {
+          "header": "9. Governing Law",
+          "content": "These Terms shall be governed by and interpreted in accordance with the laws of the Republic of Armenia."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "This Privacy Policy explains how we collect, use, and protect your personal data when you use our services.",
+      "sections": [
+        {
+          "header": "1. Information We Collect",
+          "content": "We collect personal data such as name, email address, phone number, and booking details."
+        },
+        {
+          "header": "2. Legal Basis for Processing",
+          "content": "Personal data is processed for contract performance, legal compliance, and legitimate business interests."
+        },
+        {
+          "header": "3. Use of Information",
+          "content": "Your data is used to process bookings, communicate updates, and improve our services."
+        },
+        {
+          "header": "4. Data Retention",
+          "content": "We retain personal data only for as long as necessary to fulfill contractual and legal obligations."
+        },
+        {
+          "header": "5. Data Security",
+          "content": "We implement appropriate technical and organizational measures to protect personal data from unauthorized access."
+        },
+        {
+          "header": "6. Third-Party Services",
+          "content": "We may share limited data with trusted partners solely for the purpose of completing bookings."
+        },
+        {
+          "header": "7. User Rights",
+          "content": "Users may request access, correction, or deletion of their personal data in accordance with applicable laws."
+        },
+        {
+          "header": "8. Policy Updates",
+          "content": "We reserve the right to update this Privacy Policy. Any changes will be published on this page."
+        }
+      ]
+    },
+    "last_updated": "Last updated",
+    "contact_notice": "For legal inquiries, please contact our support team."
+  }
+}
+
+  

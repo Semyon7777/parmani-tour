@@ -1,0 +1,130 @@
+/* HERO */
+.transport-hero-section {
+  background: linear-gradient(
+      rgba(0, 90, 60, 0.65),
+      rgba(0, 90, 60, 0.65)
+    ),
+    url("./transport-nature.jpg") center / cover no-repeat;
+  color: #ffffff;
+  padding: 120px 0;
+}
+
+.transport-hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.transport-hero-subtitle {
+  font-size: 1.1rem;
+  margin: 20px 0 30px;
+  max-width: 600px;
+}
+
+.transport-btn-primary {
+  background-color: #2e8b57;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: none;
+}
+
+.transport-btn-primary:hover {
+  background-color: #256f46;
+}
+
+.transport-btn-outline {
+  background: transparent;
+  border: 2px solid #b9f3d2;
+  color: #b9f3d2;
+  padding: 12px 30px;
+  border-radius: 30px;
+}
+
+.transport-btn-outline:hover {
+  background-color: #b9f3d2;
+  color: #1e4632;
+}
+
+/* SERVICES */
+.transport-services-section {
+  padding: 80px 0;
+  background-color: #f4fff9;
+}
+
+.transport-section-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+.transport-section-subtitle {
+  color: #5c7a6a;
+}
+
+.transport-service-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  height: 100%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* ROUTES */
+.transport-routes-section {
+  padding: 80px 0;
+}
+
+.transport-route-card {
+  border-radius: 20px;
+  padding: 25px;
+  background: linear-gradient(135deg, #2e8b57, #3cb371);
+  color: #ffffff;
+}
+
+/* CTA */
+.transport-cta-section {
+  padding: 80px 0;
+  background-color: #1e4632;
+  color: #ffffff;
+}
+
+.transport-cta-title {
+  font-size: 2.3rem;
+  margin-bottom: 15px;
+}
+
+.transport-cta-text {
+  margin-bottom: 30px;
+  color: #cfeee0;
+}
+
+.transport-btn {
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+/* PRIMARY */
+.transport-btn-primary {
+  background-color: #2e8b57;
+  color: #ffffff;
+}
+
+.transport-btn-primary:hover {
+  background-color: #256f46;
+}
+
+/* OUTLINE */
+.transport-btn-outline {
+  background: transparent;
+  border: 2px solid #b9f3d2;
+  color: #b9f3d2;
+}
+
+.transport-btn-outline:hover {
+  background-color: #b9f3d2;
+  color: #1e4632;
+}
