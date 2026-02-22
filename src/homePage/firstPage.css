@@ -21,6 +21,17 @@ h1 {
     overflow: hidden;
 }
 
+/* Скрываем кнопку воспроизведения в Safari на iOS */
+video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+}
+
+/* На всякий случай скрываем всю панель управления, если она решит вылезти */
+video::-webkit-media-controls {
+    display: none !important;
+}
+
 #myVideo {
     position: absolute;
     margin: 0;

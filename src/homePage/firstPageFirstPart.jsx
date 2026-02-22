@@ -7,23 +7,27 @@ import { useTranslation } from 'react-i18next';
 
 function FirstPageFirstPart() {
   const { t } = useTranslation();
-  const videoRef = useRef(null); // 1. Создаем реф для видео
+  const videoRef = useRef(null); 
 
   const [showButtons, setShowButtons] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 867);
+  
+  // 1. Добавляем стейт для отслеживания ошибки автозапуска
+  const [videoFailed, setVideoFailed] = useState(false); 
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // 2. ПРИНУДИТЕЛЬНЫЙ ЗАПУСК ВИДЕО
+    // 2. Проверяем автозапуск видео
     if (videoRef.current) {
-      // Пытаемся запустить видео программно
       const playPromise = videoRef.current.play();
       
       if (playPromise !== undefined) {
         playPromise.catch((error) => {
-          // Если автозапуск заблокирован (например, режим энергосбережения)
-          console.log("Autoplay was prevented, showing poster/play button:", error);
+          // Если автозапуск заблокирован (режим энергосбережения),
+          // переключаем стейт, чтобы скрыть видео и показать просто картинку
+          console.log("Autoplay blocked, switching to image:", error);
+          setVideoFailed(true); 
         });
       }
     }
@@ -64,19 +68,29 @@ function FirstPageFirstPart() {
         </div>
 
         <div className="video-container">
-          <video 
-            ref={videoRef} // 3. Привязываем реф
-            id="myVideo" 
-            muted 
-            autoPlay 
-            loop 
-            playsInline 
-            poster={posterSrc}
-            preload="auto" // Добавили для ускорения
-          >
-            <source src={videoSrc} type="video/mp4" />
-            {t('video_not_supported')}
-          </video>
+          {/* 3. Умный рендеринг: если видео упало, показываем картинку. Если нет — видео. */}
+          {videoFailed ? (
+            <img 
+              src={posterSrc} 
+              alt="Background" 
+              className="hero-video-fallback"
+              style={{ width: '100%', height: '100vh', objectFit: 'cover', display: 'block' }}
+            />
+          ) : (
+            <video 
+              ref={videoRef} 
+              id="myVideo" 
+              muted 
+              autoPlay 
+              loop 
+              playsInline 
+              poster={posterSrc}
+              preload="auto" 
+            >
+              <source src={videoSrc} type="video/mp4" />
+              {t('video_not_supported')}
+            </video>
+          )}
         </div>
       </div>
     </div>
