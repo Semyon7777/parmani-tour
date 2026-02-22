@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from "react";
 import videoSrc from './first page images/xustup.mp4';
+import posterSrc from './homePage_poster.webp'; 
 import NavbarCustom from "../Components/Navbar";
 import "./firstPage.css";
 import { useTranslation } from 'react-i18next';
 
-
-
 function FirstPageFirstPart() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
-
-    
   const [showButtons, setShowButtons] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 867);
   const { t } = useTranslation();
 
   useEffect(() => {
-
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
@@ -30,7 +26,6 @@ function FirstPageFirstPart() {
     window.addEventListener('resize', handleResize);
     window.addEventListener('scroll', handleScroll);
 
-    // Initial check
     handleScroll();
 
     return () => {
@@ -38,7 +33,6 @@ function FirstPageFirstPart() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
 
   return (
     <div>
@@ -50,24 +44,33 @@ function FirstPageFirstPart() {
             </div>
           </div>
         </div>
+        
         <div className="center-text">
           <h1 className="animated-text">
-            {t('your_journey')}<br /> {/* Заменено на перевод */}
+            {t('your_journey')}<br />
             <span style={{ fontSize: '2.5rem' }}>
-              {t('in_armenia')} {/* Заменено на перевод */}
+              {t('in_armenia')}
             </span>
           </h1>
         </div>
+
         <div className="video-container">
-          <video id="myVideo" muted autoPlay loop playsInline>
+          {/* 2. Добавлен атрибут poster */}
+          <video 
+            id="myVideo" 
+            muted 
+            autoPlay 
+            loop 
+            playsInline 
+            poster={posterSrc} 
+          >
             <source src={videoSrc} type="video/mp4" />
-            {t('video_not_supported')} {/* Заменено на перевод */}
+            {t('video_not_supported')}
           </video>
         </div>
       </div>
     </div>
   );
-  
 }
 
 export default FirstPageFirstPart;
