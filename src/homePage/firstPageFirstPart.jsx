@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import videoSrc from './first page images/xustup.mp4';
 import posterSrc from './homePage_poster.webp'; 
 import NavbarCustom from "../Components/Navbar";
@@ -6,26 +6,35 @@ import "./firstPage.css";
 import { useTranslation } from 'react-i18next';
 
 function FirstPageFirstPart() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const { t } = useTranslation();
+  const videoRef = useRef(null); // 1. Создаем реф для видео
 
   const [showButtons, setShowButtons] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 867);
-  const { t } = useTranslation();
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
+    window.scrollTo(0, 0);
 
-    const handleScroll = () => {
-      setShowButtons(window.scrollY >= window.innerHeight);
-    };
+    // 2. ПРИНУДИТЕЛЬНЫЙ ЗАПУСК ВИДЕО
+    if (videoRef.current) {
+      // Пытаемся запустить видео программно
+      const playPromise = videoRef.current.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          // Если автозапуск заблокирован (например, режим энергосбережения)
+          console.log("Autoplay was prevented, showing poster/play button:", error);
+        });
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    const handleScroll = () => setShowButtons(window.scrollY >= window.innerHeight);
 
     window.addEventListener('resize', handleResize);
     window.addEventListener('scroll', handleScroll);
-
     handleScroll();
 
     return () => {
@@ -55,14 +64,15 @@ function FirstPageFirstPart() {
         </div>
 
         <div className="video-container">
-          {/* 2. Добавлен атрибут poster */}
           <video 
+            ref={videoRef} // 3. Привязываем реф
             id="myVideo" 
             muted 
             autoPlay 
             loop 
             playsInline 
-            poster={posterSrc} 
+            poster={posterSrc}
+            preload="auto" // Добавили для ускорения
           >
             <source src={videoSrc} type="video/mp4" />
             {t('video_not_supported')}
