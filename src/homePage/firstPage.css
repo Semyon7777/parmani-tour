@@ -190,7 +190,7 @@ html[lang="hy"] .animated-text {
 }
 
 .carouselContainer {
-    height: 90vh;
+    height: auto;
     margin-top: 70px;
     display: grid;
     grid-template-columns: 1fr 1.28fr;
