@@ -43,7 +43,7 @@ const TourInfo = ({ tourData }) => {
                 <Clock size={22} />
                 <div>
                   <span className="stat-label">{t('tour_info_page.duration')}</span>
-                  <span className="stat-value">8-10 {t('tour_info_page.hours')}</span>
+                  <span className="stat-value">{tourData.duration} {t('tour_info_page.hours')}</span>
                 </div>
               </div>
               <div className="stat-item">

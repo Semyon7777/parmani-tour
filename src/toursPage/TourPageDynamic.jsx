@@ -31,6 +31,7 @@ function TourPageDynamic() {
   const myTourData = {
     id: tour.id,
     title: tour.title[lang],
+    duration: tour.duration,
     image: tour.imageUrl,
     routeMap: tour.routeMap, // Передаем карту
     price: tour.price,       // Передаем цену

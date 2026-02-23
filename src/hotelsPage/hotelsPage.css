@@ -38,6 +38,34 @@
   font-size: 0.95rem;
   transition: all 0.25s ease;
   min-width: 0; /* IMPORTANT: prevents overflow */
+
+  /* --- ИСПРАВЛЕНИЕ ДЛЯ iOS --- */
+  -webkit-appearance: none; /* Убирает стандартный стиль Apple */
+  appearance: none;
+  background-color: #ffffff; /* Явно задаем фон */
+  color: #333333; /* Явно задаем цвет текста, чтобы он не был белым */
+  min-height: 48px; /* Гарантируем высоту для нажатия пальцем */
+  display: block;
+}
+
+/* Специальный фикс для того, чтобы текст внутри даты был виден на iOS */
+.hotels-input[type="date"] {
+  position: relative;
+  color: #333;
+}
+
+/* Этот код заставит placeholder (подсказку) или формат даты появиться */
+.hotels-input[type="date"]::-webkit-date-and-time-value {
+  text-align: left;
+  min-height: 1.5em;
+}
+
+/* Если поле кажется пустым, когда оно не в фокусе */
+.hotels-input[type="date"]:before {
+  color: #999;
+  content: attr(placeholder);
+  margin-right: 10px;
+  display: none; /* Обычно скрываем, но на iOS это помогает увидеть, что поле есть */
 }
 
 .hotels-input:focus {
