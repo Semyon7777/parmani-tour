@@ -238,48 +238,70 @@
   },
 
   "hotels_page": {
-    "hero_title": "Hotels in Armenia",
-    "hero_subtitle": "Handpicked hotels, best prices and unforgettable stays across Armenia.",
-
+    "badge": "Handpicked Collection",
+    "hero_title": "Exclusive Stays in Armenia",
+    "hero_subtitle": "We don't just list hotels—we curate them. Book through our experts to get exclusive rates and 24/7 concierge support during your stay.",
+    "chat_now": "Chat with Expert",
+    "view_collection": "View Hotels",
+    "why_1_title": "Best Price Guarantee",
+    "why_1_text": "We negotiate directly with hotel owners to provide you with rates lower than public booking sites.",
+    "why_2_title": "Verified Quality",
+    "why_2_text": "Every hotel in our list is personally checked by our team for cleanliness, service, and comfort.",
+    "why_3_title": "Local Support",
+    "why_3_text": "We are based in Yerevan. If any issue arises, we are just a WhatsApp message away to fix it.",
+    "list_title": "Recommended Hotels",
+    "load_more": "Load More Hotels",
+    "request_offer": "Request Special Offer",
+    "trust_title": "Why Book With Us?",
+    "trust_text": "Booking a hotel in a new country can be tricky. We act as your local partner, ensuring that what you see in the photos is what you get in reality. No hidden fees, no booking stress.",
+    "form_title": "Personalized Hotel Search",
+    "form_pref_text": "Prefer an instant answer? Most clients text us on WhatsApp.",
+    "form_name": "Your Name",
+    "form_email": "Email Address",
+    "form_guests": "Number of guests",
+    "send_request": "Send Request via WhatsApp",
     "items": {
       "luxury_yerevan": {
-        "title": "Luxury Hotel Yerevan",
-        "description": "Modern hotel in the heart of Yerevan, breakfast included."
+        "title": "The Alexander, Yerevan",
+        "description": "A luxury collection hotel offering gold-standard service in the heart of the capital."
       },
       "sevan_resort": {
-        "title": "Sevan Lake Resort",
-        "description": "Beautiful lakeside resort with stunning views and fresh air."
+        "title": "Best Western Plus, Sevan",
+        "description": "Enjoy breathtaking views of the blue pearl of Armenia with premium lakefront service."
       },
       "dilijan_lodge": {
-        "title": "Dilijan Eco Lodge",
-        "description": "Cozy eco-friendly lodge surrounded by forests and mountains."
+        "title": "Dilijan Park Resort",
+        "description": "Cozy atmosphere surrounded by the lush forests of Armenian Switzerland."
+      },
+      "tsaghkadzor_spa": {
+        "title": "Marriott Tsaghkadzor",
+        "description": "World-class spa and ski resort for those who seek active rest and relaxation."
+      },
+      "goris_boutique": {
+        "title": "Mirhav Hotel, Goris",
+        "description": "Authentic boutique hotel with traditional Armenian spirit and exceptional hospitality."
+      },
+      "jermuk_resort": {
+        "title": "Grand Resort Jermuk",
+        "description": "The perfect place for wellness and health, famous for its mineral waters."
       }
     },
+    "fast_booking": "Fastest Way to Book",
+    "contact_expert_title": "Skip the form — text us directly",
+    "chat_us": "Book via WhatsApp",
+    "write_us": "Book via Email",
 
-    "search_city": "City or hotel name",
-    "search_checkin": "Check-in",
-    "search_checkout": "Check-out",
-    "search_guests": "Guests",
-    "search_button": "Search Hotels",
-
-    "filters_title": "Filters",
-    "filter_price": "Price range",
-    "filter_rating": "Hotel rating",
-    "filter_location": "Location",
-    "filter_any": "Any",
-    "filter_5": "5 stars",
-    "filter_4": "4 stars",
-    "filter_3": "3 stars",
-
-    "hotel_price_from": "from €{{price}} / night",
-    "view_details": "View Details",
-
-    "trust_best_price": "Best Price Guarantee",
-    "trust_no_fees": "No hidden fees",
-    "trust_verified": "Verified Hotels",
-    "trust_partners": "Carefully selected partners",
-    "trust_support": "24/7 Support",
-    "trust_support_text": "We are always here for you"
+    "faq_title": "Frequently Asked Questions",
+    "faq": {
+      "faq_1_q": "Is airport transfer included in the booking?",
+      "faq_1_a": "We can arrange a private transfer from Zvartnots Airport directly to your hotel at a special rate for our clients. Please mention this in your request.",
+      "faq_2_q": "How do I pay for my stay?",
+      "faq_2_a": "In most cases, you pay directly at the hotel upon arrival or departure. We act as your booking agent to secure the best local rates and guaranteed availability.",
+      "faq_3_q": "What is the cancellation policy?",
+      "faq_3_a": "Cancellation policies vary by hotel. However, booking through us often gives you more flexibility. We will provide the specific terms for your chosen hotel before finalizing.",
+      "faq_4_q": "Are there discounts for large groups?",
+      "faq_4_a": "Yes! For groups of more than 10 people or long-term stays (7+ nights), we negotiate individual corporate rates that are lower than public prices."
+    }
   },
 
   "transport_page": {

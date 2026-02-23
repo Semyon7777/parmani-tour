@@ -1,317 +1,471 @@
-/* HERO */
-.hotels-hero-section {
-  background: linear-gradient(
-      rgba(20, 60, 45, 0.65),
-      rgba(20, 60, 45, 0.65)
-    ),
-    url("./hotel-hero.jpg") center / cover no-repeat;
-  color: #fff;
-  padding: 120px 0;
+:root {
+  --main-green: #1e4632;      /* Глубокий зеленый (для заголовков, футера и акцентов) */
+  --light-green: #f1f7f4;     /* Очень светлый зеленый (вместо белого фона секций) */
+  --accent-gold: #c5a059;     /* Матовое золото (для звезд, бейджей и иконок) */
+  --soft-beige: #fdfaf5;      /* Кремовый (для фона карточек или формы) */
+  --forest-green: #2d5a43;    /* Средне-зеленый (для ховеров кнопок) */
+  --wa-green: #25D366;        /* Оставляем оригинальный цвет WhatsApp для узнаваемости */
 }
 
-.hotels-hero-title {
-  font-size: 3rem;
-  font-weight: 700;
+/* --- Обнуление и базовые настройки --- */
+.hotels-page-wrapper {
+  overflow-x: hidden;
+  background-color: var(--light-green);
+  font-family: 'Inter', sans-serif; /* Или твой основной шрифт */
 }
 
-.hotels-hero-subtitle {
-  max-width: 550px;
-  margin: 20px 0 30px;
-}
-
-/* SEARCH */
-.hotels-search-box {
-  background: #ffffff;
-  border-radius: 20px;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr auto;
-  gap: 12px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-}
-
-/* INPUTS */
-.hotels-input {
-  padding: 12px 14px;
-  border-radius: 12px;
-  border: 1px solid #d6e0db;
-  font-size: 0.95rem;
-  transition: all 0.25s ease;
-  min-width: 0; /* IMPORTANT: prevents overflow */
-
-  /* --- ИСПРАВЛЕНИЕ ДЛЯ iOS --- */
-  -webkit-appearance: none; /* Убирает стандартный стиль Apple */
-  appearance: none;
-  background-color: #ffffff; /* Явно задаем фон */
-  color: #333333; /* Явно задаем цвет текста, чтобы он не был белым */
-  min-height: 48px; /* Гарантируем высоту для нажатия пальцем */
-  display: block;
-}
-
-/* Специальный фикс для того, чтобы текст внутри даты был виден на iOS */
-.hotels-input[type="date"] {
+/* --- HERO SECTION --- */
+.hotels-page-wrapper .hotels-hero {
   position: relative;
-  color: #333;
+  height: 80vh;
+  min-height: 500px;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+              url("https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80") center/cover;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
 }
 
-/* Этот код заставит placeholder (подсказку) или формат даты появиться */
-.hotels-input[type="date"]::-webkit-date-and-time-value {
-  text-align: left;
-  min-height: 1.5em;
+.hotels-page-wrapper .hero-text-box {
+  max-width: 700px;
 }
 
-/* Если поле кажется пустым, когда оно не в фокусе */
-.hotels-input[type="date"]:before {
-  color: #999;
-  content: attr(placeholder);
-  margin-right: 10px;
-  display: none; /* Обычно скрываем, но на iOS это помогает увидеть, что поле есть */
-}
-
-.hotels-input:focus {
-  outline: none;
-  border-color: #2e8b57;
-  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.15);
-}
-
-/* 1. Когда поле пустое, показываем текст из атрибута placeholder */
-.hotels-input[type="date"]:invalid::before {
-  content: attr(placeholder);
-  color: #999; /* Цвет как у обычного плейсхолдера */
-  width: 100%;
-}
-
-/* 2. Как только пользователь нажал или выбрал дату, скрываем наш текст */
-.hotels-input[type="date"]:focus::before,
-.hotels-input[type="date"]:valid::before {
-  display: none;
-  content: "";
-}
-
-/* 3. Обязательный фикс для iOS, чтобы текст не пропадал и был выровнен */
-.hotels-input[type="date"] {
-  -webkit-appearance: none; /* Убираем стандартный стиль Safari */
-}
-
-/* 4. Этот код делает так, чтобы системная иконка или формат даты не накладывались на наш текст */
-.hotels-input[type="date"]::-webkit-date-and-time-value {
-  text-align: left;
-  min-height: 1.5em;
-}
-
-/* BUTTON */
-.hotels-btn {
-  padding: 12px;
-  border-radius: 12px;
-  cursor: pointer;
-  border: none;
-}
-
-.hotels-btn-primary {
-  padding: 12px 22px;
-  white-space: nowrap;
-  transition: all 0.25s ease;
-}
-
-.hotels-btn-primary:hover {
-  background-color: #256f46;
-}
-
-.hotels-btn-primary:active {
-  transform: scale(0.97);
-}
-
-.hotels-btn-primary {
-  background-color: #2e8b57;
+.hotels-page-wrapper .badge-exclusive {
+  background: #c5a059;
   color: #fff;
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-bottom: 1.5rem;
 }
 
-.hotels-btn-outline {
-  background: transparent;
-  border: 2px solid #2e8b57;
-  color: #2e8b57;
+.hotels-page-wrapper .hotels-hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
 }
 
-/* CONTENT */
-.hotels-content-section {
+.hotels-page-wrapper .hero-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.hotels-page-wrapper .btn-whatsapp-lg {
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 14px 35px;
+  border-radius: 50px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s ease;
+}
+
+.hotels-page-wrapper .link-explore {
+  color: white;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* --- FEATURES (WHY US) --- */
+.hotels-page-wrapper .features-section {
+  padding: 60px 0;
+  position: relative;
+  z-index: 5;
+}
+
+.hotels-page-wrapper .feature-card {
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.07);
+  height: 100%;
+}
+
+.hotels-page-wrapper .feature-icon {
+  font-size: 2.5rem;
+  color: #c5a059;
+  margin-bottom: 15px;
+}
+
+/* --- HOTELS GRID --- */
+.hotels-page-wrapper .hotels-grid-section {
   padding: 80px 0;
 }
 
-/* FILTERS */
-.hotels-filter-box {
-  background: #f8fdfb;
-  border-radius: 20px;
-  padding: 25px;
+.hotels-page-wrapper .section-title h2 {
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 10px;
 }
 
-.hotels-filter-group {
-  margin-bottom: 20px;
+.hotels-page-wrapper .title-line {
+  width: 60px;
+  height: 4px;
+  background: #1e4632;
+  margin: 0 auto 50px;
 }
 
-.hotels-select,
-.hotels-range {
-  width: 100%;
-  padding: 10px;
-  border-radius: 10px;
-}
-
-/* HOTEL CARD */
-.hotel-card {
-  background: #ffffff;
+/* --- PREMIUM CARD & CAROUSEL FIXES --- */
+.hotels-page-wrapper .premium-card {
+  background: white;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
-}
-
-.hotel-card-image {
-  height: 180px;
-  background: #ccc url("./hotel-placeholder.webp") center / cover no-repeat;
-}
-
-.hotel-card-body {
-  padding: 20px;
-}
-
-.hotel-card-footer {
+  height: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
 }
 
-/* TRUST */
-.hotels-trust-section {
+.hotels-page-wrapper .premium-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Исправляем высоту изображений в карусели */
+.hotels-page-wrapper .card-carousel .carousel-inner {
+  height: 250px;
+}
+
+.hotels-page-wrapper .card-img {
+  width: 100%;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: block; /* Важно для мобильных */
+}
+
+/* Делаем стрелки карусели видимыми на фото */
+.hotels-page-wrapper .card-carousel .carousel-control-prev,
+.hotels-page-wrapper .card-carousel .carousel-control-next {
+  width: 10%;
+  opacity: 0.8;
+  height: 250px;
+  min-height: 250px; /* Принудительно ставим минимум */
+}
+
+.hotels-page-wrapper .card-details {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.hotels-page-wrapper .card-rating {
+  color: var(--accent-gold);
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.hotels-page-wrapper .card-details h4 {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #1e4632;
+  margin-bottom: 12px;
+}
+
+.hotels-page-wrapper .card-details p {
+  font-size: 0.95rem;
+  color: #64748b;
+  flex-grow: 1;
+}
+
+.hotels-page-wrapper .btn-request {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px solid #1e4632;
+  background: transparent;
+  border-color: var(--main-green);
+  font-weight: 700;
+  transition: all 0.3s;
+}
+
+.hotels-page-wrapper .btn-request:hover {
   background: #1e4632;
   color: #fff;
-  padding: 60px 0;
 }
 
+/* --- LOAD MORE --- */
+.hotels-page-wrapper .btn-load-more {
+  border: 1px solid #cbd5e1;
+  background: white;
+  padding: 12px 35px;
+  border-radius: 50px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
+}
+
+.hotels-page-wrapper .btn-load-more:hover {
+  background: #0f172a;
+  color: white;
+}
+
+/* --- CONTACT OPTIONS ABOVE FORM --- */
+.contact-highlight-box {
+  background: var(--main-green);
+  padding: 60px 40px;
+  border-radius: 35px;
+  position: relative;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(197, 160, 89, 0.2); /* Тонкая золотая рамка */
+}
+
+/* Бейдж "Fastest way" */
+.fast-badge {
+  background: var(--accent-gold);
+  color: var(--main-green);
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contact-options-wrapper {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; /* WhatsApp чуть шире */
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.contact-option-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 30px;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+/* Акцент на WhatsApp */
+.wa-card.preferred {
+  background: rgba(37, 211, 102, 0.15);
+  border-color: rgba(37, 211, 102, 0.4);
+}
+
+.wa-card:hover {
+  background: rgba(37, 211, 102, 0.25);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.2);
+}
+
+/* Тэг "Recommended" */
+.recommend-tag {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 50px;
+  text-transform: uppercase;
+}
+
+.mail-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-5px);
+  border-color: var(--accent-gold);
+}
+
+.option-icon {
+  font-size: 2.5rem;
+  margin-right: 20px;
+}
+
+.wa-card .option-icon { color: #25D366; }
+.mail-card .option-icon { color: var(--accent-gold); }
+
+.option-text h5 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.option-text span {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
 
 @media (max-width: 992px) {
-  /* HERO */
-  .hotels-hero-section {
-    padding: 100px 0;
-  }
-
-  .hotels-hero-section .container {
-    margin-top: 20px;
-  }
-
-  .hotels-hero-title {
-    font-size: 2.4rem;
-  }
-
-  .hotels-hero-subtitle {
-    font-size: 1rem;
-  }
-
-  /* SEARCH */
-  .hotels-search-box {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  /* FILTERS */
-  .hotels-filter-box {
-    padding: 20px;
-  }
-
-  /* HOTEL CARD */
-  .hotel-card-image {
-    height: 200px;
-  }
-}
-
-@media (max-width: 768px) {
-  /* HERO */
-  .hotels-hero-section {
-    padding: 80px 0;
-    text-align: center;
-  }
-
-  .hotels-hero-title {
-    font-size: 2rem;
-  }
-
-  .hotels-hero-subtitle {
-    margin: 16px auto 24px;
-  }
-
-  /* SEARCH */
-  .hotels-search-box {
+  .contact-options-wrapper {
     grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  /* CONTENT */
-  .hotels-content-section {
-    padding: 60px 0;
-  }
-
-  /* FILTERS */
-  .hotels-filter-box {
-    margin-bottom: 30px;
-  }
-
-  /* HOTEL CARD */
-  .hotel-card-body {
-    padding: 18px;
-  }
-
-  .hotel-card-footer {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  /* TRUST */
-  .hotels-trust-section {
-    padding: 50px 0;
-  }
-
-  .hotels-trust-section h5 {
-    font-size: 1.1rem;
   }
 }
 
-@media (max-width: 576px) {
-  /* HERO */
-  .hotels-hero-title {
-    font-size: 1.8rem;
+/* --- THE FORM BOX --- */
+.hotels-page-wrapper .final-form-section {
+  padding: 0 0 100px 0;
+  background: #f8fafc;
+}
+
+.hotels-page-wrapper .form-container-box {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 50px;
+  border-radius: 30px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+}
+
+.hotels-page-wrapper .form-inner-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.hotels-page-wrapper .form-inner-header h3 {
+  font-weight: 800;
+  color: #1e4632;
+  margin-bottom: 10px;
+}
+
+.hotels-page-wrapper .form-input-field {
+  background: #f8fafc !important;
+  border: 1.5px solid #e2e8f0 !important;
+  padding: 15px !important;
+  border-radius: 12px !important;
+}
+
+.hotels-page-wrapper .form-input-field:focus {
+  border-color: #1e4632 !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+.hotels-page-wrapper .input-with-label label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  text-transform: uppercase;
+}
+
+.hotels-page-wrapper .form-submit-btn {
+  width: 100%;
+  background: #0f172a;
+  color: white;
+  border: none;
+  padding: 18px;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+.hotels-page-wrapper .form-submit-btn:hover {
+  background: #1e4632;
+}
+
+/* --- FAQ / ACCORDION STYLES (Minimalist) --- */
+.accordion-item {
+  border: none !important;
+  background: transparent !important;
+  margin-bottom: 10px;
+}
+
+.accordion-button {
+  background-color: white !important;
+  padding: 1.2rem;
+  border: 1px solid rgba(30, 70, 50, 0.08) !important;
+  transition: all 0.2s ease;
+}
+
+/* The state when the FAQ is open */
+.accordion-button:not(.collapsed) {
+  color: black !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
+}
+
+.accordion-body {
+  background-color: var(--cream-beige);
+  border-radius: 0 0 12px 12px;
+  padding: 1.5rem;
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Мобильная версия */
+@media (max-width: 768px) {
+  .hotels-page-wrapper .contact-options-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .hotels-page-wrapper .form-container-box {
+    padding: 30px 20px;
   }
 
-  .hotels-hero-subtitle {
-    font-size: 0.95rem;
+  .hotels-page-wrapper .card-img {
+    height: 100%;
   }
+}
 
-  /* SEARCH */
-  .hotels-search-box {
-    padding: 16px;
+/* --- FLOATING ELEMENTS --- */
+.hotels-page-wrapper .float-wa {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  z-index: 999;
+  border: none;
+}
+
+/* --- ANIMATIONS --- */
+.hotels-page-wrapper .fade-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- RESPONSIVENESS --- */
+@media (max-width: 768px) {
+  .hotels-page-wrapper .hotels-hero { height: auto; padding: 120px 0 60px; text-align: center; }
+  .hotels-page-wrapper .hero-actions { justify-content: center; flex-direction: column; }
+  .hotels-page-wrapper .contact-info-side, .form-side { padding: 30px; }
+  .hotels-page-wrapper .features-section { margin-top: 0; }
+
+  .hotel-img-frame {
+    /* Можно чуть уменьшить высоту для мобилок, чтобы карточка была аккуратнее */
+    height: 220px; 
+    min-height: 220px; /* Принудительный минимум */
   }
-
-  .hotels-input {
-    font-size: 0.9rem;
-    padding: 11px 12px;
-  }
-
-  /* BUTTONS */
-  .hotels-btn {
-    width: 100%;
-  }
-
-  /* HOTEL CARD */
-  .hotel-card-image {
-    height: 160px;
-  }
-
-  .hotel-card-title {
-    font-size: 1.05rem;
-  }
-
-  .hotel-card-text {
-    font-size: 0.9rem;
-  }
-
-  /* TRUST */
-  .hotels-trust-section p {
-    font-size: 0.9rem;
+  
+  .card-carousel, .carousel-inner, .carousel-item {
+    height: 220px; /* Фиксируем высоту всей карусели на мобильных */
   }
 }
