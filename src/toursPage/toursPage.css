@@ -182,6 +182,10 @@
   .tour-page-container .search-btn-modern { display: none; } /* На мобилках оставим только иконку или уменьшим */
 }
 
+.tour-page-container .tours-hero-simple {
+  margin-top: 50px;
+}
+
 /* --- CARD CONTAINER --- */
 .tour-page-container .toursPageToursCards {
   margin: 0 auto; /* Centered */
