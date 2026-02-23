@@ -240,7 +240,7 @@
 
 .contact-options-wrapper {
   display: grid;
-  grid-template-columns: 1.2fr 1fr; /* WhatsApp чуть шире */
+  grid-template-columns: 1fr 1fr; /* WhatsApp чуть шире */
   gap: 25px;
   margin-top: 40px;
 }
@@ -313,7 +313,13 @@
   .contact-options-wrapper {
     grid-template-columns: 1fr;
   }
+
+  .hotels-page-wrapper .btn-request {
+    background: #1e4632;
+    color: #fff;
+  }
 }
+
 
 /* --- THE FORM BOX --- */
 .hotels-page-wrapper .final-form-section {

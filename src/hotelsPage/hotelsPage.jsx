@@ -12,7 +12,9 @@ const HotelsPage = () => {
   const phone = "374XXXXXXXX";
   const email = "info@yourtravel.am";
 
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  useEffect(() => { 
+    window.scrollTo(0, 0); 
+  }, []);
 
   const handleWhatsApp = (text = "") => {
     const message = text || "Hello! I need hotel assistance in Armenia.";
