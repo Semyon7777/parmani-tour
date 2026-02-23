@@ -296,6 +296,7 @@
   .tour-page-container .tour-card-modern {
     width: 100%;
   }
+
   /* Если 3 колонки тесные, уменьшаем шрифт и отступы */
   .tour-page-container .tour-card-modern .card-title {
     font-size: 1.1rem;

@@ -314,6 +314,10 @@
 
 /* Adaptivity */
 @media (max-width: 991px) {
+    .tour-details-wrapper .tour-hero-section .tour-main-title {
+    font-size: 2rem;
+  }
+
   .sticky-booking-card {
     position: static;
     margin-top: 40px;
