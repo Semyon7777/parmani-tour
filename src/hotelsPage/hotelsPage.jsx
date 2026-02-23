@@ -9,7 +9,7 @@ import "./hotelsPage.css";
 const HotelsPage = () => {
   const { t } = useTranslation();
   const [visibleCount, setVisibleCount] = useState(6); // Показываем 6 сначала
-  const phone = "374XXXXXXXX";
+  const phone = "37493641069";
   const email = "info@yourtravel.am";
 
   useEffect(() => { 
