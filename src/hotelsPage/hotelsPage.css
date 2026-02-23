@@ -74,6 +74,19 @@
   box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.15);
 }
 
+/* Показываем плейсхолдер через контент, пока дата не выбрана */
+input[type="date"]::before {
+	content: attr(placeholder);
+	width: 100%;
+	color: #999;
+}
+
+/* Скрываем плейсхолдер, как только поле в фокусе или заполнено */
+input[type="date"]:focus::before,
+input[type="date"]:valid::before {
+	display: none;
+}
+
 /* BUTTON */
 .hotels-btn {
   padding: 12px;
