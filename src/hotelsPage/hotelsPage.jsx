@@ -63,12 +63,14 @@ const HotelsPage = () => {
                   type="date"
                   className="hotels-input"
                   placeholder={t("hotels_page.search_checkin")}
+                  required // Важно!
                 />
 
                 <input
                   type="date"
                   className="hotels-input"
                   placeholder={t("hotels_page.search_checkout")}
+                  required // Важно!
                 />
 
                 <input

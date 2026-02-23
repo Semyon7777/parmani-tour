@@ -74,17 +74,29 @@
   box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.15);
 }
 
-/* Показываем плейсхолдер через контент, пока дата не выбрана */
-input[type="date"]::before {
-	content: attr(placeholder);
-	width: 100%;
-	color: #999;
+/* 1. Когда поле пустое, показываем текст из атрибута placeholder */
+.hotels-input[type="date"]:invalid::before {
+  content: attr(placeholder);
+  color: #999; /* Цвет как у обычного плейсхолдера */
+  width: 100%;
 }
 
-/* Скрываем плейсхолдер, как только поле в фокусе или заполнено */
-input[type="date"]:focus::before,
-input[type="date"]:valid::before {
-	display: none;
+/* 2. Как только пользователь нажал или выбрал дату, скрываем наш текст */
+.hotels-input[type="date"]:focus::before,
+.hotels-input[type="date"]:valid::before {
+  display: none;
+  content: "";
+}
+
+/* 3. Обязательный фикс для iOS, чтобы текст не пропадал и был выровнен */
+.hotels-input[type="date"] {
+  -webkit-appearance: none; /* Убираем стандартный стиль Safari */
+}
+
+/* 4. Этот код делает так, чтобы системная иконка или формат даты не накладывались на наш текст */
+.hotels-input[type="date"]::-webkit-date-and-time-value {
+  text-align: left;
+  min-height: 1.5em;
 }
 
 /* BUTTON */
