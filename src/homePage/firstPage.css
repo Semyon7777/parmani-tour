@@ -447,6 +447,13 @@ html[lang="hy"] .carouselContainerHeadText {
         margin-top: 20px;
     }
 
+    .carouselArea .carousel,
+    .carouselArea .carousel-inner,
+    .carouselArea .carousel-item {
+        height: 100% !important;
+        width: 100% !important;
+    }
+
     .planeToArmenia {
         margin-top: 20px;
         margin-left: 0;
