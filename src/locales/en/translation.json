@@ -153,7 +153,23 @@
     "free_cancel": "free cancel",
     "instant_confirm": "instant confirm",
     "no_prepayment": "no prepayment",
-    "tour_book_button": "Book now"
+    "tour_book_button": "Book now",
+
+    "custom": {
+      "title": "Didn't find the perfect route?",
+      "text": "Tell us your preferences, and we will create a personalized itinerary just for you, including hidden gems and local favorites.",
+      "button": "Request Custom Tour"
+    },
+    "faq": {
+      "title": "Common Questions",
+      "subtitle": "Everything you need to know before your trip",
+      "q1": "How do I book a tour?",
+      "a1": "You can book directly on our website by clicking the \"Explore Details\" button on any tour and then filling out the reservation form. No prepayment is required.",
+      "q2": "What is the cancellation policy?",
+      "a2": "You can cancel your tour free of charge up to 24 hours before the start. Please notify us via email or WhatsApp.",
+      "q3": "Are the tours private or group?",
+      "a3": "We offer both! Most of the prices listed are for private tours, but we can also organize group trips for larger teams upon request."
+    }
   },
 
 

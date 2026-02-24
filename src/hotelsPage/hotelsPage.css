@@ -217,7 +217,7 @@
 }
 
 /* --- CONTACT OPTIONS ABOVE FORM --- */
-.contact-highlight-box {
+.hotels-page-wrapper .contact-highlight-box {
   background: var(--main-green);
   padding: 60px 40px;
   border-radius: 35px;
@@ -227,7 +227,7 @@
 }
 
 /* Бейдж "Fastest way" */
-.fast-badge {
+.hotels-page-wrapper .fast-badge {
   background: var(--accent-gold);
   color: var(--main-green);
   padding: 8px 20px;
@@ -238,14 +238,14 @@
   letter-spacing: 1px;
 }
 
-.contact-options-wrapper {
+.hotels-page-wrapper .contact-options-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr; /* WhatsApp чуть шире */
   gap: 25px;
   margin-top: 40px;
 }
 
-.contact-option-card {
+.hotels-page-wrapper .contact-option-card {
   position: relative;
   display: flex;
   align-items: center;
@@ -259,19 +259,19 @@
 }
 
 /* Акцент на WhatsApp */
-.wa-card.preferred {
+.hotels-page-wrapper .wa-card.preferred {
   background: rgba(37, 211, 102, 0.15);
   border-color: rgba(37, 211, 102, 0.4);
 }
 
-.wa-card:hover {
+.hotels-page-wrapper .wa-card:hover {
   background: rgba(37, 211, 102, 0.25);
   transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(37, 211, 102, 0.2);
 }
 
 /* Тэг "Recommended" */
-.recommend-tag {
+.hotels-page-wrapper .recommend-tag {
   position: absolute;
   top: -12px;
   right: 20px;
@@ -284,27 +284,27 @@
   text-transform: uppercase;
 }
 
-.mail-card:hover {
+.hotels-page-wrapper .mail-card:hover {
   background: rgba(255, 255, 255, 0.1);
   transform: translateY(-5px);
   border-color: var(--accent-gold);
 }
 
-.option-icon {
+.hotels-page-wrapper .option-icon {
   font-size: 2.5rem;
   margin-right: 20px;
 }
 
-.wa-card .option-icon { color: #25D366; }
-.mail-card .option-icon { color: var(--accent-gold); }
+.hotels-page-wrapper .wa-card .option-icon { color: #25D366; }
+.hotels-page-wrapper .mail-card .option-icon { color: var(--accent-gold); }
 
-.option-text h5 {
+.hotels-page-wrapper .option-text h5 {
   margin: 0;
   font-weight: 700;
   font-size: 1.2rem;
 }
 
-.option-text span {
+.hotels-page-wrapper .option-text span {
   font-size: 0.8rem;
   opacity: 0.6;
 }
@@ -387,13 +387,13 @@
 }
 
 /* --- FAQ / ACCORDION STYLES (Minimalist) --- */
-.accordion-item {
+.hotels-page-wrapper .accordion-item {
   border: none !important;
   background: transparent !important;
   margin-bottom: 10px;
 }
 
-.accordion-button {
+.hotels-page-wrapper .accordion-button {
   background-color: white !important;
   padding: 1.2rem;
   border: 1px solid rgba(30, 70, 50, 0.08) !important;
@@ -401,12 +401,12 @@
 }
 
 /* The state when the FAQ is open */
-.accordion-button:not(.collapsed) {
+.hotels-page-wrapper .accordion-button:not(.collapsed) {
   color: black !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.03) !important;
 }
 
-.accordion-body {
+.hotels-page-wrapper .accordion-body {
   background-color: var(--cream-beige);
   border-radius: 0 0 12px 12px;
   padding: 1.5rem;
@@ -465,13 +465,15 @@
   .hotels-page-wrapper .contact-info-side, .form-side { padding: 30px; }
   .hotels-page-wrapper .features-section { margin-top: 0; }
 
-  .hotel-img-frame {
+  .hotels-page-wrapper .hotel-img-frame {
     /* Можно чуть уменьшить высоту для мобилок, чтобы карточка была аккуратнее */
     height: 220px; 
     min-height: 220px; /* Принудительный минимум */
   }
   
-  .card-carousel, .carousel-inner, .carousel-item {
+  .hotels-page-wrapper .card-carousel, 
+  .hotels-page-wrapper .carousel-inner, 
+  .hotels-page-wrapper .carousel-item {
     height: 220px; /* Фиксируем высоту всей карусели на мобильных */
   }
 }

@@ -76,6 +76,7 @@ const TourInfo = ({ tourData }) => {
                         fluid 
                         className="rounded-3 shadow-sm"
                         alt="Route Map"
+                        loading="lazy"
                       />
                       <div className="map-badge">{t('tour_info_page.view_route')}</div>
                     </div>
@@ -124,7 +125,7 @@ const TourInfo = ({ tourData }) => {
                             </Col>
                             {section.image && (
                               <Col md={5}>
-                                <Image src={section.image} fluid className="rounded-3 shadow-sm border" alt={section.header} />
+                                <Image src={section.image} fluid className="rounded-3 shadow-sm border" alt={section.header} loading="lazy" />
                               </Col>
                             )}
                           </Row>
