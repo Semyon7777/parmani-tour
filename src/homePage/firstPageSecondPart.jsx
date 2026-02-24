@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
 import { useTranslation } from 'react-i18next'; // Импортируйте useTranslation
-import img1 from "./first page images/slide1.jpg";
-import img2 from "./first page images/slide2.png";
-import img3 from "./first page images/slide3.png";
-import img4 from "./first page images/slide4.png";
+import img1 from "./first page images/slide1.webp";
+import img2 from "./first page images/slide2.webp";
+import img3 from "./first page images/slide3.webp";
+import img4 from "./first page images/slide4.webp";
 import planeToArmenia from "./first page images/planeToArmenia .jpeg";
 
 import "./firstPage.css";

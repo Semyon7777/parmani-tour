@@ -1,10 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import "./firstPage.css";
-import img1 from "./first page images/cardImg1.jpg";
-import img2 from "./first page images/cardImg2.png";
-import img3 from "./first page images/cardImg3.png";
-import img4 from "./first page images/cardImg4.PNG";
+import img1 from "./first page images/cardImg1.webp";
+import img2 from "./first page images/cardImg2.webp";
+import img3 from "./first page images/cardImg3.webp";
+import img4 from "./first page images/cardImg4.webp";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
