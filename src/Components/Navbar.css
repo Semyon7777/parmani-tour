@@ -55,7 +55,7 @@
     align-items: center;
   }
 
-  .navbar-container .custom-navbar .container-fluid {
+  .navbar-container .navbar-scrolled .container-fluid {
     background: #074204;
     margin-top: -10px;
   }
