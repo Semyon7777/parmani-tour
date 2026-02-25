@@ -15,7 +15,11 @@ function ToursPageFirstPart() {
 
   useEffect(() => {
     if (toursData) setLoading(false);
-  }, []);
+
+    // Скроллим к началу, только когда реально изменился номер страницы
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+  }, [currentPage]);
 
   const filteredTours = toursData.filter(tour => {
     const lang = i18n.language || "en";
@@ -87,10 +91,7 @@ function ToursPageFirstPart() {
               <Button
                 key={i + 1}
                 className={`pagination-circle ${currentPage === i + 1 ? 'active' : ''}`}
-                onClick={() => {
-                  setCurrentPage(i + 1);
-                  toursTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }}
+                onClick={() => setCurrentPage(i + 1)}
               >
                 {i + 1}
               </Button>

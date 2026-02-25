@@ -180,11 +180,18 @@
   .tour-page-container .hero-title { font-size: 2.5rem; }
   .tour-page-container .search-bar-modern { padding: 5px 5px 5px 15px; }
   .tour-page-container .search-btn-modern { display: none; } /* На мобилках оставим только иконку или уменьшим */
+
+  /* В твоем toursPage.css */
+  .tours-page-wrapper .container {
+      min-height: 800px; /* Примерная высота, чтобы футер не прыгал вверх */
+  }
+
 }
 
 .tour-page-container .tours-hero-simple {
   margin-top: 50px;
 }
+
 
 /* --- CARD CONTAINER --- */
 .tour-page-container .toursPageToursCards {
