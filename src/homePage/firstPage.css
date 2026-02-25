@@ -945,6 +945,11 @@ html[lang="hy"] .thirdContainerHeadOfText {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
+
+    .rounded-pill {
+    width: auto;
+    }
+
   .home-explore-card {
     height: 240px;
   }
