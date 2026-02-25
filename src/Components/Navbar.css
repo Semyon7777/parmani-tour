@@ -55,7 +55,7 @@
     align-items: center;
   }
 
-  .navbar-container .container-fluid {
+  .navbar-scrolled .container-fluid {
     background: #074204;
     margin-top: -10px;
   }
@@ -157,7 +157,7 @@
   border: 1px solid #205A31 !important;
   border-radius: 16px !important;
   box-shadow: 0 22px 45px rgba(0,0,0,0.55);
-  margin-top: 16px !important;
+  margin-top: 17px !important;
   padding: 10px 0;
 }
 
