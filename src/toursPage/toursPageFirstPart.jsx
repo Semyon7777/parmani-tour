@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Button, Card, Row, Col, Spinner, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -11,6 +11,7 @@ function ToursPageFirstPart() {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const itemsPerPage = 6;
+  const toursTopRef = useRef(null); // Ссылка на начало списка туров
 
   useEffect(() => {
     if (toursData) setLoading(false);
@@ -60,7 +61,7 @@ function ToursPageFirstPart() {
 
       {/* --- СПИСОК КАРТОЧЕК --- */}
       <Container className="py-5">
-        <div className="tours-grid-header mb-4">
+        <div className="tours-grid-header mb-4" ref={toursTopRef}>
           <h2>{searchQuery ? `${t('results_for')}: ${searchQuery}` : t('popular_tours')}</h2>
           <div className="tours-count">{filteredTours.length} {t('tours_found')}</div>
         </div>
@@ -88,7 +89,7 @@ function ToursPageFirstPart() {
                 className={`pagination-circle ${currentPage === i + 1 ? 'active' : ''}`}
                 onClick={() => {
                   setCurrentPage(i + 1);
-                  window.scrollTo(0, 0, {behavior: 'smooth'});
+                  toursTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }}
               >
                 {i + 1}
@@ -112,6 +113,7 @@ const AlbumCard = ({ tour }) => {
           variant="top" 
           src={tour.imageUrl} 
           className="tour-card-img" 
+          loading="lazy"
         />
         <div className="card-price-badge">{t('tour_info_page.starting_from')} {tour.price}</div>
       </div>
