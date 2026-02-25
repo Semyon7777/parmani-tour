@@ -14,13 +14,13 @@
 }
 
 /* Header */
-.tour-hero-header {
+.tour-contact-page-root .tour-hero-header {
   background: linear-gradient(180deg, #ffffff 0%, var(--tour-light-mint) 100%);
   padding: 60px 0;
   border-bottom: 1px solid #e0eee0;
 }
 
-.tour-main-title {
+.tour-contact-page-root .tour-main-title {
   text-align: center;
   margin-top: 20px;
   color: var(--tour-dark-green);
@@ -28,32 +28,32 @@
   text-shadow: none;
 }
 
-.tour-main-subtitle {
+.tour-contact-page-root .tour-main-subtitle {
   color: #555;
   max-width: 650px;
 }
 
 /* Containers */
-.tour-form-container {
+.tour-contact-page-root .tour-form-container {
   background: #ffffff;
   padding: 20px;
   border-radius: 20px;
 }
 
-.tour-side-card {
+.tour-contact-page-root .tour-side-card {
   border-radius: 20px !important;
 }
 
-.tour-bg-mint {
+.tour-contact-page-root .tour-bg-mint {
   background-color: var(--tour-light-mint) !important;
 }
 
 /* Icons and Text */
-.tour-text-green {
+.tour-contact-page-root .tour-text-green {
   color: var(--tour-main-green);
 }
 
-.tour-icon-circle {
+.tour-contact-page-root .tour-icon-circle {
   background: white;
   color: var(--tour-main-green);
   width: 35px;
@@ -67,7 +67,7 @@
 }
 
 /* Социальные кнопки - ФИКС ЦВЕТОВ */
-.tour-social-btn {
+.tour-contact-page-root .tour-social-btn {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -80,44 +80,44 @@
   border: none !important;
 }
 
-.tour-btn-wa {
+.tour-contact-page-root .tour-btn-wa {
   background-color: #25D366 !important;
   box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25) !important;
 }
 
-.tour-btn-tg {
+.tour-contact-page-root .tour-btn-tg {
   background-color: #0088CC !important;
   box-shadow: 0 4px 12px rgba(0, 136, 204, 0.25) !important;
 }
 
-.tour-btn-ig {
+.tour-contact-page-root .tour-btn-ig {
   background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
   box-shadow: 0 4px 12px rgba(220, 39, 67, 0.25) !important;
 }
 
-.tour-social-btn:hover {
+.tour-contact-page-root .tour-social-btn:hover {
   transform: translateY(-2px);
   filter: brightness(1.1);
   color: white !important;
 }
 
 /* Accordion */
-.tour-faq-wrapper {
+.tour-contact-page-root .tour-faq-wrapper {
   background-color: white;
 }
 
-.tour-accordion .accordion-item {
+.tour-contact-page-root .tour-accordion .accordion-item {
   border: none !important;
   border-bottom: 1px solid #eee !important;
 }
 
-.tour-accordion .accordion-button:not(.collapsed) {
+.tour-contact-page-root .tour-accordion .accordion-button:not(.collapsed) {
   background-color: var(--tour-light-mint) !important;
   color: var(--tour-dark-green) !important;
   box-shadow: none !important;
 }
 
-.tour-accordion .accordion-button:focus {
+.tour-contact-page-root .tour-accordion .accordion-button:focus {
   box-shadow: none !important;
 }
 

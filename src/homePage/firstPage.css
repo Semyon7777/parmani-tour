@@ -192,6 +192,7 @@ html[lang="hy"] .animated-text {
     grid-template-columns: 1fr 1.28fr;
     gap: 10px;
     margin-right: 0;
+    padding: 0 5%;
 }
 
 .carouselContainerHeadText {
@@ -269,10 +270,10 @@ html[lang="hy"] .carouselContainerHeadText {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 650px; /* Фиксированная ширина контейнера карусели */
-    height: 400px;
+    max-width: 650px; /* Фиксированная ширина контейнера карусели */
     margin-left: 120px; /* Сдвиг вправо */
     margin-top: 35px;
+    margin: 35px auto 0; /* Centered automatically */
     border: 2px solid #ddd; /* Легкая граница вокруг карусели */
     border-radius: 10px; /* Закругленные углы */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
@@ -319,6 +320,7 @@ html[lang="hy"] .carouselContainerHeadText {
 }
 
 .carouselContainer .carousel-item img {
+    will-change: opacity; /* Подсказывает браузеру оптимизировать анимацию */
     width: 100%;
     height: 450px; /* Установите желаемую высоту */
     object-fit: cover; /* Позволяет масштабировать изображение и обрезать его, чтобы заполнить заданные размеры */

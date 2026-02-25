@@ -3,68 +3,35 @@
 /* ================= BASE NAVBAR ================= */
 .navbar-container .custom-navbar {
   background-color: rgb(7, 66, 4);
-  /* ЗАМЕНА: Не используй transition: all! Только конкретные свойства */
-  transition: background-color 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
-  padding: 0.6rem 0;
+  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0.4rem 0;
   border-bottom: 1px solid rgba(208, 240, 192, 0.1);
-  
-  /* ИСПРАВЛЕНИЕ СИНЕЙ ПОЛОСКИ И ЗАЗОРА */
-  top: -1px !important; /* Нахлест вверх на 1 пиксель */
-  box-shadow: 0 -5px 0 0 rgb(7, 66, 4); /* "Тень" вверх того же цвета, что и фон */
 }
 
-/* Удаляем анимацию текста при скролле, чтобы не дергалось */
 .navbar-container .navbar-scrolled {
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  /* font-size лучше не менять при скролле на мобилках */
+  font-size: 1rem;
 }
 
-/* ================= LOGO & BRAND (Fix) ================= */
+/* Для всех остальных страниц: фиксированный navbar */
+.navbar-fixed {
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  z-index: 1050; /* чтобы перекрывал контент */
+}
+
+/* ================= LOGO & BRAND ================= */
 .navbar-container .brand-logo {
-  position: relative;
+  position: relative; /* Чтобы логотип позиционировался относительно этой рамки */
   display: flex;
   align-items: center;
   font-family: "Madimi One", sans-serif;
   font-size: 1.6rem !important;
   color: #7F9F80 !important;
-  z-index: 10;
-}
-
-.navbar-container .logo-image-bg {
-  position: absolute;
-  /* ИСПРАВЛЕНИЕ: left 140px уводило логотип слишком далеко вправо */
-  left: -15px; 
-  top: 50%;
-  transform: translateY(-50%);
-  height: 160%; 
-  width: auto;
-  opacity: 0.5;
-  z-index: -1; 
-  pointer-events: none;
-}
-
-/* ================= MOBILE FIX ================= */
-@media (max-width: 991px) {
-  .navbar-container .custom-navbar {
-    /* Фиксируем высоту на мобильных, чтобы не "прыгала" */
-    margin-top: 0;
-    height: 70px; 
-    display: flex;
-    align-items: center;
-  }
-
-  .navbar-scrolled .container-fluid {
-    background: #074204;
-    margin-top: -10px;
-  }
-
-  .navbar-container .navbar-collapse {
-    /* Чтобы выпадающее меню на мобилках не имело зазоров */
-    margin-top: 10px;
-    background: rgb(7, 66, 4);
-  }
+  text-decoration: none;
+  overflow: visible; /* Важно, чтобы часть логотипа могла выходить за пределы */
 }
 
 
@@ -157,7 +124,7 @@
   border: 1px solid #205A31 !important;
   border-radius: 16px !important;
   box-shadow: 0 22px 45px rgba(0,0,0,0.55);
-  margin-top: 17px !important;
+  margin-top: 16px !important;
   padding: 10px 0;
 }
 
