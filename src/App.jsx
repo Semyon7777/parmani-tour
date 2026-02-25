@@ -9,7 +9,7 @@ import TransportPage from "./transportPage/transportPage";
 import AllInOne from "./allInOne/AllInOne";
 import ContactPage from "./contactPage/ContactPage";
 import SpecialPage from "./specialPage/SpecialPage";
-import GroupEcoTours from "./groupEcoTours/temp";
+import GroupEcoTours from "./groupEcoTours/GroupEcoTours";
 import EcoTourDetails from "./groupEcoTours/EcoTourDetails";
 import GroupTourDetails from "./groupEcoTours/GroupTourDetails";
 import AboutUsPage from "./aboutUs/AboutUs";

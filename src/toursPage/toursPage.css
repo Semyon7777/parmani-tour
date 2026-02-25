@@ -194,9 +194,9 @@
 
 }
 
-.tour-page-container .tours-hero-simple {
+/* .tour-page-container .tours-hero-simple {
   margin-top: 50px;
-}
+} */
 
 
 /* --- CARD CONTAINER --- */
@@ -330,6 +330,10 @@
 @media (max-width: 991px) {
   .tour-page-container .card-img-wrapper {
     padding-top: 55%; /* Делаем картинку чуть ниже на планшетах */
+  }
+
+    .tour-page-container .tours-hero-simple {
+    margin-top: 50px;
   }
   
   .tour-page-container .tour-card-modern {
