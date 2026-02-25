@@ -22,7 +22,7 @@ const NavbarCustom = ({ isHomePage }) => {
 
   const transparentClass = isHomePage && !scrolled ? "navbar-transparent" : "";
   const fixedClass = !isHomePage ? "navbar-fixed" : "";
-
+  
   return (
     <div className="navbar-container">
     <Navbar

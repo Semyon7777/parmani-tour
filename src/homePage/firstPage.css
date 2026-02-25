@@ -185,10 +185,6 @@ html[lang="hy"] .animated-text {
 
 /* second container */
 
-.second-container {
-    height: 100vh;
-}
-
 .carouselContainer {
     height: auto;
     margin-top: 70px;
@@ -246,7 +242,7 @@ html[lang="hy"] .carouselContainerHeadText {
     transform: translateY(0);
 }
 
-.headline {
+.carouselContainer .headline {
     font-size: 2.9rem;
     font-weight: 900 !important;
     color: #7cde0c; /* Коралловый цвет */
@@ -254,22 +250,22 @@ html[lang="hy"] .carouselContainerHeadText {
     letter-spacing: 2px; /* Расстояние между буквами */
 }
 
-.headline-ru-hy {
+.carouselContainer .headline-ru-hy {
     margin-left: 20px;
 }
 
-.subHeadline {
+.carouselContainer .subHeadline {
     text-align: center;
     font-size: 2.3rem;
     font-weight: 400;
     color: #4682b4; /* Цвета стали (синий) */
 }
 
-.subHeadline-ru-hy {
+.carouselContainer .subHeadline-ru-hy {
     font-size: 2.05rem;
 }
 
-.carouselArea {
+.carouselContainer .carouselArea {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -283,7 +279,7 @@ html[lang="hy"] .carouselContainerHeadText {
     overflow: hidden; /* Обрезка содержимого */
 }
 
-.carousel .carousel-indicators {
+.carouselContainer .carousel .carousel-indicators {
     position: absolute;
     bottom: 20px; /* Поднимите индикаторы выше */
     left: 50%;
@@ -294,7 +290,7 @@ html[lang="hy"] .carouselContainerHeadText {
     gap: 10px; /* Разделите кнопки для лучшей видимости */
 }
 
-.carousel .carousel-indicators li {
+.carouselContainer .carousel .carousel-indicators li {
     background-color: rgba(255, 255, 255, 0); /* Прозрачный фон */
     width: 12px;
     height: 12px;
@@ -302,43 +298,43 @@ html[lang="hy"] .carouselContainerHeadText {
     transition: background-color 0.3s ease;
 }
 
-.carousel .carousel-indicators li.active {
+.carouselContainer .carousel .carousel-indicators li.active {
     background-color: rgba(0, 0, 0, 0.9); /* Сделайте активную кнопку более видимой */
 }
 
-.carousel .carousel-indicators li:hover,
-.carousel .carousel-indicators li:focus,
-.carousel .carousel-indicators li:active {
+.carouselContainer .carousel .carousel-indicators li:hover,
+.carouselContainer .carousel .carousel-indicators li:focus,
+.carouselContainer .carousel .carousel-indicators li:active {
     background-color: rgba(255, 255, 255, 0); /* Прозрачный фон при наведении, фокусе и нажатии */
 }
 
-.carousel .carousel-control-prev,
-.carousel .carousel-control-next {
+.carouselContainer .carousel .carousel-control-prev,
+.carouselContainer .carousel .carousel-control-next {
     width: 5%;
 }
 
-.carousel .carousel-control-prev-icon,
-.carousel .carousel-control-next-icon {
+.carouselContainer .carousel .carousel-control-prev-icon,
+.carouselContainer .carousel .carousel-control-next-icon {
     background-size: 100%, 100%;
 }
 
-.carousel-item img {
+.carouselContainer .carousel-item img {
     width: 100%;
     height: 450px; /* Установите желаемую высоту */
     object-fit: cover; /* Позволяет масштабировать изображение и обрезать его, чтобы заполнить заданные размеры */
     border-radius: 10px 10px 0 0; /* Закругленные углы для изображений */
 }
 
-.carousel-fade .carousel-item {
+.carouselContainer .carousel-fade .carousel-item {
     opacity: 0;
     transition: opacity 3s ease-in-out; /* Плавный переход */
 }
 
-.carousel-fade .carousel-item.active {
+.carouselContainer .carousel-fade .carousel-item.active {
     opacity: 1;
 }
 
-.carousel .carousel-caption {
+.carouselContainer .carousel .carousel-caption {
     background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон для подписей */
     padding: 10px;
     border-radius: 10px 10px 10px 10px; /* Закругленные углы */
@@ -392,7 +388,7 @@ html[lang="hy"] .carouselContainerHeadText {
         gap: 0;
     }
 
-    .card {
+    .carouselContainer .card {
         width: 10rem ;
     }
 
@@ -432,11 +428,11 @@ html[lang="hy"] .carouselContainerHeadText {
         padding-right: 20px;
     }
 
-    .headline {
+    .carouselContainer .headline {
         font-size: 2rem;
     }
 
-    .subHeadline {
+    .carouselContainer .subHeadline {
         font-size: 1.5rem;
     }
 
@@ -498,7 +494,7 @@ html[lang="hy"] .carouselContainerHeadText {
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
-.thirdContainerHeadOfText {
+.thirdContainer .thirdContainerHeadOfText {
     font-family: 'Playfair Display', serif;
     font-size: 3.5rem;
     color: #3c9d0b;
@@ -526,11 +522,11 @@ html[lang="hy"] .thirdContainerHeadOfText {
     line-height: 1.2; /* Армянские буквы высокие, лучше добавить межстрочный интервал */
 }
 
-.cards .card {
+.thirdContainer .cards .card {
     margin-bottom: 20px;
 }
 
-.card {
+.thirdContainer .card {
     height: 100%; /* или фиксированная высота */
     border: none;
     border-radius: 1.3rem !important;
@@ -539,42 +535,42 @@ html[lang="hy"] .thirdContainerHeadOfText {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.card-body {
+.thirdContainer .card-body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
 }
 
-.card:hover {
+.thirdContainer .card:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.card img {
+.thirdContainer .card img {
     width: 100%;
     height: auto;
     transition: transform 0.3s;
 }
 
-.card img:hover {
+.thirdContainer .card img:hover {
     transform: scale(1.1);
 }
 
-.card-title {
+.thirdContainer .card-title {
     font-family:Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
     font-weight: 540;
     font-size: 1.5rem;
     color: #333;
 }
 
-.card-text {
+.thirdContainer .card-text {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
     color: #666;
 }
 
-.btn-primary {
+.thirdContainer .btn-primary {
     background: linear-gradient(45deg, #ff6b6b, #ff8e53);
     border: none;
     border-radius: 20px;
@@ -587,7 +583,7 @@ html[lang="hy"] .thirdContainerHeadOfText {
     margin-left: -40px;
 }
 
-.btn-primary:hover {
+.thirdContainer .btn-primary:hover {
     background: linear-gradient(45deg, #ff8e53, #ff6b6b);
 }
 
