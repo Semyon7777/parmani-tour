@@ -16,11 +16,14 @@ function ToursPageFirstPart() {
   useEffect(() => {
     if (toursData) setLoading(false);
 
-    // Скроллим плавно к заголовку списка туров (используем наш Ref)
-    toursTopRef.current?.scrollIntoView({ 
-      behavior: 'smooth', 
-      block: 'start'
-    });
+    if (currentPage > 1) { 
+      // Скроллим плавно к заголовку списка туров (используем наш Ref)
+      toursTopRef.current?.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start'
+      });
+    }
+
 
   }, [currentPage]);
 
