@@ -921,9 +921,13 @@ html[lang="hy"] .thirdContainerHeadOfText {
 }
 
 .price-value {
-    font-size: 1.3rem;
+    font-size: 1.3rem !important;
     font-weight: 800;
     color: #3ea03e;
+}
+
+.rounded-pill {
+    width: 30%;
 }
 
 .view-all-link {

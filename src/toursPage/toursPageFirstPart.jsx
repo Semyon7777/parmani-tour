@@ -48,8 +48,8 @@ function ToursPageFirstPart() {
       {/* --- НОВЫЙ HERO-БЛОК --- */}
       <div className="tours-hero-simple">
         <div className="hero-content">
-          <h1 className="hero-title">{t('toursPage.title', 'Discover Armenia')}</h1>
-          <p className="hero-subtitle">{t('toursPage.subtitle', 'Unforgettable adventures wait for you')}</p>
+          <h1 className="hero-title">{t('tour_info_page.title')}</h1>
+          <p className="hero-subtitle">{t('tour_info_page.subtitle')}</p>
           
           {/* УЛУЧШЕННЫЙ ПОИСК */}
           <div className="search-box-container">
@@ -57,7 +57,7 @@ function ToursPageFirstPart() {
               <Search className="search-icon" size={20} />
               <input 
                 type="text" 
-                placeholder={t('searchTours', 'Where do you want to go?')}
+                placeholder={t('tour_info_page.search_tours')}
                 value={searchQuery} 
                 onChange={e => {
                   setSearchQuery(e.target.value);
@@ -72,8 +72,8 @@ function ToursPageFirstPart() {
       {/* --- СПИСОК КАРТОЧЕК --- */}
       <Container className="py-5">
         <div className="tours-grid-header mb-4" ref={toursTopRef}>
-          <h2>{searchQuery ? `${t('results_for')}: ${searchQuery}` : t('popular_tours')}</h2>
-          <div className="tours-count">{filteredTours.length} {t('tours_found')}</div>
+          <h2>{searchQuery ? `${t('tour_info_page.results_for')}: ${searchQuery}` : t('tour_info_page.popular_tours')}</h2>
+          <div className="tours-count">{filteredTours.length} {t('tour_info_page.tours_found')}</div>
         </div>
 
         {loading ? (

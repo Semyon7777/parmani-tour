@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
+import MyIcon from './aragats-transparent.png';
 import "./Navbar.css";
 
 const NavbarCustom = ({ isHomePage }) => {
@@ -34,6 +35,12 @@ const NavbarCustom = ({ isHomePage }) => {
 
         <LinkContainer to="/">
           <Navbar.Brand className="brand-logo">
+            {/* Добавляем само изображение логотипа */}
+            <img 
+              src={MyIcon} 
+              alt="Logo" 
+              className="logo-image-bg" 
+            />
             Parmani<span>Tour</span>
           </Navbar.Brand>
         </LinkContainer>

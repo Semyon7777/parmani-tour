@@ -62,6 +62,23 @@
           "text": "History & traditions"
         }
       }
+    },
+    "upcoming": {
+      "live_now": "UPCOMING EVENTS",
+      "title": "Coming Soon",
+      "view_all": "View all",
+      "types": {
+        "group": "Group Tour",
+        "eco": "Eco Tour",
+        "adventure": "Adventure"
+      },
+      "events": {
+        "areni": "Wine Festival in Areni",
+        "sevan": "Sevan Sunrise Yoga",
+        "dilijan": "Dilijan Forest Hike"
+      },
+      "starting_from": "From",
+      "join": "Join"
     }
   },
   
@@ -137,6 +154,12 @@
   },
 
   "tour_info_page": {
+    "title": "Discover Armenia",
+    "subtitle": "Unforgettable adventures wait for you",
+    "search_tours": "Where do you want to go?",
+    "popular_tours": "popular tours",
+    "tours_found": "tours found",
+    "results_for": "results for",
     "back_button":"Back",
     "duration": "duration",
     "hours": "hours",
@@ -682,8 +705,7 @@
 
   "footer": {
     "getConnected": "Get connected with us on social networks:",
-    "description": "Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-    "products": "Company",
+    "description": "Experience the soul of Armenia with our tailor-made tours. From ancient monasteries to breathtaking landscapes, we create unforgettable memories for every traveler.",    "products": "Company",
     "tours": "Tours",
     "aboutUs": "About Us",
     "terms&Conditions": "Terms & Conditions",

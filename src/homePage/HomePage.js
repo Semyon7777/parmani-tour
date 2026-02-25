@@ -115,36 +115,72 @@ function ExploreSection() {
 
 // --- НОВЫЙ КОМПОНЕНТ: БЛИЖАЙШИЕ ТУРЫ ---
 function UpcomingEventsSection() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || "en";
 
-  // Имитация данных (потом можно вынести в JSON)
   const events = [
     {
       id: 1,
-      date: "20 May, 2024",
+      date: {
+        en: "20 May, 2026",
+        ru: "20 Мая, 2026",
+        hy: "Մայիսի 20, 2026"
+      },
       time: "09:00",
-      title: "Wine Festival in Areni",
-      type: "Group Tour",
+      title: {
+        en: "Wine Festival in Areni",
+        ru: "Винный фестиваль в Арени",
+        hy: "Գինու փառատոն Արենիում"
+      },
+      type: {
+        en: "Group Tour",
+        ru: "Групповой тур",
+        hy: "Խմբակային տուր"
+      },
       image: "/TourImages/areni-fest.jpg",
-      price: "45$"
+      price: "30000 AMD"
     },
     {
       id: 2,
-      date: "22 May, 2024",
+      date: {
+        en: "20 May, 2026",
+        ru: "20 Мая, 2026",
+        hy: "Մայիսի 20, 2026"
+      },
       time: "08:30",
-      title: "Sevan Sunrise Yoga",
-      type: "Eco Tour",
+      title: {
+        en: "Sevan Sunrise Yoga",
+        ru: "Йога на рассвете на Севане",
+        hy: "Յոգա Սևանի ափին"
+      },
+      type: {
+        en: "Eco Tour",
+        ru: "Эко-тур",
+        hy: "Էկո տուր"
+      },
       image: "/TourImages/sevan-yoga.jpg",
-      price: "30$"
+      price: "15000 AMD"
     },
     {
       id: 3,
-      date: "25 May, 2024",
+      date: {
+        en: "20 May, 2026",
+        ru: "20 Мая, 2026",
+        hy: "Մայիսի 20, 2026"
+      },
       time: "10:00",
-      title: "Dilijan Forest Hike",
-      type: "Adventure",
+      title: {
+        en: "Dilijan Forest Hike",
+        ru: "Поход по лесам Дилижана",
+        hy: "Քայլարշավ Դիլիջանի անտառներում"
+      },
+      type: {
+        en: "Adventure",
+        ru: "Приключение",
+        hy: "Արկածային"
+      },
       image: "/TourImages/dilijan-hike.jpg",
-      price: "50$"
+      price: "50000 AMD"
     }
   ];
 
@@ -171,22 +207,28 @@ function UpcomingEventsSection() {
                 <div className="event-image-wrapper">
                   <div className="event-img" style={{ backgroundImage: `url(${event.image})` }}></div>
                   <Badge bg="light" className="event-date-badge text-dark">
-                    <Calendar size={14} className="me-1" /> {event.date}
+                    <Calendar size={14} className="me-1" /> {event.date[currentLang] || event.date.en}
                   </Badge>
                 </div>
                 <div className="event-content p-4">
                   <div className="d-flex justify-content-between align-items-center mb-2">
-                    <span className="event-type text-success small fw-bold">{event.type}</span>
+                    {/* Выбираем язык для Типа */}
+                    <span className="event-type text-success small fw-bold">
+                        {event.type[currentLang] || event.type.en}
+                    </span>
                     <span className="event-time text-muted small"><Clock size={14} /> {event.time}</span>
                   </div>
-                  <h4 className="event-title">{event.title}</h4>
+                  {/* Выбираем язык для Заголовка */}
+                  <h4 className="event-title">
+                      {event.title[currentLang] || event.title.en}
+                  </h4>
                   <div className="event-footer d-flex justify-content-between align-items-center mt-4">
                     <div className="event-price">
-                      <span className="from-text">{t("starting_from", "От")}</span>
+                      <span className="from-text">{t("home_page.upcoming.starting_from", "От")}</span>
                       <span className="price-value"> {event.price}</span>
                     </div>
                     <Button variant="outline-success" size="sm" className="rounded-pill px-3">
-                      {t("join", "Участвовать")}
+                      {t("home_page.upcoming.join", "Участвовать")}
                     </Button>
                   </div>
                 </div>

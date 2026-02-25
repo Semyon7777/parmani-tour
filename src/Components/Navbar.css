@@ -22,15 +22,47 @@
   z-index: 1050; /* чтобы перекрывал контент */
 }
 
-/* ================= LOGO ================= */
+/* ================= LOGO & BRAND ================= */
 .navbar-container .brand-logo {
+  position: relative; /* Чтобы логотип позиционировался относительно этой рамки */
+  display: flex;
+  align-items: center;
   font-family: "Madimi One", sans-serif;
   font-size: 1.6rem !important;
   color: #7F9F80 !important;
+  text-decoration: none;
+  overflow: visible; /* Важно, чтобы часть логотипа могла выходить за пределы */
 }
 
+
+
 .navbar-container .brand-logo span {
+
   color: #AEE57D;
+
+}
+
+/* Стилизация текста, чтобы он был поверх картинки */
+.navbar-container .brand-text {
+  position: relative;
+  z-index: 2;
+}
+
+.navbar-container .brand-logo span span {
+  color: #AEE57D;
+}
+
+/* Само изображение логотипа на заднем плане */
+.navbar-container .logo-image-bg {
+  position: absolute;
+  left: 140px; /* Сдвигаем влево, чтобы "половина" была снаружи */
+  top: 70%;
+  transform: translateY(-50%); /* Центрируем по вертикали */
+  height: 180%; /* Делаем логотип чуть больше текста для эффекта подложки */
+  width: auto;
+  opacity: 0.6; /* Делаем его полупрозрачным, чтобы текст читался лучше */
+  z-index: -1; /* Картинка за текстом, но внутри контейнера */
+  pointer-events: none; /* Чтобы картинка не мешала кликать по ссылке */
 }
 
 /* ================= TRANSPARENT (HOME TOP) ================= */
