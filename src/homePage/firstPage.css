@@ -728,6 +728,9 @@ html[lang="hy"] .thirdContainerHeadOfText {
 
 /* Responsive adjustment */
 @media (max-width: 768px) {
+    .thirdContainerHeadOfText {
+        font-size: 2.5rem !important;
+    }
   .home-section-title { font-size: 32px; }
   .home-trust-card { padding: 30px 20px; }
 }

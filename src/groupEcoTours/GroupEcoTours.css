@@ -404,6 +404,10 @@
   .hero-content-box h1 { font-size: 2.5rem; }
   .eco-content-container { margin-top: 20px; }
   .eco-booking-card { margin-top: 40px; position: static; }
+
+  .tabs-container .custom-tabs .tab-btn {
+    padding: 10px 12px;
+  }
 }
 
 /* GROUP TOUR DETAILS */
