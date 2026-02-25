@@ -175,6 +175,12 @@
   color: white !important;
 }
 
+.tours-grid-header {
+  /* Сделай отступ сверху при скролле (например, 100px), 
+     чтобы Navbar не перекрывал заголовок */
+  scroll-margin-top: 100px; 
+}
+
 /* Адаптивность */
 @media (max-width: 768px) {
   .tour-page-container .hero-title { font-size: 2.5rem; }

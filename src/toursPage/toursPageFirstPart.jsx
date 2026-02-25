@@ -16,8 +16,11 @@ function ToursPageFirstPart() {
   useEffect(() => {
     if (toursData) setLoading(false);
 
-    // Скроллим к началу, только когда реально изменился номер страницы
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    // Скроллим плавно к заголовку списка туров (используем наш Ref)
+    toursTopRef.current?.scrollIntoView({ 
+      behavior: 'smooth', 
+      block: 'start'
+    });
 
   }, [currentPage]);
 
