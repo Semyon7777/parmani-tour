@@ -235,4 +235,45 @@
 /* BookForm.css */
 
 
-  
+.price-box {
+  margin-top: 25px;
+  padding: 22px 28px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ffffff, #fafafa);
+  border: 1px solid #eaeaea;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.price-box:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+}
+
+.price-box-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-small {
+  font-size: 13px;
+  color: #888;
+  letter-spacing: 0.5px;
+}
+
+.price-main {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ff9800;
+  margin-top: 5px;
+}
+
+.price-box-right {
+  text-align: right;
+}
+
+.price-detail {
+  font-size: 14px;
+  color: #666;
+}

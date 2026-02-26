@@ -13,12 +13,14 @@ import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import ReCAPTCHA from "react-google-recaptcha";
 import toursData from "../toursPage/toursData.json";
+import Calculator from './Calculator';
 
 
 function BookForm() {
 const { t, i18n } = useTranslation();
   const { tourName } = useParams(); 
   const cleanTourName = tourName.replace("-reservation", "");
+  const [calculation, setCalculation] = useState(null);
   
   // 1. Создаем реф для капчи
   const recaptchaRef = useRef(); 
@@ -40,14 +42,12 @@ const { t, i18n } = useTranslation();
     tourName: cleanTourName,
     firstName: '',
     lastName: '',
-    year: '',
-    from: '', 
-    startDate: new Date(),
-    days: '',
-    state: '',
-    city: '',
+    startDate: new Date(new Date().setHours(8, 0, 0, 0)),
+    guide: 'none',
+    phone: '',
     pincode: false,
     course: false,
+    comments: '',
     email: ''
   });
 
@@ -59,7 +59,7 @@ const { t, i18n } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  const incrementPeople = () => { if (numberOfPeople < 5) setNumberOfPeople(numberOfPeople + 1); };
+  const incrementPeople = () => { if (numberOfPeople < 7) setNumberOfPeople(numberOfPeople + 1); };
   const decrementPeople = () => { if (numberOfPeople > 1) setNumberOfPeople(numberOfPeople - 1); };
   const handleStartDateChange = (date) => { setFormData({ ...formData, startDate: date }); };
   const handleChange = (e) => { setFormData({ ...formData, [e.target.id]: e.target.value }); };
@@ -67,7 +67,7 @@ const { t, i18n } = useTranslation();
     const { id, checked } = e.target;
     setFormData({ ...formData, [id]: checked });
   };
-  const handleRadioChange = (e) => { setFormData({ ...formData, days: e.target.id }); };
+  // const handleRadioChange = (e) => { setFormData({ ...formData, days: e.target.id }); };
   const validateEmail = (email) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
 
   // --- ОБНОВЛЕННАЯ ЛОГИКА ОТПРАВКИ С CAPTCHA ---
@@ -76,19 +76,24 @@ const { t, i18n } = useTranslation();
     
     if (!agreedToTerms) {
       setError(t('bookForm.errorAgreeToTerms'));
+      window.scrollTo(0, 0);
       return;
     }
 
-    const requiredFields = ['firstName', 'lastName', 'year', 'from', 'days', 'state', 'city', 'email'];
+    const requiredFields = ['firstName', 'lastName','guide', 'startDate', 'email', 'phone'];
     for (let field of requiredFields) {
       if (!formData[field]) {
         setError(t('bookForm.errorEmptyField', { field: t(`bookForm.fields.${field}`) }));
+
+        window.scrollTo(0, 0);
         return;
       }
     }
 
     if (!validateEmail(formData.email)) {
       setError(t('bookForm.errorInvalidEmail'));
+
+      window.scrollTo(0, 0);
       return;
     }
 
@@ -111,14 +116,23 @@ const { t, i18n } = useTranslation();
         firstName: formData.firstName,
         lastName: formData.lastName,
         email: formData.email,
-        phone_number: formData.state, 
-        city: formData.city,
-        from: formData.from,
-        year: formData.year,
-        startDate: formData.startDate.toLocaleDateString(),
+        phone_number: formData.phone, 
+        startDate: formData.startDate.toLocaleString(),
         people: numberOfPeople,
         pincode: formData.pincode ? "Tickets included" : "No tickets",
         course: formData.course ? "Food included" : "No food",
+        comments: formData.comments || "No special requests",
+
+        // --- НОВЫЕ ПОЛЯ ДЛЯ ЦЕН (Конфиденциально) ---
+        finalPrice: calculation?.finalPrice + " AMD but client will pay " + (Math.round((calculation?.finalPrice/ 1000)) * 1000),
+        transportCost: calculation?.transportCost + " AMD",
+        guideCost: calculation?.guideCost + " AMD",
+        extraCost: calculation?.extraCost + " AMD",
+        totalCostWithBuffer: calculation?.totalCostWithBuffer + " AMD",
+        cleanProfit: calculation?.cleanProfit + " AMD",
+        tax: calculation?.tax + " AMD",
+        vehicleType: calculation?.vehicleType,
+        vehicleCount: calculation?.vehicleCount,
         'g-recaptcha-response': token // Передаем токен
       };
 
@@ -187,16 +201,12 @@ const { t, i18n } = useTranslation();
                           <Form.Control size='lg' id='lastName' type='text' value={formData.lastName} onChange={handleChange} className="custom-input"/>
                         </Form.Group>
                       </Col>
+                    </Row>
+                    <Row>
                       <Col md='6'>
                         <Form.Group className='mb-4'>
-                          <Form.Label>{t('bookForm.year')}</Form.Label>
-                          <Form.Control size='lg' id='year' type='text' value={formData.year} onChange={handleChange} className="custom-input"/>
-                        </Form.Group>
-                      </Col>
-                      <Col md='6'>
-                        <Form.Group className='mb-4'>
-                          <Form.Label>{t('bookForm.from')}</Form.Label>
-                          <Form.Control size='lg' id='from' type='text' value={formData.from} onChange={handleChange} className="custom-input"/>
+                          <Form.Label>{t('bookForm.phone')}</Form.Label>
+                          <Form.Control size='lg' id='phone' type='text' value={formData.phone} onChange={handleChange} className="custom-input"/>
                         </Form.Group>
                       </Col>
                     </Row>
@@ -207,9 +217,20 @@ const { t, i18n } = useTranslation();
                         ref={datePickerRef}
                         selected={formData.startDate}
                         onChange={handleStartDateChange}
-                        dateFormat="dd/MM/yyyy"
+                        dateFormat="dd/MM/yyyy HH:mm" // Добавили часы и минуты в формат
                         className="form-control custom-input"
-                        minDate={new Date()} 
+                        minDate={new Date()}
+                        
+                        // Настройки времени
+                        showTimeSelect           // Включает выбор времени
+                        timeFormat="HH:mm"       // Формат времени в выпадающем списке
+                        timeIntervals={30}       // Шаг выбора времени (можно 15, 30, 60 мин)
+                        timeCaption={t('bookForm.startTime')}       // Заголовок над временем
+                        
+                        // Ограничение диапазона (с 8 утра до 12 дня)
+                        minTime={new Date(new Date().setHours(8, 0, 0))}
+                        maxTime={new Date(new Date().setHours(12, 0, 0))}
+                        
                         showYearDropdown
                         scrollableMonthYearDropdown
                       />
@@ -227,29 +248,18 @@ const { t, i18n } = useTranslation();
                         <Button variant="none" onClick={incrementPeople} className='plus'>+</Button>
                       </div>
                     </Form.Group>
-                    <div className='d-md-flex justify-content-start align-items-center mb-4'>
+                    {/* <div className='d-md-flex justify-content-start align-items-center mb-4'>
                       <h6 className="fw-bold mb-0 me-4">{t('bookForm.days')}:</h6>
                       <Form.Check inline label='1' type='radio' name='days' id='days1' checked={formData.days === 'days1'} onChange={handleRadioChange} />
                       <Form.Check inline label='5' type='radio' name='days' id='days5' checked={formData.days === 'days5'} onChange={handleRadioChange} />
                       <Form.Check inline label='7' type='radio' name='days' id='days7' checked={formData.days === 'days7'} onChange={handleRadioChange} />
-                    </div>
+                    </div> */}
                     <Row>
                       <Col md='6'>
                         <Form.Group className='mb-4'>
-                          <Form.Label>{t('bookForm.state')}</Form.Label>
-                          <Form.Control as='select' size='lg' id='state' value={formData.state} onChange={handleChange} className="custom-input">
+                          <Form.Label>{t('bookForm.guide')}</Form.Label>
+                          <Form.Control as='select' size='lg' id='guide' value={formData.guide} onChange={handleChange} className="custom-input">
                             <option value='none'>{t('bookForm.choose')}</option>
-                            <option>{t('bookForm.option1')}</option>
-                            <option>{t('bookForm.option2')}</option>
-                            <option>{t('bookForm.option3')}</option>
-                          </Form.Control>
-                        </Form.Group>
-                      </Col>
-                      <Col md='6'>
-                        <Form.Group className='mb-4'>
-                          <Form.Label>{t('bookForm.city')}</Form.Label>
-                          <Form.Control as='select' size='lg' id='city' value={formData.city} onChange={handleChange} className="custom-input">
-                            <option value=''>{t('bookForm.choose')}</option>
                             <option>{t('bookForm.option1')}</option>
                             <option>{t('bookForm.option2')}</option>
                             <option>{t('bookForm.option3')}</option>
@@ -283,10 +293,33 @@ const { t, i18n } = useTranslation();
                       </div>
                     </Form.Group>
 
+                    <Calculator
+                      people={numberOfPeople}
+                      includeGuide={formData.includeGuide}
+                      includeFood={formData.course}
+                      includeTickets={formData.pincode}
+                      onResult={setCalculation}
+                      pricingData={currentTour?.budget?.pricing}
+                    />
+
                     <Form.Group className='mb-4'>
                       <Form.Label>{t('bookForm.email')}</Form.Label>
                       <Form.Control size='lg' id='email' type='text' value={formData.email} onChange={handleChange} className="custom-input"/>
                     </Form.Group>
+
+                    <Form.Group className='mb-4'>
+                      <Form.Label>{t('bookForm.comments') || 'Special Requests / Comments (Optional)'}</Form.Label>
+                      <Form.Control 
+                        as="textarea" 
+                        rows={3} 
+                        id='comments' 
+                        value={formData.comments} 
+                        onChange={handleChange} 
+                        placeholder={t('bookForm.commentsPlaceholder') || 'e.g. Vegetarian food, child car seat, pickup from Marriott Hotel...'}
+                        className="custom-input"
+                      />
+                    </Form.Group>
+
                     <Form.Group className="mb-4">
                       <Form.Check
                         type="checkbox"
@@ -321,6 +354,23 @@ const { t, i18n } = useTranslation();
                         </Button>
                       </Modal.Footer>
                     </Modal>
+
+                    {calculation && (
+                      <div className="price-box">
+                        <div className="price-box-left">
+                          <div className="price-small">{t('bookForm.estimated_price')}</div>
+                          <div className="price-main">
+                            {(Math.round((calculation.finalPrice/ 1000)) * 1000).toLocaleString()} ֏
+                          </div>
+                        </div>
+
+                        {/* <div className="price-box-right">
+                          <div className="price-detail">
+                            {t('bookForm.profit')}: {calculation.cleanProfit.toLocaleString()} ֏
+                          </div>
+                        </div> */}
+                      </div>
+                    )}
 
                     <div className="d-flex justify-content-end pt-3">
                       <Link to="/tours">

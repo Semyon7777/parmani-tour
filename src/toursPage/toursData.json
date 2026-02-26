@@ -144,19 +144,14 @@
         "hy": ["Ճաշ", "Ճոպանուղու տոմս", "Անձնական ծախսեր"]
       }
     },
-    "budget-1": {
-      "title": "Բյուջե 1",
+    "budget": {
+      "title": "Բյուջե",
       "pricing": {
-        "transfer_only": [
-          { "min": 1, "max": 4, "price": 33000 },
-          { "min": 5, "max": 7, "price": 45000 }
+        "vehicles": [
+          {"vehicles": "Sedan", "price": "30000"},
+          {"vehicles": "Miniven", "price": "40000"}
         ],
-        "transfer_guide": [
-          { "min": 1, "max": 3, "price": 56000 },
-          { "min": 4, "max": 6, "price": 78000 }
-        ],
-        "food_per_person": 5000,
-        "ticket_per_person": 5000
+        "ticket_per_person": "5000"
       }
     }
   },

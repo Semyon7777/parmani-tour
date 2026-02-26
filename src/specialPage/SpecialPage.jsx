@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Container, Row, Col, Form, Modal, Button, Accordion } from "react-bootstrap";
+import { Container, Row, Col, Form, Modal, Button, Accordion, Alert, Spinner } from "react-bootstrap";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { Map, Bus, BookOpen, Utensils, Send, CheckCircle, Plus, Trash2, FileText } from "lucide-react";
+import emailjs from '@emailjs/browser';
 import customTourBuilderImg from "./images/Custom-Tour-Builder.png"
 import "./SpecialPage.css";
 
 function SpecialPage() {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("custom");
+  const [alertInfo, setAlertInfo] = useState({ show: false, variant: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false); // Чтобы блокировать кнопку во время отправки
+  const alertRef = React.useRef(null); // Добавь это к остальным стейтам
 
   // --- СОСТОЯНИЯ ФОРМЫ ---
   const [destinations, setDestinations] = useState([""]); // Список мест
@@ -61,11 +65,60 @@ function SpecialPage() {
   };
 
   // Финальная отправка
-  const handleFinalSubmit = () => {
-    console.log("Submitting:", { ...formData, destinations });
-    setShowModal(false);
-    // Здесь можно добавить уведомление об успехе
-  };
+const handleFinalSubmit = () => {
+    setIsSubmitting(true);
+
+    const formattedDestinations = destinations
+      .filter(d => d.trim() !== "")
+      .map((d, i) => `${i + 1}. ${d}`)
+      .join("\n");
+
+    const templateParams = {
+      tour_type: activeTab === "custom" ? "Custom Tour Builder" : "School Tour",
+      email: formData.email,
+      phone: formData.phone,
+      people: formData.peopleCount,
+      date: formData.date,
+      destinations: activeTab === "custom" ? formattedDestinations : "Fixed School Program",
+      wishes: formData.wishes || "No special wishes",
+    };
+
+    emailjs.send(
+      'service_zvppy78',
+      'template_mpwegyd',
+      templateParams, 
+      'P2-IFz5S0EKcKVf9p'
+    )
+    .then((result) => {
+        setShowModal(false); 
+        
+        setAlertInfo({ 
+          show: true, 
+          variant: "success", 
+          message: t("special.form.success_msg") || "Success! Your request has been sent. We will contact you soon." 
+        });
+
+        // СКРОЛЛ К АЛЕРТУ
+        setTimeout(() => {
+            alertRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 200);
+
+        setDestinations([""]);
+        setFormData({ email: "", phone: "", peopleCount: 1, date: "", wishes: "" });
+        setTimeout(() => setAlertInfo({ show: false, variant: "", message: "" }), 8000); // Увеличил до 8 сек
+    })
+    .catch((error) => {
+        setShowModal(false);
+        setAlertInfo({ 
+          show: true, 
+          variant: "danger", 
+          message: t("special.form.error_msg") || "Error sending message." 
+        });
+    })
+    .finally(() => {
+        setIsSubmitting(false);
+    });
+};
 
   return (
     <div className="special-page">
@@ -128,6 +181,31 @@ function SpecialPage() {
 
                 <div className="custom-form-side">
                   <div className="form-island">
+
+                    {/* --- КОНТЕЙНЕР ДЛЯ АЛЕРТА С РЕФОМ --- */}
+                    <div ref={alertRef}>
+                      {alertInfo.show && (
+                        <Alert 
+                          variant={alertInfo.variant} 
+                          onClose={() => setAlertInfo({ show: false, variant: "", message: "" })} 
+                          dismissible
+                          className={`custom-alert-${alertInfo.variant} mb-4`}
+                          style={{ 
+                            borderRadius: '12px',
+                            boxShadow: '0 4px 15px rgba(0,0,0,0.05)' 
+                          }}
+                        >
+                          <div className="d-flex align-items-center">
+                            {alertInfo.variant === "success" && <CheckCircle size={24} className="me-3"/>}
+                            <div>
+                              <strong>{alertInfo.variant === "success" ? "Done!" : "Oops!"}</strong>
+                              <div className="small">{alertInfo.message}</div>
+                            </div>
+                          </div>
+                        </Alert>
+                      )}
+                    </div>
+
                     <h3>{t("special.form.header")}</h3>
                     <Form onSubmit={handleShowPreview}>
                       
@@ -198,8 +276,8 @@ function SpecialPage() {
                 </div>
 
               </div>
-              {CustomFAQ()}
-              {/* <CustomFAQ t={t} /> */}
+              {/* {CustomFAQ()} */}
+              <CustomFAQ t={t} />
             </div>
           )}
 
@@ -244,7 +322,8 @@ function SpecialPage() {
                   </div>
                 </div>
               </div>
-              {SchoolFAQ()}
+              {/* {SchoolFAQ()} */}
+              <SchoolFAQ t={t} />
             </div>
           )}
 
@@ -295,8 +374,20 @@ function SpecialPage() {
           <Button variant="link" className="text-decoration-none text-muted" onClick={() => setShowModal(false)}>
             {t("special.modal.edit")}
           </Button>
-          <Button className="btn-confirm-final" onClick={handleFinalSubmit}>
-            {t("special.modal.confirm")}
+          <Button 
+            className="btn-confirm-final" 
+            variant="success"
+            onClick={handleFinalSubmit}
+            disabled={isSubmitting} // Блокируем
+          >
+            {isSubmitting ? (
+              <>
+                <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" className="me-2" />
+                {t("special.modal.sending") || "Sending..."}
+              </>
+            ) : (
+              t("special.modal.confirm")
+            )}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -308,7 +399,7 @@ function SpecialPage() {
 
 
 // --- FAQ ДЛЯ КОНСТРУКТОРА ТУРОВ ---
-function CustomFAQ() {
+function CustomFAQ({ t }) {
   const questions = [1, 2, 3, 4, 5, 6]; // Добавь сколько нужно
   return (
     <div className="sp-faq-container">
@@ -330,7 +421,7 @@ function CustomFAQ() {
 }
 
 // --- FAQ ДЛЯ ШКОЛЬНЫХ ТУРОВ ---
-function SchoolFAQ() {
+function SchoolFAQ({ t }) {
   const questions = [1, 2, 3, 4, 5, 6];
   return (
     <div className="sp-faq-container">

@@ -433,3 +433,36 @@
   background-size: 14px;
   transition: transform 0.3s ease;
 }
+
+/* Custom Alerts */
+.custom-alert-success {
+  background-color: #e8f5e9; /* Светло-зеленый фон */
+  color: #2e7d32; /* Темно-зеленый текст */
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(46, 125, 50, 0.1);
+  animation: slideDownFade 0.4s ease-out forwards;
+}
+
+.custom-alert-danger {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+  border-radius: 8px;
+  animation: slideDownFade 0.4s ease-out forwards;
+}
+
+/* Анимация появления */
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
