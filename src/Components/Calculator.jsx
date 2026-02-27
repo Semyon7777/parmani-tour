@@ -1,5 +1,4 @@
-import React, { useMemo } from "react";
-import "./Calculator.css"
+import React, { useMemo, useEffect } from "react";
 
 const Calculator = ({
   people = 1,
@@ -7,18 +6,14 @@ const Calculator = ({
   includeFood = false,
   includeTickets = false,
   pricingData,
-  margin = 0.2,
-  taxRate = 0.05,
-  bufferRate = 0.05,
+  bufferRate = 0.05, // Оставляем буфер 5%
   onResult
 }) => {
-    
-
+  
   const result = useMemo(() => {
-
     if (!pricingData) return null;
 
-    // --- Vehicle fleet ---
+    // --- 1. ПАРСИНГ ТРАНСПОРТА ---
     const vehicles = pricingData.vehicles.map(v => ({
       name: v.vehicles,
       price: Number(v.price),
@@ -27,73 +22,64 @@ const Calculator = ({
 
     const GUIDE_PRICE = 15000;
     const FOOD_PER_PERSON = 5000;
-    const TICKET_PER_PERSON = Number(pricingData.ticket_per_person);
+    const TICKET_PER_PERSON = Number(pricingData.ticket_per_person) || 0;
 
-    // 1️⃣ Total passengers (guide takes seat)
-    const passengers = people + (includeGuide ? 1 : 0);
-
-    // 2️⃣ Choose best vehicle
+    // --- 2. ЛОГИКА ТРАНСПОРТА ---
+    const totalSeatsNeeded = people + (includeGuide ? 1 : 0);
     let chosenVehicle = null;
     let vehicleCount = 1;
 
+    // Поиск подходящего авто
     for (let vehicle of vehicles) {
-      if (passengers <= vehicle.capacity) {
+      if (totalSeatsNeeded <= vehicle.capacity) {
         chosenVehicle = vehicle;
         vehicleCount = 1;
         break;
       }
     }
 
-    // 3️⃣ If no single vehicle fits
+    // Если не влезли в самый большой — берем несколько самых больших
     if (!chosenVehicle) {
       const largestVehicle = vehicles[vehicles.length - 1];
-      vehicleCount = Math.ceil(passengers / largestVehicle.capacity);
+      vehicleCount = Math.ceil(totalSeatsNeeded / largestVehicle.capacity);
       chosenVehicle = largestVehicle;
     }
 
     const transportCost = chosenVehicle.price * vehicleCount;
 
-    // 4️⃣ Guide cost
+    // --- 3. РАСЧЕТ СЕБЕСТОИМОСТИ (x) ---
     const guideCost = includeGuide ? GUIDE_PRICE : 0;
-
-    // 5️⃣ Extra costs
     let extraCost = 0;
 
-    if (includeFood) {
-      extraCost += FOOD_PER_PERSON * people;
-    }
+    if (includeFood) extraCost += FOOD_PER_PERSON * people;
+    if (includeTickets) extraCost += TICKET_PER_PERSON * people;
 
-    if (includeTickets) {
-      extraCost += TICKET_PER_PERSON * people;
-    }
+    // Базовая стоимость + буфер (x)
+    const baseCost = transportCost + guideCost + extraCost;
+    const x = baseCost * (1 + bufferRate);
 
-    // 6️⃣ Base cost
-    const costBeforeBuffer = transportCost + guideCost + extraCost;
-    const buffer = costBeforeBuffer * bufferRate;
-    const totalCost = costBeforeBuffer + buffer;
+    // --- 4. ПРИМЕНЕНИЕ ФОРМУЛЫ (k) ---
+    // Формула: k = (1.1 * x) / 0.78
+    const finalPriceK = (1.1 * x) / 0.78;
 
-    // 7️⃣ Apply margin
-    const priceWithoutTax = totalCost / (1 - margin);
-
-    // 8️⃣ Add tax
-    const tax = priceWithoutTax * taxRate;
-    const finalPrice = priceWithoutTax + tax;
-
-    // 9️⃣ Clean profit
-    const cleanProfit = priceWithoutTax - totalCost;
+    // --- 5. ДЕТАЛИЗАЦИЯ (Для отчетов или отображения) ---
+    const turnoverTax = 0.10 * x;            // 10% от x
+    const cleanProfit = 0.20 * finalPriceK;  // 20% от k
+    const corporateTax = cleanProfit * 0.10; // 10% от прибыли
 
     return {
       vehicleType: chosenVehicle.name,
       vehicleCount,
-      passengers,
+      passengers: totalSeatsNeeded,
       transportCost: Math.round(transportCost),
       guideCost,
       extraCost,
-      totalCostWithBuffer: Math.round(totalCost),
-      priceBeforeTax: Math.round(priceWithoutTax),
-      tax: Math.round(tax),
-      finalPrice: Math.round(finalPrice),
-      cleanProfit: Math.round(cleanProfit)
+      costPriceX: Math.round(x),
+      turnoverTax: Math.round(turnoverTax),
+      corporateTax: Math.round(corporateTax),
+      cleanProfit: Math.round(cleanProfit),
+      finalPrice: Math.round(finalPriceK),
+      checkSum: Math.round(x + turnoverTax + cleanProfit + corporateTax)
     };
 
   }, [
@@ -101,20 +87,18 @@ const Calculator = ({
     includeGuide,
     includeFood,
     includeTickets,
-    margin,
-    taxRate,
     bufferRate,
     pricingData
   ]);
 
-  // Send result to parent (BookForm)
-  React.useEffect(() => {
-    if (onResult) {
+  // Передача результата родителю
+  useEffect(() => {
+    if (onResult && result) {
       onResult(result);
     }
   }, [result, onResult]);
 
-  return null; // No UI — logic only
+  return null; // Компонент не рендерит UI
 };
 
 export default Calculator;

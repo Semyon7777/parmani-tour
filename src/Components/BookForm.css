@@ -4,9 +4,12 @@
 
 
 .bookFormContainer {
+  margin-top: 5px;
+  margin-bottom: 5px;
   max-width: 60%;
   width: 1000px;
   transition: none !important;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .terms {
@@ -106,9 +109,9 @@
 
 @media (max-width: 767px) {
   .container-fluid {
-    max-width: 100% !important;
+    /* max-width: 100% !important; */
     padding: 15px !important;
-    margin-left: 24px;
+    /* margin-left: 24px; */
   }
 
   .card {

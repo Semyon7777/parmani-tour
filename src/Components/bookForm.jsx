@@ -295,7 +295,7 @@ const { t, i18n } = useTranslation();
 
                     <Calculator
                       people={numberOfPeople}
-                      includeGuide={formData.includeGuide}
+                      includeGuide={formData.guide !== 'none'}
                       includeFood={formData.course}
                       includeTickets={formData.pincode}
                       onResult={setCalculation}
