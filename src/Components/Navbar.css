@@ -217,7 +217,7 @@
 /* ================= ACTIVE DROPDOWN TITLE ================= */
 .navbar-container .custom-dropdown.show > .dropdown-toggle {
   color: #AEE57D !important;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  text-shadow: 1px 0px 1px rgba(0, 0, 0, 0.7);
   transition: all 0.3s ease;
 }
 
@@ -229,7 +229,7 @@
 .navbar-container .language-divider {
   width: 1.5px;
   height: 20px;
-  background-color: rgb(208, 240, 192);
+  background-color: #228b229c;
   margin: 0 15px;
 }
 .navbar-container .lang-dropdown-btn {
