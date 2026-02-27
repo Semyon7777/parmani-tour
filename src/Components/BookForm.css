@@ -107,7 +107,12 @@
 
 /* Стили для мобильных устройств */
 
-@media (max-width: 767px) {
+@media (max-width: 900px) {
+
+  .bookFormContainer {
+    max-width: 90%;
+  }
+
   .bookFormContainer .container-fluid {
     /* max-width: 100% !important; */
     padding: 15px !important;
