@@ -156,39 +156,116 @@
     }
   },
   {
-    "id": "sevan-dilijan",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Sevanavank_Monastery_Armenia.jpg/800px-Sevanavank_Monastery_Armenia.jpg",
-    "price": "130$",
+    "id": "amrakits-hnevank-arevatsagi-dzor",
+    "routeMap": "/TourImages/lori_region/amrakits-hnevank/route-map.webp",
+    "routeSummary": "Yerevan → Amrakits → Hnevank → Arevatsagi Dzor → Yerevan",
+    "imageUrl": "/TourImages/lori_region/amrakits-hnevank/main.webp",
+    "duration": "10-11",
+    "price": "59000 AMD",
     "title": {
-      "en": "Lake Sevan & Dilijan",
-      "ru": "Озеро Севан и Дилижан",
-      "hy": "Սևանա լիճ և Դիլիջան"
+      "en": "AMRAKITS – HNEVANK – AREVATSAGI GORGE",
+      "ru": "АМРАКИЦ – ХНЕВАНК – УЩЕЛЬЕ АРЕВАЦАГИ",
+      "hy": "ԱՄՐԱԿԻՑ – ՀՆԵՎԱՆՔ – ԱՐԵՎԱԾԱԳԻ ՁՈՐ"
     },
     "description": {
-      "en": "The pearl of Armenia and the 'Little Switzerland' forest region.",
-      "ru": "Жемчужина Армении и лесной регион 'Маленькая Швейцария'.",
-      "hy": "Հայաստանի մարգարիտը և 'Փոքրիկ Շվեյցարիան':"
+      "en": "A scenic hiking tour through medieval monasteries, untouched Lori landscapes, and the breathtaking Arevatsagi Gorge with a picnic in nature.",
+      "ru": "Живописный тур с элементами хайкинга по средневековым монастырям Лори и впечатляющему ущелью Аревацаги с пикником на природе.",
+      "hy": "Գեղատեսիլ քայլարշավային տուր Լոռու միջնադարյան վանքերով և տպավորիչ Արեւածագի ձորով՝ բնության գրկում պիկնիկով։"
     },
     "sections": [
       {
-        "header": { "en": "Nature", "ru": "Природа", "hy": "Բնություն" },
-        "content": { "en": "Enjoy the fresh air...", "ru": "Насладитесь свежим воздухом...", "hy": "Վայելեք թարմ օդը..." }
+        "header": {
+          "en": "Amrakits Church",
+          "ru": "Церковь Амракиц",
+          "hy": "Ամրակից եկեղեցի"
+        },
+        "content": {
+          "en": "Rural Armenian church surrounded by Lori’s mountain scenery.",
+          "ru": "Сельская армянская церковь среди горных пейзажей Лори.",
+          "hy": "Գյուղական հայկական եկեղեցի՝ Լոռու լեռնային բնապատկերում։"
+        },
+        "fullContent": {
+          "en": "Located in the village of Amrakits in Lori Province, this modest yet atmospheric church reflects traditional Armenian ecclesiastical architecture. Surrounded by green hills and open landscapes, it offers a peaceful introduction to the spiritual heritage of the region.",
+          "ru": "Расположенная в селе Амракиц Лорийской области, церковь представляет собой образец традиционной армянской храмовой архитектуры. Скромная по размерам, но атмосферная, она гармонично вписывается в горный ландшафт и создаёт ощущение уединения и покоя.",
+          "hy": "Լոռու մարզի Ամրակից գյուղում գտնվող եկեղեցին հայկական եկեղեցական ճարտարապետության ավանդական օրինակ է։ Այն շրջապատված է կանաչ բարձունքներով և խաղաղ մթնոլորտով՝ ներկայացնելով տարածաշրջանի հոգևոր ժառանգությունը։"
+        },
+        "image": "/TourImages/lori_region/amrakits-hnevank/amrakits-church.webp"
+      },
+      {
+        "header": {
+          "en": "Hnevank Monastic Complex",
+          "ru": "Монастырский комплекс Хневaнк",
+          "hy": "Հնեվանք վանական համալիր"
+        },
+        "content": {
+          "en": "7th–12th century monastery in the Debed Canyon.",
+          "ru": "Монастырь VII–XII веков в каньоне реки Дебед.",
+          "hy": "VII–XII դարերի վանական համալիր Դեբեդի կիրճում։"
+        },
+        "fullContent": {
+          "en": "Hnevank Monastery is located in the picturesque Debed Canyon and dates back to the early medieval period. The complex consists of several churches and chapels built between the 7th and 12th centuries. Its location on a hillside overlooking the river makes it one of the most scenic and less crowded monuments in Lori.",
+          "ru": "Монастырь Хневaнк расположен в живописном каньоне реки Дебед и относится к раннему средневековью. Комплекс включает несколько церквей и часовен VII–XII веков. Расположение на склоне холма с видом на реку делает его одним из самых атмосферных и малоизвестных памятников Лори.",
+          "hy": "Հնեվանքը գտնվում է Դեբեդի կիրճում և թվագրվում է վաղ միջնադարյան ժամանակաշրջանին։ Համալիրը ներառում է VII–XII դարերի եկեղեցիներ և մատուռներ։ Բարձունքի վրա տեղակայված լինելու շնորհիվ այն բացում է գեղեցիկ տեսարաններ դեպի կիրճ։"
+        },
+        "image": "/TourImages/lori_region/amrakits-hnevank/hnevank.webp"
+      },
+      {
+        "header": {
+          "en": "Hiking to Arevatsagi Gorge",
+          "ru": "Поход к ущелью Аревацаги",
+          "hy": "Քայլարշավ դեպի Արեւածագի ձոր"
+        },
+        "content": {
+          "en": "Scenic trail through forested and rocky terrain.",
+          "ru": "Живописная тропа через леса и скалистые участки.",
+          "hy": "Գեղատեսիլ արահետ՝ անտառային և ժայռոտ հատվածներով։"
+        },
+        "fullContent": {
+          "en": "The hiking route leads through forest paths and rocky landscapes typical of Lori Province. Along the way, participants can enjoy panoramic views, fresh mountain air, and untouched natural surroundings.",
+          "ru": "Маршрут проходит по лесным тропам и скалистым участкам, характерным для Лорийской области. По дороге открываются панорамные виды, ощущается свежий горный воздух и атмосфера нетронутой природы.",
+          "hy": "Քայլարշավի ընթացքում մասնակիցները անցնում են անտառային արահետներով և ժայռոտ տեղանքով՝ վայելելով մաքուր լեռնային օդը և բացվող համայնապատկերները։"
+        },
+        "image": "/TourImages/lori_region/amrakits-hnevank/hiking.webp"
+      },
+      {
+        "header": {
+          "en": "Arevatsagi Gorge",
+          "ru": "Ущелье Аревацаги",
+          "hy": "Արեւածագի ձոր"
+        },
+        "content": {
+          "en": "Natural gorge ideal for picnic and rest.",
+          "ru": "Природное ущелье, идеально подходящее для пикника и отдыха.",
+          "hy": "Բնական ձոր՝ հարմար պիկնիկի և հանգստի համար։"
+        },
+        "fullContent": {
+          "en": "Arevatsagi Gorge is known for its dramatic cliffs, greenery, and peaceful atmosphere. Here the group can enjoy a picnic lunch surrounded by nature, making this stop both relaxing and memorable.",
+          "ru": "Ущелье Аревацаги отличается скалистыми формами, зелёными склонами и спокойной атмосферой. Здесь предусмотрен пикник или обед на природе, что делает финальную часть маршрута особенно приятной и запоминающейся.",
+          "hy": "Արեւածագի ձորը հայտնի է իր ժայռոտ տեսարաններով և հանգիստ միջավայրով։ Այստեղ կազմակերպվում է պիկնիկ կամ ճաշ բնության գրկում՝ դարձնելով շրջագայության ավարտը հաճելի և հիշարժան։"
+        },
+        "image": "/TourImages/lori_region/amrakits-hnevank/arevatsagi.webp"
       }
-    ],
-    "carousel": [
-      { "id": 0, "src": "https://placehold.co/800x400?text=Lake+Sevan" },
-      { "id": 1, "src": "https://placehold.co/800x400?text=Old+Dilijan" }
     ],
     "features": {
       "include": {
-        "en": ["Transport", "Guide"],
-        "ru": ["Транспорт", "Гид"],
-        "hy": ["Տրանսպորտ", "Գիդ"]
+        "en": ["Transportation", "Professional guide", "Hiking сопровождение", "Picnic organization"],
+        "ru": ["Транспорт", "Услуги профессионального гида", "Сопровождение во время хайкинга", "Организация пикника"],
+        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Քայլարշավի ուղեկցություն", "Պիկնիկի կազմակերպում"]
       },
       "exclude": {
-        "en": ["Boat Ride"],
-        "ru": ["Прогулка на лодке"],
-        "hy": ["Նավակով զբոսանք"]
+        "en": ["Personal expenses", "Additional meals"],
+        "ru": ["Личные расходы", "Дополнительное питание"],
+        "hy": ["Անձնական ծախսեր", "Լրացուցիչ սնունդ"]
+      }
+    },
+    "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
+          {"vehicles": "Sedan", "price": "40000"},
+          {"vehicles": "Miniven", "price": "60000"}
+        ],
+        "ticket_per_person": "0"
       }
     }
   },
