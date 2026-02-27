@@ -11,7 +11,13 @@
 .hotels-page-wrapper {
   overflow-x: hidden;
   background-color: var(--light-green);
-  font-family: 'Inter', sans-serif; /* Или твой основной шрифт */
+}
+
+/* В файле hotelsPage.css */
+.hotels-page-wrapper h1, 
+.hotels-page-wrapper h2, 
+.hotels-page-wrapper p {
+   font-family: 'Inter', sans-serif;
 }
 
 /* --- HERO SECTION --- */

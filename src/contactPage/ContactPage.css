@@ -10,7 +10,6 @@
 
 .tour-contact-page-root {
   background-color: var(--tour-soft-bg);
-  font-family: 'Inter', sans-serif;
 }
 
 /* Header */
@@ -150,6 +149,7 @@
   color: #2e7d32;
   margin-bottom: 10px;
 }
+
 
 @media (max-width: 991.98px) {
 
