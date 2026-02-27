@@ -1,6 +1,7 @@
 [
   {
     "id": "bjni-tsaghkadzor",
+    "category": "cultural",
     "routeMap": "/TourImages/kotayq_region/bjni-tsaghkadzor/BjniTsaghkadzorTourLine.webp",
     "routeSummary": "Yerevan → Bjni → Tsaghkadzor → Yerevan",
     "imageUrl": "/TourImages/kotayq_region/bjni-tsaghkadzor/bjni-tsaghkadzor.webp",
@@ -158,6 +159,7 @@
 
   {
     "id": "amrakits-hnevank-arevatsagi-dzor",
+    "category": "nature",
     "routeMap": "/TourImages/lori_region/amrakits-hnevank/route-map.webp",
     "routeSummary": "Yerevan → Amrakits → Hnevank → Arevatsagi Dzor → Yerevan",
     "imageUrl": "/TourImages/lori_region/amrakits-hnevank/main.webp",
@@ -273,6 +275,7 @@
 
   {
     "id": "ereruyk-gyumri-tour",
+    "category": "cultural",
     "routeMap": "/TourImages/shirak_region/ereruyk-gyumri/route-map.webp",
     "routeSummary": "Yerevan → Ereruyk → Akhuryan Reservoir → Sev Berd → Gyumri → Yerevan",
     "imageUrl": "/TourImages/shirak_region/ereruyk-gyumri/main.webp",
@@ -388,6 +391,7 @@
   
   {
     "id": "garni-geghard-charents-arch",
+    "category": "cultural",
     "routeMap": "/TourImages/kotayq_region/garni-geghard/route-map.webp",
     "routeSummary": "Yerevan → Charents Arch → Geghard → Garni → Garni Gorge → Yerevan",
     "imageUrl": "/TourImages/kotayq_region/garni-geghard/main.webp",

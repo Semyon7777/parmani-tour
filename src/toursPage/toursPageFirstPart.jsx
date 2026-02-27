@@ -1,58 +1,78 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Button, Card, Row, Col, Spinner, Container } from 'react-bootstrap';
+import { Button, Card, Row, Col, Spinner, Container, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Search, User } from 'lucide-react'; // Иконки для красоты
+import { Search, User, ArrowUpDown } from 'lucide-react'; 
 import toursData from "./toursData.json";
 
 function ToursPageFirstPart() {
   const { t, i18n } = useTranslation();
+  const lang = i18n.language || "en";
+  
+  // Состояния
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [sortBy, setSortBy] = useState("default");
+
   const itemsPerPage = 6;
-  const toursTopRef = useRef(null); // Ссылка на начало списка туров
+  const toursTopRef = useRef(null);
+
+  // Список категорий (можно вынести в JSON)
+  const categories = [
+    { id: "all", name: t('tour_info_page.filter_all', 'All') },
+    { id: "cultural", name: t('tour_info_page.filter_cultural', 'Cultural') },
+    { id: "nature", name: t('tour_info_page.filter_nature', 'Nature') },
+    { id: "gastronomic", name: t('tour_info_page.filter_gastro', 'Gastro') },
+    { id: "religious", name: t('tour_info_page.filter_religious', 'Religious') }
+  ];
 
   useEffect(() => {
     if (toursData) setLoading(false);
-
     if (currentPage > 1) { 
-      // Скроллим плавно к заголовку списка туров (используем наш Ref)
-      toursTopRef.current?.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start'
-      });
+      toursTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
-
-
   }, [currentPage]);
 
-  const filteredTours = toursData.filter(tour => {
-    const lang = i18n.language || "en";
-    const title = tour.title[lang] || "";
-    const description = tour.description[lang] || "";
-    return (
-      title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      description.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  });
+  // --- ЛОГИКА ФИЛЬТРАЦИИ И СОРТИРОВКИ ---
+  const processedTours = [...toursData]
+    .filter(tour => {
+      // 1. Поиск по тексту
+      const matchesSearch = 
+        tour.title[lang]?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        tour.description[lang]?.toLowerCase().includes(searchQuery.toLowerCase());
+      
+      // 2. Фильтр по категории
+      const matchesCategory = activeCategory === "all" || tour.category === activeCategory;
+
+      return matchesSearch && matchesCategory;
+    })
+    .sort((a, b) => {
+      // Вытаскиваем только числа из строки "61000 AMD"
+      const priceA = parseInt(a.price);
+      const priceB = parseInt(b.price);
+
+      if (sortBy === "priceAsc") return priceA - priceB;
+      if (sortBy === "priceDesc") return priceB - priceA;
+      if (sortBy === "name") return a.title[lang].localeCompare(b.title[lang]);
+      return 0;
+    });
 
   const indexOfLastTour = currentPage * itemsPerPage;
   const indexOfFirstTour = indexOfLastTour - itemsPerPage;
-  const currentTours = filteredTours.slice(indexOfFirstTour, indexOfLastTour);
-  const pageCount = Math.ceil(filteredTours.length / itemsPerPage);
+  const currentTours = processedTours.slice(indexOfFirstTour, indexOfLastTour);
+  const pageCount = Math.ceil(processedTours.length / itemsPerPage);
 
   return (
     <div className="tours-page-wrapper">
       
-      {/* --- НОВЫЙ HERO-БЛОК --- */}
+      {/* Hero-блок оставляем без изменений */}
       <div className="tours-hero-simple">
-        <div className="hero-content">
+        <div className="hero-content text-center">
           <h1 className="hero-title">{t('tour_info_page.title')}</h1>
           <p className="hero-subtitle">{t('tour_info_page.subtitle')}</p>
-          
-          {/* УЛУЧШЕННЫЙ ПОИСК */}
-          <div className="search-box-container">
+          <div className="search-box-container mx-auto">
             <div className="search-bar-modern">
               <Search className="search-icon" size={20} />
               <input 
@@ -61,7 +81,7 @@ function ToursPageFirstPart() {
                 value={searchQuery} 
                 onChange={e => {
                   setSearchQuery(e.target.value);
-                  setCurrentPage(1); // Сбрасываем страницу при поиске
+                  setCurrentPage(1);
                 }}
               />
             </div>
@@ -69,18 +89,57 @@ function ToursPageFirstPart() {
         </div>
       </div>
 
-      {/* --- СПИСОК КАРТОЧЕК --- */}
       <Container className="py-5">
-        <div className="tours-grid-header mb-4" ref={toursTopRef}>
-          <h2>{searchQuery ? `${t('tour_info_page.results_for')}: ${searchQuery}` : t('tour_info_page.popular_tours')}</h2>
-          <div className="tours-count">{filteredTours.length} {t('tour_info_page.tours_found')}</div>
+        {/* --- НОВЫЙ БЛОК ФИЛЬТРОВ (Header) --- */}
+        <div className="filter-section-wrapper mb-5" ref={toursTopRef}>
+          <div className="d-flex flex-wrap justify-content-between align-items-end gap-3">
+            
+            <div className="filter-left">
+              <h2 className="section-title mb-3">
+                {searchQuery ? t('tour_info_page.results_for') : t('tour_info_page.popular_tours')}
+                {searchQuery && <span className="text-success">: {searchQuery}</span>}
+              </h2>
+              
+              {/* Категории в виде пилюль */}
+              <div className="category-pills d-flex flex-wrap gap-2">
+                {categories.map(cat => (
+                  <button
+                    key={cat.id}
+                    className={`pill-btn ${activeCategory === cat.id ? 'active' : ''}`}
+                    onClick={() => { setActiveCategory(cat.id); setCurrentPage(1); }}
+                  >
+                    {cat.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="filter-right d-flex align-items-center gap-3">
+              <div className="tours-count-badge">
+                <strong>{processedTours.length}</strong> {t('tour_info_page.tours_found')}
+              </div>
+
+              {/* Сортировка */}
+              <Dropdown onSelect={(e) => setSortBy(e)}>
+                <Dropdown.Toggle variant="outline-dark" id="dropdown-sort" className="rounded-pill d-flex align-items-center gap-2">
+                  <ArrowUpDown size={16} /> {t('tour_info_page.sort_by', 'Sort')}
+                </Dropdown.Toggle>
+                <Dropdown.Menu align="end">
+                  <Dropdown.Item eventKey="default">{t('tour_info_page.sort_default', 'Default')}</Dropdown.Item>
+                  <Dropdown.Item eventKey="priceAsc">{t('tour_info_page.sort_price_low', 'Price: Low to High')}</Dropdown.Item>
+                  <Dropdown.Item eventKey="priceDesc">{t('tour_info_page.sort_price_high', 'Price: High to Low')}</Dropdown.Item>
+                  <Dropdown.Item eventKey="name">{t('tour_info_page.sort_name', 'By Name')}</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+
+          </div>
         </div>
 
+        {/* --- СЕТКА ТУРОВ --- */}
         {loading ? (
-          <div className="text-center my-5">
-            <Spinner animation="border" variant="success" />
-          </div>
-        ) : (
+          <div className="text-center my-5"><Spinner animation="border" variant="success" /></div>
+        ) : processedTours.length > 0 ? (
           <Row>
             {currentTours.map((tour) => (
               <Col key={tour.id} sm={12} md={6} lg={4} className="mb-4">
@@ -88,9 +147,16 @@ function ToursPageFirstPart() {
               </Col>
             ))}
           </Row>
+        ) : (
+          <div className="text-center py-5">
+             <h3>😔 {t('tour_info_page.no_results', 'No tours found matching your filters')}</h3>
+             <Button variant="link" onClick={() => {setActiveCategory("all"); setSearchQuery("");}}>
+               {t('tour_info_page.reset_filters', 'Reset all filters')}
+             </Button>
+          </div>
         )}
         
-        {/* ПАГИНАЦИЯ */}
+        {/* Пагинация (остается как была) */}
         {pageCount > 1 && (
           <div className="pagination-wrapper mt-4">
             {Array.from({ length: pageCount }, (_, i) => (
@@ -108,6 +174,7 @@ function ToursPageFirstPart() {
     </div>
   );
 }
+
 
 const AlbumCard = ({ tour }) => {
   const { t, i18n } = useTranslation();
