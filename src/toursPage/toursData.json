@@ -154,14 +154,14 @@
         "ticket_per_person": "5000"
       }
     }
-  },
+  }, 
   {
     "id": "amrakits-hnevank-arevatsagi-dzor",
     "routeMap": "/TourImages/lori_region/amrakits-hnevank/route-map.webp",
     "routeSummary": "Yerevan → Amrakits → Hnevank → Arevatsagi Dzor → Yerevan",
     "imageUrl": "/TourImages/lori_region/amrakits-hnevank/main.webp",
     "duration": "10-11",
-    "price": "59000 AMD",
+    "price": "61000 AMD",
     "title": {
       "en": "AMRAKITS – HNEVANK – AREVATSAGI GORGE",
       "ru": "АМРАКИЦ – ХНЕВАНК – УЩЕЛЬЕ АРЕВАЦАГИ",
@@ -262,6 +262,120 @@
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
+          {"vehicles": "Sedan", "price": "41000"},
+          {"vehicles": "Miniven", "price": "62000"}
+        ],
+        "ticket_per_person": "0"
+      }
+    }
+  },
+  {
+    "id": "ereruyk-gyumri-tour",
+    "routeMap": "/TourImages/shirak_region/ereruyk-gyumri/route-map.webp",
+    "routeSummary": "Yerevan → Ereruyk → Akhuryan Reservoir → Sev Berd → Gyumri → Yerevan",
+    "imageUrl": "/TourImages/shirak_region/ereruyk-gyumri/main.webp",
+    "duration": "10",
+    "price": "59000 AMD",
+    "title": {
+      "en": "ERERUYK – GYUMRI CITY TOUR",
+      "ru": "ЕРЕРУЙК – ГОРОДСКОЙ ТУР ПО ГЮМРИ",
+      "hy": "ԵՐԵՐՈՒՅՔ – ԳՅՈՒՄՐԻ ՔԱՂԱՔԱՅԻՆ ՏՈՒՐ"
+    },
+    "description": {
+      "en": "A journey through early Christian architecture, dramatic fortresses, and the cultural capital of Armenia – Gyumri.",
+      "ru": "Путешествие к памятникам раннехристианской архитектуры, стратегическим крепостям и культурной столице Армении — Гюмри.",
+      "hy": "Ուղևորություն դեպի վաղքրիստոնեական ճարտարապետություն, ռազմավարական բերդեր և Հայաստանի մշակութային մայրաքաղաք՝ Գյումրի։"
+    },
+    "sections": [
+      {
+        "header": {
+          "en": "Ereruyk Basilica",
+          "ru": "Ереруйкская базилика",
+          "hy": "Երերույքի տաճար"
+        },
+        "content": {
+          "en": "5th-century basilica near the Akhuryan River.",
+          "ru": "Базилика V века у реки Ахурян.",
+          "hy": "V դարի բազիլիկ եկեղեցի՝ Ախուրյան գետի մոտ։"
+        },
+        "fullContent": {
+          "en": "Ereruyk Basilica is one of the earliest and most monumental Christian structures in Armenia, dating back to the 5th century. Built on a raised platform, the basilica reflects strong architectural parallels with early Syrian churches. Despite partial разрушения, it remains an impressive testimony to Armenia’s early Christian heritage.",
+          "ru": "Ереруйкская базилика — один из самых древних и монументальных христианских храмов Армении (V век). Построенная на возвышенной платформе, она демонстрирует архитектурные связи с раннесирийскими храмами. Несмотря на частичную утрату конструкций, памятник производит мощное историческое впечатление.",
+          "hy": "Երերույքի բազիլիկան Հայաստանի ամենահին և մոնումենտալ քրիստոնեական կառույցներից է (V դար)։ Բարձր հարթակի վրա կառուցված տաճարը ունի վաղ սիրիական ճարտարապետության ազդեցություն և մինչ օրս պահպանել է իր պատմական վեհությունը։"
+        },
+        "image": "/TourImages/shirak_region/ereruyk-gyumri/ereruyk.webp"
+      },
+      {
+        "header": {
+          "en": "Akhuryan Reservoir",
+          "ru": "Ахурянское водохранилище",
+          "hy": "Ախուրյանի ջրամբար"
+        },
+        "content": {
+          "en": "Scenic stop with panoramic water views.",
+          "ru": "Живописная остановка с видом на водную гладь.",
+          "hy": "Գեղատեսիլ կանգառ՝ ջրային տեսարաններով։"
+        },
+        "fullContent": {
+          "en": "The Akhuryan Reservoir offers a peaceful natural contrast after visiting the ancient basilica. This short stop allows time for photography and enjoying expansive views over the calm waters and surrounding landscapes.",
+          "ru": "Ахурянское водохранилище создаёт природный контраст после посещения древнего храма. Здесь предусмотрена короткая остановка для фотографий и созерцания панорамных видов на водную гладь и окрестности.",
+          "hy": "Ախուրյանի ջրամբարը հնարավորություն է տալիս վայելելու հանգիստ բնապատկերներ և լուսանկարվելու՝ հնագույն տաճարից հետո բնության գեղեցկությունը զգալու համար։"
+        },
+        "image": "/TourImages/shirak_region/ereruyk-gyumri/akhuryan.webp"
+      },
+      {
+        "header": {
+          "en": "Sev Berd (Black Fortress)",
+          "ru": "Сев Берд (Чёрная крепость)",
+          "hy": "Սև Բերդ"
+        },
+        "content": {
+          "en": "19th-century Russian imperial fortress in Gyumri.",
+          "ru": "Крепость XIX века периода Российской империи.",
+          "hy": "XIX դարի ռուսական կայսրության բերդ։"
+        },
+        "fullContent": {
+          "en": "Sev Berd, or the Black Fortress, was constructed in the 19th century as part of the Russian Empire’s military defense system. Built from dark volcanic stone, the circular fortress dominates the landscape and offers panoramic views over Gyumri and the Shirak plateau.",
+          "ru": "Сев Берд — крепость XIX века, построенная в период Российской империи как стратегический военный объект. Сооружённая из тёмного вулканического камня, она возвышается над Гюмри и открывает широкие виды на Ширакское плато.",
+          "hy": "Սև Բերդը կառուցվել է XIX դարում՝ որպես ռուսական կայսրության ռազմական պաշտպանական կառույց։ Մուգ տուֆից կառուցված շրջանաձև բերդը գերիշխում է Գյումրիի վրա և բացում է լայն տեսարաններ դեպի Շիրակի դաշտավայր։"
+        },
+        "image": "/TourImages/shirak_region/ereruyk-gyumri/sev-berd.webp"
+      },
+      {
+        "header": {
+          "en": "Gyumri City Tour",
+          "ru": "Городской тур по Гюмри",
+          "hy": "Գյումրի քաղաքային տուր"
+        },
+        "content": {
+          "en": "Historical Kumayri district, Vardanants Square and museums.",
+          "ru": "Исторический район Кумайри, площадь Вардананц и музеи.",
+          "hy": "Կումայրի պատմական թաղամաս, Վարդանանց հրապարակ և թանգարաններ։"
+        },
+        "fullContent": {
+          "en": "The walking tour in  explores the historic  with its 19th-century black tuff architecture and  — the vibrant heart of the city. A highlight of the program is a visit to the , dedicated to the legendary Armenian actor Frunzik Mkrtchyan. Widely known for his unforgettable roles in Soviet cinema, including dramatic and comedic performances that became cultural classics, Mkrtchyan remains one of Armenia’s most beloved artists. The museum presents personal belongings, film materials, photographs and archival documents that reflect both his artistic genius and complex personal life.",
+          "ru": "Городская прогулка по  включает исторический  с его архитектурой XIX века из чёрного туфа и  — центральное и живое пространство города. Ключевым пунктом программы является посещение  — музея, посвящённого легендарному армянскому актёру Фрунзика Мкртчяна. Он стал культовой фигурой советского кино благодаря своим глубоким драматическим и ярким комедийным ролям. Экспозиция включает личные вещи, материалы со съёмок, фотографии и архивные документы, раскрывающие как его творческий масштаб, так и непростую судьбу.",
+          "hy": "Քաղաքային շրջագայությունը  քաղաքում ներառում է -ը՝ իր XIX դարի սև տուֆե ճարտարապետությամբ, ինչպես նաև -ը՝ քաղաքի կենսունակ կենտրոնը։ Ծրագրի կարևոր հատվածներից է  այցելությունը, որը նվիրված է լեգենդար հայ դերասան Ֆրունզիկ Մկրտչյանին։ Նա խորհրդային կինոյի ամենասիրված դերասաններից էր՝ հայտնի իր խոր դրամատիկ և հումորային դերերով։ Թանգարանում ներկայացված են նրա անձնական իրերը, լուսանկարներ, կինոնկարների նյութեր և արխիվային փաստաթղթեր, որոնք բացահայտում են նրա ստեղծագործական ուղին և մարդկային պատմությունը։"
+        },
+        "image": "/TourImages/shirak_region/ereruyk-gyumri/gyumri.webp"
+      }
+    ],
+    "features": {
+      "include": {
+        "en": ["Transportation", "Professional guide service", "City walking tour", "Photo stops"],
+        "ru": ["Транспорт", "Услуги профессионального гида", "Пешеходная экскурсия по городу", "Остановки для фото"],
+        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդի ծառայություն", "Քայլարշավային քաղաքային տուր", "Լուսանկարման կանգառներ"]
+      },
+      "exclude": {
+        "en": ["Museum entrance tickets", "Lunch", "Personal expenses"],
+        "ru": ["Входные билеты в музеи", "Обед", "Личные расходы"],
+        "hy": ["Թանգարանների մուտքի տոմսեր", "Ճաշ", "Անձնական ծախսեր"]
+      }
+    },
+    "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
           {"vehicles": "Sedan", "price": "40000"},
           {"vehicles": "Miniven", "price": "60000"}
         ],
@@ -270,45 +384,117 @@
     }
   },
   {
-    "id": "tatev-monastery",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Tatev_Monastery_Armenia.jpg/800px-Tatev_Monastery_Armenia.jpg",
-    "price": "180$",
+    "id": "garni-geghard-charents-arch",
+    "routeMap": "/TourImages/kotayq_region/garni-geghard/route-map.webp",
+    "routeSummary": "Yerevan → Charents Arch → Geghard → Garni → Garni Gorge → Yerevan",
+    "imageUrl": "/TourImages/kotayq_region/garni-geghard/main.webp",
+    "duration": "7-8",
+    "price": "30000 AMD",
     "title": {
-      "en": "Wings of Tatev",
-      "ru": "Крылья Татева",
-      "hy": "Տաթևի թևեր"
+      "en": "GARNI – GEGHARD – CHARENTS ARCH",
+      "ru": "ГАРНИ – ГЕГАРД – АРКА ЧАРЕНЦА",
+      "hy": "ԳԱՌՆԻ – ԳԵՂԱՐԴ – ՉԱՐԵՆՑԻ ԿԱՄԱՐ"
     },
     "description": {
-      "en": "Ride the longest reversible cable car in the world to the ancient monastery.",
-      "ru": "Прокатитесь на самой длинной канатной дороге в мире.",
-      "hy": "Ուղևորություն աշխարհի ամենաերկար ճոպանուղով:"
+      "en": "Explore Armenia’s pagan past, rock-cut monasteries and breathtaking canyon landscapes in one unforgettable cultural journey.",
+      "ru": "Погружение в языческое прошлое Армении, скальные монастыри и впечатляющие каньонные пейзажи в рамках одного насыщенного путешествия.",
+      "hy": "Բացահայտեք Հայաստանի հեթանոսական անցյալը, ժայռափոր վանքերը և տպավորիչ կիրճային բնապատկերները մեկ հագեցած ուղևորության ընթացքում։"
     },
-    "sections": [],
-    "carousel": [],
+    "sections": [
+      {
+        "header": {
+          "en": "Charents Arch",
+          "ru": "Арка Чаренца",
+          "hy": "Չարենցի կամար"
+        },
+        "content": {
+          "en": "Panoramic viewpoint with a symbolic view of Mount Ararat.",
+          "ru": "Панорамная площадка с символическим видом на Арарат.",
+          "hy": "Համայնապատկերային հարթակ՝ Արարատի տեսարանով։"
+        },
+        "fullContent": {
+          "en": "Charents Arch was built in 1957 and offers one of the most iconic views of Mount Ararat. Named after the Armenian poet Yeghishe Charents, the arch frames the biblical mountain in clear weather, creating a symbolic and photographic highlight of the tour.",
+          "ru": "Арка Чаренца построена в 1957 году и открывает один из самых знаковых видов на гору Арарат. Названная в честь поэта Егише Чаренца, арка словно обрамляет библейскую гору, создавая символичный и фотогеничный момент путешествия.",
+          "hy": "Չարենցի կամարը կառուցվել է 1957 թվականին և բացում է Արարատի ամենահայտնի տեսարաններից մեկը։ Այն անվանակոչվել է Եղիշե Չարենցի պատվին և արևային օրերին ձևավորում է խորհրդանշական տեսարան դեպի Արարատ լեռը։"
+        },
+        "image": "/TourImages/kotayq_region/garni-geghard/charents-arch.webp"
+      },
+      {
+        "header": {
+          "en": "Geghard Monastery",
+          "ru": "Монастырь Гегард",
+          "hy": "Գեղարդի վանք"
+        },
+        "content": {
+          "en": "UNESCO-listed rock-cut monastery complex.",
+          "ru": "Скальный монастырский комплекс, включённый в список ЮНЕСКО.",
+          "hy": "ՅՈՒՆԵՍԿՕ-ի ցուցակում ընդգրկված ժայռափոր վանք։"
+        },
+        "fullContent": {
+          "en": "Geghard Monastery dates back to the 4th century and is partially carved into the surrounding cliffs. The name “Geghard” refers to the Holy Lance once kept here. The complex is a UNESCO World Heritage Site and represents a masterpiece of medieval Armenian architecture, combining natural rock formations with refined stone carvings.",
+          "ru": "Монастырь Гегард основан в IV веке и частично высечен прямо в скале. Название «Гегард» связано со Святым Копьём, которое, по преданию, хранилось здесь. Комплекс включён в список Всемирного наследия ЮНЕСКО и считается шедевром средневековой армянской архитектуры.",
+          "hy": "Գեղարդի վանքը հիմնադրվել է IV դարում և մասամբ փորված է ժայռի մեջ։ «Գեղարդ» անվանումը կապված է Սուրբ Գեղարդի հետ, որը, ըստ ավանդության, պահվել է այստեղ։ Համալիրը ներառված է ՅՈՒՆԵՍԿՕ-ի համաշխարհային ժառանգության ցանկում։"
+        },
+        "image": "/TourImages/kotayq_region/garni-geghard/geghard.webp"
+      },
+      {
+        "header": {
+          "en": "Garni Temple",
+          "ru": "Храм Гарни",
+          "hy": "Գառնի տաճար"
+        },
+        "content": {
+          "en": "1st-century pagan temple dedicated to the sun god Mihr.",
+          "ru": "Языческий храм I века, посвящённый богу солнца Михру.",
+          "hy": "I դարի հեթանոսական տաճար՝ նվիրված Միհր աստծուն։"
+        },
+        "fullContent": {
+          "en": "Garni Temple is the only surviving Greco-Roman colonnaded structure in Armenia, built in the 1st century AD. Dedicated to the sun god Mihr, it reflects Armenia’s pre-Christian heritage. After the adoption of Christianity, the temple survived likely due to its transformation into a royal summer residence complex.",
+          "ru": "Храм Гарни — единственный сохранившийся памятник греко-римского типа в Армении, построенный в I веке н.э. Он был посвящён богу солнца Михру и отражает дохристианский этап истории страны. После принятия христианства храм уцелел, вероятно, благодаря его использованию в качестве царской резиденции.",
+          "hy": "Գառնիի տաճարը Հայաստանում պահպանված միակ հելլենիստական ոճի սյունաշար կառույցն է (I դար)։ Այն նվիրված էր արևի աստված Միհրին և ներկայացնում է Հայաստանի նախաքրիստոնեական ժառանգությունը։"
+        },
+        "image": "/TourImages/kotayq_region/garni-geghard/garni-temple.webp"
+      },
+      {
+        "header": {
+          "en": "Garni Gorge & Symphony of Stones",
+          "ru": "Ущелье Гарни и «Симфония камней»",
+          "hy": "Գառնիի կիրճ և «Քարերի սիմֆոնիա»"
+        },
+        "content": {
+          "en": "Basalt column formations and canyon viewpoints.",
+          "ru": "Базальтовые колонны и панорамные виды каньона.",
+          "hy": "Բազալտե սյունաձև գոյացություններ և կիրճի տեսարաններ։"
+        },
+        "fullContent": {
+          "en": "Garni Gorge is famous for its dramatic basalt column formations known as the “Symphony of Stones.” These natural hexagonal columns were formed by volcanic activity and resemble a giant organ carved by nature. The canyon also offers scenic viewpoints and cave formations, making it a perfect natural conclusion to the tour.",
+          "ru": "Ущелье Гарни известно уникальными базальтовыми образованиями «Симфония камней». Эти шестигранные колонны образовались в результате вулканической активности и напоминают гигантский орган. Каньон также включает смотровые площадки и природные пещеры, завершая маршрут ярким природным акцентом.",
+          "hy": "Գառնիի կիրճը հայտնի է «Քարերի սիմֆոնիա» կոչվող բազալտե սյունաձև գոյացություններով։ Դրանք առաջացել են հրաբխային գործընթացների արդյունքում և հիշեցնում են բնական հսկայական երգեհոն։"
+        },
+        "image": "/TourImages/kotayq_region/garni-geghard/garni-gorge.webp"
+      }
+    ],
     "features": {
-      "include": { "en": [], "ru": [], "hy": [] },
-      "exclude": { "en": [], "ru": [], "hy": [] }
-    }
-  },
-  {
-    "id": "gyumri-city",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Vardanants_Square_Gyumri.jpg/800px-Vardanants_Square_Gyumri.jpg",
-    "price": "110$",
-    "title": {
-      "en": "Gyumri City Tour",
-      "ru": "Тур по Гюмри",
-      "hy": "Գյումրիի քաղաքային տուր"
+      "include": {
+        "en": ["Transportation", "Professional guide service", "Photo stops", "Bottled water"],
+        "ru": ["Транспорт", "Услуги профессионального гида", "Остановки для фото", "Бутилированная вода"],
+        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդի ծառայություն", "Լուսանկարման կանգառներ", "Շշալցված ջուր"]
+      },
+      "exclude": {
+        "en": ["Entrance tickets", "Lunch", "Personal expenses"],
+        "ru": ["Входные билеты", "Обед", "Личные расходы"],
+        "hy": ["Մուտքի տոմսեր", "Ճաշ", "Անձնական ծախսեր"]
+      }
     },
-    "description": {
-      "en": "Discover the cultural capital of Armenia, its architecture and humor.",
-      "ru": "Откройте для себя культурную столицу Армении, ее архитектуру и юмор.",
-      "hy": "Բացահայտեք Հայաստանի մշակութային մայրաքաղաքը:"
-    },
-    "sections": [],
-    "carousel": [],
-    "features": {
-      "include": { "en": [], "ru": [], "hy": [] },
-      "exclude": { "en": [], "ru": [], "hy": [] }
+    "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
+          {"vehicles": "Sedan", "price": "20000"},
+          {"vehicles": "Miniven", "price": "26000"}
+        ],
+        "ticket_per_person": "0"
+      }
     }
   },
   {

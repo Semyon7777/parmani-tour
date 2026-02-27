@@ -284,3 +284,74 @@
   font-size: 14px;
   color: #666;
 }
+
+/* DATA TIME CONTAINER */
+
+/* Общие исправления для мобильных */
+@media screen and (max-width: 768px) {
+    /* Контейнер портала */
+    .react-datepicker__portal {
+        background-color: rgba(0, 0, 0, 0.5); /* Затемнение фона */
+    }
+
+    /* Основное окно календаря */
+    .react-datepicker {
+        display: flex !important;
+        flex-direction: row !important; /* Время справа */
+        width: 310px !important; /* Фиксированная компактная ширина */
+        border: none !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        font-family: inherit;
+        transform: translateX(15%);
+    }
+
+    /* Уменьшаем основную сетку календаря */
+    .react-datepicker__month-container {
+        width: 240px !important;
+        padding: 5px;
+    }
+
+    /* Уменьшаем ячейки дней (самое важное для размера) */
+    .react-datepicker__day-name, 
+    .react-datepicker__day {
+        width: 28px !important;
+        line-height: 28px !important;
+        margin: 1px !important;
+        font-size: 0.75rem !important;
+    }
+
+    /* Компактный блок времени справа */
+    .react-datepicker__time-container {
+        width: 70px !important;
+        border-left: 1px solid #eee !important;
+    }
+
+    .react-datepicker__time-box {
+        width: 100% !important;
+    }
+
+    .react-datepicker__time-list {
+        padding: 0 !important;
+    }
+
+    .react-datepicker__time-list-item {
+        height: 30px !important;
+        padding: 5px 0 !important;
+        font-size: 0.7rem !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Скрываем ненужные элементы для экономии места */
+    .react-datepicker__header {
+        background-color: white !important;
+        border-bottom: none !important;
+        padding: 5px 0 !important;
+    }
+
+    /* Уменьшаем заголовок с месяцем */
+    .react-datepicker__current-month {
+        font-size: 0.8rem !important;
+    }
+}

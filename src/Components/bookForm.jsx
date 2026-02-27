@@ -221,11 +221,13 @@ const { t, i18n } = useTranslation();
                         className="form-control custom-input"
                         minDate={new Date()}
                         
+                        
                         // Настройки времени
                         showTimeSelect           // Включает выбор времени
                         timeFormat="HH:mm"       // Формат времени в выпадающем списке
                         timeIntervals={30}       // Шаг выбора времени (можно 15, 30, 60 мин)
                         timeCaption={t('bookForm.startTime')}       // Заголовок над временем
+
                         
                         // Ограничение диапазона (с 8 утра до 12 дня)
                         minTime={new Date(new Date().setHours(8, 0, 0))}
