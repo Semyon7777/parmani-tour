@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Button, Card, Row, Col, Spinner, Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Search } from 'lucide-react'; // Иконки для красоты
+import { Search, User } from 'lucide-react'; // Иконки для красоты
 import toursData from "./toursData.json";
 
 function ToursPageFirstPart() {
@@ -122,7 +122,21 @@ const AlbumCard = ({ tour }) => {
           className="tour-card-img" 
           loading="lazy"
         />
-        <div className="card-price-badge">{t('tour_info_page.starting_from')} {tour.price}</div>
+        <div className="card-price-badge d-flex align-items-center">
+          {/* Текст цены */}
+          <span>
+            {t('tour_info_page.starting_from')} {tour.price}
+          </span>
+
+          {/* Разделитель */}
+          <span className="mx-2" style={{ opacity: 0.5 }}>|</span>
+
+          {/* Информация о людях */}
+          <div className="d-flex align-items-center">
+            <span className="me-1">4 x</span>
+            <User size={14} strokeWidth={2.5} />
+          </div>
+        </div>
       </div>
       <Card.Body className="d-flex flex-column p-4">
         <Card.Title className="fw-bold mb-2">{tour.title[lang]}</Card.Title>

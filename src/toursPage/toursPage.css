@@ -141,6 +141,7 @@
   position: absolute;
   bottom: 15px;
   right: 15px;
+  white-space: nowrap; /* Чтобы цена и люди не перепрыгивали на новую строку */
   background: #3ea03e;
   color: white;
   padding: 5px 15px;
