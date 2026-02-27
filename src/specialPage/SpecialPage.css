@@ -355,7 +355,7 @@
 @media (max-width: 992px) {
 
   .special-page .tab-btn {
-    font-size: medium;
+    font-size: small;
   }
 
   .special-page .custom-route-grid {
