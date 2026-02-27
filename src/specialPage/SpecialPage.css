@@ -353,6 +353,11 @@
 
 /* RESPONSIVE */
 @media (max-width: 992px) {
+
+  .special-page .tab-btn {
+    font-size: medium;
+  }
+
   .special-page .custom-route-grid {
     grid-template-columns: 1fr;
     gap: 40px;

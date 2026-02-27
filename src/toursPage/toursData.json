@@ -155,6 +155,7 @@
       }
     }
   }, 
+
   {
     "id": "amrakits-hnevank-arevatsagi-dzor",
     "routeMap": "/TourImages/lori_region/amrakits-hnevank/route-map.webp",
@@ -269,6 +270,7 @@
       }
     }
   },
+
   {
     "id": "ereruyk-gyumri-tour",
     "routeMap": "/TourImages/shirak_region/ereruyk-gyumri/route-map.webp",
@@ -383,6 +385,7 @@
       }
     }
   },
+  
   {
     "id": "garni-geghard-charents-arch",
     "routeMap": "/TourImages/kotayq_region/garni-geghard/route-map.webp",
