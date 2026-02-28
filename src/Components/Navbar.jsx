@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
@@ -8,53 +8,73 @@ import "./Navbar.css";
 const NavbarCustom = ({ isHomePage }) => {
   const { t, i18n } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
+  const timeoutRef = useRef({});
   
-  // Состояние для управления раскрытием каждого дропдауна
   const [showDropdown, setShowDropdown] = useState({
-    services: false,
-    about: false,
-    lang: false
+    tours: false, services: false, about: false, lang: false
   });
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const handleScroll = () => {
+      // Используем более надежный расчет высоты
+      const vh = window.innerHeight;
+      const scrollPos = window.scrollY;
 
-  // Функция для клика (теперь будет работать на телефонах)
+      if (isHomePage) {
+        // На главной: строго после 100vh (минус высота самого навара)
+        // Если пользователь прокрутил меньше 95% экрана, scrolled всегда false
+        if (scrollPos > vh * 1) {
+          setScrolled(true);
+        } else {
+          setScrolled(false);
+        }
+      } else {
+        // На остальных страницах: всегда true (фиксирован сразу)
+        setScrolled(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHomePage]);
+
   const handleToggle = (key, isOpen) => {
     setShowDropdown(prev => ({ ...prev, [key]: isOpen }));
   };
 
-  // Функция для открытия при наведении (только для ноутбуков)
   const handleMouseEnter = (key) => {
-    if (window.innerWidth > 991) { // 991px - это стандартный порог 'lg' в Bootstrap
+    if (window.innerWidth > 991) {
+      if (timeoutRef.current[key]) clearTimeout(timeoutRef.current[key]);
       setShowDropdown(prev => ({ ...prev, [key]: true }));
     }
   };
 
-  // Функция для закрытия
   const handleMouseLeave = (key) => {
     if (window.innerWidth > 991) {
-      setShowDropdown(prev => ({ ...prev, [key]: false }));
+      timeoutRef.current[key] = setTimeout(() => {
+        setShowDropdown(prev => ({ ...prev, [key]: false }));
+      }, 50);
     }
   };
 
   const changeLanguage = (lng) => i18n.changeLanguage(lng);
   const getCurrentLanguageLabel = () => i18n.language ? i18n.language.split("-")[0].toUpperCase() : "EN";
 
-  const transparentClass = isHomePage && !scrolled ? "navbar-transparent" : "";
-  const fixedClass = !isHomePage ? "navbar-fixed" : "";
-  
+  // ЛОГИКА КЛАССОВ:
+  // 1. Позиция
+  const positionClass = isHomePage && !scrolled ? "nav-abs" : "nav-fixed";
+  // 2. Анимация (Только для главной и только когда наступил скролл)
+  const animationClass = (isHomePage && scrolled) ? "nav-animate-in" : "";
+  // 3. Тема
+  const themeClass = isHomePage && !scrolled ? "nav-transparent" : "nav-solid";
+
   return (
     <div className="navbar-container">
       <Navbar
         collapseOnSelect
         expand="lg"
-        sticky="top"
-        className={`custom-navbar ${scrolled ? "navbar-scrolled" : ""} ${transparentClass} ${fixedClass}`}
+        className={`custom-navbar ${positionClass} ${animationClass} ${themeClass}`}
       >
         <Container fluid className="px-3 px-lg-5">
           <LinkContainer to="/">
@@ -68,73 +88,66 @@ const NavbarCustom = ({ isHomePage }) => {
 
           <Navbar.Collapse>
             <Nav className="ms-auto align-items-center">
+              <LinkContainer to="/"><Nav.Link className="nav-link-item">{t("navbar_custom.home_button")}</Nav.Link></LinkContainer>
               
-              <LinkContainer to="/">
-                <Nav.Link className="nav-link-item">{t("navbar_custom.home_button")}</Nav.Link>
-              </LinkContainer>
+              <NavDropdown
+                title={t("navbar_custom.tours_button")}
+                className="custom-dropdown"
+                show={showDropdown.tours}
+                onMouseEnter={() => handleMouseEnter('tours')}
+                onMouseLeave={() => handleMouseLeave('tours')}
+                onToggle={(isOpen) => handleToggle('tours', isOpen)}
+                renderMenuOnMount
+              >
+                <LinkContainer to="/private-tours"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.private_tours")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to="/group-eco-tours"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.group_&_eco_tours")}</NavDropdown.Item></LinkContainer>
+              </NavDropdown>
 
-              <LinkContainer to="/tours">
-                <Nav.Link className="nav-link-item">{t("navbar_custom.tours_button")}</Nav.Link>
-              </LinkContainer>
-
-              {/* DROPDOWN SERVICES */}
               <NavDropdown
                 title={t("navbar_custom.services")}
                 className="custom-dropdown"
-                // Управление состоянием
                 show={showDropdown.services}
-                onToggle={(isOpen) => handleToggle('services', isOpen)}
-                // Наведение
                 onMouseEnter={() => handleMouseEnter('services')}
                 onMouseLeave={() => handleMouseLeave('services')}
+                onToggle={(isOpen) => handleToggle('services', isOpen)}
                 renderMenuOnMount
               >
-                <LinkContainer to="/hotels"><NavDropdown.Item>{t("navbar_custom.hotels")}</NavDropdown.Item></LinkContainer>
-                <LinkContainer to="/transport"><NavDropdown.Item>{t("navbar_custom.transport")}</NavDropdown.Item></LinkContainer>
-                <LinkContainer to="/all-in-one"><NavDropdown.Item>{t("navbar_custom.all_in_one")}</NavDropdown.Item></LinkContainer>
-                <NavDropdown.Divider />
-                <LinkContainer to="/special"><NavDropdown.Item>{t("navbar_custom.special")}</NavDropdown.Item></LinkContainer>
-                <LinkContainer to="/group-eco-tours"><NavDropdown.Item>{t("navbar_custom.group_&_eco_tours")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to="/hotels"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.hotels")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to="/transport"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.transport")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to="/all-in-one"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.all_in_one")}</NavDropdown.Item></LinkContainer>
               </NavDropdown>
 
-              <LinkContainer to="/contact">
-                <Nav.Link className="nav-link-item">{t("navbar_custom.contact_button")}</Nav.Link>
-              </LinkContainer>
+              <LinkContainer to="/contact"><Nav.Link className="nav-link-item">{t("navbar_custom.contact_button")}</Nav.Link></LinkContainer>
 
-              {/* DROPDOWN ABOUT */}
               <NavDropdown
                 title={t("navbar_custom.about")}
                 className="custom-dropdown"
                 show={showDropdown.about}
-                onToggle={(isOpen) => handleToggle('about', isOpen)}
                 onMouseEnter={() => handleMouseEnter('about')}
                 onMouseLeave={() => handleMouseLeave('about')}
+                onToggle={(isOpen) => handleToggle('about', isOpen)}
                 renderMenuOnMount
               >
-                <NavDropdown.Item href="/history">{t("navbar_custom.history")}</NavDropdown.Item>
-                <NavDropdown.Item href="/cuisine">{t("navbar_custom.cuisine")}</NavDropdown.Item>
-                <NavDropdown.Item href="/culture">{t("navbar_custom.culture")}</NavDropdown.Item>
-                <NavDropdown.Item href="/nature">{t("navbar_custom.nature")}</NavDropdown.Item>
-                <LinkContainer to="/about-us"><NavDropdown.Item>{t("navbar_custom.about_us")}</NavDropdown.Item></LinkContainer>
+                <NavDropdown.Item href="/history" className="dropdown-item">{t("navbar_custom.history")}</NavDropdown.Item>
+                <NavDropdown.Item href="/cuisine" className="dropdown-item">{t("navbar_custom.cuisine")}</NavDropdown.Item>
+                <LinkContainer to="/about-us"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.about_us")}</NavDropdown.Item></LinkContainer>
               </NavDropdown>
 
               <div className="language-divider d-none d-lg-block"></div>
 
-              {/* LANGUAGE DROPDOWN */}
               <NavDropdown
                 title={getCurrentLanguageLabel()}
                 className="lang-dropdown-btn"
                 align="end"
                 show={showDropdown.lang}
-                onToggle={(isOpen) => handleToggle('lang', isOpen)}
                 onMouseEnter={() => handleMouseEnter('lang')}
                 onMouseLeave={() => handleMouseLeave('lang')}
+                onToggle={(isOpen) => handleToggle('lang', isOpen)}
               >
-                <NavDropdown.Item onClick={() => changeLanguage("en")}>🇺🇸 English</NavDropdown.Item>
-                <NavDropdown.Item onClick={() => changeLanguage("ru")}>🇷🇺 Русский</NavDropdown.Item>
-                <NavDropdown.Item onClick={() => changeLanguage("hy")}>🇦🇲 Հայերեն</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => changeLanguage("en")}>🇺🇸 EN</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => changeLanguage("ru")}>🇷🇺 RU</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => changeLanguage("hy")}>🇦🇲 HY</NavDropdown.Item>
               </NavDropdown>
-
             </Nav>
           </Navbar.Collapse>
         </Container>

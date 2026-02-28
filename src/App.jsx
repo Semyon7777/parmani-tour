@@ -44,7 +44,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/tours" element={<ToursPage />} />
+            <Route path="/private-tours" element={<ToursPage />} />
             <Route path="/hotels" element={<HotelsPage />}/>
             <Route path="/transport" element={<TransportPage />} />
             <Route path="/all-in-one" element={<AllInOne />}/>

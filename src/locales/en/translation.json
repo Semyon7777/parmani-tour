@@ -1,6 +1,7 @@
 {
   "navbar_custom": {
     "home_button": "Home",
+    "private_tours": "Private Tours",
     "tours_button": "Tours",
     "services": "Services",
     "hotels": "Hotels",

@@ -17,11 +17,78 @@
     box-shadow: none !important;
 }
 
+/* 1. АБСОЛЮТНОЕ ПОЛОЖЕНИЕ (Начало главной) */
+.custom-navbar.nav-abs {
+    position: absolute !important;
+    top: 0;
+    width: 100%;
+    background-color: transparent !important;
+    border-bottom: none !important;
+    z-index: 1000;
+}
+
+/* Navbar.css */
+
+/* --- СОСТОЯНИЕ ABSOLUTE (Начало главной) --- */
+.custom-navbar.navbar-absolute {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1050;
+  background-color: transparent !important;
+  border-bottom: none !important;
+  animation: none !important; /* Гарантируем отсутствие анимации вверху */
+}
+
+/* --- СОСТОЯНИЕ FIXED (Все остальные случаи) --- */
+.custom-navbar.fixed-top {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1100;
+  background-color: #0a260a !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  /* ЗДЕСЬ НЕ ДОЛЖНО БЫТЬ ANIMATION! */
+}
+
+/* 2. ФИКСИРОВАННОЕ ПОЛОЖЕНИЕ (После скролла / Другие страницы) */
+.custom-navbar.nav-fixed {
+    position: fixed !important;
+    top: 0;
+    width: 100%;
+    background-color: #0a260a !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    z-index: 2000;
+}
+
+/* Анимация: Срабатывает ТОЛЬКО на главной при прокрутке вниз */
+.nav-slide-animation {
+    animation: slideInNav 0.4s ease-out;
+}
+
+@keyframes slideInNav {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+/* Убираем любые тени или задержки при переходе между страницами */
+.navbar-scrolled {
+    transition: background-color 0.3s ease;
+}
+
+.nav-animate-in {
+    animation: slideInNav 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    /* Гарантируем, что навар не появится раньше времени */
+    visibility: visible !important;
+}
+
+/* ОБЩИЕ СТИЛИ */
 .navbar-container .custom-navbar {
-  background-color: #0a260a;
-  transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 0.4rem 0;
-  border-bottom: 1px solid rgba(208, 240, 192, 0.1);
+    padding: 0.5rem 0;
+    transition: background-color 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .navbar-container .navbar-scrolled {
@@ -131,42 +198,6 @@
   color: #145d04 !important;
 }
 
-@media (min-width: 992px) {
-  /* 1. Готовим меню к анимации */
-  .navbar-container .dropdown-menu {
-    display: block !important; /* Принудительно делаем блоком, чтобы работала анимация */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(15px); /* Меню будет "всплывать" снизу на 15px */
-    transition: 
-      opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
-      transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
-      visibility 0.4s;
-    
-    pointer-events: none; /* Чтобы нельзя было кликнуть по невидимому меню */
-  }
-
-  /* 2. Состояние при наведении (когда React добавляет класс .show) */
-  .navbar-container .dropdown-menu.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto; /* Возвращаем кликабельность */
-  }
-
-  /* 3. Маленький хак: увеличиваем область наведения */
-  /* Это нужно, чтобы меню не закрывалось, если между кнопкой и списком есть зазор в пару пикселей */
-  .navbar-container .custom-dropdown::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 10px; 
-    display: block;
-  }
-}
-
 /* ================= DROPDOWN MENU ================= */
 .navbar-container .dropdown-menu {
   background: linear-gradient(
@@ -177,7 +208,7 @@
   border: 1px solid #205A31 !important;
   border-radius: 16px !important;
   box-shadow: 0 22px 45px rgba(0,0,0,0.55);
-  margin-top: 16px !important;
+  margin-top: 12px !important;
   padding: 10px 0;
 }
 
@@ -225,37 +256,79 @@
 /* ================= DESKTOP CINEMATIC OPEN ================= */
 
 @media (min-width: 992px) {
-
   .navbar-container .dropdown-menu {
     display: block !important;
     opacity: 0;
     visibility: hidden;
     transform: translateY(26px) scale(0.94);
 
+    /* МГНОВЕННОЕ ИСЧЕЗНОВЕНИЕ */
+    /* Ставим очень короткое время и НОЛЬ задержки для закрытия */
+    transition: 
+      opacity 0.2s ease-in, 
+      transform 0.2s ease-in, 
+      visibility 0.2s;
+    transition-delay: 0s !important; 
+    
+    margin-top: 0; 
+    pointer-events: none;
+  }
+
+  /* НЕВИДИМЫЙ МОСТ */
+  .navbar-container .dropdown-menu::before {
+    content: "";
+    position: absolute;
+    top: -30px; 
+    left: 0;
+    width: 100%;
+    height: 40px;
+    background: transparent;
+  }
+
+  /* ПЛАВНОЕ ПОЯВЛЕНИЕ */
+  .navbar-container .custom-dropdown.show .dropdown-menu,
+  .navbar-container .lang-dropdown-btn.show .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(10px) scale(1);
+    pointer-events: auto;
+
+    /* Твоя оригинальная плавная анимация только для входа */
     transition:
       opacity 0.5s ease,
       transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-
     transition-delay: 0.08s;
   }
 
-  .navbar-container .dropdown.show .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
+  /* Пункты меню */
+  .navbar-container .dropdown-item {
+    opacity: 0;
+    transform: translateX(-10px);
+    /* Исчезновение элементов тоже должно быть быстрым */
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition-delay: 0s !important;
   }
 
-  /* items appear AFTER container */
-  .navbar-container .dropdown.show .dropdown-item {
+  .navbar-container .show .dropdown-item {
     opacity: 1;
     transform: translateX(0);
+    /* Твоя "лесенка" задержек только при появлении */
+    transition: opacity 0.4s ease, transform 0.4s ease;
   }
 
-  .navbar-container .dropdown.show .dropdown-item:nth-child(1) { transition-delay: 0.22s; }
-  .navbar-container .dropdown.show .dropdown-item:nth-child(2) { transition-delay: 0.30s; }
-  .navbar-container .dropdown.show .dropdown-item:nth-child(3) { transition-delay: 0.38s; }
-  .navbar-container .dropdown.show .dropdown-item:nth-child(4) { transition-delay: 0.46s; }
-  .navbar-container .dropdown.show .dropdown-item:nth-child(5) { transition-delay: 0.54s; }
+  .navbar-container .show .dropdown-item:nth-child(1) { transition-delay: 0.22s; }
+  .navbar-container .show .dropdown-item:nth-child(2) { transition-delay: 0.30s; }
+  .navbar-container .show .dropdown-item:nth-child(3) { transition-delay: 0.38s; }
+  .navbar-container .show .dropdown-item:nth-child(4) { transition-delay: 0.46s; }
+  .navbar-container .show .dropdown-item:nth-child(5) { transition-delay: 0.54s; }
+}
+
+/* Стили для стрелочки (бонус) */
+.navbar-container .dropdown-toggle::after {
+  transition: transform 0.4s ease;
+}
+.navbar-container .show > .dropdown-toggle::after {
+  transform: rotate(180deg);
 }
 
 /* ================= ACTIVE DROPDOWN TITLE ================= */
@@ -263,6 +336,24 @@
   color: #AEE57D !important;
   text-shadow: 1px 0px 1px rgba(0, 0, 0, 0.7);
   transition: all 0.3s ease;
+}
+
+/* 1. Находим стрелочку и готовим её к вращению */
+.navbar-container .dropdown-toggle::after {
+  display: inline-block; /* Обязательно, чтобы трансформация работала */
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  vertical-align: middle;
+  margin-left: 0.5em;
+}
+
+/* 2. Когда меню открыто (класс .show добавляется родителю) — переворачиваем */
+.navbar-container .show > .dropdown-toggle::after {
+  transform: rotate(180deg);
+}
+
+/* 3. Опционально: если хочешь, чтобы стрелочка стала чуть ярче при наведении */
+.navbar-container .custom-dropdown:hover .dropdown-toggle::after {
+  color: #AEE57D;
 }
 
 .dropdown-item.active, .dropdown-item:active {
