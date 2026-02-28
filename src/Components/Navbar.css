@@ -7,16 +7,14 @@
   font-weight: 500;
 }
 
-/* 1. Гарантируем прозрачность, когда класс активен */
-.navbar-container .custom-navbar.navbar-transparent {
+/* 3. Дополнительная защита: если есть класс navbar-transparent, фон точно 0 */
+.navbar-container .navbar-transparent {
     background-color: transparent !important;
-    background: transparent !important;
-    box-shadow: none !important;
 }
 
-/* 2. На всякий случай обнуляем фон у самого Bootstrap-класса .navbar */
-.navbar-container .navbar {
-    background-image: none !important;
+/* Убираем стандартную тень Bootstrap, которая тоже может выглядеть как белая полоса */
+.navbar {
+    box-shadow: none !important;
 }
 
 .navbar-container .custom-navbar {
