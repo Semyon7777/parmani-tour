@@ -66,7 +66,7 @@ function CardComponents() {
       text: "first_page_cards.tours_text",
       imgSrc: img1,
       buttonText: "first_page_cards.tours_button",
-      buttonLink: "/tours",
+      buttonLink: "/private-tours",
     },
     {
       title: "first_page_cards.transfer_title",
