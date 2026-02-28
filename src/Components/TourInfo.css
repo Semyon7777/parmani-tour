@@ -279,6 +279,117 @@
   align-items: center;
 }
 
+/* Добавь это в свой TourInfo.css */
+
+.tour-carousel .carousel-item img {
+  height: 400px; /* Задай нужную тебе высоту (подбери под дизайн) */
+  object-fit: cover; /* Изображение будет заполнять блок без искажения пропорций */
+  border-radius: 0.5rem; /* Скругление углов, как у тебя было (rounded-3) */
+}
+
+/* Делаем стрелки карусели чуть более заметными на светлых фото */
+.tour-carousel .carousel-control-prev-icon,
+.tour-carousel .carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  padding: 20px;
+}
+
+/* Если в карусели только ОДНО фото, прячем стрелки и индикаторы */
+.tour-carousel .carousel-indicators {
+  margin-bottom: 0.5rem;
+}
+.tour-carousel .carousel-inner:has(.carousel-item:only-child) ~ .carousel-control-prev,
+.tour-carousel .carousel-inner:has(.carousel-item:only-child) ~ .carousel-control-next,
+.tour-carousel .carousel-inner:has(.carousel-item:only-child) ~ .carousel-indicators {
+  display: none !important;
+}
+
+.itinerary-carousel .carousel-item img {
+  height: 280px; /* Фиксируем высоту для всех картинок в списке */
+  object-fit: cover;
+  width: 100%;
+  display: block;
+}
+
+/* Полностью скрываем контейнер индикаторов и фиксируем отступ */
+.itinerary-details-section .itinerary-carousel .carousel-indicators {
+  display: none !important;
+}
+
+/* Делаем так, чтобы картинка занимала все пространство без зазоров внизу */
+.itinerary-details-section .itinerary-carousel .carousel-inner {
+  border-radius: 8px; /* Чтобы углы были аккуратными */
+}
+
+/* Убираем лишние отступы у карусели в мобильной версии */
+@media (max-width: 767px) {
+  .itinerary-carousel {
+    margin-top: 15px;
+  }
+  .itinerary-carousel .carousel-item img {
+    height: 200px; /* На мобилках чуть меньше */
+    box-shadow: none !important; /* Тени на движущихся объектах сильно тормозят мобилки */
+  }
+}
+
+/* 1. ИСХОДНОЕ СОСТОЯНИЕ (Стрелки почти прозрачные, подложка невидима) */
+.itinerary-carousel .carousel-control-prev-icon,
+.itinerary-carousel .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0); /* Полностью прозрачный фон */
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    background-size: 60%;
+    border: 1px solid rgba(255, 255, 255, 0); /* Прозрачная рамка */
+    transition: all 0.3s ease; /* Плавный переход для всех свойств */
+}
+
+/* Сами контейнеры стрелок (области клика) */
+.itinerary-carousel .carousel-control-prev,
+.itinerary-carousel .carousel-control-next {
+    opacity: 0.5; /* Сама иконка видна тускло */
+    transition: opacity 0.3s ease;
+}
+
+/* 2. НАВЕДЕНИЕ НА КАРТИНКУ (Hover на всю карусель) */
+/* Проявляем подложку и делаем стрелки ярче */
+.itinerary-carousel:hover .carousel-control-prev-icon,
+.itinerary-carousel:hover .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.3); /* Легкая подложка */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.itinerary-carousel:hover .carousel-control-prev,
+.itinerary-carousel:hover .carousel-control-next {
+    opacity: 1; /* Полная яркость иконок */
+}
+
+/* 3. НАВЕДЕНИЕ КОНКРЕТНО НА СТРЕЛКУ (Hover на Arrow) */
+/* Здесь срабатывает акцентная анимация */
+@media (min-width: 992px) {
+    .itinerary-carousel .carousel-control-prev:hover .carousel-control-prev-icon,
+    .itinerary-carousel .carousel-control-next:hover .carousel-control-next-icon {
+        background-color: #52555362; /* Твой зеленый */
+        border-color: #fff;
+        box-shadow: 0 rgba(100, 100, 100, 0.152)px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* 4. МОБИЛЬНАЯ ВЕРСИЯ (Стрелки всегда с подложкой, так как нет ховера) */
+@media (max-width: 991px) {
+    .itinerary-carousel .carousel-control-prev-icon,
+    .itinerary-carousel .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .itinerary-carousel .carousel-control-prev,
+    .itinerary-carousel .carousel-control-next {
+        opacity: 0.8;
+    }
+}
+
+
 /* FAQ AND INSTRUCTION PART */
 
 .instruction-list {

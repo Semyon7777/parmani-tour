@@ -1,48 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom"; // Важно для переходов
+import { Link } from "react-router-dom";
 import { Leaf, Users, Calendar, MapPin, ArrowRight, TreePine } from "lucide-react";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import GroupEcoToursData from "./groupEcoToursData.json";
 import "./GroupEcoTours.css";
-
-// Данные вынесены в отдельный массив (в будущем перенеси в toursData.json)
-const toursData = [
-  {
-    id: "dilijan-cleanup", // Используем строковые ID для красивых URL
-    type: "eco",
-    title: "Save the Dilijan Forest",
-    date: "25 Oct, 2024",
-    price: "5,000 AMD",
-    image: "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d", 
-    impact: "Plant 50 Trees",
-    spots: 12,
-    location: "Dilijan National Park"
-  },
-  {
-    id: "garni-temple",
-    type: "group",
-    title: "Garni & Geghard Classic",
-    date: "26 Oct, 2024",
-    price: "12,000 AMD",
-    image: "https://images.unsplash.com/photo-1589492477829-5e65395b66cc",
-    spots: 5,
-    location: "Kotayk Region"
-  }
-];
 
 function GroupEcoTours() {
   const { t, i18n } = useTranslation();
   const [activeTab, setActiveTab] = useState("all");
+  
+  // Определяем текущий язык (например, 'en', 'ru' или 'am')
+  const currentLang = i18n.language || 'en';
+
+  // Объединяем туры из JSON
+  const allTours = [...GroupEcoToursData.ecoTours, ...GroupEcoToursData.groupTours];
 
   useEffect(() => {
-      window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }, []);
 
+  // Фильтрация по типу
   const filteredTours = activeTab === "all" 
-    ? toursData 
-    : toursData.filter(tour => tour.type === activeTab);
+    ? allTours 
+    : allTours.filter(tour => tour.type === activeTab);
 
   return (
     <div className="scheduled-page">
@@ -51,7 +34,10 @@ function GroupEcoTours() {
       {/* 1. HERO SECTION */}
       <div className="scheduled-hero">
         <div className="hero-content text-center">
-          <h1>{t("tours.hero_title", "Join Our Upcoming Adventures")}</h1>
+          {/* Заголовок страницы из JSON с учетом языка */}
+          <h1 className="hero-main-title">
+            {GroupEcoToursData.title?.[currentLang] || GroupEcoToursData.title?.['en']}
+          </h1>
           <p>{t("tours.hero_subtitle", "Choose your path: Save nature or Explore culture")}</p>
         </div>
       </div>
@@ -89,10 +75,10 @@ function GroupEcoTours() {
                 <div className={`tour-card ${tour.type === 'eco' ? 'card-eco' : 'card-group'}`}>
                   
                   <div className="tour-img-wrapper">
-                    <img src={tour.image} alt={tour.title} />
+                    <img src={tour.image} alt={tour.title[currentLang]} />
                     <div className="tour-badge">
                       {tour.type === 'eco' ? <Leaf size={14}/> : <Users size={14}/>}
-                      {tour.type === 'eco' ? ' Eco-Mission' : ' Group Tour'}
+                      {tour.type === 'eco' ? t("tours.badge_eco", " Eco-Mission") : t("tours.badge_group", " Group Tour")}
                     </div>
                   </div>
 
@@ -101,17 +87,22 @@ function GroupEcoTours() {
                       <Calendar size={16} /> {tour.date}
                     </div>
                     
-                    <h3>{tour.title}</h3>
+                    {/* Название тура на текущем языке */}
+                    <h3>{tour.title[currentLang] || tour.title['en']}</h3>
                     
                     <div className="tour-meta">
-                      <span><MapPin size={16}/> {tour.location}</span>
-                      <span className="spots-left">Only {tour.spots} spots left</span>
+                      {/* Локация на текущем языке */}
+                      <span><MapPin size={16}/> {tour.location[currentLang] || tour.location['en']}</span>
+                      <span className="spots-left">
+                        {t("tours.only", "Only")} {tour.spots} {t("tours.spots_left", "spots left")}
+                      </span>
                     </div>
 
                     {tour.type === 'eco' && (
                       <div className="eco-impact-box">
                         <TreePine size={18} color="#2ecc71"/> 
-                        <span>Mission: {tour.impact}</span>
+                        {/* Миссия на текущем языке */}
+                        <span>{t("tours.mission", "Mission")}: {tour.impact[currentLang] || tour.impact['en']}</span>
                       </div>
                     )}
 
@@ -120,7 +111,6 @@ function GroupEcoTours() {
                         {tour.price}
                       </div>
                       
-                      {/* ОБНОВЛЕННАЯ КНОПКА С СЫЛКОЙ */}
                       <Link 
                         to={tour.type === 'eco' ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`} 
                         className="join-link"

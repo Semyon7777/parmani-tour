@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Container, Row, Col, ListGroup, Image } from 'react-bootstrap';
+import { Button, Container, Row, Col, ListGroup, Image, Carousel } from 'react-bootstrap';
 import { 
   CheckCircle, XCircle, Clock, MapPin, Users, User, 
   Calendar, ArrowLeft, Map as MapIcon, ChevronDown, ChevronUp, Info 
@@ -116,21 +116,57 @@ const TourInfo = ({ tourData }) => {
                       </div>
                       
                       <div className={`itinerary-collapse ${isExpanded ? 'open' : ''}`}>
-                        <div className="itinerary-content p-4">
-                          <Row>
-                            <Col md={section.image ? 7 : 12}>
-                              <p className="itinerary-text">{section.content}</p>
-                              {/* Если в JSON есть fullContent, выводим его здесь */}
-                              {section.fullContent && <p className="itinerary-text mt-2">{section.fullContent}</p>}
+                      <div className="itinerary-content p-4">
+                        <Row>
+                          {/* 1. КОЛОНКА С ТЕКСТОМ */}
+                          {/* Если картинка есть (неважно, строка или массив), отдаем тексту 7 колонок */}
+                          <Col md={section.image ? 7 : 12}>
+                            <p className="itinerary-text">{section.content}</p>
+                            {section.fullContent && <p className="itinerary-text mt-2">{section.fullContent}</p>}
+                          </Col>
+
+                          {/* 2. КОЛОНКА С КАРУСЕЛЬЮ */}
+                          {section.image && (
+                            <Col md={5}>
+                              <Carousel 
+                                // 1. Убираем fade — обычный слайд (сдвиг) работает на мобилках в разы быстрее
+                                fade={false} 
+                                slide={true}
+                                touch={true} // Включаем поддержку свайпов
+                                indicators={false}
+                                controls={Array.isArray(section.image) ? section.image.length > 1 : false}
+                                interval={null}
+                                className="itinerary-carousel shadow-sm border rounded-3 overflow-hidden"
+                              >
+                                {(Array.isArray(section.image) ? section.image : [section.image]).map((imgSrc, idx) => {
+                                  
+                                  // 2. АВТО-ОПТИМИЗАЦИЯ CLOUDINARY
+                                  // Если ссылка ведет на Cloudinary, добавляем параметры сжатия (w_600, f_auto, q_auto)
+                                  let optimizedSrc = imgSrc;
+                                  if (imgSrc.includes('cloudinary.com')) {
+                                    optimizedSrc = imgSrc.replace('/upload/', '/upload/w_600,c_fill,g_auto,f_auto,q_auto/');
+                                  }
+
+                                  return (
+                                    <Carousel.Item key={idx}>
+                                      <Image 
+                                        src={optimizedSrc} 
+                                        fluid 
+                                        alt={`${section.header} - ${idx + 1}`} 
+                                        loading="lazy"
+                                        className="w-100 object-fit-cover"
+                                        // Используем закругления и высоту, которые не «тормозят» рендеринг
+                                        style={{ height: '280px', willChange: 'transform' }} 
+                                      />
+                                    </Carousel.Item>
+                                  );
+                                })}
+                              </Carousel>
                             </Col>
-                            {section.image && (
-                              <Col md={5}>
-                                <Image src={section.image} fluid className="rounded-3 shadow-sm border" alt={section.header} loading="lazy" />
-                              </Col>
-                            )}
-                          </Row>
-                        </div>
+                          )}
+                        </Row>
                       </div>
+                    </div>
                     </div>
                   );
                 })}

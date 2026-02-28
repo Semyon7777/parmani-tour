@@ -1,27 +1,90 @@
 {
+  "title": {
+    "en": "Join Our Upcoming Adventures",
+    "ru": "Присоединяйтесь к нашим приключениям",
+    "hy": "Միացեք մեր առաջիկա արկածներին"
+  },
   "ecoTours": [
     {
       "id": "dilijan-cleanup",
+      "type": "eco",
+      "title": {
+        "en": "Save the Dilijan Forest",
+        "ru": "Спасем леса Дилижана",
+        "hy": "Փրկենք Դիլիջանի անտառները"
+      },
+      "mission": {
+        "en": "Our goal is to plant 50 trees and clean up the hiking trails.",
+        "ru": "Наша цель — посадить 50 деревьев и очистить пешеходные тропы.",
+        "hy": "Մեր նպատակն է տնկել 50 ծառ և մաքրել քայլարշավային արահետները:"
+      },
+      "impact": {
+        "en": "Plant 50 Trees",
+        "ru": "Посадить 50 деревьев",
+        "hy": "Տնկել 50 ծառ"
+      },
+      "description": {
+        "en": "An immersive experience in Dilijan National Park combined with eco-activity.",
+        "ru": "Глубокое погружение в природу Дилижанского парка в сочетании с эко-активностью.",
+        "hy": "Ընկղմվող փորձ Դիլիջան ազգային պարկում՝ զուգորդված էկո-ակտիվությամբ:"
+      },
+      "location": {
+        "en": "Dilijan",
+        "ru": "Дилижан",
+        "hy": "Դիլիջան"
+      },
       "date": "20.05.2026",
+      "duration": {
+        "en": "1 Day",
+        "ru": "1 День",
+        "hy": "1 Օր"
+      },
       "price": "5000 AMD",
-      "image": "/images/eco-1.jpg",
-      "location": "Dilijan"
-    },
-    {
-      "id": "sevan-cleanup",
-      "date": "23.05.2026",
-      "price": "8000 AMD",
-      "image": "/images/eco-2.jpg",
-      "location": "Sevan"
+      "image": "https://res.cloudinary.com/dwqsqiezw/image/upload/v1/tours/eco-1.webp",
+      "spots": 12
     }
   ],
   "groupTours": [
     {
       "id": "garni-temple",
+      "type": "group",
+      "title": {
+        "en": "Garni & Geghard Classic",
+        "ru": "Гарни и Гегард: Классика",
+        "hy": "Գառնի և Գեղարդ"
+      },
+      "location": {
+        "en": "Garni",
+        "ru": "Гарни",
+        "hy": "Գառնի"
+      },
+      "impact": {
+        "en": "Cultural Exploration",
+        "ru": "Культурное исследование",
+        "hy": "Մշակութային բացահայտում"
+      },
       "date": "22.05.2026",
       "price": "12000 AMD",
-      "image": "/images/group-1.jpg",
-      "location": "Garni"
+      "image": "https://res.cloudinary.com/dwqsqiezw/image/upload/v1/tours/group-1.webp",
+      "spots": 5,
+      "itinerary": [
+        {
+          "time": "09:00",
+          "text": {
+            "en": "Departure from Republic Square",
+            "ru": "Выезд с Площади Республики",
+            "hy": "Մեկնում Հանրապետության հրապարակից"
+          }
+        },
+        {
+          "time": "12:00",
+          "text": {
+            "en": "Exploring Garni Temple",
+            "ru": "Экскурсия по храму Гарни",
+            "hy": "Գառնիի տաճարի այցելություն"
+          }
+        }
+      ]
     }
   ]
 }
