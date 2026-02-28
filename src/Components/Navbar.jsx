@@ -10,10 +10,17 @@ const NavbarCustom = ({ isHomePage }) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 0);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleScroll = () => {
+    // Используем порог в 10-50 пикселей, чтобы избежать "дрожания" на самом верху
+    setScrolled(window.scrollY > 20);
+  };
+
+  // Вызываем функцию СРАЗУ при загрузке компонента
+  handleScroll();
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
 
   const changeLanguage = (lng) => i18n.changeLanguage(lng);
 

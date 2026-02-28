@@ -7,7 +7,17 @@
   font-weight: 500;
 }
 
+/* 1. Гарантируем прозрачность, когда класс активен */
+.navbar-container .custom-navbar.navbar-transparent {
+    background-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
 
+/* 2. На всякий случай обнуляем фон у самого Bootstrap-класса .navbar */
+.navbar-container .navbar {
+    background-image: none !important;
+}
 
 .navbar-container .custom-navbar {
   background-color: #0a260a;
