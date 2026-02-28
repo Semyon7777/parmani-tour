@@ -417,10 +417,9 @@
 
   .navbar-container .navbar-collapse {
     background: linear-gradient(
-      180deg,
-      rgb(7, 66, 4),
-      rgb(9, 80, 6)
-    );
+      180deg, 
+      rgb(2 40 0), 
+      rgb(6 47 4));
     border-radius: 0 0 18px 18px;
     padding: 16px 0;
   }

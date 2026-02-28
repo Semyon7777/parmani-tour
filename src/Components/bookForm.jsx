@@ -59,7 +59,7 @@ const { t, i18n } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  const incrementPeople = () => { if (numberOfPeople < 7) setNumberOfPeople(numberOfPeople + 1); };
+  const incrementPeople = () => { if (numberOfPeople < 6) setNumberOfPeople(numberOfPeople + 1); };
   const decrementPeople = () => { if (numberOfPeople > 1) setNumberOfPeople(numberOfPeople - 1); };
   const handleStartDateChange = (date) => { setFormData({ ...formData, startDate: date }); };
   const handleChange = (e) => { setFormData({ ...formData, [e.target.id]: e.target.value }); };
@@ -375,7 +375,7 @@ const { t, i18n } = useTranslation();
                     )}
 
                     <div className="d-flex justify-content-end pt-3">
-                      <Link to="/tours">
+                      <Link to="/private-tours">
                         <Button variant='light' size='lg'>{t('bookForm.goBack')}</Button>
                       </Link>
                       <Button className='ms-2' variant='warning' size='lg' type="submit" disabled={isSubmitting}>{t('bookForm.submitForm')}</Button>

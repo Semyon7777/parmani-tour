@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Container, Row, Col, ListGroup, Image } from 'react-bootstrap';
 import { 
-  CheckCircle, XCircle, Clock, MapPin, Users, 
+  CheckCircle, XCircle, Clock, MapPin, Users, User, 
   Calendar, ArrowLeft, Map as MapIcon, ChevronDown, ChevronUp, Info 
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -174,7 +174,11 @@ const TourInfo = ({ tourData }) => {
             <div className="sticky-booking-card p-4 shadow-lg border-0">
               <div className="booking-card-header mb-4">
                 <span className="price-label">{t('tour_info_page.starting_from')}</span>
-                <h2 className="booking-price">{tourData.price || '100$'}</h2>
+                <h2 className="booking-price">{tourData.price}</h2>
+                <div className="d-flex align-items-center">
+                  <span className="me-1">4 x</span>
+                  <User size={14} strokeWidth={2.5} />
+                </div>
               </div>
               
               <div className="booking-features-list mb-4">

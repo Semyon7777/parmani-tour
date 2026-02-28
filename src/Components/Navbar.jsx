@@ -115,6 +115,8 @@ const NavbarCustom = ({ isHomePage }) => {
                 <LinkContainer to="/hotels"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.hotels")}</NavDropdown.Item></LinkContainer>
                 <LinkContainer to="/transport"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.transport")}</NavDropdown.Item></LinkContainer>
                 <LinkContainer to="/all-in-one"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.all_in_one")}</NavDropdown.Item></LinkContainer>
+                <NavDropdown.Divider />
+                <LinkContainer to="/special"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.special")}</NavDropdown.Item></LinkContainer>
               </NavDropdown>
 
               <LinkContainer to="/contact"><Nav.Link className="nav-link-item">{t("navbar_custom.contact_button")}</Nav.Link></LinkContainer>
@@ -130,7 +132,9 @@ const NavbarCustom = ({ isHomePage }) => {
               >
                 <NavDropdown.Item href="/history" className="dropdown-item">{t("navbar_custom.history")}</NavDropdown.Item>
                 <NavDropdown.Item href="/cuisine" className="dropdown-item">{t("navbar_custom.cuisine")}</NavDropdown.Item>
-                <LinkContainer to="/about-us"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.about_us")}</NavDropdown.Item></LinkContainer>
+                <NavDropdown.Item href="/nature" className="dropdown-item">{t("navbar_custom.nature")}</NavDropdown.Item>
+                <NavDropdown.Item href="/culture" className="dropdown-item">{t("navbar_custom.culture")}</NavDropdown.Item>
+                <NavDropdown.Item href="/about-us" className="dropdown-item">{t("navbar_custom.about_us")}</NavDropdown.Item>
               </NavDropdown>
 
               <div className="language-divider d-none d-lg-block"></div>
