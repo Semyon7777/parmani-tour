@@ -131,6 +131,42 @@
   color: #145d04 !important;
 }
 
+@media (min-width: 992px) {
+  /* 1. Готовим меню к анимации */
+  .navbar-container .dropdown-menu {
+    display: block !important; /* Принудительно делаем блоком, чтобы работала анимация */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(15px); /* Меню будет "всплывать" снизу на 15px */
+    transition: 
+      opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+      transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+      visibility 0.4s;
+    
+    pointer-events: none; /* Чтобы нельзя было кликнуть по невидимому меню */
+  }
+
+  /* 2. Состояние при наведении (когда React добавляет класс .show) */
+  .navbar-container .dropdown-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto; /* Возвращаем кликабельность */
+  }
+
+  /* 3. Маленький хак: увеличиваем область наведения */
+  /* Это нужно, чтобы меню не закрывалось, если между кнопкой и списком есть зазор в пару пикселей */
+  .navbar-container .custom-dropdown::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 10px; 
+    display: block;
+  }
+}
+
 /* ================= DROPDOWN MENU ================= */
 .navbar-container .dropdown-menu {
   background: linear-gradient(

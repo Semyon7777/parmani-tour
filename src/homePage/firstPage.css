@@ -192,7 +192,7 @@ html[lang="hy"] .animated-text {
     grid-template-columns: 1fr 1.28fr;
     gap: 10px;
     margin-right: 0;
-    padding: 0 5%;
+    padding: 0 0;
 }
 
 .carouselContainerHeadText {
@@ -899,6 +899,14 @@ html[lang="hy"] .thirdContainerHeadOfText {
     transform: scale(1.1);
 }
 
+/* .event-content .event-footer .event-price {
+    width: 100%;
+} */
+
+.event-content .event-footer .rounded-pill {
+    width: 45%;
+}
+
 .event-date-badge {
     position: absolute;
     bottom: 15px;
@@ -921,8 +929,8 @@ html[lang="hy"] .thirdContainerHeadOfText {
     color: #777;
 }
 
-.price-value {
-    font-size: 1.3rem !important;
+.home-upcoming-section .price-value {
+    font-size: 1.3rem;
     font-weight: 800;
     color: #3ea03e;
 }
@@ -961,6 +969,14 @@ html[lang="hy"] .thirdContainerHeadOfText {
 
   .home-explore-overlay h5 {
     font-size: 1.25rem;
+  }
+
+  .event-content .event-footer .rounded-pill {
+    width: 40%;
+  }
+
+  .home-upcoming-section .price-value {
+    font-size: 120%;
   }
 }
 
