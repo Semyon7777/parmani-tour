@@ -142,7 +142,7 @@ const NavbarCustom = ({ isHomePage }) => {
 
               <NavDropdown
                 title={getCurrentLanguageLabel()}
-                className="lang-dropdown-btn"
+                className="lang-dropdown-btn lang-button-mobile-style-correcting"
                 align="end"
                 show={showDropdown.lang}
                 onMouseEnter={() => handleMouseEnter('lang')}

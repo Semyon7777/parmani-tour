@@ -29,6 +29,7 @@ html, body {
   background: #6a6868b0; 
 }
 
+
 @media (max-width: 425px) {
   body, html {
     height: auto;

@@ -371,6 +371,11 @@
   text-align: center;
 }
 
+.lang-dropdown-btn .dropdown-item,
+.lang-dropdown-btn .nav-link {
+    font-family: 'Noto Color Emoji', sans-serif !important;
+}
+
 /* ================= MOBILE ================= */
 @media (max-width: 991px) {
 
@@ -432,6 +437,10 @@
 
     .home-button-mobile-style-correcting {
       margin-top: 10px
+    }
+
+    .lang-button-mobile-style-correcting {
+    margin-bottom: 10px;
     }
 
   .navbar-container .navbar-scrolled {
