@@ -650,6 +650,10 @@
 /* Адаптив для планшетов и мобилок */
 @media (max-width: 992px) {
 
+  .album-main-title {
+    font-size: 180%;
+  }
+
   .special-page .school-feature-card:hover {
     transform: none;
   }

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { Button, Card, Row, Col, Spinner, Container, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Search, User, ArrowUpDown } from 'lucide-react'; 
+import { Search, User, ArrowUpDown, Clock } from 'lucide-react'; 
 import toursData from "./toursData.json";
 
 function ToursPageFirstPart() {
@@ -190,26 +190,32 @@ const AlbumCard = ({ tour }) => {
           loading="lazy"
         />
         <div className="card-price-badge d-flex align-items-center">
-          {/* Текст цены */}
           <span>
             {t('tour_info_page.starting_from')} {tour.price}
           </span>
-
-          {/* Разделитель */}
           <span className="mx-2" style={{ opacity: 0.5 }}>|</span>
-
-          {/* Информация о людях */}
           <div className="d-flex align-items-center">
             <span className="me-1">4 x</span>
             <User size={14} strokeWidth={2.5} />
           </div>
         </div>
       </div>
+      
       <Card.Body className="d-flex flex-column p-4">
         <Card.Title className="fw-bold mb-2">{tour.title[lang]}</Card.Title>
+        
+        {/* === НОВЫЙ БЛОК: ДЛИТЕЛЬНОСТЬ === */}
+        <div className="d-flex align-items-center text-muted mb-3" style={{ fontSize: '0.9rem', fontWeight: '500' }}>
+          <Clock size={16} className="me-2" style={{ color: '#2ecc71' }} />
+          <span>
+            {tour.duration} {tour.durationUnit === 'days' ? t('tour_info_page.days') : t('tour_info_page.hours')}
+          </span>
+        </div>
+        
         <Card.Text className="text-muted small flex-grow-1 tour-description-text">
           {tour.description[lang]}
         </Card.Text>
+        
         <Link to={`/tours/${tour.id}`} className="mt-3">
           <Button variant="success" className="w-100 rounded-pill">
             {t('viewTour', 'View Details')}
