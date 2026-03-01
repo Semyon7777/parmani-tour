@@ -101,7 +101,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: start;
-  padding-bottom: 100px;
+  padding-bottom: 30px;
 }
 
 .special-page .section-badge {
@@ -278,6 +278,132 @@
   display: block;
 }
 
+/* Контейнер прямой связи */
+.sp-direct-contact-box {
+  margin: 30px auto;
+  max-width: 100%;
+  background: #f8f9fa;
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px dashed #dee2e6; /* Пунктирная граница подчеркивает альтернативность */
+  transition: all 0.3s ease;
+}
+
+.sp-direct-contact-box:hover {
+  background: #ffffff;
+  border-color: #2ecc71;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.sp-direct-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap; /* Для мобильных устройств */
+}
+
+.sp-direct-text h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 5px;
+}
+
+.sp-direct-text p {
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0;
+}
+
+.sp-direct-actions {
+  display: flex;
+  gap: 15px;
+}
+
+/* Кнопки-ссылки */
+.sp-action-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sp-action-link.whatsapp {
+  background: #e7f9ee;
+  color: #27ae60;
+}
+
+.sp-action-link.whatsapp:hover {
+  background: #27ae60;
+  color: #fff;
+}
+
+.sp-action-link.email {
+  background: #f0f4ff;
+  color: #3498db;
+}
+
+.sp-action-link.email:hover {
+  background: #3498db;
+  color: #fff;
+}
+
+/* Адаптивность */
+/* --- МОБИЛЬНАЯ АДАПТАЦИЯ (Без Hover) --- */
+@media (max-width: 768px) {
+  .sp-direct-contact-box {
+    margin: 20px 0;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #e0e0e0; /* Сплошная линия лучше видна на мобильных */
+    background: #ffffff; /* Убираем градиент для чистоты */
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Легкая постоянная тень */
+  }
+
+  .sp-direct-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .sp-direct-text h4 {
+    font-size: 1.15rem;
+    margin-bottom: 8px;
+  }
+
+  .sp-direct-text p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .sp-direct-actions {
+    width: 100%;
+    flex-direction: column; /* Кнопки друг под другом для удобного нажатия пальцем */
+    gap: 12px;
+  }
+
+  .sp-action-link {
+    width: 100%;
+    justify-content: center;
+    padding: 14px; /* Увеличенная область нажатия (Touch Target) */
+    font-size: 1rem;
+    transform: none !important; /* Отключаем любые движения */
+    transition: background 0.2s ease; /* Оставляем только мгновенную смену цвета при нажатии */
+  }
+
+  /* Эффект при нажатии (Active вместо Hover) */
+  .sp-action-link:active {
+    opacity: 0.8;
+    transform: scale(0.98) !important;
+  }
+}
+
 /* --- SCHOOL SECTION --- */
 .special-page .school-header h2 {
   font-size: 40px;
@@ -367,6 +493,183 @@
   }
 }
 
+
+/* SCHOOL PAGE TOUR ALBUM */
+
+.school-album-section {
+  padding: 50px 0;
+  background: #fdfdfdcd;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Стили заголовка */
+.album-intro {
+  margin-bottom: 50px;
+}
+
+.intro-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #d1f9dc;
+  color: #2ecc71;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+
+.album-main-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.album-subtitle {
+  font-size: 1.05rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.album-relative-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  max-width: 1200px; /* Ограничиваем ширину для больших экранов */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.album-scroll-row {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE */
+}
+
+.album-scroll-row::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.school-album-card {
+  /* Формула: (100% ширины - (кол-во промежутков * gap)) / кол-во карточек */
+  flex: 0 0 calc((100% - 48px) / 3); 
+  background: white;
+  border-radius: 24px;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* Очень мягкая тень */
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.school-album-card:hover {
+  transform: translateY(-8px);
+}
+
+.school-card-media {
+  position: relative;
+  height: 200px;
+}
+
+.school-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.age-tag {
+  position: absolute;
+  top: 15px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 4px 12px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2ecc71;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.school-card-desc {
+  padding: 20px;
+}
+
+.school-card-desc h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #1a1a1a;
+}
+
+.school-card-desc p {
+  font-size: 0.95rem;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+.album-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+.album-arrow:hover {
+  background: #2ecc71;
+  color: white;
+  box-shadow: 0 6px 20px rgba(46, 204, 113, 0.3);
+}
+
+.arrow-left { left: -27px; }
+.arrow-right { right: -27px; }
+
+/* Адаптив для планшетов и мобилок */
+@media (max-width: 992px) {
+
+  .special-page .school-feature-card:hover {
+    transform: none;
+  }
+  .album-arrow {
+    display: none; /* Прячем стрелки, оставляем только свайп */
+  }
+  
+  .school-album-card {
+    flex: 0 0 75%; /* Показываем одну карточку и кусочек следующей */
+  }
+
+  .school-album-card:hover {
+    transform: none;
+  }
+
+  .album-scroll-row {
+    padding-left: 0;
+    gap: 16px;
+  }
+}
 
 /* --- FAQ STYLES --- */
 /* Контейнер для FAQ */

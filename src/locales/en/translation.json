@@ -1,8 +1,9 @@
 {
   "navbar_custom": {
     "home_button": "Home",
-    "private_tours": "Private Tours",
     "tours_button": "Tours",
+    "private_tours": "Private Tours",
+    "school_tours": "School Tours",
     "services": "Services",
     "hotels": "Hotels",
     "transport": "Transport",
@@ -584,6 +585,10 @@
       "sending_btn": "Sending...",
       "place_placeholder": "Enter destination"
     },
+    "direct": {
+      "title": "Need a faster answer?",
+      "desc": "Connect with our travel experts directly via WhatsApp or Email."
+    },
     "modal": {
       "title": "Review Your Route",
       "edit": "Edit Details",
@@ -601,7 +606,9 @@
       "feat3_text": "Organization of lunch boxes or a full hot lunch.",
       "cta_title": "Planning an excursion for a class?",
       "cta_text": "Download our catalog of school tours or contact us for organization.",
-      "cta_btn": "Contact Manager"
+      "cta_btn": "Contact Manager",
+      "album_title": "Educational Adventures",
+      "album_subtitle": "Unique programs for school groups: from ancient history to modern ecology"
     },
     "faq": {
       "custom_title": "Tailored to Your Desires",

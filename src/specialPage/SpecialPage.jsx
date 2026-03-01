@@ -1,22 +1,51 @@
 import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import { Container, Row, Col, Form, Modal, Button, Accordion, Alert, Spinner } from "react-bootstrap";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import { Map, Bus, BookOpen, Utensils, Send, CheckCircle, Plus, Trash2, FileText } from "lucide-react";
+import { Map, Bus, BookOpen, Utensils, Send, CheckCircle, GraduationCap,
+   Plus, Trash2, FileText, MapPin, ChevronLeft, ChevronRight, MessageCircle, Mail } from "lucide-react";
 import emailjs from '@emailjs/browser';
 import customTourBuilderImg from "./images/Custom-Tour-Builder.png"
 import "./SpecialPage.css";
 
 function SpecialPage() {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState("custom");
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // --- ЛОГИКА ВКЛАДОК И URL ---
+  // Читаем ?tab= из URL, если его нет — ставим "custom"
+  const queryParams = new URLSearchParams(location.search);
+  const initialTab = queryParams.get("tab") || "custom";
+  
+  const [activeTab, setActiveTab] = useState(initialTab);
   const [alertInfo, setAlertInfo] = useState({ show: false, variant: "", message: "" });
-  const [isSubmitting, setIsSubmitting] = useState(false); // Чтобы блокировать кнопку во время отправки
-  const alertRef = React.useRef(null); // Добавь это к остальным стейтам
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const alertRef = React.useRef(null);
+
+  // Синхронизация: если URL изменился (клик в Navbar), меняем вкладку
+  // Синхронизация: если URL изменился (клик в Navbar), меняем вкладку
+  useEffect(() => {
+
+    window.scrollTo(0, 0);
+
+    const tabFromUrl = new URLSearchParams(location.search).get("tab");
+    // Проверяем, что в URL есть вкладка, и она отличается от текущей
+    if (tabFromUrl && tabFromUrl !== activeTab) {
+      setActiveTab(tabFromUrl);
+    }
+  }, [location.search, activeTab]); // Теперь activeTab в зависимостях, и ESLint доволен
+
+  // Функция смены вкладки с обновлением URL (useCallback важен для стабильности)
+  const handleTabChange = React.useCallback((tabName) => {
+    setActiveTab(tabName);
+    navigate(`?tab=${tabName}`, { replace: true });
+  }, [navigate]);
 
   // --- СОСТОЯНИЯ ФОРМЫ ---
-  const [destinations, setDestinations] = useState([""]); // Список мест
+  const [destinations, setDestinations] = useState([""]);
   const [formData, setFormData] = useState({
     email: "",
     phone: "",
@@ -25,47 +54,42 @@ function SpecialPage() {
     wishes: ""
   });
 
-  // --- МОДАЛЬНОЕ ОКНО ---
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
 
-  // Логика добавления нового поля для места
-  const addDestination = () => {
-    setDestinations([...destinations, ""]);
-  };
+    const tabFromUrl = new URLSearchParams(location.search).get("tab");
+    if (tabFromUrl && tabFromUrl !== activeTab) {
+      setActiveTab(tabFromUrl);
+    }
+  }, [location.search, activeTab]);
 
-  // Логика изменения конкретного поля места
+  const addDestination = () => setDestinations([...destinations, ""]);
+
   const handleDestChange = (index, value) => {
     const updatedDestinations = [...destinations];
     updatedDestinations[index] = value;
     setDestinations(updatedDestinations);
   };
 
-  // Удаление поля места
   const removeDestination = (index) => {
     if (destinations.length > 1) {
-      const updatedDestinations = destinations.filter((_, i) => i !== index);
-      setDestinations(updatedDestinations);
+      setDestinations(destinations.filter((_, i) => i !== index));
     }
   };
 
-  // Изменение обычных полей (email, phone и т.д.)
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Показать превью (модалку)
   const handleShowPreview = (e) => {
     e.preventDefault();
     setShowModal(true);
   };
 
-  // Финальная отправка
-const handleFinalSubmit = () => {
+  const handleFinalSubmit = () => {
     setIsSubmitting(true);
 
     const formattedDestinations = destinations
@@ -89,25 +113,23 @@ const handleFinalSubmit = () => {
       templateParams, 
       'P2-IFz5S0EKcKVf9p'
     )
-    .then((result) => {
+    .then(() => {
         setShowModal(false); 
-        
         setAlertInfo({ 
           show: true, 
           variant: "success", 
-          message: t("special.form.success_msg") || "Success! Your request has been sent. We will contact you soon." 
+          message: t("special.form.success_msg") || "Success! Your request has been sent." 
         });
 
-        // СКРОЛЛ К АЛЕРТУ
         setTimeout(() => {
             alertRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 200);
 
         setDestinations([""]);
         setFormData({ email: "", phone: "", peopleCount: 1, date: "", wishes: "" });
-        setTimeout(() => setAlertInfo({ show: false, variant: "", message: "" }), 8000); // Увеличил до 8 сек
+        setTimeout(() => setAlertInfo({ show: false, variant: "", message: "" }), 8000);
     })
-    .catch((error) => {
+    .catch(() => {
         setShowModal(false);
         setAlertInfo({ 
           show: true, 
@@ -118,7 +140,7 @@ const handleFinalSubmit = () => {
     .finally(() => {
         setIsSubmitting(false);
     });
-};
+  };
 
   return (
     <div className="special-page">
@@ -138,14 +160,14 @@ const handleFinalSubmit = () => {
           <div className="tab-switcher-island">
             <button 
               className={`tab-btn ${activeTab === "custom" ? "active" : ""}`}
-              onClick={() => setActiveTab("custom")}
+              onClick={() => handleTabChange("custom")} // Используй handleTabChange!
             >
               <Map size={20} className="tab-icon" />
               {t("special.tabs.custom")}
             </button>
             <button 
               className={`tab-btn ${activeTab === "school" ? "active" : ""}`}
-              onClick={() => setActiveTab("school")}
+              onClick={() => handleTabChange("school")} // Используй handleTabChange!
             >
               <Bus size={20} className="tab-icon" />
               {t("special.tabs.school")}
@@ -276,6 +298,26 @@ const handleFinalSubmit = () => {
                 </div>
 
               </div>
+
+              {/* === БЛОК ПРЯМОЙ СВЯЗИ === */}
+                <div className="sp-direct-contact-box">
+                  <div className="sp-direct-content">
+                    <div className="sp-direct-text">
+                      <h4>{t("special.direct.title", "Have more questions?")}</h4>
+                      <p>{t("special.direct.desc", "Skip the form and reach us directly via your favorite platform.")}</p>
+                    </div>
+                    <div className="sp-direct-actions">
+                      <a href="https://wa.me/yournumber" target="_blank" rel="noreferrer" className="sp-action-link whatsapp">
+                        <MessageCircle size={20} />
+                        <span>WhatsApp</span>
+                      </a>
+                      <a href="mailto:your@email.com" className="sp-action-link email">
+                        <Mail size={20} />
+                        <span>Email</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
               {/* {CustomFAQ()} */}
               <CustomFAQ t={t} />
             </div>
@@ -312,6 +354,8 @@ const handleFinalSubmit = () => {
                   </div>
                 </Col>
               </Row>
+
+              <SchoolToursAlbum />
 
               <div className="school-cta-banner">
                 <div className="school-cta-content">
@@ -396,6 +440,109 @@ const handleFinalSubmit = () => {
     </div>
   );
 
+
+
+
+function SchoolToursAlbum() {
+  const { i18n, t } = useTranslation();
+  const currentLang = i18n.language || 'en';
+  const scrollRef = React.useRef(null);
+
+  const schoolToursData = [
+    {
+      id: 1,
+      image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=500",
+      title: { en: "Matenadaran Workshop", ru: "Мастер-класс в Матенадаране", hy: "Մատենադարանի աշխատանոց" },
+      location: { en: "Yerevan", ru: "Ереван", hy: "Երևան" },
+      age: { en: "10-15 Years", ru: "10-15 Лет", hy: "10-15 Տարեկան" }
+    },
+    {
+      id: 2,
+      image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=500",
+      title: { en: "Amberd Fortress Quest", ru: "Квест в крепости Амберд", hy: "Ամբերդի ամրոցի քվեստ" },
+      location: { en: "Aragatsotn", ru: "Арагацотн", hy: "Արագածոտն" },
+      age: { en: "10-15 Years", ru: "10-15 Лет", hy: "10-15 Տարեկան" }
+    },
+    {
+      id: 3,
+      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=500",
+      title: { en: "Eco-Trail Dilijan", ru: "Эко-тропа в Дилижане", hy: "Դիլիջանի էկո-արահետ" },
+      location: { en: "Dilijan", ru: "Дилижан", hy: "Դիլիջան" },
+      age: { en: "10-15 Years", ru: "10-15 Лет", hy: "10-15 Տարեկան" }
+    },
+    {
+      id: 4,
+      image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=500",
+      title: { en: "Garni Temple History", ru: "История храма Гарни", hy: "Գառնիի տաճարի պատմություն" },
+      location: { en: "Garni", ru: "Гарни", hy: "Գառնի" },
+      age: { en: "10-15 Years", ru: "10-15 Лет", hy: "10-15 Տարեկան" }
+    },
+    {
+      id: 5,
+      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=500",
+      title: { en: "Observatory Night", ru: "Ночь в обсерватории", hy: "Գիշեր աստղադիտարանում" },
+      location: { en: "Byurakan", ru: "Бюракан", hy: "Բյուրական" },
+      age: { en: "10-15 Years", ru: "10-15 Лет", hy: "10-15 Տարեկան" }
+    },
+  ];
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const { current } = scrollRef;
+      // clientWidth дает чистую ширину видимой области без скроллбаров
+      const scrollAmount = current.clientWidth + 24; // ширина окна + gap
+      
+      current.scrollBy({ 
+        left: direction === "left" ? -scrollAmount : scrollAmount, 
+        behavior: "smooth" 
+      });
+    }
+  };
+
+  return (
+    <div className="school-album-section">
+      <Container>
+        {/* Заголовок и подзаголовок */}
+        <div className="album-intro text-center">
+          <div className="intro-badge">
+            <GraduationCap size={20} />
+          </div>
+          <h2 className="album-main-title">
+            {t('special.school.album_title', 'Образовательные приключения')}
+          </h2>
+          <p className="album-subtitle">
+            {t('special.school.album_subtitle', 'Уникальные программы для школьных групп: от истории до экологии')}
+          </p>
+        </div>
+
+        <div className="album-relative-wrapper">
+          <button className="album-arrow arrow-left" onClick={() => scroll("left")}>
+            <ChevronLeft size={24} />
+          </button>
+
+          <div className="album-scroll-row" ref={scrollRef}>
+            {schoolToursData.map((tour) => (
+              <div className="school-album-card" key={tour.id}>
+                <div className="school-card-media">
+                  <img src={tour.image} alt="Tour" loading="lazy"/>
+                  <span className="age-tag">{tour.age[currentLang] || tour.age['en']}</span>
+                </div>
+                <div className="school-card-desc">
+                  <h4>{tour.title[currentLang] || tour.title['en']}</h4>
+                  <p><MapPin size={14} /> {tour.location[currentLang] || tour.location['en']}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <button className="album-arrow arrow-right" onClick={() => scroll("right")}>
+            <ChevronRight size={24} />
+          </button>
+        </div>
+      </Container>
+    </div>
+  );
+}
 
 
 // --- FAQ ДЛЯ КОНСТРУКТОРА ТУРОВ ---
