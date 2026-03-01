@@ -87,7 +87,7 @@ const NavbarCustom = ({ isHomePage }) => {
           <Navbar.Toggle className="custom-toggler" />
 
           <Navbar.Collapse>
-            <Nav className="ms-auto align-items-center">
+            <Nav className="ms-auto align-items-center home-button-mobile-style-correcting">
               <LinkContainer to="/"><Nav.Link className="nav-link-item">{t("navbar_custom.home_button")}</Nav.Link></LinkContainer>
               
               <NavDropdown

@@ -421,8 +421,18 @@
       rgb(2 40 0), 
       rgb(6 47 4));
     border-radius: 0 0 18px 18px;
-    padding: 16px 0;
   }
+
+  /* Добавляем padding ТОЛЬКО когда меню полностью открыто */
+
+    /* В момент анимации (collapsing) padding должен быть строго 0 */
+    .navbar-container .navbar-collapse.collapsing {
+        padding: 0 !important;
+    }
+
+    .home-button-mobile-style-correcting {
+      margin-top: 10px
+    }
 
   .navbar-container .navbar-scrolled {
     background-color: rgb(7, 66, 4) !important;
@@ -477,4 +487,15 @@
   border-top:2px solid #0aa01b9e;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+/* Убираем лишние расчеты для схлопывающегося меню */
+.navbar-collapse {
+  transition: height 0.3s ease-out !important; /* Делаем анимацию чуть быстрее и плавнее */
+}
+
+/* Избегаем прыжка в конце анимации из-за внутренних отступов */
+.navbar-collapse.collapsing {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }

@@ -731,8 +731,20 @@ html[lang="hy"] .thirdContainerHeadOfText {
     .thirdContainerHeadOfText {
         font-size: 2.5rem !important;
     }
-  .home-section-title { font-size: 32px; }
-  .home-trust-card { padding: 30px 20px; }
+    .home-section-title { 
+        font-size: 32px; 
+    }
+    .home-trust-card {
+        padding: 30px 20px; 
+    }
+
+    .thirdContainer .card:hover {
+        transform: none;
+    }
+
+    .thirdContainer .card img:hover {
+    transform: none;
+    }
 }
 
 /* ===== EXPLORE SECTION ===== */
