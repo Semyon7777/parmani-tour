@@ -169,6 +169,8 @@
     "filter_religious": "Религиозные",
     "sort_by": "Сортировка",
     "sort_default": "Рекомендуемые",
+    "only_1day": "Только однодневные",
+    "only_multiday": "Многодневные туры",
     "sort_price_low": "Сначала дешевле",
     "sort_price_high": "Сначала дороже",
     "sort_name": "По названию (А-Я)",

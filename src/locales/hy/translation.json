@@ -165,6 +165,8 @@
     "filter_religious": "Կրոնական",
     "sort_by": "Տեսակավորել",
     "sort_default": "Առաջարկվող",
+    "only_1day": "Միօրյա տուրեր",
+    "only_multiday": "Բազմօրյա տուրեր",
     "sort_price_low": "Գինը՝ աճման կարգով",
     "sort_price_high": "Գինը՝ նվազման կարգով",
     "sort_name": "Ըստ անվանման",

@@ -46,16 +46,28 @@ function ToursPageFirstPart() {
       // 2. Фильтр по категории
       const matchesCategory = activeCategory === "all" || tour.category === activeCategory;
 
-      return matchesSearch && matchesCategory;
+      // 3. НОВОЕ: Фильтр по длительности (Duration)
+      let matchesDuration = true;
+      if (sortBy === "filter_1day") {
+        // Проверяем: либо часы, либо 1 день
+        matchesDuration = tour.durationUnit === "hours" || (tour.durationUnit === "days" && tour.duration === 1);
+      } else if (sortBy === "filter_multiday") {
+        // Проверяем: больше 1 дня
+        matchesDuration = tour.durationUnit === "days" && tour.duration > 1;
+      }
+
+      return matchesSearch && matchesCategory && matchesDuration;
     })
     .sort((a, b) => {
-      // Вытаскиваем только числа из строки "61000 AMD"
-      const priceA = parseInt(a.price);
-      const priceB = parseInt(b.price);
+      // Вытаскиваем только числа (учитываем, что в строке могут быть запятые)
+      const priceA = parseInt(a.price.toString().replace(/\D/g, '')) || 0;
+      const priceB = parseInt(b.price.toString().replace(/\D/g, '')) || 0;
 
       if (sortBy === "priceAsc") return priceA - priceB;
       if (sortBy === "priceDesc") return priceB - priceA;
       if (sortBy === "name") return a.title[lang].localeCompare(b.title[lang]);
+      
+      // Если sortBy равен "filter_1day", "filter_multiday" или "default", оставляем порядок как в базе
       return 0;
     });
 
@@ -126,6 +138,8 @@ function ToursPageFirstPart() {
                 </Dropdown.Toggle>
                 <Dropdown.Menu align="end">
                   <Dropdown.Item eventKey="default">{t('tour_info_page.sort_default', 'Default')}</Dropdown.Item>
+                  <Dropdown.Item eventKey="filter_1day">{t('tour_info_page.only_1day', '1 Day Tours')}</Dropdown.Item>
+                  <Dropdown.Item eventKey="filter_multiday">{t('tour_info_page.only_multiday', 'Multi-day Tours')}</Dropdown.Item>
                   <Dropdown.Item eventKey="priceAsc">{t('tour_info_page.sort_price_low', 'Price: Low to High')}</Dropdown.Item>
                   <Dropdown.Item eventKey="priceDesc">{t('tour_info_page.sort_price_high', 'Price: High to Low')}</Dropdown.Item>
                   <Dropdown.Item eventKey="name">{t('tour_info_page.sort_name', 'By Name')}</Dropdown.Item>

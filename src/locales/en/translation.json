@@ -169,6 +169,8 @@
     "filter_religious": "Religious",
     "sort_by": "Sort",
     "sort_default": "Recommended",
+    "only_1day": "Show: 1 Day Tours",
+    "only_multiday": "Show: Multi-day Tours",
     "sort_price_low": "Price: Low to High",
     "sort_price_high": "Price: High to Low",
     "sort_name": "By Name (A-Z)",

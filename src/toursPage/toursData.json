@@ -509,6 +509,7 @@
       }
     }
   },
+
   {
     "id": "noravank-areni",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Noravank_Monastery_Armenia.jpg/800px-Noravank_Monastery_Armenia.jpg",
@@ -530,6 +531,7 @@
       "exclude": { "en": [], "ru": [], "hy": [] }
     }
   },
+
   {
     "id": "yerevan-walk",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Republic_Square_Yerevan.jpg/800px-Republic_Square_Yerevan.jpg",
@@ -551,6 +553,7 @@
       "exclude": { "en": [], "ru": [], "hy": [] }
     }
   },
+  
   {
     "id": "lastiver-hiking",
     "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Lastiver.jpg/800px-Lastiver.jpg",

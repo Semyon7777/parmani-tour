@@ -52,16 +52,16 @@ function GroupEcoTours() {
             {t("tours.tab_all", "All Events")}
           </button>
           <button 
-            className={`tab-btn eco-tab ${activeTab === 'eco' ? 'active' : ''}`}
-            onClick={() => setActiveTab('eco')}
-          >
-            <Leaf size={18} /> {t("tours.tab_eco", "Eco Missions")}
-          </button>
-          <button 
             className={`tab-btn group-tab ${activeTab === 'group' ? 'active' : ''}`}
             onClick={() => setActiveTab('group')}
           >
             <Users size={18} /> {t("tours.tab_group", "Group Tours")}
+          </button>
+                    <button 
+            className={`tab-btn eco-tab ${activeTab === 'eco' ? 'active' : ''}`}
+            onClick={() => setActiveTab('eco')}
+          >
+            <Leaf size={18} /> {t("tours.tab_eco", "Eco Missions")}
           </button>
         </div>
       </Container>
