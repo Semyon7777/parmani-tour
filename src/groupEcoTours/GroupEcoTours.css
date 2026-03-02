@@ -413,6 +413,7 @@
   .tabs-container .custom-tabs .tab-btn {
     padding: 10px 12px;
     font-size: small;
+    gap: 1px;
   }
 }
 
