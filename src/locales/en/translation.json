@@ -723,6 +723,7 @@
     "eco_mission_desc": "We don't just travel; we take care of the mountains we love. Join our mission.",
     "stats_trees": "Trees",
     "stats_waste": "kg+ Waste",
+    "stats_areas": "Areas Improved",
     "group_perks_title": "Group Travel Perks",
     "group_perks_desc": "Maximum comfort in small companies. We take care of everything.",
     "stats_people": "Max 20 People",
@@ -735,7 +736,25 @@
     "only": "Only",
     "spots_left": "spots left",
     "mission": "Mission",
-    "btn_join": "Join Now"
+    "btn_join": "Join Now",
+    "faq": {
+      "main_title": "Frequently Asked Questions",
+      "subtitle_all": "General Information",
+      "subtitle_eco": "Eco-Missions",
+      "subtitle_group": "Group Tours",
+      "common_q1": "How do I book a spot?",
+      "common_a1": "Click 'Join Now' and fill out the form. We will contact you shortly with further details.",
+      "common_q2": "What happens if it rains?",
+      "common_a2": "We monitor the weather closely. If it's unsafe, we offer a full refund or a free reschedule.",
+      "eco_about_q": "Do I need any special equipment for planting/cleaning?",
+      "eco_about_a": "No, we provide all necessary tools, gloves, and bags. Just wear comfortable outdoor clothes.",
+      "eco_q1": "Is the eco-mission physically demanding?",
+      "eco_a1": "It involves light activity and a moderate hike. It is perfectly suitable for beginners.",
+      "group_about_q": "What is the maximum group size?",
+      "group_about_a": "We limit our group tours to a maximum of 12 people to ensure a comfortable and personalized experience.",
+      "group_q1": "Are meals included in the price?",
+      "group_a1": "Yes, traditional lunch and drinking water are included in all our group tours."
+    }
   },
   
 

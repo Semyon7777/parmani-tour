@@ -42,6 +42,44 @@
       "price": "5000 AMD",
       "image": "https://res.cloudinary.com/dwqsqiezw/image/upload/v1/tours/eco-1.webp",
       "spots": 12
+    },
+    {
+      "id": "dilijan-cleanup",
+      "type": "eco",
+      "title": {
+        "en": "Save the Dilijan Forest",
+        "ru": "Спасем леса Дилижана",
+        "hy": "Փրկենք Դիլիջանի անտառները"
+      },
+      "mission": {
+        "en": "Our goal is to plant 50 trees and clean up the hiking trails.",
+        "ru": "Наша цель — посадить 50 деревьев и очистить пешеходные тропы.",
+        "hy": "Մեր նպատակն է տնկել 50 ծառ և մաքրել քայլարշավային արահետները:"
+      },
+      "impact": {
+        "en": "Plant 50 Trees",
+        "ru": "Посадить 50 деревьев",
+        "hy": "Տնկել 50 ծառ"
+      },
+      "description": {
+        "en": "An immersive experience in Dilijan National Park combined with eco-activity.",
+        "ru": "Глубокое погружение в природу Дилижанского парка в сочетании с эко-активностью.",
+        "hy": "Ընկղմվող փորձ Դիլիջան ազգային պարկում՝ զուգորդված էկո-ակտիվությամբ:"
+      },
+      "location": {
+        "en": "Dilijan",
+        "ru": "Дилижан",
+        "hy": "Դիլիջան"
+      },
+      "date": "20.05.2026",
+      "duration": {
+        "en": "1 Day",
+        "ru": "1 День",
+        "hy": "1 Օր"
+      },
+      "price": "5000 AMD",
+      "image": "https://res.cloudinary.com/dwqsqiezw/image/upload/v1/tours/eco-1.webp",
+      "spots": 12
     }
   ],
   "groupTours": [

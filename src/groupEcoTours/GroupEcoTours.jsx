@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useState, useEffect, useMemo } from "react";
+import { Container, Row, Col, Accordion } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Leaf, Users, Calendar, MapPin, ArrowRight, TreePine,
-   ShieldCheck, Coffee, Heart, MessageCircle } from "lucide-react";
+   ShieldCheck, Coffee, Heart, MessageCircle, Map, Search } from "lucide-react";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import GroupEcoToursData from "./groupEcoToursData.json";
@@ -29,7 +29,7 @@ function GroupEcoTours() {
     : allTours.filter(tour => tour.type === activeTab);
 
   return (
-    <div className="scheduled-page">
+    <div className="scheduled-page group-eco-tours-container">
       <NavbarCustom />
       
       {/* 1. HERO SECTION */}
@@ -70,70 +70,168 @@ function GroupEcoTours() {
       <DynamicInfoSection activeTab={activeTab} currentLang={currentLang} />
 
       {/* 3. TOURS GRID */}
-      <section className="tours-list-section">
-        <Container>
-          <Row>
-            {filteredTours.map((tour) => (
-              <Col md={6} lg={4} key={tour.id} className="mb-4">
-                <div className={`tour-card ${tour.type === 'eco' ? 'card-eco' : 'card-group'}`}>
-                  
-                  <div className="tour-img-wrapper">
-                    <img src={tour.image} alt={tour.title[currentLang]} />
-                    <div className="tour-badge">
-                      {tour.type === 'eco' ? <Leaf size={14}/> : <Users size={14}/>}
-                      {tour.type === 'eco' ? t("group_eco_tours.badge_eco", " Eco-Mission") : t("group_eco_tours.badge_group", " Group Tour")}
+      <TourGrid 
+        filteredTours={filteredTours} 
+        currentLang={currentLang} 
+        t={t} 
+      />
+
+
+      {/* FAQ SECTION */}
+      <TourFAQ activeTab={activeTab} />
+      
+      <Footer />
+    </div>
+  );
+}
+
+function TourGrid({ filteredTours, currentLang, t }) {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [visibleCount, setVisibleCount] = useState(6); // Начальное кол-во 6 для сетки 3х2
+
+  // 1. Фильтрация данных
+  const searchedTours = useMemo(() => {
+    const query = searchTerm.toLowerCase().trim();
+    if (!query) return filteredTours;
+
+    return filteredTours.filter((tour) => {
+      const title = (tour.title[currentLang] || tour.title["en"] || "").toLowerCase();
+      const location = (tour.location[currentLang] || tour.location["en"] || "").toLowerCase();
+      return title.includes(query) || location.includes(query);
+    });
+  }, [filteredTours, searchTerm, currentLang]);
+
+  // 2. Ограничение видимых карточек
+  const visibleTours = searchedTours.slice(0, visibleCount);
+
+  return (
+    <section className="tours-list-section py-5">
+      <Container>
+        {/* Поиск */}
+        <div className="search-section-minimal mb-5">
+          <div className="search-input-wrapper">
+            <Search size={18} className="search-icon-muted" />
+            <input
+              type="text"
+              className="search-input-clean"
+              placeholder={t("group_eco_tours.search_placeholder", "Search your next adventure...")}
+              value={searchTerm}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setVisibleCount(6); // Сброс лимита при поиске
+              }}
+            />
+          </div>
+          {searchTerm && (
+            <div className="search-results-hint">
+              {searchedTours.length} {t("group_eco_tours.found", "results found")}
+            </div>
+          )}
+        </div>
+
+        {/* Сетка */}
+        <Row className="tours-list-section-row g-4">
+          {searchedTours.length > 0 ? (
+            visibleTours.map((tour) => (
+              <Col md={6} lg={4} key={tour.id}>
+                <div className={`tour-card-minimal ${tour.type === "eco" ? "is-eco" : "is-group"}`}>
+                  {/* Image */}
+                  <div className="tour-img-container">
+                    <img
+                      src={tour.image}
+                      alt={tour.title[currentLang] || tour.title["en"]}
+                      loading="lazy"
+                    />
+                    <div className="tour-type-badge">
+                      {tour.type === "eco" ? <Leaf size={12} /> : <Users size={12} />}
+                      <span>
+                        {tour.type === "eco"
+                          ? t("group_eco_tours.badge_eco", "Eco")
+                          : t("group_eco_tours.badge_group", "Group")}
+                      </span>
                     </div>
                   </div>
 
-                  <div className="tour-content">
-                    <div className="tour-date">
-                      <Calendar size={16} /> {tour.date}
-                    </div>
-                    
-                    {/* Название тура на текущем языке */}
-                    <h3>{tour.title[currentLang] || tour.title['en']}</h3>
-                    
-                    <div className="tour-meta">
-                      {/* Локация на текущем языке */}
-                      <span><MapPin size={16}/> {tour.location[currentLang] || tour.location['en']}</span>
-                      <span className="spots-left">
-                        {t("group_eco_tours.only", "Only")} {tour.spots} {t("group_eco_tours.spots_left", "spots left")}
-                      </span>
+                  {/* Body */}
+                  <div className="tour-body">
+                    <div className="tour-date-top">
+                      <Calendar size={14} />
+                      <span>{tour.date}</span>
                     </div>
 
-                    {tour.type === 'eco' && (
-                      <div className="eco-impact-box">
-                        <TreePine size={18} color="#2ecc71"/> 
-                        {/* Миссия на текущем языке */}
-                        <span>{t("group_eco_tours.mission", "Mission")}: {tour.impact[currentLang] || tour.impact['en']}</span>
+                    <h3 className="tour-title-text">
+                      {tour.title[currentLang] || tour.title["en"]}
+                    </h3>
+
+                    <div className="tour-details">
+                      <div className="detail-item">
+                        <MapPin size={14} />
+                        <span>{tour.location[currentLang] || tour.location["en"]}</span>
+                      </div>
+                      <div className="detail-item spots">
+                        <span className="spots-dot"></span>
+                        {t("group_eco_tours.only", "Only")} {tour.spots}{" "}
+                        {t("group_eco_tours.spots_left", "spots left")}
+                      </div>
+                    </div>
+
+                    {tour.type === "eco" && (
+                      <div className="eco-mission-stripe">
+                        <TreePine size={16} />
+                        <p>
+                          {t("group_eco_tours.mission", "Mission")}:{" "}
+                          {tour.impact[currentLang] || tour.impact["en"]}
+                        </p>
                       </div>
                     )}
 
-                    <div className="tour-footer">
-                      <div className="price">
-                        {tour.price}
-                      </div>
-                      
-                      <Link 
-                        to={tour.type === 'eco' ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`} 
-                        className="join-link"
+                    <div className="tour-action-area">
+                      <div className="tour-price-tag">{tour.price}</div>
+                      <Link
+                        to={tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`}
+                        className="tour-btn-minimal"
                       >
-                        <button className="join-btn">
-                          <span>{t("group_eco_tours.btn_join", "Join Now")}</span>
-                          <ArrowRight size={18} />
-                        </button>
+                        {t("group_eco_tours.btn_join", "Join")}
+                        <ArrowRight size={16} />
                       </Link>
                     </div>
                   </div>
                 </div>
               </Col>
-            ))}
-          </Row>
-        </Container>
-      </section>
-      
-      <Footer />
-    </div>
+            ))
+          ) : (
+            /* Состояние "Ничего не найдено" */
+            <Col xs={12} className="text-center py-5">
+              <div className="no-results-minimal">
+                <p className="text-muted fw-light" style={{ fontSize: "1.2rem" }}>
+                  {t("group_eco_tours.no_results", "No tours found matching your search.")}
+                </p>
+                <button 
+                  className="btn btn-link text-dark text-decoration-none" 
+                  onClick={() => setSearchTerm("")}
+                  style={{ fontSize: "0.9rem", opacity: 0.7 }}
+                >
+                  Clear search
+                </button>
+              </div>
+            </Col>
+          )}
+        </Row>
+
+        {/* Кнопка Show More */}
+        {visibleCount < searchedTours.length && (
+          <div className="text-center mt-5">
+            <button
+              className="btn btn-outline-dark px-5 py-2"
+              style={{ borderRadius: "50px", fontSize: "0.85rem", fontWeight: "600" }}
+              onClick={() => setVisibleCount((prev) => prev + 6)}
+            >
+              SHOW MORE
+            </button>
+          </div>
+        )}
+      </Container>
+    </section>
   );
 }
 
@@ -188,11 +286,28 @@ const DynamicInfoSection = ({ activeTab, currentLang }) => {
               <div className="d-flex gap-4 justify-content-center">
                 <div className="stat-badge">
                   <TreePine size={30} />
-                  <span>150+ {t("group_eco_tours.stats_trees", "Trees")}</span>
+                  <div className="stat-text">
+                    <span className="stat-number">150+</span>
+                    <span className="stat-label">{t("group_eco_tours.stats_trees", "Trees Planted")}</span>
+                  </div>
                 </div>
+
+                {/* Мусор */}
                 <div className="stat-badge">
                   <Leaf size={30} />
-                  <span>500{t("group_eco_tours.stats_waste", "kg+ Waste")}</span>
+                  <div className="stat-text">
+                    <span className="stat-number">500kg+</span>
+                    <span className="stat-label">{t("group_eco_tours.stats_waste", "Waste Collected")}</span>
+                  </div>
+                </div>
+
+                {/* Благоустройство */}
+                <div className="stat-badge">
+                  <Map size={30} />
+                  <div className="stat-text">
+                    <span className="stat-number">12+</span>
+                    <span className="stat-label">{t("group_eco_tours.stats_areas", "Areas Improved")}</span>
+                  </div>
                 </div>
               </div>
             </Col>
@@ -247,6 +362,56 @@ const TourCTA = () => {
         </a>
       </Container>
     </div>
+  );
+};
+
+
+const TourFAQ = ({ activeTab }) => {
+  const { t } = useTranslation();
+
+  const faqs = {
+    all: [
+      { q: "group_eco_tours.faq.common_q1", a: "group_eco_tours.faq.common_a1" },
+      { q: "group_eco_tours.faq.common_q2", a: "group_eco_tours.faq.common_a2" }
+    ],
+    eco: [
+      { q: "group_eco_tours.faq.eco_about_q", a: "group_eco_tours.faq.eco_about_a" },
+      { q: "group_eco_tours.faq.eco_q1", a: "group_eco_tours.faq.eco_a1" },
+      { q: "group_eco_tours.faq.common_q2", a: "group_eco_tours.faq.common_a2" }
+    ],
+    group: [
+      { q: "group_eco_tours.faq.group_about_q", a: "group_eco_tours.faq.group_about_a" },
+      { q: "group_eco_tours.faq.group_q1", a: "group_eco_tours.faq.group_a1" },
+      { q: "group_eco_tours.faq.common_q1", a: "group_eco_tours.faq.common_a1" }
+    ]
+  };
+
+  const currentList = faqs[activeTab] || faqs.all;
+
+  return (
+    <section className={`minimal-faq-wrapper faq-theme-${activeTab}`}>
+      <Container className="minimal-faq-container">
+        
+        <div className="minimal-faq-header text-center">
+          <span className="minimal-faq-subtitle">{t(`group_eco_tours.faq.subtitle_${activeTab}`)}</span>
+          <h2 className="minimal-faq-title">{t("group_eco_tours.faq.main_title")}</h2>
+        </div>
+
+        <Accordion flush className="minimal-faq-accordion">
+          {currentList.map((item, idx) => (
+            <Accordion.Item eventKey={idx.toString()} key={idx} className="minimal-faq-item">
+              <Accordion.Header className="minimal-faq-trigger">
+                {t(item.q)}
+              </Accordion.Header>
+              <Accordion.Body className="minimal-faq-body">
+                {t(item.a)}
+              </Accordion.Body>
+            </Accordion.Item>
+          ))}
+        </Accordion>
+
+      </Container>
+    </section>
   );
 };
 

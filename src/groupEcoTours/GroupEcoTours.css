@@ -16,14 +16,14 @@
 }
 
 /* TABS */
-.tabs-container {
+.group-eco-tours-container .tabs-container {
   position: relative;
   z-index: 10;
   display: flex;
   justify-content: center;
 }
 
-.custom-tabs {
+.group-eco-tours-container .custom-tabs {
   background: white;
   padding: 10px;
   border-radius: 50px;
@@ -32,7 +32,7 @@
   gap: 10px;
 }
 
-.tab-btn {
+.group-eco-tours-container .tab-btn {
   padding: 12px 30px;
   border: none;
   background: transparent;
@@ -45,143 +45,291 @@
   gap: 8px;
 }
 
-.tab-btn.active {
+.group-eco-tours-container .tab-btn.active {
   background: #333;
   color: white;
 }
 
 /* Спец цвета для активных табов */
-.tab-btn.eco-tab.active { background: #3a7d44; } /* Зеленый */
-.tab-btn.group-tab.active { background: #e67e22; } /* Оранжевый */
+.group-eco-tours-container .tab-btn.eco-tab.active { background: #3a7d44; } /* Зеленый */
+.group-eco-tours-container .tab-btn.group-tab.active { background: #e67e22; } /* Оранжевый */
 
 /* TOUR LIST */
-.tours-list-section {
+.group-eco-tours-container .tours-list-section {
   margin-top: 4%;
 }
 
-/* CARDS */
-.tour-card {
-  background: white;
-  border-radius: 20px;
-  overflow: hidden;
-  transition: 0.3s;
-  border: 1px solid #eee;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+/* --- СЕКЦИЯ И ПОИСК --- */
+.group-eco-tours-container .tours-list-section {
+    background-color: #fdfdfd;
 }
 
-.tour-card:hover {
-  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+/* Стилизация инпута поиска под минимализм */
+.group-eco-tours-container .tours-list-section .form-control {
+    border: none;
+    border-bottom: 2px solid #eee;
+    border-radius: 0;
+    padding: 12px 5px;
+    box-shadow: none;
+    font-weight: 300;
+    font-size: 1.1rem;
+    transition: border-color 0.3s ease;
+    background: transparent;
 }
 
-.tour-img-wrapper {
-  height: 220px;
-  position: relative;
+.group-eco-tours-container .tours-list-section .form-control:focus {
+    border-bottom-color: #111;
 }
 
-.tour-img-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* --- КАРТОЧКА --- */
+.group-eco-tours-container .tour-card-minimal {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f0f0f0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.tour-badge {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  padding: 5px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  color: white;
+.group-eco-tours-container .tour-card-minimal:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* --- ИЗОБРАЖЕНИЕ --- */
+.group-eco-tours-container .tour-img-container {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+}
+
+.group-eco-tours-container .tour-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.group-eco-tours-container .tour-card-minimal:hover .tour-img-container img {
+    transform: scale(1.05);
+}
+
+/* --- БЕЙДЖИ --- */
+.group-eco-tours-container .tour-type-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(4px);
+}
+
+/* Цвета для разных типов */
+.group-eco-tours-container .is-eco .tour-type-badge {
+    background: rgba(46, 204, 113, 0.9);
+    color: white;
+}
+
+.group-eco-tours-container .is-group .tour-type-badge {
+    background: rgba(230, 126, 34, 0.9);
+    color: white;
+}
+
+/* --- КОНТЕНТ (BODY) --- */
+.group-eco-tours-container .tour-body {
+    padding: 18px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.group-eco-tours-container .tour-date-top {
+    color: #999;
+    font-size: 0.75rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.group-eco-tours-container .tour-title-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 15px;
+    line-height: 1.4;
+}
+
+/* Детали: Локация и Места */
+.group-eco-tours-container .tour-details {
+    margin-bottom: 20px;
+}
+
+.group-eco-tours-container .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.group-eco-tours-container .detail-item.spots {
+    color: #e67e22;
+    font-weight: 600;
+}
+
+.group-eco-tours-container .spots-dot {
+    width: 6px;
+    height: 6px;
+    background: #e67e22;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* Контейнер поиска */
+.group-eco-tours-container .search-section-minimal {
+  max-width: 450px;
+  margin: 0 auto; /* Центрируем */
+}
+
+.group-eco-tours-container .search-input-wrapper {
   display: flex;
   align-items: center;
-  gap: 5px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0; /* Тонкая линия снизу вместо рамки */
+  transition: border-color 0.3s ease;
 }
 
-/* Разные цвета бейджей */
-.card-eco .tour-badge { background: #3a7d44; }
-.card-group .tour-badge { background: #e67e22; }
-
-.tour-content {
-  padding: 25px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
+.group-eco-tours-container .search-input-wrapper:focus-within {
+  border-bottom-color: #111; /* Линия темнеет при фокусе */
 }
 
-.tour-date {
-  color: #999;
-  font-size: 13px;
-  margin-bottom: 10px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+.group-eco-tours-container .search-icon-muted {
+  color: #aaa;
+  margin-right: 12px;
 }
 
-.tour-content h3 {
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-  color: #222;
-}
-
-.eco-impact-box {
-  background: #f0f9f4;
-  color: #3a7d44;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: auto; /* Прижать к низу контента */
-  margin-bottom: 15px;
-}
-
-.tour-footer {
-  margin-top: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 20px;
-  border-top: 1px solid #eee;
-}
-
-.price {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: #222;
-}
-
-.join-btn {
-  background: #525452;
-  color: white;
+.group-eco-tours-container .search-input-clean {
   border: none;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 120px;
-  border-radius: 20px;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #333;
 }
 
-.tour-card:hover .join-btn {
-  width: 120px;
-  border-radius: 20px;
+.group-eco-tours-container .search-input-clean::placeholder {
+  color: #ccc;
+  font-style: italic;
 }
 
-/* Хитрая анимация кнопки: сначала кружок, потом текст */
-.join-btn span { display: none; } /* Если захочешь добавить текст внутрь */
+/* Маленькая подсказка под поиском */
+.group-eco-tours-container .search-results-hint {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #bbb;
+  margin-top: 8px;
+  text-align: right;
+  animation: fadeIn 0.3s ease;
+}
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-@media (min-width: 576px) {
-    .card-group {
-        display: flex !important;
-        flex-flow: column !important;
+/* Эко-миссия (плашка) */
+.group-eco-tours-container .eco-mission-stripe {
+    background: #f0fdf4;
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    gap: 10px;
+    margin-top: auto; /* Прижимает к футеру */
+    margin-bottom: 20px;
+}
+
+.group-eco-tours-container .eco-mission-stripe p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #27ae60;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.group-eco-tours-container .eco-mission-stripe svg {
+    color: #2ecc71;
+    flex-shrink: 0;
+}
+
+/* --- ФУТЕР КАРТОЧКИ --- */
+.group-eco-tours-container .tour-action-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.group-eco-tours-container .tour-price-tag {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #111;
+}
+
+/* Кнопка "Join" */
+.group-eco-tours-container .tour-btn-minimal {
+    text-decoration: none !important;
+    background: #111;
+    color: white !important;
+    padding: 10px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s ease;
+}
+
+.group-eco-tours-container .tour-btn-minimal:hover {
+    background: #333;
+}
+
+/* Кнопка "Show More" */
+.group-eco-tours-container .btn-outline-dark {
+    border-radius: 50px;
+    padding: 12px 40px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin-top: 20px;
+}
+
+/* --- АДАПТИВНОСТЬ --- */
+@media (max-width: 768px) {
+    .group-eco-tours-container .tour-img-container {
+        height: 200px;
+    }
+    
+    .group-eco-tours-container .tour-title-text {
+        font-size: 1.15rem;
+    }
+
+    .group-eco-tours-container .tour-body {
+        padding: 20px;
     }
 }
 
@@ -199,7 +347,7 @@
 }
 
 /* HERO SECTION */
-.eco-hero {
+.eco-details-page .eco-hero {
   height: 70vh;
   min-height: 500px;
   background-size: cover;
@@ -207,7 +355,7 @@
   position: relative;
 }
 
-.eco-hero-overlay {
+.eco-details-page .eco-hero-overlay {
   height: 100%;
   background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
   display: flex;
@@ -215,7 +363,7 @@
   padding-bottom: 80px;
 }
 
-.back-btn {
+.eco-details-page .back-btn {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -226,19 +374,19 @@
   transition: 0.3s;
 }
 
-.back-btn:hover {
+.eco-details-page .back-btn:hover {
   background: white;
   color: black;
 }
 
-.hero-content-box h1 {
+.eco-details-page .hero-content-box h1 {
   font-size: 3.5rem;
   font-weight: 800;
   color: white;
   margin: 15px 0;
 }
 
-.eco-badge-top {
+.eco-details-page .eco-badge-top {
   background: var(--eco-green);
   color: white;
   padding: 6px 16px;
@@ -250,14 +398,14 @@
   gap: 8px;
 }
 
-.quick-stats {
+.eco-details-page .quick-stats {
   display: flex;
   gap: 30px;
   color: rgba(255, 255, 255, 0.9);
   margin-top: 20px;
 }
 
-.stat-item {
+.eco-details-page .stat-item {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -265,61 +413,61 @@
 }
 
 /* CONTENT BLOCKS */
-.eco-content-container {
+.eco-details-page .eco-content-container {
   margin-top: -50px; /* Наложение на Hero */
   position: relative;
   z-index: 5;
 }
 
-.info-block {
+.eco-details-page .info-block {
   margin-bottom: 60px;
 }
 
-.info-block h3 {
+.eco-details-page .info-block h3 {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 25px;
 }
 
-.block-header {
+.eco-details-page .block-header {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 20px;
 }
 
-.icon-green {
+.eco-details-page .icon-green {
   color: var(--eco-green);
 }
 
-.mission-highlight {
+.eco-details-page .mission-highlight {
   background: var(--eco-light-green);
   padding: 40px;
   border-radius: 24px;
 }
 
-.mission-text {
+.eco-details-page .mission-text {
   font-size: 1.2rem;
   line-height: 1.6;
   color: var(--text-dark);
   font-style: italic;
 }
 
-.description-text {
+.eco-details-page .description-text {
   font-size: 1.1rem;
   line-height: 1.8;
   color: var(--text-gray);
 }
 
 /* INCLUDED LIST */
-.included-grid {
+.eco-details-page .included-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
 }
 
-.inc-item {
+.eco-details-page .inc-item {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -327,12 +475,12 @@
   font-weight: 500;
 }
 
-.inc-item svg {
+.eco-details-page .inc-item svg {
   color: var(--eco-green);
 }
 
 /* BOOKING CARD */
-.eco-booking-card {
+.eco-details-page .eco-booking-card {
   background: white;
   border: 1px solid #f0f0f0;
   border-radius: 24px;
@@ -342,7 +490,7 @@
   top: 100px;
 }
 
-.price-label {
+.eco-details-page .price-label {
   font-size: 14px;
   color: var(--text-gray);
   display: block;
@@ -355,13 +503,13 @@
   margin-bottom: 25px;
 }
 
-.card-features {
+.eco-details-page .card-features {
   margin-bottom: 30px;
   border-top: 1px solid #f0f0f0;
   padding-top: 20px;
 }
 
-.feat-line {
+.eco-details-page .feat-line {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -370,11 +518,11 @@
   color: var(--text-dark);
 }
 
-.feat-line svg {
+.eco-details-page .feat-line svg {
   color: var(--eco-green);
 }
 
-.eco-main-btn {
+.eco-details-page .eco-main-btn {
   background: var(--eco-green);
   color: white;
   width: 100%;
@@ -386,12 +534,12 @@
   transition: 0.3s;
 }
 
-.eco-main-btn:hover {
+.eco-details-page .eco-main-btn:hover {
   background: #1b4332;
   transform: translateY(-2px);
 }
 
-.guarantee-text {
+.eco-details-page .guarantee-text {
   text-align: center;
   font-size: 12px;
   color: var(--text-gray);
@@ -400,20 +548,13 @@
 
 /* RESPONSIVE */
 @media (max-width: 991px) {
-  .eco-hero { height: 50vh; }
-  .hero-content-box h1 { font-size: 2.5rem; }
-  .eco-content-container { margin-top: 20px; }
-  .eco-booking-card { margin-top: 40px; position: static; }
+  .eco-details-page .eco-hero { height: 50vh; }
+  .eco-details-page .hero-content-box h1 { font-size: 2.5rem; }
+  .eco-details-page .eco-content-container { margin-top: 20px; }
+  .eco-details-page .eco-booking-card { margin-top: 40px; position: static; }
 
-  .tabs-container .custom-tabs {
-    gap: 5px;
-    padding: 7px;
-  }
-
-  .tabs-container .custom-tabs .tab-btn {
+  .eco-details-page .tabs-container .custom-tabs .tab-btn {
     padding: 10px 12px;
-    font-size: small;
-    gap: 1px;
   }
 }
 
@@ -430,14 +571,14 @@
 }
 
 /* HERO SECTION - Геометричный и яркий */
-.group-hero {
+.group-details-page .group-hero {
   height: 55vh;
   background-size: cover;
   background-position: center;
   position: relative;
 }
 
-.group-hero-overlay {
+.group-details-page .group-hero-overlay {
   height: 100%;
   background: rgba(15, 23, 42, 0.4); /* Затемнение */
   display: flex;
@@ -445,7 +586,7 @@
   padding-bottom: 50px;
 }
 
-.group-back-btn {
+.group-details-page .group-back-btn {
   background: white;
   border: none;
   width: 50px;
@@ -458,12 +599,12 @@
   transition: 0.3s;
 }
 
-.group-back-btn:hover {
+.group-details-page .group-back-btn:hover {
   background: var(--group-orange);
   color: white;
 }
 
-.group-type-badge {
+.group-details-page .group-type-badge {
   background: var(--group-orange) !important;
   padding: 8px 15px;
   font-size: 12px;
@@ -471,9 +612,9 @@
   border-radius: 4px;
 }
 
-.group-type-badge .bg-primary 
+.group-details-page .group-type-badge .bg-primary 
 
-.group-title {
+.group-details-page .group-title {
   color: white;
   font-size: 4rem;
   font-weight: 900;
@@ -483,58 +624,58 @@
 }
 
 /* QUICK INFO STRIP */
-.info-strip {
+.group-details-page .info-strip {
   background: var(--group-dark);
   color: white;
   padding: 25px 0;
 }
 
-.strip-grid {
+.group-details-page .strip-grid {
   display: flex;
   justify-content: space-around;
 }
 
-.strip-item {
+.group-details-page .strip-item {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-.strip-item small {
+.group-details-page .strip-item small {
   display: block;
   color: #94a3b8;
   font-size: 11px;
   text-transform: uppercase;
 }
 
-.strip-item span {
+.group-details-page .strip-item span {
   font-weight: 700;
 }
 
 /* TIMELINE (Таймлайн программы) */
-.itinerary-section {
+.group-details-page .itinerary-section {
   margin-top: 60px;
 }
 
-.section-title {
+.group-details-page .section-title {
   font-weight: 800;
   text-transform: uppercase;
   margin-bottom: 40px;
   position: relative;
 }
 
-.timeline {
+.group-details-page .timeline {
   border-left: 2px solid var(--bg-light);
   padding-left: 30px;
   margin-left: 10px;
 }
 
-.timeline-item {
+.group-details-page .timeline-item {
   position: relative;
   margin-bottom: 40px;
 }
 
-.timeline-item::before {
+.group-details-page .timeline-item::before {
   content: '';
   position: absolute;
   left: -39px;
@@ -546,19 +687,19 @@
   border-radius: 50%;
 }
 
-.time {
+.group-details-page .time {
   font-weight: 800;
   color: var(--group-orange);
   margin-bottom: 5px;
 }
 
-.timeline-item h4 {
+.group-details-page .timeline-item h4 {
   font-size: 1.2rem;
   font-weight: 700;
 }
 
 /* BOOKING PANEL - Уникальный "плавающий" блок */
-.group-booking-panel {
+.group-details-page .group-booking-panel {
   background: white;
   border: 2px solid var(--group-dark);
   padding: 40px;
@@ -569,32 +710,32 @@
   margin-top: 60px;
 }
 
-.price-box {
+.group-details-page .price-box {
   text-align: center;
   margin-bottom: 30px;
 }
 
-.price-circle {
+.group-details-page .price-circle {
   font-size: 2.5rem;
   font-weight: 900;
   color: var(--group-dark);
 }
 
-.booking-details {
+.group-details-page .booking-details {
   margin: 25px 0;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.detail-row {
+.group-details-page .detail-row {
   display: flex;
   align-items: center;
   gap: 12px;
   font-weight: 600;
 }
 
-.group-action-btn {
+.group-details-page .group-action-btn {
   background: var(--group-dark);
   color: white;
   width: 100%;
@@ -605,30 +746,30 @@
   transition: 0.3s;
 }
 
-.group-action-btn:hover {
+.group-details-page .group-action-btn:hover {
   background: var(--group-orange);
   transform: translate(-3px, -3px);
 }
 
 /* PROGRESS BAR */
-.spots-counter {
+.group-details-page .spots-counter {
   margin-top: 25px;
 }
 
-.progress-bar {
+.group-details-page .progress-bar {
   height: 6px;
   background: #eee;
   border-radius: 10px;
   margin-bottom: 8px;
 }
 
-.progress-fill {
+.group-details-page .progress-fill {
   height: 100%;
   background: var(--group-orange);
   border-radius: 10px;
 }
 
-.info-card {
+.group-details-page .info-card {
   display: flex;
   gap: 20px;
   background: var(--bg-light);
@@ -636,18 +777,16 @@
   margin-top: 40px;
 }
 
-.text-orange { color: var(--group-orange); }
+.group-details-page .text-orange { color: var(--group-orange); }
 
 /* RESPONSIVE */
 @media (max-width: 991px) {
-  .group-title { font-size: 2.5rem; }
-  .strip-grid { flex-direction: column; gap: 20px; }
-  .group-booking-panel { position: static; box-shadow: 8px 8px 0px var(--group-orange); }
+  .group-details-page .group-title { font-size: 2.5rem; }
+  .group-details-page .strip-grid { flex-direction: column; gap: 20px; }
+  .group-details-page .group-booking-panel { position: static; box-shadow: 8px 8px 0px var(--group-orange); }
 }
 
-/* ------------------- */
-
-.dynamic-info-block {
+.group-details-page .dynamic-info-block {
     transition: all 0.4s ease-in-out;
     border-radius: 20px;
     margin: 20px 0 40px;
@@ -673,3 +812,153 @@
 
 .stat-badge svg { color: #2ecc71; }
 .perk-badge svg { color: #3498db; }
+
+/* FAQ */
+
+/* Контейнер и обертка */
+.minimal-faq-wrapper {
+    padding: 80px 0;
+    background-color: #ffffff;
+}
+
+.minimal-faq-container {
+    max-width: 760px; /* Узкая колонка для элегантности */
+    margin: 0 auto;
+}
+
+/* Заголовок */
+.minimal-faq-header {
+    margin-bottom: 50px;
+}
+
+.minimal-faq-subtitle {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.minimal-faq-title {
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: #111;
+    margin: 0;
+}
+
+/* Аккордеон: линии и отступы */
+.minimal-faq-accordion {
+    border-top: 1px solid #eaeaea;
+}
+
+.minimal-faq-item {
+    border: none !important;
+    border-bottom: 1px solid #eaeaea !important;
+    background-color: transparent !important;
+}
+
+/* Кнопка вопроса */
+.minimal-faq-trigger .accordion-button {
+    padding: 24px 0 !important;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #111;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Текст ответа */
+.minimal-faq-body {
+    padding: 0 0 30px 0 !important;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* * ДИНАМИКА: Тонкий акцент при открытии 
+ * (меняет цвет текста только у активного вопроса)
+ */
+.faq-theme-eco .minimal-faq-trigger .accordion-button:not(.collapsed) {
+    color: #2ecc71; /* Зеленый акцент для Эко */
+}
+
+.faq-theme-group .minimal-faq-trigger .accordion-button:not(.collapsed) {
+    color: #3498db; /* Синий акцент для Групп */
+}
+
+.faq-theme-all .minimal-faq-trigger .accordion-button:not(.collapsed) {
+    color: #111; /* Черный по умолчанию */
+}
+
+/* --- MOBILE OPTIMIZATION --- */
+
+@media (max-width: 768px) {
+    /* 1. Блок статистики (Eco/Group Stats) */
+    .d-flex.gap-4.justify-content-center {
+        flex-direction: column; /* Складываем карточки в колонку */
+        gap: 12px !important;
+        padding: 0 15px;
+    }
+
+    .stat-badge, .perk-badge {
+        width: 100%; /* Карточка на всю ширину */
+        min-width: 0;
+        padding: 16px 20px;
+        justify-content: flex-start; /* Иконка слева, текст справа */
+        border-radius: 12px;
+    }
+
+    .stat-number {
+        font-size: 1.15rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    /* 2. Блок FAQ (Minimalism) */
+    .minimal-faq-wrapper {
+        padding: 50px 0; /* Уменьшаем отступы секции */
+    }
+
+    .minimal-faq-header {
+        margin-bottom: 30px;
+        padding: 0 20px;
+    }
+
+    .minimal-faq-title {
+        font-size: 1.75rem; /* Уменьшаем заголовок, чтобы не переносился криво */
+    }
+
+    .minimal-faq-trigger .accordion-button {
+        font-size: 1rem; /* Чуть меньше текст вопроса */
+        padding: 20px 0 !important;
+        line-height: 1.4;
+    }
+
+    .minimal-faq-body {
+        font-size: 0.95rem;
+        padding-bottom: 25px !important;
+    }
+
+    /* 3. Hero секция (если нужно подправить) */
+    .hero-main-title {
+        font-size: 2rem !important;
+        padding: 0 10px;
+    }
+}
+
+/* Дополнительная правка для совсем маленьких экранов (iPhone SE и т.д.) */
+@media (max-width: 380px) {
+    .stat-badge {
+        padding: 12px 15px;
+    }
+    
+    .stat-badge svg {
+        width: 24px;
+        height: 24px;
+    }
+}
