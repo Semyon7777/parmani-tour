@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Leaf, Users, Calendar, MapPin, ArrowRight, TreePine,
-   ShieldCheck, Coffee, HeartHandshake, MessageCircle } from "lucide-react";
+   ShieldCheck, Coffee, Heart, MessageCircle } from "lucide-react";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import GroupEcoToursData from "./groupEcoToursData.json";
@@ -67,6 +67,8 @@ function GroupEcoTours() {
         </div>
       </Container>
 
+      <DynamicInfoSection activeTab={activeTab} currentLang={currentLang} />
+
       {/* 3. TOURS GRID */}
       <section className="tours-list-section">
         <Container>
@@ -129,12 +131,6 @@ function GroupEcoTours() {
           </Row>
         </Container>
       </section>
-
-
-      <GroupBenefits />
-
-      <TourCTA />
-
       
       <Footer />
     </div>
@@ -142,75 +138,100 @@ function GroupEcoTours() {
 }
 
 
-const ImpactStats = () => {
+const DynamicInfoSection = ({ activeTab, currentLang }) => {
   const { t } = useTranslation();
 
-  const stats = [
-    { icon: <TreePine size={32} />, value: "120+", label: t("tours.stats_trees", "Trees Planted") },
-    { icon: <Leaf size={32} />, value: "450kg", label: t("tours.stats_waste", "Waste Collected") },
-    { icon: <Users size={32} />, value: "300+", label: t("tours.stats_volunteers", "Volunteers") },
-  ];
-
-  return (
-    <div className="impact-stats-wrapper my-5">
-      <Container>
-        <Row className="justify-content-center text-center">
-          {stats.map((stat, idx) => (
-            <Col key={idx} xs={12} md={4} className="mb-4 mb-md-0">
-              <div className="stat-card">
-                <div className="stat-icon">{stat.icon}</div>
-                <h3 className="stat-value">{stat.value}</h3>
-                <p className="stat-label text-muted">{stat.label}</p>
+  // Если выбрано "Все", показываем общий блок о качестве
+  if (activeTab === 'all') {
+    return (
+      <div className="dynamic-info-block all-info py-5">
+        <Container>
+          <Row className="text-center g-4">
+            <Col md={4}>
+              <div className="info-card-simple">
+                <Heart size={32} color="#e74c3c" />
+                <h5>{t("group_eco_tours.all_heart_title", "Made with Love")}</h5>
+                <p className="small text-muted">{t("group_eco_tours.all_heart_text", "Each route is carefully planned by locals")}</p>
               </div>
             </Col>
-          ))}
-        </Row>
-      </Container>
-    </div>
-  );
-};
-
-
-const GroupBenefits = () => {
-  const { t } = useTranslation();
-
-  const benefits = [
-    {
-      icon: <ShieldCheck size={30} />,
-      title: t("tours.benefit_safe_title", "Small Groups"),
-      text: t("tours.benefit_safe_text", "Maximum 12 people for your comfort")
-    },
-    {
-      icon: <Coffee size={30} />,
-      title: t("tours.benefit_inc_title", "All-Inclusive"),
-      text: t("tours.benefit_inc_text", "Transfers, snacks, and guides included")
-    },
-    {
-      icon: <HeartHandshake size={30} />,
-      title: t("tours.benefit_comm_title", "Community"),
-      text: t("tours.benefit_comm_text", "Meet like-minded people and make friends")
-    }
-  ];
-
-  return (
-    <section className="benefits-section py-5">
-      <Container>
-        <Row>
-          {benefits.map((b, i) => (
-            <Col key={i} md={4} className="text-center">
-              <div className="benefit-item px-3">
-                <div className="benefit-icon-circle mb-3">{b.icon}</div>
-                <h5>{b.title}</h5>
-                <p className="small text-muted">{b.text}</p>
+            <Col md={4}>
+              <div className="info-card-simple">
+                <ShieldCheck size={32} color="#3498db" />
+                <h5>{t("group_eco_tours.all_safe_title", "Safety First")}</h5>
+                <p className="small text-muted">{t("group_eco_tours.all_safe_text", "Professional drivers and certified guides")}</p>
               </div>
             </Col>
-          ))}
-        </Row>
-      </Container>
-    </section>
-  );
-};
+            <Col md={4}>
+              <div className="info-card-simple">
+                <Users size={32} color="#f1c40f" />
+                <h5>{t("group_eco_tours.all_comm_title", "Community")}</h5>
+                <p className="small text-muted">{t("group_eco_tours.all_comm_text", "Join a group of like-minded travelers")}</p>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    );
+  }
 
+  // Данные для Эко-миссий
+  if (activeTab === 'eco') {
+    return (
+      <div className="dynamic-info-block eco-info py-5" style={{ background: '#f1f8f4' }}>
+        <Container>
+          <Row className="align-items-center">
+            <Col lg={6}>
+              <h2 className="fw-bold mb-3">{t("group_eco_tours.eco_mission_title", "Our Eco Impact")}</h2>
+              <p>{t("group_eco_tours.eco_mission_desc", "We don't just travel; we take care of the mountains we love. Join our mission.")}</p>
+            </Col>
+            <Col lg={6}>
+              <div className="d-flex gap-4 justify-content-center">
+                <div className="stat-badge">
+                  <TreePine size={30} />
+                  <span>150+ {t("group_eco_tours.stats_trees", "Trees")}</span>
+                </div>
+                <div className="stat-badge">
+                  <Leaf size={30} />
+                  <span>500{t("group_eco_tours.stats_waste", "kg+ Waste")}</span>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    );
+  }
+
+  // Данные для Групповых туров
+  if (activeTab === 'group') {
+    return (
+      <div className="dynamic-info-block group-info py-5" style={{ background: '#f0f4f8' }}>
+        <Container>
+          <Row className="align-items-center">
+            <Col lg={6}>
+              <h2 className="fw-bold mb-3">{t("group_eco_tours.group_perks_title", "Group Travel Perks")}</h2>
+              <p>{t("group_eco_tours.group_perks_desc", "Maximum comfort in small companies. We take care of everything.")}</p>
+            </Col>
+            <Col lg={6}>
+              <div className="d-flex gap-4 justify-content-center">
+                <div className="perk-badge">
+                  <Users size={30} />
+                  <span>{t("group_eco_tours.stats_people", "Max 20 People")}</span>
+                </div>
+                <div className="perk-badge">
+                  <Coffee size={30} />
+                  <span>{t("group_eco_tours.stats_inc", "All Inclusive")}</span>
+                </div>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    );
+  }
+
+  return null;
+};
 
 const TourCTA = () => {
   const { t } = useTranslation();

@@ -405,8 +405,14 @@
   .eco-content-container { margin-top: 20px; }
   .eco-booking-card { margin-top: 40px; position: static; }
 
+  .tabs-container .custom-tabs {
+    gap: 5px;
+    padding: 7px;
+  }
+
   .tabs-container .custom-tabs .tab-btn {
     padding: 10px 12px;
+    font-size: small;
   }
 }
 
@@ -640,37 +646,29 @@
 
 /* ------------------- */
 
-/* Статистика */
-.impact-stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    background: #f1f8f4; /* Светло-зеленый оттенок */
-    padding: 30px;
+.dynamic-info-block {
+    transition: all 0.4s ease-in-out;
     border-radius: 20px;
-    text-align: center;
+    margin: 20px 0 40px;
 }
 
-.stat-item h4 {
-    color: #2ecc71;
-    font-size: 2rem;
+.info-card-simple {
+    padding: 20px;
+}
+
+.stat-badge, .perk-badge {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 140px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    gap: 10px;
     font-weight: bold;
-    margin: 10px 0;
+    color: #2c3e50;
 }
 
-/* Карточки туров (добавь тень и плавность) */
-.tour-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: none;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-}
-
-.tour-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-}
-
-/* Эко-бейджик */
-.card-eco .tour-badge {
-    background-color: #2ecc71 !important;
-}
+.stat-badge svg { color: #2ecc71; }
+.perk-badge svg { color: #3498db; }
