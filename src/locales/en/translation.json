@@ -712,16 +712,16 @@
   },
 
   "group_eco_tours": {
-    "dilijan-cleanup": {
-      "title": "Clean Dilijan",
-      "description": "Helping the forest together...",
-      "mission": "Plant 20 pine trees"
-    },
-    "garni-temple": {
-      "title": "Garni and Geghard",
-      "description": "Classic tour around Armenia...",
-      "itinerary": "Departure at 10:00, Lunch at 13:00"
-    }
+    "hero_subtitle": "Choose your path: Save nature or Explore culture",
+    "tab_all": "All Events",
+    "tab_group": "Group Tours",
+    "tab_eco": "Eco Missions",
+    "badge_eco": "Eco-Mission",
+    "badge_group": "Group Tour",
+    "only": "Only",
+    "spots_left": "spots left",
+    "mission": "Mission",
+    "btn_join": "Join Now"
   },
   
 

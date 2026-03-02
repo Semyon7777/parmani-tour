@@ -236,7 +236,7 @@ const HotelsPage = () => {
           <div className="mx-auto" style={{maxWidth: "800px"}}>
             <Accordion defaultActiveKey="0" flush>
               {[1, 2, 3, 4].map((id) => (
-                <Accordion.Item eventKey={String(id)} key={id} className="mb-3 border-0 shadow-sm rounded">
+                <Accordion.Item eventKey={String(id)} key={id} className="border-0 shadow-sm rounded">
                   <Accordion.Header className="rounded">{t(`hotels_page.faq.faq_${id}_q`)}</Accordion.Header>
                   <Accordion.Body className="bg-light-green">{t(`hotels_page.faq.faq_${id}_a`)}</Accordion.Body>
                 </Accordion.Item>

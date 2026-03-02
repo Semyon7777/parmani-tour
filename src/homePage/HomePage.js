@@ -38,6 +38,7 @@ function HomePage() {
       {/* 4. EXPLORE ARMENIA (Grid) */}
       <ExploreSection />
 
+
       <Footer />
     </div>
   );

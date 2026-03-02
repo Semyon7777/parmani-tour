@@ -20,7 +20,6 @@ import NaturePage from "./naturePage/NaturePage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import BookForm from "./Components/bookForm";
-import Registration from "./Components/Registration";
 import LegalPage from "./legalPage/LegalPage";
 import './i18n';
 
@@ -60,7 +59,6 @@ function App() {
             <Route path="/about-us" element={<AboutUsPage />} />
             <Route path="/tours/:tourId" element={<TourPageDynamic />} />
             <Route path="/tours/booking/:tourName" element={<BookForm />} />
-            <Route path="/registration" element={<Registration />} />
             <Route path="/terms" element={<LegalPage type="terms" />} />
             <Route path="/privacy" element={<LegalPage type="privacy" />} />
           </Routes>

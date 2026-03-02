@@ -637,3 +637,40 @@
   .strip-grid { flex-direction: column; gap: 20px; }
   .group-booking-panel { position: static; box-shadow: 8px 8px 0px var(--group-orange); }
 }
+
+/* ------------------- */
+
+/* Статистика */
+.impact-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    background: #f1f8f4; /* Светло-зеленый оттенок */
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.stat-item h4 {
+    color: #2ecc71;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Карточки туров (добавь тень и плавность) */
+.tour-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.tour-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+/* Эко-бейджик */
+.card-eco .tour-badge {
+    background-color: #2ecc71 !important;
+}
