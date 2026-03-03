@@ -328,6 +328,16 @@
         font-size: 1.15rem;
     }
 
+    .group-eco-tours-container .custom-tabs {
+      font-size: small;
+      gap: 5px;
+    }
+
+    .group-eco-tours-container .tab-btn {
+      padding: 12px 10px;
+      gap: 4px;
+    }
+
     .group-eco-tours-container .tour-body {
         padding: 20px;
     }
