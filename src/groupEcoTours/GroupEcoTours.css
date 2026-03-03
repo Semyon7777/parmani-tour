@@ -195,6 +195,8 @@
     display: inline-block;
 }
 
+
+
 /* Контейнер поиска */
 .group-eco-tours-container .search-section-minimal {
   max-width: 450px;
@@ -308,20 +310,58 @@
 }
 
 /* Кнопка "Show More" */
-.group-eco-tours-container .btn-outline-dark {
-    border-radius: 50px;
-    padding: 12px 40px;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    margin-top: 20px;
+/* PAGINATION */
+.pagination-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.pagination-number,
+.pagination-arrow {
+  border: none;
+  background-color: #f3f4f6; /* мягкий светло-серый фон */
+  color: #374151;            /* темно-серый текст */
+  padding: 8px 14px;
+  border-radius: 12px;       /* мягкие скругления */
+  min-width: 36px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-number:hover,
+.pagination-arrow:hover {
+  background-color: #e5e7eb; /* чуть темнее при hover */
+  transform: translateY(-1px);
+}
+
+.pagination-number.active {
+  background-color: #146c20; /* мягкий синий для active */
+  color: white;
+  font-weight: 600;
+}
+
+.pagination-arrow:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background-color: #f9fafb;
 }
 
 /* --- АДАПТИВНОСТЬ --- */
 @media (max-width: 768px) {
     .group-eco-tours-container .tour-img-container {
         height: 200px;
+    }
+
+    .group-eco-tours-container .tours-list-section-row {
+      flex-direction: column;
+      padding: 0 5px 5px 5px;
+    }
+
+    .group-eco-tours-container .tours-list-section-row .tours-list-section-row-col {
+      width: 100%;
     }
     
     .group-eco-tours-container .tour-title-text {

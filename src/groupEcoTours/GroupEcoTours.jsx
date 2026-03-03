@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Container, Row, Col, Accordion } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Leaf, Users, Calendar, MapPin, ArrowRight, TreePine,
-   ShieldCheck, Coffee, Heart, MessageCircle, Map, Search } from "lucide-react";
+   ShieldCheck, Coffee, Heart, MessageCircle, Map, Search, X } from "lucide-react";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import GroupEcoToursData from "./groupEcoToursData.json";
@@ -73,8 +73,11 @@ function GroupEcoTours() {
       <TourGrid 
         filteredTours={filteredTours} 
         currentLang={currentLang} 
-        t={t} 
+        t={t}
+        activeTab={activeTab}
       />
+
+      <TourCTA />
 
 
       {/* FAQ SECTION */}
@@ -85,74 +88,156 @@ function GroupEcoTours() {
   );
 }
 
-function TourGrid({ filteredTours, currentLang, t }) {
+function TourGrid({ filteredTours, currentLang, t, activeTab }) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [visibleCount, setVisibleCount] = useState(6); // Начальное кол-во 6 для сетки 3х2
+  const [currentPage, setCurrentPage] = useState(1);
+  const toursSectionRef = useRef(null);
 
-  // 1. Фильтрация данных
+  const [toursPerPage, setToursPerPage] = useState(6);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setToursPerPage(4); // мобильный экран
+      } else {
+        setToursPerPage(6); // планшет/десктоп
+      }
+    };
+
+    handleResize(); // установить сразу при монтировании
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+
+  useEffect(() => {
+    setSearchTerm("");
+    setCurrentPage(1);
+  }, [activeTab]);
+
+  useEffect(() => {
+  if (toursSectionRef.current) {
+    toursSectionRef.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+}, [currentPage]);
+
+  // Поиск
   const searchedTours = useMemo(() => {
     const query = searchTerm.toLowerCase().trim();
     if (!query) return filteredTours;
 
     return filteredTours.filter((tour) => {
-      const title = (tour.title[currentLang] || tour.title["en"] || "").toLowerCase();
-      const location = (tour.location[currentLang] || tour.location["en"] || "").toLowerCase();
-      return title.includes(query) || location.includes(query);
+      const title =
+        (tour.title?.[currentLang] ||
+          tour.title?.["en"] ||
+          "").toLowerCase();
+
+      const location =
+        (tour.location?.[currentLang] ||
+          tour.location?.["en"] ||
+          "").toLowerCase();
+
+      const impact =
+        (tour.impact?.[currentLang] ||
+          tour.impact?.["en"] ||
+          "").toLowerCase();
+
+      return (
+        title.includes(query) ||
+        location.includes(query) ||
+        impact.includes(query)
+      );
     });
   }, [filteredTours, searchTerm, currentLang]);
 
-  // 2. Ограничение видимых карточек
-  const visibleTours = searchedTours.slice(0, visibleCount);
+  const totalPages = Math.ceil(searchedTours.length / toursPerPage);
+
+  const startIndex = (currentPage - 1) * toursPerPage;
+  const endIndex = startIndex + toursPerPage;
+
+  const visibleTours = searchedTours.slice(startIndex, endIndex);
+
 
   return (
-    <section className="tours-list-section py-5">
+    <section className="tours-list-section py-5" ref={toursSectionRef}>
       <Container>
-        {/* Поиск */}
+
+        {/* SEARCH */}
         <div className="search-section-minimal mb-5">
           <div className="search-input-wrapper">
             <Search size={18} className="search-icon-muted" />
+
             <input
               type="text"
               className="search-input-clean"
-              placeholder={t("group_eco_tours.search_placeholder", "Search your next adventure...")}
+              placeholder={t(
+                "group_eco_tours.search_placeholder",
+                "Search tours..."
+              )}
               value={searchTerm}
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-                setVisibleCount(6); // Сброс лимита при поиске
-              }}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
+
+            {searchTerm && (
+              <X
+                size={18}
+                className="clear-search-icon"
+                onClick={() => setSearchTerm("")}
+              />
+            )}
           </div>
+
           {searchTerm && (
-            <div className="search-results-hint">
-              {searchedTours.length} {t("group_eco_tours.found", "results found")}
+            <div className="search-meta-line">
+              <span className="results-count">
+                {searchedTours.length}{" "}
+                {t("group_eco_tours.found", "found")}
+              </span>
             </div>
           )}
         </div>
 
-        {/* Сетка */}
+        {/* GRID */}
         <Row className="tours-list-section-row g-4">
           {searchedTours.length > 0 ? (
             visibleTours.map((tour) => (
-              <Col md={6} lg={4} key={tour.id}>
-                <div className={`tour-card-minimal ${tour.type === "eco" ? "is-eco" : "is-group"}`}>
-                  {/* Image */}
+              <Col xs={6} md={6} lg={4} key={tour.id} className="tours-list-section-row-col">
+                <div
+                  className={`tour-card-minimal ${
+                    tour.type === "eco" ? "is-eco" : "is-group"
+                  }`}
+                >
+                  {/* IMAGE */}
                   <div className="tour-img-container">
                     <img
                       src={tour.image}
-                      alt={tour.title[currentLang] || tour.title["en"]}
+                      alt={
+                        tour.title?.[currentLang] ||
+                        tour.title?.["en"]
+                      }
                       loading="lazy"
                     />
+
                     <div className="tour-type-badge">
-                      {tour.type === "eco" ? <Leaf size={12} /> : <Users size={12} />}
+                      {tour.type === "eco" ? (
+                        <Leaf size={12} />
+                      ) : (
+                        <Users size={12} />
+                      )}
+
                       <span>
                         {tour.type === "eco"
-                          ? t("group_eco_tours.badge_eco", "Eco")
-                          : t("group_eco_tours.badge_group", "Group")}
+                          ? t("group_eco_tours.badge_eco")
+                          : t("group_eco_tours.badge_group")}
                       </span>
                     </div>
                   </div>
 
-                  {/* Body */}
+                  {/* BODY */}
                   <div className="tour-body">
                     <div className="tour-date-top">
                       <Calendar size={14} />
@@ -160,18 +245,24 @@ function TourGrid({ filteredTours, currentLang, t }) {
                     </div>
 
                     <h3 className="tour-title-text">
-                      {tour.title[currentLang] || tour.title["en"]}
+                      {tour.title?.[currentLang] ||
+                        tour.title?.["en"]}
                     </h3>
 
                     <div className="tour-details">
                       <div className="detail-item">
                         <MapPin size={14} />
-                        <span>{tour.location[currentLang] || tour.location["en"]}</span>
+                        <span>
+                          {tour.location?.[currentLang] ||
+                            tour.location?.["en"]}
+                        </span>
                       </div>
+
                       <div className="detail-item spots">
                         <span className="spots-dot"></span>
-                        {t("group_eco_tours.only", "Only")} {tour.spots}{" "}
-                        {t("group_eco_tours.spots_left", "spots left")}
+                        {t("group_eco_tours.only")}{" "}
+                        {tour.spots}{" "}
+                        {t("group_eco_tours.spots_left")}
                       </div>
                     </div>
 
@@ -179,19 +270,27 @@ function TourGrid({ filteredTours, currentLang, t }) {
                       <div className="eco-mission-stripe">
                         <TreePine size={16} />
                         <p>
-                          {t("group_eco_tours.mission", "Mission")}:{" "}
-                          {tour.impact[currentLang] || tour.impact["en"]}
+                          {t("group_eco_tours.mission")}:{" "}
+                          {tour.impact?.[currentLang] ||
+                            tour.impact?.["en"]}
                         </p>
                       </div>
                     )}
 
                     <div className="tour-action-area">
-                      <div className="tour-price-tag">{tour.price}</div>
+                      <div className="tour-price-tag">
+                        {tour.price}
+                      </div>
+
                       <Link
-                        to={tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`}
+                        to={
+                          tour.type === "eco"
+                            ? `/eco-tour/${tour.id}`
+                            : `/group-tour/${tour.id}`
+                        }
                         className="tour-btn-minimal"
                       >
-                        {t("group_eco_tours.btn_join", "Join")}
+                        {t("group_eco_tours.btn_join")}
                         <ArrowRight size={16} />
                       </Link>
                     </div>
@@ -200,33 +299,61 @@ function TourGrid({ filteredTours, currentLang, t }) {
               </Col>
             ))
           ) : (
-            /* Состояние "Ничего не найдено" */
             <Col xs={12} className="text-center py-5">
-              <div className="no-results-minimal">
-                <p className="text-muted fw-light" style={{ fontSize: "1.2rem" }}>
-                  {t("group_eco_tours.no_results", "No tours found matching your search.")}
-                </p>
-                <button 
-                  className="btn btn-link text-dark text-decoration-none" 
+              <div className="no-results-state">
+                <h4 className="fw-light">
+                  {t(
+                    "group_eco_tours.no_results",
+                    "No tours match your criteria"
+                  )}
+                </h4>
+
+                <button
+                  className="btn btn-link text-dark"
                   onClick={() => setSearchTerm("")}
-                  style={{ fontSize: "0.9rem", opacity: 0.7 }}
                 >
-                  Clear search
+                  {t(
+                    "group_eco_tours.clear_filters",
+                    "Reset search"
+                  )}
                 </button>
               </div>
             </Col>
           )}
         </Row>
 
-        {/* Кнопка Show More */}
-        {visibleCount < searchedTours.length && (
-          <div className="text-center mt-5">
+        {/* SHOW MORE */}
+        {totalPages > 1 && (
+          <div className="pagination-wrapper text-center mt-5">
             <button
-              className="btn btn-outline-dark px-5 py-2"
-              style={{ borderRadius: "50px", fontSize: "0.85rem", fontWeight: "600" }}
-              onClick={() => setVisibleCount((prev) => prev + 6)}
+              className="pagination-arrow"
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage(prev => prev - 1)}
             >
-              SHOW MORE
+              ←
+            </button>
+
+            {[...Array(totalPages)].map((_, index) => {
+              const pageNumber = index + 1;
+              return (
+                <button
+                  key={pageNumber}
+                  className={`pagination-number ${
+                    currentPage === pageNumber ? "active" : ""
+                  }`}
+                  onClick={() => setCurrentPage(pageNumber)}
+                >
+                  {pageNumber}
+                </button>
+              );
+            })}
+
+            <button
+              className="pagination-arrow"
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage(prev => prev + 1)}
+            >
+              →
             </button>
           </div>
         )}

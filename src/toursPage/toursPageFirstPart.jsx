@@ -164,7 +164,11 @@ function ToursPageFirstPart() {
         ) : (
           <div className="text-center py-5">
              <h3>😔 {t('tour_info_page.no_results', 'No tours found matching your filters')}</h3>
-             <Button variant="link" onClick={() => {setActiveCategory("all"); setSearchQuery("");}}>
+              <Button variant="link" 
+                onClick={() => {setActiveCategory("all");
+                setSearchQuery("");
+                setSortBy("default");
+              }}>
                {t('tour_info_page.reset_filters', 'Reset all filters')}
              </Button>
           </div>
