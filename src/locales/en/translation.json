@@ -687,6 +687,10 @@
       "step4_title": "Arrival",
       "step4_desc": "We meet you at the airport. Let's go!"
     },
+    "quick": {
+      "title": "Need a Quick Plan?",
+      "desc": "Message us directly. It's faster and more personal."
+    },
     "form": {
       "info_title": "Start Planning Now",
       "info_desc": "Fill out the form, and a manager will contact you.",
@@ -708,6 +712,25 @@
       "secure": "Secure",
       "quality": "Quality",
       "support": "24/7"
+    },
+    "modal": {
+      "success_title": "Request Sent!",
+      "success_msg": "Thank you! Your application for the All-in-One package has been received. Our manager will contact you shortly to discuss the details.",
+      "error_title": "Oops! Something went wrong",
+      "error_msg": "We couldn't send your request. Please check your internet connection and try again, or contact us via WhatsApp.",
+      "close_btn": "Got it"
+    },
+    "faq": {
+      "badge": "Common Questions",
+      "title": "Everything you need to know",
+      "q1": "Is the initial quote free of charge?",
+      "a1": "Yes, absolutely. We create a personalized itinerary and price calculation for you within 24 hours at no cost and with no obligation to book.",
+      "q2": "Can I change the hotels or activities in the package?",
+      "a2": "Of course. The 'All-in-One' package is fully flexible. We can swap hotels, adjust the tour intensity, or add specific gastro-locations based on your preferences.",
+      "q3": "What exactly is included in the 'VIP Transfer'?",
+      "a3": "It includes airport meet-and-greet and all internal travel during your stay in business-class vehicles with professional drivers. Fuel, parking, and water are always included.",
+      "q4": "How do I pay for the services?",
+      "a4": "We offer flexible payment terms. Usually, a small deposit is required to secure bookings, and the rest can be paid upon arrival or via bank transfer."
     }
   },
 

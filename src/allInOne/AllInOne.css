@@ -242,6 +242,96 @@
   line-height: 1.6;
 }
 
+/* quick contact */
+
+.aio-quick-contact-wrapper {
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.quick-contact-card {
+    background: #f8f9fa; /* Нейтральный светлый фон */
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.quick-contact-card:hover {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.quick-contact-text h4 {
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #111;
+}
+
+.quick-contact-text p {
+    margin: 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.quick-contact-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.q-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 12px;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+/* WhatsApp Style */
+.q-btn.whatsapp {
+    background-color: #25D366;
+    color: white !important;
+}
+
+/* Gmail Style */
+.q-btn.email {
+    background-color: #4b5563; /* Твой нейтральный цвет */
+    color: white !important;
+}
+
+/* Telegram Style */
+.q-btn.telegram {
+    background-color: #0088cc;
+    color: white !important;
+}
+
+.q-btn:hover {
+    filter: brightness(1.1);
+}
+
+/* Адаптивность для мобилок */
+@media (max-width: 768px) {
+    .quick-contact-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    .quick-contact-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    .q-btn {
+        justify-content: center;
+    }
+}
+
 /* --- FORM SECTION --- */
 .aio-form-section {
   padding: 100px 0;
@@ -263,6 +353,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 
@@ -353,6 +444,32 @@
   background: #b08d4b;
 }
 
+.aio-status-modal .modal-content {
+    border: none;
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+}
+
+.aio-status-modal h2 {
+    font-size: 1.8rem;
+    color: #111;
+}
+
+.aio-status-modal p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Эффект появления иконки */
+.aio-status-modal svg {
+    animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
 /* RESPONSIVE */
 @media (max-width: 992px) {
   .aio-visual-content, .aio-form-info, .aio-main-form {
@@ -364,4 +481,38 @@
   .aio-visual-img {
     height: 300px;
   }
+}
+
+/* FAQ */
+.aio-custom-accordion .accordion-item {
+    border: none;
+    background: transparent;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+}
+
+.aio-custom-accordion .accordion-button {
+    background: transparent !important;
+    font-weight: 600;
+    color: #111;
+    padding: 20px 0;
+    font-size: 1.1rem;
+    box-shadow: none !important;
+}
+
+.aio-custom-accordion .accordion-button:not(.collapsed) {
+    color: #4b5563; /* Твой основной цвет акцента */
+}
+
+.aio-custom-accordion .accordion-body {
+    padding: 0 0 25px 0;
+    color: #666;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+/* Убираем стандартную синюю рамку */
+.aio-custom-accordion .accordion-button:focus {
+    border-color: transparent;
+    box-shadow: none;
 }

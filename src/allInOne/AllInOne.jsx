@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Modal, Accordion } from "react-bootstrap";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { 
-  Plane, Hotel, Map, Utensils, 
-  CheckCircle, Calendar, Users, 
-  ArrowRight, Star, ShieldCheck, CreditCard 
+  Plane, Hotel, Map, Utensils, XCircle, 
+  CheckCircle, Calendar, Users, MessageCircle, Mail, Send,
+  ArrowRight, Star, ShieldCheck, CreditCard
 } from "lucide-react";
+import emailjs from '@emailjs/browser';
 
 import "./AllInOne.css";
-// Импортируй свои изображения здесь
+
 import heroImg from "./images/aio-hero.png"; 
 import serviceImg1 from "./images/service-hotel.jpg"; // Фото отеля
 import serviceImg2 from "./images/service-food.avif";  // Фото еды
 
 function AllInOne() {
   const { t } = useTranslation();
+  const [isSubmitting, setIsSubmitting] = useState(false); // Состояние загрузки
+  const [modalStatus, setModalStatus] = useState({ show: false, success: true });
   
   // Form State
   const [formData, setFormData] = useState({
@@ -34,17 +37,50 @@ function AllInOne() {
     window.scrollTo(0, 0);
   }, []);
 
+  // --- ЛОГИКА ОТПРАВКИ ---
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const templateParams = {
+      user_name: formData.name,
+      user_email: formData.email,
+      user_phone: formData.phone,
+      guests: formData.guests,
+      arrival_date: formData.arrivalDate,
+      budget: formData.budget,
+      notes: formData.notes
+    };
+
+    emailjs.send('service_zvppy78', 'template_ira1g2r', templateParams, 'P2-IFz5S0EKcKVf9p')
+      .then(() => {
+        setModalStatus({ show: true, success: true }); // Показываем успех
+        setFormData({ name: "", email: "", phone: "", guests: 1, arrivalDate: "", budget: "standard", notes: "" });
+        e.target.reset();
+      })
+      .catch(() => {
+        setModalStatus({ show: true, success: false }); // Показываем ошибку
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
+  };
+
+  const handleCloseModal = () => {
+    setModalStatus({ ...modalStatus, show: false });
+    
+    // Плавная прокрутка в самый верх страницы
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("All-in-One Request:", formData);
-    // Здесь логика отправки (EmailJS или Backend)
-    alert(t("aio.form.success_alert"));
-  };
 
   return (
     <div className="aio-page">
@@ -181,11 +217,32 @@ function AllInOne() {
         </Container>
       </section>
 
+      {/* --- QUICK CONTACT BOX --- */}
+      <div className="aio-quick-contact-wrapper mb-5">
+        <div className="quick-contact-card">
+          <div className="quick-contact-text">
+            <h4>{t("aio.quick.title", "Want a faster response?")}</h4>
+            <p>{t("aio.quick.desc", "Message us directly. We usually reply within 15 minutes.")}</p>
+          </div>
+          <div className="quick-contact-actions">
+            <a href="https://wa.me/your_number" target="_blank" rel="noreferrer" className="q-btn whatsapp">
+              <MessageCircle size={20} /> WhatsApp
+            </a>
+            <a href="mailto:your_email@gmail.com" className="q-btn email">
+              <Mail size={20} /> Gmail
+            </a>
+            <a href="https://t.me/your_username" target="_blank" rel="noreferrer" className="q-btn telegram">
+              <Send size={20} /> Telegram
+            </a>
+          </div>
+        </div>
+      </div>
+
       {/* --- BIG FORM SECTION --- */}
       <section className="aio-form-section" id="aio-form">
         <Container>
           <div className="aio-form-wrapper">
-            <Row>
+            <Row className="align-items-stretch g-0">
               <Col lg={5} className="aio-form-info">
                 <h3>{t("aio.form.info_title")}</h3>
                 <p>{t("aio.form.info_desc")}</p>
@@ -259,9 +316,13 @@ function AllInOne() {
                     <label>{t("aio.form.label_notes")}</label>
                     <textarea name="notes" rows="3" placeholder={t("aio.form.placeholder_notes")} onChange={handleInputChange} className="aio-input"></textarea>
                   </div>
-
-                  <button type="submit" className="aio-submit-btn">
-                    {t("aio.form.submit_btn")}
+                  {/* Обновляем кнопку, чтобы она показывала загрузку */}
+                  <button 
+                    type="submit" 
+                    className="aio-submit-btn" 
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? "Sending..." : t("aio.form.submit_btn")}
                   </button>
                 </form>
               </Col>
@@ -270,7 +331,80 @@ function AllInOne() {
         </Container>
       </section>
 
+      {/* --- FAQ SECTION --- */}
+      <section className="aio-faq-section py-5">
+        <Container>
+          <div className="aio-section-header text-center mb-5">
+            <span className="aio-hero-badge mb-2 d-inline-block">{t("aio.faq.badge")}</span>
+            <h2>{t("aio.faq.title")}</h2>
+          </div>
+          
+          <Row className="justify-content-center">
+            <Col lg={9}>
+              <Accordion flush className="aio-custom-accordion">
+                <Accordion.Item eventKey="0">
+                  <Accordion.Header>{t("aio.faq.q1")}</Accordion.Header>
+                  <Accordion.Body>{t("aio.faq.a1")}</Accordion.Body>
+                </Accordion.Item>
+                
+                <Accordion.Item eventKey="1">
+                  <Accordion.Header>{t("aio.faq.q2")}</Accordion.Header>
+                  <Accordion.Body>{t("aio.faq.a2")}</Accordion.Body>
+                </Accordion.Item>
+                
+                <Accordion.Item eventKey="2">
+                  <Accordion.Header>{t("aio.faq.q3")}</Accordion.Header>
+                  <Accordion.Body>{t("aio.faq.a3")}</Accordion.Body>
+                </Accordion.Item>
+                
+                <Accordion.Item eventKey="3">
+                  <Accordion.Header>{t("aio.faq.q4")}</Accordion.Header>
+                  <Accordion.Body>{t("aio.faq.a4")}</Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+
       <Footer />
+
+
+      {/* --- SUCCESS / ERROR MODAL --- */}
+      <Modal 
+        show={modalStatus.show} 
+        onHide={handleCloseModal} // При клике на крестик или фон
+        centered
+        className="aio-status-modal"
+      >
+        <Modal.Body className="text-center p-5">
+          {modalStatus.success ? (
+            <>
+              <CheckCircle size={80} color="#2d5a27" className="mb-4" />
+              <h2 className="fw-bold">{t("aio.modal.success_title", "Success!")}</h2>
+              <p className="text-muted mb-4">
+                {t("aio.modal.success_msg", "Your request has been sent. Our manager will contact you shortly.")}
+              </p>
+            </>
+          ) : (
+            <>
+              <XCircle size={80} color="#eb4d4b" className="mb-4" />
+              <h2 className="fw-bold">{t("aio.modal.error_title", "Error")}</h2>
+              <p className="text-muted mb-4">
+                {t("aio.modal.error_msg", "Something went wrong. Please try again or contact us directly.")}
+              </p>
+            </>
+          )}
+          <button 
+            className="aio-submit-btn w-100" 
+            onClick={handleCloseModal} // При клике на кнопку закрытия
+          >
+            {t("aio.modal.close_btn", "Close")}
+          </button>
+        </Modal.Body>
+      </Modal>
+
+
     </div>
   );
 }
