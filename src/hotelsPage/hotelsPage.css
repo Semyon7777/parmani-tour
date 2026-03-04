@@ -429,6 +429,15 @@
     padding: 30px 20px;
   }
 
+  .hotels-page-wrapper .contact-highlight-box {
+    padding: 30px 20px;
+  }
+
+  .hotels-page-wrapper .fast-badge {
+    background: none;
+    color: var(--accent-gold);
+  }
+
   .hotels-page-wrapper .card-img {
     height: 100%;
   }
