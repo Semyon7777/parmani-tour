@@ -88,10 +88,12 @@ function GroupEcoTours() {
   );
 }
 
+
 function TourGrid({ filteredTours, currentLang, t, activeTab }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const toursSectionRef = useRef(null);
+  const isFirstRender = useRef(true);
 
   const [toursPerPage, setToursPerPage] = useState(6);
 
@@ -117,13 +119,20 @@ function TourGrid({ filteredTours, currentLang, t, activeTab }) {
   }, [activeTab]);
 
   useEffect(() => {
-  if (toursSectionRef.current) {
-    toursSectionRef.current.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  }
-}, [currentPage]);
+    // 1. Если это самый первый запуск — просто меняем флаг и ничего не делаем
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    // 2. Если мы дошли сюда, значит это уже клик по пагинации — скроллим
+    if (toursSectionRef.current) {
+      toursSectionRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  }, [currentPage]); // Реагирует на смену страницы
 
   // Поиск
   const searchedTours = useMemo(() => {
@@ -362,7 +371,6 @@ function TourGrid({ filteredTours, currentLang, t, activeTab }) {
   );
 }
 
-
 const DynamicInfoSection = ({ activeTab, currentLang }) => {
   const { t } = useTranslation();
 
@@ -492,7 +500,6 @@ const TourCTA = () => {
   );
 };
 
-
 const TourFAQ = ({ activeTab }) => {
   const { t } = useTranslation();
 
@@ -541,5 +548,6 @@ const TourFAQ = ({ activeTab }) => {
     </section>
   );
 };
+
 
 export default GroupEcoTours;
