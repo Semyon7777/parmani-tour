@@ -779,26 +779,29 @@
       "group_a1": "Yes, traditional lunch and drinking water are included in all our group tours."
     }
   },
-  
-
 
 
   "footer": {
     "getConnected": "Get connected with us on social networks:",
-    "description": "Experience the soul of Armenia with our tailor-made tours. From ancient monasteries to breathtaking landscapes, we create unforgettable memories for every traveler.",    "products": "Company",
-    "tours": "Tours",
+    "description": "Your reliable partner in discovering the hidden gems of Armenia. Premium service and authentic experiences.",
+    "company": "Company",
     "aboutUs": "About Us",
-    "terms&Conditions": "Terms & Conditions",
-    "privacyPolicy": "Privacy Policy",
-    "specialTours": "Special Collections",
-    "bonus": "All-in-One (Premium Service)",
-    "eco": "Special Offers",
-    "group": "Group & Eco Tours",
-    "armenia": "Discover Armenia",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "toursTitle": "Tours",
+    "privateTours": "Private Tours",
+    "groupEcoTours": "Group & Eco Tours",
+    "schoolTours": "School Tours",
+    "specialOffers": "Special Offers",
+    "servicesTitle": "Services",
+    "hotels": "Hotels",
+    "transport": "Transport",
+    "allInOne": "All in One",
+    "armeniaTitle": "About Armenia",
     "history": "History",
     "cuisine": "Cuisine",
-    "culture": "Culture",
     "nature": "Nature",
+    "culture": "Culture",
     "weather": {
       "error": "Failed to load weather data",
       "loading": "Loading data...",

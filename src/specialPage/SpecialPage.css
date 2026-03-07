@@ -25,6 +25,7 @@
   text-align: center;
   color: white;
   margin-bottom: -40px; /* Чтобы переключатель "наезжал" на героя */
+  margin-top: 40px;
 }
 
 .special-page .special-hero-content h1 {

@@ -511,24 +511,155 @@
   },
 
   {
-    "id": "noravank-areni",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Noravank_Monastery_Armenia.jpg/800px-Noravank_Monastery_Armenia.jpg",
-    "price": "140$",
+    "id": "gyumri-cultural-tour",
+    "category": "cultural",
+    "routeMap": "/TourImages/shirak_region/gyumri-city/route-map.webp",
+    "routeSummary": "Yerevan → Gyumri → Yerevan",
+    "imageUrl": "/TourImages/shirak_region/gyumri-city/main.webp",
+    "duration": "10",
+    "durationUnit": "hours",
+    "price": "50000 AMD",
     "title": {
-      "en": "Noravank & Wine Tasting",
-      "ru": "Нораванк и Дегустация Вин",
-      "hy": "Նորավանք և Գինու Համտես"
+      "en": "GYUMRI CULTURAL CITY TOUR",
+      "ru": "КУЛЬТУРНЫЙ ТУР ПО ГЮМРИ",
+      "hy": "ԳՅՈՒՄՐԻ ՔԱՂԱՔԱՅԻՆ ՄՇԱԿՈՒԹԱՅԻՆ ՏՈՒՐ"
     },
     "description": {
-      "en": "Red rocks, ancient history, and the best local wine in Areni.",
-      "ru": "Красные скалы, древняя история и лучшее местное вино в Арени.",
-      "hy": "Կարմիր ժայռեր, հին պատմություն և լավագույն տեղական գինին:"
+      "en": "Discover the cultural capital of Armenia through historic churches, traditional architecture, museums and the unique humor and atmosphere of Gyumri.",
+      "ru": "Знакомство с культурной столицей Армении через её церкви, исторические кварталы, музеи и неповторимую атмосферу Гюмри.",
+      "hy": "Բացահայտեք Հայաստանի մշակութային մայրաքաղաք Գյումրին՝ իր եկեղեցիներով, պատմական թաղամասերով, թանգարաններով և յուրահատուկ քաղաքային մթնոլորտով։"
     },
-    "sections": [],
-    "carousel": [],
+    "sections": [
+      {
+        "header": {
+          "en": "Seven Wounds Church",
+          "ru": "Церковь Йот Верк",
+          "hy": "Յոթ Վերք եկեղեցի"
+        },
+        "content": {
+          "en": "One of the most important churches in Gyumri.",
+          "ru": "Одна из главных церквей города.",
+          "hy": "Գյումրիի կարևորագույն եկեղեցիներից մեկը։"
+        },
+        "fullContent": {
+          "en": "The Surb Astvatsatsin Church, widely known as the Seven Wounds Church, was built in the 19th century and remains one of Gyumri’s spiritual landmarks. Its architecture reflects the characteristic black tuff stone widely used in the city.",
+          "ru": "Церковь Сурб Аствацацин, известная как Йот Верк, была построена в XIX веке и считается одним из духовных символов Гюмри. Храм выполнен из чёрного туфа — камня, который определяет архитектурный облик города.",
+          "hy": "Սուրբ Աստվածածին եկեղեցին, որը հայտնի է որպես Յոթ Վերք, կառուցվել է XIX դարում և Գյումրիի հոգևոր կենտրոններից մեկն է։"
+        },
+        "image": "/TourImages/shirak_region/gyumri-city/yot-verk.webp"
+      },
+      {
+        "header": {
+          "en": "Dzitoghtsyan Museum of Social Life",
+          "ru": "Дом-музей Дзитохцянов",
+          "hy": "Ձիթողցոնց տուն-թանգարան"
+        },
+        "content": {
+          "en": "Museum presenting the lifestyle of old Gyumri.",
+          "ru": "Музей, посвящённый быту старого Гюмри.",
+          "hy": "Թանգարան՝ ներկայացնող հին Գյումրիի կենցաղը։"
+        },
+        "fullContent": {
+          "en": "The Dzitoghtsyan House Museum presents the daily life, traditions and culture of Alexandropol — the historical name of Gyumri. The 19th-century mansion displays traditional costumes, crafts and household items reflecting the city’s rich social history.",
+          "ru": "Дом-музей Дзитохцянов рассказывает о быте и культуре Александрополя — исторического названия Гюмри. В особняке XIX века представлены традиционные костюмы, предметы ремёсел и бытовые вещи, отражающие жизнь города в прошлом.",
+          "hy": "Ձիթողցոնց տուն-թանգարանը ներկայացնում է Ալեքսանդրապոլի՝ հին Գյումրիի կենցաղը, մշակույթը և ավանդույթները։"
+        },
+        "image": "/TourImages/shirak_region/gyumri-city/dzitoghtsyan.webp"
+      },
+      {
+        "header": {
+          "en": "Gyumri Old District Walk",
+          "ru": "Прогулка по старым кварталам Гюмри",
+          "hy": "Զբոսանք Գյումրիի հին թաղամասերով"
+        },
+        "content": {
+          "en": "Historic Kumayri district and Vardanants Square.",
+          "ru": "Исторический район Кумайри и площадь Вардананц.",
+          "hy": "Կումայրի պատմական թաղամաս և Վարդանանց հրապարակ։"
+        },
+        "fullContent": {
+          "en": "The walking tour explores the Kumayri historic district, famous for its 19th-century architecture built from black volcanic stone. Visitors walk through narrow streets, traditional courtyards and Vardanants Square — the central public space of Gyumri.",
+          "ru": "Пешеходная экскурсия проходит по историческому району Кумайри с его зданиями XIX века из чёрного туфа. Узкие улочки, старинные дворы и площадь Вардананц создают уникальную атмосферу старого города.",
+          "hy": "Քայլարշավը անցնում է Կումայրի պատմական թաղամասով՝ իր սև տուֆից կառուցված XIX դարի շենքերով և Վարդանանց հրապարակով։"
+        },
+        "image": "/TourImages/shirak_region/gyumri-city/kumayri.webp"
+      },
+      {
+        "header": {
+          "en": "Gyumri Museums",
+          "ru": "Музеи Гюмри",
+          "hy": "Գյումրիի թանգարաններ"
+        },
+        "content": {
+          "en": "Museums dedicated to famous Armenian artists.",
+          "ru": "Музеи, посвящённые известным армянским деятелям искусства.",
+          "hy": "Թանգարաններ՝ նվիրված հայտնի հայ արվեստագետներին։"
+        },
+        "fullContent": {
+          "en": "Depending on the group’s interest, the program may include visits to museums dedicated to prominent Armenian cultural figures such as actor Frunzik Mkrtchyan or the Aslamazyan Sisters — renowned painters whose works contributed significantly to Armenian art.",
+          "ru": "В зависимости от интересов группы возможны посещения музеев, посвящённых выдающимся деятелям армянской культуры — например, актёру Фрунзику Мкртчяну или сёстрам Асланазян, известным художницам, внёсшим значительный вклад в армянское искусство.",
+          "hy": "Խմբի հետաքրքրությունից կախված հնարավոր է այցելել տարբեր թանգարաններ՝ նվիրված հայտնի հայ արվեստագետներին, օրինակ՝ Մհեր Մկրտչյանին կամ Ասլանազյան քույրերին։"
+        },
+        "image": "/TourImages/shirak_region/gyumri-city/museum.webp"
+      },
+      {
+        "header": {
+          "en": "Gyumri Courtyards & Local Atmosphere",
+          "ru": "Дворики и атмосфера старого Гюмри",
+          "hy": "Գյումրիի բակեր և քաղաքային մթնոլորտ"
+        },
+        "content": {
+          "en": "Traditional courtyards, local cafés and sweet stops.",
+          "ru": "Старинные дворы, кафе и гастрономические остановки.",
+          "hy": "Հին բակեր և տեղական քաղցրավենիք։"
+        },
+        "fullContent": {
+          "en": "Gyumri is famous for its lively courtyards, humor and artistic spirit. Visitors may stop at traditional cafés and taste local sweets such as the well-known Ponchik-Monchik while exploring hidden corners of the city.",
+          "ru": "Гюмри известен своими атмосферными двориками, юмором и творческой средой. Во время прогулки возможны остановки в местных кафе и дегустация знаменитых гюмрийских пончиков Ponchik-Monchik.",
+          "hy": "Գյումրին հայտնի է իր բակերով, հումորով և ստեղծագործական մթնոլորտով։ Զբոսանքի ընթացքում հնարավոր է այցելել տեղական սրճարաններ և փորձել հայտնի գյումրեցի պոնչիկները։"
+        },
+        "image": "/TourImages/shirak_region/gyumri-city/courtyard.webp"
+      },
+      {
+        "header": {
+          "en": "Holy Saviour Cathedral",
+          "ru": "Собор Сурб Аменапркич",
+          "hy": "Սուրբ Ամենափրկիչ եկեղեցի"
+        },
+        "content": {
+          "en": "One of the largest Armenian churches in Gyumri.",
+          "ru": "Один из крупнейших храмов города.",
+          "hy": "Գյումրիի խոշոր եկեղեցիներից մեկը։"
+        },
+        "fullContent": {
+          "en": "The Surb Amenaprkich Cathedral was built in the late 19th century and is inspired by the Cathedral of Ani. Despite damage during the 1988 earthquake, it has been gradually restored and remains an important architectural symbol of Gyumri.",
+          "ru": "Собор Сурб Аменапркич был построен в конце XIX века по образцу кафедрального собора в Ани. Несмотря на серьёзные повреждения во время землетрясения 1988 года, храм был восстановлен и сегодня является важным символом города.",
+          "hy": "Սուրբ Ամենափրկիչ եկեղեցին կառուցվել է XIX դարի վերջում և ձևով հիշեցնում է Անիի մայր տաճարը։"
+        },
+        "image": "/TourImages/shirak_region/gyumri-city/amenaprkich.webp"
+      }
+    ],
     "features": {
-      "include": { "en": [], "ru": [], "hy": [] },
-      "exclude": { "en": [], "ru": [], "hy": [] }
+      "include": {
+        "en": ["Transportation", "Professional guide service", "City walking tour", "Photo stops"],
+        "ru": ["Транспорт", "Услуги профессионального гида", "Пешеходная экскурсия", "Фото-остановки"],
+        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Քաղաքային քայլարշավ", "Լուսանկարման կանգառներ"]
+      },
+      "exclude": {
+        "en": ["Museum entrance tickets", "Lunch", "Personal expenses"],
+        "ru": ["Билеты в музеи", "Обед", "Личные расходы"],
+        "hy": ["Թանգարանների մուտքի տոմսեր", "Ճաշ", "Անձնական ծախսեր"]
+      }
+    },
+    "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
+          {"vehicles": "Sedan", "price": "20000"},
+          {"vehicles": "Miniven", "price": "26000"}
+        ],
+        "ticket_per_person": "0"
+      }
     }
   },
 

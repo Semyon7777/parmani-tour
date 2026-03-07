@@ -12,7 +12,7 @@ import emailjs from '@emailjs/browser';
 
 import "./AllInOne.css";
 
-import heroImg from "./images/aio-hero.png"; 
+import heroImg from "./images/aio-hero.webp"; 
 import serviceImg1 from "./images/service-hotel.jpg"; // Фото отеля
 import serviceImg2 from "./images/service-food.avif";  // Фото еды
 

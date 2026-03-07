@@ -8,117 +8,89 @@ import MyIcon from './apple-touch-icon.png';
 import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 export default function Footer() {
-  const { t } = useTranslation(); // Initialize useTranslation
+  const { t } = useTranslation();
 
   return (
-    <div className='footerContainer'>
-      <MDBFooter bgColor='light' className='text-center text-lg-start text-muted'>
-        <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
-          <div className='me-5 d-none d-lg-block'>
-            <span>{t('footer.getConnected')}</span> {/* Translated text */}
-          </div>
-
-          <div>
-            <a href='https://www.instagram.com/parmani_tour?igsh=dzRnenQ0ZGJycTEw&utm_source=qr' className='me-4 text-reset social-icon'>
-              <MDBIcon fab icon="instagram" />
-            </a>
-            <a href='https://wa.me/37493641069' className='me-4 text-reset social-icon'>
-              <MDBIcon fab icon="whatsapp" />
-            </a>
-            <a href='https://t.me/parmani_tour' className='me-4 text-reset social-icon'>
-              <MDBIcon fab icon="telegram" />
-            </a>
-            <a href='https://www.facebook.com/profile.php?id=61565286992607&mibextid=LQQJ4d' className='me-4 text-reset social-icon'>
-              <MDBIcon fab icon="facebook-f" />
-            </a>
-          </div>
-        </section>
-
-        <section>
-          <MDBContainer className='text-center text-md-start ml-2 mt-5'>
-            <MDBRow className='mt-3 d-flex justify-content-center align-items-center'>
-              <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
-                <h6 className='text-uppercase fw-bold'>
-                  <img src={MyIcon} alt="My Custom Icon" className="me-3" style={{width: "50px"}} />
-                  Parmani Tour
-                </h6>
-                <p>{t('footer.description')}</p>
-              </MDBCol>
-
-              <MDBCol md="2" lg="2" xl="2" className='mx-auto mb-4'>
-                <h6 className='text-uppercase fw-bold mb-4'>{t('footer.products')}</h6>
-                <p>
-                  <a href='/about-us' className='text-reset'>
-                    {t('footer.aboutUs')}
-                  </a>
-                </p>
-                <p>
-                  <a href='/terms' className='text-reset'>
-                    {t('footer.terms&Conditions')}
-                  </a>
-                </p>
-                <p>
-                  <a href='/privacy' className='text-reset'>
-                    {t('footer.privacyPolicy')}
-                  </a>
-                </p>
-              </MDBCol>
-
-              <MDBCol md="2" lg="2" xl="2" className='mx-auto mb-4'>
-                <h6 className='text-uppercase fw-bold mb-4'>{t('footer.specialTours')}</h6>
-                <p>
-                  <a href='/tours' className='text-reset'>
-                    {t('footer.bonus')}
-                  </a>
-                </p>
-                <p>
-                  <a href='/tours' className='text-reset'>
-                    {t('footer.eco')}
-                  </a>
-                </p>
-                <p>
-                  <a href='/tours' className='text-reset'>
-                    {t('footer.group')}
-                  </a>
-                </p>
-              </MDBCol>
-
-              <MDBCol md="3" lg="2" xl="2" className='mx-auto mb-4'>
-                <h6 className='text-uppercase fw-bold mb-4'>{t('footer.armenia')}</h6>
-                <p>
-                  <a href='/history' className='text-reset'>
-                    {t('footer.history')}
-                  </a>
-                </p>
-                <p>
-                  <a href='cuisine' className='text-reset'>
-                    {t('footer.cuisine')}
-                  </a>
-                </p>
-                <p>
-                  <a href='culture' className='text-reset'>
-                    {t('footer.culture')}
-                  </a>
-                </p>
-                <p>
-                  <a href='nature' className='text-reset'>
-                    {t('footer.nature')}
-                  </a>
-                </p>
-              </MDBCol>
-
-            </MDBRow>
-          </MDBContainer>
-        </section>
-
-        <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-          © 2026 Copyright: Parmani Tour
-          {/* <a className='text-reset fw-bold' href='https://mdbootstrap.com/'>
-            MDBootstrap.com
-          </a> */}
+    <MDBFooter bgColor='light' className='text-center text-lg-start text-muted pt-1'>
+      {/* Социальные сети */}
+      <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
+        <div className='me-5 d-none d-lg-block'>
+          <span>{t('footer.getConnected')}</span>
         </div>
-      </MDBFooter>
-    </div>
+
+        <div>
+          <a href='https://www.instagram.com/parmani_tour' className='me-4 text-reset social-icon'>
+            <MDBIcon fab icon="instagram" />
+          </a>
+          <a href='https://wa.me/37493641069' className='me-4 text-reset social-icon'>
+            <MDBIcon fab icon="whatsapp" />
+          </a>
+          <a href='https://t.me/parmani_tour' className='me-4 text-reset social-icon'>
+            <MDBIcon fab icon="telegram" />
+          </a>
+          <a href='https://www.facebook.com/profile.php?id=61565286992607' className='me-4 text-reset social-icon'>
+            <MDBIcon fab icon="facebook-f" />
+          </a>
+        </div>
+      </section>
+
+      {/* Основной контент */}
+      <section className=''>
+        <MDBContainer fluid className='text-center text-md-start mt-5 px-4'>
+          <MDBRow className='mt-3 d-flex justify-content-between align-items-start flex-nowrap-lg'>
+            
+            {/* 1. BRAND - 25% ширины */}
+            <MDBCol lg="3" className='mb-4'>
+              <h6 className='text-uppercase fw-bold mb-4 d-flex align-items-center'>
+                <img src={MyIcon} alt="Logo" className="me-2" style={{width: "45px"}} />
+                Parmani Tour
+              </h6>
+              <p style={{fontSize: '1rem'}}>{t('footer.description')}</p>
+            </MDBCol>
+
+            {/* 2. TOURS - 18% ширины */}
+            <MDBCol lg="2" className='mb-4'>
+              <h6 className='text-uppercase fw-bold mb-4'>{t('footer.toursTitle')}</h6>
+              <p><a href='/private-tours' className='text-reset'>{t('footer.privateTours')}</a></p>
+              <p><a href='/group-eco-tours' className='text-reset'>{t('footer.groupEcoTours')}</a></p>
+              <p><a href='/special?tab=school' className='text-reset'>{t('footer.schoolTours')}</a></p>
+            </MDBCol>
+
+            {/* 3. SERVICES - 18% ширины */}
+            <MDBCol lg="2" className='mb-4'>
+              <h6 className='text-uppercase fw-bold mb-4'>{t('footer.servicesTitle')}</h6>
+              <p><a href='/hotels' className='text-reset'>{t('footer.hotels')}</a></p>
+              <p><a href='/transport' className='text-reset'>{t('footer.transport')}</a></p>
+              <p><a href='/all-in-one' className='text-reset'>{t('footer.allInOne')}</a></p>
+              <p><a href='/special?tab=custom' className='text-reset fw-bold'>{t('footer.specialOffers')}</a></p>
+            </MDBCol>
+
+            {/* 4. ARMENIA - 18% ширины */}
+            <MDBCol lg="2" className='mb-4'>
+              <h6 className='text-uppercase fw-bold mb-4'>{t('footer.armeniaTitle')}</h6>
+              <p><a href='/history' className='text-reset'>{t('footer.history')}</a></p>
+              <p><a href='/cuisine' className='text-reset'>{t('footer.cuisine')}</a></p>
+              <p><a href='/nature' className='text-reset'>{t('footer.nature')}</a></p>
+              <p><a href='/culture' className='text-reset'>{t('footer.culture')}</a></p>
+            </MDBCol>
+
+            {/* 5. COMPANY - 18% ширины */}
+            <MDBCol lg="2" className='mb-4'>
+              <h6 className='text-uppercase fw-bold mb-4'>{t('footer.company')}</h6>
+              <p><a href='/about-us' className='text-reset'>{t('footer.aboutUs')}</a></p>
+              <p><a href='/terms' className='text-reset'>{t('footer.terms')}</a></p>
+              <p><a href='/privacy' className='text-reset'>{t('footer.privacy')}</a></p>
+            </MDBCol>
+
+          </MDBRow>
+        </MDBContainer>
+      </section>
+
+      {/* Копирайт */}
+      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
+        © 2026 Copyright: <strong>Parmani Tour</strong>
+      </div>
+    </MDBFooter>
   );
 }
 

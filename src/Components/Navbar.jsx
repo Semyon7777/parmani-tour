@@ -135,7 +135,6 @@ const NavbarCustom = ({ isHomePage }) => {
                 <NavDropdown.Item href="/cuisine" className="dropdown-item">{t("navbar_custom.cuisine")}</NavDropdown.Item>
                 <NavDropdown.Item href="/nature" className="dropdown-item">{t("navbar_custom.nature")}</NavDropdown.Item>
                 <NavDropdown.Item href="/culture" className="dropdown-item">{t("navbar_custom.culture")}</NavDropdown.Item>
-                <NavDropdown.Item href="/about-us" className="dropdown-item">{t("navbar_custom.about_us")}</NavDropdown.Item>
               </NavDropdown>
 
               <div className="language-divider d-none d-lg-block"></div>
