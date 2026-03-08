@@ -664,46 +664,389 @@
   },
 
   {
-    "id": "yerevan-walk",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Republic_Square_Yerevan.jpg/800px-Republic_Square_Yerevan.jpg",
-    "price": "50$",
+    "id": "gyumri-2day-tour",
+    "category": "cultural",
+    "routeMap": "/TourImages/shirak_region/gyumri-2day/route-map.webp",
+    "routeSummary": "Yerevan → Gyumri → Yerevan",
+    "imageUrl": "/TourImages/shirak_region/gyumri-2day/main.webp",
+    "duration": "2",
+    "durationUnit": "days",
+    "price": "65000 AMD",
     "title": {
-      "en": "Yerevan Evening Walk",
-      "ru": "Вечерний Ереван",
-      "hy": "Երեկոյան Երևան"
+      "en": "GYUMRI 2-DAY CULTURAL TOUR",
+      "ru": "2-ДНЕВНЫЙ КУЛЬТУРНЫЙ ТУР ПО ГЮМРИ",
+      "hy": "ԳՅՈՒՄՐԻ 2-ՕՐՅԱ ԹՈՒՐ ՄՇԱԿՈՒԹԱՅԻՆ"
     },
     "description": {
-      "en": "Walking tour through the pink city, Cascade, and Republic Square.",
-      "ru": "Пешеходная экскурсия по розовому городу, Каскаду и площади Республики.",
-      "hy": "Քայլարշավ վարդագույն քաղաքով՝ Կասկադ և Հանրապետության հրապարակ:"
+      "en": "A two-day journey exploring Gyumri and nearby attractions, including historic churches, museums, scenic spots and cultural experiences.",
+      "ru": "Двухдневное путешествие по Гюмри и окрестностям с посещением исторических церквей, музеев, живописных мест и культурных мероприятий.",
+      "hy": "Երկօրյա շրջագայություն Գյումրիում և հարակից վայրերում՝ պատմական եկեղեցիներ, թանգարաններ, բնական տեսարժան վայրեր և մշակութային փորձառություններ։"
     },
-    "sections": [],
-    "carousel": [],
+    "sections": [
+      {
+        "header": {
+          "en": "Yereruyk Church",
+          "ru": "Церковь Ереруйк",
+          "hy": "Երերույքի տաճար"
+        },
+        "content": {
+          "en": "Historic church near Gyumri, ideal for a morning visit.",
+          "ru": "Историческая церковь рядом с Гюмри, идеально подходит для утреннего посещения.",
+          "hy": "Պատմական եկեղեցի Գյումրիի մոտ, հարմար առավոտյան այցի համար։"
+        },
+        "fullContent": {
+          "en": "Yereruyk Church is a centuries-old Armenian church offering scenic surroundings for breakfast or picnic. During April 25 – May 15, visitors can enjoy nearby poppy fields.",
+          "ru": "Церковь Ереруйк — многовековая армянская церковь с живописной природой для завтрака или пикника. С 25 апреля по 15 мая можно полюбоваться цветущими маками.",
+          "hy": "Երերույքի եկեղեցին դարավոր հայկական եկեղեցի է՝ առաջարկելով գեղեցիկ բնապատկեր՝ նախաճաշի կամ պիկնիկի համար։ Ապրիլի 25 – մայիսի 15 ժամանակահատվածում հնարավոր է վայելել մոտակա կակաչների դաշտերը։"
+        },
+        "image": "/TourImages/shirak_region/gyumri-2day/yereruyk.webp"
+      },
+      {
+        "header": {
+          "en": "Akhoryan Reservoir",
+          "ru": "Ахурянский водоём",
+          "hy": "Ախուրյանի ջրամբար"
+        },
+        "content": {
+          "en": "Quick stop for photos and views.",
+          "ru": "Краткая остановка для фото и осмотра.",
+          "hy": "Արագ կանգառ լուսանկարների և տեսարանի համար։"
+        },
+        "fullContent": {
+          "en": "Spend about 20 minutes admiring the Akhuryan Reservoir and taking photos before continuing the tour.",
+          "ru": "Проведите около 20 минут, любуясь Ахурянским водохранилищем и делая фотографии, прежде чем продолжить экскурсию.",
+          "hy": "Մոտ 20 րոպե վայելել Ախուրյանի ջրամբարը և լուսանկարներ անել, ապա շարունակել շրջագայությունը։"
+        },
+        "image": "/TourImages/shirak_region/gyumri-2day/akhorian.webp"
+      },
+      {
+        "header": {
+          "en": "Gyumri City Tour",
+          "ru": "Городской тур по Гюмри",
+          "hy": "Գյումրի քաղաքային տուր"
+        },
+        "content": {
+          "en": "Walk through the Kumayri historic district, Vardanants Square, and Dzitoghtsyan House-Museum.",
+          "ru": "Прогулка по историческому району Кумайри, площади Вардананц и дому-музею Дзитохцянов.",
+          "hy": "Քայլարշավ Կումայրի պատմական թաղամասով, Վարդանանց հրապարակով և Ձիթողցոնց տուն-թանգարանով։"
+        },
+        "fullContent": {
+          "en": "Explore Kumayri, famous for its 19th-century black tuff architecture, visit Vardanants Square, and stop at Dzitoghtsyan House-Museum. Additional museums can be included depending on group interest.",
+          "ru": "Исследуйте Кумайри с его зданиями XIX века из черного туфа, посетите площадь Вардананц и дом-музей Дзитохцянов. По желанию группы возможны дополнительные музеи.",
+          "hy": "Զբոսանք Կումայրի պատմական թաղամասով՝ իր XIX դարի սև տուֆե շենքերով, այցելություն Վարդանանց հրապարակ և Ձիթողցոնց տուն-թանգարան։ Խմբի ցանկությամբ հնարավոր է ներառել նաև այլ թանգարաններ։"
+        },
+        "image": "/TourImages/shirak_region/gyumri-2day/gyumri-city.webp"
+      },
+      {
+        "header": {
+          "en": "Evening Cultural Event",
+          "ru": "Вечернее культурное мероприятие",
+          "hy": "Երեկոյան մշակութային միջոցառում"
+        },
+        "content": {
+          "en": "Theatre, concert, or other events (ticket may not be included).",
+          "ru": "Театр, концерт или другие мероприятия (вход может не включаться).",
+          "hy": "Թատրոն, համերգ կամ այլ միջոցառում (մուտքի արժեքը կարող է չներառվել)։"
+        },
+        "fullContent": {
+          "en": "Depending on the tour date, guests may attend a theatre performance, concert, or another cultural event. Entrance fees are not necessarily included.",
+          "ru": "В зависимости от даты тура гости могут посетить театр, концерт или другое культурное мероприятие. Входные билеты могут не входить в стоимость.",
+          "hy": "Կախված տուրի օրվանից, հյուրերը կարող են այցելել թատրոն, համերգ կամ այլ մշակութային միջոցառում։ Մուտքի արժեքը կարող է չներառվել։"
+        },
+        "image": "/TourImages/shirak_region/gyumri-2day/evening-event.webp"
+      },
+      {
+        "header": {
+          "en": "Sev Berd",
+          "ru": "Сев Берд",
+          "hy": "Սև բերդ"
+        },
+        "content": {
+          "en": "Important defensive fortress of Gyumri.",
+          "ru": "Важная оборонительная крепость Гюмри.",
+          "hy": "Գյումրիի կարևոր պաշտպանական բերդ։"
+        },
+        "fullContent": {
+          "en": "Sev Berd is a historic fortress overlooking the city of Gyumri, offering panoramic views and insight into the region's military history.",
+          "ru": "Сев Берд — историческая крепость с видом на Гюмри, открывающая панорамные виды и знакомящая с военной историей региона.",
+          "hy": "Սև բերդը պատմական բերդ է՝ առաջարկելով համայնապատկերային տեսարաններ և ծանոթություն տարածաշրջանի ռազմական պատմությանը։"
+        },
+        "image": "/TourImages/shirak_region/gyumri-2day/sev-berd.webp"
+      },
+      {
+        "header": {
+          "en": "Optional Museum in Gyumri",
+          "ru": "Дополнительный музей в Гюмри",
+          "hy": "Ընտրովի թանգարան Գյումրիում"
+        },
+        "content": {
+          "en": "Depending on group interest, visit a museum such as Frunzik Mkrtchyan Museum or Aslamazyan Sisters Museum.",
+          "ru": "В зависимости от интересов группы — посещение музея, например, Музея Фрунзика Мкртчяна или музея сестер Асланазян.",
+          "hy": "Խմբի ցանկությունից կախված՝ հնարավոր է այցելել թանգարան, օրինակ՝ Մհեր Մկրտչյանի թանգարան կամ Ասլանազյան քույրերի թանգարան։"
+        },
+        "fullContent": {
+          "en": "Guests can explore additional museums of their choice in Gyumri, such as the Frunzik Mkrtchyan Museum dedicated to the beloved Armenian actor or the Aslamazyan Sisters Museum showcasing the works of famous Armenian painters.",
+          "ru": "Гости могут посетить дополнительные музеи в Гюмри по выбору, например, Музей Фрунзика Мкртчяна, посвящённый известному армянскому актёру, или Музей сестёр Асланазян с работами знаменитых армянских художниц.",
+          "hy": "Հյուրերը կարող են այցելել Գյումրիի ընտրովի թանգարաններ, օրինակ՝ Մհեր Մկրտչյանի թանգարան՝ նվիրված հայտնի հայ դերասանին կամ Ասլանազյան քույրերի թանգարան՝ հայտնի հայ նկարիչների աշխատանքներով։"
+        },
+        "image": "/TourImages/shirak_region/gyumri-2day/optional-museum.webp"
+      },
+      {
+        "header": {
+          "en": "Marmarashen Monastery",
+          "ru": "Марамрашенский монастырь",
+          "hy": "Մարմարաշենի վանք"
+        },
+        "content": {
+          "en": "Historic monastery near Gyumri.",
+          "ru": "Исторический монастырь рядом с Гюмри.",
+          "hy": "Պատմական վանք Գյումրիի մոտ։"
+        },
+        "fullContent": {
+          "en": "Marmarashen Monastery is an ancient Armenian monastery offering insight into medieval religious architecture and local history.",
+          "ru": "Марамрашенский монастырь — древний армянский монастырь, представляющий средневековую религиозную архитектуру и историю региона.",
+          "hy": "Մարմարաշենի վանքը հին հայկական վանք է, որը ցույց է տալիս միջնադարյան կրոնական ճարտարապետությունն ու տեղական պատմությունը։"
+        },
+        "image": "/TourImages/shirak_region/gyumri-2day/marmarashen.webp"
+      }
+    ],
     "features": {
-      "include": { "en": [], "ru": [], "hy": [] },
-      "exclude": { "en": [], "ru": [], "hy": [] }
+      "include": {
+        "en": ["Transportation", "Professional guide service", "City walking tours", "Picnic / breakfast in nature", "Photo stops"],
+        "ru": ["Транспорт", "Услуги профессионального гида", "Пешеходные экскурсии", "Пикник/завтрак на природе", "Фото-остановки"],
+        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Քաղաքային քայլարշավներ", "Պիկնիկ/նախաճաշ բնության մեջ", "Լուսանկարման կանգառներ"]
+      },
+      "exclude": {
+        "en": ["Museum entrance tickets", "Evening event tickets", "Lunch", "Personal expenses"],
+        "ru": ["Билеты в музеи", "Билеты на вечерние мероприятия", "Обед", "Личные расходы"],
+        "hy": ["Թանգարանների մուտքի տոմսեր", "Երեկոյան միջոցառումների տոմսեր", "Ճաշ", "Անձնական ծախսեր"]
+      }
+    },
+    "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
+          {"vehicles": "Sedan", "price": "20000"},
+          {"vehicles": "Miniven", "price": "26000"}
+        ],
+        "ticket_per_person": "0"
+      }
     }
   },
   
   {
-    "id": "lastiver-hiking",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Lastiver.jpg/800px-Lastiver.jpg",
-    "price": "90$",
+    "id": "dilijan",
+    "category": "cultural",
+    "routeMap": "/TourImages/tavush_region/dilijan/route-map.webp",
+    "routeSummary": "Yerevan → Dilijan → Yerevan",
+    "imageUrl": "/TourImages/tavush_region/dilijan/main.webp",
+    "duration": "8",
+    "durationUnit": "hours",
+    "price": "60000 AMD",
     "title": {
-      "en": "Lastiver Hiking",
-      "ru": "Поход в Ластивер",
-      "hy": "Արշավ դեպի Լաստիվեր"
+      "en": "DILIJAN NATURE & CULTURE TOUR",
+      "ru": "ТУР ПО ПРИРОДЕ И КУЛЬТУРЕ ДИЛИДЖАНА",
+      "hy": "ԴԻԼԻՋԱՆ ԲՆԱԿԱՆ ԵՎ ՄՇԱԿՈՒԹԱՅԻՆ ՏՈՒՐ"
     },
     "description": {
-      "en": "Active hiking tour to waterfalls and caves in the deep forest.",
-      "ru": "Активный пеший тур к водопадам и пещерам в глубоком лесу.",
-      "hy": "Ակտիվ արշավ դեպի ջրվեժներ և քարանձավներ խոր անտառում:"
+      "en": "Explore Dilijan’s nature and culture with historic monasteries, scenic lakes, national park trails, and outdoor activities.",
+      "ru": "Исследуйте природу и культуру Дилижана: исторические монастыри, живописные озера, тропы национального парка и активный отдых на свежем воздухе.",
+      "hy": "Բացահայտեք Դիլիջանի բնությունն ու մշակույթը՝ պատմական վանքեր, գեղեցիկ լճեր, ազգային պարկի ճամփորդություններ և բացօթյա ակտիվ հանգիստ։"
     },
-    "sections": [],
-    "carousel": [],
+    "sections": [
+      {
+        "header": {
+          "en": "Haghartsin Monastery",
+          "ru": "Монастырь Хагартсин",
+          "hy": "Հաղարծին վանական համալիր"
+        },
+        "content": {
+          "en": "Historic Armenian monastery in the forest.",
+          "ru": "Исторический армянский монастырь в лесу.",
+          "hy": "Պատմական հայկական վանք անտառում։"
+        },
+        "fullContent": {
+          "en": "Haghartsin Monastery, dating back to the 10th-13th centuries, is nestled in the Dilijan forest, offering serene surroundings, historical architecture, and insight into medieval Armenian monastic life.",
+          "ru": "Монастырь Хагартсин, основанный в X–XIII веках, расположен в лесу Дилижана. Предлагает спокойную атмосферу, историческую архитектуру и знакомство с монашеской жизнью средневековой Армении.",
+          "hy": "Հաղարծին վանական համալիրն ունի X–XIII դարերի պատմություն և գտնվում է Դիլիջանի անտառում՝ առաջարկելով խաղաղ միջավայր, պատմական ճարտարապետություն և ծանոթություն միջնադարյան հայ վանական կյանքին։"
+        },
+        "image": "/TourImages/tavush_region/dilijan/haghartsin.webp"
+      },
+      {
+        "header": {
+          "en": "Dilijan National Park",
+          "ru": "Национальный парк Дилижан",
+          "hy": "Ազգային պարկ"
+        },
+        "content": {
+          "en": "Nature trails, forest walks, and scenic landscapes.",
+          "ru": "Природные тропы, прогулки по лесу и живописные виды.",
+          "hy": "Բնության ճամփաներ, անտառային զբոսանքներ և գեղեցիկ տեսարաններ։"
+        },
+        "fullContent": {
+          "en": "Dilijan National Park features dense forests, rich biodiversity, and well-marked trails for walking, hiking, and connecting with nature.",
+          "ru": "Национальный парк Дилижан предлагает густые леса, богатое биоразнообразие и хорошо маркированные тропы для прогулок, походов и контакта с природой.",
+          "hy": "Դիլիջանի ազգային պարկը ունի խիտ անտառներ, բազմազան բնություն և լավ նշված ճամփորդություններ՝ քայլելու, լեռնագնացության և բնության հետ կապվելու համար։"
+        },
+        "image": "/TourImages/tavush_region/dilijan/national-park.webp"
+      },
+      {
+        "header": {
+          "en": "Parz Lake & Extreme Park",
+          "ru": "Озеро Парз и экстрим-парк",
+          "hy": "Պարզ լիճ և Extreme Park"
+        },
+        "content": {
+          "en": "Outdoor activities: horseback riding, rowing, zipline, picnic, forest walk, cafés.",
+          "ru": "Активности на свежем воздухе: верховая езда, катание на лодках, зиплайн, пикник, прогулки по лесу, кафе.",
+          "hy": "Բացօթյա ակտիվություններ՝ ձիավարություն, թիավարություն, Zipline, պիկնիկ, անտառային զբոսանք, սրճարաններ։"
+        },
+        "fullContent": {
+          "en": "Parz Lake Extreme Park offers a variety of activities such as horseback riding, rowing, zipline across the lake, picnics, and forest walking paths. There are also cafés along the lakeside for refreshments.",
+          "ru": "Экстрим-парк на озере Парз предлагает верховую езду, катание на лодках, зиплайн через озеро, пикники и лесные тропы. Также есть кафе у озера для перекуса.",
+          "hy": "Parz Lake Extreme Park-ը առաջարկում է ձիավարություն, թիավարություն, Zipline լճի վրայով, պիկնիկ, անտառային քայլարշավներ, ինչպես նաև սրճարաններ լճի մոտ։"
+        },
+        "image": "/TourImages/tavush_region/dilijan/parz-lake.webp"
+      },
+      {
+        "header": {
+          "en": "Old Dilijan",
+          "ru": "Старый Дилижан",
+          "hy": "Հին Դիլիջան"
+        },
+        "content": {
+          "en": "Historic district with traditional architecture and local crafts.",
+          "ru": "Исторический район с традиционной архитектурой и местными ремёслами.",
+          "hy": "Պատմական թաղամաս՝ ավանդական ճարտարապետությամբ և տեղական արհեստներով։"
+        },
+        "fullContent": {
+          "en": "Old Dilijan features cobbled streets, traditional houses, local craft shops, and quaint cafés, giving visitors a glimpse into the region's cultural heritage.",
+          "ru": "Старый Дилижан предлагает мощёные улицы, традиционные дома, магазины ремёсел и уютные кафе, знакомя с культурным наследием региона.",
+          "hy": "Հին Դիլիջանը ներկայացնում է քարե փողոցներ, ավանդական տներ, տեղական արհեստների խանութներ և հարմար սրճարաններ՝ ներկայացնելով տարածաշրջանի մշակութային ժառանգությունը։"
+        },
+        "image": "/TourImages/tavush_region/dilijan/old-dilijan.webp"
+      }
+    ],
     "features": {
-      "include": { "en": [], "ru": [], "hy": [] },
-      "exclude": { "en": [], "ru": [], "hy": [] }
+      "include": {
+        "en": ["Transportation", "Professional guide service", "Nature & city walks", "Outdoor activities", "Photo stops"],
+        "ru": ["Транспорт", "Услуги профессионального гида", "Прогулки по природе и городу", "Активный отдых на свежем воздухе", "Фото-остановки"],
+        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Բնության և քաղաքային քայլարշավներ", "Բացօթյա ակտիվություններ", "Լուսանկարման կանգառներ"]
+      },
+      "exclude": {
+        "en": ["Park entrance fees", "Activity fees", "Lunch", "Personal expenses"],
+        "ru": ["Вход в парк", "Оплата активностей", "Обед", "Личные расходы"],
+        "hy": ["Պարկի մուտքի տոմսեր", "Ակտիվությունների վճար", "Ճաշ", "Անձնական ծախսեր"]
+      }
+    },
+    "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
+          {"vehicles": "Sedan", "price": "20000"},
+          {"vehicles": "Miniven", "price": "26000"}
+        ],
+        "ticket_per_person": "0"
+      }
+    }
+  },
+
+  {
+    "id": "dilijan-gosh",
+    "category": "cultural",
+    "routeMap": "/TourImages/tavush_region/dilijan-gosh/route-map.webp",
+    "routeSummary": "Yerevan → Dilijan → Gosh → Yerevan",
+    "imageUrl": "/TourImages/tavush_region/dilijan-gosh/main.webp",
+    "duration": "8",
+    "durationUnit": "hours",
+    "price": "65000 AMD",
+    "title": {
+      "en": "DILIJAN & GOSH MONASTERIES TOUR",
+      "ru": "ТУР ПО ДИЛИДЖАНУ И ГОШУ",
+      "hy": "ԴԻԼԻՋԱՆ ԵՎ ԳՈՇԻ ՎԱՆՔԵՐԻ ՏՈՒՐ"
+    },
+    "description": {
+      "en": "Explore Dilijan and Gosh with historic monasteries, scenic lake activities, forest walks and traditional landscapes.",
+      "ru": "Исследуйте Дилижан и Гош: исторические монастыри, озеро с активностями, прогулки по лесу и живописные пейзажи.",
+      "hy": "Բացահայտեք Դիլիջանն ու Գոշը՝ պատմական վանքեր, լիճ ակտիվություններով, անտառային քայլարշավներ և գեղեցիկ տեսարաններ։"
+    },
+    "sections": [
+      {
+        "header": {
+          "en": "Makaravank Monastery",
+          "ru": "Монастырь Макарaванк",
+          "hy": "Մակարավանք"
+        },
+        "content": {
+          "en": "Historic monastery in Dilijan region.",
+          "ru": "Исторический монастырь в регионе Дилижан.",
+          "hy": "Պատմական վանք Դիլիջանի շրջանում։"
+        },
+        "fullContent": {
+          "en": "Makaravank Monastery dates back to the 10th–13th centuries and is known for its peaceful setting, ancient stone architecture, and rich medieval frescoes and inscriptions.",
+          "ru": "Монастырь Макарaванк X–XIII веков известен своим тихим расположением, древней каменной архитектурой и средневековыми фресками и надписями.",
+          "hy": "Մակարավանք վանքը X–XIII դարերից է, հայտնի իր խաղաղ շրջակայքով, հին քարե ճարտարապետությամբ և միջնադարյան фրեսկաներով ու արձանագրություններով։"
+        },
+        "image": "/TourImages/tavush_region/dilijan-gosh/makaravank.webp"
+      },
+      {
+        "header": {
+          "en": "Goshavank Monastery",
+          "ru": "Монастырь Гошаванк",
+          "hy": "Գոշավանք"
+        },
+        "content": {
+          "en": "Famous Armenian monastery with rich history.",
+          "ru": "Знаменитый армянский монастырь с богатой историей.",
+          "hy": "Հայտնի հայկական վանք՝ հարուստ պատմությամբ։"
+        },
+        "fullContent": {
+          "en": "Goshavank, founded in the 12th century, is a well-preserved monastic complex featuring intricate stone carvings, khachkars, and inscriptions by the scholar Mkhitar Gosh. The surrounding area provides beautiful forest views.",
+          "ru": "Гошаванк, основанный в XII веке, представляет собой хорошо сохранившийся монастырский комплекс с тонкой каменной резьбой, хачкарами и надписями учёного Мхитара Гоша. Окрестности открывают красивые лесные виды.",
+          "hy": "Գոշավանքը հիմնադրվել է XII դարում և պահպանվել է լավ՝ հարուստ քանդակազարդերով, խաչքարերով և Գոշ Մխիթարի արձանագրություններով։ Շրջակայքը առաջարկում է գեղեցիկ անտառային տեսարաններ։"
+        },
+        "image": "/TourImages/tavush_region/dilijan-gosh/goshavank.webp"
+      },
+      {
+        "header": {
+          "en": "Gosh Lake",
+          "ru": "Озеро Гош",
+          "hy": "Գոշի լիճ"
+        },
+        "content": {
+          "en": "Outdoor activities: quad bikes, boats, horseback riding, forest walks.",
+          "ru": "Активности на свежем воздухе: квадроциклы, лодки, верховая езда, прогулки по лесу.",
+          "hy": "Բացօթյա ակտիվություններ՝ քվադրոցիկլ, նավակներ, ձիավարություն, անտառային զբոսանքներ։"
+        },
+        "fullContent": {
+          "en": "Gosh Lake offers various activities for adventure lovers including quad biking, boating, horseback riding, and scenic forest walks around the lake. Picnics and relaxation spots are available along the shoreline.",
+          "ru": "Озеро Гош предлагает разнообразные активности для любителей приключений: квадроциклы, лодки, верховая езда и прогулки по живописным лесам вокруг озера. Также есть места для пикника и отдыха.",
+          "hy": "Գոշի լիճը առաջարկում է տարբեր ակտիվություններ արկածախնդիրների համար՝ քվադրոցիկլ, նավակ, ձիավարություն և անտառային զբոսանքներ լճի շուրջ։ Կան նաև պիկնիկի և հանգստի տարածքներ։"
+        },
+        "image": "/TourImages/tavush_region/dilijan-gosh/gosh-lake.webp"
+      }
+    ],
+    "features": {
+      "include": {
+        "en": ["Transportation", "Professional guide service", "Nature walks", "Outdoor activities", "Photo stops"],
+        "ru": ["Транспорт", "Услуги профессионального гида", "Прогулки на природе", "Активный отдых на свежем воздухе", "Фото-остановки"],
+        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Բնության քայլարշավներ", "Բացօթյա ակտիվություններ", "Լուսանկարման կանգառներ"]
+      },
+      "exclude": {
+        "en": ["Activity fees", "Lunch", "Personal expenses"],
+        "ru": ["Оплата активностей", "Обед", "Личные расходы"],
+        "hy": ["Ակտիվությունների վճար", "Ճաշ", "Անձնական ծախսեր"]
+      }
+    },
+    "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
+          {"vehicles": "Sedan", "price": "20000"},
+          {"vehicles": "Miniven", "price": "26000"}
+        ],
+        "ticket_per_person": "0"
+      }
     }
   }
 ]
