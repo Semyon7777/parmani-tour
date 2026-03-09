@@ -482,13 +482,14 @@
 
 .eco-details-page .block-header {
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 12px;
   margin-bottom: 20px;
 }
 
 .eco-details-page .icon-green {
   color: var(--eco-green);
+  margin-top: 2px;
 }
 
 .eco-details-page .mission-highlight {
