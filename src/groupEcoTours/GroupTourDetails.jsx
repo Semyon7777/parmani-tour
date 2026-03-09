@@ -40,7 +40,7 @@ const GroupTourDetails = () => {
             </button>
             <div className="group-hero-label">
               <Badge className="group-type-badge bg-warning">
-                {tour.type === 'eco' ? t('tours.badge_eco') : t('group.badge', 'GROUP ADVENTURE')}
+                {tour.type === 'eco' ? t('group_eco_tours.badge_eco') : t('group_eco_tours.group.badge', 'GROUP ADVENTURE')}
               </Badge>
               <h1 className="group-title">
                 {tour.title[currentLang] || tour.title['en']}
@@ -57,22 +57,22 @@ const GroupTourDetails = () => {
             <div className="strip-item">
               <Users size={20} />
               <div>
-                <small>{t('group.size', 'Group')}</small>
-                <span>Up to 15 ppl</span>
+                <small>{t('group_eco_tours.group.size', 'Group')}</small>
+                <span>{t('group_eco_tours.up_to')} {tour.people} {t('group_eco_tours.people')}</span>
               </div>
             </div>
             <div className="strip-item">
               <Bus size={20} />
               <div>
-                <small>{t('group.transport', 'Transport')}</small>
-                <span>Minivan</span>
+                <small>{t('group_eco_tours.group.transport', 'Transport')}</small>
+                <span>{tour.transport[currentLang] || tour.transport['en']}</span>
               </div>
             </div>
             <div className="strip-item">
               <Clock size={20} />
               <div>
-                <small>{t('group.duration', 'Duration')}</small>
-                <span>10 Hours</span>
+                <small>{t('group_eco_tours.group.duration', 'Duration')}</small>
+                <span>{tour.duration} {t('group_eco_tours.group.hours')}</span>
               </div>
             </div>
           </div>
@@ -84,13 +84,14 @@ const GroupTourDetails = () => {
           <Col lg={7}>
             {/* Программа тура (Timeline) */}
             <section className="itinerary-section">
-              <h2 className="section-title">{t('group.program_label', 'Tour Program')}</h2>
+              <h2 className="section-title">{t('group_eco_tours.group.program_label', 'Tour Program')}</h2>
               <div className="timeline">
                 {tour.itinerary && tour.itinerary.map((step, index) => (
                   <div className="timeline-item" key={index}>
                     <div className="time">{step.time}</div>
                     <div className="content">
-                      <h4>{t(`group.step_${index + 1}_title`, 'Activity')}</h4>
+                      {/* Теперь заголовок берется из твоего JSON (garni-temple) */}
+                      <h4>{step.title[currentLang] || step.title['en'] || 'Activity'}</h4>
                       <p>{step.text[currentLang] || step.text['en']}</p>
                     </div>
                   </div>
@@ -102,8 +103,8 @@ const GroupTourDetails = () => {
               <div className="info-card">
                 <Info size={24} className="text-orange" />
                 <div>
-                  <h4>{t('group.to_bring', 'What to bring?')}</h4>
-                  <p>{t('group.bring_desc', 'Comfortable shoes, sunglasses, and your best mood.')}</p>
+                  <h4>{t('group_eco_tours.group.to_bring', 'What to bring?')}</h4>
+                  <p>{t('group_eco_tours.group.bring_desc', 'Comfortable shoes, sunglasses, and your best mood.')}</p>
                 </div>
               </div>
             </section>
@@ -116,7 +117,7 @@ const GroupTourDetails = () => {
                 <div className="price-circle">
                   <span>{tour.price}</span>
                 </div>
-                <p className="per-person">{t('group.per_person', 'per person')}</p>
+                <p className="per-person">{t('group_eco_tours.group.per_person', 'per person')}</p>
               </div>
 
               <div className="booking-details">
@@ -131,14 +132,16 @@ const GroupTourDetails = () => {
               </div>
 
               <button className="group-action-btn">
-                {t('buttons.book', 'Book a spot')}
+                {t('group_eco_tours.group.book', 'Book a spot')}
               </button>
-
               <div className="spots-counter">
                 <div className="progress-bar">
-                  <div className="progress-fill" style={{ width: '70%' }}></div>
+                  <div 
+                    className="progress-fill" 
+                    style={{ width: `${(1 - (tour.spots / tour.people)) * 100}%` }}
+                  ></div>
                 </div>
-                <small>🔥 {t('group.limited', 'Only 5 spots left!')}</small>
+                <small>🔥 {t('group_eco_tours.group.limited', { count: tour.spots })}</small>
               </div>
             </div>
           </Col>

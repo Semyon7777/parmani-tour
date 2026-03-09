@@ -777,7 +777,36 @@
       "group_about_a": "We limit our group tours to a maximum of 12 people to ensure a comfortable and personalized experience.",
       "group_q1": "Are meals included in the price?",
       "group_a1": "Yes, traditional lunch and drinking water are included in all our group tours."
-    }
+    },
+    "up_to": "Up to",
+    "people": "people",
+    "group": {
+      "badge": "GROUP ADVENTURE",
+      "size": "Group Size",
+      "transport": "Transport",
+      "duration": "Duration",
+      "hours": "hours",
+      "program_label": "Tour Program",
+      "to_bring": "What to bring?",
+      "bring_desc": "Comfortable shoes, sunglasses, and your best mood.",
+      "per_person": "per person",
+      "book": "Book a spot",
+      "limited": "Only {{count}} spots left!"
+    },
+    "common": { "back": "Back" },
+    "tours": { "badge_eco": "ECO MISSION" },
+    "eco": {
+      "mission_title": "Our Mission in this tour",
+      "about_tour": "About the tour",
+      "whats_included": "What is included",
+      "price_start": "Participation fee",
+      "insurance": "Insurance included",
+      "impact": "Direct environmental impact",
+      "no_prepayment": "No prepayment required",
+      "limited_spots": "Only {{count}} spots left!",
+      "hurry_up": "Join others in this mission"
+    },
+    "buttons": { "join_mission": "Join the Mission" }
   },
 
 

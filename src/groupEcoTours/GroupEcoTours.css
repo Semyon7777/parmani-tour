@@ -596,6 +596,47 @@
   margin-top: 15px;
 }
 
+/* Контейнер прогресс-бара */
+.eco-progress-container {
+  width: 100%;
+  height: 10px;
+  background-color: #f0fdf4; /* Светло-светло зеленый фон */
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #dcfce7;
+  margin-bottom: 12px;
+}
+
+/* Сама полоска заполнения */
+.eco-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4ade80, #22c55e); /* Градиент зеленого */
+  border-radius: 20px;
+  transition: width 1s ease-in-out; /* Плавное заполнение при загрузке */
+}
+
+/* Текстовые метки над баром */
+.spots-left-text {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #166534;
+}
+
+.spots-percent-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #3f6212;
+}
+
+/* Маленькое инфо под баром */
+.eco-spots-notice-simple {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #15803d;
+  font-style: italic;
+}
+
 /* RESPONSIVE */
 @media (max-width: 991px) {
   .eco-details-page .eco-hero { height: 50vh; }
@@ -618,6 +659,10 @@
 
 .group-details-page {
   background-color: white;
+}
+
+.group-details-page .group-main-content {
+  margin-bottom: 50px;
 }
 
 /* HERO SECTION - Геометричный и яркий */
@@ -661,8 +706,6 @@
   letter-spacing: 2px;
   border-radius: 4px;
 }
-
-.group-details-page .group-type-badge .bg-primary 
 
 .group-details-page .group-title {
   color: white;
@@ -754,7 +797,7 @@
   border: 2px solid var(--group-dark);
   padding: 40px;
   border-radius: 0; /* Четкие углы для контраста с эко */
-  box-shadow: 15px 15px 0px var(--group-orange); /* Ретро-тень */
+  box-shadow: 5px 5px 0px var(--group-orange); /* Ретро-тень */
   position: sticky;
   top: 100px;
   margin-top: 60px;
