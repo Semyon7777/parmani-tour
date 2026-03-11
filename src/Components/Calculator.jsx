@@ -21,7 +21,7 @@ const Calculator = ({
     }));
 
     const GUIDE_PRICE = 15000;
-    const FOOD_PER_PERSON = 5000;
+    const FOOD_PER_PERSON = 4000;
     const TICKET_PER_PERSON = Number(pricingData.ticket_per_person) || 0;
 
     // --- 2. ЛОГИКА ТРАНСПОРТА ---

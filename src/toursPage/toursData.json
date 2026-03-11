@@ -5,9 +5,9 @@
     "routeMap": "/TourImages/shirak_region/gyumri-city/route-map.webp",
     "routeSummary": "Yerevan → Gyumri → Yerevan",
     "imageUrl": "/TourImages/shirak_region/gyumri-city/main.webp",
-    "duration": "10",
+    "duration": "12",
     "durationUnit": "hours",
-    "price": "50000 AMD",
+    "price": "53000 AMD",
     "title": {
       "en": "GYUMRI CULTURAL CITY TOUR",
       "ru": "КУЛЬТУРНЫЙ ТУР ПО ГЮМРИ",
@@ -144,10 +144,10 @@
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {"vehicles": "Sedan", "price": "36000"},
+          {"vehicles": "Miniven", "price": "45000"}
         ],
-        "ticket_per_person": "0"
+        "ticket_per_person": "3000"
       }
     }
   },
@@ -318,9 +318,9 @@
     "routeMap": "/TourImages/lori_region/amrakits-hnevank/route-map.webp",
     "routeSummary": "Yerevan → Amrakits → Hnevank → Arevatsagi Dzor → Yerevan",
     "imageUrl": "/TourImages/lori_region/amrakits-hnevank/main.webp",
-    "duration": "10-11",
+    "duration": "10",
     "durationUnit": "hours",
-    "price": "61000 AMD",
+    "price": "52000 AMD",
     "title": {
       "en": "AMRAKITS – HNEVANK – AREVATSAGI GORGE",
       "ru": "АМРАКИЦ – ХНЕВАНК – УЩЕЛЬЕ АРЕВАЦАГИ",
@@ -421,8 +421,8 @@
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "41000"},
-          {"vehicles": "Miniven", "price": "62000"}
+          {"vehicles": "Sedan", "price": "35000"},
+          {"vehicles": "Miniven", "price": "45000"}
         ],
         "ticket_per_person": "0"
       }
@@ -435,9 +435,9 @@
     "routeMap": "/TourImages/shirak_region/ereruyk-gyumri/route-map.webp",
     "routeSummary": "Yerevan → Ereruyk → Akhuryan Reservoir → Sev Berd → Gyumri → Yerevan",
     "imageUrl": "/TourImages/shirak_region/ereruyk-gyumri/main.webp",
-    "duration": "10",
+    "duration": "10-11",
     "durationUnit": "hours",
-    "price": "59000 AMD",
+    "price": "53000 AMD",
     "title": {
       "en": "ERERUYK – GYUMRI CITY TOUR",
       "ru": "ЕРЕРУЙК – ГОРОДСКОЙ ТУР ПО ГЮМРИ",
@@ -538,10 +538,10 @@
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "40000"},
-          {"vehicles": "Miniven", "price": "60000"}
+          {"vehicles": "Sedan", "price": "36000"},
+          {"vehicles": "Miniven", "price": "45000"}
         ],
-        "ticket_per_person": "0"
+        "ticket_per_person": "3000"
       }
     }
   },
@@ -658,7 +658,7 @@
           {"vehicles": "Sedan", "price": "20000"},
           {"vehicles": "Miniven", "price": "26000"}
         ],
-        "ticket_per_person": "0"
+        "ticket_per_person": "2500"
       }
     }
   },
@@ -842,7 +842,7 @@
     "imageUrl": "/TourImages/tavush_region/dilijan/main.webp",
     "duration": "8",
     "durationUnit": "hours",
-    "price": "60000 AMD",
+    "price": "59000 AMD",
     "title": {
       "en": "DILIJAN NATURE & CULTURE TOUR",
       "ru": "ТУР ПО ПРИРОДЕ И КУЛЬТУРЕ ДИЛИДЖАНА",
@@ -943,10 +943,10 @@
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {"vehicles": "Sedan", "price": "40000"},
+          {"vehicles": "Miniven", "price": "50000"}
         ],
-        "ticket_per_person": "0"
+        "ticket_per_person": "1000"
       }
     }
   },
