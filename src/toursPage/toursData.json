@@ -71,7 +71,7 @@
           "ru": "Пешеходная экскурсия проходит по историческому району Кумайри с его зданиями XIX века из чёрного туфа. Узкие улочки, старинные дворы и площадь Вардананц создают уникальную атмосферу старого города.",
           "hy": "Քայլարշավը անցնում է Կումայրի պատմական թաղամասով՝ իր սև տուֆից կառուցված XIX դարի շենքերով և Վարդանանց հրապարակով։"
         },
-        "image": "/TourImages/shirak_region/gyumri-city/kumayri.webp"
+        "image": "/TourImages/shirak_region/gyumri-city/gyumri-kumayri.webp"
       },
       {
         "header": {
@@ -666,9 +666,9 @@
   {
     "id": "gyumri-2day-tour",
     "category": "cultural",
-    "routeMap": "/TourImages/shirak_region/gyumri-2day/route-map.webp",
+    "routeMap": "/TourImages/shirak_region/ereruyk-gyumri/route-map.webp",
     "routeSummary": "Yerevan → Gyumri → Yerevan",
-    "imageUrl": "/TourImages/shirak_region/gyumri-2day/main.webp",
+    "imageUrl": "/TourImages/shirak_region/ere/main.webp",
     "duration": "2",
     "durationUnit": "days",
     "price": "65000 AMD",
@@ -699,7 +699,7 @@
           "ru": "Церковь Ереруйк — многовековая армянская церковь с живописной природой для завтрака или пикника. С 25 апреля по 15 мая можно полюбоваться цветущими маками.",
           "hy": "Երերույքի եկեղեցին դարավոր հայկական եկեղեցի է՝ առաջարկելով գեղեցիկ բնապատկեր՝ նախաճաշի կամ պիկնիկի համար։ Ապրիլի 25 – մայիսի 15 ժամանակահատվածում հնարավոր է վայելել մոտակա կակաչների դաշտերը։"
         },
-        "image": "/TourImages/shirak_region/gyumri-2day/yereruyk.webp"
+        "image": "/TourImages/shirak_region/ereruyk-gyumri/ereruyk.webp"
       },
       {
         "header": {
@@ -717,7 +717,7 @@
           "ru": "Проведите около 20 минут, любуясь Ахурянским водохранилищем и делая фотографии, прежде чем продолжить экскурсию.",
           "hy": "Մոտ 20 րոպե վայելել Ախուրյանի ջրամբարը և լուսանկարներ անել, ապա շարունակել շրջագայությունը։"
         },
-        "image": "/TourImages/shirak_region/gyumri-2day/akhorian.webp"
+        "image": "/TourImages/shirak_region/ereruyk-gyumri/akhuryan.webp"
       },
       {
         "header": {
@@ -735,7 +735,7 @@
           "ru": "Исследуйте Кумайри с его зданиями XIX века из черного туфа, посетите площадь Вардананц и дом-музей Дзитохцянов. По желанию группы возможны дополнительные музеи.",
           "hy": "Զբոսանք Կումայրի պատմական թաղամասով՝ իր XIX դարի սև տուֆե շենքերով, այցելություն Վարդանանց հրապարակ և Ձիթողցոնց տուն-թանգարան։ Խմբի ցանկությամբ հնարավոր է ներառել նաև այլ թանգարաններ։"
         },
-        "image": "/TourImages/shirak_region/gyumri-2day/gyumri-city.webp"
+        "image": "/TourImages/shirak_region/ereruyk-gyumri/gyumri.webp"
       },
       {
         "header": {
@@ -753,7 +753,7 @@
           "ru": "В зависимости от даты тура гости могут посетить театр, концерт или другое культурное мероприятие. Входные билеты могут не входить в стоимость.",
           "hy": "Կախված տուրի օրվանից, հյուրերը կարող են այցելել թատրոն, համերգ կամ այլ մշակութային միջոցառում։ Մուտքի արժեքը կարող է չներառվել։"
         },
-        "image": "/TourImages/shirak_region/gyumri-2day/evening-event.webp"
+        "image": "/TourImages/shirak_region/gyumri-city/evening-event.webp"
       },
       {
         "header": {
@@ -771,7 +771,7 @@
           "ru": "Сев Берд — историческая крепость с видом на Гюмри, открывающая панорамные виды и знакомящая с военной историей региона.",
           "hy": "Սև բերդը պատմական բերդ է՝ առաջարկելով համայնապատկերային տեսարաններ և ծանոթություն տարածաշրջանի ռազմական պատմությանը։"
         },
-        "image": "/TourImages/shirak_region/gyumri-2day/sev-berd.webp"
+        "image": "/TourImages/shirak_region/ereruyk-gyumri/sev-berd.webp"
       },
       {
         "header": {
@@ -807,7 +807,7 @@
           "ru": "Марамрашенский монастырь — древний армянский монастырь, представляющий средневековую религиозную архитектуру и историю региона.",
           "hy": "Մարմարաշենի վանքը հին հայկական վանք է, որը ցույց է տալիս միջնադարյան կրոնական ճարտարապետությունն ու տեղական պատմությունը։"
         },
-        "image": "/TourImages/shirak_region/gyumri-2day/marmarashen.webp"
+        "image": "/TourImages/shirak_region/gyumri-city/marmarashen.webp"
       }
     ],
     "features": {
@@ -839,7 +839,7 @@
     "category": "cultural",
     "routeMap": "/TourImages/tavush_region/dilijan/route-map.webp",
     "routeSummary": "Yerevan → Dilijan → Yerevan",
-    "imageUrl": "/TourImages/tavush_region/dilijan/main.webp",
+    "imageUrl": "/TourImages/tavush_region/dilijan/haghartsin.webp",
     "duration": "8",
     "durationUnit": "hours",
     "price": "59000 AMD",
@@ -952,42 +952,60 @@
   },
 
   {
-    "id": "dilijan-gosh",
+    "id": "sevan-gosh",
     "category": "cultural",
-    "routeMap": "/TourImages/tavush_region/dilijan-gosh/route-map.webp",
-    "routeSummary": "Yerevan → Dilijan → Gosh → Yerevan",
-    "imageUrl": "/TourImages/tavush_region/dilijan-gosh/main.webp",
-    "duration": "8",
-    "durationUnit": "hours",
+    "routeMap": "/TourImages/tavush_region/gosh/route-map.webp",
+    "routeSummary": "Yerevan → Sevan → Gosh → Yerevan",
+    "imageUrl": "/TourImages/tavush_region/gosh/main.webp",
+    "duration": "1",
+    "durationUnit": "day",
     "price": "65000 AMD",
     "title": {
-      "en": "DILIJAN & GOSH MONASTERIES TOUR",
-      "ru": "ТУР ПО ДИЛИДЖАНУ И ГОШУ",
-      "hy": "ԴԻԼԻՋԱՆ ԵՎ ԳՈՇԻ ՎԱՆՔԵՐԻ ՏՈՒՐ"
+      "en": "SEVAN & GOSH NATURE TOUR",
+      "ru": "ТУР СЕВАН И ГОШ",
+      "hy": "ՍԵՎԱՆ ԵՎ ԳՈՇ ԲՆԱԿԱՆ ՏՈՒՐ"
     },
     "description": {
-      "en": "Explore Dilijan and Gosh with historic monasteries, scenic lake activities, forest walks and traditional landscapes.",
-      "ru": "Исследуйте Дилижан и Гош: исторические монастыри, озеро с активностями, прогулки по лесу и живописные пейзажи.",
-      "hy": "Բացահայտեք Դիլիջանն ու Գոշը՝ պատմական վանքեր, լիճ ակտիվություններով, անտառային քայլարշավներ և գեղեցիկ տեսարաններ։"
+      "en": "Visit Lake Sevan, the historic Sevanavank monastery, and explore the forests of Tavush with Goshavank and Gosh Lake.",
+      "ru": "Посещение озера Севан, монастыря Севанаванк и природы Тавуша с Гошаванком и озером Гош.",
+      "hy": "Այցելություն Սևանա լիճ, Սևանավանք և Տավուշի բնություն՝ Գոշավանք և Գոշի լիճ։"
     },
     "sections": [
       {
         "header": {
-          "en": "Makaravank Monastery",
-          "ru": "Монастырь Макарaванк",
-          "hy": "Մակարավանք"
+          "en": "Lake Sevan",
+          "ru": "Озеро Севан",
+          "hy": "Սևան"
         },
         "content": {
-          "en": "Historic monastery in Dilijan region.",
-          "ru": "Исторический монастырь в регионе Дилижан.",
-          "hy": "Պատմական վանք Դիլիջանի շրջանում։"
+          "en": "The largest lake in Armenia with scenic mountain views.",
+          "ru": "Крупнейшее озеро Армении с красивыми горными пейзажами.",
+          "hy": "Հայաստանի ամենամեծ լիճը՝ գեղեցիկ լեռնային տեսարաններով։"
         },
         "fullContent": {
-          "en": "Makaravank Monastery dates back to the 10th–13th centuries and is known for its peaceful setting, ancient stone architecture, and rich medieval frescoes and inscriptions.",
-          "ru": "Монастырь Макарaванк X–XIII веков известен своим тихим расположением, древней каменной архитектурой и средневековыми фресками и надписями.",
-          "hy": "Մակարավանք վանքը X–XIII դարերից է, հայտնի իր խաղաղ շրջակայքով, հին քարե ճարտարապետությամբ և միջնադարյան фրեսկաներով ու արձանագրություններով։"
+          "en": "Lake Sevan is one of the largest high-altitude freshwater lakes in the world. Visitors enjoy panoramic views, fresh air, and beautiful landscapes along the lakeshore.",
+          "ru": "Озеро Севан — одно из крупнейших высокогорных пресноводных озёр в мире. Посетители могут насладиться панорамными видами, свежим воздухом и красивыми пейзажами.",
+          "hy": "Սևանա լիճը աշխարհի ամենամեծ բարձրադիր քաղցրահամ լճերից է։ Այցելուները վայելում են գեղեցիկ տեսարաններ, մաքուր օդ և բնության հրաշալի միջավայր։"
         },
-        "image": "/TourImages/tavush_region/dilijan-gosh/makaravank.webp"
+        "image": "/TourImages/gegharkunik_tavush/sevan-gosh/sevan.webp"
+      },
+      {
+        "header": {
+          "en": "Sevanavank Monastery",
+          "ru": "Монастырь Севанаванк",
+          "hy": "Սևանավանք"
+        },
+        "content": {
+          "en": "Historic monastery located on the Sevan peninsula.",
+          "ru": "Исторический монастырь на полуострове Севана.",
+          "hy": "Պատմական վանք Սևանի թերակղզում։"
+        },
+        "fullContent": {
+          "en": "Sevanavank Monastery was founded in the 9th century and is located on a hill overlooking Lake Sevan. It offers stunning views and represents an important part of Armenia’s medieval religious heritage.",
+          "ru": "Монастырь Севанаванк основан в IX веке и расположен на холме с видом на озеро Севан. Отсюда открываются красивые панорамы и ощущается дух средневековой Армении.",
+          "hy": "Սևանավանքը հիմնադրվել է IX դարում և գտնվում է Սևանա լճի թերակղզու բարձունքում՝ առաջարկելով հրաշալի տեսարաններ և ներկայացնելով հայկական միջնադարյան ժառանգությունը։"
+        },
+        "image": "/TourImages/gegharkunik_tavush/sevan-gosh/sevanavank.webp"
       },
       {
         "header": {
@@ -996,16 +1014,16 @@
           "hy": "Գոշավանք"
         },
         "content": {
-          "en": "Famous Armenian monastery with rich history.",
-          "ru": "Знаменитый армянский монастырь с богатой историей.",
-          "hy": "Հայտնի հայկական վանք՝ հարուստ պատմությամբ։"
+          "en": "Medieval monastery complex surrounded by forests.",
+          "ru": "Средневековый монастырский комплекс в окружении лесов.",
+          "hy": "Միջնադարյան վանական համալիր՝ անտառների մեջ։"
         },
         "fullContent": {
-          "en": "Goshavank, founded in the 12th century, is a well-preserved monastic complex featuring intricate stone carvings, khachkars, and inscriptions by the scholar Mkhitar Gosh. The surrounding area provides beautiful forest views.",
-          "ru": "Гошаванк, основанный в XII веке, представляет собой хорошо сохранившийся монастырский комплекс с тонкой каменной резьбой, хачкарами и надписями учёного Мхитара Гоша. Окрестности открывают красивые лесные виды.",
-          "hy": "Գոշավանքը հիմնադրվել է XII դարում և պահպանվել է լավ՝ հարուստ քանդակազարդերով, խաչքարերով և Գոշ Մխիթարի արձանագրություններով։ Շրջակայքը առաջարկում է գեղեցիկ անտառային տեսարաններ։"
+          "en": "Founded in the 12th century, Goshavank is known for its detailed stone carvings and historical connection with the Armenian scholar Mkhitar Gosh. The monastery is surrounded by beautiful Tavush forests.",
+          "ru": "Гошаванк основан в XII веке и известен богатой каменной резьбой и связью с армянским учёным Мхитаром Гошем. Монастырь окружён лесами Тавуша.",
+          "hy": "Գոշավանքը հիմնադրվել է XII դարում և հայտնի է իր գեղեցիկ քանդակազարդերով և Մխիթար Գոշի հետ կապված պատմությամբ։ Այն շրջապատված է Տավուշի անտառներով։"
         },
-        "image": "/TourImages/tavush_region/dilijan-gosh/goshavank.webp"
+        "image": "/TourImages/gegharkunik_tavush/sevan-gosh/goshavank.webp"
       },
       {
         "header": {
@@ -1014,23 +1032,23 @@
           "hy": "Գոշի լիճ"
         },
         "content": {
-          "en": "Outdoor activities: quad bikes, boats, horseback riding, forest walks.",
-          "ru": "Активности на свежем воздухе: квадроциклы, лодки, верховая езда, прогулки по лесу.",
-          "hy": "Բացօթյա ակտիվություններ՝ քվադրոցիկլ, նավակներ, ձիավարություն, անտառային զբոսանքներ։"
+          "en": "A peaceful forest lake with outdoor activities.",
+          "ru": "Тихое лесное озеро с активным отдыхом.",
+          "hy": "Խաղաղ անտառային լիճ ակտիվ հանգստի հնարավորություններով։"
         },
         "fullContent": {
-          "en": "Gosh Lake offers various activities for adventure lovers including quad biking, boating, horseback riding, and scenic forest walks around the lake. Picnics and relaxation spots are available along the shoreline.",
-          "ru": "Озеро Гош предлагает разнообразные активности для любителей приключений: квадроциклы, лодки, верховая езда и прогулки по живописным лесам вокруг озера. Также есть места для пикника и отдыха.",
-          "hy": "Գոշի լիճը առաջարկում է տարբեր ակտիվություններ արկածախնդիրների համար՝ քվադրոցիկլ, նավակ, ձիավարություն և անտառային զբոսանքներ լճի շուրջ։ Կան նաև պիկնիկի և հանգստի տարածքներ։"
+          "en": "Gosh Lake is a small picturesque lake surrounded by forests. Visitors can enjoy nature walks, boating, horseback riding, or simply relax and picnic in the peaceful environment.",
+          "ru": "Озеро Гош — небольшое живописное озеро в лесу. Здесь можно прогуляться по природе, покататься на лодке или лошадях и устроить пикник.",
+          "hy": "Գոշի լիճը փոքրիկ և գեղեցիկ լիճ է անտառի մեջ։ Այստեղ կարելի է քայլել բնության մեջ, նավակ քշել, ձիավարել կամ պարզապես հանգստանալ և պիկնիկ անել։"
         },
-        "image": "/TourImages/tavush_region/dilijan-gosh/gosh-lake.webp"
+        "image": "/TourImages/gegharkunik_tavush/sevan-gosh/gosh-lake.webp"
       }
     ],
     "features": {
       "include": {
-        "en": ["Transportation", "Professional guide service", "Nature walks", "Outdoor activities", "Photo stops"],
-        "ru": ["Транспорт", "Услуги профессионального гида", "Прогулки на природе", "Активный отдых на свежем воздухе", "Фото-остановки"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Բնության քայլարշավներ", "Բացօթյա ակտիվություններ", "Լուսանկարման կանգառներ"]
+        "en": ["Transportation", "Professional guide service", "Nature walks", "Photo stops"],
+        "ru": ["Транспорт", "Услуги профессионального гида", "Прогулки на природе", "Фото-остановки"],
+        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Բնության զբոսանքներ", "Լուսանկարման կանգառներ"]
       },
       "exclude": {
         "en": ["Activity fees", "Lunch", "Personal expenses"],
