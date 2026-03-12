@@ -6,10 +6,6 @@ import Footer from "../Components/Footer";
 import "./HistoryPage.css";
 
 import heroImg from "./images/history-hero.png";
-import urartuImg from "./images/urartu.png";
-import christianityImg from "./images/christianity.jpg";
-import medievalImg from "./images/medieval.jpg";
-import modernImg from "./images/modern.jpg";
 
 function HistoryPage() {
   const { t } = useTranslation();
@@ -23,25 +19,25 @@ function HistoryPage() {
       year: t("history_page.timeline.urartu.year"),
       title: t("history_page.timeline.urartu.title"),
       text: t("history_page.timeline.urartu.text"),
-      img: urartuImg,
+      img: "https://res.cloudinary.com/dwqsqiezw/image/upload/w_900,c_fill,f_auto,q_auto/v1773330469/urartu_yqmban.png"
     },
     {
       year: t("history_page.timeline.urartu.year"),
       title: t("history_page.timeline.christianity.title"),
       text: t("history_page.timeline.christianity.text"),
-      img: christianityImg,
+      img: "https://res.cloudinary.com/dwqsqiezw/image/upload/w_900,c_fill,f_auto,q_auto/v1773330514/christianity_jc7zii.jpg"
     },
     {
       year: t("history_page.timeline.urartu.year"),
       title: t("history_page.timeline.medieval.title"),
       text: t("history_page.timeline.medieval.text"),
-      img: medievalImg,
+      img: "https://res.cloudinary.com/dwqsqiezw/image/upload/w_900,c_fill,f_auto,q_auto/v1773330537/medieval_phajwo.jpg"
     },
     {
       year: t("history_page.timeline.urartu.year"),
       title: t("history_page.timeline.modern.title"),
       text: t("history_page.timeline.modern.text"),
-      img: modernImg,
+      img: "https://res.cloudinary.com/dwqsqiezw/image/upload/w_900,c_fill,f_auto,q_auto/v1773330546/modern_m35m1r.jpg"
     },
   ];
 
