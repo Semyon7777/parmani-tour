@@ -19,23 +19,34 @@ const HotelsPage = () => {
   const email = "info@yourtravel.am";
 
   useEffect(() => { 
-    fetchHotels(); // Загружаем данные при старте
+    // 1. Проверяем кэш при загрузке
+    const cachedHotels = localStorage.getItem('hotels_cache');
+    
+    if (cachedHotels) {
+      setHotels(JSON.parse(cachedHotels));
+      setLoading(false); // Данные уже есть, загрузка не нужна
+    } else {
+      fetchHotels(); // Кэша нет, идем в базу
+    }
 
     window.scrollTo(0, 0); 
-
   }, []);
 
   const fetchHotels = async () => {
     try {
       setLoading(true);
-      // Делаем запрос к таблице 'hotels'
       const { data, error } = await supabase
         .from('hotels')
         .select('*')
-        .eq('is_active', true); // Берем только активные
+        .eq('is_active', true); // Убрал .range(0, 9), чтобы закэшировать все сразу
 
       if (error) throw error;
-      setHotels(data || []);
+      
+      // 2. Сохраняем в кэш после получения
+      if (data) {
+        setHotels(data);
+        localStorage.setItem('hotels_cache', JSON.stringify(data));
+      }
     } catch (error) {
       console.error("Error fetching hotels:", error.message);
     } finally {
@@ -49,7 +60,7 @@ const HotelsPage = () => {
   const currentHotels = hotels.slice(indexOfFirstHotel, indexOfLastHotel);
   const totalPages = Math.ceil(hotels.length / hotelsPerPage);
 
-  if (loading) return <div className="text-center py-5">Loading luxury...</div>;
+  if (loading) return <div className="text-center py-5"></div>;
 
   const handleWhatsApp = (text = "") => {
     const message = text || "Hello! I need hotel assistance in Armenia.";
@@ -130,7 +141,12 @@ const HotelsPage = () => {
                   <Carousel interval={null} indicators={false} className="card-carousel">
                     {hotel.images.map((img, i) => (
                       <Carousel.Item key={i}>
-                        <div className="card-img" style={{ backgroundImage: `url(${img})` }} />
+                        <img 
+                          src={img} 
+                          alt="Hotel view" 
+                          loading="lazy" 
+                          className="card-img" 
+                        />
                       </Carousel.Item>
                     ))}
                   </Carousel>
