@@ -1,72 +1,81 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Carousel, Form, Accordion } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { FaWhatsapp, FaEnvelope, FaStar, FaShieldAlt, FaHeadset, FaGem, FaPlus } from "react-icons/fa";
+import { FaWhatsapp, FaEnvelope, FaStar, FaShieldAlt, FaHeadset, FaGem, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { supabase } from "../supabaseClient"; // Импортируем клиент
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import "./hotelsPage.css";
 
 const HotelsPage = () => {
   const { t } = useTranslation();
-  const [visibleCount, setVisibleCount] = useState(6); // Показываем 6 сначала
+  const [hotels, setHotels] = useState([]); // Состояние для отелей из БД
+  const [loading, setLoading] = useState(true); // Состояние загрузки
+  const [currentPage, setCurrentPage] = useState(1);
+  const hotelsPerPage = 6;
+  
+
   const phone = "37493641069";
   const email = "info@yourtravel.am";
 
   useEffect(() => { 
+    fetchHotels(); // Загружаем данные при старте
+
     window.scrollTo(0, 0); 
+
   }, []);
+
+  const fetchHotels = async () => {
+    try {
+      setLoading(true);
+      // Делаем запрос к таблице 'hotels'
+      const { data, error } = await supabase
+        .from('hotels')
+        .select('*')
+        .eq('is_active', true); // Берем только активные
+
+      if (error) throw error;
+      setHotels(data || []);
+    } catch (error) {
+      console.error("Error fetching hotels:", error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Вся логика пагинации остается такой же, но теперь используем массив hotels
+  const indexOfLastHotel = currentPage * hotelsPerPage;
+  const indexOfFirstHotel = indexOfLastHotel - hotelsPerPage;
+  const currentHotels = hotels.slice(indexOfFirstHotel, indexOfLastHotel);
+  const totalPages = Math.ceil(hotels.length / hotelsPerPage);
+
+  if (loading) return <div className="text-center py-5">Loading luxury...</div>;
 
   const handleWhatsApp = (text = "") => {
     const message = text || "Hello! I need hotel assistance in Armenia.";
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
   };
 
-  // Пример массива (добавь свои 50 штук сюда)
-  const allHotels = [
-    { 
-      id: 1, 
-      key: "luxury_yerevan", 
-      rating: 5, 
-      images: [
-        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070",
-        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2080",
-        "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070"
-      ] 
-    },
-    { 
-      id: 2, 
-      key: "sevan_resort", 
-      rating: 5, 
-      images: [
-        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070",
-        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2080",
-        "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070"
-      ] 
-    },
-    { id: 3, 
-      key: "dilijan_lodge", 
-      rating: 4, 
-      images: [
-        "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070",
-        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?q=80&w=2080",
-        "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070"
-      ] 
-    },
-    { id: 4, key: "tsaghkadzor_spa", rating: 5, images: ["/images/t1.jpg", "/images/t2.jpg", "/images/t3.jpg"] },
-    { id: 5, key: "goris_boutique", rating: 4, images: ["/images/g1.jpg", "/images/g2.jpg", "/images/g3.jpg"] },
-    { id: 6, key: "jermuk_resort", rating: 5, images: ["/images/j1.jpg", "/images/j2.jpg", "/images/j3.jpg"] },
-    { id: 7, key: "goris_boutique", rating: 4, images: ["/images/g1.jpg", "/images/g2.jpg", "/images/g3.jpg"] },
-    { id: 8, key: "jermuk_resort", rating: 5, images: ["/images/j1.jpg", "/images/j2.jpg", "/images/j3.jpg"] },
-    // ... и так далее до 50
-  ];
+  const paginate = (pageNumber) => {
+    if (pageNumber < 1 || pageNumber > totalPages) return;
 
-  const showMore = () => setVisibleCount(prev => prev + 6);
+    setCurrentPage(pageNumber);
+
+    const element = document.getElementById("hotels-list");
+
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  };
 
   return (
     <div className="hotels-page-wrapper">
       <NavbarCustom />
 
-      {/* HERO SECTION */}
+      {/* HERO SECTION (без изменений) */}
       <section className="hotels-hero">
         <div className="hero-inner">
           <Container>
@@ -85,7 +94,7 @@ const HotelsPage = () => {
         </div>
       </section>
 
-      {/* WHY CHOOSE US - Элегантные карточки */}
+      {/* WHY CHOOSE US (без изменений) */}
       <section className="features-section">
         <Container>
           <Row className="g-4">
@@ -106,15 +115,16 @@ const HotelsPage = () => {
         </Container>
       </section>
 
-      {/* HOTELS LIST */}
+      {/* HOTELS LIST - Теперь с пагинацией */}
       <section id="hotels-list" className="hotels-grid-section">
         <Container>
           <div className="section-title text-center">
             <h2>{t("hotels_page.list_title")}</h2>
             <div className="title-line"></div>
           </div>
+
           <Row className="g-4">
-            {allHotels.slice(0, visibleCount).map((hotel) => (
+            {currentHotels.map((hotel) => (
               <Col lg={4} md={6} key={hotel.id}>
                 <div className="premium-card fade-up">
                   <Carousel interval={null} indicators={false} className="card-carousel">
@@ -139,17 +149,60 @@ const HotelsPage = () => {
             ))}
           </Row>
           
-          {visibleCount < allHotels.length && (
-            <div className="text-center mt-5">
-              <button className="btn-load-more" onClick={showMore}>
-                <FaPlus /> {t("hotels_page.load_more")}
+          {/* КНОПКИ ПАГИНАЦИИ */}
+          {totalPages > 1 && (
+            <div className="pagination-container">
+
+              <button
+                className="pagin-btn arrow"
+                disabled={currentPage === 1}
+                onClick={() => paginate(currentPage - 1)}
+              >
+                <FaChevronLeft />
               </button>
+
+              {Array.from({ length: totalPages }, (_, i) => i + 1)
+                .filter(page =>
+                  page === 1 ||
+                  page === totalPages ||
+                  Math.abs(page - currentPage) <= 1
+                )
+                .map((page, index, arr) => {
+
+                  const prev = arr[index - 1];
+
+                  return (
+                    <React.Fragment key={page}>
+                      {prev && page - prev > 1 && (
+                        <span className="pagination-dots">...</span>
+                      )}
+
+                      <button
+                        className={`pagin-btn num ${
+                          currentPage === page ? "active" : ""
+                        }`}
+                        onClick={() => paginate(page)}
+                      >
+                        {page}
+                      </button>
+                    </React.Fragment>
+                  );
+                })}
+
+              <button
+                className="pagin-btn arrow"
+                disabled={currentPage === totalPages}
+                onClick={() => paginate(currentPage + 1)}
+              >
+                <FaChevronRight />
+              </button>
+
             </div>
           )}
         </Container>
       </section>
 
-      {/* SECTION: CONTACT OPTIONS ABOVE FORM */}
+      {/* Блок контактов и форма (без изменений) */}
       <section className="pre-form-contacts py-5">
         <Container>
           <div className="contact-highlight-box fade-up">
@@ -159,7 +212,6 @@ const HotelsPage = () => {
             </div>
             
             <div className="contact-options-wrapper">
-              {/* WhatsApp - сделаем его чуть больше или ярче */}
               <div className="contact-option-card wa-card preferred" onClick={() => handleWhatsApp()}>
                 <div className="option-icon"><FaWhatsapp /></div>
                 <div className="option-text">
@@ -180,7 +232,7 @@ const HotelsPage = () => {
         </Container>
       </section>
 
-      {/* SECTION: BOOKING FORM */}
+      {/* BOOKING FORM (без изменений) */}
       <section className="final-form-section">
         <Container>
           <div className="form-container-box fade-up">
@@ -188,45 +240,26 @@ const HotelsPage = () => {
               <h3>{t("hotels_page.form_title")}</h3>
               <p>{t("hotels_page.form_subtitle_extra")}</p>
             </div>
-
             <Form className="hotels-booking-form">
-              <Row className="g-3">
-                <Col md={6}>
-                  <Form.Control type="text" placeholder={t("hotels_page.form_name")} className="form-input-field" />
-                </Col>
-                <Col md={6}>
-                  <Form.Control type="email" placeholder={t("hotels_page.form_email")} className="form-input-field" />
-                </Col>
-                <Col md={4}>
-                  <div className="input-with-label">
-                    <label>Check-in</label>
-                    <Form.Control type="date" className="form-input-field" />
-                  </div>
-                </Col>
-                <Col md={4}>
-                  <div className="input-with-label">
-                    <label>Check-out</label>
-                    <Form.Control type="date" className="form-input-field" />
-                  </div>
-                </Col>
-                <Col md={4}>
-                  <div className="input-with-label">
-                    <label>Guests</label>
-                    <Form.Control type="number" placeholder="2" className="form-input-field" />
-                  </div>
-                </Col>
-                <Col xs={12}>
-                  <button type="button" className="form-submit-btn" onClick={() => handleWhatsApp("New Booking Request")}>
-                    {t("hotels_page.send_request")}
-                  </button>
-                </Col>
-              </Row>
+               {/* Твои поля формы */}
+               <Row className="g-3">
+                  <Col md={6}><Form.Control type="text" placeholder={t("hotels_page.form_name")} className="form-input-field" /></Col>
+                  <Col md={6}><Form.Control type="email" placeholder={t("hotels_page.form_email")} className="form-input-field" /></Col>
+                  <Col md={4}><div className="input-with-label"><label>Check-in</label><Form.Control type="date" className="form-input-field" /></div></Col>
+                  <Col md={4}><div className="input-with-label"><label>Check-out</label><Form.Control type="date" className="form-input-field" /></div></Col>
+                  <Col md={4}><div className="input-with-label"><label>Guests</label><Form.Control type="number" placeholder="2" className="form-input-field" /></div></Col>
+                  <Col xs={12}>
+                    <button type="button" className="form-submit-btn" onClick={() => handleWhatsApp("New Booking Request")}>
+                      {t("hotels_page.send_request")}
+                    </button>
+                  </Col>
+               </Row>
             </Form>
           </div>
         </Container>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ (без изменений) */}
       <section className="py-5 faq-section">
         <Container>
           <div className="text-center mb-5">
@@ -236,7 +269,7 @@ const HotelsPage = () => {
           <div className="mx-auto" style={{maxWidth: "800px"}}>
             <Accordion defaultActiveKey="0" flush>
               {[1, 2, 3, 4].map((id) => (
-                <Accordion.Item eventKey={String(id)} key={id} className="border-0 shadow-sm rounded">
+                <Accordion.Item eventKey={String(id)} key={id} className="border-0 shadow-sm rounded mb-2">
                   <Accordion.Header className="rounded">{t(`hotels_page.faq.faq_${id}_q`)}</Accordion.Header>
                   <Accordion.Body className="bg-light-green">{t(`hotels_page.faq.faq_${id}_a`)}</Accordion.Body>
                 </Accordion.Item>

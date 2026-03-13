@@ -205,21 +205,53 @@
 }
 
 /* --- LOAD MORE --- */
-.hotels-page-wrapper .btn-load-more {
-  border: 1px solid #cbd5e1;
-  background: white;
-  padding: 12px 35px;
-  border-radius: 50px;
-  font-weight: 600;
-  display: inline-flex;
+.pagination-container {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
-  transition: 0.3s;
+  gap: 8px;
+  margin-top: 50px;
 }
 
-.hotels-page-wrapper .btn-load-more:hover {
-  background: #0f172a;
+.pagin-btn {
+  border: none;
+  background: #f3f4f6;
+  color: #374151;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.pagin-btn:hover {
+  background: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+.pagin-btn.num.active {
+  background: #111827;
   color: white;
+  font-weight: 600;
+}
+
+.pagin-btn.arrow {
+  font-size: 14px;
+}
+
+.pagin-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pagination-dots {
+  padding: 0 6px;
+  color: #6b7280;
+  font-weight: 600;
 }
 
 /* --- CONTACT OPTIONS ABOVE FORM --- */
