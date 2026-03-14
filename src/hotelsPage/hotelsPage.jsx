@@ -329,7 +329,7 @@ const HotelsPage = () => {
           <div className="mx-auto" style={{maxWidth: "800px"}}>
             <Accordion defaultActiveKey="0" flush>
               {[1, 2, 3, 4].map((id) => (
-                <Accordion.Item eventKey={String(id)} key={id} className="border-0 shadow-sm rounded mb-2">
+                <Accordion.Item eventKey={String(id)} key={id} className="border-0 shadow-sm rounded">
                   <Accordion.Header className="rounded">{t(`hotels_page.faq.faq_${id}_q`)}</Accordion.Header>
                   <Accordion.Body className="bg-light-green">{t(`hotels_page.faq.faq_${id}_a`)}</Accordion.Body>
                 </Accordion.Item>
@@ -446,7 +446,13 @@ const HotelFilter = ({ hotels, setFilteredHotels }) => {
             <Col lg={3} md={6} className="mb-3">
               <Form.Label className="hotels-filter-label">{t('hotels_page.filter.city', 'Город')}</Form.Label>
               <Dropdown onSelect={(val) => setSelectedCity(val)} className="hotels-custom-dropdown">
-                <Dropdown.Toggle className="hotels-filter-input w-100 text-start" variant="none">
+                <Dropdown.Toggle 
+                className="hotels-filter-input w-100 text-start" 
+                variant="none"
+                // Добавляем атрибут для доступности, который часто помогает мобильным браузерам "понять" кнопку
+                aria-expanded="false"
+                >
+
                   {selectedCity ? t(selectedCity, selectedCity) : t('hotels_page.filter.all_cities', 'Все города')}
                 </Dropdown.Toggle>
 
