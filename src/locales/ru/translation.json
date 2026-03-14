@@ -214,8 +214,6 @@
   },
 
   
-
-
   "bookForm": {
     "title": "Форма регистрации студентов",
     "errorNotLoggedIn": "Пожалуйста, войдите с помощью Google, чтобы отправить форму.",
@@ -311,30 +309,73 @@
     "form_guests": "Количество гостей",
     "send_request": "Отправить запрос в WhatsApp",
     "items": {
-      "luxury_yerevan": {
-        "title": "The Alexander, Ереван",
-        "description": "Отель класса люкс с мировым уровнем сервиса в самом центре столицы."
-      },
-      "sevan_resort": {
-        "title": "Best Western Plus, Севан",
-        "description": "Потрясающие виды на голубую жемчужину Армении и премиальный отдых у воды."
-      },
-      "dilijan_lodge": {
-        "title": "Dilijan Park Resort",
-        "description": "Уютная атмосфера в окружении густых лесов «Армянской Швейцарии»."
-      },
-      "tsaghkadzor_spa": {
-        "title": "Marriott Цахкадзор",
-        "description": "Спа-курорт мирового уровня для любителей активного зимнего отдыха и релакса."
-      },
-      "goris_boutique": {
-        "title": "Mirhav Hotel, Горис",
-        "description": "Аутентичный бутик-отель с традиционным духом и исключительным гостеприимством."
-      },
-      "jermuk_resort": {
-        "title": "Grand Resort Джермук",
-        "description": "Идеальное место для оздоровления, знаменитое своими минеральными водами."
-      }
+      "hotel_88_tsaghkadzor": { "title": "88 Hotel & Spa", "description": "Современный комфорт и велнес в самом сердце Цахкадзора." },
+      "hotel_alpina_tsaghkadzor": { "title": "Alpina Hotel", "description": "Уютный горный отель, идеально подходящий для любителей лыж." },
+      "hotel_ararat_tsaghkadzor": { "title": "Ararat Hotel", "description": "Классическая роскошь с захватывающим видом на армянское нагорье." },
+      "hotel_writers_tsaghkadzor": { "title": "Writers House", "description": "Историческое очарование и спокойная природа в культовом месте." },
+      "hotel_elegant_tsaghkadzor": { "title": "Elegant Hotel", "description": "Изысканный отдых с премиальными удобствами и утонченным стилем." },
+      "hotel_tegenis_tsaghkadzor": { "title": "Teghenis", "description": "Просторные коттеджи и гостиничные номера для семейного отдыха." },
+      "hotel_sports_tsaghkadzor": { "title": "Цахкадзорский спорткомплекс", "description": "Профессиональные условия для спортсменов и активных путешественников." },
+      "hotel_kecharis_tsaghkadzor": { "title": "Kecharis Hotel", "description": "Традиционное гостеприимство в нескольких шагах от монастыря Кечарис." },
+      "hotel_marriott_tsaghkadzor": { "title": "Marriott Tsaghkadzor", "description": "Роскошь мирового класса на главном горнолыжном курорте Армении." },
+      "hotel_multi_tsaghkadzor": { "title": "Multi Rest House", "description": "Универсальный курорт с премиальными виллами и зонами отдыха." },
+      "hotel_russia_tsaghkadzor": { "title": "Russia Hotel", "description": "Грандиозный размах и комфорт в одном из лучших мест города." },
+      "hotel_saya_tsaghkadzor": { "title": "Saya Hotel", "description": "Бутик-атмосфера с персонализированным сервисом и современным дизайном." },
+      "hotel_arthurs_aghveran": { "title": "Arthurs Aghveran", "description": "Идеальный альпийский отдых: свежий воздух и лесная тишина." },
+      "hotel_kristal_aghveran": { "title": "Kristal Hotel", "description": "Спокойный отдых в окружении живописной природы Агверана." },
+      "hotel_ararat_resort_aghveran": { "title": "Ararat Resort Aghveran", "description": "Курортный комплекс с большими бассейнами и видом на горы." },
+      "hotel_best_resort_aghveran": { "title": "Best Resort Aghveran", "description": "Идеально для корпоративных выездов и семейных выходных в лесу." },
+      "hotel_apricot_aghveran": { "title": "Apricot Hotel", "description": "Уникальный бутик-отель с акцентом на армянское гостеприимство." },
+      "hotel_nairi_hankavan": { "title": "Nairi Spa Resorts", "description": "Знаменит своими целебными термальными водами и тишиной." },
+      "hotel_ani_hankavan": { "title": "Ani Resort", "description": "Уединенная роскошь с фокусом на здоровье, спа и горный воздух." },
+      "hotel_haghartsin_dilijan": { "title": "Haghartsin Hotel Complex", "description": "Традиционный дилижанский стиль в самой глубине леса." },
+      "hotel_dilijan_spa": { "title": "Dilijan Spa and Resort", "description": "Восстановите силы в высококлассном спа-центре в «Маленькой Швейцарии»." },
+      "hotel_best_western_paradise": { "title": "Best Western Paradise", "description": "Надежный выбор для комфортного отдыха в лесах Дилижана." },
+      "hotel_dilijans": { "title": "Dilijans Hotel", "description": "Классический бутик-отель с видом на зеленые холмы Дилижана." },
+      "hotel_tufenkian_old_dilijan": { "title": "Tufenkian Old Dilijan", "description": "Ощутите шарм Дилижана XIX века с интерьерами из резного дерева." },
+      "hotel_hover_dilijan": { "title": "Hover Boutique Hotel", "description": "Минимализм и современный дизайн на фоне природной красоты леса." },
+      "hotel_cozy_house_dilijan": { "title": "Cozy House", "description": "Уникальные домики в стиле хоббитов для сказочного отдыха." },
+      "hotel_dilijaz_dilijan": { "title": "Dilijaz", "description": "Дружелюбный сервис и отличные виды в центре курортного города." },
+      "hotel_noy_land_sevan": { "title": "Noy Land Resort", "description": "Уютные деревянные коттеджи прямо на берегу озера Севан." },
+      "hotel_best_western_bohemian": { "title": "Best Western Bohemian", "description": "Стильный комфорт на берегу с яркой летней атмосферой." },
+      "hotel_best_western_paradise_sevan": { "title": "Best Western Paradise Sevan", "description": "Премиальное место на берегу для летнего солнца и синих вод." },
+      "hotel_maria_sevan": { "title": "Maria Resort", "description": "Роскошные виллы и частный бассейн на самом берегу Севана." },
+      "hotel_kapuyt_sevan": { "title": "Kapuyt Sevan", "description": "Классический загородный отдых для мирных выходных у воды." },
+      "hotel_harsnaqar_sevan": { "title": "Harsnaqar", "description": "Огромный курорт с аквапарком и прямым выходом на пляж." },
+      "hotel_tufenkian_avan_tsapatagh": { "title": "Tufenkian Avan Marak Tsapatagh", "description": "Каменный эко-отель на тихом восточном берегу Севана." },
+      "hotel_sevan_ap_inn": { "title": "Sevan Ap Inn", "description": "Удобный и доступный отдых для путешественников на полуострове." },
+      "hotel_white_shorzha_sevan": { "title": "White Shorzha", "description": "Модный пляжный клуб и отель для лучшего летнего вайба." },
+      "hotel_lori_resort_stepanavan": { "title": "Lori Resort", "description": "Тихие коттеджи в окружении сосновых лесов Степанавана." },
+      "hotel_sochut_stepanavan": { "title": "Sochut", "description": "Оздоровительный курорт рядом со знаменитым Дендропарком." },
+      "hotel_grig_eco_stepanavan": { "title": "Grig House Eco Resort", "description": "Экологичный отдых и органическая еда в живописном месте." },
+      "hotel_tezh_ler_vanadzor": { "title": "Tezh Ler", "description": "Горный курорт, где природа и комфорт встречаются на полпути." },
+      "hotel_vanadzor_armenia": { "title": "Vanadzor Armenia Resort", "description": "Историческая здравница с профессиональным спа и лечением." },
+      "hotel_kirovakan_vanadzor": { "title": "Kirovakan Hotel", "description": "Классический городской отель с видом на панораму Ванадзора." },
+      "hotel_jermuk_spa_resort": { "title": "Jermuk Hotel and Spa", "description": "Медицинский спа-центр мирового уровня на базе вод Джермука." },
+      "hotel_grand_resort_jermuk": { "title": "Grand Resort Jermuk", "description": "Элегантная роскошь в самом центре города водопадов." },
+      "hotel_olympia_jermuk": { "title": "Olympia Hotel", "description": "Величественный отель санаторного типа с фокусом на бальнеологию." },
+      "hotel_jermuk_moscow": { "title": "Jermuk Moscow Resort", "description": "Традиционное гостеприимство с широким спектром оздоровления." },
+      "hotel_jermuk_ashkharh": { "title": "Jermuk Ashkharh", "description": "Один из старейших и проверенных санаториев региона." },
+      "hotel_amberd_byurakan": { "title": "Amberd Hotel", "description": "Отель у подножия горы Арагац с отличным бассейном." },
+      "hotel_lastiver_ijevan": { "title": "Lastiver Resort", "description": "Потрясающие виды и инфинити-бассейны над горами Иджевана." },
+      "hotel_apaga_ijevan": { "title": "Apaga Resort", "description": "Центр приключений, верховой езды и зиплайна в Армении." },
+      "hotel_lusi_tour_yeghegnadzor": { "title": "Lusi-Tour Hotel", "description": "Ворота в винный регион Вайоц Дзор и древние монастыри." },
+      "hotel_harsnadzor_syunik": { "title": "Harsnadzor", "description": "Знаменитые домики-бочки и эко-лоджии у «Крыльев Татева»." },
+      "hotel_goris_syunik": { "title": "Goris Hotel", "description": "Отель на холме с полным видом на каменный лес Гориса." },
+      "hotel_diana_syunik": { "title": "Diana Hotel", "description": "Современный комфорт и отличная кухня в сердце Гориса." },
+      "hotel_radisson_gyumri": { "title": "Radisson Hotel and Spa Gyumri", "description": "Международная роскошь в культурной столице Армении." },
+      "hotel_tomus_gyumri": { "title": "Tomus Hotel", "description": "Бутик-отель, сочетающий современность и старый шарм Гюмри." },
+      "hotel_alexandrapol_gyumri": { "title": "Alexandrapol Hotel", "description": "Почувствуйте аристократическую историю и элегантность Гюмри." },
+      "hotel_prime_gyumri": { "title": "Prime Hotel", "description": "Удобное расположение для прогулок по уникальным улицам Гюмри." },
+      "hotel_ani_plaza_yerevan": { "title": "Ani Plaza Hotel", "description": "Легендарный отель в самом центре Еревана." },
+      "hotel_ani_grand_yerevan": { "title": "Ani Grand Hotel", "description": "Первоклассный городской отель с большим бассейном." },
+      "hotel_europe_yerevan": { "title": "Europe Hotel", "description": "Очаровательный бутик-отель в шаге от Площади Республики." },
+      "hotel_holiday_inn_yerevan": { "title": "Holiday Inn Yerevan", "description": "Свежий и современный выбор для бизнеса или отдыха." },
+      "hotel_marriott_yerevan": { "title": "Marriott Yerevan", "description": "Самый престижный адрес прямо на Площади Республики." },
+      "hotel_best_western_congress_yerevan": { "title": "Best Western Plus Congress", "description": "Отличный сервис и бассейн в саду в центре города." },
+      "hotel_aghababyans_yerevan": { "title": "Aghababyans Hotel", "description": "Роскошный семейный отель с акцентом на простор и уют." },
+      "hotel_central_yerevan": { "title": "Central Hotel", "description": "Классическая элегантность в сочетании с удобством даунтауна." },
+      "hotel_tufenkian_yerevan": { "title": "Tufenkian Historic Yerevan", "description": "Дизайнерский интерьер и мастерство армянских камнерезов." }
     },
     "fast_booking": "Самый быстрый способ бронирования",
     "contact_expert_title": "Не тратьте время на форму — пишите сразу",
