@@ -461,7 +461,7 @@ html[lang="hy"] .carouselContainerHeadText {
         max-width: 100%;
     }
 
-    .carousel-item img {
+    .carouselContainer .carousel-item img {
         height: 300px; /* Уменьшение высоты изображений на мобильных устройствах */
     }
 

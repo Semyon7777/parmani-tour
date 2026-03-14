@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Carousel, Form, Accordion, Card, Button } from "react-bootstrap";
+import { Container, Row, Col, Carousel, Form, Accordion, Card, Button, Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { FaWhatsapp, FaEnvelope, FaStar, FaShieldAlt, FaHeadset, FaGem, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { supabase } from "../supabaseClient"; // Импортируем клиент
@@ -424,112 +424,124 @@ const HotelFilter = ({ hotels, setFilteredHotels }) => {
 
   return (
     <Card className="hotels-filter-card mb-4 shadow-sm">
-    <Card.Body>
-      <Form>
-        <Row>
-          {/* Поиск по названию */}
-          <Col lg={3} md={6} className="mb-3">
-            <Form.Group controlId="filterName">
-              <Form.Label className="hotels-filter-label">{t('search_name', 'Название')}</Form.Label>
-              <Form.Control 
-                type="text" 
-                placeholder={t('search_placeholder', 'Искать отель...')}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="hotels-filter-input"
-              />
-            </Form.Group>
-          </Col>
+      <Card.Body>
+        <Form>
+          <Row>
+            {/* Поиск по названию */}
+            <Col lg={3} md={6} className="mb-3">
+              <Form.Group controlId="filterName">
+                <Form.Label className="hotels-filter-label">
+                  {t('hotels_page.filter.search_name', 'Название')}
+                </Form.Label>
+                <Form.Control 
+                  type="text" 
+                  placeholder={t('hotels_page.filter.search_placeholder', 'Искать отель...')}
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="hotels-filter-input"
+                />
+              </Form.Group>
+            </Col>
 
-          {/* Фильтр по городу */}
-          <Col lg={3} md={6} className="mb-3">
-            <Form.Group controlId="filterCity">
-              <Form.Label className="hotels-filter-label">{t('city', 'Город')}</Form.Label>
-              <Form.Select 
-                value={selectedCity}
-                onChange={(e) => setSelectedCity(e.target.value)}
-                className="hotels-filter-input"
+            {/* Фильтр по городу */}
+            <Col lg={3} md={6} className="mb-3">
+              <Form.Label className="hotels-filter-label">{t('hotels_page.filter.city', 'Город')}</Form.Label>
+              <Dropdown onSelect={(val) => setSelectedCity(val)} className="hotels-custom-dropdown">
+                <Dropdown.Toggle className="hotels-filter-input w-100 text-start" variant="none">
+                  {selectedCity ? t(selectedCity, selectedCity) : t('hotels_page.filter.all_cities', 'Все города')}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className="hotels-dropdown-menu w-100">
+                  <Dropdown.Item eventKey="">{t('hotels_page.filter.all_cities', 'Все города')}</Dropdown.Item>
+                  {uniqueCities.map(city => (
+                    <Dropdown.Item key={city} eventKey={city}>
+                      {t(city, city)}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+
+            {/* Фильтр по рейтингу через Custom Dropdown */}
+            <Col lg={3} md={6} className="mb-3">
+              <Form.Label className="hotels-filter-label">
+                {t('hotels_page.filter.rating', 'Рейтинг')}
+              </Form.Label>
+              <Dropdown onSelect={(val) => setSelectedRating(val)} className="hotels-custom-dropdown">
+                <Dropdown.Toggle variant="none" className="hotels-filter-input w-100 text-start">
+                  {selectedRating 
+                    ? `${selectedRating}+ ${t('hotels_page.filter.stars', 'звезды')}` 
+                    : t('hotels_page.filter.any_rating', 'Любой рейтинг')}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu className="hotels-dropdown-menu w-100">
+                  <Dropdown.Item eventKey="">
+                    {t('hotels_page.filter.any_rating', 'Любой рейтинг')}
+                  </Dropdown.Item>
+                  <Dropdown.Item eventKey="3">3+ {t('hotels_page.filter.stars', 'звезды')}</Dropdown.Item>
+                  <Dropdown.Item eventKey="4">4+ {t('hotels_page.filter.stars', 'звезды')}</Dropdown.Item>
+                  <Dropdown.Item eventKey="5">5 {t('hotels_page.filter.stars', 'звезд')}</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+
+            {/* Кнопка сброса */}
+            <Col lg={3} md={6} className="mb-3 d-flex align-items-end">
+              <Button 
+                variant="success" 
+                className="w-100 hotels-filter-reset-btn" 
+                onClick={handleReset}
               >
-                <option value="">{t('all_cities', 'Все города')}</option>
-                {uniqueCities.map(city => (
-                  <option key={city} value={city}>{t(city, city)}</option>
-                ))}
-              </Form.Select>
-            </Form.Group>
-          </Col>
+                {t('hotels_page.filter.reset_filters', 'Сбросить фильтры')}
+              </Button>
+            </Col>
+          </Row>
 
-          {/* Фильтр по рейтингу */}
-          <Col lg={3} md={6} className="mb-3">
-            <Form.Group controlId="filterRating">
-              <Form.Label className="hotels-filter-label">{t('rating', 'Рейтинг')}</Form.Label>
-              <Form.Select 
-                value={selectedRating}
-                onChange={(e) => setSelectedRating(e.target.value)}
-                className="hotels-filter-input"
-              >
-                <option value="">{t('any_rating', 'Любой рейтинг')}</option>
-                <option value="3">3+ {t('stars', 'звезды')}</option>
-                <option value="4">4+ {t('stars', 'звезды')}</option>
-                <option value="5">5 {t('stars', 'звезд')}</option>
-              </Form.Select>
-            </Form.Group>
-          </Col>
+          {/* Фильтр по удобствам */}
+          <div className="mt-2 hotels-filter-amenities-wrapper">
+            <Form.Label className="d-block hotels-filter-label mb-2">
+              {t('hotels_page.filter.amenities', 'Удобства')}
+            </Form.Label>
+            <div className="d-flex flex-wrap gap-3">
+              {allAmenities.slice(0, visibleAmenities).map(amenity => (
+                <Form.Check 
+                  key={amenity}
+                  type="checkbox"
+                  id={`amenity-${amenity}`}
+                  label={t(`hotels_page.filter.amenities_list.${amenity.toLowerCase().replace(/ /g, '_')}`, amenity)}
+                  checked={selectedAmenities.includes(amenity)}
+                  onChange={() => handleAmenityChange(amenity)}
+                  className="hotels-filter-amenity-checkbox"
+                />
+              ))}
+            </div>
 
-          {/* Кнопка сброса */}
-          <Col lg={3} md={6} className="mb-3 d-flex align-items-end">
-            <Button 
-              variant="success" 
-              className="w-100 hotels-filter-reset-btn" 
-              onClick={handleReset}
-            >
-              {t('reset_filters', 'Сбросить фильтры')}
-            </Button>
-          </Col>
-        </Row>
-
-        {/* Фильтр по удобствам */}
-        <div className="mt-2 hotels-filter-amenities-wrapper">
-          <Form.Label className="d-block hotels-filter-label mb-2">
-            {t('amenities', 'Удобства')}
-          </Form.Label>
-          <div className="d-flex flex-wrap gap-3">
-            {(allAmenities.slice(0, visibleAmenities)).map(amenity => (
-              <Form.Check 
-                key={amenity}
-                type="checkbox"
-                id={`amenity-${amenity}`}
-                label={t(`amenity_${amenity.toLowerCase().replace(/ /g, '_')}`, amenity)}
-                checked={selectedAmenities.includes(amenity)}
-                onChange={() => handleAmenityChange(amenity)}
-                className="hotels-filter-amenity-checkbox"
-              />
-            ))}
-            <div className="mt-0">
-            {visibleAmenities < allAmenities.length ? (
-              <button
-                type="button"
-                className="amenities-toggle-btn"
-                onClick={() => setVisibleAmenities(prev => prev + 5)}
-              >
-                {t("show_more", "Show more")}
-              </button>
-            ) : (
-              allAmenities.length > 8 && (
+            {/* Show more / Show less */}
+            <div className="mt-2">
+              {visibleAmenities < allAmenities.length ? (
                 <button
                   type="button"
                   className="amenities-toggle-btn"
-                  onClick={() => setVisibleAmenities(5)}
+                  onClick={() => setVisibleAmenities(prev => prev + 5)}
                 >
-                  {t("show_less", "Show less")}
+                  {t('hotels_page.filter.show_more', 'Show more')}
                 </button>
-              )
-            )}
+              ) : (
+                allAmenities.length > 8 && (
+                  <button
+                    type="button"
+                    className="amenities-toggle-btn"
+                    onClick={() => setVisibleAmenities(5)}
+                  >
+                    {t('hotels_page.filter.show_less', 'Show less')}
+                  </button>
+                )
+              )}
+            </div>
           </div>
-          </div>
-        </div>
-      </Form>
-    </Card.Body>
-  </Card>
+        </Form>
+      </Card.Body>
+    </Card>
   );
 };
 
