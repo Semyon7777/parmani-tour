@@ -318,6 +318,65 @@
   border-color:rgba(2, 22, 2, 0.29);
 }
 
+.hotels-filter-card .hotels-dropdown-menu {
+    max-height: 240px; /* Высота примерно для 6-7 пунктов */
+    overflow-y: auto;  /* Включаем вертикальную прокрутку */
+    
+    /* Стилизация скроллбара для Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: #2d5a27 #f1f5f2; /* Цвет ползунка и трека */
+    
+    border: 1px solid rgba(45, 90, 39, 0.2) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 10px 25px rgba(27, 67, 50, 0.15) !important;
+    padding: 8px 0 !important;
+}
+
+/* Стилизация скроллбара для Chrome, Edge и Safari */
+.hotels-filter-card .hotels-dropdown-menu::-webkit-scrollbar {
+    width: 6px; /* Тонкий и аккуратный */
+}
+
+.hotels-filter-card .hotels-dropdown-menu::-webkit-scrollbar-track {
+    background: #f1f5f2; /* Светлый фон трека */
+    border-radius: 0 14px 14px 0; /* Скругляем по правой стороне меню */
+}
+
+.hotels-filter-card .hotels-dropdown-menu::-webkit-scrollbar-thumb {
+    background-color: #2d5a27; /* Наш глубокий зеленый */
+    border-radius: 10px;
+    border: 1px solid #f1f5f2; /* Небольшой отступ, чтобы ползунок не прилипал */
+}
+
+.hotels-filter-card .hotels-dropdown-menu::-webkit-scrollbar-thumb:hover {
+    background-color: #1b4332; /* Еще темнее при наведении */
+}
+
+@media (max-width: 768px) {
+
+  .hotels-filter-card .hotels-dropdown-menu {
+    max-height: 220px; /* Высота примерно для 6-7 пунктов */
+  }
+
+  .hotels-filter-card .hotels-dropdown-menu {
+    /* Скрываем скроллбар для Chrome, Safari и Opera */
+    &::-webkit-scrollbar {
+      display: none !important;
+    }
+
+    /* Скрываем скроллбар для Firefox */
+    scrollbar-width: none !important;
+
+    /* Скрываем скроллбар для IE и Edge */
+    -ms-overflow-style: none !important;
+
+    /* Обязательно оставляем плавность прокрутки */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+
 /* --- МОБИЛЬНАЯ АДАПТАЦИЯ --- */
 
 @media (max-width: 768px) {
@@ -371,7 +430,6 @@
 
 .pagin-btn:hover {
   background: #e5e7eb;
-  transform: translateY(-1px);
 }
 
 .pagin-btn.num.active {
