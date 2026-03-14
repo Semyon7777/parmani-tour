@@ -188,7 +188,8 @@ const HotelsPage = () => {
                         {hotel.images && hotel.images.map((img, i) => (
                           <Carousel.Item key={i}>
                             <img 
-                              src={`${hotel.images?.[0]}?width=800&quality=70`}
+                              src={`${img}?width=800&quality=70`}
+                              className="hotels-page-card-img" 
                               alt={hotel.name}
                               effect="blur"
                               loading={index < 3 ? "eager" : "lazy"}

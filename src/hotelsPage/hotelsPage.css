@@ -138,10 +138,6 @@
   transform: translateY(-8px);
 }
 
-/* Исправляем высоту изображений в карусели */
-.hotels-page-wrapper .card-carousel .carousel-inner {
-  height: 250px;
-}
 
 .hotels-page-wrapper .card-img-wrapper {
   display: block;
@@ -158,7 +154,39 @@
   display: block; /* Важно для мобильных */
 }
 
+/* --- ФИНАЛЬНЫЙ ИСПРАВЛЕННЫЙ БЛОК ДЛЯ КАРУСЕЛИ --- */
 
+/* 1. Устанавливаем ЖЕСТКУЮ высоту для всех элементов карусели */
+.hotels-page-wrapper .card-carousel,
+.hotels-page-wrapper .card-carousel .carousel-inner,
+.hotels-page-wrapper .card-carousel .carousel-item {
+  height: 250px !important; /* Можешь поставить 280px, если хочешь выше */
+  background-color: #f1f5f2; /* Фон для пустых зон */
+  overflow: hidden;
+}
+
+/* 2. Настраиваем поведение картинки */
+.hotels-page-card-img {
+  width: 100% !important;
+  height: 100% !important;
+  
+  /* ВНИМАНИЕ: Если ты хочешь видеть ВСЮ картинку без обрезки (но с полями по бокам) 
+     — замени 'cover' на 'contain'. 
+     'cover' ВСЕГДА будет немного зумить, чтобы заполнить прямоугольник. */
+  object-fit: cover !important; 
+  
+  object-position: center !important;
+  display: block;
+}
+
+/* 3. Адаптация для мобильных */
+@media (max-width: 768px) {
+  .hotels-page-wrapper .card-carousel,
+  .hotels-page-wrapper .card-carousel .carousel-inner,
+  .hotels-page-wrapper .card-carousel .carousel-item {
+    height: 220px !important; /* Чуть меньше на мобильных */
+  }
+}
 
 /* Делаем стрелки карусели видимыми на фото */
 .hotels-page-wrapper .card-carousel .carousel-control-prev,
@@ -194,6 +222,19 @@
   color: #64748b;
   flex-grow: 1;
 }
+
+
+/* 2. Контейнер для центрирования */
+.carousel-img-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
 
 .hotels-page-wrapper .btn-request {
   margin-top: 20px;
