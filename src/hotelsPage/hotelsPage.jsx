@@ -449,8 +449,7 @@ const HotelFilter = ({ hotels, setFilteredHotels }) => {
                 <Dropdown.Toggle 
                 className="hotels-filter-input w-100 text-start" 
                 variant="none"
-                // Добавляем атрибут для доступности, который часто помогает мобильным браузерам "понять" кнопку
-                aria-expanded="false"
+                autoClose="outside" // Меню будет закрываться только при клике вне его
                 >
 
                   {selectedCity ? t(selectedCity, selectedCity) : t('hotels_page.filter.all_cities', 'Все города')}
