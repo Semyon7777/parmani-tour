@@ -413,6 +413,21 @@
     max-height: 220px; /* Высота примерно для 6-7 пунктов */
   }
 
+  .hotels-custom-dropdown {
+    /* Это заставляет браузер воспринимать клик как интерактивное действие */
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: transparent !important;
+    touch-action: manipulation !important;
+    user-select: none !important;
+  }
+  
+  /* Убеждаемся, что Toggle "прозрачен" для событий */
+  .hotels-filter-input.dropdown-toggle {
+    display: flex !important;
+    align-items: center;
+    pointer-events: auto !important;
+  }
+
   .hotels-filter-card .hotels-dropdown-menu {
     /* Скрываем скроллбар для Chrome, Safari и Opera */
     &::-webkit-scrollbar {
