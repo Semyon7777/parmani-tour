@@ -229,6 +229,19 @@
   box-shadow: 0 20px 50px rgba(27, 67, 50, 0.18);
 }
 
+.hotels-filter-input.dropdown-toggle {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important; /* Это вытолкнет стрелочку в конец */
+    width: 100%;
+    padding-right: 1rem; /* Добавим немного отступа справа */
+}
+
+/* Убираем лишние отступы у самой стрелочки, если они есть */
+.hotels-filter-input.dropdown-toggle::after {
+    margin-left: auto; /* На всякий случай подтверждаем её позицию */
+}
+
 /* Насыщенные заголовки */
 .hotels-filter-label {
   font-size: 0.9rem;
@@ -332,6 +345,48 @@
     padding: 8px 0 !important;
 }
 
+/* Мобильная версия фильтра удобств */
+@media (max-width: 768px) {
+  /* Скрываем кнопки переключения, так как будет скролл */
+  .amenities-toggle-btn {
+    display: none !important;
+  }
+
+  .form-check {
+    padding-left: 2.5rem !important;
+  }
+
+  /* Контейнер для чекбоксов */
+  .hotels-filter-amenities-wrapper .d-flex.flex-wrap {
+    max-height: 200px; /* Фиксированная высота: страница больше не будет прыгать */
+    overflow-y: auto;  /* Включаем вертикальный скролл */
+    padding: 10px 5px;
+    background: #fdfdfd; /* Легкий контрастный фон */
+    border: 1px solid #eef2f0;
+    border-radius: 12px;
+    
+    /* Скрываем полосу прокрутки, как ты просил раньше */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .hotels-filter-amenities-wrapper .d-flex.flex-wrap::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Чекбоксы делаем более "кнопочными" для пальцев */
+  .hotels-filter-amenity-checkbox {
+    width: 100%; /* Каждый чекбокс на всю ширину для удобства нажатия */
+    padding: 8px 12px;
+    margin-bottom: 4px !important;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  
+  .hotels-filter-amenity-checkbox:last-child {
+    border-bottom: none;
+  }
+}
+
 /* Стилизация скроллбара для Chrome, Edge и Safari */
 .hotels-filter-card .hotels-dropdown-menu::-webkit-scrollbar {
     width: 6px; /* Тонкий и аккуратный */
@@ -380,6 +435,11 @@
 /* --- МОБИЛЬНАЯ АДАПТАЦИЯ --- */
 
 @media (max-width: 768px) {
+
+  .hotels-grid-section .section-title {
+    justify-content: center;
+  }
+
   .hotels-filter-card {
     padding: 10px;
     border-radius: 18px;
@@ -716,9 +776,5 @@
     min-height: 220px; /* Принудительный минимум */
   }
   
-  .hotels-page-wrapper .card-carousel, 
-  .hotels-page-wrapper .carousel-inner, 
-  .hotels-page-wrapper .carousel-item {
-    height: 220px; /* Фиксируем высоту всей карусели на мобильных */
-  }
+
 }

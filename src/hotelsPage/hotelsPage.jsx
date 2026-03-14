@@ -160,7 +160,6 @@ const HotelsPage = () => {
         <Container>
           <div className="section-title text-center">
             <h2>{t("hotels_page.list_title")}</h2>
-            <div className="title-line"></div>
           </div>
 
           {/* ДОБАВЛЯЕМ ФИЛЬТР СЮДА */}
@@ -502,18 +501,20 @@ const HotelFilter = ({ hotels, setFilteredHotels }) => {
             <Form.Label className="d-block hotels-filter-label mb-2">
               {t('hotels_page.filter.amenities', 'Удобства')}
             </Form.Label>
-            <div className="d-flex flex-wrap gap-3">
-              {allAmenities.slice(0, visibleAmenities).map(amenity => (
-                <Form.Check 
-                  key={amenity}
-                  type="checkbox"
-                  id={`amenity-${amenity}`}
-                  label={t(`hotels_page.filter.amenities_list.${amenity.toLowerCase().replace(/ /g, '_')}`, amenity)}
-                  checked={selectedAmenities.includes(amenity)}
-                  onChange={() => handleAmenityChange(amenity)}
-                  className="hotels-filter-amenity-checkbox"
-                />
-              ))}
+            <div className="hotels-amenities-container">
+              <div className="d-flex flex-wrap gap-3">
+                {(window.innerWidth < 768 ? allAmenities : allAmenities.slice(0, visibleAmenities)).map(amenity => (
+                  <Form.Check 
+                    key={amenity}
+                    type="checkbox"
+                    id={`amenity-${amenity}`}
+                    label={t(`hotels_page.filter.amenities_list.${amenity.toLowerCase().replace(/ /g, '_')}`, amenity)}
+                    checked={selectedAmenities.includes(amenity)}
+                    onChange={() => handleAmenityChange(amenity)}
+                    className="hotels-filter-amenity-checkbox"
+                  />
+                ))}
+              </div>
             </div>
 
             {/* Show more / Show less */}
