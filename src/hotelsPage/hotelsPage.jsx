@@ -5,7 +5,6 @@ import { FaWhatsapp, FaEnvelope, FaStar, FaShieldAlt, FaHeadset, FaGem, FaChevro
 import { supabase } from "../supabaseClient"; // Импортируем клиент
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "./hotelsPage.css";
 
@@ -356,6 +355,7 @@ const HotelFilter = ({ hotels, setFilteredHotels }) => {
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedRating, setSelectedRating] = useState('');
   const [selectedAmenities, setSelectedAmenities] = useState([]);
+  const [visibleAmenities, setVisibleAmenities] = useState(5);
 
   // Динамически получаем уникальные города из базы
   const uniqueCities = [...new Set(hotels.map(h => h.city))].filter(Boolean);
@@ -493,7 +493,7 @@ const HotelFilter = ({ hotels, setFilteredHotels }) => {
             {t('amenities', 'Удобства')}
           </Form.Label>
           <div className="d-flex flex-wrap gap-3">
-            {allAmenities.map(amenity => (
+            {(allAmenities.slice(0, visibleAmenities)).map(amenity => (
               <Form.Check 
                 key={amenity}
                 type="checkbox"
@@ -504,6 +504,27 @@ const HotelFilter = ({ hotels, setFilteredHotels }) => {
                 className="hotels-filter-amenity-checkbox"
               />
             ))}
+            <div className="mt-0">
+            {visibleAmenities < allAmenities.length ? (
+              <button
+                type="button"
+                className="amenities-toggle-btn"
+                onClick={() => setVisibleAmenities(prev => prev + 5)}
+              >
+                {t("show_more", "Show more")}
+              </button>
+            ) : (
+              allAmenities.length > 8 && (
+                <button
+                  type="button"
+                  className="amenities-toggle-btn"
+                  onClick={() => setVisibleAmenities(5)}
+                >
+                  {t("show_less", "Show less")}
+                </button>
+              )
+            )}
+          </div>
           </div>
         </div>
       </Form>

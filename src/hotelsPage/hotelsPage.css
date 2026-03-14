@@ -212,6 +212,19 @@
   color: #fff;
 }
 
+.amenities-toggle-btn {
+  margin-top: -2px;
+  background: none;
+  border: none;
+  color: #0c6e24;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.amenities-toggle-btn:hover {
+  text-decoration: underline;
+}
+
 
 
 /* --- LOAD MORE --- */
