@@ -448,18 +448,22 @@ const HotelFilter = ({ hotels, setFilteredHotels }) => {
             {/* Фильтр по городу */}
             <Col lg={3} md={6} className="mb-3">
               <Form.Label className="hotels-filter-label">{t('hotels_page.filter.city', 'Город')}</Form.Label>
-              <Dropdown onSelect={(val) => setSelectedCity(val)} className="hotels-custom-dropdown">
+              <Dropdown 
+                onSelect={(val) => setSelectedCity(val)} 
+                className="hotels-custom-dropdown"
+              >
                 <Dropdown.Toggle 
-                className="hotels-filter-input w-100 text-start" 
-                variant="none"
-                autoClose="outside" // Меню будет закрываться только при клике вне его
+                  className="hotels-filter-input w-100 text-start" 
+                  variant="none"
                 >
-
                   {selectedCity ? t(selectedCity, selectedCity) : t('hotels_page.filter.all_cities', 'Все города')}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className="hotels-dropdown-menu w-100">
-                  <Dropdown.Item eventKey="">{t('hotels_page.filter.all_cities', 'Все города')}</Dropdown.Item>
+                  <Dropdown.Item eventKey="">
+                    {t('hotels_page.filter.all_cities', 'Все города')}
+                  </Dropdown.Item>
+                  
                   {uniqueCities.map(city => (
                     <Dropdown.Item key={city} eventKey={city}>
                       {t(city, city)}
