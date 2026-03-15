@@ -246,6 +246,10 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+.group-eco-tours-container .dynamic-info-block .stat-text {
+  text-align: center;
+}
+
 /* Эко-миссия (плашка) */
 .group-eco-tours-container .eco-mission-stripe {
     background: #f0fdf4;
@@ -331,6 +335,7 @@
   background-color: #e5e7eb; /* чуть темнее при hover */
   transform: translateY(-1px);
 }
+
 
 .pagination-number.active {
   background-color: #146c20; /* мягкий синий для active */
@@ -653,6 +658,7 @@
   --bg-light: #f8fafc;
 }
 
+
 .group-details-page {
   background-color: white;
 }
@@ -663,6 +669,7 @@
 
 /* HERO SECTION - Геометричный и яркий */
 .group-details-page .group-hero {
+  margin-top: 2%;
   height: 55vh;
   background-size: cover;
   background-position: center;
@@ -873,114 +880,124 @@
   .group-details-page .group-title { font-size: 2.5rem; }
   .group-details-page .strip-grid { flex-direction: column; gap: 20px; }
   .group-details-page .group-booking-panel { position: static; box-shadow: 8px 8px 0px var(--group-orange); }
+
+  }
+
+
+@media (max-width:426px) {
+
+    .group-details-page .group-hero {
+    margin-top: 40px;
+  }
+
 }
 
-.group-details-page .dynamic-info-block {
-    transition: all 0.4s ease-in-out;
-    border-radius: 20px;
-    margin: 20px 0 40px;
-}
+  .group-details-page .dynamic-info-block {
+      transition: all 0.4s ease-in-out;
+      border-radius: 20px;
+      margin: 20px 0 40px;
+  }
 
-.info-card-simple {
-    padding: 20px;
-}
+  .info-card-simple {
+      padding: 20px;
+  }
 
-.stat-badge, .perk-badge {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 140px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    gap: 10px;
-    font-weight: bold;
-    color: #2c3e50;
-}
+  .stat-badge, .perk-badge {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 140px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      gap: 10px;
+      font-weight: bold;
+      color: #2c3e50;
+  }
 
-.stat-badge svg { color: #2ecc71; }
-.perk-badge svg { color: #3498db; }
+  .stat-badge svg { color: #2ecc71; }
+  .perk-badge svg { color: #3498db; }
 
-/* FAQ */
+  /* FAQ */
 
-/* Контейнер и обертка */
-.minimal-faq-wrapper {
-    padding: 80px 0;
-    background-color: #ffffff;
-}
+  /* Контейнер и обертка */
+  .minimal-faq-wrapper {
+      padding: 80px 0;
+      background-color: #ffffff;
+  }
 
-.minimal-faq-container {
-    max-width: 760px; /* Узкая колонка для элегантности */
-    margin: 0 auto;
-}
+  .minimal-faq-container {
+      max-width: 760px; /* Узкая колонка для элегантности */
+      margin: 0 auto;
+  }
 
-/* Заголовок */
-.minimal-faq-header {
-    margin-bottom: 50px;
-}
+  /* Заголовок */
+  .minimal-faq-header {
+      margin-bottom: 50px;
+  }
 
-.minimal-faq-subtitle {
-    display: block;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: #999;
-    margin-bottom: 10px;
-}
+  .minimal-faq-subtitle {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 10px;
+  }
 
-.minimal-faq-title {
-    font-size: 2.2rem;
-    font-weight: 400;
-    color: #111;
-    margin: 0;
-}
+  .minimal-faq-title {
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: #111;
+      margin: 0;
+  }
 
-/* Аккордеон: линии и отступы */
-.minimal-faq-accordion {
-    border-top: 1px solid #eaeaea;
-}
+  /* Аккордеон: линии и отступы */
+  .minimal-faq-accordion {
+      border-top: 1px solid #eaeaea;
+  }
 
-.minimal-faq-item {
-    border: none !important;
-    border-bottom: 1px solid #eaeaea !important;
-    background-color: transparent !important;
-}
+  .minimal-faq-item {
+      border: none !important;
+      border-bottom: 1px solid #eaeaea !important;
+      background-color: transparent !important;
+  }
 
-/* Кнопка вопроса */
-.minimal-faq-trigger .accordion-button {
-    padding: 24px 0 !important;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #111;
-    background-color: transparent !important;
-    box-shadow: none !important;
-    border: none !important;
-}
+  /* Кнопка вопроса */
+  .minimal-faq-trigger .accordion-button {
+      padding: 24px 0 !important;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #111;
+      background-color: transparent !important;
+      box-shadow: none !important;
+      border: none !important;
+  }
 
-/* Текст ответа */
-.minimal-faq-body {
-    padding: 0 0 30px 0 !important;
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #666;
-}
+  /* Текст ответа */
+  .minimal-faq-body {
+      padding: 0 0 30px 0 !important;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #666;
+  }
 
-/* * ДИНАМИКА: Тонкий акцент при открытии 
- * (меняет цвет текста только у активного вопроса)
- */
-.faq-theme-eco .minimal-faq-trigger .accordion-button:not(.collapsed) {
-    color: #2ecc71; /* Зеленый акцент для Эко */
-}
+  /* * ДИНАМИКА: Тонкий акцент при открытии 
+  * (меняет цвет текста только у активного вопроса)
+  */
+  .faq-theme-eco .minimal-faq-trigger .accordion-button:not(.collapsed) {
+      color: #2ecc71; /* Зеленый акцент для Эко */
+  }
 
-.faq-theme-group .minimal-faq-trigger .accordion-button:not(.collapsed) {
-    color: #3498db; /* Синий акцент для Групп */
-}
+  .faq-theme-group .minimal-faq-trigger .accordion-button:not(.collapsed) {
+      color: #3498db; /* Синий акцент для Групп */
+  }
 
-.faq-theme-all .minimal-faq-trigger .accordion-button:not(.collapsed) {
-    color: #111; /* Черный по умолчанию */
-}
+  .faq-theme-all .minimal-faq-trigger .accordion-button:not(.collapsed) {
+      color: #111; /* Черный по умолчанию */
+  }
 
 /* --- MOBILE OPTIMIZATION --- */
 
