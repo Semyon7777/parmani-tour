@@ -7,7 +7,6 @@ import { Leaf, Users, Calendar, MapPin, ArrowRight, TreePine,
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
-import FaviconSpinner from "../Components/FaviconSpinner";
 import "./GroupEcoTours.css";
 
 function GroupEcoTours() {
@@ -15,7 +14,6 @@ function GroupEcoTours() {
   const [activeTab, setActiveTab] = useState("all");
   const [allTours, setAllTours] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isPreparing, setIsPreparing] = useState(false);
   
   const currentLang = i18n.language || 'en';
 
@@ -48,12 +46,10 @@ function GroupEcoTours() {
       : allTours.filter(tour => tour.type === activeTab);
   }, [allTours, activeTab]);
 
-  // УДАЛЕН if (loading) return ... 
-  // Теперь шапка и hero-блок грузятся мгновенно!
+
 
   return (
     <div className="scheduled-page group-eco-tours-container">
-      <FaviconSpinner loading={isPreparing} />
 
       <NavbarCustom />
       
@@ -98,7 +94,6 @@ function GroupEcoTours() {
         t={t}
         activeTab={activeTab}
         loading={loading}
-        setIsPreparing={setIsPreparing}
       />
 
       <TourCTA />
@@ -110,7 +105,7 @@ function GroupEcoTours() {
 }
 
 
-const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, activeTab, loading, setIsPreparing }) {
+const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, activeTab, loading}) {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [toursPerPage, setToursPerPage] = useState(6);
@@ -142,7 +137,6 @@ const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, a
 
   const handleTourClick = async (e, tour) => {
     e.preventDefault();
-    setIsPreparing(true);
 
     try {
       let tourData = prefetchedTours.current[tour.id];
@@ -166,8 +160,6 @@ const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, a
     } catch (err) {
       console.error("Error:", err);
       navigate(tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`);
-    } finally {
-      setIsPreparing(false);
     }
   };
 
