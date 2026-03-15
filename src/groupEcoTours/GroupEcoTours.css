@@ -681,7 +681,7 @@
   background: rgba(15, 23, 42, 0.4); /* Затемнение */
   display: flex;
   align-items: flex-end;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
 }
 
 .group-details-page .group-back-btn {
@@ -693,7 +693,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   transition: 0.3s;
 }
 
@@ -886,17 +886,17 @@
   margin-top: 40px;
 }
 
-@media (max-width:1250px) {
+/* @media (max-width:1250px) {
   .group-details-page .group-hero {
-    height: 65vh;
+    height: 60vh;
   }
 }
 
 @media (max-width:992px) {
   .group-details-page .group-hero {
-    height: 60vh;
+    height: 53vh;
   }
-}
+} */
 
 
   .group-details-page .dynamic-info-block {
