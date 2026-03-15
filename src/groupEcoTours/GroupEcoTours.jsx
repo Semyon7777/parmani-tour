@@ -6,38 +6,74 @@ import { Leaf, Users, Calendar, MapPin, ArrowRight, TreePine,
    ShieldCheck, Coffee, Heart, MessageCircle, Map, Search, X } from "lucide-react";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import GroupEcoToursData from "./groupEcoToursData.json";
+import { supabase } from "../supabaseClient";
+import FaviconSpinner from "../Components/FaviconSpinner";
 import "./GroupEcoTours.css";
 
 function GroupEcoTours() {
   const { t, i18n } = useTranslation();
   const [activeTab, setActiveTab] = useState("all");
+  const [allTours, setAllTours] = useState([]); // Сюда придут туры из базы
+  const [loading, setLoading] = useState(true); // Состояние загрузки
   
   // Определяем текущий язык (например, 'en', 'ru' или 'am')
   const currentLang = i18n.language || 'en';
 
-  // Объединяем туры из JSON
-  const allTours = [...GroupEcoToursData.ecoTours, ...GroupEcoToursData.groupTours];
 
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const fetchTours = async () => {
+      setLoading(true);
+      try {
+        const { data, error } = await supabase
+          .from('group_eco_tours')
+          .select('id, type, title, location, date, price, spots, image')
+          .eq('is_active', true); // Берем только активные туры
+
+        if (error) throw error;
+        setAllTours(data || []);
+        console.log("Данные из базы:", data);
+      } catch (error) {
+        console.error("Error loading tours:", error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTours();
   }, []);
 
-  // Фильтрация по типу
-  const filteredTours = activeTab === "all" 
-    ? allTours 
-    : allTours.filter(tour => tour.type === activeTab);
+    // Фильтрация по типу
+  const filteredTours = useMemo(() => {
+    return activeTab === "all"
+      ? allTours
+      : allTours.filter(tour => tour.type === activeTab);
+  }, [allTours, activeTab]);
+
+
 
   return (
     <div className="scheduled-page group-eco-tours-container">
       <NavbarCustom />
+
+      {/* 1. Этот компонент работает ВСЕГДА, пока есть loading */}
+      <FaviconSpinner loading={loading} />
+
+      {/* 3. Условный рендеринг контента */}
+      {loading ? (
+        // Визуальная заглушка на 0.5 сек (пока крутится иконка в табе)
+        <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+           {/* Можно оставить пустым или добавить легкий текст */}
+        </div>
+      ) : (<>
       
       {/* 1. HERO SECTION */}
       <div className="scheduled-hero">
         <div className="hero-content text-center">
           {/* Заголовок страницы из JSON с учетом языка */}
           <h1 className="hero-main-title">
-            {GroupEcoToursData.title?.[currentLang] || GroupEcoToursData.title?.['en']}
+            {t("group_eco_tours.page_title", "Eco & Group Tours")}
           </h1>
           <p>{t("group_eco_tours.hero_subtitle", "Choose your path: Save nature or Explore culture")}</p>
         </div>
@@ -82,6 +118,8 @@ function GroupEcoTours() {
 
       {/* FAQ SECTION */}
       <TourFAQ activeTab={activeTab} />
+
+      </>)}
       
       <Footer />
     </div>
@@ -89,7 +127,7 @@ function GroupEcoTours() {
 }
 
 
-function TourGrid({ filteredTours, currentLang, t, activeTab }) {
+const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, activeTab }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const toursSectionRef = useRef(null);
@@ -145,15 +183,17 @@ function TourGrid({ filteredTours, currentLang, t, activeTab }) {
           tour.title?.["en"] ||
           "").toLowerCase();
 
-      const location =
-        (tour.location?.[currentLang] ||
-          tour.location?.["en"] ||
-          "").toLowerCase();
+      const location = (
+        tour.location?.[currentLang] || 
+        tour.location?.["en"] || 
+        ""
+      ).toLowerCase();
 
-      const impact =
-        (tour.impact?.[currentLang] ||
-          tour.impact?.["en"] ||
-          "").toLowerCase();
+      const impact = (
+        tour.extra_details?.mission?.[currentLang] || 
+        tour.extra_details?.mission?.["en"] || 
+        ""
+      ).toLowerCase();
 
       return (
         title.includes(query) ||
@@ -224,11 +264,9 @@ function TourGrid({ filteredTours, currentLang, t, activeTab }) {
                   <div className="tour-img-container">
                     <img
                       src={tour.image}
-                      alt={
-                        tour.title?.[currentLang] ||
-                        tour.title?.["en"]
-                      }
+                      alt={tour.title?.[currentLang] || tour.title?.["en"]}
                       loading="lazy"
+                      decoding="async"
                     />
 
                     <div className="tour-type-badge">
@@ -253,17 +291,28 @@ function TourGrid({ filteredTours, currentLang, t, activeTab }) {
                       <span>{tour.date}</span>
                     </div>
 
+                    {/* Название из JSONB поля */}
                     <h3 className="tour-title-text">
-                      {tour.title?.[currentLang] ||
-                        tour.title?.["en"]}
+                      {tour.title?.[currentLang] || tour.title?.["en"]}
                     </h3>
+
+                    {/* Данные из extra_details (миссия для эко-туров) */}
+                    {/* {tour.type === "eco" && (
+                      <div className="eco-mission-stripe">
+                        <TreePine size={16} />
+                        <p>
+                          {t("group_eco_tours.mission")}:{" "}
+                          {tour.extra_details?.mission?.[currentLang] || tour.extra_details?.mission?.["en"]}
+                        </p>
+                      </div>
+                    )}  */}
 
                     <div className="tour-details">
                       <div className="detail-item">
                         <MapPin size={14} />
                         <span>
-                          {tour.location?.[currentLang] ||
-                            tour.location?.["en"]}
+                          {/* Если tour.location — это JSONB объект с ключами en, hy, ru */}
+                          {tour.location?.[currentLang] || tour.location?.["en"]}
                         </span>
                       </div>
 
@@ -274,17 +323,6 @@ function TourGrid({ filteredTours, currentLang, t, activeTab }) {
                         {t("group_eco_tours.spots_left")}
                       </div>
                     </div>
-
-                    {tour.type === "eco" && (
-                      <div className="eco-mission-stripe">
-                        <TreePine size={16} />
-                        <p>
-                          {t("group_eco_tours.mission")}:{" "}
-                          {tour.impact?.[currentLang] ||
-                            tour.impact?.["en"]}
-                        </p>
-                      </div>
-                    )}
 
                     <div className="tour-action-area">
                       <div className="tour-price-tag">
@@ -297,6 +335,7 @@ function TourGrid({ filteredTours, currentLang, t, activeTab }) {
                             ? `/eco-tour/${tour.id}`
                             : `/group-tour/${tour.id}`
                         }
+                        state={{ tour }}
                         className="tour-btn-minimal"
                       >
                         {t("group_eco_tours.btn_join")}
@@ -369,7 +408,7 @@ function TourGrid({ filteredTours, currentLang, t, activeTab }) {
       </Container>
     </section>
   );
-}
+})
 
 const DynamicInfoSection = ({ activeTab, currentLang }) => {
   const { t } = useTranslation();

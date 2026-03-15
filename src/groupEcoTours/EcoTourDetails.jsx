@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import { 
   Leaf, Calendar, MapPin, ArrowLeft, Info,
@@ -8,34 +9,87 @@ import {
 } from 'lucide-react';
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import GroupEcoToursData from './groupEcoToursData.json';
+import { supabase } from "../supabaseClient";
+import FaviconSpinner from "../Components/FaviconSpinner";
 import './GroupEcoTours.css';
 
 const EcoTourDetails = () => {
   const { id } = useParams();
+  const location = useLocation();
+  const tourFromState = location.state?.tour;
   const { t, i18n } = useTranslation();
+  const [loading, setLoading] = useState(true);
+  const [tour, setTour] = useState(tourFromState || null);
   const navigate = useNavigate();
   const currentLang = i18n.language || 'en';
 
-  // Ищем во всех массивах данных
-  const allTours = [...(GroupEcoToursData.ecoTours || []), ...(GroupEcoToursData.groupTours || [])];
-  const tour = allTours.find(item => item.id === id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+
+    const fetchTour = async () => {
+      setLoading(true);
+
+      if (tourFromState) {
+        // Показываем базовые данные сразу
+        setTour(tourFromState);
+
+        // Догружаем недостающие поля, например extra_details и description
+        const { data, error } = await supabase
+          .from('group_eco_tours')
+          .select('extra_details, description') // только недостающие поля
+          .eq('id', id)
+          .maybeSingle(); // <-- изменено
+
+        if (error) console.error(error);
+        else if (data) setTour(prev => ({ ...prev, ...data })); // сливаем с существующим tour
+
+      } else {
+        // Если state нет, запрашиваем все данные сразу
+        const { data, error } = await supabase
+          .from('group_eco_tours')
+          .select('*') // можно указать только нужные поля
+          .eq('id', id)
+          .maybeSingle(); // <-- изменено
+
+        if (error) console.error(error);
+        else if (!data) setTour(null); // тур не найден
+        else setTour(data);
+      }
+
+      setLoading(false);
+    };
+
+    fetchTour();
+  }, [id, tourFromState]);
+
 
   if (!tour) return <div className="text-center py-5">Tour not found</div>;
 
   // Функция для безопасного получения перевода
   const getTranslation = (field) => {
     if (!field) return '';
-    return field[currentLang] || field['en'] || '';
+    // Проверяем: это объект с переводами (типа {en: '...', ru: '...'})?
+    if (typeof field === 'object' && !Array.isArray(field)) {
+      return field[currentLang] || field['en'] || '';
+    }
+    return field; // Если это просто строка
   };
 
   return (
     <div className="eco-details-page">
       <NavbarCustom />
+
+      {/* 1. Этот компонент работает ВСЕГДА, пока есть loading */}
+      <FaviconSpinner loading={loading} />
+
+      {/* 3. Условный рендеринг контента */}
+      {loading ? (
+        // Визуальная заглушка на 0.5 сек (пока крутится иконка в табе)
+        <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+           {/* Можно оставить пустым или добавить легкий текст */}
+        </div>
+      ) : (<>
 
       {/* 1. HERO SECTION */}
       <div className="eco-hero" style={{ backgroundImage: `url(${tour.image})` }}>
@@ -61,7 +115,8 @@ const EcoTourDetails = () => {
                 </div>
                 <div className="stat-item">
                   <Clock size={18} />
-                  <span>{getTranslation(tour.duration)}</span>
+                  {/* Используем напрямую число из базы */}
+                  <span>{tour.duration} {t('group_eco_tours.common.hours', 'hours')}</span>
                 </div>
               </div>
             </div>
@@ -74,13 +129,14 @@ const EcoTourDetails = () => {
           {/* ЛЕВАЯ КОЛОНКА */}
           <Col lg={8}>
             {/* Блок Миссии */}
-            <section className="info-block mission-highlight">
-              <div className="block-header">
-                <TreePine className="icon-green" />
-                <h3>{t('group_eco_tours.eco.mission_title', 'Our Mission in this tour')}</h3>
-              </div>
-              <p className="mission-text">{getTranslation(tour.mission)}</p>
-            </section>
+              <section className="info-block mission-highlight">
+                <div className="block-header">
+                  <TreePine className="icon-green" />
+                  <h3>{t('group_eco_tours.eco.mission_title')}</h3>
+                </div>
+                {/* Добавили доступ через extra_details */}
+                <p className="mission-text">{getTranslation(tour.extra_details?.mission)}</p>
+              </section>
 
             {/* Описание */}
             <section className="info-block">
@@ -92,11 +148,11 @@ const EcoTourDetails = () => {
             <section className="info-block">
               <h3>{t('group_eco_tours.eco.whats_included')}</h3>
               <div className="included-grid">
-                {tour.included && tour.included.map((item, index) => (
+                {tour.extra_details?.included && tour.extra_details.included.map((item, index) => (
                   <div className="inc-item" key={index}>
                     <CheckCircle2 size={18} /> 
-                    {/* Берем перевод прямо из объекта тура */}
-                    {item[currentLang] || item['en']}
+                    {/* Используем i18n для перевода коротких ключей (Transfer, Eco-lunch) */}
+                    <span>{t(`group_eco_tours.included_items.${item}`, item)}</span>
                   </div>
                 ))}
               </div>
@@ -137,7 +193,9 @@ const EcoTourDetails = () => {
                 <div className="eco-progress-container">
                   <div 
                     className="eco-progress-fill" 
-                    style={{ width: `${((tour.people - tour.spots) / tour.people) * 100}%` }}
+                    style={{ 
+                      width: `${tour.people > 0 ? ((tour.people - tour.spots) / tour.people) * 100 : 0}%` 
+                    }}
                   ></div>
                 </div>
 
@@ -154,6 +212,8 @@ const EcoTourDetails = () => {
           </Col>
         </Row>
       </Container>
+
+      </>)}
 
       <Footer />
     </div>

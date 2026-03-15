@@ -7,7 +7,7 @@ import Footer from "../Components/Footer";
 import { Map, Bus, BookOpen, Utensils, Send, CheckCircle, GraduationCap,
    Plus, Trash2, FileText, MapPin, ChevronLeft, ChevronRight, MessageCircle, Mail } from "lucide-react";
 import emailjs from '@emailjs/browser';
-import customTourBuilderImg from "./images/Custom-Tour-Builder.png"
+import customTourBuilderImg from "./images/Custom-Tour-Builder.webp"
 import "./SpecialPage.css";
 
 function SpecialPage() {

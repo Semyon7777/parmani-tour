@@ -825,7 +825,7 @@
       "book": "Забронировать место",
       "limited": "Осталось всего {{count}} мест!"
     },
-    "common": { "back": "Назад" },
+    "common": { "back": "Назад", "hours": "часов" },
     "tours": { "badge_eco": "ЭКО МИССИЯ" },
     "eco": {
       "mission_title": "Наша миссия в этом туре",
@@ -838,7 +838,16 @@
       "limited_spots": "Осталось всего {{count}} мест!",
       "hurry_up": "Присоединяйтесь к другим участникам"
     },
-    "buttons": { "join_mission": "Присоединиться" }
+    "buttons": { "join_mission": "Присоединиться" },
+    "included_items": {
+      "Transfer": "Трансфер",
+      "Eco-lunch": "Эко-ланч",
+      "Tree Seedlings": "Саженцы деревьев",
+      "Equipment": "Инвентарь",
+      "Professional Guide": "Профессиональный гид",
+      "Guide": "Гид",
+      "Water": "Вода"
+    }
   },
 
 

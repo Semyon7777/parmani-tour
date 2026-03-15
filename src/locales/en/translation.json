@@ -894,7 +894,7 @@
       "book": "Book a spot",
       "limited": "Only {{count}} spots left!"
     },
-    "common": { "back": "Back" },
+    "common": { "back": "Back", "hours": "hours" },
     "tours": { "badge_eco": "ECO MISSION" },
     "eco": {
       "mission_title": "Our Mission in this tour",
@@ -907,7 +907,17 @@
       "limited_spots": "Only {{count}} spots left!",
       "hurry_up": "Join others in this mission"
     },
-    "buttons": { "join_mission": "Join the Mission" }
+    "buttons": { "join_mission": "Join the Mission" },
+    "included_items": {
+      "Transfer": "Transfer",
+      "Eco-lunch": "Eco-lunch",
+      "Tree Seedlings": "Tree Seedlings",
+      "Equipment": "Equipment",
+      "Professional Guide": "Professional Guide",
+      "Guide": "Guide",
+      "Water": "Water",
+      "Entrance Tickets": "Entrance Tickets"
+    }
   },
 
 

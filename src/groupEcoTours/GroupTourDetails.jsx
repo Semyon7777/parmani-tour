@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 import { Container, Row, Col, Badge } from 'react-bootstrap';
 import { 
   Users, Calendar, MapPin, ArrowLeft, 
@@ -8,28 +9,81 @@ import {
 } from 'lucide-react';
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import data from './groupEcoToursData.json';
+import { supabase } from "../supabaseClient";
+import FaviconSpinner from "../Components/FaviconSpinner";
 import './GroupEcoTours.css';
 
 const GroupTourDetails = () => {
   const { id } = useParams();
+  const location = useLocation();
+  const tourFromState = location.state?.tour;
   const { t, i18n } = useTranslation();
+  const [tour, setTour] = useState(tourFromState || null);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const currentLang = i18n.language || 'en';
 
-  // Ищем тур во всех категориях JSON
-  const allTours = [...(data.groupTours || []), ...(data.ecoTours || [])];
-  const tour = allTours.find(item => item.id === id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+
+    const fetchTour = async () => {
+      setLoading(true);
+
+      if (tourFromState) {
+        setTour(tourFromState);
+
+        const { data, error } = await supabase
+          .from('group_eco_tours')
+          .select('extra_details, itinerary')
+          .eq('id', id)
+          .maybeSingle();
+
+        if (error) console.error(error);
+        else if (data) setTour(prev => ({ ...prev, ...data }));
+
+      } else {
+        const { data, error } = await supabase
+          .from('group_eco_tours')
+          .select('*')
+          .eq('id', id)
+          .maybeSingle();
+
+        if (error) console.error(error);
+        else if (!data) setTour(null);
+        else setTour(data);
+      }
+
+      setLoading(false);
+    };
+
+    fetchTour();
+  }, [id, tourFromState]);
 
   if (!tour) return <div className="text-center py-5">Tour not found</div>;
 
+  // Удобная функция перевода, учитывающая вложенность
+  const getTranslation = (field) => {
+    if (!field) return '';
+    return typeof field === 'object' ? (field[currentLang] || field['en'] || '') : field;
+  };
+  
+
+
   return (
     <div className="group-details-page">
+      {/* 1. Этот компонент работает ВСЕГДА, пока есть loading */}
+      <FaviconSpinner loading={loading} />
       <NavbarCustom />
+
+      {/* 3. Условный рендеринг контента */}
+      {loading ? (
+        // Визуальная заглушка на 0.5 сек (пока крутится иконка в табе)
+        <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+           {/* Можно оставить пустым или добавить легкий текст */}
+        </div>
+      ) : (<>
+
 
       {/* 1. BOLD HERO SECTION */}
       <div className="group-hero" style={{ backgroundImage: `url(${tour.image})` }}>
@@ -42,9 +96,7 @@ const GroupTourDetails = () => {
               <Badge className="group-type-badge bg-warning">
                 {tour.type === 'eco' ? t('group_eco_tours.badge_eco') : t('group_eco_tours.group.badge', 'GROUP ADVENTURE')}
               </Badge>
-              <h1 className="group-title">
-                {tour.title[currentLang] || tour.title['en']}
-              </h1>
+              <h1 className="group-title">{getTranslation(tour.title)}</h1>
             </div>
           </Container>
         </div>
@@ -65,7 +117,7 @@ const GroupTourDetails = () => {
               <Bus size={20} />
               <div>
                 <small>{t('group_eco_tours.group.transport', 'Transport')}</small>
-                <span>{tour.transport[currentLang] || tour.transport['en']}</span>
+                <span>{getTranslation(tour.transport)}</span>
               </div>
             </div>
             <div className="strip-item">
@@ -86,13 +138,13 @@ const GroupTourDetails = () => {
             <section className="itinerary-section">
               <h2 className="section-title">{t('group_eco_tours.group.program_label', 'Tour Program')}</h2>
               <div className="timeline">
-                {tour.itinerary && tour.itinerary.map((step, index) => (
+                {tour.itinerary?.map((step, index) => (
                   <div className="timeline-item" key={index}>
                     <div className="time">{step.time}</div>
                     <div className="content">
                       {/* Теперь заголовок берется из твоего JSON (garni-temple) */}
-                      <h4>{step.title[currentLang] || step.title['en'] || 'Activity'}</h4>
-                      <p>{step.text[currentLang] || step.text['en']}</p>
+                      <h4>{getTranslation(step.title)}</h4>
+                      <p>{getTranslation(step.text)}</p>
                     </div>
                   </div>
                 ))}
@@ -127,7 +179,7 @@ const GroupTourDetails = () => {
                 </div>
                 <div className="detail-row">
                   <MapPin size={18} />
-                  <span>{tour.location[currentLang] || tour.location['en']}</span>
+                  <span>{getTranslation(tour.location)}</span>
                 </div>
               </div>
 
@@ -147,6 +199,8 @@ const GroupTourDetails = () => {
           </Col>
         </Row>
       </Container>
+
+      </>)}
 
       <Footer />
     </div>

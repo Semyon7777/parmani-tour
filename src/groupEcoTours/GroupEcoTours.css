@@ -100,7 +100,7 @@
 /* --- ИЗОБРАЖЕНИЕ --- */
 .group-eco-tours-container .tour-img-container {
     position: relative;
-    height: 180px;
+    height: 220px;
     overflow: hidden;
 }
 
@@ -164,13 +164,8 @@
     font-size: 1.1rem;
     font-weight: 700;
     color: #1a1a1a;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     line-height: 1.4;
-}
-
-/* Детали: Локация и Места */
-.group-eco-tours-container .tour-details {
-    margin-bottom: 20px;
 }
 
 .group-eco-tours-container .detail-item {

@@ -823,7 +823,7 @@
       "book": "Ամրագրել տեղ",
       "limited": "Մնացել է ընդամենը {{count}} տեղ:"
     },
-    "common": { "back": "Հետ" },
+    "common": { "back": "Հետ", "hours": "ժամ" },
     "tours": { "badge_eco": "ԷԿՈ ԱՌԱՔԵԼՈՒԹՅՈՒՆ" },
     "eco": {
       "mission_title": "Մեր առաքելությունը այս տուրում",
@@ -836,7 +836,16 @@
       "limited_spots": "Մնացել է ընդամենը {{count}} տեղ:",
       "hurry_up": "Միացեք մյուս մասնակիցներին"
     },
-    "buttons": { "join_mission": "Միանալ առաքելությանը" }
+    "buttons": { "join_mission": "Միանալ առաքելությանը" },
+    "included_items": {
+      "Transfer": "Տրանսֆեր",
+      "Eco-lunch": "Էկո-ճաշ",
+      "Tree Seedlings": "Ծառերի տնկիներ",
+      "Equipment": "Գույք",
+      "Professional Guide": "Պրոֆեսիոնալ գիդ",
+      "Guide": "Գիդ",
+      "Water": "Ջուր"
+    }
   },
 
 
