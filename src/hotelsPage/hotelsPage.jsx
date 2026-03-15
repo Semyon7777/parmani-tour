@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { Container, Row, Col, Carousel, Form, Accordion, Card, Button, Dropdown } from "react-bootstrap";
+import { Container, Row, Col, Carousel, Form, Accordion, Card, Button, Dropdown, Spinner } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { FaWhatsapp, FaEnvelope, FaStar, FaShieldAlt, FaHeadset, FaGem, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaWhatsapp, FaEnvelope, FaStar, FaShieldAlt, 
+  FaHeadset, FaGem, FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { supabase } from "../supabaseClient"; // Импортируем клиент
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
@@ -89,7 +90,7 @@ const HotelsPage = () => {
 
   const totalPages = Math.ceil(hotelsToDisplay.length / hotelsPerPage);
 
-  if (loading) return <div className="text-center py-5"></div>;
+
 
   const handleWhatsApp = (text = "") => {
     const message = text || "Hello! I need hotel assistance in Armenia.";
@@ -156,13 +157,13 @@ const HotelsPage = () => {
       </section>
 
       {/* HOTELS LIST - Теперь с пагинацией и фильтром */}
+      {/* HOTELS LIST - Мгновенный рендер каркаса */}
       <section id="hotels-list" className="hotels-grid-section">
         <Container>
           <div className="section-title text-center">
             <h2>{t("hotels_page.list_title")}</h2>
           </div>
 
-          {/* ДОБАВЛЯЕМ ФИЛЬТР СЮДА */}
           <Row className="mb-4">
             <Col>
               <HotelFilter 
@@ -171,10 +172,13 @@ const HotelsPage = () => {
               />
             </Col>
           </Row>
-          {/* КОНЕЦ ФИЛЬТРА */}
 
-          {/* Если после фильтрации отелей нет, показываем сообщение */}
-          {hotelsToDisplay.length === 0 ? (
+          {/* УМНАЯ ЗАГРУЗКА ЗДЕСЬ */}
+          {loading ? (
+            <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '300px' }}>
+              <Spinner animation="grow" style={{ color: '#3a7d44' }} /> {/* Твой фирменный зеленый цвет */}
+            </div>
+          ) : hotelsToDisplay.length === 0 ? (
             <div className="text-center my-5">
               <h4>{t("hotels_page.no_results", "Отели не найдены по вашим критериям.")}</h4>
             </div>
@@ -191,8 +195,6 @@ const HotelsPage = () => {
                               src={`${img}?width=800&quality=70`}
                               className="hotels-page-card-img" 
                               alt={hotel.name}
-                              effect="blur"
-                              // ОПТИМИЗАЦИЯ ЗДЕСЬ: Eager только для первой картинки (i === 0) первых трех отелей.
                               loading={index < 3 && i === 0 ? "eager" : "lazy"}
                             />
                           </Carousel.Item>
@@ -216,7 +218,6 @@ const HotelsPage = () => {
               {/* КНОПКИ ПАГИНАЦИИ */}
               {totalPages > 1 && (
                 <div className="pagination-container mt-5">
-                  {/* Твой код кнопок пагинации (остается без изменений) */}
                   <button
                     className="pagin-btn arrow"
                     disabled={currentPage === 1}
