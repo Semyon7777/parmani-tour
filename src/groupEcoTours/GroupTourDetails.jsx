@@ -10,7 +10,6 @@ import {
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
-import FaviconSpinner from "../Components/FaviconSpinner";
 import './GroupEcoTours.css';
 
 const GroupTourDetails = () => {
@@ -72,18 +71,7 @@ const GroupTourDetails = () => {
 
   return (
     <div className="group-details-page">
-      {/* 1. Этот компонент работает ВСЕГДА, пока есть loading */}
-      <FaviconSpinner loading={loading} />
       <NavbarCustom />
-
-      {/* 3. Условный рендеринг контента */}
-      {loading ? (
-        // Визуальная заглушка на 0.5 сек (пока крутится иконка в табе)
-        <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-           {/* Можно оставить пустым или добавить легкий текст */}
-        </div>
-      ) : (<>
-
 
       {/* 1. BOLD HERO SECTION */}
       <div className="group-hero" style={{ backgroundImage: `url(${tour.image})` }}>
@@ -199,8 +187,6 @@ const GroupTourDetails = () => {
           </Col>
         </Row>
       </Container>
-
-      </>)}
 
       <Footer />
     </div>

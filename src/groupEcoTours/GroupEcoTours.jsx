@@ -7,6 +7,7 @@ import { Leaf, Users, Calendar, MapPin, ArrowRight, TreePine,
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
+import { useNavigate } from "react-router-dom";
 import FaviconSpinner from "../Components/FaviconSpinner";
 import "./GroupEcoTours.css";
 
@@ -15,6 +16,7 @@ function GroupEcoTours() {
   const [activeTab, setActiveTab] = useState("all");
   const [allTours, setAllTours] = useState([]); // Сюда придут туры из базы
   const [loading, setLoading] = useState(true); // Состояние загрузки
+  const [isPreparing, setIsPreparing] = useState(false); // 1. Добавь это
   
   // Определяем текущий язык (например, 'en', 'ru' или 'am')
   const currentLang = i18n.language || 'en';
@@ -22,7 +24,7 @@ function GroupEcoTours() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
+    
     const fetchTours = async () => {
       setLoading(true);
       try {
@@ -51,22 +53,16 @@ function GroupEcoTours() {
       : allTours.filter(tour => tour.type === activeTab);
   }, [allTours, activeTab]);
 
+  if (loading) {
+    return <div className="text-center py-5">Загрузка туров...</div>; // Здесь может быть твой спиннер
+  }
 
 
   return (
     <div className="scheduled-page group-eco-tours-container">
+      <FaviconSpinner loading={isPreparing} /> {/* 2. Добавь это */}
+
       <NavbarCustom />
-
-      {/* 1. Этот компонент работает ВСЕГДА, пока есть loading */}
-      <FaviconSpinner loading={loading} />
-
-      {/* 3. Условный рендеринг контента */}
-      {loading ? (
-        // Визуальная заглушка на 0.5 сек (пока крутится иконка в табе)
-        <div style={{ minHeight: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-           {/* Можно оставить пустым или добавить легкий текст */}
-        </div>
-      ) : (<>
       
       {/* 1. HERO SECTION */}
       <div className="scheduled-hero">
@@ -111,6 +107,7 @@ function GroupEcoTours() {
         currentLang={currentLang} 
         t={t}
         activeTab={activeTab}
+        setIsPreparing={setIsPreparing} // 3. ОБЯЗАТЕЛЬНО передай функцию сюда
       />
 
       <TourCTA />
@@ -118,8 +115,6 @@ function GroupEcoTours() {
 
       {/* FAQ SECTION */}
       <TourFAQ activeTab={activeTab} />
-
-      </>)}
       
       <Footer />
     </div>
@@ -127,11 +122,43 @@ function GroupEcoTours() {
 }
 
 
-const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, activeTab }) {
+const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, activeTab, setIsPreparing }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const toursSectionRef = useRef(null);
   const isFirstRender = useRef(true);
+
+  const navigate = useNavigate(); // Не забудь импортировать useNavigate
+
+  // 2. Добавь эту функцию внутрь TourGrid
+  const handleTourClick = async (e, tour) => {
+    e.preventDefault(); // Останавливаем обычный переход
+    setIsPreparing(true); // Включаем спиннер во вкладке
+
+    try {
+      // Загружаем полные данные (например, itinerary, которого нет в общем списке)
+      const { data, error } = await supabase
+        .from('group_eco_tours')
+        .select('*')
+        .eq('id', tour.id)
+        .single();
+
+      if (error) throw error;
+
+      // Небольшая пауза для эффекта "подготовки" (по желанию)
+      await new Promise(resolve => setTimeout(resolve, 600));
+
+      const path = tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`;
+      navigate(path, { state: { tour: data } }); // Передаем данные в state
+      
+    } catch (err) {
+      console.error("Error:", err);
+      // Если упало — просто переходим, страница сама попробует загрузить
+      navigate(tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`);
+    } finally {
+      setIsPreparing(false); // Выключаем спиннер
+    }
+  };
 
   const [toursPerPage, setToursPerPage] = useState(6);
 
@@ -328,14 +355,9 @@ const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, a
                       <div className="tour-price-tag">
                         {tour.price}
                       </div>
-
                       <Link
-                        to={
-                          tour.type === "eco"
-                            ? `/eco-tour/${tour.id}`
-                            : `/group-tour/${tour.id}`
-                        }
-                        state={{ tour }}
+                        to={tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`}
+                        onClick={(e) => handleTourClick(e, tour)} // Вешаем наш обработчик
                         className="tour-btn-minimal"
                       >
                         {t("group_eco_tours.btn_join")}

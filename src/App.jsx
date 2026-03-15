@@ -21,6 +21,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import BookForm from "./Components/bookForm";
 import LegalPage from "./legalPage/LegalPage";
+import RouteTracker from "./Components/RouteTracker";
 import './i18n';
 
 
@@ -41,6 +42,7 @@ function App() {
   return (
       <div className="allPages">
         <Router>
+          <RouteTracker /> {/* Вот здесь он будет "слушать" переходы */}
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/private-tours" element={<ToursPage />} />
