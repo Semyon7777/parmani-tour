@@ -1,26 +1,23 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
-import { Container, Row, Col, Accordion } from "react-bootstrap";
+import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import { Container, Row, Col, Accordion, Spinner } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Leaf, Users, Calendar, MapPin, ArrowRight, TreePine,
    ShieldCheck, Coffee, Heart, MessageCircle, Map, Search, X } from "lucide-react";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
-import { useNavigate } from "react-router-dom";
 import FaviconSpinner from "../Components/FaviconSpinner";
 import "./GroupEcoTours.css";
 
 function GroupEcoTours() {
   const { t, i18n } = useTranslation();
   const [activeTab, setActiveTab] = useState("all");
-  const [allTours, setAllTours] = useState([]); // Сюда придут туры из базы
-  const [loading, setLoading] = useState(true); // Состояние загрузки
-  const [isPreparing, setIsPreparing] = useState(false); // 1. Добавь это
+  const [allTours, setAllTours] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [isPreparing, setIsPreparing] = useState(false);
   
-  // Определяем текущий язык (например, 'en', 'ru' или 'am')
   const currentLang = i18n.language || 'en';
-
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -31,11 +28,10 @@ function GroupEcoTours() {
         const { data, error } = await supabase
           .from('group_eco_tours')
           .select('id, type, title, location, date, price, spots, image')
-          .eq('is_active', true); // Берем только активные туры
+          .eq('is_active', true);
 
         if (error) throw error;
         setAllTours(data || []);
-        console.log("Данные из базы:", data);
       } catch (error) {
         console.error("Error loading tours:", error.message);
       } finally {
@@ -46,28 +42,23 @@ function GroupEcoTours() {
     fetchTours();
   }, []);
 
-    // Фильтрация по типу
   const filteredTours = useMemo(() => {
     return activeTab === "all"
       ? allTours
       : allTours.filter(tour => tour.type === activeTab);
   }, [allTours, activeTab]);
 
-  if (loading) {
-    return <div className="text-center py-5">Загрузка туров...</div>; // Здесь может быть твой спиннер
-  }
-
+  // УДАЛЕН if (loading) return ... 
+  // Теперь шапка и hero-блок грузятся мгновенно!
 
   return (
     <div className="scheduled-page group-eco-tours-container">
-      <FaviconSpinner loading={isPreparing} /> {/* 2. Добавь это */}
+      <FaviconSpinner loading={isPreparing} />
 
       <NavbarCustom />
       
-      {/* 1. HERO SECTION */}
       <div className="scheduled-hero">
         <div className="hero-content text-center">
-          {/* Заголовок страницы из JSON с учетом языка */}
           <h1 className="hero-main-title">
             {t("group_eco_tours.page_title", "Eco & Group Tours")}
           </h1>
@@ -75,7 +66,6 @@ function GroupEcoTours() {
         </div>
       </div>
 
-      {/* 2. TABS */}
       <Container className="tabs-container">
         <div className="custom-tabs">
           <button 
@@ -90,7 +80,7 @@ function GroupEcoTours() {
           >
             <Users size={18} /> {t("group_eco_tours.tab_group", "Group Tours")}
           </button>
-                    <button 
+          <button 
             className={`tab-btn eco-tab ${activeTab === 'eco' ? 'active' : ''}`}
             onClick={() => setActiveTab('eco')}
           >
@@ -101,19 +91,17 @@ function GroupEcoTours() {
 
       <DynamicInfoSection activeTab={activeTab} currentLang={currentLang} />
 
-      {/* 3. TOURS GRID */}
+      {/* Передаем loading в TourGrid */}
       <TourGrid 
         filteredTours={filteredTours} 
         currentLang={currentLang} 
         t={t}
         activeTab={activeTab}
-        setIsPreparing={setIsPreparing} // 3. ОБЯЗАТЕЛЬНО передай функцию сюда
+        loading={loading}
+        setIsPreparing={setIsPreparing}
       />
 
       <TourCTA />
-
-
-      {/* FAQ SECTION */}
       <TourFAQ activeTab={activeTab} />
       
       <Footer />
@@ -122,61 +110,75 @@ function GroupEcoTours() {
 }
 
 
-const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, activeTab, setIsPreparing }) {
+const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, activeTab, loading, setIsPreparing }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [toursPerPage, setToursPerPage] = useState(6);
+  
   const toursSectionRef = useRef(null);
   const isFirstRender = useRef(true);
+  
+  // КЭШ ДЛЯ ТУРОВ: Сюда мы будем складывать предзагруженные данные
+  const prefetchedTours = useRef({});
 
-  const navigate = useNavigate(); // Не забудь импортировать useNavigate
+  const navigate = useNavigate();
 
-  // 2. Добавь эту функцию внутрь TourGrid
-  const handleTourClick = async (e, tour) => {
-    e.preventDefault(); // Останавливаем обычный переход
-    setIsPreparing(true); // Включаем спиннер во вкладке
+  // Функция предзагрузки при наведении мыши (Магия скорости!)
+  const handleMouseEnter = useCallback(async (tourId) => {
+    if (prefetchedTours.current[tourId]) return; // Уже загружено
 
     try {
-      // Загружаем полные данные (например, itinerary, которого нет в общем списке)
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('group_eco_tours')
         .select('*')
-        .eq('id', tour.id)
+        .eq('id', tourId)
         .single();
+      
+      if (data) prefetchedTours.current[tourId] = data; // Сохраняем в кэш
+    } catch (err) {
+      console.error("Prefetch error:", err);
+    }
+  }, []);
 
-      if (error) throw error;
+  const handleTourClick = async (e, tour) => {
+    e.preventDefault();
+    setIsPreparing(true);
 
-      // Небольшая пауза для эффекта "подготовки" (по желанию)
-      await new Promise(resolve => setTimeout(resolve, 600));
+    try {
+      let tourData = prefetchedTours.current[tour.id];
+
+      // Если пользователь кликнул очень быстро и данные не успели предзагрузиться
+      if (!tourData) {
+        const { data, error } = await supabase
+          .from('group_eco_tours')
+          .select('*')
+          .eq('id', tour.id)
+          .single();
+        if (error) throw error;
+        tourData = data;
+      }
+
+      await new Promise(resolve => setTimeout(resolve, 300)); // Чуть уменьшил задержку для отзывчивости
 
       const path = tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`;
-      navigate(path, { state: { tour: data } }); // Передаем данные в state
+      navigate(path, { state: { tour: tourData } });
       
     } catch (err) {
       console.error("Error:", err);
-      // Если упало — просто переходим, страница сама попробует загрузить
       navigate(tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`);
     } finally {
-      setIsPreparing(false); // Выключаем спиннер
+      setIsPreparing(false);
     }
   };
 
-  const [toursPerPage, setToursPerPage] = useState(6);
-
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setToursPerPage(4); // мобильный экран
-      } else {
-        setToursPerPage(6); // планшет/десктоп
-      }
+      setToursPerPage(window.innerWidth < 768 ? 4 : 6);
     };
-
-    handleResize(); // установить сразу при монтировании
-
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
 
   useEffect(() => {
     setSearchTerm("");
@@ -184,253 +186,137 @@ const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, a
   }, [activeTab]);
 
   useEffect(() => {
-    // 1. Если это самый первый запуск — просто меняем флаг и ничего не делаем
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
     }
-
-    // 2. Если мы дошли сюда, значит это уже клик по пагинации — скроллим
     if (toursSectionRef.current) {
-      toursSectionRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-      });
+      toursSectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  }, [currentPage]); // Реагирует на смену страницы
+  }, [currentPage]);
 
-  // Поиск
   const searchedTours = useMemo(() => {
     const query = searchTerm.toLowerCase().trim();
     if (!query) return filteredTours;
 
     return filteredTours.filter((tour) => {
-      const title =
-        (tour.title?.[currentLang] ||
-          tour.title?.["en"] ||
-          "").toLowerCase();
-
-      const location = (
-        tour.location?.[currentLang] || 
-        tour.location?.["en"] || 
-        ""
-      ).toLowerCase();
-
-      const impact = (
-        tour.extra_details?.mission?.[currentLang] || 
-        tour.extra_details?.mission?.["en"] || 
-        ""
-      ).toLowerCase();
-
-      return (
-        title.includes(query) ||
-        location.includes(query) ||
-        impact.includes(query)
-      );
+      const title = (tour.title?.[currentLang] || tour.title?.["en"] || "").toLowerCase();
+      const location = (tour.location?.[currentLang] || tour.location?.["en"] || "").toLowerCase();
+      return title.includes(query) || location.includes(query);
     });
   }, [filteredTours, searchTerm, currentLang]);
 
   const totalPages = Math.ceil(searchedTours.length / toursPerPage);
-
-  const startIndex = (currentPage - 1) * toursPerPage;
-  const endIndex = startIndex + toursPerPage;
-
-  const visibleTours = searchedTours.slice(startIndex, endIndex);
-
+  const visibleTours = searchedTours.slice((currentPage - 1) * toursPerPage, currentPage * toursPerPage);
 
   return (
     <section className="tours-list-section py-5" ref={toursSectionRef}>
       <Container>
-
-        {/* SEARCH */}
         <div className="search-section-minimal mb-5">
           <div className="search-input-wrapper">
             <Search size={18} className="search-icon-muted" />
-
             <input
               type="text"
               className="search-input-clean"
-              placeholder={t(
-                "group_eco_tours.search_placeholder",
-                "Search tours..."
-              )}
+              placeholder={t("group_eco_tours.search_placeholder", "Search tours...")}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-
-            {searchTerm && (
-              <X
-                size={18}
-                className="clear-search-icon"
-                onClick={() => setSearchTerm("")}
-              />
-            )}
+            {searchTerm && <X size={18} className="clear-search-icon" onClick={() => setSearchTerm("")} />}
           </div>
-
-          {searchTerm && (
-            <div className="search-meta-line">
-              <span className="results-count">
-                {searchedTours.length}{" "}
-                {t("group_eco_tours.found", "found")}
-              </span>
-            </div>
-          )}
         </div>
 
-        {/* GRID */}
-        <Row className="tours-list-section-row g-4">
-          {searchedTours.length > 0 ? (
-            visibleTours.map((tour) => (
-              <Col xs={6} md={6} lg={4} key={tour.id} className="tours-list-section-row-col">
-                <div
-                  className={`tour-card-minimal ${
-                    tour.type === "eco" ? "is-eco" : "is-group"
-                  }`}
-                >
-                  {/* IMAGE */}
-                  <div className="tour-img-container">
-                    <img
-                      src={tour.image}
-                      alt={tour.title?.[currentLang] || tour.title?.["en"]}
-                      loading="lazy"
-                      decoding="async"
-                    />
-
-                    <div className="tour-type-badge">
-                      {tour.type === "eco" ? (
-                        <Leaf size={12} />
-                      ) : (
-                        <Users size={12} />
-                      )}
-
-                      <span>
-                        {tour.type === "eco"
-                          ? t("group_eco_tours.badge_eco")
-                          : t("group_eco_tours.badge_group")}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* BODY */}
-                  <div className="tour-body">
-                    <div className="tour-date-top">
-                      <Calendar size={14} />
-                      <span>{tour.date}</span>
-                    </div>
-
-                    {/* Название из JSONB поля */}
-                    <h3 className="tour-title-text">
-                      {tour.title?.[currentLang] || tour.title?.["en"]}
-                    </h3>
-
-                    {/* Данные из extra_details (миссия для эко-туров) */}
-                    {/* {tour.type === "eco" && (
-                      <div className="eco-mission-stripe">
-                        <TreePine size={16} />
-                        <p>
-                          {t("group_eco_tours.mission")}:{" "}
-                          {tour.extra_details?.mission?.[currentLang] || tour.extra_details?.mission?.["en"]}
-                        </p>
-                      </div>
-                    )}  */}
-
-                    <div className="tour-details">
-                      <div className="detail-item">
-                        <MapPin size={14} />
-                        <span>
-                          {/* Если tour.location — это JSONB объект с ключами en, hy, ru */}
-                          {tour.location?.[currentLang] || tour.location?.["en"]}
-                        </span>
-                      </div>
-
-                      <div className="detail-item spots">
-                        <span className="spots-dot"></span>
-                        {t("group_eco_tours.only")}{" "}
-                        {tour.spots}{" "}
-                        {t("group_eco_tours.spots_left")}
-                      </div>
-                    </div>
-
-                    <div className="tour-action-area">
-                      <div className="tour-price-tag">
-                        {tour.price}
-                      </div>
-                      <Link
-                        to={tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`}
-                        onClick={(e) => handleTourClick(e, tour)} // Вешаем наш обработчик
-                        className="tour-btn-minimal"
-                      >
-                        {t("group_eco_tours.btn_join")}
-                        <ArrowRight size={16} />
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </Col>
-            ))
-          ) : (
-            <Col xs={12} className="text-center py-5">
-              <div className="no-results-state">
-                <h4 className="fw-light">
-                  {t(
-                    "group_eco_tours.no_results",
-                    "No tours match your criteria"
-                  )}
-                </h4>
-
-                <button
-                  className="btn btn-link text-dark"
-                  onClick={() => setSearchTerm("")}
-                >
-                  {t(
-                    "group_eco_tours.clear_filters",
-                    "Reset search"
-                  )}
-                </button>
-              </div>
-            </Col>
-          )}
-        </Row>
-
-        {/* SHOW MORE */}
-        {totalPages > 1 && (
-          <div className="pagination-wrapper text-center mt-5">
-            <button
-              className="pagination-arrow"
-              disabled={currentPage === 1}
-              onClick={() => setCurrentPage(prev => prev - 1)}
-            >
-              ←
-            </button>
-
-            {[...Array(totalPages)].map((_, index) => {
-              const pageNumber = index + 1;
-              return (
-                <button
-                  key={pageNumber}
-                  className={`pagination-number ${
-                    currentPage === pageNumber ? "active" : ""
-                  }`}
-                  onClick={() => setCurrentPage(pageNumber)}
-                >
-                  {pageNumber}
-                </button>
-              );
-            })}
-
-            <button
-              className="pagination-arrow"
-              disabled={currentPage === totalPages}
-              onClick={() => setCurrentPage(prev => prev + 1)}
-            >
-              →
-            </button>
+        {/* Если данные еще грузятся — показываем элегантный спиннер вместо сетки */}
+        {loading ? (
+          <div className="d-flex justify-content-center align-items-center py-5" style={{ minHeight: '300px' }}>
+            <Spinner animation="border" style={{ color: '#3a7d44' }} />
           </div>
+        ) : (
+          <>
+            <Row className="tours-list-section-row g-4">
+              {searchedTours.length > 0 ? (
+                visibleTours.map((tour) => (
+                  <Col xs={12} sm={6} lg={4} key={tour.id} className="tours-list-section-row-col">
+                    <div
+                      className={`tour-card-minimal ${tour.type === "eco" ? "is-eco" : "is-group"}`}
+                      onMouseEnter={() => handleMouseEnter(tour.id)} // ТРИГГЕР ПРЕДЗАГРУЗКИ
+                    >
+                      <div className="tour-img-container">
+                        <img
+                          src={tour.image}
+                          alt={tour.title?.[currentLang] || tour.title?.["en"]}
+                          loading="lazy"
+                        />
+                        <div className="tour-type-badge">
+                          {tour.type === "eco" ? <Leaf size={12} /> : <Users size={12} />}
+                          <span>{tour.type === "eco" ? t("group_eco_tours.badge_eco") : t("group_eco_tours.badge_group")}</span>
+                        </div>
+                      </div>
+
+                      <div className="tour-body">
+                        <div className="tour-date-top">
+                          <Calendar size={14} />
+                          <span>{tour.date}</span>
+                        </div>
+                        <h3 className="tour-title-text">
+                          {tour.title?.[currentLang] || tour.title?.["en"]}
+                        </h3>
+                        <div className="tour-details">
+                          <div className="detail-item">
+                            <MapPin size={14} />
+                            <span>{tour.location?.[currentLang] || tour.location?.["en"]}</span>
+                          </div>
+                          <div className="detail-item spots">
+                            <span className="spots-dot"></span>
+                            {t("group_eco_tours.only")} {tour.spots} {t("group_eco_tours.spots_left")}
+                          </div>
+                        </div>
+
+                        <div className="tour-action-area">
+                          <div className="tour-price-tag">{tour.price}</div>
+                          <Link
+                            to={tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`}
+                            onClick={(e) => handleTourClick(e, tour)}
+                            className="tour-btn-minimal"
+                          >
+                            {t("group_eco_tours.btn_join")}
+                            <ArrowRight size={16} />
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </Col>
+                ))
+              ) : (
+                <Col xs={12} className="text-center py-5">
+                  <div className="no-results-state">
+                    <h4 className="fw-light">{t("group_eco_tours.no_results", "No tours match your criteria")}</h4>
+                  </div>
+                </Col>
+              )}
+            </Row>
+
+            {totalPages > 1 && (
+              <div className="pagination-wrapper text-center mt-5">
+                <button className="pagination-arrow" disabled={currentPage === 1} onClick={() => setCurrentPage(prev => prev - 1)}>←</button>
+                {[...Array(totalPages)].map((_, index) => (
+                  <button
+                    key={index + 1}
+                    className={`pagination-number ${currentPage === index + 1 ? "active" : ""}`}
+                    onClick={() => setCurrentPage(index + 1)}
+                  >
+                    {index + 1}
+                  </button>
+                ))}
+                <button className="pagination-arrow" disabled={currentPage === totalPages} onClick={() => setCurrentPage(prev => prev + 1)}>→</button>
+              </div>
+            )}
+          </>
         )}
       </Container>
     </section>
   );
-})
+});
 
 const DynamicInfoSection = ({ activeTab, currentLang }) => {
   const { t } = useTranslation();

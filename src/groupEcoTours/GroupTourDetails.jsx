@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState, useMemo } from 'react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
-import { Container, Row, Col, Badge } from 'react-bootstrap';
+import { Container, Row, Col, Badge, Spinner } from 'react-bootstrap';
 import { 
   Users, Calendar, MapPin, ArrowLeft, 
   Clock, Bus, Info
@@ -12,60 +11,84 @@ import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
 import './GroupEcoTours.css';
 
+
 const GroupTourDetails = () => {
+
   const { id } = useParams();
   const location = useLocation();
-  const tourFromState = location.state?.tour;
-  const { t, i18n } = useTranslation();
-  const [tour, setTour] = useState(tourFromState || null);
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  
+  const tourFromState = location.state?.tour;
+  const [tour, setTour] = useState(tourFromState || null);
+  const [loading, setLoading] = useState(!tourFromState);
   const currentLang = i18n.language || 'en';
-
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
     const fetchTour = async () => {
-      setLoading(true);
+      const CACHE_KEY = `tour_cache_${id}`;
+      const cachedTour = localStorage.getItem(CACHE_KEY);
+      
+      // 1. Пытаемся взять из кэша, если в стейте нет полных данных
+      if (!tourFromState && cachedTour) {
+        const parsed = JSON.parse(cachedTour);
+        // Кэш валиден 15 минут
+        if (Date.now() - parsed.timestamp < 15 * 60 * 1000) {
+          setTour(parsed.data);
+          setLoading(false);
+          return;
+        }
+      }
 
-      if (tourFromState) {
-        setTour(tourFromState);
+      // 2. Если в tourFromState уже есть itinerary, не тянем из БД лишний раз
+      if (tourFromState?.itinerary) {
+        setLoading(false);
+        return;
+      }
 
-        const { data, error } = await supabase
-          .from('group_eco_tours')
-          .select('extra_details, itinerary')
-          .eq('id', id)
-          .maybeSingle();
-
-        if (error) console.error(error);
-        else if (data) setTour(prev => ({ ...prev, ...data }));
-
-      } else {
+      try {
         const { data, error } = await supabase
           .from('group_eco_tours')
           .select('*')
           .eq('id', id)
           .maybeSingle();
 
-        if (error) console.error(error);
-        else if (!data) setTour(null);
-        else setTour(data);
+        if (error) throw error;
+        if (data) {
+          setTour(data);
+          // Сохраняем в кэш
+          localStorage.setItem(CACHE_KEY, JSON.stringify({
+            data,
+            timestamp: Date.now()
+          }));
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+      } finally {
+        setLoading(false);
       }
-
-      setLoading(false);
     };
 
     fetchTour();
   }, [id, tourFromState]);
 
-  if (!tour) return <div className="text-center py-5">Tour not found</div>;
-
-  // Удобная функция перевода, учитывающая вложенность
-  const getTranslation = (field) => {
+  // Утилита для перевода (мемоизирована для скорости)
+  const getTranslation = useMemo(() => (field) => {
     if (!field) return '';
     return typeof field === 'object' ? (field[currentLang] || field['en'] || '') : field;
-  };
+  }, [currentLang]);
+
+  if (loading && !tour) {
+    return (
+      <div className="d-flex justify-content-center align-items-center vh-100">
+        <Spinner animation="border" variant="success" />
+      </div>
+    );
+  }
+
+  if (!tour) return <div className="text-center py-5">{t('group_eco_tours.not_found', 'Tour not found')}</div>;
   
 
 
@@ -74,7 +97,7 @@ const GroupTourDetails = () => {
       <NavbarCustom />
 
       {/* 1. BOLD HERO SECTION */}
-      <div className="group-hero" style={{ backgroundImage: `url(${tour.image})` }}>
+      <div className="group-hero" style={{ backgroundImage: `url(${tour.image}?width=1200&quality=80)` }}>
         <div className="group-hero-overlay">
           <Container>
             <button className="group-back-btn" onClick={() => navigate(-1)}>
@@ -94,27 +117,9 @@ const GroupTourDetails = () => {
       <div className="info-strip">
         <Container>
           <div className="strip-grid">
-            <div className="strip-item">
-              <Users size={20} />
-              <div>
-                <small>{t('group_eco_tours.group.size', 'Group')}</small>
-                <span>{t('group_eco_tours.up_to')} {tour.people} {t('group_eco_tours.people')}</span>
-              </div>
-            </div>
-            <div className="strip-item">
-              <Bus size={20} />
-              <div>
-                <small>{t('group_eco_tours.group.transport', 'Transport')}</small>
-                <span>{getTranslation(tour.transport)}</span>
-              </div>
-            </div>
-            <div className="strip-item">
-              <Clock size={20} />
-              <div>
-                <small>{t('group_eco_tours.group.duration', 'Duration')}</small>
-                <span>{tour.duration} {t('group_eco_tours.group.hours')}</span>
-              </div>
-            </div>
+            <StripItem icon={<Users size={20} />} label={t('group_eco_tours.group.size')} value={`${t('group_eco_tours.up_to')} ${tour.people} ${t('group_eco_tours.people')}`} />
+            <StripItem icon={<Bus size={20} />} label={t('group_eco_tours.group.transport')} value={getTranslation(tour.transport)} />
+            <StripItem icon={<Clock size={20} />} label={t('group_eco_tours.group.duration')} value={`${tour.duration} ${t('group_eco_tours.group.hours')}`} />
           </div>
         </Container>
       </div>
@@ -192,5 +197,16 @@ const GroupTourDetails = () => {
     </div>
   );
 };
+
+// Вынос мелких компонентов ускоряет рендер
+const StripItem = ({ icon, label, value }) => (
+  <div className="strip-item">
+    {icon}
+    <div>
+      <small>{label}</small>
+      <span>{value}</span>
+    </div>
+  </div>
+);
 
 export default GroupTourDetails;

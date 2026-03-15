@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { Container, Row, Col, Carousel, Form, Accordion, Card, Button, Dropdown } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { FaWhatsapp, FaEnvelope, FaStar, FaShieldAlt, FaHeadset, FaGem, FaChevronLeft, FaChevronRight } from "react-icons/fa";
@@ -192,7 +192,8 @@ const HotelsPage = () => {
                               className="hotels-page-card-img" 
                               alt={hotel.name}
                               effect="blur"
-                              loading={index < 3 ? "eager" : "lazy"}
+                              // ОПТИМИЗАЦИЯ ЗДЕСЬ: Eager только для первой картинки (i === 0) первых трех отелей.
+                              loading={index < 3 && i === 0 ? "eager" : "lazy"}
                             />
                           </Carousel.Item>
                         ))}
@@ -350,71 +351,72 @@ const HotelsPage = () => {
 const HotelFilter = ({ hotels, setFilteredHotels }) => {
   const { t } = useTranslation();
 
-  // Стейты для наших фильтров
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
   const [selectedRating, setSelectedRating] = useState('');
   const [selectedAmenities, setSelectedAmenities] = useState([]);
   const [visibleAmenities, setVisibleAmenities] = useState(5);
 
-  // Динамически получаем уникальные города из базы
-  const uniqueCities = [...new Set(hotels.map(h => h.city))].filter(Boolean);
+  // ОПТИМИЗАЦИЯ 1: Мемоизируем уникальные города. 
+  // Теперь это вычисляется ТОЛЬКО когда меняется массив hotels, а не при каждом вводе в поиск.
+  const uniqueCities = useMemo(() => {
+    return [...new Set(hotels.map(h => h.city))].filter(Boolean);
+  }, [hotels]);
   
-  // Динамически получаем все возможные удобства (разбиваем строки через запятую)
-  const allAmenities = hotels.reduce((acc, hotel) => {
-    if (hotel.amenities) {
-      const amenitiesList = hotel.amenities.split(',').map(a => a.trim());
-      amenitiesList.forEach(a => {
-        if (!acc.includes(a)) acc.push(a);
-      });
-    }
-    return acc;
-  }, []);
+  // ОПТИМИЗАЦИЯ 2: Мемоизируем список удобств и используем Set (он работает быстрее массива).
+  const allAmenities = useMemo(() => {
+    const amenitiesSet = new Set();
+    hotels.forEach(hotel => {
+      if (hotel.amenities) {
+        hotel.amenities.split(',').forEach(a => amenitiesSet.add(a.trim()));
+      }
+    });
+    return Array.from(amenitiesSet);
+  }, [hotels]);
 
-  // Главная логика фильтрации (срабатывает при любом изменении стейтов)
-  useEffect(() => {
+  // ОПТИМИЗАЦИЯ 3: Мемоизируем саму фильтрацию.
+  const filteredResult = useMemo(() => {
     let result = hotels;
 
-    // Фильтр по названию
     if (searchTerm) {
-      result = result.filter(h =>
-        h.name?.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      const lowerSearch = searchTerm.toLowerCase();
+      result = result.filter(h => h.name?.toLowerCase().includes(lowerSearch));
     }
 
-    // Фильтр по городу
     if (selectedCity) {
       result = result.filter(h => h.city === selectedCity);
     }
 
-    // Фильтр по рейтингу
     if (selectedRating) {
-      result = result.filter(h => h.rating >= parseInt(selectedRating));
+      const ratingInt = parseInt(selectedRating, 10);
+      result = result.filter(h => h.rating >= ratingInt);
     }
 
-    // Фильтр по удобствам (отель должен иметь ВСЕ выбранные чекбоксы)
     if (selectedAmenities.length > 0) {
       result = result.filter(h => {
         if (!h.amenities) return false;
+        // Кэшируем массив удобств отеля, чтобы не вызывать split внутри every
         const hotelAmenities = h.amenities.split(',').map(a => a.trim());
         return selectedAmenities.every(a => hotelAmenities.includes(a));
       });
     }
 
-    // Отправляем отфильтрованный список обратно в родительский компонент
-    setFilteredHotels(result);
-  }, [searchTerm, selectedCity, selectedRating, selectedAmenities, hotels, setFilteredHotels]);
+    return result;
+  }, [searchTerm, selectedCity, selectedRating, selectedAmenities, hotels]);
 
-  // Обработчик для чекбоксов удобств
+  // Передаем результат наверх только когда он реально изменился
+  useEffect(() => {
+    setFilteredHotels(filteredResult);
+  }, [filteredResult, setFilteredHotels]);
+
   const handleAmenityChange = (amenity) => {
     setSelectedAmenities(prev => 
       prev.includes(amenity) 
-        ? prev.filter(a => a !== amenity) // Если уже выбран - убираем
-        : [...prev, amenity]              // Если нет - добавляем
+        ? prev.filter(a => a !== amenity) 
+        : [...prev, amenity]              
     );
   };
 
-  // Сброс всех фильтров
   const handleReset = () => {
     setSearchTerm('');
     setSelectedCity('');

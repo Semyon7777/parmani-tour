@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState, useMemo } from 'react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import { 
   Leaf, Calendar, MapPin, ArrowLeft, Info,
   CheckCircle2, Clock, ShieldCheck, TreePine 
@@ -13,99 +12,108 @@ import { supabase } from "../supabaseClient";
 import './GroupEcoTours.css';
 
 const EcoTourDetails = () => {
-  const { id } = useParams();
+const { id } = useParams();
   const location = useLocation();
-  const tourFromState = location.state?.tour;
-  const { t, i18n } = useTranslation();
-  const [loading, setLoading] = useState(true);
-  const [tour, setTour] = useState(tourFromState || null);
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+  
+  const tourFromState = location.state?.tour;
+  const [tour, setTour] = useState(tourFromState || null);
+  // Если данные пришли из state, нам не нужно показывать экран загрузки
+  const [loading, setLoading] = useState(!tourFromState);
   const currentLang = i18n.language || 'en';
 
+useEffect(() => {
+  window.scrollTo(0, 0);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
+    const fetchTourDetails = async () => {
+      const CACHE_KEY = `eco_tour_${id}`;
+      const cachedData = sessionStorage.getItem(CACHE_KEY);
 
-    const fetchTour = async () => {
-      setLoading(true);
-
-      if (tourFromState) {
-        // Показываем базовые данные сразу
-        setTour(tourFromState);
-
-        // Догружаем недостающие поля, например extra_details и description
-        const { data, error } = await supabase
-          .from('group_eco_tours')
-          .select('extra_details, description') // только недостающие поля
-          .eq('id', id)
-          .maybeSingle(); // <-- изменено
-
-        if (error) console.error(error);
-        else if (data) setTour(prev => ({ ...prev, ...data })); // сливаем с существующим tour
-
-      } else {
-        // Если state нет, запрашиваем все данные сразу
-        const { data, error } = await supabase
-          .from('group_eco_tours')
-          .select('*') // можно указать только нужные поля
-          .eq('id', id)
-          .maybeSingle(); // <-- изменено
-
-        if (error) console.error(error);
-        else if (!data) setTour(null); // тур не найден
-        else setTour(data);
+      // 1. Пытаемся взять данные из кэша или state
+      if (!tourFromState && cachedData) {
+        const parsed = JSON.parse(cachedData);
+        setTour(parsed);
+        // Если в кэше уже полные данные, выходим
+        if (parsed.description && parsed.extra_details) {
+          setLoading(false);
+          return;
+        }
       }
 
-      setLoading(false);
+      // 2. Проверяем, есть ли полные данные в текущем состоянии (state)
+      if (tour?.description && tour?.extra_details) {
+        setLoading(false);
+        return;
+      }
+
+      // 3. Если данных не хватает — идем в базу
+      try {
+        setLoading(true);
+        const { data, error } = await supabase
+          .from('group_eco_tours')
+          .select('*')
+          .eq('id', id)
+          .maybeSingle();
+
+        if (error) throw error;
+
+        if (data) {
+          setTour(data);
+          sessionStorage.setItem(CACHE_KEY, JSON.stringify(data));
+        }
+      } catch (err) {
+        console.error("Error fetching eco tour:", err);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    fetchTour();
+    fetchTourDetails();
+  // Мы сознательно не добавляем tour в зависимости, чтобы избежать бесконечного цикла
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, tourFromState]);
 
-
-  if (!tour) return <div className="text-center py-5">Tour not found</div>;
-
-  // Функция для безопасного получения перевода
-  const getTranslation = (field) => {
+  // Мемоизируем функцию перевода
+  const getTranslation = useMemo(() => (field) => {
     if (!field) return '';
-    // Проверяем: это объект с переводами (типа {en: '...', ru: '...'})?
     if (typeof field === 'object' && !Array.isArray(field)) {
       return field[currentLang] || field['en'] || '';
     }
-    return field; // Если это просто строка
-  };
+    return field;
+  }, [currentLang]);
+
+  if (loading && !tour) {
+    return (
+      <div className="d-flex justify-content-center align-items-center vh-100">
+        <Spinner animation="grow" variant="success" />
+      </div>
+    );
+  }
+
+  if (!tour) return <div className="text-center py-5">{t('group_eco_tours.not_found')}</div>;
 
   return (
     <div className="eco-details-page">
       <NavbarCustom />
 
       {/* 1. HERO SECTION */}
-      <div className="eco-hero" style={{ backgroundImage: `url(${tour.image})` }}>
+      <div className="eco-hero" style={{ backgroundImage: `url(${tour.image}?auto=format&fit=crop&w=1600&q=75)` }}>
         <div className="eco-hero-overlay">
           <Container>
             <button className="back-btn" onClick={() => navigate(-1)}>
-              <ArrowLeft size={20} /> {t('group_eco_tours.common.back', 'Back')}
+              <ArrowLeft size={20} /> {t('group_eco_tours.common.back')}
             </button>
             <div className="hero-content-box">
               <span className="eco-badge-top">
-                <Leaf size={14} /> {t('group_eco_tours.tours.badge_eco', 'ECO MISSION')}
+                <Leaf size={14} /> {t('group_eco_tours.tours.badge_eco')}
               </span>
               <h1>{getTranslation(tour.title)}</h1>
               
               <div className="quick-stats">
-                <div className="stat-item">
-                  <Calendar size={18} />
-                  <span>{tour.date}</span>
-                </div>
-                <div className="stat-item">
-                  <MapPin size={18} />
-                  <span>{getTranslation(tour.location)}</span>
-                </div>
-                <div className="stat-item">
-                  <Clock size={18} />
-                  {/* Используем напрямую число из базы */}
-                  <span>{tour.duration} {t('group_eco_tours.common.hours', 'hours')}</span>
-                </div>
+                <StatItem icon={<Calendar size={18} />} text={tour.date} />
+                <StatItem icon={<MapPin size={18} />} text={getTranslation(tour.location)} />
+                <StatItem icon={<Clock size={18} />} text={`${tour.duration} ${t('group_eco_tours.common.hours')}`} />
               </div>
             </div>
           </Container>
@@ -114,32 +122,26 @@ const EcoTourDetails = () => {
 
       <Container className="eco-content-container">
         <Row className="gx-5">
-          {/* ЛЕВАЯ КОЛОНКА */}
           <Col lg={8}>
-            {/* Блок Миссии */}
-              <section className="info-block mission-highlight">
-                <div className="block-header">
-                  <TreePine className="icon-green" />
-                  <h3>{t('group_eco_tours.eco.mission_title')}</h3>
-                </div>
-                {/* Добавили доступ через extra_details */}
-                <p className="mission-text">{getTranslation(tour.extra_details?.mission)}</p>
-              </section>
+            <section className="info-block mission-highlight">
+              <div className="block-header">
+                <TreePine className="icon-green" />
+                <h3>{t('group_eco_tours.eco.mission_title')}</h3>
+              </div>
+              <p className="mission-text">{getTranslation(tour.extra_details?.mission)}</p>
+            </section>
 
-            {/* Описание */}
             <section className="info-block">
-              <h3>{t('group_eco_tours.eco.about_tour', 'About the tour')}</h3>
+              <h3>{t('group_eco_tours.eco.about_tour')}</h3>
               <p className="description-text">{getTranslation(tour.description)}</p>
             </section>
 
-            {/* Что включено */}
             <section className="info-block">
               <h3>{t('group_eco_tours.eco.whats_included')}</h3>
               <div className="included-grid">
-                {tour.extra_details?.included && tour.extra_details.included.map((item, index) => (
+                {tour.extra_details?.included?.map((item, index) => (
                   <div className="inc-item" key={index}>
                     <CheckCircle2 size={18} /> 
-                    {/* Используем i18n для перевода коротких ключей (Transfer, Eco-lunch) */}
                     <span>{t(`group_eco_tours.included_items.${item}`, item)}</span>
                   </div>
                 ))}
@@ -147,30 +149,23 @@ const EcoTourDetails = () => {
             </section>
           </Col>
 
-          {/* ПРАВАЯ КОЛОНКА */}
           <Col lg={4}>
-            <div className="eco-booking-card">
+            {/* Делаем карточку липкой при скролле */}
+            <div className="eco-booking-card sticky-top" style={{ top: '100px', zIndex: 10 }}>
               <div className="card-top">
                 <span className="price-label">{t('group_eco_tours.eco.price_start')}</span>
                 <h2 className="price-value">{tour.price}</h2>
               </div>
               
               <div className="card-features">
-                <div className="feat-line">
-                  <ShieldCheck size={16} /> 
-                  <span>{t('group_eco_tours.eco.insurance')}</span>
-                </div>
-                <div className="feat-line">
-                  <Leaf size={16} /> 
-                  <span>{t('group_eco_tours.eco.impact')}</span>
-                </div>
+                <FeatureLine icon={<ShieldCheck size={16} />} text={t('group_eco_tours.eco.insurance')} />
+                <FeatureLine icon={<Leaf size={16} />} text={t('group_eco_tours.eco.impact')} />
               </div>
 
               <button className="eco-main-btn">
                 {t('group_eco_tours.buttons.join_mission')}
               </button>
 
-              {/* ПРОГРЕСС-БАР И СЧЕТЧИК МЕСТ */}
               <div className="eco-spots-wrapper mt-4">
                 <div className="d-flex justify-content-between mb-2">
                   <span className="spots-left-text">
@@ -189,13 +184,11 @@ const EcoTourDetails = () => {
 
                 <div className="eco-spots-notice-simple">
                   <Info size={16} className="me-2" />
-                  {t('group_eco_tours.eco.hurry_up', 'Join others in this mission')}
+                  {t('group_eco_tours.eco.hurry_up')}
                 </div>
               </div>
               
-              <p className="guarantee-text">
-                {t('group_eco_tours.eco.no_prepayment')}
-              </p>
+              <p className="guarantee-text">{t('group_eco_tours.eco.no_prepayment')}</p>
             </div>
           </Col>
         </Row>
@@ -205,5 +198,18 @@ const EcoTourDetails = () => {
     </div>
   );
 };
+
+// Мелкие компоненты для чистоты и скорости
+const StatItem = ({ icon, text }) => (
+  <div className="stat-item">
+    {icon} <span>{text}</span>
+  </div>
+);
+
+const FeatureLine = ({ icon, text }) => (
+  <div className="feat-line">
+    {icon} <span>{text}</span>
+  </div>
+);
 
 export default EcoTourDetails;
