@@ -880,17 +880,24 @@
   .group-details-page .group-title { font-size: 2.5rem; }
   .group-details-page .strip-grid { flex-direction: column; gap: 20px; }
   .group-details-page .group-booking-panel { position: static; box-shadow: 8px 8px 0px var(--group-orange); }
-
-  }
-
-
-@media (max-width:426px) {
-
-    .group-details-page .group-hero {
-    margin-top: 40px;
-  }
-
 }
+
+.group-details-page .group-hero {
+  margin-top: 40px;
+}
+
+@media (max-width:1250px) {
+  .group-details-page .group-hero {
+    height: 65vh;
+  }
+}
+
+@media (max-width:992px) {
+  .group-details-page .group-hero {
+    height: 60vh;
+  }
+}
+
 
   .group-details-page .dynamic-info-block {
       transition: all 0.4s ease-in-out;
