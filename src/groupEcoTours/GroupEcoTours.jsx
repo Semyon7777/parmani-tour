@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
-import { Container, Row, Col, Accordion, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Accordion } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { Leaf, Users, Calendar, MapPin, ArrowRight, TreePine,
@@ -9,6 +9,8 @@ import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
 import "./GroupEcoTours.css";
 
+let toursCache = null;
+
 function GroupEcoTours() {
   const { t, i18n } = useTranslation();
   const [activeTab, setActiveTab] = useState("all");
@@ -17,25 +19,35 @@ function GroupEcoTours() {
   
   const currentLang = i18n.language || 'en';
 
+
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    const fetchTours = async () => {
-      setLoading(true);
-      try {
-        const { data, error } = await supabase
-          .from('group_eco_tours')
-          .select('id, type, title, location, date, price, spots, image')
-          .eq('is_active', true);
+      const fetchTours = async () => {
+    // Если кэш есть — берём оттуда, запрос не делаем
+    if (toursCache) {
+      setAllTours(toursCache);
+      setLoading(false);
+      return;
+    }
 
-        if (error) throw error;
-        setAllTours(data || []);
-      } catch (error) {
-        console.error("Error loading tours:", error.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+    setLoading(true);
+    try {
+      const { data, error } = await supabase
+        .from('group_eco_tours')
+        .select('id, type, title, location, date, price, spots, image')
+        .eq('is_active', true);
+
+      if (error) throw error;
+      
+      toursCache = data || []; // Сохраняем в кэш
+      setAllTours(toursCache);
+    } catch (error) {
+      console.error("Error loading tours:", error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
     fetchTours();
   }, []);
@@ -104,6 +116,18 @@ function GroupEcoTours() {
   );
 }
 
+// Простой skeleton для карточки тура
+const TourCardSkeleton = () => (
+  <Col xs={12} sm={6} lg={4}>
+    <div className="tour-card-skeleton">
+      <div className="skeleton-img pulse" />
+      <div className="skeleton-line pulse" style={{ width: '60%' }} />
+      <div className="skeleton-line pulse" style={{ width: '80%' }} />
+      <div className="skeleton-line pulse" style={{ width: '40%' }} />
+    </div>
+  </Col>
+);
+
 
 const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, activeTab, loading}) {
   const [searchTerm, setSearchTerm] = useState("");
@@ -152,7 +176,7 @@ const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, a
         tourData = data;
       }
 
-      await new Promise(resolve => setTimeout(resolve, 300)); // Чуть уменьшил задержку для отзывчивости
+      
 
       const path = tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`;
       navigate(path, { state: { tour: tourData } });
@@ -220,9 +244,9 @@ const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, a
 
         {/* Если данные еще грузятся — показываем элегантный спиннер вместо сетки */}
         {loading ? (
-          <div className="d-flex justify-content-center align-items-center py-5" style={{ minHeight: '300px' }}>
-            <Spinner animation="border" style={{ color: '#3a7d44' }} />
-          </div>
+            <Row className="g-4">
+              {[...Array(6)].map((_, i) => <TourCardSkeleton key={i} />)}
+            </Row>
         ) : (
           <>
             <Row className="tours-list-section-row g-4">

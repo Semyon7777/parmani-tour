@@ -349,6 +349,16 @@
   background-color: #f9fafb;
 }
 
+/* В GroupEcoTours.css */
+.tour-card-skeleton { border-radius: 12px; overflow: hidden; }
+.skeleton-img { height: 200px; background: #e0e0e0; border-radius: 8px; margin-bottom: 12px; }
+.skeleton-line { height: 14px; background: #e0e0e0; border-radius: 4px; margin-bottom: 8px; }
+.pulse { animation: pulse 1.5s ease-in-out infinite; }
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
 /* --- АДАПТИВНОСТЬ --- */
 @media (max-width: 768px) {
     .group-eco-tours-container .tour-img-container {

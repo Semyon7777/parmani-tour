@@ -42,7 +42,13 @@ useEffect(() => {
       }
 
       // 2. Проверяем, есть ли полные данные в текущем состоянии (state)
-      if (tour?.description && tour?.extra_details) {
+      // if (tour?.description && tour?.extra_details) {
+      //   setLoading(false);
+      //   return;
+      // }
+
+      // ПРАВИЛЬНО:
+      if (tourFromState?.description && tourFromState?.extra_details) {
         setLoading(false);
         return;
       }
