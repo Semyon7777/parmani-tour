@@ -9,11 +9,14 @@ import Footer from "../Components/Footer";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "./hotelsPage.css";
 
+let hotelsCache = null;
+
 const HotelsPage = () => {
   const { t } = useTranslation();
   const [hotels, setHotels] = useState([]); // Состояние для отелей из БД
   const [loading, setLoading] = useState(true); // Состояние загрузки
   const [currentPage, setCurrentPage] = useState(1);
+  const [loadedImages, setLoadedImages] = useState({});
   const hotelsPerPage = 6;
 
   const [filteredHotels, setFilteredHotels] = useState(null); // Отфильтрованные отели
@@ -24,16 +27,22 @@ const HotelsPage = () => {
   
 
 
-  useEffect(() => {
-    
-    const CACHE_TIME = 10 * 60 * 1000; // 10 минут
+    useEffect(() => {
+    window.scrollTo(0, 0);
 
+    // Сначала проверяем модульный кэш — он мгновенный
+    if (hotelsCache) {
+      setHotels(hotelsCache);
+      setLoading(false);
+      return;
+    }
+
+    // Потом localStorage
     const cached = localStorage.getItem("hotels_cache");
-
     if (cached) {
       const parsed = JSON.parse(cached);
-
-      if (Date.now() - parsed.timestamp < CACHE_TIME) {
+      if (Date.now() - parsed.timestamp < 10 * 60 * 1000) {
+        hotelsCache = parsed.data; // заполняем модульный кэш тоже
         setHotels(parsed.data);
         setLoading(false);
         return;
@@ -41,9 +50,6 @@ const HotelsPage = () => {
     }
 
     fetchHotels();
-
-    window.scrollTo(0, 0);
-
   }, []);
 
   const fetchHotels = async () => {
@@ -188,14 +194,18 @@ const HotelsPage = () => {
                 {currentHotels.map((hotel, index) => (
                   <Col lg={4} md={6} key={hotel.id}>
                     <div className="premium-card fade-up">
-                      <Carousel interval={null} indicators={false} className="card-carousel">
-                        {hotel.images && hotel.images.map((img, i) => (
+                      <Carousel 
+                        interval={null} 
+                        indicators={false}
+                        onSlide={(index) => setLoadedImages(prev => ({ ...prev, [`${hotel.id}-${index}`]: true }))}
+                      >
+                        {hotel.images?.map((img, i) => (
                           <Carousel.Item key={i}>
-                            <img 
-                              src={`${img}?width=800&quality=70`}
-                              className="hotels-page-card-img" 
+                            <img
+                              src={(i === 0 || loadedImages[`${hotel.id}-${i}`]) ? img : undefined}
+                              className="hotels-page-card-img"
                               alt={hotel.name}
-                              loading={index < 3 && i === 0 ? "eager" : "lazy"}
+                              loading="lazy"
                             />
                           </Carousel.Item>
                         ))}
@@ -357,6 +367,7 @@ const HotelFilter = ({ hotels, setFilteredHotels }) => {
   const [selectedRating, setSelectedRating] = useState('');
   const [selectedAmenities, setSelectedAmenities] = useState([]);
   const [visibleAmenities, setVisibleAmenities] = useState(5);
+  const isMobile = useMemo(() => window.innerWidth < 768, []);
 
   // ОПТИМИЗАЦИЯ 1: Мемоизируем уникальные города. 
   // Теперь это вычисляется ТОЛЬКО когда меняется массив hotels, а не при каждом вводе в поиск.
@@ -516,7 +527,7 @@ const HotelFilter = ({ hotels, setFilteredHotels }) => {
             </Form.Label>
             <div className="hotels-amenities-container">
               <div className="d-flex flex-wrap gap-3">
-                {(window.innerWidth < 768 ? allAmenities : allAmenities.slice(0, visibleAmenities)).map(amenity => (
+                {(isMobile ? allAmenities : allAmenities.slice(0, visibleAmenities)).map(amenity => (
                   <Form.Check 
                     key={amenity}
                     type="checkbox"
