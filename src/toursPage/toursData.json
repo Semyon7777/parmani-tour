@@ -1066,5 +1066,437 @@
         "ticket_per_person": "0"
       }
     }
+  },
+
+  {
+    "id": "haghpat-sanahin-zarni-parni",
+    "category": "cultural",
+    "routeMap": "/TourImages/lori_region/haghpat-sanahin/route-map.webp",
+    "routeSummary": "Yerevan → Haghpat → Zarni-Parni Cave Complex → Sanahin → Yerevan",
+    "imageUrl": "/TourImages/lori_region/haghpat-sanahin/main.webp",
+    "duration": "10",
+    "durationUnit": "hours",
+    "price": "52000 AMD",
+    "title": {
+      "en": "HAGHPAT – ZARNI-PARNI – SANAHIN",
+      "ru": "ХАГПАТ – ЗАРНИ-ПАРНИ – САНАИН",
+      "hy": "ՀԱՂՊԱՏ – ԶԱՐՆԻ ՊԱՐՆԻ – ՍԱՆԱՀԻՆ"
+    },
+    "description": {
+      "en": "Explore two UNESCO-listed monasteries of medieval Armenia and the unique Zarni-Parni cave complex hidden in the cliffs of Lori.",
+      "ru": "Путешествие к двум монастырям из списка ЮНЕСКО и уникальному пещерному комплексу Зарни-Парни, скрытому в скалах Лорийского ущелья.",
+      "hy": "Ուղևորություն դեպի ՅՈՒՆԵՍԿՕ-ի ցանկում ընդգրկված երկու վանքեր և Զարնի-Պարնի եզակի քարանձավային համալիրը Լոռու կիրճում։"
+    },
+    "sections": [
+      {
+        "header": {
+          "en": "Haghpat Monastery",
+          "ru": "Монастырь Ахпат",
+          "hy": "Հաղպատ վանք"
+        },
+        "content": {
+          "en": "UNESCO-listed medieval monastic complex.",
+          "ru": "Средневековый монастырский комплекс из списка ЮНЕСКО.",
+          "hy": "ՅՈՒՆԵՍԿՕ-ի ցանկում ընդգրկված միջնադարյան վանական համալիր։"
+        },
+        "fullContent": {
+          "en": "Founded in the 10th century during the Bagratuni Kingdom, Haghpat Monastery became one of the most important spiritual and educational centers of medieval Armenia. The complex includes churches, libraries, refectories and remarkable khachkars. Its monumental architecture harmoniously blends with the dramatic landscapes of the Debed Canyon.",
+          "ru": "Монастырь Ахпат был основан в X веке во времена Багратидского царства и стал одним из важнейших духовных и образовательных центров средневековой Армении. Комплекс включает церкви, библиотеку, трапезную и уникальные хачкары. Архитектура монастыря органично вписывается в величественный ландшафт Дебедского ущелья.",
+          "hy": "Հաղպատ վանքը հիմնադրվել է X դարում Բագրատունյաց թագավորության ժամանակաշրջանում և դարձել է միջնադարյան Հայաստանի կարևոր կրթական և հոգևոր կենտրոններից մեկը։ Համալիրը ներառում է եկեղեցիներ, գրադարան, սեղանատուն և բացառիկ խաչքարեր։"
+        },
+        "image": "/TourImages/lori_region/haghpat-sanahin/haghpat.webp"
+      },
+      {
+        "header": {
+          "en": "Zarni-Parni Cave Complex",
+          "ru": "Пещерный комплекс Зарни-Парни",
+          "hy": "Զարնի-Պարնի քարանձավային համալիր"
+        },
+        "content": {
+          "en": "Historic cave complex carved into the cliffs of Lori.",
+          "ru": "Исторический пещерный комплекс в скалах Лори.",
+          "hy": "Պատմական քարանձավային համալիր Լոռու ժայռերում։"
+        },
+        "fullContent": {
+          "en": "The Zarni-Parni cave complex is located near the Debed Canyon and consists of rock-cut chambers that were used for storage and refuge during different historical periods. Today the restored site allows visitors to explore underground passages and experience the unique interaction between architecture and the natural cliff formations.",
+          "ru": "Пещерный комплекс Зарни-Парни расположен вблизи Дебедского ущелья. Высеченные в скалах помещения в разные эпохи использовались как укрытия и хозяйственные хранилища. Сегодня восстановленный комплекс позволяет посетителям увидеть подземные помещения и ощутить необычное сочетание природной скалы и человеческой архитектуры.",
+          "hy": "Զարնի-Պարնի քարանձավային համալիրը գտնվում է Դեբեդի կիրճի մոտ։ Ժայռերի մեջ փորված տարածքները տարբեր ժամանակներում ծառայել են որպես ապաստան և պահեստներ։ Այսօր վերականգնված համալիրը հնարավորություն է տալիս այցելուներին ուսումնասիրել ստորգետնյա տարածքները։"
+        },
+        "image": "/TourImages/lori_region/haghpat-sanahin/zarni-parni.webp"
+      },
+      {
+        "header": {
+          "en": "Sanahin Monastery",
+          "ru": "Монастырь Санаин",
+          "hy": "Սանահին վանք"
+        },
+        "content": {
+          "en": "Historic monastic center and UNESCO World Heritage site.",
+          "ru": "Исторический монастырский центр из списка ЮНЕСКО.",
+          "hy": "Պատմական վանական կենտրոն՝ ՅՈՒՆԵՍԿՕ-ի ցանկում։"
+        },
+        "fullContent": {
+          "en": "Sanahin Monastery, founded in the 10th century, was a major educational and religious center of medieval Armenia. The name 'Sanahin' is often interpreted as 'older than that one', referring to its relationship with nearby Haghpat. The complex includes churches, a famous medieval academy, libraries and remarkable stone carvings that illustrate the intellectual life of the region.",
+          "ru": "Монастырь Санаин, основанный в X веке, был важным религиозным и образовательным центром средневековой Армении. Название «Санаин» часто переводят как «старше того», намекая на соперничество с соседним Ахпатом. Комплекс включает церкви, средневековую академию, библиотеку и изящные каменные резные украшения.",
+          "hy": "Սանահինի վանքը հիմնադրվել է X դարում և եղել է միջնադարյան Հայաստանի կարևոր կրթական և կրոնական կենտրոններից մեկը։ Համալիրը ներառում է եկեղեցիներ, միջնադարյան ակադեմիա, գրադարան և գեղեցիկ քանդակազարդեր։"
+        },
+        "image": "/TourImages/lori_region/haghpat-sanahin/sanahin.webp"
+      }
+    ],
+    "features": {
+      "include": {
+        "en": ["Comfortable transportation", "Professional guide service", "UNESCO heritage tour", "Photo stops"],
+        "ru": ["Комфортабельный транспорт", "Услуги профессионального гида", "Экскурсия по объектам ЮНЕСКО", "Остановки для фотографий"],
+        "hy": ["Հարմարավետ տրանսպորտ", "Պրոֆեսիոնալ գիդի ծառայություն", "ՅՈՒՆԵՍԿՕ ժառանգության տուր", "Լուսանկարման կանգառներ"]
+      },
+      "exclude": {
+        "en": ["Lunch", "Personal expenses"],
+        "ru": ["Обед", "Личные расходы"],
+        "hy": ["Ճաշ", "Անձնական ծախսեր"]
+      }
+    },
+        "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
+          {"vehicles": "Sedan", "price": "20000"},
+          {"vehicles": "Miniven", "price": "26000"}
+        ],
+        "ticket_per_person": "0"
+      }
+    }
+  },
+
+  {
+    "id": "zarni-parni-haghpat-akhtala-aramyants",
+    "category": "cultural",
+    "routeMap": "/TourImages/lori_region/haghpat-akhtala/route-map.webp",
+    "routeSummary": "Yerevan → Zarni-Parni → Haghpat → Akhtala → Aramyants → Yerevan",
+    "imageUrl": "/TourImages/lori_region/haghpat-akhtala/main.webp",
+    "duration": "10",
+    "durationUnit": "hours",
+    "price": "52000 AMD",
+    "title": {
+      "en": "ZARNI-PARNI – HAGHPAT – AKHTALA – ARAMYANTS",
+      "ru": "ЗАРНИ-ПАРНИ – АХПАТ – АХТАЛА – АРАМЯНЦ",
+      "hy": "ԶԱՐՆԻ ՊԱՐՆԻ – ՀԱՂՊԱՏ – ԱՂԹԱԼԱ – ԱՐԱՄՅԱՆՑ"
+    },
+    "description": {
+      "en": "A cultural journey through Lori’s dramatic landscapes featuring cave complexes, UNESCO heritage monasteries, medieval fortifications and historic architecture.",
+      "ru": "Культурное путешествие по Лорийскому региону с посещением пещерного комплекса, монастыря ЮНЕСКО, средневековой крепости и исторического здания XIX века.",
+      "hy": "Մշակութային ճանապարհորդություն Լոռու մարզով՝ ներառելով քարանձավային համալիր, ՅՈՒՆԵՍԿՕ-ի վանք, միջնադարյան բերդային համալիր և պատմական շինություն։"
+    },
+    "sections": [
+      {
+        "header": {
+          "en": "Zarni-Parni Cave Complex",
+          "ru": "Пещерный комплекс Зарни-Парни",
+          "hy": "Զարնի-Պարնի քարանձավային համալիր"
+        },
+        "content": {
+          "en": "Historic rock-cut cave complex near the Debed Canyon.",
+          "ru": "Исторический пещерный комплекс у Дебедского ущелья.",
+          "hy": "Պատմական քարանձավային համալիր Դեբեդի կիրճի մոտ։"
+        },
+        "fullContent": {
+          "en": "The Zarni-Parni cave complex consists of rock-cut chambers carved into the cliffs of the Debed Canyon. These underground spaces were historically used as storage areas and shelters. Today the restored complex allows visitors to explore narrow corridors and chambers while learning about traditional rock architecture in northern Armenia.",
+          "ru": "Пещерный комплекс Зарни-Парни расположен в скалах Дебедского ущелья и состоит из высеченных в камне помещений. В разные эпохи они использовались как укрытия и хозяйственные помещения. Сегодня восстановленный комплекс позволяет посетителям исследовать подземные комнаты и познакомиться с традиционной скальной архитектурой региона.",
+          "hy": "Զարնի-Պարնի քարանձավային համալիրը կազմված է ժայռերի մեջ փորված տարածքներից, որոնք տարբեր ժամանակներում ծառայել են որպես ապաստաններ և պահեստներ։ Այսօր վերականգնված համալիրը հնարավորություն է տալիս այցելուներին ուսումնասիրել ստորգետնյա սրահներն ու միջանցքները։"
+        },
+        "image": "/TourImages/lori_region/haghpat-akhtala/zarni-parni.webp"
+      },
+      {
+        "header": {
+          "en": "Haghpat Monastery",
+          "ru": "Монастырь Ахпат",
+          "hy": "Հաղպատ վանք"
+        },
+        "content": {
+          "en": "UNESCO-listed medieval monastic complex.",
+          "ru": "Средневековый монастырский комплекс из списка ЮНЕСКО.",
+          "hy": "ՅՈՒՆԵՍԿՕ-ի ցանկում ընդգրկված միջնադարյան վանք։"
+        },
+        "fullContent": {
+          "en": "Founded in the 10th century during the Bagratuni Kingdom, Haghpat Monastery became one of the most influential religious and educational centers of medieval Armenia. The complex includes churches, a library, refectories and remarkable khachkars, all set against the dramatic backdrop of the Debed Canyon.",
+          "ru": "Монастырь Ахпат был основан в X веке во времена Багратидского царства и стал одним из важнейших духовных и образовательных центров средневековой Армении. Комплекс включает церкви, библиотеку, трапезную и уникальные хачкары, гармонично вписанные в пейзаж Дебедского ущелья.",
+          "hy": "Հաղպատ վանքը հիմնադրվել է X դարում Բագրատունյաց թագավորության ժամանակաշրջանում և եղել է միջնադարյան Հայաստանի կարևոր կրթական և հոգևոր կենտրոններից մեկը։ Համալիրը ներառում է եկեղեցիներ, գրադարան և սեղանատուն։"
+        },
+        "image": "/TourImages/lori_region/haghpat-akhtala/haghpat.webp"
+      },
+      {
+        "header": {
+          "en": "Akhtala Monastery",
+          "ru": "Монастырь Ахтала",
+          "hy": "Աղթալա վանք"
+        },
+        "content": {
+          "en": "Fortified monastery famous for its medieval frescoes.",
+          "ru": "Крепостной монастырь, известный своими фресками.",
+          "hy": "Բերդային վանք՝ հայտնի միջնադարյան որմնանկարներով։"
+        },
+        "fullContent": {
+          "en": "Akhtala Monastery is a fortified medieval complex located on a rocky plateau above the Debed River. It is particularly famous for its well-preserved 13th-century frescoes, considered among the finest examples of medieval Christian wall painting in the region.",
+          "ru": "Монастырь Ахтала расположен на скалистом плато над рекой Дебед и имеет характерные крепостные стены. Он особенно известен своими хорошо сохранившимися фресками XIII века — одними из лучших образцов средневековой христианской настенной живописи региона.",
+          "hy": "Աղթալայի վանքը գտնվում է ժայռոտ բարձունքի վրա և հայտնի է իր XIII դարի լավ պահպանված որմնանկարներով, որոնք համարվում են տարածաշրջանի լավագույն միջնադարյան օրինակներից։"
+        },
+        "image": "/TourImages/lori_region/haghpat-akhtala/akhtala.webp"
+      },
+      {
+        "header": {
+          "en": "Aramyants Castle",
+          "ru": "Замок Арамянца",
+          "hy": "Արամյանցի ամրոց"
+        },
+        "content": {
+          "en": "Historic mansion built by the famous Armenian philanthropist.",
+          "ru": "Исторический особняк известного армянского мецената.",
+          "hy": "Պատմական առանձնատուն՝ կառուցված հայ հայտնի բարերարի կողմից։"
+        },
+        "fullContent": {
+          "en": "The Aramyants Castle was built in the late 19th century by the Armenian philanthropist and entrepreneur Mikael Aramyants. Inspired by European architecture, the mansion once served as a luxurious residence surrounded by scenic Lori landscapes. Today the building remains a fascinating example of Armenia’s industrial-era heritage.",
+          "ru": "Замок Арамянца был построен в конце XIX века известным армянским меценатом и предпринимателем Микаелом Арамянцем. Архитектура здания вдохновлена европейскими стилями. Когда-то это была роскошная резиденция, окружённая живописными пейзажами Лори.",
+          "hy": "Արամյանցի ամրոցը կառուցվել է XIX դարի վերջում հայ հայտնի բարերար և գործարար Միքայել Արամյանցի կողմից։ Այն եվրոպական ճարտարապետական ոճի ազդեցություն ունի և հանդիսանում է Հայաստանի արդյունաբերական շրջանի հետաքրքիր ժառանգություն։"
+        },
+        "image": "/TourImages/lori_region/haghpat-akhtala/aramyants.webp"
+      }
+    ],
+    "features": {
+      "include": {
+        "en": ["Comfortable transportation", "Professional guide service", "Historical tour", "Photo stops"],
+        "ru": ["Комфортабельный транспорт", "Услуги профессионального гида", "Историческая экскурсия", "Остановки для фото"],
+        "hy": ["Հարմարավետ տրանսպորտ", "Պրոֆեսիոնալ գիդի ծառայություն", "Պատմական տուր", "Լուսանկարման կանգառներ"]
+      },
+      "exclude": {
+        "en": ["Lunch", "Personal expenses"],
+        "ru": ["Обед", "Личные расходы"],
+        "hy": ["Ճաշ", "Անձնական ծախսեր"]
+      }
+    },
+        "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
+          {"vehicles": "Sedan", "price": "20000"},
+          {"vehicles": "Miniven", "price": "26000"}
+        ],
+        "ticket_per_person": "0"
+      }
+    }
+  },
+
+  {
+    "id": "kobayr-odzun-horomayr-ardvi",
+    "category": "cultural",
+    "routeMap": "/TourImages/lori_region/debed_monasteries/route-map.webp",
+    "routeSummary": "Yerevan → Kobayr → Odzun → Horomayr → Ardvi → Yerevan",
+    "imageUrl": "/TourImages/lori_region/debed_monasteries/main.webp",
+    "duration": "10",
+    "durationUnit": "hours",
+    "price": "52000 AMD",
+    "title": {
+      "en": "KOBAYR – ODZUN – HOROMAYR – ARDVI",
+      "ru": "КОБАЙР – ОДЗУН – ОРОМАЙР – АРДВИ",
+      "hy": "ՔՈԲԱՅՐ – ՕՁՈՒՆ – ՀՈՌՈՄԱՅՐ – ԱՐԴՎԻ"
+    },
+    "description": {
+      "en": "Discover the hidden monasteries of Lori located along the dramatic Debed Canyon, combining medieval architecture, ancient Christian heritage and spectacular mountain landscapes.",
+      "ru": "Путешествие по монастырям Лорийского региона, расположенным вдоль живописного каньона реки Дебед. Тур сочетает средневековую архитектуру, древнюю христианскую историю и впечатляющие горные пейзажи.",
+      "hy": "Ուղևորություն Լոռու մարզի վանքերով՝ Դեբեդի կիրճի երկայնքով։ Տուրը համադրում է միջնադարյան ճարտարապետությունը, քրիստոնեական ժառանգությունը և տպավորիչ լեռնային բնապատկերները։"
+    },
+    "sections": [
+      {
+        "header": {
+          "en": "Kobayr Monastery",
+          "ru": "Монастырь Кобайр",
+          "hy": "Քոբայր վանք"
+        },
+        "content": {
+          "en": "12th–13th century monastery built on a cliff above the Debed Canyon.",
+          "ru": "Монастырь XII–XIII веков, расположенный на склоне над каньоном Дебед.",
+          "hy": "XII–XIII դարերի վանք՝ կառուցված Դեբեդի կիրճի ժայռոտ լանջին։"
+        },
+        "fullContent": {
+          "en": "Kobayr Monastery is dramatically located on a steep cliff above the Debed Canyon. Built between the 12th and 13th centuries, the monastery is famous for its unique frescoes influenced by both Armenian and Georgian artistic traditions. The ruins and surrounding landscapes create one of the most atmospheric historical sites in northern Armenia.",
+          "ru": "Монастырь Кобайр расположен на крутом склоне над Дебедским ущельем. Он был построен в XII–XIII веках и известен своими уникальными фресками, в которых заметно влияние армянской и грузинской художественных традиций. Руины монастыря и окружающий ландшафт создают особенно впечатляющую атмосферу.",
+          "hy": "Քոբայրի վանքը գտնվում է Դեբեդի կիրճի ժայռոտ լանջին։ Այն կառուցվել է XII–XIII դարերում և հայտնի է իր յուրահատուկ որմնանկարներով, որոնցում նկատվում են հայկական և վրացական արվեստի ազդեցություններ։"
+        },
+        "image": "/TourImages/lori_region/debed_monasteries/kobayr.webp"
+      },
+      {
+        "header": {
+          "en": "Odzun Church",
+          "ru": "Церковь Одзуна",
+          "hy": "Օձուն եկեղեցի"
+        },
+        "content": {
+          "en": "Early medieval Armenian basilica overlooking the Debed valley.",
+          "ru": "Раннехристианская базилика с видом на долину Дебед.",
+          "hy": "Վաղ միջնադարյան բազիլիկ եկեղեցի՝ Դեբեդի հովտի տեսարանով։"
+        },
+        "fullContent": {
+          "en": "Odzun Church is one of the finest examples of early Armenian Christian architecture. Built between the 5th and 7th centuries, the basilica stands on a plateau overlooking the Debed valley. In front of the church stands a unique funerary monument decorated with intricate relief carvings.",
+          "ru": "Церковь Одзуна — один из лучших образцов ранней армянской христианской архитектуры. Она была построена между V и VII веками и расположена на плато с видом на долину Дебед. Перед храмом находится уникальный мемориальный памятник с резными рельефами.",
+          "hy": "Օձունի եկեղեցին հայկական վաղ քրիստոնեական ճարտարապետության լավագույն օրինակներից է։ Այն կառուցվել է V–VII դարերում և գտնվում է բարձրադիր հարթակի վրա՝ Դեբեդի հովտի տեսարանով։"
+        },
+        "image": "/TourImages/lori_region/debed_monasteries/odzun.webp"
+      },
+      {
+        "header": {
+          "en": "Horomayr Monastery",
+          "ru": "Монастырь Оромайр",
+          "hy": "Հոռոմայր վանք"
+        },
+        "content": {
+          "en": "Medieval monastery complex hidden in the Debed Canyon.",
+          "ru": "Средневековый монастырь, скрытый в каньоне Дебед.",
+          "hy": "Միջնադարյան վանական համալիր՝ Դեբեդի կիրճում։"
+        },
+        "fullContent": {
+          "en": "Horomayr Monastery dates back to the 10th–13th centuries and is located on a steep hillside of the Debed Canyon. The complex consists of two main groups of structures connected by narrow mountain paths. Its dramatic setting and remote atmosphere make it one of the most picturesque monastic sites in Lori.",
+          "ru": "Монастырь Оромайр относится к X–XIII векам и расположен на крутом склоне Дебедского ущелья. Комплекс состоит из двух групп зданий, соединённых горными тропами. Благодаря своему расположению и природному окружению он считается одним из самых живописных монастырей Лори.",
+          "hy": "Հոռոմայր վանքը կառուցվել է X–XIII դարերում և գտնվում է Դեբեդի կիրճի լանջին։ Համալիրը բաղկացած է երկու հիմնական հատվածներից, որոնք միացված են լեռնային արահետներով։"
+        },
+        "image": "/TourImages/lori_region/debed_monasteries/horomayr.webp"
+      },
+      {
+        "header": {
+          "en": "Ardvi Monastery",
+          "ru": "Монастырь Ардви",
+          "hy": "Արդվի վանք"
+        },
+        "content": {
+          "en": "Historic monastery associated with Armenian spiritual traditions.",
+          "ru": "Исторический монастырь, связанный с армянской духовной традицией.",
+          "hy": "Պատմական վանք՝ կապված հայկական հոգևոր ավանդույթի հետ։"
+        },
+        "fullContent": {
+          "en": "Ardvi Monastery, also known as Surb Hovhannes Monastery, dates back to the early medieval period and is associated with the Armenian saint Hovhannes Odznetsi. The complex includes a church, chapels and historical structures surrounded by the mountainous landscapes of Lori.",
+          "ru": "Монастырь Ардви, известный также как монастырь Сурб Ованнес, относится к раннему средневековью и связан с именем армянского святого Ованнеса Одзнеци. Комплекс включает церковь, часовни и другие исторические постройки среди горных пейзажей Лори.",
+          "hy": "Արդվիի վանքը, որը հայտնի է նաև որպես Սուրբ Հովհաննես վանք, կապված է հայ սուրբ Հովհաննես Օձնեցու հետ և հանդիսանում է տարածաշրջանի կարևոր հոգևոր կենտրոններից մեկը։"
+        },
+        "image": "/TourImages/lori_region/debed_monasteries/ardvi.webp"
+      }
+    ],
+    "features": {
+      "include": {
+        "en": ["Comfortable transportation", "Professional guide service", "Historical monastery tour", "Photo stops"],
+        "ru": ["Комфортабельный транспорт", "Услуги профессионального гида", "Экскурсия по монастырям", "Остановки для фотографий"],
+        "hy": ["Հարմարավետ տրանսպորտ", "Պրոֆեսիոնալ գիդի ծառայություն", "Վանական տուր", "Լուսանկարման կանգառներ"]
+      },
+      "exclude": {
+        "en": ["Lunch", "Personal expenses"],
+        "ru": ["Обед", "Личные расходы"],
+        "hy": ["Ճաշ", "Անձնական ծախսեր"]
+      }
+    },
+    "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
+          {"vehicles": "Sedan", "price": "20000"},
+          {"vehicles": "Miniven", "price": "26000"}
+        ],
+        "ticket_per_person": "0"
+      }
+    }
+  },
+
+  {
+    "id": "kobayr-dsegh-tumanyan-tsover-lake",
+    "category": "cultural",
+    "routeMap": "/TourImages/lori_region/tumanyan_route/route-map.webp",
+    "routeSummary": "Yerevan → Kobayr → Dsegh (Tumanyan Museum) → Tsover Lake → Yerevan",
+    "imageUrl": "/TourImages/lori_region/tumanyan_route/main.webp",
+    "duration": "9",
+    "durationUnit": "hours",
+    "price": "48000 AMD",
+    "title": {
+      "en": "KOBAYR – DSEGH – TUMANYAN MUSEUM – TSOVER LAKE",
+      "ru": "КОБАЙР – ДСЕХ – МУЗЕЙ ТУМАНЯНА – ОЗЕРО ЦОВЕР",
+      "hy": "ՔՈԲԱՅՐ – ԴՍԵՂ – ԹՈՒՄԱՆՅԱՆԻ ԹԱՆԳԱՐԱՆ – ԾՈՎԵՐ ԼԻՃ"
+    },
+    "description": {
+      "en": "A cultural and nature tour through the Lori region, combining medieval monasteries, the legacy of Armenia’s great poet Hovhannes Tumanyan, and peaceful mountain landscapes.",
+      "ru": "Культурно-природный тур по Лорийскому региону, объединяющий средневековые монастыри, наследие великого армянского поэта Ованеса Туманяна и живописные горные пейзажи.",
+      "hy": "Մշակութային և բնության տուր Լոռու մարզում՝ համադրելով միջնադարյան վանքերը, մեծ հայ բանաստեղծ Հովհաննես Թումանյանի ժառանգությունը և խաղաղ լեռնային բնապատկերները։"
+    },
+    "sections": [
+      {
+        "header": {
+          "en": "Kobayr Monastery",
+          "ru": "Монастырь Кобайр",
+          "hy": "Քոբայր վանք"
+        },
+        "content": {
+          "en": "12th–13th century monastery located on a cliff above the Debed Canyon.",
+          "ru": "Монастырь XII–XIII веков на склоне Дебедского ущелья.",
+          "hy": "XII–XIII դարերի վանք՝ Դեբեդի կիրճի լանջին։"
+        },
+        "fullContent": {
+          "en": " is a medieval monastic complex dramatically located on a steep cliff above the Debed Canyon. Built between the 12th and 13th centuries, the monastery is famous for its unique frescoes that reflect both Armenian and Georgian artistic traditions. The ruins and surrounding mountain landscape create one of the most atmospheric historical sites in northern Armenia.",
+          "ru": " расположен на крутом склоне Дебедского ущелья. Монастырь был построен в XII–XIII веках и известен своими редкими фресками, в которых заметно влияние армянской и грузинской художественных традиций. Руины и окружающий горный пейзаж создают особенно впечатляющую атмосферу.",
+          "hy": " գտնվում է Դեբեդի կիրճի ժայռոտ լանջին։ Այն կառուցվել է XII–XIII դարերում և հայտնի է իր յուրահատուկ որմնանկարներով։"
+        },
+        "image": "/TourImages/lori_region/tumanyan_route/kobayr.webp"
+      },
+      {
+        "header": {
+          "en": "Dsegh Village & Tumanyan Museum",
+          "ru": "Село Дсех и музей Туманяна",
+          "hy": "Դսեղ գյուղ և Թումանյանի թանգարան"
+        },
+        "content": {
+          "en": "Birthplace of the great Armenian poet Hovhannes Tumanyan.",
+          "ru": "Родина великого армянского поэта Ованеса Туманяна.",
+          "hy": "Մեծ հայ բանաստեղծ Հովհաննես Թումանյանի ծննդավայր։"
+        },
+        "fullContent": {
+          "en": "The village of  is the birthplace of the famous Armenian writer and poet , often called the national poet of Armenia. The  preserves manuscripts, personal belongings and historical documents related to his life and literary work. Tumanyan is known for his fairy tales, poems and stories that deeply reflect Armenian culture and folklore.",
+          "ru": "Село  является родиной знаменитого армянского поэта и писателя . В  представлены рукописи, личные вещи и документы, связанные с его жизнью и творчеством. Туманян считается одним из величайших представителей армянской литературы.",
+          "hy": " գյուղը մեծ հայ բանաստեղծ -ի ծննդավայրն է։ -ում պահպանվում են նրա ձեռագրերը, անձնական իրերը և կյանքի պատմությանը վերաբերող նյութերը։"
+        },
+        "image": "/TourImages/lori_region/tumanyan_route/tumanyan-museum.webp"
+      },
+      {
+        "header": {
+          "en": "Tsover Lake",
+          "ru": "Озеро Цовер",
+          "hy": "Ծովեր լիճ"
+        },
+        "content": {
+          "en": "A quiet mountain lake surrounded by forests and alpine nature.",
+          "ru": "Спокойное горное озеро среди лесов Лорийского региона.",
+          "hy": "Լեռնային խաղաղ լիճ՝ շրջապատված անտառներով։"
+        },
+        "fullContent": {
+          "en": " is a small mountain lake located in the forests of the Lori region. The area is known for its peaceful atmosphere and beautiful natural scenery. Visitors often enjoy short walks around the lake, photography and relaxing moments in nature after exploring the historical sites of the region.",
+          "ru": " — небольшое горное озеро, расположенное среди лесов Лорийского региона. Место известно своей спокойной атмосферой и красивыми природными пейзажами. Здесь можно прогуляться вокруг озера, сделать фотографии и отдохнуть на природе.",
+          "hy": " փոքր լեռնային լիճ է Լոռու անտառներում։ Այն հայտնի է իր խաղաղ բնությամբ և գեղեցիկ տեսարաններով։"
+        },
+        "image": "/TourImages/lori_region/tumanyan_route/tsover-lake.webp"
+      }
+    ],
+    "features": {
+      "include": {
+        "en": ["Comfortable transportation", "Professional guide service", "Museum visit", "Photo stops"],
+        "ru": ["Комфортабельный транспорт", "Услуги профессионального гида", "Посещение музея", "Остановки для фотографий"],
+        "hy": ["Հարմարավետ տրանսպորտ", "Պրոֆեսիոնալ գիդի ծառայություն", "Թանգարանի այցելություն", "Լուսանկարման կանգառներ"]
+      },
+      "exclude": {
+        "en": ["Lunch", "Personal expenses"],
+        "ru": ["Обед", "Личные расходы"],
+        "hy": ["Ճաշ", "Անձնական ծախսեր"]
+      }
+    },
+    "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
+          {"vehicles": "Sedan", "price": "20000"},
+          {"vehicles": "Miniven", "price": "26000"}
+        ],
+        "ticket_per_person": "0"
+      }
+    }
   }
 ]

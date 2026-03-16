@@ -13,7 +13,7 @@
 }
 
 /* --- HERO: Modern Cinematic --- */
-.cuisine-hero-editorial {
+.cuisine-page .cuisine-hero-editorial {
   height: 80vh;
   position: relative;
   overflow: hidden;
@@ -22,32 +22,32 @@
   justify-content: center;
 }
 
-.hero-bg-wrapper {
+.cuisine-page .hero-bg-wrapper {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 100%;
 }
 
-.hero-parallax-img {
+.cuisine-page .hero-parallax-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transform: scale(1.1); /* Slight zoom for quality feel */
 }
 
-.hero-overlay-gradient {
+.cuisine-page .hero-overlay-gradient {
   position: absolute;
   inset: 0;
   background: linear-gradient(to bottom, rgba(13,26,15,0.3), var(--deep-moss));
 }
 
-.hero-content {
+.cuisine-page .hero-content {
   position: relative;
   z-index: 2;
   text-align: center;
   color: white;
 }
 
-.hero-subtitle {
+.cuisine-page .hero-subtitle {
   text-transform: uppercase;
   letter-spacing: 5px;
   font-size: 14px;
@@ -56,19 +56,19 @@
   margin-bottom: 15px;
 }
 
-.hero-content h1 {
+.cuisine-page .hero-content h1 {
   font-size: clamp(40px, 8vw, 80px);
   font-weight: 800;
   margin: 0;
 }
 
 /* --- INTRO --- */
-.cuisine-intro-refined {
+.cuisine-page .cuisine-intro-refined {
   padding: 100px 5%;
   text-align: center;
 }
 
-.intro-container p {
+.cuisine-page .intro-container p {
   max-width: 800px;
   margin: 0 auto;
   font-size: 20px;
@@ -78,33 +78,33 @@
 }
 
 /* --- THE EDITORIAL GRID --- */
-.cuisine-feature-grid {
+.cuisine-page .cuisine-feature-grid {
   max-width: 1300px;
   margin: 0 auto;
   padding-bottom: 120px;
 }
 
-.feature-row {
+.cuisine-page .feature-row {
   display: flex;
   align-items: center;
   gap: 8%;
   margin-bottom: 150px; /* Large spacing looks high-end */
 }
 
-.feature-row.row-reverse {
+.cuisine-page .feature-row.row-reverse {
   flex-direction: row-reverse;
 }
 
-.feature-image-block {
+.cuisine-page .feature-image-block {
   flex: 1.2;
 }
 
-.image-frame {
+.cuisine-page .image-frame {
   position: relative;
   padding: 20px;
 }
 
-.image-frame img {
+.cuisine-page .image-frame img {
   width: 100%;
   height: 500px;
   object-fit: cover;
@@ -115,7 +115,7 @@
 }
 
 /* Decorative Green box behind image */
-.image-border-deco {
+.cuisine-page .image-border-deco {
   position: absolute;
   top: 0;
   left: 0;
@@ -125,17 +125,17 @@
   z-index: 1;
 }
 
-.row-reverse .image-border-deco {
+.cuisine-page .row-reverse .image-border-deco {
   left: auto;
   right: 0;
 }
 
-.feature-text-block {
+.cuisine-page .feature-text-block {
   flex: 1;
   padding: 40px;
 }
 
-.dish-label {
+.cuisine-page .dish-label {
   color: var(--leaf-accent);
   font-weight: 700;
   font-size: 13px;
@@ -145,20 +145,20 @@
   margin-bottom: 15px;
 }
 
-.feature-text-block h2 {
+.cuisine-page .feature-text-block h2 {
   font-size: 44px;
   margin-bottom: 25px;
   color: var(--deep-moss);
 }
 
-.feature-text-block p {
+.cuisine-page .feature-text-block p {
   font-size: 17px;
   line-height: 1.9;
   color: #4a5d4e;
 }
 
 /* --- FINAL CTA --- */
-.cuisine-footer-cta {
+.cuisine-page .cuisine-footer-cta {
   background: var(--deep-moss);
   color: white;
   padding: 120px 5%;
@@ -166,12 +166,12 @@
   border-radius: 100px 100px 0 0; /* Modern curve */
 }
 
-.cta-content h2 {
+.cuisine-page .cta-content h2 {
   font-size: 48px;
   margin-bottom: 20px;
 }
 
-.cta-content p {
+.cuisine-page .cta-content p {
   max-width: 600px;
   margin: 0 auto;
   font-size: 18px;
@@ -180,15 +180,15 @@
 
 /* --- MOBILE RESPONSIVE --- */
 @media (max-width: 1024px) {
-  .feature-row, .feature-row.row-reverse {
+  .cuisine-page .feature-row, .feature-row.row-reverse {
     flex-direction: column;
     margin-bottom: 80px;
   }
-  .feature-text-block {
+  .cuisine-page .feature-text-block {
     text-align: center;
     padding: 20px;
   }
-  .image-frame img {
+  .cuisine-page .image-frame img {
     height: 350px;
   }
 }

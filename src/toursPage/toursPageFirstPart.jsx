@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { Button, Card, Row, Col, Spinner, Container, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Search, User, ArrowUpDown, Clock } from 'lucide-react'; 
 import toursData from "./toursData.json";
+import ToursPageHeroImg from "./axtala-img.webp";
 
 function ToursPageFirstPart() {
   const { t, i18n } = useTranslation();
@@ -36,40 +37,37 @@ function ToursPageFirstPart() {
   }, [currentPage]);
 
   // --- ЛОГИКА ФИЛЬТРАЦИИ И СОРТИРОВКИ ---
-  const processedTours = [...toursData]
-    .filter(tour => {
-      // 1. Поиск по тексту
-      const matchesSearch = 
-        tour.title[lang]?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        tour.description[lang]?.toLowerCase().includes(searchQuery.toLowerCase());
-      
-      // 2. Фильтр по категории
-      const matchesCategory = activeCategory === "all" || tour.category === activeCategory;
+  const processedTours = useMemo(() => {
+    const lowerCaseSearch = searchQuery.toLowerCase();
 
-      // 3. НОВОЕ: Фильтр по длительности (Duration)
-      let matchesDuration = true;
-      if (sortBy === "filter_1day") {
-        // Проверяем: либо часы, либо 1 день
-        matchesDuration = tour.durationUnit === "hours" || (tour.durationUnit === "days" && tour.duration === 1);
-      } else if (sortBy === "filter_multiday") {
-        // Проверяем: больше 1 дня
-        matchesDuration = tour.durationUnit === "days" && tour.duration > 1;
-      }
+    return [...toursData]
+      .filter(tour => {
+        const matchesSearch = 
+          tour.title[lang]?.toLowerCase().includes(lowerCaseSearch) ||
+          tour.description[lang]?.toLowerCase().includes(lowerCaseSearch);
+        
+        const matchesCategory = activeCategory === "all" || tour.category === activeCategory;
 
-      return matchesSearch && matchesCategory && matchesDuration;
-    })
-    .sort((a, b) => {
-      // Вытаскиваем только числа (учитываем, что в строке могут быть запятые)
-      const priceA = parseInt(a.price.toString().replace(/\D/g, '')) || 0;
-      const priceB = parseInt(b.price.toString().replace(/\D/g, '')) || 0;
+        let matchesDuration = true;
+        if (sortBy === "filter_1day") {
+          matchesDuration = tour.durationUnit === "hours" || (tour.durationUnit === "days" && tour.duration === 1);
+        } else if (sortBy === "filter_multiday") {
+          matchesDuration = tour.durationUnit === "days" && tour.duration > 1;
+        }
 
-      if (sortBy === "priceAsc") return priceA - priceB;
-      if (sortBy === "priceDesc") return priceB - priceA;
-      if (sortBy === "name") return a.title[lang].localeCompare(b.title[lang]);
-      
-      // Если sortBy равен "filter_1day", "filter_multiday" или "default", оставляем порядок как в базе
-      return 0;
-    });
+        return matchesSearch && matchesCategory && matchesDuration;
+      })
+      .sort((a, b) => {
+        const priceA = parseInt(a.price.toString().replace(/\D/g, '')) || 0;
+        const priceB = parseInt(b.price.toString().replace(/\D/g, '')) || 0;
+
+        if (sortBy === "priceAsc") return priceA - priceB;
+        if (sortBy === "priceDesc") return priceB - priceA;
+        if (sortBy === "name") return a.title[lang].localeCompare(b.title[lang]);
+        
+        return 0;
+      });
+  }, [searchQuery, activeCategory, sortBy, lang]);
 
   const indexOfLastTour = currentPage * itemsPerPage;
   const indexOfFirstTour = indexOfLastTour - itemsPerPage;
@@ -81,6 +79,12 @@ function ToursPageFirstPart() {
       
       {/* Hero-блок оставляем без изменений */}
       <div className="tours-hero-simple">
+        <img 
+          src={ToursPageHeroImg}
+          alt="Hero Background" 
+          className="hero-bg-img"
+          fetchpriority="high" 
+        />
         <div className="hero-content text-center">
           <h1 className="hero-title">{t('tour_info_page.title')}</h1>
           <p className="hero-subtitle">{t('tour_info_page.subtitle')}</p>
@@ -194,7 +198,7 @@ function ToursPageFirstPart() {
 }
 
 
-const AlbumCard = ({ tour }) => {
+const AlbumCard = React.memo(({ tour }) => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language || "en";
 
@@ -242,6 +246,6 @@ const AlbumCard = ({ tour }) => {
       </Card.Body>
     </Card>
   );
-};
+});
 
 export default ToursPageFirstPart;

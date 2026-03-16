@@ -82,12 +82,9 @@ const HotelsPage = () => {
 
   // Вся логика пагинации остается такой же, но теперь используем массив hotels
   const hotelsToDisplay = filteredHotels ?? hotels;
-
   const indexOfLastHotel = currentPage * hotelsPerPage;
   const indexOfFirstHotel = indexOfLastHotel - hotelsPerPage;
-
   const currentHotels = hotelsToDisplay.slice(indexOfFirstHotel, indexOfLastHotel);
-
   const totalPages = Math.ceil(hotelsToDisplay.length / hotelsPerPage);
 
 
@@ -457,7 +454,7 @@ const HotelFilter = ({ hotels, setFilteredHotels }) => {
                   className="hotels-filter-input w-100 text-start" 
                   variant="none"
                 >
-                  {selectedCity ? t(selectedCity, selectedCity) : t('hotels_page.filter.all_cities', 'Все города')}
+                  {selectedCity ? t(`city_names.${selectedCity}`, selectedCity) : t('hotels_page.filter.all_cities', 'Все города')}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu className="hotels-dropdown-menu w-100">
@@ -467,7 +464,7 @@ const HotelFilter = ({ hotels, setFilteredHotels }) => {
                   
                   {uniqueCities.map(city => (
                     <Dropdown.Item key={city} eventKey={city}>
-                      {t(city, city)}
+                      {t(`hotels_page.filter.city_names.${city}`, city)}
                     </Dropdown.Item>
                   ))}
                 </Dropdown.Menu>
