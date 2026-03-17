@@ -282,12 +282,6 @@
         "image": "/TourImages/kotayq_region/bjni-tsaghkadzor/tsaghkadzor-ropeway.webp"
       }
     ],
-    "carousel": [
-      { "id": 0, "src": "/TourImages/carousel/bjni-1.jpg" },
-      { "id": 1, "src": "/TourImages/carousel/makravank-1.jpg" },
-      { "id": 2, "src": "/TourImages/carousel/kecharis-1.jpg" },
-      { "id": 3, "src": "/TourImages/carousel/tsaghkadzor-1.jpg" }
-    ],
     "features": {
       "include": {
         "en": ["Comfortable transportation", "Professional guide service", "Hotel pickup and drop-off", "Bottled water"],
@@ -789,7 +783,7 @@
           "ru": "Гости могут посетить дополнительные музеи в Гюмри по выбору, например, Музей Фрунзика Мкртчяна, посвящённый известному армянскому актёру, или Музей сестёр Асланазян с работами знаменитых армянских художниц.",
           "hy": "Հյուրերը կարող են այցելել Գյումրիի ընտրովի թանգարաններ, օրինակ՝ Մհեր Մկրտչյանի թանգարան՝ նվիրված հայտնի հայ դերասանին կամ Ասլանազյան քույրերի թանգարան՝ հայտնի հայ նկարիչների աշխատանքներով։"
         },
-        "image": "/TourImages/shirak_region/gyumri-2day/optional-museum.webp"
+        "image": "/TourImages/shirak_region/gyumri-city/museum.webp"
       },
       {
         "header": {
