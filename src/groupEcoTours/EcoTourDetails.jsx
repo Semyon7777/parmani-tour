@@ -183,7 +183,7 @@ useEffect(() => {
                   <div 
                     className="eco-progress-fill" 
                     style={{ 
-                      width: `${tour.people > 0 ? ((tour.people - tour.spots) / tour.people) * 100 : 0}%` 
+                      width: `${tour.people > 0 ? (tour.spots / tour.people) * 100 : 0}%` 
                     }}
                   ></div>
                 </div>

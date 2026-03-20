@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
-import { Container, Row, Col, Button, Badge } from "react-bootstrap";
+import React, { useEffect, useState, useRef, useCallback } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { 
-  MapPin, ShieldCheck, Heart, Headphones, ArrowRight, Calendar, Clock
+  MapPin, ShieldCheck, Heart, Headphones, Calendar, Leaf, Users
 } from "lucide-react"; 
-
-// Components
+import { useNavigate, Link } from "react-router-dom";
 import FirstPageFirstPart from "./firstPageFirstPart";
 import FirstPageSecondPart from "./firstPageSecondPart";
 import FirstPageThirdPart from "./firstPageThirdPart";
+import { supabase } from "../supabaseClient";
 import Footer from "../Components/Footer";
 
 // CSS
@@ -115,127 +115,136 @@ function ExploreSection() {
 }
 
 // --- НОВЫЙ КОМПОНЕНТ: БЛИЖАЙШИЕ ТУРЫ ---
+
 function UpcomingEventsSection() {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || "en";
+  const navigate = useNavigate();
 
-  const events = [
-    {
-      id: 1,
-      date: {
-        en: "20 May, 2026",
-        ru: "20 Мая, 2026",
-        hy: "Մայիսի 20, 2026"
-      },
-      time: "09:00",
-      title: {
-        en: "Wine Festival in Areni",
-        ru: "Винный фестиваль в Арени",
-        hy: "Գինու փառատոն Արենիում"
-      },
-      type: {
-        en: "Group Tour",
-        ru: "Групповой тур",
-        hy: "Խմբակային տուր"
-      },
-      image: "/TourImages/areni-fest.jpg",
-      price: "30000 AMD"
-    },
-    {
-      id: 2,
-      date: {
-        en: "20 May, 2026",
-        ru: "20 Мая, 2026",
-        hy: "Մայիսի 20, 2026"
-      },
-      time: "08:30",
-      title: {
-        en: "Sevan Sunrise Yoga",
-        ru: "Йога на рассвете на Севане",
-        hy: "Յոգա Սևանի ափին"
-      },
-      type: {
-        en: "Eco Tour",
-        ru: "Эко-тур",
-        hy: "Էկո տուր"
-      },
-      image: "/TourImages/sevan-yoga.jpg",
-      price: "15000 AMD"
-    },
-    {
-      id: 3,
-      date: {
-        en: "20 May, 2026",
-        ru: "20 Мая, 2026",
-        hy: "Մայիսի 20, 2026"
-      },
-      time: "10:00",
-      title: {
-        en: "Dilijan Forest Hike",
-        ru: "Поход по лесам Дилижана",
-        hy: "Քայլարշավ Դիլիջանի անտառներում"
-      },
-      type: {
-        en: "Adventure",
-        ru: "Приключение",
-        hy: "Արկածային"
-      },
-      image: "/TourImages/dilijan-hike.jpg",
-      price: "50000 AMD"
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Тот же кэш предзагрузки как в TourGrid
+  const prefetchedTours = useRef({});
+
+  useEffect(() => {
+    const fetchUpcoming = async () => {
+      const { data, error } = await supabase
+        .from('group_eco_tours')
+        .select('id, type, title, date, price, image, location, spots')
+        .eq('is_active', true)
+        .limit(3);
+
+      if (!error) setEvents(data || []);
+      setLoading(false);
+    };
+    fetchUpcoming();
+  }, []);
+
+  // Предзагрузка при наведении — точно как в TourGrid
+  const handleMouseEnter = useCallback(async (tourId) => {
+    if (prefetchedTours.current[tourId]) return;
+
+    try {
+      const { data } = await supabase
+        .from('group_eco_tours')
+        .select('*')
+        .eq('id', tourId)
+        .single();
+
+      if (data) prefetchedTours.current[tourId] = data;
+    } catch (err) {
+      console.error("Prefetch error:", err);
     }
-  ];
+  }, []);
+
+  // Клик — точно как в TourGrid
+  const handleTourClick = async (e, event) => {
+    e.preventDefault();
+
+    try {
+      let tourData = prefetchedTours.current[event.id];
+
+      if (!tourData) {
+        const { data, error } = await supabase
+          .from('group_eco_tours')
+          .select('id, type, title, date, price, image, location, spots')
+          .eq('id', event.id)
+          .single();
+        if (error) throw error;
+        tourData = data;
+      }
+
+      const path = event.type === "eco" ? `/eco-tour/${event.id}` : `/group-tour/${event.id}`;
+      navigate(path, { state: { tour: tourData } });
+
+    } catch (err) {
+      console.error("Error:", err);
+      navigate(event.type === "eco" ? `/eco-tour/${event.id}` : `/group-tour/${event.id}`);
+    }
+  };
 
   return (
     <section className="home-upcoming-section py-5">
       <Container>
-        <div className="home-section-header d-flex justify-content-between align-items-end mb-5">
-          <div>
-            <div className="live-indicator mb-2">
-              <span className="dot"></span>
-              <span className="live-text">{t("home_page.upcoming.live_now", "БЛИЖАЙШИЕ СОБЫТИЯ")}</span>
-            </div>
-            <h2 className="home-section-title m-0">{t("home_page.upcoming.title", "Скоро в программе")}</h2>
-          </div>
-          <Button variant="link" href="/group-eco-tours" className="view-all-link text-success p-0 d-none d-md-block">
-            {t("home_page.upcoming.view_all", "Смотреть все")} <ArrowRight size={18} />
-          </Button>
-        </div>
+        {/* ... заголовок без изменений ... */}
 
         <Row className="g-4">
-          {events.map((event) => (
-            <Col lg={4} md={6} key={event.id}>
-              <div className="event-card shadow-sm">
-                <div className="event-image-wrapper">
-                  <div className="event-img" style={{ backgroundImage: `url(${event.image})` }}></div>
-                  <Badge bg="light" className="event-date-badge text-dark">
-                    <Calendar size={14} className="me-1" /> {event.date[currentLang] || event.date.en}
-                  </Badge>
-                </div>
-                <div className="event-content p-4">
-                  <div className="d-flex justify-content-between align-items-center mb-2">
-                    {/* Выбираем язык для Типа */}
-                    <span className="event-type text-success small fw-bold">
-                        {event.type[currentLang] || event.type.en}
-                    </span>
-                    <span className="event-time text-muted small"><Clock size={14} /> {event.time}</span>
+          {loading ? (
+            [...Array(3)].map((_, i) => (
+              <Col lg={4} md={6} key={i}>
+                <div className="event-card shadow-sm" style={{ height: 300, background: "#f0f0f0", borderRadius: 12 }} />
+              </Col>
+            ))
+          ) : (
+            events.map((event) => (
+              <Col lg={4} md={6} key={event.id}>
+                {/* onMouseEnter на карточку — предзагрузка при наведении */}
+                <div
+                  className="event-card shadow-sm"
+                  onMouseEnter={() => handleMouseEnter(event.id)}
+                >
+                  <div className="event-image-wrapper">
+                    <div className="event-img" style={{ backgroundImage: `url(${event.image})` }}></div>
+                      <div className={`tour-type-badge ${event.type === "eco" ? "tour-type-badge-is-eco" : "tour-type-badge-is-group"}`}>
+                        {event.type === "eco" ? <Leaf size={12} /> : <Users size={12} />}
+                        <span>{event.type === "eco" ? t("group_eco_tours.badge_eco") : t("group_eco_tours.badge_group")}</span>
+                      </div>
                   </div>
-                  {/* Выбираем язык для Заголовка */}
-                  <h4 className="event-title">
-                      {event.title[currentLang] || event.title.en}
-                  </h4>
-                  <div className="event-footer d-flex justify-content-between align-items-center mt-4">
-                    <div className="event-price">
-                      <span className="from-text">{t("home_page.upcoming.starting_from", "От")}</span>
-                      <span className="price-value"> {event.price}</span>
+                  <div className="event-tour-body">
+                    <div className="tour-date-top">
+                      <Calendar size={14} />
+                      <span>{event.date}</span>
                     </div>
-                    <Button variant="outline-success" size="sm" className="rounded-pill px-3">
-                      {t("home_page.upcoming.join", "Участвовать")}
-                    </Button>
+                    <h3 className="tour-title-text">
+                      {event.title?.[currentLang] || event.title?.en}
+                    </h3>
+                    <div className="tour-details">
+                      <div className="detail-item">
+                        <MapPin size={14} />
+                        <span>{event.location?.[currentLang] || event.location?.en}</span>
+                      </div>
+                      <div className="detail-item spots">
+                        <span className="spots-dot"></span>
+                        {t("group_eco_tours.only")} {event.spots} {t("group_eco_tours.spots_left")}
+                      </div>
+                    </div>
+
+                    <div className="tour-action-area">
+                      <div className="tour-price-tag">{event.price}</div>
+                      <Link
+                        to={event.type === "eco" ? `/eco-tour/${event.id}` : `/group-tour/${event.id}`}
+                        onClick={(e) => handleTourClick(e, event)}
+                        className="tour-btn-minimal"
+                      >
+                        {t("group_eco_tours.btn_join")}
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Col>
-          ))}
+              </Col>
+            ))
+          )}
         </Row>
       </Container>
     </section>

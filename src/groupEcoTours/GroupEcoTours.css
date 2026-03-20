@@ -191,7 +191,6 @@
 }
 
 
-
 /* Контейнер поиска */
 .group-eco-tours-container .search-section-minimal {
   max-width: 450px;
@@ -292,7 +291,7 @@
 /* Кнопка "Join" */
 .group-eco-tours-container .tour-btn-minimal {
     text-decoration: none !important;
-    background: #333333;
+    background: #2d6a4f;
     color: white !important;
     padding: 10px 18px;
     border-radius: 50px;
@@ -305,7 +304,7 @@
 }
 
 .group-eco-tours-container .tour-btn-minimal:hover {
-    background: #000000d9;
+    background: #214d39;
 }
 
 /* Кнопка "Show More" */
@@ -810,7 +809,7 @@
   border: 2px solid var(--group-dark);
   padding: 40px;
   border-radius: 0; /* Четкие углы для контраста с эко */
-  box-shadow: 5px 5px 0px var(--group-orange); /* Ретро-тень */
+  box-shadow: 3px 3px 0px var(--group-orange); /* Ретро-тень */
   position: sticky;
   top: 100px;
   margin-top: 60px;
@@ -854,7 +853,6 @@
 
 .group-details-page .group-action-btn:hover {
   background: var(--group-orange);
-  transform: translate(-3px, -3px);
 }
 
 /* PROGRESS BAR */
@@ -889,7 +887,7 @@
 @media (max-width: 991px) {
   .group-details-page .group-title { font-size: 2.5rem; }
   .group-details-page .strip-grid { flex-direction: column; gap: 20px; }
-  .group-details-page .group-booking-panel { position: static; box-shadow: 8px 8px 0px var(--group-orange); }
+  .group-details-page .group-booking-panel { position: static; box-shadow: 3px 3px 0px var(--group-orange); }
 }
 
 .group-details-page .group-hero {

@@ -964,6 +964,120 @@ html[lang="hy"] .thirdContainerHeadOfText {
     gap: 10px;
 }
 
+/* --- БЕЙДЖИ --- */
+.event-image-wrapper .tour-type-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    backdrop-filter: blur(4px);
+}
+
+/* Цвета для разных типов */
+.event-image-wrapper .tour-type-badge-is-eco {
+    background: rgba(46, 204, 113, 0.9);
+    color: white;
+}
+
+.event-image-wrapper .tour-type-badge-is-group {
+    background: rgba(230, 126, 34, 0.9);
+    color: white;
+}
+
+/* --- КОНТЕНТ (BODY) --- */
+.event-tour-body {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.event-tour-body .tour-body {
+    padding: 18px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-tour-body .tour-date-top {
+    color: #999;
+    font-size: 0.75rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.event-tour-body .tour-title-text {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 5px;
+    line-height: 1.4;
+}
+
+.event-tour-body .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 6px;
+}
+
+.event-tour-body .detail-item.spots {
+    color: #e67e22;
+    font-weight: 600;
+}
+
+.event-tour-body .spots-dot {
+    width: 6px;
+    height: 6px;
+    background: #e67e22;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.event-tour-body .tour-action-area {
+    display: flex;
+    justify-content: space-between;
+} 
+
+.event-tour-body .tour-price-tag {
+    font-size: 1rem;
+    margin-bottom: 2%;
+    font-weight: 700;
+    color: #2d6a4f;
+}
+
+.event-tour-body .tour-btn-minimal {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    background: #2d6a4f;
+    color: #fff;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.event-tour-body .tour-btn-minimal:hover {
+    background: #1e4d38;
+    color: #fff;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 992px) {
 

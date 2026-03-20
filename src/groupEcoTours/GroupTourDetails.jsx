@@ -89,7 +89,6 @@ const GroupTourDetails = () => {
   }
 
   if (!tour) return <div className="text-center py-5">{t('group_eco_tours.not_found', 'Tour not found')}</div>;
-  
 
 
   return (
@@ -183,7 +182,7 @@ const GroupTourDetails = () => {
                 <div className="progress-bar">
                   <div 
                     className="progress-fill" 
-                    style={{ width: `${(1 - (tour.spots / tour.people)) * 100}%` }}
+                    style={{ width: `${tour.people > 0 ? (tour.spots / tour.people) * 100 : 0}%`}}
                   ></div>
                 </div>
                 <small>🔥 {t('group_eco_tours.group.limited', { count: tour.spots })}</small>
