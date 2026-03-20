@@ -126,6 +126,29 @@ function ToursPageFirstPart() {
       </div>
 
       <Container className="py-5">
+
+      {/* ЗАГОЛОВОК + КОЛ-ВО ТУРОВ */}
+      <div className="tours-list-header mb-4">
+        <div>
+          <h2 className="tours-list-title">
+            {t('tour_info_page.all_tours_title', 'All Tours')}
+          </h2>
+          <p className="tours-count-text">
+            {processedTours.length > 0 ? (
+              <>
+                {t('tour_info_page.found', 'Found')}{" "}
+                <span className="count-number">{processedTours.length}</span>{" "}
+                {t('tour_info_page.tours_count', 'tours')}
+              </>
+            ) : (
+              <span className="text-muted fst-italic">
+                {t('tour_info_page.no_results', 'No tours found')}
+              </span>
+            )}
+          </p>
+        </div>
+      </div>
+
         {/* --- НОВЫЙ БЛОК ФИЛЬТРОВ (Header) --- */}
         <div className="filter-section-wrapper mb-5" ref={toursTopRef}>
           <div className="d-flex flex-wrap justify-content-between align-items-end gap-3">
