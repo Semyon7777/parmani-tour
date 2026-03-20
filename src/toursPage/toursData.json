@@ -1067,7 +1067,7 @@
     "category": "cultural",
     "routeMap": "/TourImages/lori_region/haghpat-sanahin/route-map.webp",
     "routeSummary": "Yerevan → Haghpat → Zarni-Parni Cave Complex → Sanahin → Yerevan",
-    "imageUrl": "/TourImages/lori_region/haghpat-sanahin/main.webp",
+    "imageUrl": "/TourImages/lori_region/haghpat-sanahin/zarni-parni.webp",
     "duration": "10",
     "durationUnit": "hours",
     "price": "52000 AMD",
@@ -1197,7 +1197,7 @@
           "ru": "Пещерный комплекс Зарни-Парни расположен в скалах Дебедского ущелья и состоит из высеченных в камне помещений. В разные эпохи они использовались как укрытия и хозяйственные помещения. Сегодня восстановленный комплекс позволяет посетителям исследовать подземные комнаты и познакомиться с традиционной скальной архитектурой региона.",
           "hy": "Զարնի-Պարնի քարանձավային համալիրը կազմված է ժայռերի մեջ փորված տարածքներից, որոնք տարբեր ժամանակներում ծառայել են որպես ապաստաններ և պահեստներ։ Այսօր վերականգնված համալիրը հնարավորություն է տալիս այցելուներին ուսումնասիրել ստորգետնյա սրահներն ու միջանցքները։"
         },
-        "image": "/TourImages/lori_region/haghpat-akhtala/zarni-parni.webp"
+        "image": "/TourImages/lori_region/haghpat-sanahin/zarni-parni.webp"
       },
       {
         "header": {
@@ -1215,7 +1215,7 @@
           "ru": "Монастырь Ахпат был основан в X веке во времена Багратидского царства и стал одним из важнейших духовных и образовательных центров средневековой Армении. Комплекс включает церкви, библиотеку, трапезную и уникальные хачкары, гармонично вписанные в пейзаж Дебедского ущелья.",
           "hy": "Հաղպատ վանքը հիմնադրվել է X դարում Բագրատունյաց թագավորության ժամանակաշրջանում և եղել է միջնադարյան Հայաստանի կարևոր կրթական և հոգևոր կենտրոններից մեկը։ Համալիրը ներառում է եկեղեցիներ, գրադարան և սեղանատուն։"
         },
-        "image": "/TourImages/lori_region/haghpat-akhtala/haghpat.webp"
+        "image": "/TourImages/lori_region/haghpat-sanahin/haghpat.webp"
       },
       {
         "header": {
@@ -1283,7 +1283,7 @@
     "category": "cultural",
     "routeMap": "/TourImages/lori_region/debed_monasteries/route-map.webp",
     "routeSummary": "Yerevan → Kobayr → Odzun → Horomayr → Ardvi → Yerevan",
-    "imageUrl": "/TourImages/lori_region/debed_monasteries/main.webp",
+    "imageUrl": "/TourImages/lori_region/debed_monasteries/odzun.webp",
     "duration": "10",
     "durationUnit": "hours",
     "price": "52000 AMD",
@@ -1480,6 +1480,123 @@
         "en": ["Lunch", "Personal expenses"],
         "ru": ["Обед", "Личные расходы"],
         "hy": ["Ճաշ", "Անձնական ծախսեր"]
+      }
+    },
+    "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
+          {"vehicles": "Sedan", "price": "20000"},
+          {"vehicles": "Miniven", "price": "26000"}
+        ],
+        "ticket_per_person": "0"
+      }
+    }
+  },
+
+  {
+    "id": "ijevan-gastro-wine-tour",
+    "category": "cultural",
+    "routeMap": "/TourImages/tavush_region/ijevan_gastro/route-map.webp",
+    "routeSummary": "Yerevan → Ijevan → Makaravank → Ijevan Dendropark → Wine & Gastronomy Experience → Yerevan",
+    "imageUrl": "/TourImages/tavush_region/ijevan_gastro/main.webp",
+    "duration": "10",
+    "durationUnit": "hours",
+    "price": "54000 AMD",
+    "title": {
+      "en": "IJEVAN – WINE & GASTRO TOUR",
+      "ru": "ИДЖЕВАН – ВИННО-ГАСТРОНОМИЧЕСКИЙ ТУР",
+      "hy": "ԻՋԵՎԱՆ – ԳԱՍՏՐՈ ԵՎ ԳԻՆՈՒ ՏՈՒՐ"
+    },
+    "description": {
+      "en": "A гастрономический and cultural journey to Tavush featuring medieval monasteries, lush forests, local cuisine, traditional tonir-baked gata, and wine tasting in Ijevan.",
+      "ru": "Гастрономическое и культурное путешествие в Тавуш: монастыри, зелёные леса, традиционная кухня, гата из тонира и дегустация вина в Иджеване.",
+      "hy": "Գաստրո և մշակութային ուղևորություն Տավուշ՝ ներառելով վանքեր, անտառներ, ավանդական խոհանոց, թոնրի գաթա և գինու համտես։"
+    },
+    "sections": [
+      {
+        "header": {
+          "en": "Makaravank Monastery",
+          "ru": "Монастырь Макраванк",
+          "hy": "Մակարավանք"
+        },
+        "content": {
+          "en": "13th-century monastery hidden in the forests of Tavush.",
+          "ru": "Монастырь XIII века в лесах Тавуша.",
+          "hy": "XIII դարի վանք՝ Տավուշի անտառներում։"
+        },
+        "fullContent": {
+          "en": " is a medieval monastic complex located deep in the forests near Ijevan. Built in the 13th century, it is known for its refined stone carvings and red volcanic tuff. Surrounded by dense greenery, the monastery creates a peaceful and атмосферное начало путешествия.",
+          "ru": " — средневековый монастырь XIII века, расположенный в лесах Тавуша недалеко от Иджевана. Он известен своей изящной каменной резьбой и красным туфом. Окружённый густой природой, он создаёт спокойную и атмосферную точку начала маршрута.",
+          "hy": " գտնվում է Տավուշի անտառներում և կառուցվել է XIII դարում։ Այն հայտնի է իր նուրբ քանդակազարդերով և կարմիր տուֆ քարով։"
+        },
+        "image": "/TourImages/tavush_region/ijevan_gastro/makaravank.webp"
+      },
+      {
+        "header": {
+          "en": "Ijevan Dendropark",
+          "ru": "Иджеванский дендропарк",
+          "hy": "Իջևանի դենտրոպարկ"
+        },
+        "content": {
+          "en": "A green botanical park with diverse tree species.",
+          "ru": "Зелёный ботанический парк с разнообразными деревьями.",
+          "hy": "Կանաչ դենդրոպարկ՝ տարբեր ծառատեսակներով։"
+        },
+        "fullContent": {
+          "en": " is one of the most peaceful green areas in Tavush, featuring a wide variety of trees and plants. It is an ideal place for a relaxing walk, fresh air and connecting with nature.",
+          "ru": " — одно из самых зелёных и спокойных мест Тавуша. Здесь собраны разнообразные виды деревьев, что делает парк идеальным для прогулок и отдыха на природе.",
+          "hy": " հայտնի է իր կանաչ տարածքներով և ծառատեսակների բազմազանությամբ։ Այն հարմար վայր է հանգստի և զբոսանքի համար։"
+        },
+        "image": "/TourImages/tavush_region/ijevan_gastro/dendropark.webp"
+      },
+      {
+        "header": {
+          "en": "Tonir Gata & Local Cuisine",
+          "ru": "Гата из тонира и местная кухня",
+          "hy": "Թոնրի գաթա և տեղական խոհանոց"
+        },
+        "content": {
+          "en": "Traditional Armenian food experience with tonir-baked gata.",
+          "ru": "Знакомство с армянской кухней и гатой из тонира.",
+          "hy": "Ավանդական խոհանոց և թոնրի գաթա։"
+        },
+        "fullContent": {
+          "en": "This stop offers a true Armenian gastronomic experience with traditional dishes and freshly baked gata prepared in a tonir (underground clay oven). Visitors can observe the baking process and taste authentic local flavors typical of the Tavush region.",
+          "ru": "Здесь гостей ждёт настоящее гастрономическое знакомство с армянской кухней. Гата готовится в традиционном тонире (глиняной печи), и посетители могут увидеть процесс приготовления и попробовать свежую выпечку и местные блюда.",
+          "hy": "Այս կանգառում կարելի է ծանոթանալ հայկական խոհանոցին՝ համտեսելով թոնրի մեջ պատրաստված գաթա և այլ ավանդական ուտեստներ։"
+        },
+        "image": "/TourImages/tavush_region/ijevan_gastro/gata.webp"
+      },
+      {
+        "header": {
+          "en": "Ijevan Wine & Brandy Factory",
+          "ru": "Иджеванский винно-коньячный завод",
+          "hy": "Իջևանի գինու և կոնյակի գործարան"
+        },
+        "content": {
+          "en": "Wine and brandy tasting experience.",
+          "ru": "Дегустация вина и коньяка.",
+          "hy": "Գինու և կոնյակի համտես։"
+        },
+        "fullContent": {
+          "en": "At the  visitors can explore local wine production traditions and enjoy tastings of Armenian wines and brandy. Tavush region is known for its favorable climate for виноградарство, making this experience a key highlight of the tour.",
+          "ru": "В  гости знакомятся с традициями виноделия региона и участвуют в дегустации армянских вин и коньяка. Тавуш известен благоприятным климатом для виноградарства, поэтому этот этап является ключевым в туре.",
+          "hy": "-ում այցելուները ծանոթանում են գինեգործության ավանդույթներին և մասնակցում գինու և կոնյակի համտեսի։"
+        },
+        "image": "/TourImages/tavush_region/ijevan_gastro/winery.webp"
+      }
+    ],
+    "features": {
+      "include": {
+        "en": ["Transportation", "Professional guide", "Wine tasting", "Gastro experience", "Photo stops"],
+        "ru": ["Транспорт", "Профессиональный гид", "Дегустация вина", "Гастрономический опыт", "Остановки для фото"],
+        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Գինու համտես", "Գաստրո փորձառություն", "Լուսանկարման կանգառներ"]
+      },
+      "exclude": {
+        "en": ["Additional meals", "Personal expenses"],
+        "ru": ["Дополнительное питание", "Личные расходы"],
+        "hy": ["Լրացուցիչ սնունդ", "Անձնական ծախսեր"]
       }
     },
     "budget": {
