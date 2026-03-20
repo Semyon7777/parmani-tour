@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { 
-  MapPin, ShieldCheck, Heart, Headphones, Calendar, Leaf, Users
-} from "lucide-react"; 
+  MapPin, ShieldCheck, Heart, Headphones, Calendar, 
+  Leaf, Users, ArrowRight} from "lucide-react"; 
 import { useNavigate, Link } from "react-router-dom";
 import FirstPageFirstPart from "./firstPageFirstPart";
 import FirstPageSecondPart from "./firstPageSecondPart";
@@ -188,6 +188,18 @@ function UpcomingEventsSection() {
     <section className="home-upcoming-section py-5">
       <Container>
         {/* ... заголовок без изменений ... */}
+        <div className="home-section-header d-flex justify-content-between align-items-end mb-5">
+          <div>
+            <div className="live-indicator mb-2">
+              <span className="dot"></span>
+              <span className="live-text">{t("home_page.upcoming.live_now", "БЛИЖАЙШИЕ СОБЫТИЯ")}</span>
+            </div>
+            <h2 className="home-section-title m-0">{t("home_page.upcoming.title", "Скоро в программе")}</h2>
+          </div>
+          <Button variant="link" href="/group-eco-tours" className="view-all-link text-success p-0 d-none d-md-block">
+            {t("home_page.upcoming.view_all", "Смотреть все")} <ArrowRight size={18} />
+          </Button>
+        </div>
 
         <Row className="g-4">
           {loading ? (

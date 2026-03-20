@@ -662,7 +662,7 @@
     "category": "cultural",
     "routeMap": "/TourImages/shirak_region/ereruyk-gyumri/route-map.webp",
     "routeSummary": "Yerevan → Gyumri → Yerevan",
-    "imageUrl": "/TourImages/shirak_region/ere/main.webp",
+    "imageUrl": "/TourImages/shirak_region/gyumri-city/2days_main.webp",
     "duration": "2",
     "durationUnit": "days",
     "price": "65000 AMD",
@@ -950,7 +950,7 @@
     "category": "cultural",
     "routeMap": "/TourImages/tavush_region/gosh/route-map.webp",
     "routeSummary": "Yerevan → Sevan → Gosh → Yerevan",
-    "imageUrl": "/TourImages/tavush_region/gosh/main.webp",
+    "imageUrl": "/TourImages/tavush_region/gosh/sevan.webp",
     "duration": "1",
     "durationUnit": "day",
     "price": "65000 AMD",
@@ -1017,7 +1017,7 @@
           "ru": "Гошаванк основан в XII веке и известен богатой каменной резьбой и связью с армянским учёным Мхитаром Гошем. Монастырь окружён лесами Тавуша.",
           "hy": "Գոշավանքը հիմնադրվել է XII դարում և հայտնի է իր գեղեցիկ քանդակազարդերով և Մխիթար Գոշի հետ կապված պատմությամբ։ Այն շրջապատված է Տավուշի անտառներով։"
         },
-        "image": "/TourImages/gegharkunik_tavush/sevan-gosh/goshavank.webp"
+        "image": "/TourImages/tavush_region/gosh/goshavank.webp"
       },
       {
         "header": {
@@ -1035,7 +1035,7 @@
           "ru": "Озеро Гош — небольшое живописное озеро в лесу. Здесь можно прогуляться по природе, покататься на лодке или лошадях и устроить пикник.",
           "hy": "Գոշի լիճը փոքրիկ և գեղեցիկ լիճ է անտառի մեջ։ Այստեղ կարելի է քայլել բնության մեջ, նավակ քշել, ձիավարել կամ պարզապես հանգստանալ և պիկնիկ անել։"
         },
-        "image": "/TourImages/gegharkunik_tavush/sevan-gosh/gosh-lake.webp"
+        "image": "/TourImages/tavush_region/gosh/gosh-lake.webp"
       }
     ],
     "features": {
@@ -1073,7 +1073,7 @@
     "price": "52000 AMD",
     "title": {
       "en": "HAGHPAT – ZARNI-PARNI – SANAHIN",
-      "ru": "ХАГПАТ – ЗАРНИ-ПАРНИ – САНАИН",
+      "ru": "АХПАТ – ЗАРНИ-ПАРНИ – САНАИН",
       "hy": "ՀԱՂՊԱՏ – ԶԱՐՆԻ ՊԱՐՆԻ – ՍԱՆԱՀԻՆ"
     },
     "description": {
