@@ -161,6 +161,9 @@
     "search_tours": "Where do you want to go?",
     "popular_tours": "Popular Tours",
     "results_for": "Results for",
+    "all_tours_title": "All Tours",
+    "found": "Found",
+    "tours_count": "tours",
     "tours_found": "tours found",
     "filter_all": "All",
     "filter_cultural": "Cultural",
@@ -212,7 +215,6 @@
     }
   },
 
-
   "bookForm": {
     "title": "Student Registration Form",
     "errorNotLoggedIn": "Please log in with Google to submit the form.",
@@ -262,8 +264,6 @@
       "email": "Email ID"
     }
   },
-
-
 
   "contact_page": {
     "title": "Contact Us",
@@ -652,7 +652,6 @@
     }
   },
 
-
   "special": {
     "hero": {
       "title": "Special Offers",
@@ -919,7 +918,6 @@
       "Entrance Tickets": "Entrance Tickets"
     }
   },
-
 
   "footer": {
     "getConnected": "Get connected with us on social networks:",
