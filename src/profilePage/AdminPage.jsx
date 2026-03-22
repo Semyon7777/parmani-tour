@@ -382,26 +382,45 @@ function ToursTable() {
                   </div>
                 </div>
 
-                {/* Раскрытая панель редактирования */}
+                {/* Раскрытая панель */}
                 {isExpanded && (
                   <div className="tour-list-expand">
                     {isEditing ? (
                       <div className="tour-edit-fields">
+
                         <div className="tour-edit-section">
-                          <div className="tour-edit-section-title">Названия</div>
+                          <div className="tour-edit-section-title">Название</div>
                           <div className="tour-edit-row">
-                            <div className="booking-edit-field">
-                              <label>EN</label>
-                              <input value={typeof editData.title === "object" ? (editData.title?.en || "") : ""} onChange={e => setEditData(p => ({ ...p, title: { ...p.title, en: e.target.value } }))} />
-                            </div>
-                            <div className="booking-edit-field">
-                              <label>RU</label>
-                              <input value={typeof editData.title === "object" ? (editData.title?.ru || "") : ""} onChange={e => setEditData(p => ({ ...p, title: { ...p.title, ru: e.target.value } }))} />
-                            </div>
-                            <div className="booking-edit-field">
-                              <label>HY</label>
-                              <input value={typeof editData.title === "object" ? (editData.title?.hy || "") : ""} onChange={e => setEditData(p => ({ ...p, title: { ...p.title, hy: e.target.value } }))} />
-                            </div>
+                            {["en", "ru", "hy"].map(lng => (
+                              <div key={lng} className="booking-edit-field">
+                                <label>{lng.toUpperCase()}</label>
+                                <input value={typeof editData.title === "object" ? (editData.title?.[lng] || "") : ""} onChange={e => setEditData(p => ({ ...p, title: { ...p.title, [lng]: e.target.value } }))} />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="tour-edit-section">
+                          <div className="tour-edit-section-title">Локация</div>
+                          <div className="tour-edit-row">
+                            {["en", "ru", "hy"].map(lng => (
+                              <div key={lng} className="booking-edit-field">
+                                <label>{lng.toUpperCase()}</label>
+                                <input value={typeof editData.location === "object" ? (editData.location?.[lng] || "") : ""} onChange={e => setEditData(p => ({ ...p, location: { ...p.location, [lng]: e.target.value } }))} />
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="tour-edit-section">
+                          <div className="tour-edit-section-title">Описание</div>
+                          <div className="tour-edit-row">
+                            {["en", "ru", "hy"].map(lng => (
+                              <div key={lng} className="booking-edit-field">
+                                <label>{lng.toUpperCase()}</label>
+                                <textarea rows={3} value={typeof editData.description === "object" ? (editData.description?.[lng] || "") : ""} onChange={e => setEditData(p => ({ ...p, description: { ...p.description, [lng]: e.target.value } }))} />
+                              </div>
+                            ))}
                           </div>
                         </div>
 
@@ -417,16 +436,12 @@ function ToursTable() {
                               <input value={editData.date || ""} onChange={e => setEditData(p => ({ ...p, date: e.target.value }))} />
                             </div>
                             <div className="booking-edit-field">
+                              <label>Длительность (мин)</label>
+                              <input type="number" value={editData.duration || ""} onChange={e => setEditData(p => ({ ...p, duration: parseInt(e.target.value) }))} />
+                            </div>
+                            <div className="booking-edit-field">
                               <label>Мест (spots)</label>
                               <input type="number" value={editData.spots || ""} onChange={e => setEditData(p => ({ ...p, spots: parseInt(e.target.value) }))} />
-                            </div>
-                            <div className="booking-edit-field">
-                              <label>Людей (people)</label>
-                              <input type="number" value={editData.people || ""} onChange={e => setEditData(p => ({ ...p, people: parseInt(e.target.value) }))} />
-                            </div>
-                            <div className="booking-edit-field">
-                              <label>Транспорт</label>
-                              <input value={editData.transport || ""} onChange={e => setEditData(p => ({ ...p, transport: e.target.value }))} />
                             </div>
                             <div className="booking-edit-field">
                               <label>URL картинки</label>
@@ -443,38 +458,28 @@ function ToursTable() {
                         </div>
 
                         <div className="tour-edit-section">
-                          <div className="tour-edit-section-title">Описание (EN / RU / HY)</div>
-                          <div className="tour-edit-row">
-                            <div className="booking-edit-field">
-                              <label>EN</label>
-                              <textarea value={typeof editData.description === "object" ? (editData.description?.en || "") : ""} onChange={e => setEditData(p => ({ ...p, description: { ...p.description, en: e.target.value } }))} rows={3} />
-                            </div>
-                            <div className="booking-edit-field">
-                              <label>RU</label>
-                              <textarea value={typeof editData.description === "object" ? (editData.description?.ru || "") : ""} onChange={e => setEditData(p => ({ ...p, description: { ...p.description, ru: e.target.value } }))} rows={3} />
-                            </div>
-                            <div className="booking-edit-field">
-                              <label>HY</label>
-                              <textarea value={typeof editData.description === "object" ? (editData.description?.hy || "") : ""} onChange={e => setEditData(p => ({ ...p, description: { ...p.description, hy: e.target.value } }))} rows={3} />
-                            </div>
+                          <div className="tour-edit-section-title">
+                            extra_details (JSON) — eco: {"{ mission: {en,ru,hy}, included: [] }"} / group: {"{ duration: '', included: [] }"}
+                          </div>
+                          <div className="booking-edit-field">
+                            <textarea
+                              rows={6}
+                              value={editData.extra_details ? JSON.stringify(editData.extra_details, null, 2) : ""}
+                              onChange={e => { try { setEditData(p => ({ ...p, extra_details: JSON.parse(e.target.value) })); } catch {} }}
+                              style={{ fontFamily: "monospace", fontSize: "0.8rem" }}
+                            />
                           </div>
                         </div>
 
                         <div className="tour-edit-section">
-                          <div className="tour-edit-section-title">Миссия (EN / RU / HY)</div>
-                          <div className="tour-edit-row">
-                            <div className="booking-edit-field">
-                              <label>EN</label>
-                              <textarea value={typeof editData.mission === "object" ? (editData.mission?.en || "") : ""} onChange={e => setEditData(p => ({ ...p, mission: { ...p.mission, en: e.target.value } }))} rows={3} />
-                            </div>
-                            <div className="booking-edit-field">
-                              <label>RU</label>
-                              <textarea value={typeof editData.mission === "object" ? (editData.mission?.ru || "") : ""} onChange={e => setEditData(p => ({ ...p, mission: { ...p.mission, ru: e.target.value } }))} rows={3} />
-                            </div>
-                            <div className="booking-edit-field">
-                              <label>HY</label>
-                              <textarea value={typeof editData.mission === "object" ? (editData.mission?.hy || "") : ""} onChange={e => setEditData(p => ({ ...p, mission: { ...p.mission, hy: e.target.value } }))} rows={3} />
-                            </div>
+                          <div className="tour-edit-section-title">itinerary (JSON массив)</div>
+                          <div className="booking-edit-field">
+                            <textarea
+                              rows={8}
+                              value={editData.itinerary ? JSON.stringify(editData.itinerary, null, 2) : ""}
+                              onChange={e => { try { setEditData(p => ({ ...p, itinerary: JSON.parse(e.target.value) })); } catch {} }}
+                              style={{ fontFamily: "monospace", fontSize: "0.8rem" }}
+                            />
                           </div>
                         </div>
 
@@ -484,30 +489,42 @@ function ToursTable() {
                         </div>
                       </div>
                     ) : (
-                      // Просмотр деталей
                       <div className="tour-detail-view">
+                        {tour.location && (
+                          <div className="tour-detail-row">
+                            <span className="detail-label">Локация:</span>
+                            <span>{typeof tour.location === "object" ? (tour.location?.ru || tour.location?.en) : tour.location}</span>
+                          </div>
+                        )}
                         {tour.description && (
                           <div className="tour-detail-row">
                             <span className="detail-label">Описание:</span>
                             <span>{typeof tour.description === "object" ? (tour.description?.ru || tour.description?.en) : tour.description}</span>
                           </div>
                         )}
-                        {tour.mission && (
+                        {tour.duration && (
                           <div className="tour-detail-row">
-                            <span className="detail-label">Миссия:</span>
-                            <span>{typeof tour.mission === "object" ? (tour.mission?.ru || tour.mission?.en) : tour.mission}</span>
+                            <span className="detail-label">Длительность:</span>
+                            <span>{tour.duration} мин</span>
                           </div>
                         )}
-                        {tour.transport && (
+                        {tour.extra_details && (
                           <div className="tour-detail-row">
-                            <span className="detail-label">Транспорт:</span>
-                            <span>{tour.transport}</span>
+                            <span className="detail-label">extra_details:</span>
+                            <pre className="json-preview">{JSON.stringify(tour.extra_details, null, 2)}</pre>
                           </div>
                         )}
-                        {tour.people && (
+                        {tour.itinerary && Array.isArray(tour.itinerary) && tour.itinerary.length > 0 && (
                           <div className="tour-detail-row">
-                            <span className="detail-label">Людей:</span>
-                            <span>{tour.people}</span>
+                            <span className="detail-label">Маршрут:</span>
+                            <div className="itinerary-preview">
+                              {tour.itinerary.map((step, i) => (
+                                <div key={i} className="itinerary-preview-step">
+                                  <span className="step-time">{step.time}</span>
+                                  <span>{typeof step.title === "object" ? (step.title?.ru || step.title?.en) : step.title}</span>
+                                </div>
+                              ))}
+                            </div>
                           </div>
                         )}
                       </div>

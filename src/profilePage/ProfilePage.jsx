@@ -75,6 +75,7 @@ function ProfilePage() {
     // ── Бронирования ───────────────────────────────────────────
     if (!bookingsRes.error) setBookings(bookingsRes.data || []);
     setLoadingBookings(false);
+
  
     // ── Избранное: смешиваем Supabase + JSON ───────────────────
     const favIds = (favRes.data || []).map(f => f.tour_id);
@@ -279,11 +280,13 @@ function BookingsTab({ bookings, loading }) {
             </div>
             <h5 className="booking-tour-name">{booking.tour_name}</h5>
             <div className="booking-meta">
-              <span><Calendar size={13} /> {booking.travel_date}</span>
+              {booking.travel_date && (
+                <span><Calendar size={13} /> {booking.travel_date}</span>
+              )}
             </div>
           </div>
           <div className="booking-card-right">
-            <div className="booking-price">{booking.price}</div>
+            <div className="booking-price">{booking.total_price}</div>
             <div className="booking-people">{booking.guests_count} {t("profile.people")}</div>
           </div>
         </div>

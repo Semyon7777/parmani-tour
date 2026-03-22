@@ -747,3 +747,40 @@
   color: #888;
   font-weight: 600;
 }
+
+/* ─── JSON PREVIEW + ITINERARY ───────────────────────────────── */
+.json-preview {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.75rem;
+  font-family: monospace;
+  white-space: pre-wrap;
+  word-break: break-all;
+  max-height: 150px;
+  overflow-y: auto;
+  margin: 0;
+  color: #444;
+}
+
+.itinerary-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.itinerary-preview-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: #444;
+}
+
+.step-time {
+  font-weight: 700;
+  color: #3a7d44;
+  min-width: 45px;
+  font-size: 0.8rem;
+}
