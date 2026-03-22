@@ -322,6 +322,21 @@
   color: #aaa;
 }
 
+.profile-page-root .booking-status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.profile-page-root .booking-status.confirmed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.profile-page-root .booking-status.cancelled {
+  background: #f8d7da;
+  color: #721c24;
+}
+
 /* ── НАСТРОЙКИ ── */
 .profile-page-root .settings-wrapper {
   display: flex;

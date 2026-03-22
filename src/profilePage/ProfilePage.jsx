@@ -2,63 +2,62 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useNavigate, Link } from "react-router-dom";
-import { Heart, Clock, Settings, LogOut, User, Mail, Globe, 
+import { Heart, Clock, Settings, LogOut, User, Mail, Globe,
     ChevronRight, MapPin, Calendar } from "lucide-react";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
-import privateToursData from "../toursPage/toursData.json"
+import privateToursData from "../toursPage/toursData.json";
 import "./ProfilePage.css";
-
+ 
 function ProfilePage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("favourites");
-
+ 
   useEffect(() => {
     window.scrollTo(0, 0);
-
+ 
     const fetchFullProfile = async () => {
-        // 1. Получаем базовые данные сессии (ID пользователя)
-        const { data: { user: authUser }, error: authError } = await supabase.auth.getUser();
-
-        if (authError || !authUser) {
+      const { data: { user: authUser }, error: authError } = await supabase.auth.getUser();
+ 
+      if (authError || !authUser) {
         navigate("/login");
         return;
-        }
-
-        // 2. Тянем расширенные данные из нашей таблицы profiles
-        const { data: profileData, error: profileError } = await supabase
+      }
+ 
+      // ✅ maybeSingle() не падает с 406 если строка не найдена (single() падает)
+      const { data: profileData } = await supabase
         .from("profiles")
         .select("*")
         .eq("id", authUser.id)
-        .single();
-
-        if (!profileError && profileData) {
-        // Соединяем email из auth и данные из профиля
+        .maybeSingle();
+ 
+      if (profileData) {
         setUser({ ...profileData, email: authUser.email });
-        } else {
-        // Если профиль вдруг не найден, используем данные из auth как запасной вариант
+      } else {
+        // ✅ ИСПРАВЛЕНО: добавляем id — без него дочерние табы шлют user_id=undefined
         setUser({
-            full_name: authUser.user_metadata?.full_name || "Traveler",
-            email: authUser.email,
-            avatar_url: authUser.user_metadata?.avatar_url
+          id: authUser.id,
+          full_name: authUser.user_metadata?.full_name || "Traveler",
+          email: authUser.email,
+          avatar_url: authUser.user_metadata?.avatar_url,
         });
-        }
-        
-        setLoading(false);
+      }
+ 
+      setLoading(false);
     };
-
+ 
     fetchFullProfile();
-    }, [navigate]);
-
+  }, [navigate]);
+ 
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate("/");
   };
-
+ 
   if (loading) {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
@@ -66,33 +65,29 @@ function ProfilePage() {
       </div>
     );
   }
-
+ 
   const tabs = [
-    { id: "favourites", label: t("profile.tab_favourites", "Избранное"), icon: <Heart size={18} /> },
-    { id: "bookings",   label: t("profile.tab_bookings", "Бронирования"), icon: <Clock size={18} /> },
-    { id: "settings",  label: t("profile.tab_settings", "Настройки"), icon: <Settings size={18} /> },
+    { id: "favourites", label: t("profile.tab_favourites", "Избранное"),    icon: <Heart size={18} /> },
+    { id: "bookings",   label: t("profile.tab_bookings",   "Бронирования"), icon: <Clock size={18} /> },
+    { id: "settings",  label: t("profile.tab_settings",   "Настройки"),    icon: <Settings size={18} /> },
   ];
-
+ 
   return (
     <div className="profile-page-root">
       <NavbarCustom />
-
-      {/* Hero полоска */}
+ 
       <div className="profile-hero">
         <Container>
           <div className="profile-hero-inner">
-            {/* Аватар */}
             <div className="profile-avatar">
-                {user.avatar_url ? (
-                    <img src={user.avatar_url} alt="avatar" />
-                ) : (
-                    <span>{user.full_name?.[0]?.toUpperCase() || "U"}</span>
-                )}
+              {user.avatar_url ? (
+                <img src={user.avatar_url} alt="avatar" />
+              ) : (
+                <span>{user.full_name?.[0]?.toUpperCase() || "U"}</span>
+              )}
             </div>
             <div className="profile-hero-info">
-                <h2 className="profile-name">
-                    {user.full_name || "Guest"}
-                </h2>
+              <h2 className="profile-name">{user.full_name || "Guest"}</h2>
               <p className="profile-email">
                 <Mail size={14} className="me-1" />
                 {user.email}
@@ -105,9 +100,8 @@ function ProfilePage() {
           </div>
         </Container>
       </div>
-
+ 
       <Container className="profile-content py-5">
-        {/* Табы */}
         <div className="profile-tabs mb-5">
           {tabs.map(tab => (
             <button
@@ -120,86 +114,79 @@ function ProfilePage() {
             </button>
           ))}
         </div>
-
-        {/* Контент табов */}
+ 
         {activeTab === "favourites" && <FavouritesTab user={user} />}
         {activeTab === "bookings"   && <BookingsTab user={user} />}
         {activeTab === "settings"   && <SettingsTab user={user} setUser={setUser} />}
       </Container>
-
+ 
       <Footer />
     </div>
   );
 }
-
-
+ 
+ 
 // ─── ТАБ: ИЗБРАННОЕ ───────────────────────────────────────────
-// 1. В самом верху файла ProfilePage.jsx (где импорты) добавь свой JSON:
-// import privateToursData from "../data/privateTours.json"; 
-
 function FavouritesTab({ user }) {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || "en";
   const [favourites, setFavourites] = useState([]);
   const [loading, setLoading] = useState(true);
-
+ 
   useEffect(() => {
     const fetchHybridData = async () => {
       setLoading(true);
-      
-      // 1. Берем все tour_id из таблицы favourites
+ 
       const { data: favRows, error } = await supabase
         .from("favourites")
         .select("tour_id")
         .eq("user_id", user.id);
-
+ 
       if (error || !favRows) {
         setLoading(false);
         return;
       }
-
+ 
       const allFavIds = favRows.map(f => f.tour_id);
-
-      // 2. Тянем детали ГРУППОВЫХ туров из базы
+ 
+      // Групповые туры из Supabase
       const { data: dbTours } = await supabase
         .from("group_eco_tours")
         .select("id, title, image, price, location, type")
         .in("id", allFavIds);
-
-      // 3. Тянем детали ПРИВАТНЫХ туров из JSON
-      // (Подставь сюда правильное имя переменной твоего импортированного JSON)
+ 
+      // ✅ ИСПРАВЛЕНО: переименовали переменную map с `t` на `tour`,
+      //    чтобы не затенять функцию `t` из useTranslation
       const jsonTours = privateToursData
-        .filter(t => allFavIds.includes(t.id))
-        .map(t => ({
-          ...t,
-          // Приводим поля к единому формату, если в JSON они называются иначе
-          image: t.imageUrl || t.image, 
-          type: "private" 
+        .filter(tour => allFavIds.includes(tour.id))
+        .map(tour => ({
+          ...tour,
+          image: tour.imageUrl || tour.image,
+          type: "private",
         }));
-
-      // 4. Объединяем результаты
+ 
       const combined = [...(dbTours || []), ...jsonTours];
       setFavourites(combined);
       setLoading(false);
     };
-
+ 
     fetchHybridData();
   }, [user.id]);
-
+ 
   const removeFavourite = async (tourId) => {
     const { error } = await supabase
       .from("favourites")
       .delete()
       .eq("user_id", user.id)
       .eq("tour_id", tourId);
-
+ 
     if (!error) {
       setFavourites(prev => prev.filter(f => f.id !== tourId));
     }
   };
-
+ 
   if (loading) return <div className="text-center py-5"><Spinner animation="border" variant="success" /></div>;
-
+ 
   if (favourites.length === 0) return (
     <div className="profile-empty-state">
       <Heart size={48} className="empty-icon" />
@@ -210,7 +197,7 @@ function FavouritesTab({ user }) {
       </Link>
     </div>
   );
-
+ 
   return (
     <Row className="g-4">
       {favourites.map((tour) => (
@@ -223,7 +210,12 @@ function FavouritesTab({ user }) {
             </div>
             <div className="profile-tour-body">
               <div className="profile-tour-type">{tour.type}</div>
-              <h5 className="profile-tour-title">{tour.title?.[currentLang] || tour.title?.en}</h5>
+              {/* ✅ title может быть объектом {en,ru,hy} или строкой — обрабатываем оба случая */}
+              <h5 className="profile-tour-title">
+                {typeof tour.title === "object"
+                  ? (tour.title[currentLang] || tour.title.en || tour.title.ru)
+                  : tour.title}
+              </h5>
               <div className="profile-tour-footer">
                 <span className="profile-tour-price">{tour.price}</span>
                 <Link
@@ -240,30 +232,31 @@ function FavouritesTab({ user }) {
     </Row>
   );
 }
-
-
+ 
+ 
 // ─── ТАБ: БРОНИРОВАНИЯ ────────────────────────────────────────
 function BookingsTab({ user }) {
   const { t } = useTranslation();
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
-
+ 
   useEffect(() => {
-    const fetch = async () => {
+    // ✅ Переименовали async функцию — было `fetch`, конфликтует с глобальным window.fetch
+    const fetchBookings = async () => {
       const { data, error } = await supabase
         .from("bookings")
         .select("*")
         .eq("user_id", user.id)
         .order("created_at", { ascending: false });
-
+ 
       if (!error) setBookings(data || []);
       setLoading(false);
     };
-    fetch();
+    fetchBookings();
   }, [user.id]);
-
+ 
   if (loading) return <div className="text-center py-5"><Spinner animation="border" variant="success" /></div>;
-
+ 
   if (bookings.length === 0) return (
     <div className="profile-empty-state">
       <Clock size={48} className="empty-icon" />
@@ -274,7 +267,7 @@ function BookingsTab({ user }) {
       </Link>
     </div>
   );
-
+ 
   return (
     <div className="bookings-list">
       {bookings.map(booking => (
@@ -298,39 +291,38 @@ function BookingsTab({ user }) {
     </div>
   );
 }
-
-
+ 
+ 
 // ─── ТАБ: НАСТРОЙКИ ───────────────────────────────────────────
 function SettingsTab({ user, setUser }) {
   const { t, i18n } = useTranslation();
   const [saved, setSaved] = useState(false);
-  const [name, setName] = useState(user.user_metadata?.full_name || "");
-
+ 
+  // ✅ ИСПРАВЛЕНО: user приходит из таблицы profiles, поле называется full_name, 
+  //    а не user_metadata.full_name (это поле из Supabase Auth, не из profiles)
+  const [name, setName] = useState(user.full_name || "");
+ 
   const handleSaveName = async () => {
     const { data: { user: authUser } } = await supabase.auth.getUser();
-    
-    // Обновляем таблицу profiles
+ 
     const { error } = await supabase
-        .from('profiles')
-        .update({ full_name: name })
-        .eq('id', authUser.id);
-
+      .from('profiles')
+      .update({ full_name: name })
+      .eq('id', authUser.id);
+ 
     if (!error) {
-        setSaved(true);
-        // Обновляем локальное состояние, чтобы имя сразу изменилось в шапке
-        setUser(prev => ({ ...prev, full_name: name }));
-        setTimeout(() => setSaved(false), 2500);
+      setSaved(true);
+      setUser(prev => ({ ...prev, full_name: name }));
+      setTimeout(() => setSaved(false), 2500);
     } else {
-        alert("Ошибка при сохранении: " + error.message);
+      alert("Ошибка при сохранении: " + error.message);
     }
-    };
-
+  };
+ 
   const changeLanguage = (lang) => i18n.changeLanguage(lang);
-
+ 
   return (
     <div className="settings-wrapper">
-
-      {/* Личные данные */}
       <div className="settings-card">
         <h5 className="settings-title">
           <User size={18} /> {t("profile.personal_info", "Личные данные")}
@@ -352,8 +344,7 @@ function SettingsTab({ user, setUser }) {
           {saved ? t("profile.saved", "Сохранено ✓") : t("profile.save", "Сохранить")}
         </button>
       </div>
-
-      {/* Язык */}
+ 
       <div className="settings-card">
         <h5 className="settings-title">
           <Globe size={18} /> {t("profile.language", "Язык")}
@@ -374,9 +365,8 @@ function SettingsTab({ user, setUser }) {
           ))}
         </div>
       </div>
-
     </div>
   );
 }
-
+ 
 export default ProfilePage;

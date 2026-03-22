@@ -2,91 +2,112 @@ import React, { useEffect, useState, useRef, useMemo } from "react";
 import { Button, Card, Row, Col, Spinner, Container, Dropdown } from 'react-bootstrap';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Search, ArrowUpDown, Clock, ChevronRight, 
-  ChevronLeft, User, Heart } from 'lucide-react'; 
+import { Search, ArrowUpDown, Clock, ChevronRight, ChevronLeft, User, Heart } from 'lucide-react';
 import toursData from "./toursData.json";
 import { supabase } from "../supabaseClient";
 import ToursPageHeroImg from "./axtala-img.webp";
-
+ 
 function ToursPageFirstPart() {
   const { t, i18n } = useTranslation();
   const lang = i18n.language || "en";
-  
+ 
   const [searchParams, setSearchParams] = useSearchParams();
-
-  // Состояния для фильтров, синхронизированные с URL
   const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
   const [activeCategory, setActiveCategory] = useState(searchParams.get("cat") || "all");
   const [sortBy, setSortBy] = useState(searchParams.get("sort") || "default");
   const [loading, setLoading] = useState(true);
-
-  // Текущая страница только из URL
+ 
+  // ✅ ОПТИМИЗАЦИЯ: Храним все лайкнутые ID в родителе — один запрос вместо N
+  const [likedTourIds, setLikedTourIds] = useState(new Set());
+ 
   const currentPage = parseInt(searchParams.get("page") || "1");
-
   const itemsPerPage = 6;
   const toursTopRef = useRef(null);
-
-  // ИСПРАВЛЕНО: Перенес categories внутрь компонента, чтобы ESLint их видел
+ 
   const categories = [
-    { id: "all", name: t('tour_info_page.filter_all', 'All') },
-    { id: "cultural", name: t('tour_info_page.filter_cultural', 'Cultural') },
-    { id: "nature", name: t('tour_info_page.filter_nature', 'Nature') },
-    { id: "gastronomic", name: t('tour_info_page.filter_gastro', 'Gastro') },
-    { id: "religious", name: t('tour_info_page.filter_religious', 'Religious') }
+    { id: "all",         name: t('tour_info_page.filter_all',      'All') },
+    { id: "cultural",    name: t('tour_info_page.filter_cultural',  'Cultural') },
+    { id: "nature",      name: t('tour_info_page.filter_nature',    'Nature') },
+    { id: "gastronomic", name: t('tour_info_page.filter_gastro',    'Gastro') },
+    { id: "religious",   name: t('tour_info_page.filter_religious', 'Religious') },
   ];
-
+ 
+  // ✅ ИСПРАВЛЕНО: Один запрос на все лайки пользователя
+  useEffect(() => {
+    const fetchUserLikes = async () => {
+      setLoading(false); // JSON данные уже в памяти
+ 
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+ 
+      const { data, error } = await supabase
+        .from("favourites")
+        .select("tour_id")
+        .eq("user_id", user.id);
+ 
+      if (!error && data) {
+        setLikedTourIds(new Set(data.map(row => row.tour_id)));
+      }
+    };
+ 
+    fetchUserLikes();
+  }, []);
+ 
+  // ✅ ИСПРАВЛЕНО: Функция обновления Set лайков (вызывается из карточки)
+  const handleLikeToggle = (tourId, isNowLiked) => {
+    setLikedTourIds(prev => {
+      const next = new Set(prev);
+      if (isNowLiked) {
+        next.add(tourId);
+      } else {
+        next.delete(tourId);
+      }
+      return next;
+    });
+  };
+ 
+  useEffect(() => {
+    toursTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [currentPage]);
+ 
   const updateParams = (newParams) => {
     const current = Object.fromEntries(searchParams.entries());
     setSearchParams({ ...current, ...newParams });
   };
-
-  const handlePageChange = (page) => {
-    updateParams({ page: page.toString() });
-  };
-
-  const handleSearchChange = (val) => {
-    setSearchQuery(val);
-    updateParams({ search: val, page: "1" }); 
-  };
-
-  const handleCategoryChange = (catId) => {
-    setActiveCategory(catId);
-    updateParams({ cat: catId, page: "1" }); 
-  };
-
-  const handleSortChange = (sortType) => {
-    setSortBy(sortType);
-    updateParams({ sort: sortType });
-  };
-
+ 
+  const handlePageChange    = (page)    => updateParams({ page: page.toString() });
+  const handleSearchChange  = (val)     => { setSearchQuery(val); updateParams({ search: val, page: "1" }); };
+  const handleCategoryChange= (catId)   => { setActiveCategory(catId); updateParams({ cat: catId, page: "1" }); };
+  const handleSortChange    = (sortType)=> { setSortBy(sortType); updateParams({ sort: sortType }); };
+ 
   const resetFilters = () => {
     setSearchQuery("");
     setActiveCategory("all");
     setSortBy("default");
-    setSearchParams({}); 
+    setSearchParams({});
   };
-
-  useEffect(() => {
-    if (toursData) setLoading(false);
-    
-    // Скроллим вверх при ЛЮБОМ изменении страницы
-    toursTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, [currentPage]);
-
+ 
   const processedTours = useMemo(() => {
     const lowerCaseSearch = searchQuery.toLowerCase();
     return [...toursData]
       .filter(tour => {
-        const matchesSearch = 
+        const matchesSearch =
           tour.title[lang]?.toLowerCase().includes(lowerCaseSearch) ||
           tour.description[lang]?.toLowerCase().includes(lowerCaseSearch);
-        const matchesCategory = activeCategory === "all" || (Array.isArray(tour.category) ? tour.category.includes(activeCategory) : tour.category === activeCategory);
+ 
+        const matchesCategory =
+          activeCategory === "all" ||
+          (Array.isArray(tour.category)
+            ? tour.category.includes(activeCategory)
+            : tour.category === activeCategory);
+ 
         let matchesDuration = true;
         if (sortBy === "filter_1day") {
           matchesDuration = tour.durationUnit === "hours" || (tour.durationUnit === "days" && tour.duration === 1);
         } else if (sortBy === "filter_multiday") {
           matchesDuration = tour.durationUnit === "days" && tour.duration > 1;
         }
+ 
         return matchesSearch && matchesCategory && matchesDuration;
       })
       .sort((a, b) => {
@@ -98,16 +119,14 @@ function ToursPageFirstPart() {
         return 0;
       });
   }, [searchQuery, activeCategory, sortBy, lang]);
-
-  const indexOfLastTour = currentPage * itemsPerPage;
+ 
+  const indexOfLastTour  = currentPage * itemsPerPage;
   const indexOfFirstTour = indexOfLastTour - itemsPerPage;
-  const currentTours = processedTours.slice(indexOfFirstTour, indexOfLastTour);
-  const pageCount = Math.ceil(processedTours.length / itemsPerPage);
-  
-
+  const currentTours     = processedTours.slice(indexOfFirstTour, indexOfLastTour);
+  const pageCount        = Math.ceil(processedTours.length / itemsPerPage);
+ 
   return (
     <div className="tours-page-wrapper">
-      {/* Hero-блок оставляем без изменений */}
       <div className="tours-hero-simple">
         <img src={ToursPageHeroImg} alt="Hero" className="hero-bg-img" fetchpriority="high" />
         <div className="hero-content text-center">
@@ -116,9 +135,9 @@ function ToursPageFirstPart() {
           <div className="search-box-container mx-auto">
             <div className="search-bar-modern">
               <Search className="search-icon" size={20} />
-              <input 
-                type="text" 
-                value={searchQuery} 
+              <input
+                type="text"
+                value={searchQuery}
                 onChange={e => handleSearchChange(e.target.value)}
                 placeholder={t('tour_info_page.search_tours')}
               />
@@ -126,32 +145,29 @@ function ToursPageFirstPart() {
           </div>
         </div>
       </div>
-
+ 
       <Container className="py-5">
-
-      {/* ЗАГОЛОВОК + КОЛ-ВО ТУРОВ */}
-      <div className="tours-list-header mb-4">
-        <div>
-          <h2 className="tours-list-title">
-            {t('tour_info_page.all_tours_title', 'All Tours')}
-          </h2>
-          <p className="tours-count-text">
-            {processedTours.length > 0 ? (
-              <>
-                {t('tour_info_page.found', 'Found')}{" "}
-                <span className="count-number">{processedTours.length}</span>{" "}
-                {t('tour_info_page.tours_count', 'tours')}
-              </>
-            ) : (
-              <span className="text-muted fst-italic">
-                {t('tour_info_page.no_results', 'No tours found')}
-              </span>
-            )}
-          </p>
+        <div className="tours-list-header mb-4">
+          <div>
+            <h2 className="tours-list-title">
+              {t('tour_info_page.all_tours_title', 'All Tours')}
+            </h2>
+            <p className="tours-count-text">
+              {processedTours.length > 0 ? (
+                <>
+                  {t('tour_info_page.found', 'Found')}{" "}
+                  <span className="count-number">{processedTours.length}</span>{" "}
+                  {t('tour_info_page.tours_count', 'tours')}
+                </>
+              ) : (
+                <span className="text-muted fst-italic">
+                  {t('tour_info_page.no_results', 'No tours found')}
+                </span>
+              )}
+            </p>
+          </div>
         </div>
-      </div>
-
-        {/* --- НОВЫЙ БЛОК ФИЛЬТРОВ (Header) --- */}
+ 
         <div className="filter-section-wrapper mb-5" ref={toursTopRef}>
           <div className="d-flex flex-wrap justify-content-between align-items-end gap-3">
             <div className="filter-left">
@@ -167,7 +183,6 @@ function ToursPageFirstPart() {
                 ))}
               </div>
             </div>
-
             <div className="filter-right d-flex align-items-center gap-3">
               <Dropdown onSelect={(e) => handleSortChange(e)}>
                 <Dropdown.Toggle variant="outline-dark" className="rounded-pill">
@@ -182,7 +197,7 @@ function ToursPageFirstPart() {
             </div>
           </div>
         </div>
-
+ 
         {loading ? (
           <div className="text-center my-5"><Spinner animation="border" variant="success" /></div>
         ) : processedTours.length > 0 ? (
@@ -190,31 +205,32 @@ function ToursPageFirstPart() {
             <Row>
               {currentTours.map((tour) => (
                 <Col key={tour.id} sm={12} md={6} lg={4} className="mb-4">
-                  <AlbumCard tour={tour} />
+                  {/* ✅ ИСПРАВЛЕНО: передаём isLiked и onLikeToggle вместо onUnlike */}
+                  <AlbumCard
+                    tour={tour}
+                    isLiked={likedTourIds.has(tour.id)}
+                    onLikeToggle={handleLikeToggle}
+                  />
                 </Col>
               ))}
             </Row>
-            
+ 
             {pageCount > 1 && (
               <div className="pagination-wrapper">
                 <div className="custom-pagination">
-                  {/* Кнопка Назад */}
-                  <button 
+                  <button
                     className="pagination-btn arrow"
                     disabled={currentPage === 1}
                     onClick={() => handlePageChange(currentPage - 1)}
                   >
                     <ChevronLeft size={20} />
                   </button>
-
-                  {/* Генерация чисел */}
+ 
                   {Array.from({ length: pageCount }, (_, i) => {
                     const pageNum = i + 1;
-                    
-                    // Логика отображения: первая, последняя и соседи текущей
                     if (
-                      pageNum === 1 || 
-                      pageNum === pageCount || 
+                      pageNum === 1 ||
+                      pageNum === pageCount ||
                       (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)
                     ) {
                       return (
@@ -227,17 +243,13 @@ function ToursPageFirstPart() {
                         </button>
                       );
                     }
-
-                    // Многоточие
                     if (pageNum === currentPage - 2 || pageNum === currentPage + 2) {
                       return <span key={pageNum} className="pagination-dots">...</span>;
                     }
-
                     return null;
                   })}
-
-                  {/* Кнопка Вперед */}
-                  <button 
+ 
+                  <button
                     className="pagination-btn arrow"
                     disabled={currentPage === pageCount}
                     onClick={() => handlePageChange(currentPage + 1)}
@@ -250,105 +262,79 @@ function ToursPageFirstPart() {
           </>
         ) : (
           <div className="text-center py-5">
-             <h3>😔 {t('tour_info_page.no_results')}</h3>
-              <Button variant="link" onClick={resetFilters}>
-               {t('tour_info_page.reset_filters')}
-             </Button>
+            <h3>😔 {t('tour_info_page.no_results')}</h3>
+            <Button variant="link" onClick={resetFilters}>
+              {t('tour_info_page.reset_filters')}
+            </Button>
           </div>
         )}
       </Container>
     </div>
   );
 }
-
-
-const AlbumCard = React.memo(({ tour, onUnlike }) => {
+ 
+ 
+// ✅ ОПТИМИЗАЦИЯ: AlbumCard больше не делает свой Supabase запрос.
+//    Получает isLiked и onLikeToggle от родителя.
+const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle }) => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language || "en";
-
-  // --- ДОБАВЛЕНО: Состояния, которых не хватало ---
-  const [isLiked, setIsLiked] = useState(false);
   const [loadingLike, setLoadingLike] = useState(false);
-
-  // 1. При загрузке проверяем, лайкнут ли уже этот тур
-  useEffect(() => {
-    const checkLikeStatus = async () => {
-      // ПРОВЕРЬ: Убедись, что наверху файла есть import { supabase } from "../supabaseClient";
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) return;
-
-      const { data } = await supabase
-        .from("favourites")
-        .select("id")
-        .eq("user_id", user.id)
-        .eq("tour_id", tour.id)
-        .maybeSingle();
-
-      if (data) setIsLiked(true);
-    };
-    checkLikeStatus();
-  }, [tour.id]);
-
-  // 2. Функция переключения лайка
+ 
   const handleToggleLike = async (e) => {
-    e.preventDefault(); 
-    e.stopPropagation(); 
+    e.preventDefault();
+    e.stopPropagation();
     setLoadingLike(true);
-
+ 
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
-      alert(t('tour_info_page.please_login', 'Please login to save tours')); 
+      alert(t('tour_info_page.please_login', 'Please login to save tours'));
       setLoadingLike(false);
       return;
     }
-
+ 
     if (isLiked) {
-      // УДАЛЯЕМ ЛАЙК
       const { error } = await supabase
         .from("favourites")
         .delete()
         .eq("user_id", user.id)
         .eq("tour_id", tour.id);
-      
-      if (!error) {
-        setIsLiked(false);
-        // ВАЖНО: вызываем onUnlike, чтобы карточка исчезла из списка в профиле
-        if (onUnlike) onUnlike(tour.id); 
-      }
+ 
+      if (!error) onLikeToggle(tour.id, false);
     } else {
-      // ДОБАВЛЯЕМ ЛАЙК
       const { error } = await supabase
         .from("favourites")
         .insert([{ user_id: user.id, tour_id: tour.id }]);
-      if (!error) setIsLiked(true);
+ 
+      if (!error) onLikeToggle(tour.id, true);
     }
+ 
     setLoadingLike(false);
   };
-
+ 
   return (
     <Card className="tour-card-modern border-0 shadow-sm h-100 position-relative">
       <div className="card-img-wrapper">
         <Card.Img variant="top" src={tour.imageUrl} className="tour-card-img" loading="lazy" />
-        
-        {/* --- ДОБАВЛЕНО: Кнопка-сердечко --- */}
-        <button 
-          className={`favourite-btn ${isLiked ? 'active' : ''}`} 
+ 
+        <button
+          className={`favourite-btn ${isLiked ? 'active' : ''}`}
           onClick={handleToggleLike}
           disabled={loadingLike}
           style={{
             position: 'absolute', top: '15px', right: '15px',
             background: 'rgba(0,0,0,0.3)', border: 'none', borderRadius: '50%',
-            width: '36px', height: '36px', display: 'flex', 
-            alignItems: 'center', justifyContent: 'center', zIndex: 10
+            width: '36px', height: '36px', display: 'flex',
+            alignItems: 'center', justifyContent: 'center', zIndex: 10,
           }}
         >
-          <Heart 
-            size={18} 
-            fill={isLiked ? "#ff4d4d" : "transparent"} 
-            stroke={isLiked ? "#ff4d4d" : "white"} 
+          <Heart
+            size={18}
+            fill={isLiked ? "#ff4d4d" : "transparent"}
+            stroke={isLiked ? "#ff4d4d" : "white"}
           />
         </button>
-
+ 
         <div className="card-price-badge">
           <div className="d-flex align-items-center gap-2">
             <span>{t('tour_info_page.starting_from')} {tour.price}</span>
@@ -361,11 +347,14 @@ const AlbumCard = React.memo(({ tour, onUnlike }) => {
           </div>
         </div>
       </div>
+ 
       <Card.Body className="d-flex flex-column p-4">
         <Card.Title className="fw-bold mb-2">{tour.title[lang]}</Card.Title>
         <div className="d-flex align-items-center text-muted mb-3 small">
           <Clock size={16} className="me-2 text-success" />
-          <span>{tour.duration} {tour.durationUnit === 'days' ? t('tour_info_page.days') : t('tour_info_page.hours')}</span>
+          <span>
+            {tour.duration} {tour.durationUnit === 'days' ? t('tour_info_page.days') : t('tour_info_page.hours')}
+          </span>
         </div>
         <Card.Text className="text-muted small flex-grow-1">{tour.description[lang]}</Card.Text>
         <Link to={`/private-tours/${tour.id}`} className="mt-3">
@@ -375,5 +364,5 @@ const AlbumCard = React.memo(({ tour, onUnlike }) => {
     </Card>
   );
 });
-
+ 
 export default ToursPageFirstPart;

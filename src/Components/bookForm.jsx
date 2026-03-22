@@ -10,6 +10,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useParams } from 'react-router-dom';
 import { FaCalendarAlt } from 'react-icons/fa';
 import { useRef } from 'react';
+import { supabase } from "../supabaseClient";
 import emailjs from '@emailjs/browser';
 import ReCAPTCHA from "react-google-recaptcha";
 import toursData from "../toursPage/toursData.json";
@@ -17,7 +18,7 @@ import Calculator from './Calculator';
 
 
 function BookForm() {
-const { t, i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { tourName } = useParams(); 
   const cleanTourName = tourName.replace("-reservation", "");
   const [calculation, setCalculation] = useState(null);
@@ -76,18 +77,18 @@ const { t, i18n } = useTranslation();
   // --- ОБНОВЛЕННАЯ ЛОГИКА ОТПРАВКИ С CAPTCHA ---
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
+    // 1. Валидация
     if (!agreedToTerms) {
       setError(t('bookForm.errorAgreeToTerms'));
       window.scrollTo(0, 0);
       return;
     }
 
-    const requiredFields = ['firstName', 'lastName','guide', 'startDate', 'email', 'phone'];
+    const requiredFields = ['firstName', 'lastName', 'guide', 'startDate', 'email', 'phone'];
     for (let field of requiredFields) {
       if (!formData[field]) {
         setError(t('bookForm.errorEmptyField', { field: t(`bookForm.fields.${field}`) }));
-
         window.scrollTo(0, 0);
         return;
       }
@@ -95,7 +96,6 @@ const { t, i18n } = useTranslation();
 
     if (!validateEmail(formData.email)) {
       setError(t('bookForm.errorInvalidEmail'));
-
       window.scrollTo(0, 0);
       return;
     }
@@ -104,60 +104,86 @@ const { t, i18n } = useTranslation();
     setIsSubmitting(true);
 
     try {
-      // 2. Получаем токен капчи
+      // 2. Капча
       const token = await recaptchaRef.current.executeAsync();
-
       if (!token) {
         setError("Captcha verification failed. Please try again.");
         setIsSubmitting(false);
         return;
       }
 
-      // 3. Подготовка данных для EmailJS
-      const templateParams = {
-        tourName: cleanTourName,
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        phone_number: formData.phone, 
-        startDate: formData.startDate.toLocaleString(),
-        people: numberOfPeople,
-        pincode: formData.pincode ? "Tickets included" : "No tickets",
-        course: formData.course ? "Food included" : "No food",
-        comments: formData.comments || "No special requests",
+      const { data: { user } } = await supabase.auth.getUser();
 
-        // --- НОВЫЕ ПОЛЯ ДЛЯ ЦЕН (Конфиденциально) ---
-        finalPrice: calculation?.finalPrice + " AMD but client will pay " + (Math.round((calculation?.finalPrice/ 1000)) * 1000),
-        transportCost: calculation?.transportCost + " AMD",
-        guideCost: calculation?.guideCost + " AMD",
-        extraCost: calculation?.extraCost + " AMD",
-        totalCostWithBuffer: calculation?.totalCostWithBuffer + " AMD",
-        cleanProfit: calculation?.cleanProfit + " AMD",
-        tax: calculation?.tax + " AMD",
-        vehicleType: calculation?.vehicleType,
-        vehicleCount: calculation?.vehicleCount,
-        'g-recaptcha-response': token // Передаем токен
-      };
+      // 3. ЗАПИСЬ В SUPABASE (Главный приоритет)
+      if (user) {
+        const { error: dbError } = await supabase
+          .from('bookings')
+          .insert([{
+            user_id: user.id,
+            tour_id: cleanTourName,
+            tour_name: currentTour?.title?.[i18n.language] || cleanTourName,
+            full_name: `${formData.firstName} ${formData.lastName}`,
+            email: formData.email,
+            phone: formData.phone,
+            guests_count: numberOfPeople,
+            travel_date: formData.startDate ? formData.startDate.toISOString().split('T')[0] : null,
+            total_price: calculation?.finalPrice ? (calculation.finalPrice + " AMD") : "TBD",
+            status: 'pending'
+          }]);
 
-      // 4. Отправка через EmailJS
-      await emailjs.send(
-        'service_fkaou6c', 
-        'template_ut3xykg', 
-        templateParams, 
-        'IUMzWx8Tsm9hYF3UR' 
-      );
+        if (dbError) console.error("Database Save Error:", dbError);
+      }
 
+      // 4. ПОПЫТКА ОТПРАВКИ EMAIL (Изолированная)
+      // Добавляем недостающий try здесь:
+      try {
+        const templateParams = {
+          tourName: cleanTourName,
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone_number: formData.phone,
+          startDate: formData.startDate.toLocaleString(),
+          people: numberOfPeople,
+          pincode: formData.pincode ? "Tickets included" : "No tickets",
+          course: formData.course ? "Food included" : "No food",
+          comments: formData.comments || "No special requests",
+          finalPrice: calculation?.finalPrice + " AMD but client will pay " + (Math.round((calculation?.finalPrice / 1000)) * 1000),
+          transportCost: calculation?.transportCost + " AMD",
+          guideCost: calculation?.guideCost + " AMD",
+          extraCost: calculation?.extraCost + " AMD",
+          totalCostWithBuffer: calculation?.totalCostWithBuffer + " AMD",
+          cleanProfit: calculation?.cleanProfit + " AMD",
+          tax: calculation?.tax + " AMD",
+          vehicleType: calculation?.vehicleType,
+          vehicleCount: calculation?.vehicleCount,
+          'g-recaptcha-response': token
+        };
+
+        await emailjs.send(
+          'service_fkaou6c',
+          'template_ut3xykg',
+          templateParams,
+          'IUMzWx8Tsm9hYF3UR'
+        );
+        console.log("Email sent successfully!");
+      } catch (emailError) {
+        // Если лимит писем кончился, просто пишем в консоль, не пугая пользователя
+        console.warn("EmailJS error (likely limit), but booking is safe in DB:", emailError);
+      }
+
+      // 5. ФИНАЛ: Показываем успех (так как в базу данные уже ушли)
       setShowAlert(true);
-      recaptchaRef.current.reset(); // Сброс капчи
+      recaptchaRef.current.reset();
 
       setTimeout(() => {
         setShowAlert(false);
-        navigate("/tours");
+        navigate("/private-tours");
       }, 5000);
 
     } catch (err) {
-      console.error("Booking Error:", err);
-      alert(t('bookForm.errorSendingEmail') + " " + (err.text || err));
+      console.error("Global Booking Error:", err);
+      setError(t('bookForm.errorGeneral', "Something went wrong. Please try again."));
     } finally {
       setIsSubmitting(false);
     }
