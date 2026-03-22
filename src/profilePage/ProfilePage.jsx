@@ -3,7 +3,7 @@ import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useNavigate, Link } from "react-router-dom";
 import { Heart, Clock, Settings, LogOut, User, Mail, Globe,
-    ChevronRight, Calendar } from "lucide-react";
+    ChevronRight, Calendar, Leaf, Users } from "lucide-react";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
@@ -221,6 +221,14 @@ function FavouritesTab({ favourites, loading, onRemove }) {
         <Col md={6} lg={4} key={tour.id}>
           <div className="profile-tour-card">
             <div className="profile-tour-img" style={{ backgroundImage: `url(${tour.image})` }}>
+              {(tour.type === "eco" || tour.type === "group") && (
+                <div className={`tour-card-minimal ${tour.type === "eco" ? "is-eco" : "is-group"}`}>
+                  <div className="tour-type-badge">
+                    {tour.type === "eco" ? <Leaf size={12} /> : <Users size={12} />}
+                    <span>{tour.type === "eco" ? t("group_eco_tours.badge_eco") : t("group_eco_tours.badge_group")}</span>
+                  </div>
+                </div>
+              )}
               <button className="profile-heart-btn active" onClick={() => onRemove(tour.id)}>
                 <Heart size={16} fill="currentColor" />
               </button>

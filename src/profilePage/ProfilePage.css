@@ -237,6 +237,33 @@
   color: #fff;
 }
 
+.is-group .tour-type-badge {
+    background: rgba(230, 126, 34, 0.9);
+    color: white;
+}
+
+.is-eco .tour-type-badge {
+    background: rgba(46, 204, 113, 0.9);
+    color: white;
+}
+
+.tour-type-badge {
+    position: absolute;
+    top: 15px;
+    right: 50px;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+
 /* ── БРОНИРОВАНИЯ ── */
 .profile-page-root .bookings-list {
   display: flex;
