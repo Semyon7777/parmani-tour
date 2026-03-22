@@ -72,7 +72,7 @@ function UncontrolledExample() {
     <Carousel indicators={false} interval={3000}>
       {carouselItems.map((item, index) => (
         <Carousel.Item key={index}>
-          <img className="d-block w-100" src={item.imgSrc} alt={`Slide ${index + 1}`} />
+          <img className="d-block w-100" src={item.imgSrc} alt={`Slide ${index + 1}`} loading="lazy"/>
           <Carousel.Caption>
             <h3 className="firstPageCarouselCaptionTitle">{item.title}</h3>
             <p className="firstPageCarouselCaptionInfo">{item.description}</p>

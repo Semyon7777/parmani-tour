@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { 
   MapPin, ShieldCheck, Heart, Headphones, Calendar, 
@@ -15,11 +15,6 @@ import Footer from "../Components/Footer";
 import "./firstPage.css";
 
 function HomePage() {
-  useTranslation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <div id="homePage">
@@ -196,9 +191,9 @@ function UpcomingEventsSection() {
             </div>
             <h2 className="home-section-title m-0">{t("home_page.upcoming.title", "Скоро в программе")}</h2>
           </div>
-          <Button variant="link" href="/group-eco-tours" className="view-all-link text-success p-0 d-none d-md-block">
-            {t("home_page.upcoming.view_all", "Смотреть все")} <ArrowRight size={18} />
-          </Button>
+          <Link to="/group-eco-tours" className="view-all-link text-success d-none d-md-block">
+            {t("home_page.upcoming.view_all")} <ArrowRight size={18} />
+          </Link>
         </div>
 
         <Row className="g-4">

@@ -12,11 +12,13 @@ function ToursPageFirstPart() {
   const lang = i18n.language || "en";
  
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchQuery, setSearchQuery]   = useState(searchParams.get("search") || "");
+  const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
   const [activeCategory, setActiveCategory] = useState(searchParams.get("cat") || "all");
-  const [sortBy, setSortBy]             = useState(searchParams.get("sort") || "default");
-  const [loading, setLoading]           = useState(true);
+  const [sortBy, setSortBy] = useState(searchParams.get("sort") || "default");
+  const [loading, setLoading] = useState(true);
   const [likedTourIds, setLikedTourIds] = useState(new Set());
+  const currentUserRef = useRef(null);
+  const [currentUser, setCurrentUser] = useState(null);
  
   const currentPage  = parseInt(searchParams.get("page") || "1");
   const itemsPerPage = 6;
@@ -35,6 +37,8 @@ function ToursPageFirstPart() {
     const fetchUserLikes = async () => {
       setLoading(false);
       const { data: { user } } = await supabase.auth.getUser();
+      currentUserRef.current = user;
+      setCurrentUser(user);
       if (!user) return;
  
       const { data, error } = await supabase
@@ -64,7 +68,15 @@ function ToursPageFirstPart() {
  
   const updateParams      = (p) => setSearchParams({ ...Object.fromEntries(searchParams.entries()), ...p });
   const handlePageChange  = (page)     => updateParams({ page: page.toString() });
-  const handleSearchChange= (val)      => { setSearchQuery(val);    updateParams({ search: val,  page: "1" }); };
+
+  const searchTimer = useRef(null);
+  const handleSearchChange = (val) => {
+    setSearchQuery(val); // стейт обновляется сразу — input отзывчивый
+    clearTimeout(searchTimer.current);
+    searchTimer.current = setTimeout(() => {
+      updateParams({ search: val, page: "1" }); // URL обновляется через 300ms паузы
+    }, 300);
+  };
   const handleCategoryChange= (catId)  => { setActiveCategory(catId); updateParams({ cat: catId, page: "1" }); };
   const handleSortChange  = (sortType) => { setSortBy(sortType);    updateParams({ sort: sortType }); };
   const resetFilters      = () => { setSearchQuery(""); setActiveCategory("all"); setSortBy("default"); setSearchParams({}); };
@@ -171,6 +183,7 @@ function ToursPageFirstPart() {
                     tour={tour}
                     isLiked={likedTourIds.has(tour.id)}
                     onLikeToggle={handleLikeToggle}
+                    currentUser={currentUser}
                   />
                 </Col>
               ))}
@@ -216,7 +229,7 @@ function ToursPageFirstPart() {
  
  
 // ─── КАРТОЧКА ТУРА ────────────────────────────────────────────
-const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle }) => {
+const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle, currentUser }) => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language || "en";
  
@@ -227,8 +240,8 @@ const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle }) => {
     e.preventDefault();
     e.stopPropagation();
     if (pending) return;
- 
-    const { data: { user } } = await supabase.auth.getUser();
+
+    const user = currentUser;
     if (!user) {
       alert(t('tour_info_page.please_login', 'Please login to save tours'));
       return;
