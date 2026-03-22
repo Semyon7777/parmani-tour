@@ -2,8 +2,10 @@ import React, { useEffect, useState, useRef, useMemo } from "react";
 import { Button, Card, Row, Col, Spinner, Container, Dropdown } from 'react-bootstrap';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Search, ArrowUpDown, Clock, ChevronRight, ChevronLeft } from 'lucide-react'; 
+import { Search, ArrowUpDown, Clock, ChevronRight, 
+  ChevronLeft, User, Heart } from 'lucide-react'; 
 import toursData from "./toursData.json";
+import { supabase } from "../supabaseClient";
 import ToursPageHeroImg from "./axtala-img.webp";
 
 function ToursPageFirstPart() {
@@ -260,16 +262,103 @@ function ToursPageFirstPart() {
 }
 
 
-const AlbumCard = React.memo(({ tour }) => {
+const AlbumCard = React.memo(({ tour, onUnlike }) => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language || "en";
 
+  // --- ДОБАВЛЕНО: Состояния, которых не хватало ---
+  const [isLiked, setIsLiked] = useState(false);
+  const [loadingLike, setLoadingLike] = useState(false);
+
+  // 1. При загрузке проверяем, лайкнут ли уже этот тур
+  useEffect(() => {
+    const checkLikeStatus = async () => {
+      // ПРОВЕРЬ: Убедись, что наверху файла есть import { supabase } from "../supabaseClient";
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+
+      const { data } = await supabase
+        .from("favourites")
+        .select("id")
+        .eq("user_id", user.id)
+        .eq("tour_id", tour.id)
+        .maybeSingle();
+
+      if (data) setIsLiked(true);
+    };
+    checkLikeStatus();
+  }, [tour.id]);
+
+  // 2. Функция переключения лайка
+  const handleToggleLike = async (e) => {
+    e.preventDefault(); 
+    e.stopPropagation(); 
+    setLoadingLike(true);
+
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      alert(t('tour_info_page.please_login', 'Please login to save tours')); 
+      setLoadingLike(false);
+      return;
+    }
+
+    if (isLiked) {
+      // УДАЛЯЕМ ЛАЙК
+      const { error } = await supabase
+        .from("favourites")
+        .delete()
+        .eq("user_id", user.id)
+        .eq("tour_id", tour.id);
+      
+      if (!error) {
+        setIsLiked(false);
+        // ВАЖНО: вызываем onUnlike, чтобы карточка исчезла из списка в профиле
+        if (onUnlike) onUnlike(tour.id); 
+      }
+    } else {
+      // ДОБАВЛЯЕМ ЛАЙК
+      const { error } = await supabase
+        .from("favourites")
+        .insert([{ user_id: user.id, tour_id: tour.id }]);
+      if (!error) setIsLiked(true);
+    }
+    setLoadingLike(false);
+  };
+
   return (
-    <Card className="tour-card-modern border-0 shadow-sm h-100">
+    <Card className="tour-card-modern border-0 shadow-sm h-100 position-relative">
       <div className="card-img-wrapper">
         <Card.Img variant="top" src={tour.imageUrl} className="tour-card-img" loading="lazy" />
+        
+        {/* --- ДОБАВЛЕНО: Кнопка-сердечко --- */}
+        <button 
+          className={`favourite-btn ${isLiked ? 'active' : ''}`} 
+          onClick={handleToggleLike}
+          disabled={loadingLike}
+          style={{
+            position: 'absolute', top: '15px', right: '15px',
+            background: 'rgba(0,0,0,0.3)', border: 'none', borderRadius: '50%',
+            width: '36px', height: '36px', display: 'flex', 
+            alignItems: 'center', justifyContent: 'center', zIndex: 10
+          }}
+        >
+          <Heart 
+            size={18} 
+            fill={isLiked ? "#ff4d4d" : "transparent"} 
+            stroke={isLiked ? "#ff4d4d" : "white"} 
+          />
+        </button>
+
         <div className="card-price-badge">
-          <span>{t('tour_info_page.starting_from')} {tour.price}</span>
+          <div className="d-flex align-items-center gap-2">
+            <span>{t('tour_info_page.starting_from')} {tour.price}</span>
+            <div className="d-flex align-items-center opacity-90" style={{ borderLeft: '1px solid rgba(255,255,255,0.3)', paddingLeft: '8px' }}>
+              <div className="d-flex align-items-center gap-1">
+                <User size={14} strokeWidth={2.5} />
+                <span style={{ fontSize: '0.9em' }}>x 4</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <Card.Body className="d-flex flex-column p-4">
@@ -279,7 +368,7 @@ const AlbumCard = React.memo(({ tour }) => {
           <span>{tour.duration} {tour.durationUnit === 'days' ? t('tour_info_page.days') : t('tour_info_page.hours')}</span>
         </div>
         <Card.Text className="text-muted small flex-grow-1">{tour.description[lang]}</Card.Text>
-        <Link to={`/tours/${tour.id}`} className="mt-3">
+        <Link to={`/private-tours/${tour.id}`} className="mt-3">
           <Button variant="success" className="w-100 rounded-pill">{t('viewTour')}</Button>
         </Link>
       </Card.Body>

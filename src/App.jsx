@@ -9,6 +9,7 @@ import TransportPage from "./transportPage/transportPage";
 import AllInOne from "./allInOne/AllInOne";
 import ContactPage from "./contactPage/ContactPage";
 import SpecialPage from "./specialPage/SpecialPage";
+import ProfilePage from "./profilePage/ProfilePage";
 import GroupEcoTours from "./groupEcoTours/GroupEcoTours";
 import EcoTourDetails from "./groupEcoTours/EcoTourDetails";
 import GroupTourDetails from "./groupEcoTours/GroupTourDetails";
@@ -17,6 +18,7 @@ import HistoryPage from "./historyPage/HistoryPage";
 import CuisinePage from "./cuisinePage/CuisinePage";
 import CulturePage from "./culturePage/CulturePage";
 import NaturePage from "./naturePage/NaturePage";
+import AuthPage from "./AuthPage/AuthPage";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import BookForm from "./Components/bookForm";
@@ -51,6 +53,8 @@ function App() {
             <Route path="/all-in-one" element={<AllInOne />}/>
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/special" element={<SpecialPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/login" element={<AuthPage />} />
             <Route path="/group-eco-tours" element={<GroupEcoTours />}/>
             <Route path="/eco-tour/:id" element={<EcoTourDetails />} />
             <Route path="/group-tour/:id" element={<GroupTourDetails />} />
@@ -59,7 +63,7 @@ function App() {
             <Route path="/culture" element={<CulturePage />}/>
             <Route path="/nature" element={<NaturePage />}/>
             <Route path="/about-us" element={<AboutUsPage />} />
-            <Route path="/tours/:tourId" element={<TourPageDynamic />} />
+            <Route path="/private-tours/:tourId" element={<TourPageDynamic />} />
             <Route path="/tours/booking/:tourName" element={<BookForm />} />
             <Route path="/terms" element={<LegalPage type="terms" />} />
             <Route path="/privacy" element={<LegalPage type="privacy" />} />

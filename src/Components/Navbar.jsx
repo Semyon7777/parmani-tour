@@ -137,6 +137,8 @@ const NavbarCustom = ({ isHomePage }) => {
                 <NavDropdown.Item href="/culture" className="dropdown-item">{t("navbar_custom.culture")}</NavDropdown.Item>
               </NavDropdown>
 
+              <LinkContainer to="/profile"><Nav.Link className="nav-link-item">{t("navbar_custom.profile_button")}</Nav.Link></LinkContainer>
+
               <div className="language-divider d-none d-lg-block"></div>
 
               <NavDropdown
@@ -152,6 +154,7 @@ const NavbarCustom = ({ isHomePage }) => {
                 <NavDropdown.Item onClick={() => changeLanguage("ru")}>🇷🇺 RU</NavDropdown.Item>
                 <NavDropdown.Item onClick={() => changeLanguage("hy")}>🇦🇲 HY</NavDropdown.Item>
               </NavDropdown>
+
             </Nav>
           </Navbar.Collapse>
         </Container>

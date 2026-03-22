@@ -1,0 +1,454 @@
+:root {
+  --profile-green: #2d6a4f;
+  --profile-dark: #1b4332;
+  --profile-mint: #d8f3dc;
+  --profile-soft: #f8faf9;
+}
+
+.profile-page-root {
+  margin-top: 60px;
+  background: var(--profile-soft);
+  min-height: 100vh;
+}
+
+/* ── HERO ── */
+.profile-page-root .profile-hero {
+  background: linear-gradient(180deg, #fff 0%, var(--profile-mint) 100%);
+  border-bottom: 1px solid #e0eee0;
+  padding: 40px 0;
+}
+
+.profile-page-root .profile-hero-inner {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.profile-page-root .profile-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--profile-green);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.profile-page-root .profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-page-root .profile-hero-info {
+  flex: 1;
+}
+
+.profile-page-root .profile-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--profile-dark);
+  margin: 0 0 4px;
+}
+
+.profile-page-root .profile-email {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.profile-page-root .profile-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  border-radius: 50px;
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  color: #888;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-left: auto;
+}
+
+.profile-page-root .profile-logout-btn:hover {
+  border-color: #f44336;
+  color: #f44336;
+}
+
+/* ── ТАБЫ ── */
+.profile-page-root .profile-tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid #e8f0e8;
+  padding-bottom: 0;
+  flex-wrap: wrap;
+}
+
+.profile-page-root .profile-tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #888;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: -1px;
+}
+
+.profile-page-root .profile-tab-btn:hover {
+  color: var(--profile-green);
+}
+
+.profile-page-root .profile-tab-btn.active {
+  color: var(--profile-green);
+  border-bottom-color: var(--profile-green);
+}
+
+/* ── КАРТОЧКИ ТУРОВ (избранное) ── */
+.profile-page-root .profile-tour-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #e8f0e8;
+  transition: transform 0.2s ease;
+}
+
+.profile-page-root .profile-tour-card:hover {
+  transform: translateY(-3px);
+}
+
+.profile-page-root .profile-tour-img {
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.profile-page-root .profile-heart-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #e74c3c;
+  transition: transform 0.2s ease;
+}
+
+.profile-page-root .profile-heart-btn:hover {
+  transform: scale(1.15);
+}
+
+.profile-page-root .profile-tour-body {
+  padding: 16px;
+}
+
+.profile-page-root .profile-tour-type {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--profile-green);
+  margin-bottom: 6px;
+}
+
+.profile-page-root .profile-tour-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.profile-page-root .profile-tour-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.profile-page-root .profile-tour-price {
+  font-weight: 700;
+  color: var(--profile-green);
+  font-size: 0.95rem;
+}
+
+.profile-page-root .profile-tour-link {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.82rem;
+  color: var(--profile-green);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ── EMPTY STATE ── */
+.profile-page-root .profile-empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #aaa;
+}
+
+.profile-page-root .empty-icon {
+  color: #d0e8d0;
+  margin-bottom: 16px;
+}
+
+.profile-page-root .profile-empty-state h4 {
+  color: #555;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.profile-page-root .profile-empty-state p {
+  font-size: 0.88rem;
+  margin-bottom: 24px;
+}
+
+.profile-page-root .profile-cta-btn {
+  display: inline-block;
+  background: var(--profile-green);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.profile-page-root .profile-cta-btn:hover {
+  background: var(--profile-dark);
+  color: #fff;
+}
+
+/* ── БРОНИРОВАНИЯ ── */
+.profile-page-root .bookings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.profile-page-root .booking-card {
+  background: #fff;
+  border: 1px solid #e8f0e8;
+  border-radius: 14px;
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.profile-page-root .booking-status {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  background: var(--profile-mint);
+  color: var(--profile-dark);
+}
+
+.profile-page-root .booking-status.cancelled {
+  background: #fdecea;
+  color: #c0392b;
+}
+
+.profile-page-root .booking-status.pending {
+  background: #fff8e1;
+  color: #f39c12;
+}
+
+.profile-page-root .booking-tour-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 8px;
+}
+
+.profile-page-root .booking-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.profile-page-root .booking-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.profile-page-root .booking-card-right {
+  text-align: right;
+}
+
+.profile-page-root .booking-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--profile-green);
+}
+
+.profile-page-root .booking-people {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+/* ── НАСТРОЙКИ ── */
+.profile-page-root .settings-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+}
+
+.profile-page-root .settings-card {
+  background: #fff;
+  border: 1px solid #e8f0e8;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.profile-page-root .settings-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--profile-dark);
+  margin-bottom: 20px;
+}
+
+.profile-page-root .settings-field {
+  margin-bottom: 16px;
+}
+
+.profile-page-root .settings-field label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #888;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-page-root .settings-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  color: #1a1a1a;
+  background: #fafafa;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.profile-page-root .settings-input:focus {
+  border-color: var(--profile-green);
+  background: #fff;
+}
+
+.profile-page-root .settings-input:disabled {
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.profile-page-root .settings-save-btn {
+  background: var(--profile-green);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 24px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  margin-top: 4px;
+}
+
+.profile-page-root .settings-save-btn:hover {
+  background: var(--profile-dark);
+}
+
+.profile-page-root .lang-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.profile-page-root .lang-btn {
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 1px solid #e0e0e0;
+  background: transparent;
+  font-size: 0.88rem;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.profile-page-root .lang-btn.active {
+  background: var(--profile-green);
+  color: #fff;
+  border-color: var(--profile-green);
+}
+
+/* ── АДАПТИВ ── */
+@media (max-width: 768px) {
+  .profile-page-root .profile-hero-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .profile-page-root .profile-logout-btn {
+    margin-left: 0;
+  }
+
+  .profile-page-root .profile-tabs {
+    gap: 0;
+  }
+
+  .profile-page-root .profile-tab-btn {
+    padding: 10px 14px;
+    font-size: 0.82rem;
+  }
+
+  .profile-page-root .booking-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .profile-page-root .booking-card-right {
+    text-align: left;
+  }
+}
