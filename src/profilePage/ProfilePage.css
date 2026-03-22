@@ -128,10 +128,6 @@
   transition: transform 0.2s ease;
 }
 
-.profile-page-root .profile-tour-card:hover {
-  transform: translateY(-3px);
-}
-
 .profile-page-root .profile-tour-img {
   height: 160px;
   background-size: cover;
@@ -154,10 +150,6 @@
   cursor: pointer;
   color: #e74c3c;
   transition: transform 0.2s ease;
-}
-
-.profile-page-root .profile-heart-btn:hover {
-  transform: scale(1.15);
 }
 
 .profile-page-root .profile-tour-body {
