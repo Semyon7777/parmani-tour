@@ -16,43 +16,68 @@ function GroupEcoTours() {
   const [activeTab, setActiveTab] = useState("all");
   const [allTours, setAllTours] = useState([]);
   const [loading, setLoading] = useState(true);
-  
   const currentLang = i18n.language || 'en';
 
+  // ✅ Стейт лайков живёт здесь — один запрос, передаём вниз
+  const [likedTourIds, setLikedTourIds] = useState(new Set());
+  const [currentUser, setCurrentUser]   = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    
-      const fetchTours = async () => {
-    // Если кэш есть — берём оттуда, запрос не делаем
-    if (toursCache) {
-      setAllTours(toursCache);
-      setLoading(false);
-      return;
-    }
 
-    setLoading(true);
-    try {
-      const { data, error } = await supabase
-        .from('group_eco_tours')
-        .select('id, type, title, location, date, price, spots, image')
-        .eq('is_active', true);
-
-      if (error) throw error;
-      
-      if (data && data.length > 0) {
-        toursCache = data;
+    const fetchTours = async () => {
+      if (toursCache) {
+        setAllTours(toursCache);
+        setLoading(false);
+        return;
       }
-      setAllTours(data || []);
-    } catch (error) {
-      console.error("Error loading tours:", error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+
+      setLoading(true);
+      try {
+        const { data, error } = await supabase
+          .from('group_eco_tours')
+          .select('id, type, title, location, date, price, spots, image')
+          .eq('is_active', true);
+
+        if (error) throw error;
+
+        if (data && data.length > 0) toursCache = data;
+        setAllTours(data || []);
+      } catch (error) {
+        console.error("Error loading tours:", error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    // ✅ Загружаем туры и лайки параллельно
+    const fetchUserLikes = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setCurrentUser(user);
+      if (!user) return;
+
+      const { data, error } = await supabase
+        .from("favourites")
+        .select("tour_id")
+        .eq("user_id", user.id);
+
+      if (!error && data) {
+        setLikedTourIds(new Set(data.map(row => row.tour_id)));
+      }
+    };
 
     fetchTours();
+    fetchUserLikes();
   }, []);
+
+  // ✅ Обновляем Set лайков — карточки не делают своих запросов
+  const handleLikeToggle = (tourId, isNowLiked) => {
+    setLikedTourIds(prev => {
+      const next = new Set(prev);
+      isNowLiked ? next.add(tourId) : next.delete(tourId);
+      return next;
+    });
+  };
 
   const filteredTours = useMemo(() => {
     return activeTab === "all"
@@ -60,13 +85,10 @@ function GroupEcoTours() {
       : allTours.filter(tour => tour.type === activeTab);
   }, [allTours, activeTab]);
 
-
-
   return (
     <div className="scheduled-page group-eco-tours-container">
-
       <NavbarCustom />
-      
+
       <div className="scheduled-hero">
         <div className="hero-content text-center">
           <h1 className="hero-main-title">
@@ -78,19 +100,19 @@ function GroupEcoTours() {
 
       <Container className="tabs-container">
         <div className="custom-tabs">
-          <button 
+          <button
             className={`tab-btn ${activeTab === 'all' ? 'active' : ''}`}
             onClick={() => setActiveTab('all')}
           >
             {t("group_eco_tours.tab_all", "All Events")}
           </button>
-          <button 
+          <button
             className={`tab-btn group-tab ${activeTab === 'group' ? 'active' : ''}`}
             onClick={() => setActiveTab('group')}
           >
             <Users size={18} /> {t("group_eco_tours.tab_group", "Group Tours")}
           </button>
-          <button 
+          <button
             className={`tab-btn eco-tab ${activeTab === 'eco' ? 'active' : ''}`}
             onClick={() => setActiveTab('eco')}
           >
@@ -101,24 +123,27 @@ function GroupEcoTours() {
 
       <DynamicInfoSection activeTab={activeTab} currentLang={currentLang} />
 
-      {/* Передаем loading в TourGrid */}
-      <TourGrid 
-        filteredTours={filteredTours} 
-        currentLang={currentLang} 
+      <TourGrid
+        filteredTours={filteredTours}
+        currentLang={currentLang}
         t={t}
         activeTab={activeTab}
         loading={loading}
+        currentUser={currentUser}
+        likedTourIds={likedTourIds}
+        onLikeToggle={handleLikeToggle}
       />
 
       <TourCTA />
       <TourFAQ activeTab={activeTab} />
-      
+
       <Footer />
     </div>
   );
 }
 
-// Простой skeleton для карточки тура
+
+// ─── СКЕЛЕТОН ─────────────────────────────────────────────────
 const TourCardSkeleton = () => (
   <Col xs={12} sm={6} lg={4}>
     <div className="tour-card-skeleton">
@@ -131,31 +156,86 @@ const TourCardSkeleton = () => (
 );
 
 
-const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, activeTab, loading}) {
+// ─── КНОПКА-СЕРДЕЧКО ─────────────────────────────────────────
+const HeartButton = ({ tourId, isLiked, onLikeToggle, currentUser }) => {
+  const { t } = useTranslation();
+  const [pending, setPending] = useState(false);
+
+  const handleToggle = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (pending) return;
+
+    if (!currentUser) {
+      alert(t("group_eco_tours.please_login", "Please login to save tours"));
+      return;
+    }
+
+    // Оптимистичное обновление — UI реагирует мгновенно
+    const wasLiked = isLiked;
+    onLikeToggle(tourId, !wasLiked);
+    setPending(true);
+
+    let error;
+    if (wasLiked) {
+      ({ error } = await supabase.from("favourites").delete()
+        .eq("user_id", currentUser.id).eq("tour_id", tourId));
+    } else {
+      ({ error } = await supabase.from("favourites").insert([
+        { user_id: currentUser.id, tour_id: tourId }
+      ]));
+    }
+
+    // Откат при ошибке
+    if (error) onLikeToggle(tourId, wasLiked);
+    setPending(false);
+  };
+
+  return (
+    <button
+      onClick={handleToggle}
+      disabled={pending}
+      style={{
+        position: 'absolute', top: '10px', right: '10px',
+        background: 'rgba(0,0,0,0.3)', border: 'none', borderRadius: '50%',
+        width: '34px', height: '34px', display: 'flex',
+        alignItems: 'center', justifyContent: 'center', zIndex: 10,
+        cursor: 'pointer',
+        transition: 'transform 0.15s ease',
+        transform: pending ? 'scale(0.85)' : 'scale(1)',
+      }}
+    >
+      <Heart
+        size={16}
+        fill={isLiked ? "#ff4d4d" : "transparent"}
+        stroke={isLiked ? "#ff4d4d" : "white"}
+        style={{ transition: 'fill 0.15s ease, stroke 0.15s ease' }}
+      />
+    </button>
+  );
+};
+
+
+// ─── ГРИД ТУРОВ ───────────────────────────────────────────────
+const TourGrid = React.memo(function TourGrid({
+  filteredTours, currentLang, t, activeTab, loading,
+  currentUser, likedTourIds, onLikeToggle
+}) {
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [toursPerPage, setToursPerPage] = useState(6);
-  
-  const toursSectionRef = useRef(null);
-  const isFirstRender = useRef(true);
-  
-  // КЭШ ДЛЯ ТУРОВ: Сюда мы будем складывать предзагруженные данные
-  const prefetchedTours = useRef({});
 
+  const toursSectionRef = useRef(null);
+  const isFirstRender   = useRef(true);
+  const prefetchedTours = useRef({});
   const navigate = useNavigate();
 
-  // Функция предзагрузки при наведении мыши (Магия скорости!)
   const handleMouseEnter = useCallback(async (tourId) => {
-    if (prefetchedTours.current[tourId]) return; // Уже загружено
-
+    if (prefetchedTours.current[tourId]) return;
     try {
       const { data } = await supabase
-        .from('group_eco_tours')
-        .select('*')
-        .eq('id', tourId)
-        .single();
-      
-      if (data) prefetchedTours.current[tourId] = data; // Сохраняем в кэш
+        .from('group_eco_tours').select('*').eq('id', tourId).single();
+      if (data) prefetchedTours.current[tourId] = data;
     } catch (err) {
       console.error("Prefetch error:", err);
     }
@@ -163,26 +243,16 @@ const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, a
 
   const handleTourClick = async (e, tour) => {
     e.preventDefault();
-
     try {
       let tourData = prefetchedTours.current[tour.id];
-
-      // Если пользователь кликнул очень быстро и данные не успели предзагрузиться
       if (!tourData) {
         const { data, error } = await supabase
-          .from('group_eco_tours')
-          .select('*')
-          .eq('id', tour.id)
-          .single();
+          .from('group_eco_tours').select('*').eq('id', tour.id).single();
         if (error) throw error;
         tourData = data;
       }
-
-      
-
       const path = tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`;
       navigate(path, { state: { tour: tourData } });
-      
     } catch (err) {
       console.error("Error:", err);
       navigate(tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`);
@@ -190,9 +260,7 @@ const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, a
   };
 
   useEffect(() => {
-    const handleResize = () => {
-      setToursPerPage(window.innerWidth < 768 ? 4 : 6);
-    };
+    const handleResize = () => setToursPerPage(window.innerWidth < 768 ? 4 : 6);
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -204,27 +272,21 @@ const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, a
   }, [activeTab]);
 
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-    if (toursSectionRef.current) {
-      toursSectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    if (isFirstRender.current) { isFirstRender.current = false; return; }
+    toursSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }, [currentPage]);
 
   const searchedTours = useMemo(() => {
     const query = searchTerm.toLowerCase().trim();
     if (!query) return filteredTours;
-
-    return filteredTours.filter((tour) => {
-      const title = (tour.title?.[currentLang] || tour.title?.["en"] || "").toLowerCase();
+    return filteredTours.filter(tour => {
+      const title    = (tour.title?.[currentLang]    || tour.title?.["en"]    || "").toLowerCase();
       const location = (tour.location?.[currentLang] || tour.location?.["en"] || "").toLowerCase();
       return title.includes(query) || location.includes(query);
     });
   }, [filteredTours, searchTerm, currentLang]);
 
-  const totalPages = Math.ceil(searchedTours.length / toursPerPage);
+  const totalPages   = Math.ceil(searchedTours.length / toursPerPage);
   const visibleTours = searchedTours.slice((currentPage - 1) * toursPerPage, currentPage * toursPerPage);
 
   return (
@@ -238,28 +300,28 @@ const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, a
               className="search-input-clean"
               placeholder={t("group_eco_tours.search_placeholder", "Search tours...")}
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={e => setSearchTerm(e.target.value)}
             />
             {searchTerm && <X size={18} className="clear-search-icon" onClick={() => setSearchTerm("")} />}
           </div>
         </div>
 
-        {/* Если данные еще грузятся — показываем элегантный спиннер вместо сетки */}
         {loading ? (
-            <Row className="g-4">
-              {[...Array(6)].map((_, i) => <TourCardSkeleton key={i} />)}
-            </Row>
+          <Row className="g-4">
+            {[...Array(6)].map((_, i) => <TourCardSkeleton key={i} />)}
+          </Row>
         ) : (
           <>
             <Row className="tours-list-section-row g-4">
               {searchedTours.length > 0 ? (
-                visibleTours.map((tour) => (
+                visibleTours.map(tour => (
                   <Col xs={12} sm={6} lg={4} key={tour.id} className="tours-list-section-row-col">
                     <div
                       className={`tour-card-minimal ${tour.type === "eco" ? "is-eco" : "is-group"}`}
-                      onMouseEnter={() => handleMouseEnter(tour.id)} // ТРИГГЕР ПРЕДЗАГРУЗКИ
+                      onMouseEnter={() => handleMouseEnter(tour.id)}
                     >
-                      <div className="tour-img-container">
+                      {/* ✅ position: relative нужен чтобы HeartButton встал на место */}
+                      <div className="tour-img-container" style={{ position: 'relative' }}>
                         <img
                           src={tour.image}
                           alt={tour.title?.[currentLang] || tour.title?.["en"]}
@@ -269,6 +331,14 @@ const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, a
                           {tour.type === "eco" ? <Leaf size={12} /> : <Users size={12} />}
                           <span>{tour.type === "eco" ? t("group_eco_tours.badge_eco") : t("group_eco_tours.badge_group")}</span>
                         </div>
+
+                        {/* ✅ СЕРДЕЧКО */}
+                        <HeartButton
+                          tourId={tour.id}
+                          isLiked={likedTourIds.has(tour.id)}
+                          onLikeToggle={onLikeToggle}
+                          currentUser={currentUser}
+                        />
                       </div>
 
                       <div className="tour-body">
@@ -294,7 +364,7 @@ const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, a
                           <div className="tour-price-tag">{tour.price}</div>
                           <Link
                             to={tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`}
-                            onClick={(e) => handleTourClick(e, tour)}
+                            onClick={e => handleTourClick(e, tour)}
                             className="tour-btn-minimal"
                           >
                             {t("group_eco_tours.btn_join")}
@@ -336,10 +406,11 @@ const TourGrid = React.memo(function TourGrid({ filteredTours, currentLang, t, a
   );
 });
 
+
+// ─── ДИНАМИЧЕСКАЯ СЕКЦИЯ ──────────────────────────────────────
 const DynamicInfoSection = ({ activeTab, currentLang }) => {
   const { t } = useTranslation();
 
-  // Если выбрано "Все", показываем общий блок о качестве
   if (activeTab === 'all') {
     return (
       <div className="dynamic-info-block all-info py-5">
@@ -372,7 +443,6 @@ const DynamicInfoSection = ({ activeTab, currentLang }) => {
     );
   }
 
-  // Данные для Эко-миссий
   if (activeTab === 'eco') {
     return (
       <div className="dynamic-info-block eco-info py-5" style={{ background: '#f1f8f4' }}>
@@ -391,8 +461,6 @@ const DynamicInfoSection = ({ activeTab, currentLang }) => {
                     <span className="stat-label">{t("group_eco_tours.stats_trees", "Trees Planted")}</span>
                   </div>
                 </div>
-
-                {/* Мусор */}
                 <div className="stat-badge">
                   <Leaf size={30} />
                   <div className="stat-text">
@@ -400,8 +468,6 @@ const DynamicInfoSection = ({ activeTab, currentLang }) => {
                     <span className="stat-label">{t("group_eco_tours.stats_waste", "Waste Collected")}</span>
                   </div>
                 </div>
-
-                {/* Благоустройство */}
                 <div className="stat-badge">
                   <Map size={30} />
                   <div className="stat-text">
@@ -417,7 +483,6 @@ const DynamicInfoSection = ({ activeTab, currentLang }) => {
     );
   }
 
-  // Данные для Групповых туров
   if (activeTab === 'group') {
     return (
       <div className="dynamic-info-block group-info py-5" style={{ background: '#f0f4f8' }}>
@@ -448,9 +513,10 @@ const DynamicInfoSection = ({ activeTab, currentLang }) => {
   return null;
 };
 
+
+// ─── CTA БАННЕР ───────────────────────────────────────────────
 const TourCTA = () => {
   const { t } = useTranslation();
-
   return (
     <div className="tour-cta-banner my-5">
       <Container className="text-center p-5 rounded-4 bg-dark text-white">
@@ -465,6 +531,8 @@ const TourCTA = () => {
   );
 };
 
+
+// ─── FAQ ──────────────────────────────────────────────────────
 const TourFAQ = ({ activeTab }) => {
   const { t } = useTranslation();
 
@@ -475,13 +543,13 @@ const TourFAQ = ({ activeTab }) => {
     ],
     eco: [
       { q: "group_eco_tours.faq.eco_about_q", a: "group_eco_tours.faq.eco_about_a" },
-      { q: "group_eco_tours.faq.eco_q1", a: "group_eco_tours.faq.eco_a1" },
-      { q: "group_eco_tours.faq.common_q2", a: "group_eco_tours.faq.common_a2" }
+      { q: "group_eco_tours.faq.eco_q1",      a: "group_eco_tours.faq.eco_a1" },
+      { q: "group_eco_tours.faq.common_q2",   a: "group_eco_tours.faq.common_a2" }
     ],
     group: [
       { q: "group_eco_tours.faq.group_about_q", a: "group_eco_tours.faq.group_about_a" },
-      { q: "group_eco_tours.faq.group_q1", a: "group_eco_tours.faq.group_a1" },
-      { q: "group_eco_tours.faq.common_q1", a: "group_eco_tours.faq.common_a1" }
+      { q: "group_eco_tours.faq.group_q1",      a: "group_eco_tours.faq.group_a1" },
+      { q: "group_eco_tours.faq.common_q1",     a: "group_eco_tours.faq.common_a1" }
     ]
   };
 
@@ -490,29 +558,21 @@ const TourFAQ = ({ activeTab }) => {
   return (
     <section className={`minimal-faq-wrapper faq-theme-${activeTab}`}>
       <Container className="minimal-faq-container">
-        
         <div className="minimal-faq-header text-center">
           <span className="minimal-faq-subtitle">{t(`group_eco_tours.faq.subtitle_${activeTab}`)}</span>
           <h2 className="minimal-faq-title">{t("group_eco_tours.faq.main_title")}</h2>
         </div>
-
         <Accordion flush className="minimal-faq-accordion">
           {currentList.map((item, idx) => (
             <Accordion.Item eventKey={idx.toString()} key={idx} className="minimal-faq-item">
-              <Accordion.Header className="minimal-faq-trigger">
-                {t(item.q)}
-              </Accordion.Header>
-              <Accordion.Body className="minimal-faq-body">
-                {t(item.a)}
-              </Accordion.Body>
+              <Accordion.Header className="minimal-faq-trigger">{t(item.q)}</Accordion.Header>
+              <Accordion.Body className="minimal-faq-body">{t(item.a)}</Accordion.Body>
             </Accordion.Item>
           ))}
         </Accordion>
-
       </Container>
     </section>
   );
 };
-
 
 export default GroupEcoTours;
