@@ -129,12 +129,12 @@ const NavbarCustom = ({ isHomePage }) => {
                 onMouseEnter={() => handleMouseEnter('about')}
                 onMouseLeave={() => handleMouseLeave('about')}
                 onToggle={(isOpen) => handleToggle('about', isOpen)}
-                renderMenuOnMount
+                // renderMenuOnMount
               >
-                <NavDropdown.Item href="/history" className="dropdown-item">{t("navbar_custom.history")}</NavDropdown.Item>
-                <NavDropdown.Item href="/cuisine" className="dropdown-item">{t("navbar_custom.cuisine")}</NavDropdown.Item>
-                <NavDropdown.Item href="/nature" className="dropdown-item">{t("navbar_custom.nature")}</NavDropdown.Item>
-                <NavDropdown.Item href="/culture" className="dropdown-item">{t("navbar_custom.culture")}</NavDropdown.Item>
+                <LinkContainer to="/history"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.history")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to="/cuisine"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.cuisine")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to="/nature"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.nature")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to="/culture"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.culture")}</NavDropdown.Item></LinkContainer>
               </NavDropdown>
 
               <LinkContainer to="/profile"><Nav.Link className="nav-link-item">{t("navbar_custom.profile_button")}</Nav.Link></LinkContainer>

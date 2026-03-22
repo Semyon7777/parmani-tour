@@ -10,7 +10,6 @@ function FirstPageFirstPart() {
   const videoRef = useRef(null); 
 
   const [showButtons, setShowButtons] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 867);
   
   // 1. Добавляем стейт для отслеживания ошибки автозапуска
   const [videoFailed, setVideoFailed] = useState(false); 
@@ -34,15 +33,12 @@ function FirstPageFirstPart() {
   }, []);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     const handleScroll = () => setShowButtons(window.scrollY >= window.innerHeight);
 
-    window.addEventListener('resize', handleResize);
     window.addEventListener('scroll', handleScroll);
     handleScroll();
 
     return () => {
-      window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
@@ -53,7 +49,7 @@ function FirstPageFirstPart() {
         <div className={`top-buttons ${showButtons ? 'buttons-fixed show' : 'hide'}`}>
           <div className={`flex-container ${showButtons ? 'buttons-fixed-flex-container' : 'hide'}`}>
             <div className="buttonGroupContainer">
-              <NavbarCustom isHomePage={true || isMobile} /> 
+              <NavbarCustom isHomePage={true} /> 
             </div>
           </div>
         </div>
