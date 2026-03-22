@@ -1,0 +1,749 @@
+/* ─── AdminPage.css ─────────────────────────────────────────── */
+
+.admin-root {
+  display: flex;
+  min-height: 100vh;
+  background: #f4f6f9;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ─── SIDEBAR ───────────────────────────────────────────────── */
+.admin-sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #1a2035;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 100;
+}
+
+.admin-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 24px 24px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.admin-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 24px;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.85rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  margin-bottom: 8px;
+}
+
+.admin-avatar {
+  width: 32px; height: 32px;
+  background: #3a7d44;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-weight: 700; font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.admin-nav { flex: 1; padding: 8px 0; }
+
+.admin-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.admin-nav-btn:hover { background: rgba(255,255,255,0.07); color: white; }
+
+.admin-nav-btn.active {
+  background: rgba(58,125,68,0.3);
+  color: #5ebd6e;
+  border-right: 3px solid #3a7d44;
+}
+
+.admin-logout {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 16px 24px;
+  padding: 10px 16px;
+  background: rgba(239,68,68,0.15);
+  border: 1px solid rgba(239,68,68,0.3);
+  border-radius: 8px;
+  color: #ef4444;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.admin-logout:hover { background: rgba(239,68,68,0.25); }
+
+/* ─── MAIN ──────────────────────────────────────────────────── */
+.admin-main {
+  margin-left: 240px;
+  flex: 1;
+  padding: 32px;
+  min-height: 100vh;
+}
+
+.admin-header { margin-bottom: 24px; }
+
+.admin-page-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a2035;
+  margin: 0;
+}
+
+/* ─── TOOLBAR ───────────────────────────────────────────────── */
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.admin-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px 14px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.admin-search input {
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  width: 100%;
+  color: #333;
+}
+
+.admin-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.filter-pill {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #666;
+}
+
+.filter-pill:hover { border-color: #3a7d44; color: #3a7d44; }
+.filter-pill.active { background: #3a7d44; color: white; border-color: #3a7d44; }
+
+.admin-refresh-btn {
+  width: 38px; height: 38px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.admin-refresh-btn:hover { background: #f0f0f0; }
+
+.admin-add-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 16px;
+  background: #3a7d44;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.admin-add-btn:hover { background: #2d6235; }
+
+/* ─── BOOKING CARDS ─────────────────────────────────────────── */
+.admin-cards { display: flex; flex-direction: column; gap: 12px; }
+
+.booking-admin-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  border: 1px solid #e8edf3;
+  transition: box-shadow 0.2s;
+}
+
+.booking-admin-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+
+.booking-admin-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #1a2035;
+  margin-bottom: 4px;
+}
+
+.booking-admin-tour {
+  color: #3a7d44;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.booking-admin-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.82rem;
+  color: #666;
+}
+
+.booking-admin-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-actions { display: flex; flex-direction: column; gap: 6px; }
+
+.status-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.status-btn:hover { opacity: 0.8; }
+.status-btn.confirm  { background: #e8f5e9; color: #22c55e; }
+.status-btn.cancel   { background: #fdecea; color: #ef4444; }
+.status-btn.pending  { background: #fff8e1; color: #f59e0b; }
+
+/* ─── TOUR CARDS ────────────────────────────────────────────── */
+.admin-tours-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.tour-admin-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e8edf3;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.tour-admin-card.inactive { opacity: 0.6; }
+.tour-admin-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+
+.tour-admin-img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.tour-admin-body { padding: 14px; }
+
+.tour-admin-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #1a2035;
+  margin-bottom: 8px;
+}
+
+.tour-admin-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.type-badge {
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.type-badge.group { background: #e3f2fd; color: #1976d2; }
+.type-badge.eco   { background: #e8f5e9; color: #2e7d32; }
+
+.tour-admin-actions {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px;
+  border-top: 1px solid #f0f0f0;
+  justify-content: flex-end;
+}
+
+.tour-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tour-edit-form input {
+  padding: 7px 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.tour-edit-form input:focus { border-color: #3a7d44; }
+
+.edit-actions { display: flex; gap: 8px; margin-top: 4px; }
+
+/* ─── ADD FORM ──────────────────────────────────────────────── */
+.admin-add-form {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 2px dashed #3a7d44;
+}
+
+.admin-add-form h4 {
+  color: #3a7d44;
+  margin-bottom: 16px;
+  font-size: 1rem;
+}
+
+.add-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.add-form-grid input,
+.add-form-grid select {
+  padding: 8px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.add-form-grid input:focus,
+.add-form-grid select:focus { border-color: #3a7d44; }
+
+.add-form-actions { display: flex; gap: 10px; }
+
+/* ─── GENERIC TABLE ─────────────────────────────────────────── */
+.generic-table-scroll { overflow-x: auto; }
+
+.generic-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 0.85rem;
+}
+
+.generic-table th {
+  background: #f8fafc;
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 1px solid #e8edf3;
+  white-space: nowrap;
+}
+
+.generic-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f4f8;
+  color: #333;
+  max-width: 200px;
+}
+
+.generic-table tr:last-child td { border-bottom: none; }
+.generic-table tr:hover td { background: #fafbfc; }
+
+.table-cell-value {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table-edit-input {
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid #3a7d44;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.table-actions { display: flex; gap: 6px; }
+
+/* ─── КНОПКИ ДЕЙСТВИЙ ───────────────────────────────────────── */
+.admin-edit-btn,
+.admin-delete-btn,
+.admin-toggle-btn {
+  width: 30px; height: 30px;
+  border-radius: 6px;
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.admin-edit-btn   { background: #e3f2fd; color: #1976d2; }
+.admin-delete-btn { background: #fdecea; color: #ef4444; }
+.admin-toggle-btn.active   { background: #e8f5e9; color: #22c55e; }
+.admin-toggle-btn.inactive { background: #f5f5f5; color: #999; }
+
+.admin-edit-btn:hover   { background: #bbdefb; }
+.admin-delete-btn:hover { background: #ffcdd2; }
+
+.admin-save-btn {
+  display: flex; align-items: center; gap: 5px;
+  padding: 7px 14px;
+  background: #3a7d44;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-save-btn:hover { background: #2d6235; }
+.admin-save-btn.small { padding: 5px 10px; }
+
+.admin-cancel-btn {
+  padding: 7px 14px;
+  background: #f5f5f5;
+  color: #666;
+  border: none;
+  border-radius: 7px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.admin-cancel-btn:hover { background: #e8e8e8; }
+.admin-cancel-btn.small { padding: 5px 10px; }
+
+/* ─── SKELETON & EMPTY ──────────────────────────────────────── */
+.admin-skeleton { display: flex; flex-direction: column; gap: 12px; }
+
+.admin-skeleton-row {
+  display: flex;
+  gap: 12px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.skeleton-block {
+  height: 18px;
+  border-radius: 6px;
+  background: #e8edf3;
+}
+
+.pulse {
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.admin-empty {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-size: 0.95rem;
+}
+
+.admin-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.admin-spinner {
+  width: 40px; height: 40px;
+  border: 3px solid #e8edf3;
+  border-top-color: #3a7d44;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    width: 100%;
+    min-height: auto;
+    position: relative;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 12px;
+  }
+  .admin-main { margin-left: 0; padding: 16px; }
+  .admin-nav { display: flex; flex-wrap: wrap; }
+  .admin-nav-btn { padding: 8px 12px; font-size: 0.8rem; }
+  .booking-admin-card { flex-direction: column; }
+  .booking-admin-right { align-items: flex-start; }
+}
+
+/* ─── РЕДАКТИРОВАНИЕ БРОНИРОВАНИЙ ────────────────────────────── */
+.booking-edit-mode {
+  width: 100%;
+}
+
+.booking-edit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.booking-edit-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.booking-edit-field label {
+  font-size: 0.75rem;
+  color: #888;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.booking-edit-field input,
+.booking-edit-field select {
+  padding: 8px 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.booking-edit-field input:focus,
+.booking-edit-field select:focus {
+  border-color: #3a7d44;
+}
+
+.booking-edit-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.booking-card-btns {
+  display: flex;
+  gap: 6px;
+}
+
+/* ─── СПИСОК ТУРОВ И ОТЕЛЕЙ ──────────────────────────────────── */
+.tour-list-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e8edf3;
+  overflow: hidden;
+  margin-bottom: 10px;
+  transition: box-shadow 0.2s;
+}
+
+.tour-list-card.inactive { opacity: 0.6; }
+.tour-list-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+
+.tour-list-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+}
+
+.tour-list-thumb {
+  width: 64px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.tour-list-info { flex: 1; min-width: 0; }
+
+.tour-list-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #1a2035;
+  margin-bottom: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tour-list-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #666;
+  align-items: center;
+}
+
+.tour-list-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.admin-expand-btn {
+  width: 30px; height: 30px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: #666;
+  transition: all 0.2s;
+}
+
+.admin-expand-btn:hover { background: #e8edf3; }
+
+/* Раскрытая панель */
+.tour-list-expand {
+  border-top: 1px solid #f0f4f8;
+  padding: 16px;
+  background: #fafbfc;
+}
+
+.tour-edit-fields { display: flex; flex-direction: column; gap: 16px; }
+
+.tour-edit-section {}
+
+.tour-edit-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.tour-edit-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.booking-edit-field textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  outline: none;
+  resize: vertical;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.booking-edit-field textarea:focus { border-color: #3a7d44; }
+
+/* Просмотр деталей */
+.tour-detail-view { display: flex; flex-direction: column; gap: 8px; }
+
+.tour-detail-row {
+  display: flex;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: #444;
+  line-height: 1.5;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #888;
+  white-space: nowrap;
+  min-width: 90px;
+}
+
+/* Статус активности */
+.active-badge {
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.active-badge.on  { background: #e8f5e9; color: #22c55e; }
+.active-badge.off { background: #f5f5f5; color: #999; }
+
+/* Картинки отелей */
+.hotel-images-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  align-items: center;
+}
+
+.hotel-thumb {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.hotel-more-imgs {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 600;
+}

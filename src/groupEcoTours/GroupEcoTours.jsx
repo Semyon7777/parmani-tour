@@ -40,8 +40,10 @@ function GroupEcoTours() {
 
       if (error) throw error;
       
-      toursCache = data || []; // Сохраняем в кэш
-      setAllTours(toursCache);
+      if (data && data.length > 0) {
+        toursCache = data;
+      }
+      setAllTours(data || []);
     } catch (error) {
       console.error("Error loading tours:", error.message);
     } finally {

@@ -933,6 +933,31 @@
     }
   },
 
+  "profile": {
+    "tab_favourites": "Favourites",
+    "tab_bookings": "Bookings",
+    "tab_settings": "Settings",
+    "logout": "Log out",
+    "no_favourites": "No saved tours",
+    "no_favourites_sub": "Add tours to favourites and they will appear here",
+    "browse_tours": "Browse tours",
+    "view": "Open",
+    "no_bookings": "No bookings",
+    "no_bookings_sub": "Your upcoming and past trips will appear here",
+    "book_tour": "Book a tour",
+    "status_pending": "Pending",
+    "status_confirmed": "Confirmed",
+    "status_cancelled": "Cancelled",
+    "people": "people",
+    "personal_info": "Personal info",
+    "name": "Name",
+    "name_placeholder": "Your name",
+    "email_label": "Email",
+    "save": "Save",
+    "saved": "Saved ✓",
+    "language": "Language"
+  },
+
   "footer": {
     "getConnected": "Get connected with us on social networks:",
     "description": "Your reliable partner in discovering the hidden gems of Armenia. Premium service and authentic experiences.",

@@ -26,6 +26,9 @@ import LegalPage from "./legalPage/LegalPage";
 import RouteTracker from "./Components/RouteTracker";
 import './i18n';
 
+import AdminRoute from "./profilePage/AdminRoute";
+import AdminPage from "./profilePage/AdminPage";
+
 
 function App() {
 
@@ -67,6 +70,11 @@ function App() {
             <Route path="/tours/booking/:tourName" element={<BookForm />} />
             <Route path="/terms" element={<LegalPage type="terms" />} />
             <Route path="/privacy" element={<LegalPage type="privacy" />} />
+            <Route path="/admin" element={
+          <AdminRoute>
+            <AdminPage />
+          </AdminRoute>
+        } />
           </Routes>
         </Router>
       </div>

@@ -3,7 +3,7 @@ import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useNavigate, Link } from "react-router-dom";
 import { Heart, Clock, Settings, LogOut, User, Mail, Globe,
-    ChevronRight, MapPin, Calendar } from "lucide-react";
+    ChevronRight, Calendar } from "lucide-react";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
@@ -83,7 +83,7 @@ function ProfilePage() {
       // Групповые туры берём из Supabase
       const { data: dbTours } = await supabase
         .from("group_eco_tours")
-        .select("id, title, image, price, location, type")
+        .select("id, title, image, price, location, type, date")
         .in("id", favIds);
  
       // Приватные туры берём из локального JSON (без сетевого запроса)
@@ -279,13 +279,12 @@ function BookingsTab({ bookings, loading }) {
             </div>
             <h5 className="booking-tour-name">{booking.tour_name}</h5>
             <div className="booking-meta">
-              <span><Calendar size={13} /> {booking.start_date}</span>
-              <span><MapPin size={13} /> {booking.location}</span>
+              <span><Calendar size={13} /> {booking.travel_date}</span>
             </div>
           </div>
           <div className="booking-card-right">
             <div className="booking-price">{booking.price}</div>
-            <div className="booking-people">{booking.people} чел.</div>
+            <div className="booking-people">{booking.guests_count} {t("profile.people")}</div>
           </div>
         </div>
       ))}

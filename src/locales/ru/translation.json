@@ -866,6 +866,31 @@
     }
   },
 
+  "profile": {
+    "tab_favourites": "Избранное",
+    "tab_bookings": "Бронирования",
+    "tab_settings": "Настройки",
+    "logout": "Выйти",
+    "no_favourites": "Нет избранных туров",
+    "no_favourites_sub": "Добавляй туры в избранное и они появятся здесь",
+    "browse_tours": "Посмотреть туры",
+    "view": "Открыть",
+    "no_bookings": "Нет бронирований",
+    "no_bookings_sub": "Ваши будущие и прошлые поездки появятся здесь",
+    "book_tour": "Забронировать тур",
+    "status_pending": "В обработке",
+    "status_confirmed": "Подтверждено",
+    "status_cancelled": "Отменено",
+    "people": "человек",
+    "personal_info": "Личные данные",
+    "name": "Имя",
+    "name_placeholder": "Ваше имя",
+    "email_label": "Email",
+    "save": "Сохранить",
+    "saved": "Сохранено ✓",
+    "language": "Язык"
+  },
+
   "footer": {
     "getConnected": "Присоединяйтесь к нам в соцсетях:",
     "description": "Ваш надежный партнер в открытии скрытых сокровищ Армении. Премиальный сервис и подлинные впечатления.",
