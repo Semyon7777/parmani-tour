@@ -440,13 +440,17 @@
   .profile-page-root .profile-logout-btn {
     margin-left: 0;
   }
+  .profile-page-root .profile-content {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
 
   .profile-page-root .profile-tabs {
     gap: 0;
   }
 
   .profile-page-root .profile-tab-btn {
-    padding: 10px 14px;
+    padding: 6px 8px;
     font-size: 0.82rem;
   }
 

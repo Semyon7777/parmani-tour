@@ -12,17 +12,15 @@ function ToursPageFirstPart() {
   const lang = i18n.language || "en";
  
   const [searchParams, setSearchParams] = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
+  const [searchQuery, setSearchQuery]   = useState(searchParams.get("search") || "");
   const [activeCategory, setActiveCategory] = useState(searchParams.get("cat") || "all");
-  const [sortBy, setSortBy] = useState(searchParams.get("sort") || "default");
-  const [loading, setLoading] = useState(true);
- 
-  // ✅ ОПТИМИЗАЦИЯ: Храним все лайкнутые ID в родителе — один запрос вместо N
+  const [sortBy, setSortBy]             = useState(searchParams.get("sort") || "default");
+  const [loading, setLoading]           = useState(true);
   const [likedTourIds, setLikedTourIds] = useState(new Set());
  
-  const currentPage = parseInt(searchParams.get("page") || "1");
+  const currentPage  = parseInt(searchParams.get("page") || "1");
   const itemsPerPage = 6;
-  const toursTopRef = useRef(null);
+  const toursTopRef  = useRef(null);
  
   const categories = [
     { id: "all",         name: t('tour_info_page.filter_all',      'All') },
@@ -32,11 +30,10 @@ function ToursPageFirstPart() {
     { id: "religious",   name: t('tour_info_page.filter_religious', 'Religious') },
   ];
  
-  // ✅ ИСПРАВЛЕНО: Один запрос на все лайки пользователя
+  // Один запрос на все лайки пользователя при загрузке страницы
   useEffect(() => {
     const fetchUserLikes = async () => {
-      setLoading(false); // JSON данные уже в памяти
- 
+      setLoading(false);
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return;
  
@@ -49,43 +46,28 @@ function ToursPageFirstPart() {
         setLikedTourIds(new Set(data.map(row => row.tour_id)));
       }
     };
- 
     fetchUserLikes();
   }, []);
- 
-  // ✅ ИСПРАВЛЕНО: Функция обновления Set лайков (вызывается из карточки)
-  const handleLikeToggle = (tourId, isNowLiked) => {
-    setLikedTourIds(prev => {
-      const next = new Set(prev);
-      if (isNowLiked) {
-        next.add(tourId);
-      } else {
-        next.delete(tourId);
-      }
-      return next;
-    });
-  };
  
   useEffect(() => {
     toursTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [currentPage]);
  
-  const updateParams = (newParams) => {
-    const current = Object.fromEntries(searchParams.entries());
-    setSearchParams({ ...current, ...newParams });
+  // ✅ ОПТИМИЗАЦИЯ: обновляем Set в родителе — карточки не делают своих запросов
+  const handleLikeToggle = (tourId, isNowLiked) => {
+    setLikedTourIds(prev => {
+      const next = new Set(prev);
+      isNowLiked ? next.add(tourId) : next.delete(tourId);
+      return next;
+    });
   };
  
-  const handlePageChange    = (page)    => updateParams({ page: page.toString() });
-  const handleSearchChange  = (val)     => { setSearchQuery(val); updateParams({ search: val, page: "1" }); };
-  const handleCategoryChange= (catId)   => { setActiveCategory(catId); updateParams({ cat: catId, page: "1" }); };
-  const handleSortChange    = (sortType)=> { setSortBy(sortType); updateParams({ sort: sortType }); };
- 
-  const resetFilters = () => {
-    setSearchQuery("");
-    setActiveCategory("all");
-    setSortBy("default");
-    setSearchParams({});
-  };
+  const updateParams      = (p) => setSearchParams({ ...Object.fromEntries(searchParams.entries()), ...p });
+  const handlePageChange  = (page)     => updateParams({ page: page.toString() });
+  const handleSearchChange= (val)      => { setSearchQuery(val);    updateParams({ search: val,  page: "1" }); };
+  const handleCategoryChange= (catId)  => { setActiveCategory(catId); updateParams({ cat: catId, page: "1" }); };
+  const handleSortChange  = (sortType) => { setSortBy(sortType);    updateParams({ sort: sortType }); };
+  const resetFilters      = () => { setSearchQuery(""); setActiveCategory("all"); setSortBy("default"); setSearchParams({}); };
  
   const processedTours = useMemo(() => {
     const lowerCaseSearch = searchQuery.toLowerCase();
@@ -94,28 +76,20 @@ function ToursPageFirstPart() {
         const matchesSearch =
           tour.title[lang]?.toLowerCase().includes(lowerCaseSearch) ||
           tour.description[lang]?.toLowerCase().includes(lowerCaseSearch);
- 
         const matchesCategory =
           activeCategory === "all" ||
-          (Array.isArray(tour.category)
-            ? tour.category.includes(activeCategory)
-            : tour.category === activeCategory);
- 
+          (Array.isArray(tour.category) ? tour.category.includes(activeCategory) : tour.category === activeCategory);
         let matchesDuration = true;
-        if (sortBy === "filter_1day") {
-          matchesDuration = tour.durationUnit === "hours" || (tour.durationUnit === "days" && tour.duration === 1);
-        } else if (sortBy === "filter_multiday") {
-          matchesDuration = tour.durationUnit === "days" && tour.duration > 1;
-        }
- 
+        if (sortBy === "filter_1day")    matchesDuration = tour.durationUnit === "hours" || (tour.durationUnit === "days" && tour.duration === 1);
+        if (sortBy === "filter_multiday") matchesDuration = tour.durationUnit === "days" && tour.duration > 1;
         return matchesSearch && matchesCategory && matchesDuration;
       })
       .sort((a, b) => {
         const priceA = parseInt(a.price.toString().replace(/\D/g, '')) || 0;
         const priceB = parseInt(b.price.toString().replace(/\D/g, '')) || 0;
-        if (sortBy === "priceAsc") return priceA - priceB;
+        if (sortBy === "priceAsc")  return priceA - priceB;
         if (sortBy === "priceDesc") return priceB - priceA;
-        if (sortBy === "name") return a.title[lang].localeCompare(b.title[lang]);
+        if (sortBy === "name")      return a.title[lang].localeCompare(b.title[lang]);
         return 0;
       });
   }, [searchQuery, activeCategory, sortBy, lang]);
@@ -149,20 +123,12 @@ function ToursPageFirstPart() {
       <Container className="py-5">
         <div className="tours-list-header mb-4">
           <div>
-            <h2 className="tours-list-title">
-              {t('tour_info_page.all_tours_title', 'All Tours')}
-            </h2>
+            <h2 className="tours-list-title">{t('tour_info_page.all_tours_title', 'All Tours')}</h2>
             <p className="tours-count-text">
               {processedTours.length > 0 ? (
-                <>
-                  {t('tour_info_page.found', 'Found')}{" "}
-                  <span className="count-number">{processedTours.length}</span>{" "}
-                  {t('tour_info_page.tours_count', 'tours')}
-                </>
+                <>{t('tour_info_page.found', 'Found')} <span className="count-number">{processedTours.length}</span> {t('tour_info_page.tours_count', 'tours')}</>
               ) : (
-                <span className="text-muted fst-italic">
-                  {t('tour_info_page.no_results', 'No tours found')}
-                </span>
+                <span className="text-muted fst-italic">{t('tour_info_page.no_results', 'No tours found')}</span>
               )}
             </p>
           </div>
@@ -173,11 +139,7 @@ function ToursPageFirstPart() {
             <div className="filter-left">
               <div className="category-pills d-flex flex-wrap gap-2">
                 {categories.map(cat => (
-                  <button
-                    key={cat.id}
-                    className={`pill-btn ${activeCategory === cat.id ? 'active' : ''}`}
-                    onClick={() => handleCategoryChange(cat.id)}
-                  >
+                  <button key={cat.id} className={`pill-btn ${activeCategory === cat.id ? 'active' : ''}`} onClick={() => handleCategoryChange(cat.id)}>
                     {cat.name}
                   </button>
                 ))}
@@ -205,7 +167,6 @@ function ToursPageFirstPart() {
             <Row>
               {currentTours.map((tour) => (
                 <Col key={tour.id} sm={12} md={6} lg={4} className="mb-4">
-                  {/* ✅ ИСПРАВЛЕНО: передаём isLiked и onLikeToggle вместо onUnlike */}
                   <AlbumCard
                     tour={tour}
                     isLiked={likedTourIds.has(tour.id)}
@@ -218,27 +179,14 @@ function ToursPageFirstPart() {
             {pageCount > 1 && (
               <div className="pagination-wrapper">
                 <div className="custom-pagination">
-                  <button
-                    className="pagination-btn arrow"
-                    disabled={currentPage === 1}
-                    onClick={() => handlePageChange(currentPage - 1)}
-                  >
+                  <button className="pagination-btn arrow" disabled={currentPage === 1} onClick={() => handlePageChange(currentPage - 1)}>
                     <ChevronLeft size={20} />
                   </button>
- 
                   {Array.from({ length: pageCount }, (_, i) => {
                     const pageNum = i + 1;
-                    if (
-                      pageNum === 1 ||
-                      pageNum === pageCount ||
-                      (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)
-                    ) {
+                    if (pageNum === 1 || pageNum === pageCount || (pageNum >= currentPage - 1 && pageNum <= currentPage + 1)) {
                       return (
-                        <button
-                          key={pageNum}
-                          className={`pagination-btn ${currentPage === pageNum ? 'active' : ''}`}
-                          onClick={() => handlePageChange(pageNum)}
-                        >
+                        <button key={pageNum} className={`pagination-btn ${currentPage === pageNum ? 'active' : ''}`} onClick={() => handlePageChange(pageNum)}>
                           {pageNum}
                         </button>
                       );
@@ -248,12 +196,7 @@ function ToursPageFirstPart() {
                     }
                     return null;
                   })}
- 
-                  <button
-                    className="pagination-btn arrow"
-                    disabled={currentPage === pageCount}
-                    onClick={() => handlePageChange(currentPage + 1)}
-                  >
+                  <button className="pagination-btn arrow" disabled={currentPage === pageCount} onClick={() => handlePageChange(currentPage + 1)}>
                     <ChevronRight size={20} />
                   </button>
                 </div>
@@ -263,9 +206,7 @@ function ToursPageFirstPart() {
         ) : (
           <div className="text-center py-5">
             <h3>😔 {t('tour_info_page.no_results')}</h3>
-            <Button variant="link" onClick={resetFilters}>
-              {t('tour_info_page.reset_filters')}
-            </Button>
+            <Button variant="link" onClick={resetFilters}>{t('tour_info_page.reset_filters')}</Button>
           </div>
         )}
       </Container>
@@ -274,42 +215,44 @@ function ToursPageFirstPart() {
 }
  
  
-// ✅ ОПТИМИЗАЦИЯ: AlbumCard больше не делает свой Supabase запрос.
-//    Получает isLiked и onLikeToggle от родителя.
+// ─── КАРТОЧКА ТУРА ────────────────────────────────────────────
 const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle }) => {
   const { t, i18n } = useTranslation();
   const lang = i18n.language || "en";
-  const [loadingLike, setLoadingLike] = useState(false);
+ 
+  // Локальный стейт только для блокировки кнопки пока идёт запрос
+  const [pending, setPending] = useState(false);
  
   const handleToggleLike = async (e) => {
     e.preventDefault();
     e.stopPropagation();
-    setLoadingLike(true);
+    if (pending) return;
  
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       alert(t('tour_info_page.please_login', 'Please login to save tours'));
-      setLoadingLike(false);
       return;
     }
  
-    if (isLiked) {
-      const { error } = await supabase
-        .from("favourites")
-        .delete()
-        .eq("user_id", user.id)
-        .eq("tour_id", tour.id);
+    // ✅ ОПТИМИСТИЧНОЕ ОБНОВЛЕНИЕ:
+    // 1. Сразу меняем цвет сердечка — UI реагирует мгновенно
+    // 2. Параллельно отправляем запрос в Supabase
+    // 3. Если Supabase вернул ошибку — откатываем назад
+    const wasLiked = isLiked;
+    onLikeToggle(tour.id, !wasLiked); // ← сразу обновляем UI
+    setPending(true);
  
-      if (!error) onLikeToggle(tour.id, false);
+    let error;
+    if (wasLiked) {
+      ({ error } = await supabase.from("favourites").delete().eq("user_id", user.id).eq("tour_id", tour.id));
     } else {
-      const { error } = await supabase
-        .from("favourites")
-        .insert([{ user_id: user.id, tour_id: tour.id }]);
- 
-      if (!error) onLikeToggle(tour.id, true);
+      ({ error } = await supabase.from("favourites").insert([{ user_id: user.id, tour_id: tour.id }]));
     }
  
-    setLoadingLike(false);
+    // Если ошибка — возвращаем предыдущее состояние
+    if (error) onLikeToggle(tour.id, wasLiked);
+ 
+    setPending(false);
   };
  
   return (
@@ -320,18 +263,22 @@ const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle }) => {
         <button
           className={`favourite-btn ${isLiked ? 'active' : ''}`}
           onClick={handleToggleLike}
-          disabled={loadingLike}
+          disabled={pending}
           style={{
             position: 'absolute', top: '15px', right: '15px',
             background: 'rgba(0,0,0,0.3)', border: 'none', borderRadius: '50%',
             width: '36px', height: '36px', display: 'flex',
             alignItems: 'center', justifyContent: 'center', zIndex: 10,
+            // Плавная анимация цвета
+            transition: 'transform 0.15s ease',
+            transform: pending ? 'scale(0.85)' : 'scale(1)',
           }}
         >
           <Heart
             size={18}
             fill={isLiked ? "#ff4d4d" : "transparent"}
             stroke={isLiked ? "#ff4d4d" : "white"}
+            style={{ transition: 'fill 0.15s ease, stroke 0.15s ease' }}
           />
         </button>
  
@@ -352,9 +299,7 @@ const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle }) => {
         <Card.Title className="fw-bold mb-2">{tour.title[lang]}</Card.Title>
         <div className="d-flex align-items-center text-muted mb-3 small">
           <Clock size={16} className="me-2 text-success" />
-          <span>
-            {tour.duration} {tour.durationUnit === 'days' ? t('tour_info_page.days') : t('tour_info_page.hours')}
-          </span>
+          <span>{tour.duration} {tour.durationUnit === 'days' ? t('tour_info_page.days') : t('tour_info_page.hours')}</span>
         </div>
         <Card.Text className="text-muted small flex-grow-1">{tour.description[lang]}</Card.Text>
         <Link to={`/private-tours/${tour.id}`} className="mt-3">

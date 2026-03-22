@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useNavigate, Link } from "react-router-dom";
@@ -10,55 +10,113 @@ import { supabase } from "../supabaseClient";
 import privateToursData from "../toursPage/toursData.json";
 import "./ProfilePage.css";
  
+// ─── СКЕЛЕТОН для карточек пока грузятся данные ───────────────
+function SkeletonCard() {
+  return (
+    <Col md={6} lg={4}>
+      <div className="profile-tour-card" style={{ overflow: 'hidden' }}>
+        <div style={{ height: '180px', background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)', backgroundSize: '200% 100%', animation: 'shimmer 1.4s infinite' }} />
+        <div className="profile-tour-body">
+          <div style={{ height: '12px', width: '40%', background: '#eee', borderRadius: '6px', marginBottom: '10px' }} />
+          <div style={{ height: '18px', width: '80%', background: '#eee', borderRadius: '6px', marginBottom: '8px' }} />
+          <div style={{ height: '14px', width: '55%', background: '#eee', borderRadius: '6px' }} />
+        </div>
+      </div>
+    </Col>
+  );
+}
+ 
+// ─── ГЛАВНЫЙ КОМПОНЕНТ ────────────────────────────────────────
 function ProfilePage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState("favourites");
+ 
+  // ✅ ВЕСЬ стейт живёт здесь — переключение табов не вызывает повторных запросов
+  const [user, setUser]               = useState(null);
+  const [favourites, setFavourites]   = useState([]);
+  const [bookings, setBookings]       = useState([]);
+ 
+  // Отдельные флаги загрузки — профиль блокирует весь экран,
+  // остальное грузится в фоне и показывает скелетон внутри таба
+  const [loadingProfile, setLoadingProfile]     = useState(true);
+  const [loadingFavourites, setLoadingFavourites] = useState(true);
+  const [loadingBookings, setLoadingBookings]   = useState(true);
  
   useEffect(() => {
     window.scrollTo(0, 0);
+    loadAllData();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
  
-    const fetchFullProfile = async () => {
-      const { data: { user: authUser }, error: authError } = await supabase.auth.getUser();
+  const loadAllData = async () => {
+    // ── Шаг 1: авторизация (быстро, из кеша Supabase SDK) ──────
+    const { data: { user: authUser }, error: authError } = await supabase.auth.getUser();
+    if (authError || !authUser) { navigate("/login"); return; }
  
-      if (authError || !authUser) {
-        navigate("/login");
-        return;
-      }
+    // ── Шаг 2: три запроса ПАРАЛЛЕЛЬНО ─────────────────────────
+    // Раньше: profile → (открыл таб) → favourites → (открыл таб) → bookings
+    // Сейчас: всё сразу, пользователь видит шапку профиля почти мгновенно
+    const [profileRes, favRes, bookingsRes] = await Promise.all([
+      supabase.from("profiles").select("*").eq("id", authUser.id).maybeSingle(),
+      supabase.from("favourites").select("tour_id").eq("user_id", authUser.id),
+      supabase.from("bookings").select("*").eq("user_id", authUser.id).order("created_at", { ascending: false }),
+    ]);
  
-      // ✅ maybeSingle() не падает с 406 если строка не найдена (single() падает)
-      const { data: profileData } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", authUser.id)
-        .maybeSingle();
+    // ── Профиль ────────────────────────────────────────────────
+    const profileData = profileRes.data;
+    setUser(
+      profileData
+        ? { ...profileData, email: authUser.email }
+        : { id: authUser.id, full_name: authUser.user_metadata?.full_name || "Traveler",
+            email: authUser.email, avatar_url: authUser.user_metadata?.avatar_url }
+    );
+    setLoadingProfile(false); // ← шапка профиля теперь видна
  
-      if (profileData) {
-        setUser({ ...profileData, email: authUser.email });
-      } else {
-        // ✅ ИСПРАВЛЕНО: добавляем id — без него дочерние табы шлют user_id=undefined
-        setUser({
-          id: authUser.id,
-          full_name: authUser.user_metadata?.full_name || "Traveler",
-          email: authUser.email,
-          avatar_url: authUser.user_metadata?.avatar_url,
-        });
-      }
+    // ── Бронирования ───────────────────────────────────────────
+    if (!bookingsRes.error) setBookings(bookingsRes.data || []);
+    setLoadingBookings(false);
  
-      setLoading(false);
-    };
+    // ── Избранное: смешиваем Supabase + JSON ───────────────────
+    const favIds = (favRes.data || []).map(f => f.tour_id);
  
-    fetchFullProfile();
-  }, [navigate]);
+    if (favIds.length > 0) {
+      // Групповые туры берём из Supabase
+      const { data: dbTours } = await supabase
+        .from("group_eco_tours")
+        .select("id, title, image, price, location, type")
+        .in("id", favIds);
+ 
+      // Приватные туры берём из локального JSON (без сетевого запроса)
+      const jsonTours = privateToursData
+        .filter(tour => favIds.includes(tour.id))
+        .map(tour => ({ ...tour, image: tour.imageUrl || tour.image, type: "private" }));
+ 
+      setFavourites([...(dbTours || []), ...jsonTours]);
+    }
+    setLoadingFavourites(false);
+  };
+ 
+  // ✅ ОПТИМИСТИЧНОЕ удаление из избранного:
+  // карточка исчезает сразу, запрос идёт в фоне, при ошибке — восстанавливаем
+  const removeFavourite = useCallback(async (tourId) => {
+    const removed = favourites.find(f => f.id === tourId);
+    setFavourites(prev => prev.filter(f => f.id !== tourId)); // мгновенно
+ 
+    const { error } = await supabase
+      .from("favourites").delete()
+      .eq("user_id", user.id).eq("tour_id", tourId);
+ 
+    if (error && removed) {
+      setFavourites(prev => [...prev, removed]); // откат при ошибке
+    }
+  }, [favourites, user?.id]);
  
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate("/");
   };
  
-  if (loading) {
+  if (loadingProfile) {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
         <Spinner animation="border" variant="success" />
@@ -80,22 +138,17 @@ function ProfilePage() {
         <Container>
           <div className="profile-hero-inner">
             <div className="profile-avatar">
-              {user.avatar_url ? (
-                <img src={user.avatar_url} alt="avatar" />
-              ) : (
-                <span>{user.full_name?.[0]?.toUpperCase() || "U"}</span>
-              )}
+              {user.avatar_url
+                ? <img src={user.avatar_url} alt="avatar" />
+                : <span>{user.full_name?.[0]?.toUpperCase() || "U"}</span>
+              }
             </div>
             <div className="profile-hero-info">
               <h2 className="profile-name">{user.full_name || "Guest"}</h2>
-              <p className="profile-email">
-                <Mail size={14} className="me-1" />
-                {user.email}
-              </p>
+              <p className="profile-email"><Mail size={14} className="me-1" />{user.email}</p>
             </div>
             <button className="profile-logout-btn" onClick={handleLogout}>
-              <LogOut size={16} />
-              {t("profile.logout", "Выйти")}
+              <LogOut size={16} /> {t("profile.logout", "Выйти")}
             </button>
           </div>
         </Container>
@@ -109,15 +162,25 @@ function ProfilePage() {
               className={`profile-tab-btn ${activeTab === tab.id ? "active" : ""}`}
               onClick={() => setActiveTab(tab.id)}
             >
-              {tab.icon}
-              <span>{tab.label}</span>
+              {tab.icon}<span>{tab.label}</span>
             </button>
           ))}
         </div>
  
-        {activeTab === "favourites" && <FavouritesTab user={user} />}
-        {activeTab === "bookings"   && <BookingsTab user={user} />}
-        {activeTab === "settings"   && <SettingsTab user={user} setUser={setUser} />}
+        {/* Данные уже в стейте — переключение табов мгновенное */}
+        {activeTab === "favourites" && (
+          <FavouritesTab
+            favourites={favourites}
+            loading={loadingFavourites}
+            onRemove={removeFavourite}
+          />
+        )}
+        {activeTab === "bookings" && (
+          <BookingsTab bookings={bookings} loading={loadingBookings} />
+        )}
+        {activeTab === "settings" && (
+          <SettingsTab user={user} setUser={setUser} />
+        )}
       </Container>
  
       <Footer />
@@ -127,65 +190,18 @@ function ProfilePage() {
  
  
 // ─── ТАБ: ИЗБРАННОЕ ───────────────────────────────────────────
-function FavouritesTab({ user }) {
+// Только отображает данные — никаких запросов, никаких useEffect
+function FavouritesTab({ favourites, loading, onRemove }) {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || "en";
-  const [favourites, setFavourites] = useState([]);
-  const [loading, setLoading] = useState(true);
  
-  useEffect(() => {
-    const fetchHybridData = async () => {
-      setLoading(true);
- 
-      const { data: favRows, error } = await supabase
-        .from("favourites")
-        .select("tour_id")
-        .eq("user_id", user.id);
- 
-      if (error || !favRows) {
-        setLoading(false);
-        return;
-      }
- 
-      const allFavIds = favRows.map(f => f.tour_id);
- 
-      // Групповые туры из Supabase
-      const { data: dbTours } = await supabase
-        .from("group_eco_tours")
-        .select("id, title, image, price, location, type")
-        .in("id", allFavIds);
- 
-      // ✅ ИСПРАВЛЕНО: переименовали переменную map с `t` на `tour`,
-      //    чтобы не затенять функцию `t` из useTranslation
-      const jsonTours = privateToursData
-        .filter(tour => allFavIds.includes(tour.id))
-        .map(tour => ({
-          ...tour,
-          image: tour.imageUrl || tour.image,
-          type: "private",
-        }));
- 
-      const combined = [...(dbTours || []), ...jsonTours];
-      setFavourites(combined);
-      setLoading(false);
-    };
- 
-    fetchHybridData();
-  }, [user.id]);
- 
-  const removeFavourite = async (tourId) => {
-    const { error } = await supabase
-      .from("favourites")
-      .delete()
-      .eq("user_id", user.id)
-      .eq("tour_id", tourId);
- 
-    if (!error) {
-      setFavourites(prev => prev.filter(f => f.id !== tourId));
-    }
-  };
- 
-  if (loading) return <div className="text-center py-5"><Spinner animation="border" variant="success" /></div>;
+  if (loading) {
+    return (
+      <Row className="g-4">
+        {[1, 2, 3].map(i => <SkeletonCard key={i} />)}
+      </Row>
+    );
+  }
  
   if (favourites.length === 0) return (
     <div className="profile-empty-state">
@@ -204,13 +220,12 @@ function FavouritesTab({ user }) {
         <Col md={6} lg={4} key={tour.id}>
           <div className="profile-tour-card">
             <div className="profile-tour-img" style={{ backgroundImage: `url(${tour.image})` }}>
-              <button className="profile-heart-btn active" onClick={() => removeFavourite(tour.id)}>
+              <button className="profile-heart-btn active" onClick={() => onRemove(tour.id)}>
                 <Heart size={16} fill="currentColor" />
               </button>
             </div>
             <div className="profile-tour-body">
               <div className="profile-tour-type">{tour.type}</div>
-              {/* ✅ title может быть объектом {en,ru,hy} или строкой — обрабатываем оба случая */}
               <h5 className="profile-tour-title">
                 {typeof tour.title === "object"
                   ? (tour.title[currentLang] || tour.title.en || tour.title.ru)
@@ -235,27 +250,13 @@ function FavouritesTab({ user }) {
  
  
 // ─── ТАБ: БРОНИРОВАНИЯ ────────────────────────────────────────
-function BookingsTab({ user }) {
+// Только отображает данные — никаких запросов, никаких useEffect
+function BookingsTab({ bookings, loading }) {
   const { t } = useTranslation();
-  const [bookings, setBookings] = useState([]);
-  const [loading, setLoading] = useState(true);
  
-  useEffect(() => {
-    // ✅ Переименовали async функцию — было `fetch`, конфликтует с глобальным window.fetch
-    const fetchBookings = async () => {
-      const { data, error } = await supabase
-        .from("bookings")
-        .select("*")
-        .eq("user_id", user.id)
-        .order("created_at", { ascending: false });
- 
-      if (!error) setBookings(data || []);
-      setLoading(false);
-    };
-    fetchBookings();
-  }, [user.id]);
- 
-  if (loading) return <div className="text-center py-5"><Spinner animation="border" variant="success" /></div>;
+  if (loading) return (
+    <div className="text-center py-5"><Spinner animation="border" variant="success" /></div>
+  );
  
   if (bookings.length === 0) return (
     <div className="profile-empty-state">
@@ -296,37 +297,31 @@ function BookingsTab({ user }) {
 // ─── ТАБ: НАСТРОЙКИ ───────────────────────────────────────────
 function SettingsTab({ user, setUser }) {
   const { t, i18n } = useTranslation();
+  const [name, setName]   = useState(user.full_name || "");
   const [saved, setSaved] = useState(false);
- 
-  // ✅ ИСПРАВЛЕНО: user приходит из таблицы profiles, поле называется full_name, 
-  //    а не user_metadata.full_name (это поле из Supabase Auth, не из profiles)
-  const [name, setName] = useState(user.full_name || "");
+  const [saving, setSaving] = useState(false);
  
   const handleSaveName = async () => {
+    setSaving(true);
     const { data: { user: authUser } } = await supabase.auth.getUser();
  
     const { error } = await supabase
-      .from('profiles')
-      .update({ full_name: name })
-      .eq('id', authUser.id);
+      .from("profiles").update({ full_name: name }).eq("id", authUser.id);
  
+    setSaving(false);
     if (!error) {
       setSaved(true);
-      setUser(prev => ({ ...prev, full_name: name }));
+      setUser(prev => ({ ...prev, full_name: name })); // имя в шапке тоже обновится
       setTimeout(() => setSaved(false), 2500);
     } else {
       alert("Ошибка при сохранении: " + error.message);
     }
   };
  
-  const changeLanguage = (lang) => i18n.changeLanguage(lang);
- 
   return (
     <div className="settings-wrapper">
       <div className="settings-card">
-        <h5 className="settings-title">
-          <User size={18} /> {t("profile.personal_info", "Личные данные")}
-        </h5>
+        <h5 className="settings-title"><User size={18} /> {t("profile.personal_info", "Личные данные")}</h5>
         <div className="settings-field">
           <label>{t("profile.name", "Имя")}</label>
           <input
@@ -340,15 +335,13 @@ function SettingsTab({ user, setUser }) {
           <label>{t("profile.email_label", "Email")}</label>
           <input className="settings-input" value={user.email} disabled />
         </div>
-        <button className="settings-save-btn" onClick={handleSaveName}>
-          {saved ? t("profile.saved", "Сохранено ✓") : t("profile.save", "Сохранить")}
+        <button className="settings-save-btn" onClick={handleSaveName} disabled={saving}>
+          {saving ? "..." : saved ? t("profile.saved", "Сохранено ✓") : t("profile.save", "Сохранить")}
         </button>
       </div>
  
       <div className="settings-card">
-        <h5 className="settings-title">
-          <Globe size={18} /> {t("profile.language", "Язык")}
-        </h5>
+        <h5 className="settings-title"><Globe size={18} /> {t("profile.language", "Язык")}</h5>
         <div className="lang-options">
           {[
             { code: "en", label: "English" },
@@ -358,7 +351,7 @@ function SettingsTab({ user, setUser }) {
             <button
               key={l.code}
               className={`lang-btn ${i18n.language === l.code ? "active" : ""}`}
-              onClick={() => changeLanguage(l.code)}
+              onClick={() => i18n.changeLanguage(l.code)}
             >
               {l.label}
             </button>
