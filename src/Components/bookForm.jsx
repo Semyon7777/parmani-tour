@@ -37,12 +37,15 @@ const { t, i18n } = useTranslation();
   };
 
   const currentTour = toursData.find(tour => tour.id === cleanTourName);
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  tomorrow.setHours(8, 0, 0, 0);
 
   const [formData, setFormData] = useState({
     tourName: cleanTourName,
     firstName: '',
     lastName: '',
-    startDate: new Date(new Date().setHours(8, 0, 0, 0)),
+    startDate: tomorrow,
     guide: 'none',
     phone: '',
     pincode: false,
@@ -219,7 +222,7 @@ const { t, i18n } = useTranslation();
                         onChange={handleStartDateChange}
                         dateFormat="dd/MM/yyyy HH:mm" // Добавили часы и минуты в формат
                         className="form-control custom-input"
-                        minDate={new Date()}
+                        minDate={new Date(new Date().setDate(new Date().getDate() + 1))}
                         
                         
                         // Настройки времени

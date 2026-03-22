@@ -23,6 +23,10 @@
     color: #4FCE5D;
 }
 
+.social-icon:hover .fab.fa-youtube {
+    color: #FF0000;
+}
+
 /* .social-icon:hover .fab.fa-tiktok {
     color: #000000;
 } */
@@ -30,12 +34,16 @@
 
 
 .social-icon {
-    font-size: 1.3rem; 
+    font-size: 1.4rem; 
 }
 
 @media(max-width: 768px){
     .footerContainer {
         margin-top: 200px !important;
+    }
+
+    .text-uppercase {
+      justify-content: center;
     }
 }
 

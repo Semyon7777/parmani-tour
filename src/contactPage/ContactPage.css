@@ -95,29 +95,122 @@
 }
 
 .tour-contact-page-root .tour-social-btn:hover {
-  transform: translateY(-2px);
   filter: brightness(1.1);
   color: white !important;
 }
 
-/* Accordion */
-.tour-contact-page-root .tour-faq-wrapper {
-  background-color: white;
+/* TRUST */
+
+.trust-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #e8f0e8;
+  border-radius: 16px;
+  padding: 20px 32px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
-.tour-contact-page-root .tour-accordion .accordion-item {
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.trust-icon {
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+
+.trust-item strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--tour-dark-green);
+  margin-bottom: 2px;
+}
+
+.trust-item small {
+  font-size: 0.78rem;
+  color: #999;
+}
+
+.trust-divider {
+  width: 1px;
+  height: 36px;
+  background: #e8f0e8;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .trust-strip {
+    padding: 16px 20px;
+  }
+
+  .trust-divider {
+    display: none;
+  }
+
+  .trust-item {
+    min-width: 100%;
+  }
+}
+
+/* FAQ */
+.tour-contact-page-root .faq-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--tour-main-green);
+  margin-bottom: 8px;
+}
+
+.tour-contact-page-root .faq-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--tour-dark-green);
+  margin: 0;
+}
+
+.tour-contact-page-root .faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tour-contact-page-root .faq-item {
   border: none !important;
-  border-bottom: 1px solid #eee !important;
+  border-bottom: 1px solid #e8f0e8 !important;
+  background: transparent !important;
 }
 
-.tour-contact-page-root .tour-accordion .accordion-button:not(.collapsed) {
-  background-color: var(--tour-light-mint) !important;
-  color: var(--tour-dark-green) !important;
+.tour-contact-page-root .faq-item:first-child {
+  border-top: 1px solid #e8f0e8 !important;
+}
+
+.tour-contact-page-root .faq-item .accordion-button {
+  background: transparent !important;
+  color: #1a1a1a !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+  padding: 20px 0 !important;
   box-shadow: none !important;
 }
 
-.tour-contact-page-root .tour-accordion .accordion-button:focus {
-  box-shadow: none !important;
+.tour-contact-page-root .faq-item .accordion-body {
+  padding: 0 44px 20px 0 !important;
+  font-size: 0.88rem;
+  color: #666;
+  line-height: 1.7;
+}
+
+.tour-contact-page-root .faq-item .accordion-collapse {
+  transition: all 0.35s ease !important;
 }
 
 /* ---------- Контент ---------- */

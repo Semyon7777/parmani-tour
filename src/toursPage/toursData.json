@@ -947,7 +947,7 @@
 
   {
     "id": "sevan-gosh",
-    "category": "cultural",
+    "category": ["cultural", "nature"],
     "routeMap": "/TourImages/tavush_region/gosh/route-map.webp",
     "routeSummary": "Yerevan → Sevan → Gosh → Yerevan",
     "imageUrl": "/TourImages/tavush_region/gosh/sevan.webp",

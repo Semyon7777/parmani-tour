@@ -619,7 +619,6 @@
 
 .hotels-page-wrapper .wa-card:hover {
   background: rgba(37, 211, 102, 0.25);
-  transform: translateY(-5px);
   box-shadow: 0 10px 30px rgba(37, 211, 102, 0.2);
 }
 
@@ -639,7 +638,6 @@
 
 .hotels-page-wrapper .mail-card:hover {
   background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-5px);
   border-color: var(--accent-gold);
 }
 

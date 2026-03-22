@@ -78,7 +78,7 @@ function ToursPageFirstPart() {
         const matchesSearch = 
           tour.title[lang]?.toLowerCase().includes(lowerCaseSearch) ||
           tour.description[lang]?.toLowerCase().includes(lowerCaseSearch);
-        const matchesCategory = activeCategory === "all" || tour.category === activeCategory;
+        const matchesCategory = activeCategory === "all" || (Array.isArray(tour.category) ? tour.category.includes(activeCategory) : tour.category === activeCategory);
         let matchesDuration = true;
         if (sortBy === "filter_1day") {
           matchesDuration = tour.durationUnit === "hours" || (tour.durationUnit === "days" && tour.duration === 1);

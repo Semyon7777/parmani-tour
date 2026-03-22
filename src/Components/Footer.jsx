@@ -15,7 +15,7 @@ export default function Footer() {
       {/* Социальные сети */}
       <section className='d-flex justify-content-center justify-content-lg-between p-4 border-bottom'>
         <div className='me-5 d-none d-lg-block'>
-          <span>{t('footer.getConnected')}</span>
+          <span className='footer-get-connected'>{t('footer.getConnected')}</span>
         </div>
 
         <div>
@@ -31,13 +31,16 @@ export default function Footer() {
           <a href='https://www.facebook.com/profile.php?id=61565286992607' className='me-4 text-reset social-icon'>
             <MDBIcon fab icon="facebook-f" />
           </a>
+          <a href='https://www.youtube.com/channel/UCOI_Dsynx11USy4tzBAj5eg' className='me-4 text-reset social-icon'>
+            <MDBIcon fab icon="youtube" />
+          </a>
         </div>
       </section>
 
       {/* Основной контент */}
-      <section className=''>
+      <section className='footer-box'>
         <MDBContainer fluid className='text-center text-md-start mt-5 px-4'>
-          <MDBRow className='mt-3 d-flex justify-content-between align-items-start flex-nowrap-lg'>
+          <MDBRow className='mt-3 d-flex justify-content-between align-items-start flex-nowrap-lg footer-box-items'>
             
             {/* 1. BRAND - 25% ширины */}
             <MDBCol lg="3" className='mb-4'>

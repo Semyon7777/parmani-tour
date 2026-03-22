@@ -93,29 +93,7 @@ function ContactPage() {
       </Container>
 
       {/* FAQ Блок */}
-      <div className="tour-faq-wrapper py-5">
-        <Container>
-          <h2 className="text-center fw-bold mb-5 tour-text-green">Часто задаваемые вопросы</h2>
-          <Row className="justify-content-center">
-            <Col lg={9}>
-              <Accordion flush className="tour-accordion shadow-sm">
-                <Accordion.Item eventKey="0">
-                  <Accordion.Header>Нужна ли виза для оформления тура?</Accordion.Header>
-                  <Accordion.Body>
-                    Это зависит от выбранного направления. Наши менеджеры бесплатно проконсультируют вас по всем визовым вопросам и помогут подготовить документы.
-                  </Accordion.Body>
-                </Accordion.Item>
-                <Accordion.Item eventKey="1">
-                  <Accordion.Header>Как оплатить путешествие?</Accordion.Header>
-                  <Accordion.Body>
-                    Мы принимаем оплату картами через защищенный шлюз на сайте, банковским переводом или наличными в нашем офисе.
-                  </Accordion.Body>
-                </Accordion.Item>
-              </Accordion>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+      <ContactFAQ />
 
       <Footer />
     </div>
@@ -295,6 +273,74 @@ const { t } = useTranslation();
       />
 
     </Container>
+  );
+}
+
+// function TrustStrip() {
+//   const { t } = useTranslation();
+
+//   return (
+//     <div className="trust-strip mb-5">
+//       <div className="trust-item">
+//         <span className="trust-icon">⚡</span>
+//         <div>
+//           <strong>{t("contact_page.trust_1_title", "Ответим за 2 часа")}</strong>
+//           <small>{t("contact_page.trust_1_sub", "В рабочее время")}</small>
+//         </div>
+//       </div>
+//       <div className="trust-divider" />
+//       <div className="trust-item">
+//         <span className="trust-icon">🛡️</span>
+//         <div>
+//           <strong>{t("contact_page.trust_2_title", "Безопасная оплата")}</strong>
+//           <small>{t("contact_page.trust_2_sub", "Защищённый шлюз")}</small>
+//         </div>
+//       </div>
+//       <div className="trust-divider" />
+//       <div className="trust-item">
+//         <span className="trust-icon">🌿</span>
+//         <div>
+//           <strong>{t("contact_page.trust_3_title", "500+ туристов")}</strong>
+//           <small>{t("contact_page.trust_3_sub", "Довольных клиентов")}</small>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+function ContactFAQ() {
+  const { t } = useTranslation();
+
+  const faqs = [
+    { q: t("contact_page.faq.faq_q1"), a: t("contact_page.faq.faq_a1") },
+    { q: t("contact_page.faq.faq_q2"), a: t("contact_page.faq.faq_a2") },
+    { q: t("contact_page.faq.faq_q3"), a: t("contact_page.faq.faq_a3") },
+    { q: t("contact_page.faq.faq_q4"), a: t("contact_page.faq.faq_a4") },
+    { q: t("contact_page.faq.faq_q5"), a: t("contact_page.faq.faq_a5") },
+  ];
+
+  return (
+    <div className="tour-faq-wrapper py-5">
+      <Container>
+        <div className="faq-header text-center mb-5">
+          <h2 className="faq-title">{t("contact_page.faq.faq_title")}</h2>
+        </div>
+        <Row className="justify-content-center">
+          <Col lg={8}>
+            <div className="faq-list">
+              <Accordion flush>
+                {faqs.map((faq, i) => (
+                  <Accordion.Item eventKey={String(i)} key={i} className="faq-item">
+                    <Accordion.Header className="faq-question">{faq.q}</Accordion.Header>
+                    <Accordion.Body className="faq-answer-inner">{faq.a}</Accordion.Body>
+                  </Accordion.Item>
+                ))}
+              </Accordion>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 }
 

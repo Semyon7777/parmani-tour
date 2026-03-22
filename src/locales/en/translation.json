@@ -287,7 +287,20 @@
     "modal_close": "Close",
     "error_fill_all": "Please fill out all fields.",
     "error_email": "Please enter a valid email.",
-    "error_send": "Error sending message. Please try again."
+    "error_send": "Error sending message. Please try again.",
+    "faq" : {
+      "faq_title": "Frequently Asked Questions",
+      "faq_q1": "Do I need a visa to book a tour?",
+      "faq_a1": "It depends on your destination. Our managers will consult you free of charge on all visa-related questions and help you prepare the documents.",
+      "faq_q2": "How can I pay for the trip?",
+      "faq_a2": "We accept card payments via a secure gateway, bank transfers, or cash at our office.",
+      "faq_q3": "Can I cancel a tour?",
+      "faq_a3": "Yes, cancellation is possible up to 48 hours before the tour starts with no penalty.",
+      "faq_q4": "Is food included in the price?",
+      "faq_a4": "It depends on the tour — the details are listed in the description of each tour.",
+      "faq_q5": "How many people are in a group tour?",
+      "faq_a5": "Our group tours usually include 6 to 15 people, making them comfortable and personal."
+    }
   },
 
   "hotels_page": {
