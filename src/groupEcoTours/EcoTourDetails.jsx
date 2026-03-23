@@ -9,6 +9,7 @@ import {
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
+import GroupEcoToursBookForm from './GroupEcoToursBookForm';
 import './GroupEcoTours.css';
 
 const EcoTourDetails = () => {
@@ -16,7 +17,7 @@ const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  
+  const [bookingOpen, setBookingOpen] = useState(false);
   const tourFromState = location.state?.tour;
   const [tour, setTour] = useState(tourFromState || null);
   // Если данные пришли из state, нам не нужно показывать экран загрузки
@@ -168,7 +169,7 @@ useEffect(() => {
                 <FeatureLine icon={<Leaf size={16} />} text={t('group_eco_tours.eco.impact')} />
               </div>
 
-              <button className="eco-main-btn">
+              <button className="eco-main-btn" onClick={() => setBookingOpen(true)}>
                 {t('group_eco_tours.buttons.join_mission')}
               </button>
 
@@ -199,6 +200,12 @@ useEffect(() => {
           </Col>
         </Row>
       </Container>
+
+      <GroupEcoToursBookForm
+        tour={tour}
+        isOpen={bookingOpen}
+        onClose={() => setBookingOpen(false)}
+      />
 
       <Footer />
     </div>

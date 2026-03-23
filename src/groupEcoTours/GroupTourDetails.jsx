@@ -9,6 +9,7 @@ import {
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
+import GroupEcoToursBookForm from './GroupEcoToursBookForm';
 import './GroupEcoTours.css';
 
 
@@ -21,6 +22,7 @@ const GroupTourDetails = () => {
   
   const tourFromState = location.state?.tour;
   const [tour, setTour] = useState(tourFromState || null);
+  const [bookingOpen, setBookingOpen] = useState(false);
   const [loading, setLoading] = useState(!tourFromState);
   const currentLang = i18n.language || 'en';
 
@@ -175,7 +177,7 @@ const GroupTourDetails = () => {
                 </div>
               </div>
 
-              <button className="group-action-btn">
+              <button className="group-action-btn" onClick={() => setBookingOpen(true)}>
                 {t('group_eco_tours.group.book', 'Book a spot')}
               </button>
               <div className="spots-counter">
@@ -191,6 +193,12 @@ const GroupTourDetails = () => {
           </Col>
         </Row>
       </Container>
+
+      <GroupEcoToursBookForm
+        tour={tour}
+        isOpen={bookingOpen}
+        onClose={() => setBookingOpen(false)}
+      />
 
       <Footer />
     </div>
