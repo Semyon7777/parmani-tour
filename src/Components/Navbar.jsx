@@ -31,6 +31,7 @@ const NavbarCustom = ({ isHomePage }) => {
 
   useEffect(() => {
     // 1. Проверяем реальную сессию в фоне
+    console.log("DEBUG: Supabase URL is", process.env.REACT_APP_SUPABASE_URL);
     const checkSession = async () => {
       const { data: { session: activeSession } } = await supabase.auth.getSession();
       if (activeSession) {
