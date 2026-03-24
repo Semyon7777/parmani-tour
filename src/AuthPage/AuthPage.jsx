@@ -78,7 +78,7 @@ function AuthPage() {
   return (
     <div className="auth-page-wrapper">
       <NavbarCustom />
-      <Container className="d-flex align-items-center justify-content-center py-5">
+      <Container className="auth-page-form-container d-flex align-items-center justify-content-center py-5">
         <Card className="auth-card shadow-lg border-0">
           <Card.Body className="p-4 p-md-5">
             <div className="text-center mb-4">

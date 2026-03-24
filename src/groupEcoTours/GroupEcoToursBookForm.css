@@ -380,6 +380,20 @@
   .gbm-modal {
     border-radius: 18px 18px 0 0;
     max-height: calc(100vh - 70px);
+    overscroll-behavior: contain; 
+    /* ✅ Для мобильных браузеров: используем динамическую высоту */
+    max-height: calc(100dvh - 96px)
+  }
+
+  /* ✅ Блокируем скролл на самом фоне, чтобы тачи не проваливались */
+  .gbm-overlay {
+    /* ... твой старый код ... */
+    touch-action: none; 
+  }
+
+  /* ✅ Разрешаем тачи внутри модалки, иначе она перестанет скроллиться */
+  .gbm-modal, .gbm-terms-modal {
+    touch-action: auto;
   }
   .gbm-fields { grid-template-columns: 1fr; }
 }

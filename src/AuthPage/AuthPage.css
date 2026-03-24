@@ -4,6 +4,10 @@
   margin-top: 5%;
 }
 
+.auth-page-wrapper .auth-page-form-container {
+  margin-top: 40px;
+}
+
 .auth-icon-circle {
   width: 70px;
   height: 70px;

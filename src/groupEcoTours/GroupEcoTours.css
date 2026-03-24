@@ -657,6 +657,10 @@
   .eco-details-page .tabs-container .custom-tabs .tab-btn {
     padding: 10px 12px;
   }
+
+  .eco-details-page .quick-stats {
+    gap: 10px;
+  }
 }
 
 /* GROUP TOUR DETAILS */
