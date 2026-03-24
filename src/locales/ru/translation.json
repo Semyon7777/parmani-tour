@@ -11,13 +11,15 @@
     "special": "Спецпредложения",
     "group_&_eco_tours": "Групповые и эко-туры",
     "contact_button": "Контакты",
-    "profile_button": "Профиль",
     "about": "О стране",
     "history": "История",
     "cuisine": "Кухня",
     "culture": "Культура",
     "nature": "Природа",
-    "about_us": "О нас"
+    "about_us": "О нас",
+    "profile_button": "Мой профиль",
+    "login_button": "Войти",
+    "logout": "Выйти"
   },
 
   "home_page": {

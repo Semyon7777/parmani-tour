@@ -3,41 +3,88 @@ import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
 import MyIcon from './aragats-transparent.png';
+import { supabase } from "../supabaseClient";
+import { User, LogOut, LogIn } from "lucide-react";
 import "./Navbar.css";
 
 const NavbarCustom = ({ isHomePage }) => {
   const { t, i18n } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const timeoutRef = useRef({});
-  
+
+  // 1. Сразу инициализируем состояние из локального хранилища (МГНОВЕННО)
+  const [firstName, setFirstName] = useState(localStorage.getItem("parmani_user_name") || "");
+
+  // ДОБАВИТЬ: user в состояние dropdown, чтобы работал hover для профиля
   const [showDropdown, setShowDropdown] = useState({
-    tours: false, services: false, about: false, lang: false
+    tours: false, services: false, about: false, lang: false, user: false
   });
 
+  // Вспомогательная функция для извлечения имени
+  const extractFirstName = (user) => {
+    if (!user) return "";
+    const fullName = user.user_metadata?.full_name;
+    if (fullName) return fullName.split(" ")[0]; // "Tony Stark" -> "Tony"
+    return user.email?.split("@")[0] || "User";  // "tony@mail.com" -> "tony"
+  };
+
+
   useEffect(() => {
+    // 1. Проверяем реальную сессию в фоне
+    const checkSession = async () => {
+      const { data: { session: activeSession } } = await supabase.auth.getSession();
+      if (activeSession) {
+        const name = extractFirstName(activeSession.user);
+        setFirstName(name);
+        localStorage.setItem("parmani_user_name", name);
+      } else {
+        localStorage.removeItem("parmani_user_name");
+        setFirstName("");
+      }
+    };
+
+    checkSession();
+
+    // 2. Слушатель изменений авторизации
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, currentSession) => {
+
+      if (currentSession) {
+        const name = extractFirstName(currentSession.user);
+        setFirstName(name);
+        localStorage.setItem("parmani_user_name", name);
+      } else {
+        setFirstName("");
+        localStorage.removeItem("parmani_user_name");
+      }
+    });
+
+    // 3. Логика скролла
     const handleScroll = () => {
-      // Используем более надежный расчет высоты
       const vh = window.innerHeight;
       const scrollPos = window.scrollY;
 
       if (isHomePage) {
-        // На главной: строго после 100vh (минус высота самого навара)
-        // Если пользователь прокрутил меньше 95% экрана, scrolled всегда false
-        if (scrollPos > vh * 1) {
-          setScrolled(true);
-        } else {
-          setScrolled(false);
-        }
+        setScrolled(scrollPos > vh);
       } else {
-        // На остальных страницах: всегда true (фиксирован сразу)
         setScrolled(true);
       }
     };
 
+    // Возвращаем passive: true для плавной прокрутки
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      subscription.unsubscribe();
+    };
   }, [isHomePage]);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    localStorage.removeItem("parmani_user_name"); // Обязательно чистим при выходе
+    setFirstName("");
+  };
 
   const handleToggle = (key, isOpen) => {
     setShowDropdown(prev => ({ ...prev, [key]: isOpen }));
@@ -137,8 +184,27 @@ const NavbarCustom = ({ isHomePage }) => {
                 <LinkContainer to="/culture"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.culture")}</NavDropdown.Item></LinkContainer>
               </NavDropdown>
 
-              <LinkContainer to="/profile"><Nav.Link className="nav-link-item">{t("navbar_custom.profile_button")}</Nav.Link></LinkContainer>
-
+              {/* СЕКЦИЯ ПРОФИЛЯ */}
+              {/* УСЛОВНЫЙ РЕНДЕРИНГ С ИСПОЛЬЗОВАНИЕМ КЕША */}
+              {firstName ? (
+                <NavDropdown
+                  title={<span className="d-flex align-items-center"><User size={18} className="me-1" />{firstName}</span>}
+                  className="custom-dropdown user-profile-dropdown"
+                  show={showDropdown.user}
+                  onMouseEnter={() => handleMouseEnter('user')}
+                  onMouseLeave={() => handleMouseLeave('user')}
+                  onToggle={(isOpen) => handleToggle('user', isOpen)}
+                >
+                  <LinkContainer to="/profile"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.profile_button")}</NavDropdown.Item></LinkContainer>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item onClick={handleLogout} className="dropdown-item text-danger"><LogOut size={16} className="me-2" />{t("navbar_custom.logout")}</NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <LinkContainer to="/profile">
+                  <Nav.Link className="nav-link-item login-btn-highlight"><LogIn size={18} className="me-1" />{t("navbar_custom.login_button")}</Nav.Link>
+                </LinkContainer>
+              )}
+              
               <div className="language-divider d-none d-lg-block"></div>
 
               <NavDropdown

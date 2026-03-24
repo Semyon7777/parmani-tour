@@ -11,13 +11,15 @@
     "special": "Special Offers",
     "group_&_eco_tours": "Group & Eco Tours",
     "contact_button": "Contact",
-    "profile_button": "Profile",
     "about": "About",
     "history": "History",
     "cuisine": "Cuisine",
     "culture": "Culture",
     "nature": "Nature",
-    "about_us": "About Us"
+    "about_us": "About Us",
+    "profile_button": "My Profile",
+    "login_button": "Sign In",
+    "logout": "Log Out"
   },
 
   "home_page": {

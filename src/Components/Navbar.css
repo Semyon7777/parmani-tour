@@ -508,3 +508,23 @@
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
+
+/* Выделение кнопки входа, когда пользователь не залогинен */
+.login-btn-highlight {
+  padding: 5px 15px !important;
+  transition: all 0.3s ease;
+}
+
+/* Центрирование текста и иконки в дропдауне профиля */
+.user-profile-dropdown .dropdown-toggle {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 991px) {
+
+  .user-profile-dropdown .dropdown-toggle {
+    justify-content: center;
+  }
+
+}
