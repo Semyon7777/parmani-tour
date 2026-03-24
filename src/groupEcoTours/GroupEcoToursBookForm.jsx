@@ -389,7 +389,3 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
 }
 
 export default GroupEcoToursBookForm;
-
-// 8796254198:AAHS24buNN-gMCgGecLx1QCIIo7knmkhUgc
-// -1003822764555
-// "https://rllzxsuzaojqnconqwdd.supabase.co/functions/v1/quick-endpoint"
