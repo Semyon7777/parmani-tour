@@ -47,7 +47,7 @@
 /* ── CLOSE ────────────────────────────────────────────────── */
 .gbm-close {
   position: absolute;
-  top: 14px; right: 14px;
+  top: 19px; right: 14px;
   width: 32px; height: 32px;
   border-radius: 50%;
   border: none;
@@ -372,30 +372,33 @@
 .gbm-success .gbm-submit { max-width: 260px; margin-top: 4px; }
 
 /* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 991px) {
+  .gbm-modal {
+    max-height: calc(100dvh - 120px);
+  }
+}
+
 @media (max-width: 480px) {
   .gbm-overlay {
     padding: 70px 0 0;
     align-items: flex-end;
   }
+
   .gbm-modal {
     border-radius: 18px 18px 0 0;
-    max-height: calc(100vh - 70px);
-    overscroll-behavior: contain; 
-    /* ✅ Для мобильных браузеров: используем динамическую высоту */
-    max-height: calc(100dvh - 96px)
-  }
-
-  /* ✅ Блокируем скролл на самом фоне, чтобы тачи не проваливались */
-  .gbm-overlay {
-    /* ... твой старый код ... */
-    touch-action: none; 
+    max-height: calc(100dvh - 90px);
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   /* ✅ Разрешаем тачи внутри модалки, иначе она перестанет скроллиться */
   .gbm-modal, .gbm-terms-modal {
     touch-action: auto;
   }
-  .gbm-fields { grid-template-columns: 1fr; }
+
+  .gbm-fields { grid-template-columns: 1fr; 
+  }
+
 }
 
 /* ── TERMS CHECKBOX ───────────────────────────────────────── */

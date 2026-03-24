@@ -111,6 +111,7 @@ const NavbarCustom = ({ isHomePage }) => {
     await supabase.auth.signOut();
     localStorage.removeItem("parmani_user_name"); // Обязательно чистим при выходе
     setFirstName("");
+    window.location.href = "/";
   };
 
   const handleToggle = (key, isOpen) => {
