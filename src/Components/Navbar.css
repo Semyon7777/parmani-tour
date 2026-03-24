@@ -511,7 +511,8 @@
 
 /* Выделение кнопки входа, когда пользователь не залогинен */
 .login-btn-highlight {
-  padding: 5px 15px !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
   transition: all 0.3s ease;
 }
 
