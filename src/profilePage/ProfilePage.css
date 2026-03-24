@@ -477,8 +477,14 @@
   }
 
   .profile-page-root .profile-tab-btn {
-    padding: 6px 8px;
+    padding: 6px 6px;
     font-size: 0.82rem;
+  }
+
+  /* Стили только для армянского */
+  html[lang="hy"] .profile-page-root .profile-tab-btn {
+      padding: 6px 3.2px;
+      font-size: 74%;
   }
 
   .profile-page-root .booking-card {

@@ -243,7 +243,7 @@ function FavouritesTab({ favourites, loading, onRemove }) {
               <div className="profile-tour-footer">
                 <span className="profile-tour-price">{tour.price}</span>
                 <Link
-                  to={tour.type === "private" ? `/private-tours/${tour.id}` : `/group-tour/${tour.id}`}
+                  to={tour.type === "private" ? `/private-tours/${tour.id}` : tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`}
                   className="profile-tour-link"
                 >
                   {t("profile.view", "Открыть")} <ChevronRight size={14} />
