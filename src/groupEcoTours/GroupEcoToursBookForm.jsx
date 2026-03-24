@@ -140,7 +140,7 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
         guests_count: parseInt(form.guests_count),
         comment:      form.comment.trim() || null,
         location:     tourLocation || null,
-        travel_date:  tour.date || null,
+        travel_date: tour.date ? tour.date.split(".").reverse().join("-") : null,
         total_price:  totalPrice,
         status:       "pending",
       }]);
@@ -389,3 +389,7 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
 }
 
 export default GroupEcoToursBookForm;
+
+// 8796254198:AAHS24buNN-gMCgGecLx1QCIIo7knmkhUgc
+// -1003822764555
+// "https://rllzxsuzaojqnconqwdd.supabase.co/functions/v1/quick-endpoint"
