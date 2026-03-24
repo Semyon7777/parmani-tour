@@ -529,3 +529,77 @@
   }
 
 }
+
+/* ------------------------------------------------------- */
+
+@media (max-width: 991px) {
+  /* Контейнер для всех ссылок */
+  .navbar-nav {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем сами блоки кнопок */
+  }
+
+  /* Унифицируем стиль для ссылок и заголовков дропдаунов */
+  .navbar-container .nav-link-item, 
+  .navbar-container .custom-dropdown,
+  .navbar-container .user-profile-dropdown,
+  .navbar-container .lang-button-mobile-style-correcting {
+    width: 90% !important; /* Все кнопки одной ширины */
+    max-width: 400px;      /* Чтобы на планшетах не были слишком растянуты */
+    margin: 6px 0 !important; /* Одинаковые отступы между ними */
+    background: rgba(255, 255, 255, 0.05); /* Едва заметный фон для структуры */
+    border: 1px solid rgba(174, 229, 125, 0.15); /* Тонкая зеленая рамка */
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  /* Убираем анимацию подчеркивания на мобилках (она тут мешает) */
+  .navbar-container .nav-link-item::after {
+    display: none;
+  }
+
+  /* Специфические фиксы для Bootstrap Dropdown внутри этой структуры */
+  .navbar-container .custom-dropdown .dropdown-toggle {
+    width: 100% !important;
+    padding: 12px !important;
+    display: block;
+  }
+
+  /* Эффект при нажатии на мобилке */
+  .navbar-container .nav-link-item:active,
+  .navbar-container .custom-dropdown.show {
+    background: rgba(174, 229, 125, 0.1) !important;
+  }
+
+  /* Дропдаун-меню (вложенные пункты) */
+  .navbar-container .dropdown-menu {
+    width: 100% !important;
+    background: rgba(0, 0, 0, 0.2) !important; /* Чуть темнее фон для вложенных */
+    border: none !important;
+    border-radius: 0 0 12px 12px !important;
+    margin-top: 0 !important;
+  }
+
+  /* Разделитель языков нам на мобилке не нужен в виде палки */
+  .language-divider {
+    display: none;
+  }
+}
+
+@media (max-width: 991px) {
+  .home-button-mobile-style-correcting {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-button-mobile-style-correcting .nav-link-item {
+    padding: 12px;
+  }
+}
