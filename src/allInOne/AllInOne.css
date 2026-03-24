@@ -426,7 +426,6 @@ select.aio-input {
 input[type="date"].aio-input,
 input[type="number"].aio-input {
   min-height: 52px; /* Фиксированная высота, чтобы input не схлопывался */
-  display: flex;
   align-items: center;
 }
 

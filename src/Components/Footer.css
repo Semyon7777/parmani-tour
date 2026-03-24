@@ -23,6 +23,10 @@
     color: #4FCE5D;
 }
 
+.social-icon:hover .fab.fa-tiktok {
+    color: #ff0050;
+}
+
 .social-icon:hover .fab.fa-youtube {
     color: #FF0000;
 }

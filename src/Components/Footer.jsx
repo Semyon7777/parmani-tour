@@ -31,6 +31,9 @@ export default function Footer() {
           <a href='https://www.facebook.com/profile.php?id=61565286992607' className='me-4 text-reset social-icon'>
             <MDBIcon fab icon="facebook-f" />
           </a>
+          <a href='https://www.tiktok.com/@parmanitour' className='me-4 text-reset social-icon'>
+            <MDBIcon fab icon="tiktok" />
+          </a>
           <a href='https://www.youtube.com/channel/UCOI_Dsynx11USy4tzBAj5eg' className='me-4 text-reset social-icon'>
             <MDBIcon fab icon="youtube" />
           </a>
