@@ -152,11 +152,6 @@ function AuthPage() {
                   <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18" alt="Google" /> Google
                 </Button>
               </Col>
-              <Col>
-                <Button variant="outline-primary" className="w-100 d-flex align-items-center justify-content-center gap-2 social-btn" onClick={() => handleSocialLogin('facebook')}>
-                  <span style={{ fontWeight: "bold", fontSize: "1rem" }}>f</span> Facebook
-                </Button>
-              </Col>
             </Row>
 
             <div className="text-center">
