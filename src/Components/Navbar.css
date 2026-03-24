@@ -565,7 +565,6 @@
   .navbar-container .custom-dropdown .dropdown-toggle {
     width: 100% !important;
     padding: 12px !important;
-    display: block;
   }
 
   /* Эффект при нажатии на мобилке */

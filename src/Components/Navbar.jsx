@@ -28,15 +28,38 @@ const NavbarCustom = ({ isHomePage }) => {
     return user.email?.split("@")[0] || "User";  // "tony@mail.com" -> "tony"
   };
 
+  useEffect(() => {
+    // ✅ Слушаем обновление имени из SettingsTab
+    const handleNameUpdate = (e) => {
+      setFirstName(e.detail);
+    };
+    
+    window.addEventListener("user_name_updated", handleNameUpdate);
+    return () => window.removeEventListener("user_name_updated", handleNameUpdate);
+  }, []);
+
 
   useEffect(() => {
     // 1. Проверяем реальную сессию в фоне
     const checkSession = async () => {
       const { data: { session: activeSession } } = await supabase.auth.getSession();
       if (activeSession) {
-        const name = extractFirstName(activeSession.user);
-        setFirstName(name);
-        localStorage.setItem("parmani_user_name", name);
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("full_name")
+          .eq("id", activeSession.user.id)
+          .maybeSingle();
+
+        const name = profile?.full_name
+          ? profile.full_name.split(" ")[0]
+          : extractFirstName(activeSession.user);
+
+        // ✅ Обновляем только если имя реально изменилось
+        // Если в localStorage уже правильное имя — не трогаем, флика нет
+        if (name !== localStorage.getItem("parmani_user_name")) {
+          setFirstName(name);
+          localStorage.setItem("parmani_user_name", name);
+        }
       } else {
         localStorage.removeItem("parmani_user_name");
         setFirstName("");
@@ -47,11 +70,15 @@ const NavbarCustom = ({ isHomePage }) => {
 
     // 2. Слушатель изменений авторизации
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, currentSession) => {
-
       if (currentSession) {
-        const name = extractFirstName(currentSession.user);
-        setFirstName(name);
-        localStorage.setItem("parmani_user_name", name);
+        // ✅ Обновляем имя только если кеша нет (первый вход)
+        // Если кеш есть — там уже актуальное имя из profiles, не трогаем
+        const cached = localStorage.getItem("parmani_user_name");
+        if (!cached) {
+          const name = extractFirstName(currentSession.user);
+          setFirstName(name);
+          localStorage.setItem("parmani_user_name", name);
+        }
       } else {
         setFirstName("");
         localStorage.removeItem("parmani_user_name");

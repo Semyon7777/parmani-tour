@@ -317,11 +317,19 @@ function SettingsTab({ user, setUser }) {
  
     const { error } = await supabase
       .from("profiles").update({ full_name: name }).eq("id", authUser.id);
+
  
     setSaving(false);
     if (!error) {
       setSaved(true);
       setUser(prev => ({ ...prev, full_name: name })); // имя в шапке тоже обновится
+
+      const firstName = name.trim().split(" ")[0];
+      localStorage.setItem("parmani_user_name", firstName);
+
+      // ✅ Сигнализируем Navbar обновиться мгновенно
+      window.dispatchEvent(new CustomEvent("user_name_updated", { detail: firstName }));
+      
       setTimeout(() => setSaved(false), 2500);
     } else {
       alert("Ошибка при сохранении: " + error.message);
