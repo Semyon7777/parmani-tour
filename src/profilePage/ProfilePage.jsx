@@ -272,7 +272,7 @@ function BookingsTab({ bookings, loading }) {
       <Clock size={48} className="empty-icon" />
       <h4>{t("profile.no_bookings", "Нет бронирований")}</h4>
       <p>{t("profile.no_bookings_sub", "Ваши будущие и прошлые поездки появятся здесь")}</p>
-      <Link to="/tours" className="profile-cta-btn">
+      <Link to="/private-tours" className="profile-cta-btn">
         {t("profile.book_tour", "Забронировать тур")}
       </Link>
     </div>
@@ -308,38 +308,39 @@ function BookingsTab({ bookings, loading }) {
 function SettingsTab({ user, setUser }) {
   const { t, i18n } = useTranslation();
   const [name, setName]   = useState(user.full_name || "");
+  const [phone, setPhone] = useState(user.phone || "");
   const [saved, setSaved] = useState(false);
   const [saving, setSaving] = useState(false);
- 
-  const handleSaveName = async () => {
+
+  const handleSave = async () => {
     setSaving(true);
     const { data: { user: authUser } } = await supabase.auth.getUser();
- 
-    const { error } = await supabase
-      .from("profiles").update({ full_name: name }).eq("id", authUser.id);
 
- 
+    const { error } = await supabase
+      .from("profiles")
+      .update({ full_name: name, phone: phone })
+      .eq("id", authUser.id);
+
     setSaving(false);
     if (!error) {
       setSaved(true);
-      setUser(prev => ({ ...prev, full_name: name })); // имя в шапке тоже обновится
-
+      setUser(prev => ({ ...prev, full_name: name, phone }));
       const firstName = name.trim().split(" ")[0];
       localStorage.setItem("parmani_user_name", firstName);
-
-      // ✅ Сигнализируем Navbar обновиться мгновенно
       window.dispatchEvent(new CustomEvent("user_name_updated", { detail: firstName }));
-      
       setTimeout(() => setSaved(false), 2500);
     } else {
       alert("Ошибка при сохранении: " + error.message);
     }
   };
- 
+
   return (
     <div className="settings-wrapper">
+      {/* ── Личные данные ── */}
       <div className="settings-card">
-        <h5 className="settings-title"><User size={18} /> {t("profile.personal_info", "Личные данные")}</h5>
+        <h5 className="settings-title">
+          <User size={18} /> {t("profile.personal_info", "Личные данные")}
+        </h5>
         <div className="settings-field">
           <label>{t("profile.name", "Имя")}</label>
           <input
@@ -353,13 +354,26 @@ function SettingsTab({ user, setUser }) {
           <label>{t("profile.email_label", "Email")}</label>
           <input className="settings-input" value={user.email} disabled />
         </div>
-        <button className="settings-save-btn" onClick={handleSaveName} disabled={saving}>
+        <div className="settings-field">
+          <label>{t("profile.phone", "Телефон")}</label>
+          <input
+            className="settings-input"
+            value={phone}
+            onChange={e => setPhone(e.target.value)}
+            placeholder="+374 XX XXX XXX"
+            type="tel"
+          />
+        </div>
+        <button className="settings-save-btn" onClick={handleSave} disabled={saving}>
           {saving ? "..." : saved ? t("profile.saved", "Сохранено ✓") : t("profile.save", "Сохранить")}
         </button>
       </div>
- 
+
+      {/* ── Язык ── */}
       <div className="settings-card">
-        <h5 className="settings-title"><Globe size={18} /> {t("profile.language", "Язык")}</h5>
+        <h5 className="settings-title">
+          <Globe size={18} /> {t("profile.language", "Язык")}
+        </h5>
         <div className="lang-options">
           {[
             { code: "en", label: "English" },

@@ -993,7 +993,14 @@
     "email_label": "Email",
     "save": "Save",
     "saved": "Saved ✓",
-    "language": "Language"
+    "language": "Language",
+    "phone": "Phone",
+    "danger_zone": "Danger Zone",
+    "delete_warning": "Deleting your account is irreversible. All data, bookings and favourites will be deleted.",
+    "delete_account": "Delete account",
+    "delete_confirm": "Are you sure? This action cannot be undone.",
+    "delete_yes": "Yes, delete",
+    "delete_no": "Cancel"
   },
 
   "footer": {
