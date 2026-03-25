@@ -19,7 +19,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <a href='https://www.instagram.com/parmani_tour' className='me-4 text-reset social-icon'>
+          <a href='https://www.instagram.com/parmanitour?igsh=dzRnenQ0ZGJycTEw&utm_source=qr' className='me-4 text-reset social-icon'>
             <MDBIcon fab icon="instagram" />
           </a>
           <a href='https://wa.me/37493641069' className='me-4 text-reset social-icon'>
