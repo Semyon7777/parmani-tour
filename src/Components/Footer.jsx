@@ -19,22 +19,22 @@ export default function Footer() {
         </div>
 
         <div>
-          <a href='https://www.instagram.com/parmanitour?igsh=dzRnenQ0ZGJycTEw&utm_source=qr' className='me-4 text-reset social-icon'>
+          <a href='https://www.instagram.com/parmanitour?igsh=dzRnenQ0ZGJycTEw&utm_source=qr' className='m-3 text-reset social-icon'>
             <MDBIcon fab icon="instagram" />
           </a>
-          <a href='https://wa.me/37493641069' className='me-4 text-reset social-icon'>
+          <a href='https://wa.me/37493641069' className='m-3 text-reset social-icon'>
             <MDBIcon fab icon="whatsapp" />
           </a>
-          <a href='https://t.me/parmani_tour' className='me-4 text-reset social-icon'>
+          <a href='https://t.me/parmani_tour' className='m-3 text-reset social-icon'>
             <MDBIcon fab icon="telegram" />
           </a>
-          <a href='https://www.facebook.com/profile.php?id=61565286992607' className='me-4 text-reset social-icon'>
+          <a href='https://www.facebook.com/profile.php?id=61565286992607' className='m-3 text-reset social-icon'>
             <MDBIcon fab icon="facebook-f" />
           </a>
-          <a href='https://www.tiktok.com/@parmanitour' className='me-4 text-reset social-icon'>
+          <a href='https://www.tiktok.com/@parmanitour' className='m-3 text-reset social-icon'>
             <MDBIcon fab icon="tiktok" />
           </a>
-          <a href='https://www.youtube.com/channel/UCOI_Dsynx11USy4tzBAj5eg' className='me-4 text-reset social-icon'>
+          <a href='https://www.youtube.com/channel/UCOI_Dsynx11USy4tzBAj5eg' className='m-3 text-reset social-icon'>
             <MDBIcon fab icon="youtube" />
           </a>
         </div>

@@ -309,9 +309,17 @@ html[lang="hy"] .carouselContainerHeadText {
     background-color: rgba(255, 255, 255, 0); /* Прозрачный фон при наведении, фокусе и нажатии */
 }
 
+/* Make sure the clickable area doesn't cover the arrows */
+.carouselContainer .carouselArea .carousel-item > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .carouselContainer .carousel .carousel-control-prev,
 .carouselContainer .carousel .carousel-control-next {
-    width: 5%;
+    z-index: 5;
+    width: 10%;
 }
 
 .carouselContainer .carousel .carousel-control-prev-icon,

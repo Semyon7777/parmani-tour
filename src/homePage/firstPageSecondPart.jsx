@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Carousel from "react-bootstrap/Carousel";
+import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from 'react-i18next'; // Импортируйте useTranslation
 import img1 from "./first page images/slide1.webp";
 import img2 from "./first page images/slide2.webp";
@@ -62,21 +63,31 @@ function FirstPageSecondPart() {
 function UncontrolledExample() {
   const { t } = useTranslation(); // Используйте useTranslation
   const carouselItems = [
-    { imgSrc: img1, title: t('first_page_slides.first_slide_title'), description: t('first_page_slides.first_slide_description') },
-    { imgSrc: img2, title: t('first_page_slides.second_slide_title'), description: t('first_page_slides.second_slide_description') },
-    { imgSrc: img3, title: t('first_page_slides.third_slide_title'), description: t('first_page_slides.third_slide_description') },
-    { imgSrc: img4, title: t('first_page_slides.fourth_slide_title'), description: t('first_page_slides.fourth_slide_description') },
+    { imgSrc: img1, title: t('first_page_slides.first_slide_title'), description: t('first_page_slides.first_slide_description'), link: "/private-tours" },
+    { imgSrc: img2, title: t('first_page_slides.second_slide_title'), description: t('first_page_slides.second_slide_description'), link: "/transport" },
+    { imgSrc: img3, title: t('first_page_slides.third_slide_title'), description: t('first_page_slides.third_slide_description'), link: "/hotels" },
+    { imgSrc: img4, title: t('first_page_slides.fourth_slide_title'), description: t('first_page_slides.fourth_slide_description'), link: "/all-in-one" },
   ];
 
   return (
-    <Carousel indicators={false} interval={3000}>
+    <Carousel indicators={false} interval={3000} pause="hover">
       {carouselItems.map((item, index) => (
         <Carousel.Item key={index}>
-          <img className="d-block w-100" src={item.imgSrc} alt={`Slide ${index + 1}`} loading="lazy"/>
-          <Carousel.Caption>
-            <h3 className="firstPageCarouselCaptionTitle">{item.title}</h3>
-            <p className="firstPageCarouselCaptionInfo">{item.description}</p>
-          </Carousel.Caption>
+          {/* Wrap only the content that should be clickable */}
+          <LinkContainer to={item.link} style={{ cursor: 'pointer' }}>
+            <div>
+              <img 
+                className="d-block w-100" 
+                src={item.imgSrc} 
+                alt={`Slide ${index + 1}`} 
+                loading="lazy"
+              />
+              <Carousel.Caption>
+                <h3 className="firstPageCarouselCaptionTitle">{item.title}</h3>
+                <p className="firstPageCarouselCaptionInfo">{item.description}</p>
+              </Carousel.Caption>
+            </div>
+          </LinkContainer>
         </Carousel.Item>
       ))}
     </Carousel>
