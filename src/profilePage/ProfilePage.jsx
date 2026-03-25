@@ -156,7 +156,7 @@ function ProfilePage() {
       </div>
  
       <Container className="profile-content py-5">
-        <div className="profile-tabs mb-5">
+        <div className="profile-tabs mb-4">
           {tabs.map(tab => (
             <button
               key={tab.id}
@@ -262,11 +262,12 @@ function FavouritesTab({ favourites, loading, onRemove }) {
 // Только отображает данные — никаких запросов, никаких useEffect
 function BookingsTab({ bookings, loading }) {
   const { t } = useTranslation();
- 
+  const [filter, setFilter] = useState("all");
+
   if (loading) return (
     <div className="text-center py-5"><Spinner animation="border" variant="success" /></div>
   );
- 
+
   if (bookings.length === 0) return (
     <div className="profile-empty-state">
       <Clock size={48} className="empty-icon" />
@@ -277,28 +278,61 @@ function BookingsTab({ bookings, loading }) {
       </Link>
     </div>
   );
- 
+
+  const filters = [
+    { id: "all",       label: t("profile.filter_all",       "Все") },
+    { id: "pending",   label: t("profile.status_pending",   "В обработке") },
+    { id: "confirmed", label: t("profile.status_confirmed", "Подтверждено") },
+    { id: "cancelled", label: t("profile.status_cancelled", "Отменено") },
+  ];
+
+  const filtered = filter === "all"
+    ? bookings
+    : bookings.filter(b => b.status === filter);
+
   return (
-    <div className="bookings-list">
-      {bookings.map(booking => (
-        <div key={booking.id} className="booking-card">
-          <div className="booking-card-left">
-            <div className={`booking-status ${booking.status}`}>
-              {t(`profile.status_${booking.status}`, booking.status)}
-            </div>
-            <h5 className="booking-tour-name">{booking.tour_name}</h5>
-            <div className="booking-meta">
-              {booking.travel_date && (
-                <span><Calendar size={13} /> {booking.travel_date}</span>
-              )}
-            </div>
-          </div>
-          <div className="booking-card-right">
-            <div className="booking-price">{booking.total_price}</div>
-            <div className="booking-people">{booking.guests_count} {t("profile.people")}</div>
-          </div>
+    <div>
+      {/* Фильтры */}
+      <div className="bookings-filter">
+        {filters.map(f => (
+          <button
+            key={f.id}
+            className={`bookings-filter-btn ${filter === f.id ? "active" : ""} ${f.id !== "all" ? `status-${f.id}` : ""}`}
+            onClick={() => setFilter(f.id)}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Список */}
+      {filtered.length === 0 ? (
+        <div className="text-center py-4 text-muted">
+          {t("profile.no_filtered_bookings", "Нет бронирований с таким статусом")}
         </div>
-      ))}
+      ) : (
+        <div className="bookings-list">
+          {filtered.map(booking => (
+            <div key={booking.id} className="booking-card">
+              <div className="booking-card-left">
+                <div className={`booking-status ${booking.status}`}>
+                  {t(`profile.status_${booking.status}`, booking.status)}
+                </div>
+                <h5 className="booking-tour-name">{booking.tour_name}</h5>
+                <div className="booking-meta">
+                  {booking.travel_date && (
+                    <span><Calendar size={13} /> {booking.travel_date}</span>
+                  )}
+                </div>
+              </div>
+              <div className="booking-card-right">
+                <div className="booking-price">{booking.total_price}</div>
+                <div className="booking-people">{booking.guests_count} {t("profile.people")}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
