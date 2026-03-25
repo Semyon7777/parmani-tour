@@ -734,6 +734,12 @@ html[lang="hy"] .thirdContainerHeadOfText {
     .home-section-title { 
         font-size: 32px; 
     }
+
+    .home-upcoming-section .home-section-header{
+        flex-direction: column;
+        flex-wrap: wrap-reverse;
+    }
+
     .home-trust-card {
         padding: 30px 20px; 
     }
@@ -958,6 +964,7 @@ html[lang="hy"] .thirdContainerHeadOfText {
     align-items: center;
     gap: 5px;
     transition: 0.3s;
+    margin-bottom: 15px;
 }
 
 .view-all-link:hover {
@@ -1100,6 +1107,10 @@ html[lang="hy"] .thirdContainerHeadOfText {
   .event-content .event-footer .rounded-pill {
     width: 40%;
   }
+
+  .view-all-link {
+        margin-bottom: 0;
+    }
 
   .home-upcoming-section .price-value {
     font-size: 120%;

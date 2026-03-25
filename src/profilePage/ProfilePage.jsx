@@ -234,7 +234,7 @@ function FavouritesTab({ favourites, loading, onRemove }) {
               </button>
             </div>
             <div className="profile-tour-body">
-              <div className="profile-tour-type">{tour.type}</div>
+              <div className="profile-tour-type">{t(`profile.tour_type-${tour.type}`)}</div>
               <h5 className="profile-tour-title">
                 {typeof tour.title === "object"
                   ? (tour.title[currentLang] || tour.title.en || tour.title.ru)

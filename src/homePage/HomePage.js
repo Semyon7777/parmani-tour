@@ -189,7 +189,7 @@ function UpcomingEventsSection() {
               <span className="dot"></span>
               <span className="live-text">{t("home_page.upcoming.live_now", "БЛИЖАЙШИЕ СОБЫТИЯ")}</span>
             </div>
-            <h2 className="home-section-title m-0">{t("home_page.upcoming.title", "Скоро в программе")}</h2>
+            <h2 className="home-section-title home-coming-soon-title -m-0">{t("home_page.upcoming.title", "Скоро в программе")}</h2>
           </div>
           <Link to="/group-eco-tours" className="view-all-link text-success d-md-block">
             {t("home_page.upcoming.view_all")} <ArrowRight size={18} />
