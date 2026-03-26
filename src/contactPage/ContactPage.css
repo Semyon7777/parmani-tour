@@ -1,5 +1,4 @@
-/* ---------- Верхний блок ---------- */
-/* Переменные для быстрой настройки цветов */
+/* ---------- Переменные ---------- */
 :root {
   --tour-dark-green: #1b4332;
   --tour-main-green: #2d6a4f;
@@ -12,7 +11,7 @@
   background-color: var(--tour-soft-bg);
 }
 
-/* Header */
+/* ── HERO ─────────────────────────────────────────────────── */
 .tour-contact-page-root .tour-hero-header {
   background: linear-gradient(180deg, #ffffff 0%, var(--tour-light-mint) 100%);
   padding: 60px 0;
@@ -30,9 +29,10 @@
 .tour-contact-page-root .tour-main-subtitle {
   color: #555;
   max-width: 650px;
+  text-align: center;
 }
 
-/* Containers */
+/* ── CONTAINERS ───────────────────────────────────────────── */
 .tour-contact-page-root .tour-form-container {
   background: #ffffff;
   padding: 20px;
@@ -47,7 +47,6 @@
   background-color: var(--tour-light-mint) !important;
 }
 
-/* Icons and Text */
 .tour-contact-page-root .tour-text-green {
   color: var(--tour-main-green);
 }
@@ -63,9 +62,10 @@
   border-radius: 50%;
   font-size: 0.9rem;
   box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  flex-shrink: 0;
 }
 
-/* Социальные кнопки - ФИКС ЦВЕТОВ */
+/* ── SOCIAL BUTTONS ───────────────────────────────────────── */
 .tour-contact-page-root .tour-social-btn {
   display: flex !important;
   align-items: center !important;
@@ -79,28 +79,12 @@
   border: none !important;
 }
 
-.tour-contact-page-root .tour-btn-wa {
-  background-color: #25D366 !important;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25) !important;
-}
+.tour-contact-page-root .tour-btn-wa { background-color: #25D366 !important; box-shadow: 0 4px 12px rgba(37,211,102,0.25) !important; }
+.tour-contact-page-root .tour-btn-tg { background-color: #0088CC !important; box-shadow: 0 4px 12px rgba(0,136,204,0.25) !important; }
+.tour-contact-page-root .tour-btn-ig { background: linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%) !important; box-shadow: 0 4px 12px rgba(220,39,67,0.25) !important; }
+.tour-contact-page-root .tour-social-btn:hover { filter: brightness(1.1); color: white !important; }
 
-.tour-contact-page-root .tour-btn-tg {
-  background-color: #0088CC !important;
-  box-shadow: 0 4px 12px rgba(0, 136, 204, 0.25) !important;
-}
-
-.tour-contact-page-root .tour-btn-ig {
-  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
-  box-shadow: 0 4px 12px rgba(220, 39, 67, 0.25) !important;
-}
-
-.tour-contact-page-root .tour-social-btn:hover {
-  filter: brightness(1.1);
-  color: white !important;
-}
-
-/* TRUST */
-
+/* ── TRUST STRIP ──────────────────────────────────────────── */
 .trust-strip {
   display: flex;
   align-items: center;
@@ -111,6 +95,7 @@
   padding: 20px 32px;
   flex-wrap: wrap;
   gap: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
 }
 
 .trust-item {
@@ -118,26 +103,20 @@
   align-items: center;
   gap: 14px;
   flex: 1;
-  min-width: 160px;
+  min-width: 140px;
 }
 
-.trust-icon {
-  font-size: 1.6rem;
-  flex-shrink: 0;
-}
+.trust-icon { font-size: 1.6rem; flex-shrink: 0; }
 
 .trust-item strong {
   display: block;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: var(--tour-dark-green);
   margin-bottom: 2px;
 }
 
-.trust-item small {
-  font-size: 0.78rem;
-  color: #999;
-}
+.trust-item small { font-size: 0.76rem; color: #999; }
 
 .trust-divider {
   width: 1px;
@@ -146,30 +125,160 @@
   flex-shrink: 0;
 }
 
-@media (max-width: 767px) {
-  .trust-strip {
-    padding: 16px 20px;
-  }
-
-  .trust-divider {
-    display: none;
-  }
-
-  .trust-item {
-    min-width: 100%;
-  }
+/* ── CONCIERGE SECTION ────────────────────────────────────── */
+.concierge-section {
+  background: linear-gradient(180deg, #f8faf9 0%, #edf7f0 100%);
+  padding: 72px 0;
+  border-top: 1px solid #e0eee0;
+  border-bottom: 1px solid #e0eee0;
 }
 
-/* FAQ */
-.tour-contact-page-root .faq-eyebrow {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+.concierge-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 48px;
+}
+
+.concierge-badge {
+  display: inline-block;
+  background: rgba(45, 106, 79, 0.1);
   color: var(--tour-main-green);
+  border: 1px solid rgba(45,106,79,0.2);
+  border-radius: 50px;
+  padding: 4px 16px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.concierge-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--tour-dark-green);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+.concierge-subtitle {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* Карточки */
+.concierge-card {
+  background: #fff;
+  border: 1px solid #e8f0e8;
+  border-radius: 16px;
+  padding: 28px 24px;
+  height: 100%;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.concierge-card:hover {
+  box-shadow: 0 8px 28px rgba(45,106,79,0.1);
+  transform: translateY(-3px);
+}
+
+.concierge-card-icon {
+  font-size: 2rem;
+  margin-bottom: 14px;
+  line-height: 1;
+}
+
+.concierge-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--tour-dark-green);
   margin-bottom: 8px;
 }
 
+.concierge-card-text {
+  font-size: 0.86rem;
+  color: #666;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* CTA блок */
+.concierge-cta {
+  background: var(--tour-dark-green);
+  border-radius: 20px;
+  padding: 36px 40px;
+  color: white;
+}
+
+.concierge-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.concierge-live-dot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 10px;
+}
+
+.live-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  display: inline-block;
+  animation: pulse-green 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
+  50%       { box-shadow: 0 0 0 6px rgba(74,222,128,0); }
+}
+
+.concierge-cta-left h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.concierge-cta-left p {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+}
+
+.concierge-cta-right {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.concierge-cta-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: transform 0.2s, filter 0.2s;
+  color: white;
+}
+
+.concierge-cta-btn:hover { transform: scale(1.04); color: white; filter: brightness(1.1); }
+.concierge-cta-btn.wa { background: #25D366; }
+.concierge-cta-btn.tg { background: #0088CC; }
+
+/* ── FAQ ──────────────────────────────────────────────────── */
 .tour-contact-page-root .faq-title {
   font-size: 1.8rem;
   font-weight: 700;
@@ -209,110 +318,44 @@
   line-height: 1.7;
 }
 
-.tour-contact-page-root .faq-item .accordion-collapse {
-  transition: all 0.35s ease !important;
-}
-
-/* ---------- Контент ---------- */
-.contactPage .contactContent {
+/* ── FORM ─────────────────────────────────────────────────── */
+.contactContent {
   background: #fff;
   border-radius: 12px;
-  padding: 30px;
-  margin-top: 40px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  padding: 10px;
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.6s ease;
 }
 
-.contactPage .contactContent.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* Скрываем плавающий значок Google reCAPTCHA */
+.grecaptcha-badge { 
+  visibility: hidden; 
 }
 
-/* Заголовки */
-.contactPage .contactContent h3 {
-  color: #145d04;
-  font-weight: 600;
-  margin-bottom: 15px;
+.recaptcha-disclaimer {
+  font-size: 11px;
+  color: #777;
+  text-align: center;
+  line-height: 1.4;
 }
 
-/* Инфо блок */
-.contactPage .contactInfoBlock p {
-  color: #2e7d32;
-  margin-bottom: 10px;
+.recaptcha-disclaimer a {
+  color: #2e7d32; /* Твой зеленый цвет */
+  text-decoration: none;
 }
 
-
-@media (max-width: 991.98px) {
-
-  .messenger-block-container {
-    align-items: center;
-  }
-
-  .tour-hero-header {
-    margin-top: 40px;
-  }
-
-
-  .tour-main-title {
-    font-size: 2rem;
-  }
-  
-  .tour-hero-header {
-    padding: 40px 0;
-  }
-
-  .tour-form-container {
-    padding: 20px;
-  }
+.recaptcha-disclaimer a:hover {
+  text-decoration: underline;
 }
 
-/* Только мобильные (меньше 768px) */
-@media (max-width: 767.98px) {
-  .tour-main-title {
-    font-size: 1.75rem;
-    margin-bottom: 10px;
-  }
+.contactContent.visible { opacity: 1; transform: translateY(0); }
 
-  .tour-main-subtitle {
-    font-size: 0.95rem;
-  }
+.contactContent h3 { color: #145d04; font-weight: 600; margin-bottom: 15px; }
 
-  /* На мобильных кнопки можно сделать в ряд или сеткой 2х1 */
-  .tour-social-grid {
-    gap: 10px;
-  }
+.contactInfoBlock p { color: #2e7d32; margin-bottom: 10px; }
 
-  .tour-social-btn {
-    padding: 10px !important;
-    font-size: 0.9rem !important;
-  }
-
-  .tour-faq-title {
-    font-size: 1.5rem;
-  }
-
-  .tour-info-item small {
-    font-size: 0.85rem;
-  }
-
-  /* Убираем лишние отступы контейнера на мобилках */
-  .tour-content-container {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-}
-
-/* Очень маленькие экраны (iPhone SE и т.д.) */
-@media (max-width: 375px) {
-  .tour-social-btn {
-    font-size: 0.8rem !important;
-  }
-}
-
-/* ---------- Форма ---------- */
-.contactPage .custom-input {
+.custom-input {
   border: 1px solid #AEE57D;
   border-radius: 8px;
   padding: 10px 15px;
@@ -320,42 +363,34 @@
   background-color: #f5f9f4;
 }
 
-.contactPage .custom-input:focus {
+.custom-input:focus {
   border-color: #4CAF50;
-  box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+  box-shadow: 0 0 8px rgba(76,175,80,0.4);
   background-color: #fff;
 }
 
-.contactPage button[type="submit"] {
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.3s ease;
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media (max-width: 991.98px) {
+  .messenger-block-container { align-items: center; }
+  .tour-hero-header { margin-top: 40px; padding: 40px 0; }
+  .tour-main-title { font-size: 2rem; }
+  .concierge-cta { padding: 28px 24px; }
+  .concierge-cta-inner { flex-direction: column; align-items: flex-start; }
+  .concierge-title { font-size: 1.6rem; }
 }
 
-.contactPage button[type="submit"]:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+@media (max-width: 767.98px) {
+  .tour-main-title  { font-size: 1.75rem; margin-bottom: 10px; }
+  .tour-main-subtitle { font-size: 0.95rem; }
+  .trust-strip { padding: 16px 20px; }
+  .trust-divider { display: none; }
+  .trust-item { min-width: 100%; }
+  .concierge-section { padding: 48px 0; }
+  .concierge-title { font-size: 1.4rem; }
+  .concierge-cta-right { width: 100%; }
+  .concierge-cta-btn { flex: 1; justify-content: center; }
 }
 
-/* Alert */
-.contactPage .alert-danger {
-  border-radius: 8px;
-  font-weight: 500;
-}
-
-/* Modal */
-.contactPage .modal-content {
-  border-radius: 12px;
-}
-
-@media (max-width: 767px) {
-  .contactPage .contactPageTopTitle {
-    font-size: 1.6rem;
-  }
-  .contactPage .contactPageTopText {
-    font-size: 1rem;
-  }
-  .contactPage .contactContent {
-    padding: 20px;
-  }
+@media (max-width: 375px) {
+  .tour-social-btn { font-size: 0.8rem !important; }
 }
