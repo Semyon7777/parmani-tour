@@ -82,6 +82,10 @@ function ToursPageFirstPart() {
   const resetFilters      = () => { setSearchQuery(""); setActiveCategory("all"); setSortBy("default"); setSearchParams({}); };
  
   const processedTours = useMemo(() => {
+    console.log("lang:", lang);
+    console.log("searchQuery:", searchQuery);
+    console.log("activeCategory:", activeCategory);
+    console.log("toursData length:", toursData.length);
     const lowerCaseSearch = searchQuery.toLowerCase();
     return [...toursData]
       .filter(tour => {
@@ -231,7 +235,7 @@ function ToursPageFirstPart() {
 // ─── КАРТОЧКА ТУРА ────────────────────────────────────────────
 const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle, currentUser }) => {
   const { t, i18n } = useTranslation();
-  const lang = i18n.language || "en";
+  const lang = (i18n.language || "en").split("-")[0];
  
   // Локальный стейт только для блокировки кнопки пока идёт запрос
   const [pending, setPending] = useState(false);
