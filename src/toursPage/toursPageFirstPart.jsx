@@ -82,10 +82,6 @@ function ToursPageFirstPart() {
   const resetFilters      = () => { setSearchQuery(""); setActiveCategory("all"); setSortBy("default"); setSearchParams({}); };
  
   const processedTours = useMemo(() => {
-    console.log("lang:", lang);
-    console.log("searchQuery:", searchQuery);
-    console.log("activeCategory:", activeCategory);
-    console.log("toursData length:", toursData.length);
     const lowerCaseSearch = searchQuery.toLowerCase();
     return [...toursData]
       .filter(tour => {
