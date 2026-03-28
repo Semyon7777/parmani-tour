@@ -24,6 +24,7 @@ import "./App.css";
 import BookForm from "./Components/bookForm";
 import LegalPage from "./legalPage/LegalPage";
 import RouteTracker from "./Components/RouteTracker";
+import ErrorBoundary from "./ErrorBoundary";
 import './i18n';
 
 import AdminRoute from "./profilePage/AdminRoute";
@@ -45,6 +46,7 @@ function App() {
   }, [i18n.language]);
 
   return (
+    <ErrorBoundary>
       <div className="allPages">
         <Router>
           <RouteTracker /> {/* Вот здесь он будет "слушать" переходы */}
@@ -78,6 +80,7 @@ function App() {
           </Routes>
         </Router>
       </div>
+      </ErrorBoundary>
   );
 }
 
