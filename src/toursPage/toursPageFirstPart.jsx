@@ -89,9 +89,12 @@ function ToursPageFirstPart() {
     const lowerCaseSearch = searchQuery.toLowerCase();
     return [...toursData]
       .filter(tour => {
-        const matchesSearch =
-          tour.title[lang]?.toLowerCase().includes(lowerCaseSearch) ||
-          tour.description[lang]?.toLowerCase().includes(lowerCaseSearch);
+        const matchesSearch = searchQuery === "" || (
+          (tour.title[lang] || tour.title['en'] || tour.title['ru'] || '')
+            .toLowerCase().includes(lowerCaseSearch) ||
+          (tour.description[lang] || tour.description['en'] || tour.description['ru'] || '')
+            .toLowerCase().includes(lowerCaseSearch)
+        );
         const matchesCategory =
           activeCategory === "all" ||
           (Array.isArray(tour.category) ? tour.category.includes(activeCategory) : tour.category === activeCategory);
@@ -105,7 +108,11 @@ function ToursPageFirstPart() {
         const priceB = parseInt(b.price.toString().replace(/\D/g, '')) || 0;
         if (sortBy === "priceAsc")  return priceA - priceB;
         if (sortBy === "priceDesc") return priceB - priceA;
-        if (sortBy === "name")      return a.title[lang].localeCompare(b.title[lang]);
+        if (sortBy === "name") {
+          const titleA = a.title[lang] || a.title['en'] || '';
+          const titleB = b.title[lang] || b.title['en'] || '';
+          return titleA.localeCompare(titleB);
+        }
         return 0;
       });
   }, [searchQuery, activeCategory, sortBy, lang]);
