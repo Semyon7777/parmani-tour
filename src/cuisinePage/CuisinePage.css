@@ -1,9 +1,10 @@
+/* ── VARIABLES ───────────────────────────────────────────────── */
 :root {
-  --deep-moss: #0d1a0f;
+  --deep-moss:    #0d1a0f;
   --forest-green: #2d4a31;
-  --leaf-accent: #5e8c61;
-  --soft-cream: #f4f7f2;
-  --text-dark: #1a241b;
+  --leaf-accent:  #5e8c61;
+  --soft-cream:   #f4f7f2;
+  --text-dark:    #1a241b;
 }
 
 .cuisine-page {
@@ -12,9 +13,21 @@
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-/* --- HERO: Modern Cinematic --- */
+/* ── FADE ANIMATION ──────────────────────────────────────────── */
+.fade-block {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-block--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── HERO ─────────────────────────────────────────────────────── */
 .cuisine-page .cuisine-hero-editorial {
-  height: 80vh;
+  height: 84vh;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -31,13 +44,13 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.1); /* Slight zoom for quality feel */
+  transform: scale(1.05);
 }
 
 .cuisine-page .hero-overlay-gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(13,26,15,0.3), var(--deep-moss));
+  background: linear-gradient(to bottom, rgba(13,26,15,0.2) 0%, rgba(13,26,15,0.75) 100%);
 }
 
 .cuisine-page .hero-content {
@@ -45,59 +58,146 @@
   z-index: 2;
   text-align: center;
   color: white;
+  padding: 0 20px;
+  max-width: 800px;
 }
 
 .cuisine-page .hero-subtitle {
   text-transform: uppercase;
   letter-spacing: 5px;
-  font-size: 14px;
+  font-size: 13px;
   color: var(--leaf-accent);
   display: block;
-  margin-bottom: 15px;
+  margin-bottom: 16px;
 }
 
 .cuisine-page .hero-content h1 {
-  font-size: clamp(40px, 8vw, 80px);
+  font-size: clamp(38px, 7vw, 78px);
   font-weight: 800;
-  margin: 0;
+  margin: 0 0 16px;
+  line-height: 1.1;
 }
 
-/* --- INTRO --- */
+.cuisine-page .hero-desc {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* ── FACTS BAR ────────────────────────────────────────────────── */
+.cuisine-page .cuisine-facts-bar {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+  background: var(--deep-moss);
+  color: white;
+}
+
+.cuisine-page .fact-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 48px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  flex: 1;
+  min-width: 160px;
+}
+
+.cuisine-page .fact-item:last-child { border-right: none; }
+
+.cuisine-page .fact-num {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--leaf-accent);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.cuisine-page .fact-label {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ── INTRO ────────────────────────────────────────────────────── */
 .cuisine-page .cuisine-intro-refined {
   padding: 100px 5%;
   text-align: center;
 }
 
 .cuisine-page .intro-container p {
-  max-width: 800px;
+  max-width: 780px;
   margin: 0 auto;
-  font-size: 20px;
-  line-height: 1.8;
+  font-size: 1.25rem;
+  line-height: 1.85;
   color: var(--forest-green);
   font-weight: 400;
 }
 
-/* --- THE EDITORIAL GRID --- */
+/* ── QUOTE ────────────────────────────────────────────────────── */
+.cuisine-page .cuisine-quote-section {
+  padding: 0 5% 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.cuisine-page .armenian-quote {
+  max-width: 720px;
+  text-align: center;
+  font-size: 1.45rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--forest-green);
+  position: relative;
+  padding: 40px;
+  border-left: none;
+  border-top: 2px solid var(--leaf-accent);
+  border-bottom: 2px solid var(--leaf-accent);
+}
+
+.cuisine-page .quote-mark {
+  font-size: 5rem;
+  color: var(--leaf-accent);
+  line-height: 0;
+  vertical-align: -0.4em;
+  margin-right: 4px;
+  font-style: normal;
+}
+
+.cuisine-page .armenian-quote cite {
+  display: block;
+  margin-top: 20px;
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--leaf-accent);
+  text-transform: uppercase;
+}
+
+/* ── EDITORIAL GRID ───────────────────────────────────────────── */
 .cuisine-page .cuisine-feature-grid {
   max-width: 1300px;
   margin: 0 auto;
-  padding-bottom: 120px;
+  padding: 0 5% 120px;
 }
 
 .cuisine-page .feature-row {
   display: flex;
   align-items: center;
   gap: 8%;
-  margin-bottom: 150px; /* Large spacing looks high-end */
+  margin-bottom: 140px;
 }
 
 .cuisine-page .feature-row.row-reverse {
   flex-direction: row-reverse;
 }
 
-.cuisine-page .feature-image-block {
-  flex: 1.2;
-}
+.cuisine-page .feature-image-block { flex: 1.2; }
 
 .cuisine-page .image-frame {
   position: relative;
@@ -106,28 +206,24 @@
 
 .cuisine-page .image-frame img {
   width: 100%;
-  height: 500px;
+  height: 480px;
   object-fit: cover;
-  border-radius: 4px; /* Sharp but slightly softened */
+  border-radius: 4px;
   display: block;
-  z-index: 2;
   position: relative;
+  z-index: 2;
 }
 
-/* Decorative Green box behind image */
 .cuisine-page .image-border-deco {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 70%;
-  height: 70%;
+  top: 0; left: 0;
+  width: 70%; height: 70%;
   border: 2px solid var(--leaf-accent);
   z-index: 1;
 }
 
 .cuisine-page .row-reverse .image-border-deco {
-  left: auto;
-  right: 0;
+  left: auto; right: 0;
 }
 
 .cuisine-page .feature-text-block {
@@ -138,57 +234,193 @@
 .cuisine-page .dish-label {
   color: var(--leaf-accent);
   font-weight: 700;
-  font-size: 13px;
+  font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   display: block;
-  margin-bottom: 15px;
+  margin-bottom: 14px;
 }
 
 .cuisine-page .feature-text-block h2 {
-  font-size: 44px;
-  margin-bottom: 25px;
+  font-size: 2.6rem;
+  margin-bottom: 22px;
   color: var(--deep-moss);
+  line-height: 1.15;
 }
 
 .cuisine-page .feature-text-block p {
-  font-size: 17px;
+  font-size: 1.05rem;
   line-height: 1.9;
   color: #4a5d4e;
 }
 
-/* --- FINAL CTA --- */
+/* ── TRADITIONS ───────────────────────────────────────────────── */
+.cuisine-page .cuisine-traditions-section {
+  background: white;
+  padding: 96px 5%;
+  border-top: 1px solid #e8ede8;
+  border-bottom: 1px solid #e8ede8;
+}
+
+.section-eyebrow {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--leaf-accent);
+  margin-bottom: 14px;
+}
+
+.cuisine-page .traditions-header {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto 56px;
+}
+
+.cuisine-page .traditions-header h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--deep-moss);
+  margin-bottom: 14px;
+}
+
+.cuisine-page .traditions-header p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.cuisine-page .traditions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.cuisine-page .tradition-card {
+  background: var(--soft-cream);
+  border-radius: 16px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cuisine-page .tradition-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.cuisine-page .tradition-card p {
+  font-size: 0.92rem;
+  color: #4a5d4e;
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ── TOUR CTA ─────────────────────────────────────────────────── */
+.cuisine-page .cuisine-tour-cta {
+  padding: 96px 5%;
+  background: var(--soft-cream);
+}
+
+.cuisine-page .tour-cta-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  background: var(--forest-green);
+  border-radius: 24px;
+  padding: 56px 64px;
+  color: white;
+  flex-wrap: wrap;
+}
+
+.cuisine-page .tour-cta-text { flex: 1; min-width: 260px; }
+
+.cuisine-page .tour-cta-text .section-eyebrow { color: var(--leaf-accent); }
+
+.cuisine-page .tour-cta-text h2 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.cuisine-page .tour-cta-text p {
+  font-size: 0.95rem;
+  opacity: 0.8;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.cuisine-page .cuisine-tour-btn {
+  display: inline-block;
+  background: white;
+  color: var(--forest-green);
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.cuisine-page .cuisine-tour-btn:hover {
+  background: var(--leaf-accent);
+  color: white;
+}
+
+/* ── FINAL CTA ────────────────────────────────────────────────── */
 .cuisine-page .cuisine-footer-cta {
   background: var(--deep-moss);
   color: white;
   padding: 120px 5%;
   text-align: center;
-  border-radius: 100px 100px 0 0; /* Modern curve */
+  border-radius: 80px 80px 0 0;
 }
 
 .cuisine-page .cta-content h2 {
-  font-size: 48px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
   margin-bottom: 20px;
 }
 
 .cuisine-page .cta-content p {
-  max-width: 600px;
+  max-width: 580px;
   margin: 0 auto;
-  font-size: 18px;
-  opacity: 0.8;
+  font-size: 1.05rem;
+  opacity: 0.75;
+  line-height: 1.75;
 }
 
-/* --- MOBILE RESPONSIVE --- */
+/* ── RESPONSIVE ───────────────────────────────────────────────── */
 @media (max-width: 1024px) {
-  .cuisine-page .feature-row, .feature-row.row-reverse {
+  .cuisine-page .feature-row,
+  .cuisine-page .feature-row.row-reverse {
     flex-direction: column;
     margin-bottom: 80px;
   }
-  .cuisine-page .feature-text-block {
-    text-align: center;
-    padding: 20px;
-  }
-  .cuisine-page .image-frame img {
-    height: 350px;
-  }
+  .cuisine-page .feature-text-block { text-align: center; padding: 20px 10px; }
+  .cuisine-page .image-frame img    { height: 360px; }
+  .cuisine-page .traditions-grid    { grid-template-columns: repeat(2, 1fr); }
+  .cuisine-page .tour-cta-inner     { flex-direction: column; padding: 40px 32px; text-align: center; }
+}
+
+@media (max-width: 768px) {
+  .cuisine-page .cuisine-facts-bar  { flex-direction: column; }
+  .cuisine-page .fact-item          { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 24px; }
+  .cuisine-page .fact-item:last-child { border-bottom: none; }
+  .cuisine-page .traditions-grid    { grid-template-columns: 1fr; }
+  .cuisine-page .cuisine-intro-refined { padding: 60px 5%; }
+  .cuisine-page .armenian-quote      { font-size: 1.15rem; padding: 24px 16px; }
+  .cuisine-page .cuisine-footer-cta  { border-radius: 40px 40px 0 0; padding: 72px 5%; }
+  .cuisine-page .feature-text-block h2 { font-size: 2rem; }
 }

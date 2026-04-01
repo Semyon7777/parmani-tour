@@ -602,34 +602,65 @@
 
   "cuisine": {
     "hero": {
-      "title": "Armenian Cuisine",
-      "subtitle": "A taste shaped by fire, mountains, and centuries of tradition."
+      "tag": "A Culinary Heritage",
+      "title": "The Soul of Armenian Cuisine",
+      "desc": "Thousands of years of flavour, tradition and hospitality"
+    },
+    "facts": {
+      "f1": "Years of culinary tradition",
+      "f2": "Protected heritage (lavash)",
+      "f3": "Traditional dishes",
+      "f4": "Months of preserved foods"
     },
     "intro": {
-      "title": "More Than Food",
-      "text": "Armenian cuisine is not just about dishes — it is about family, hospitality, and sharing. Recipes have been passed from generation to generation, preserving authentic flavors and techniques."
+      "text": "Armenian cuisine is one of the oldest in the world. Shaped by ancient trade routes, fertile highlands and a deeply communal way of life, it tells the story of a people who turned simple ingredients into extraordinary flavour."
+    },
+    "quote": {
+      "text": "The table is the place where friendships are born and souls are fed.",
+      "author": "Armenian proverb"
     },
     "dishes": {
       "khorovats": {
+        "label": "The Grill",
         "title": "Khorovats",
-        "text": "Traditional Armenian barbecue cooked over open flame. Juicy, smoky, and served during celebrations and gatherings."
+        "text": "More than a dish — Khorovats is a ritual. Armenians gather around open fire, marinate the meat for hours and share stories while it cooks. You will find it at every celebration, from weddings to simple Sunday lunches."
       },
       "lavash": {
+        "label": "The Bread",
         "title": "Lavash",
-        "text": "Thin traditional bread baked in a tonir oven. Recognized by UNESCO as intangible cultural heritage."
+        "text": "Thin, soft and ancient, lavash is the daily bread of Armenia. UNESCO inscribed it as Intangible Cultural Heritage in 2014. Baked by women together in a tonir (clay oven), it represents community, patience and tradition."
       },
       "dolma": {
+        "label": "The Classic",
         "title": "Dolma",
-        "text": "Grape leaves stuffed with meat, rice, and aromatic herbs. A perfect balance of flavor and tradition."
+        "text": "Grape leaves filled with seasoned lamb and rice, dolma is patience folded into every bite. Each family has its own recipe passed down through generations — and each believes theirs is the best."
       },
       "gata": {
+        "label": "The Sweet",
         "title": "Gata",
-        "text": "Sweet layered pastry with delicate filling. A symbol of Armenian warmth and hospitality."
+        "text": "Buttery, layered and slightly sweet, gata is Armenia's most beloved pastry. Whether from Yerevan or a mountain village, it carries the warmth of Armenian hospitality in every slice."
       }
     },
+    "traditions": {
+      "eyebrow": "Culture & Customs",
+      "title": "Food as a Way of Life",
+      "subtitle": "Armenian cuisine is more than recipes — it is a living tradition passed through generations.",
+      "t1": "Lavash — a UNESCO protected tradition that strengthens family and community bonds.",
+      "t2": "Armenia is one of the oldest wine-producing regions in the world, with winemaking dating back over 6,000 years.",
+      "t3": "Bread is sacred in Armenian culture — it is never thrown away and is always placed right-side up on the table.",
+      "t4": "Ceramic jars called karassi were historically used to ferment and store wine, cheese and pickled vegetables.",
+      "t5": "Armenian tables are never small — hospitality means abundance, and guests are always fed generously.",
+      "t6": "The tonir (clay oven) is the heart of the Armenian kitchen — used for baking, roasting and even heating the home."
+    },
+    "tour_cta": {
+      "eyebrow": "Taste it yourself",
+      "title": "Explore Armenian Cuisine on a Gastronomic Tour",
+      "text": "Visit local markets, taste traditional dishes cooked by Armenian families and discover the flavours behind the stories.",
+      "btn": "View Gastronomic Tours"
+    },
     "experience": {
-      "title": "Experience the Armenian Table",
-      "text": "A traditional Armenian table is generous and welcoming. Meals are long, conversations are warm, and guests are always treated like family."
+      "title": "Come Hungry. Leave with Stories.",
+      "text": "Every meal in Armenia is an invitation. To sit, to share, to stay a little longer. We will show you the table."
     }
   },
 
