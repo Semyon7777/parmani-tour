@@ -1023,6 +1023,24 @@
     "delete_no": "Cancel"
   },
 
+  "auth_page": {
+    "login_title": "Login to Account",
+    "register_title": "Registration",
+    "label_first_name": "First Name",
+    "placeholder_first_name": "John",
+    "label_last_name": "Last Name",
+    "placeholder_last_name": "Doe",
+    "label_email": "Email",
+    "label_password": "Password",
+    "label_confirm_password": "Confirm Password",
+    "btn_login": "Login",
+    "btn_create_account": "Create Account",
+    "or_social": "or sign in with",
+    "switch_to_login": "Already have an account? Login",
+    "switch_to_register": "No account? Register now",
+    "error_password_match": "Passwords do not match"
+  },
+
   "footer": {
     "getConnected": "Get connected with us on social networks:",
     "description": "Your reliable partner in discovering the hidden gems of Armenia. Premium service and authentic experiences.",

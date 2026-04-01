@@ -953,6 +953,24 @@
     "delete_no": "Չեղարկել"
   },
 
+  "auth_page": {
+    "login_title": "Մուտք գործել",
+    "register_title": "Գրանցում",
+    "label_first_name": "Անուն",
+    "placeholder_first_name": "Հովհաննես",
+    "label_last_name": "Ազգանուն",
+    "placeholder_last_name": "Հովհաննիսյան",
+    "label_email": "Էլ. փոստ",
+    "label_password": "Գաղտնաբառ",
+    "label_confirm_password": "Կրկնել գաղտնաբառը",
+    "btn_login": "Մուտք",
+    "btn_create_account": "Ստեղծել հաշիվ",
+    "or_social": "կամ մուտք գործել",
+    "switch_to_login": "Արդեն ունե՞ք հաշիվ: Մուտք",
+    "switch_to_register": "Չունե՞ք հաշիվ: Գրանցվել",
+    "error_password_match": "Գաղտնաբառերը չեն համընկնում"
+  },
+
   "footer": {
     "getConnected": "Միացեք մեզ սոցիալական ցանցերում.",
     "description": "Ձեր հուսալի գործընկերը Հայաստանի թաքնված գանձերը բացահայտելու գործում: Պրեմիում սպասարկում և անմոռանալի փորձ:",

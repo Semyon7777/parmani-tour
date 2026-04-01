@@ -8,7 +8,7 @@
   margin-top: 40px;
 }
 
-.auth-icon-circle {
+.auth-page-wrapper .auth-icon-circle {
   width: 70px;
   height: 70px;
   background-color: #e8f5e9;
@@ -20,11 +20,45 @@
   margin: 0 auto;
 }
 
-.input-group-text {
+.auth-page-wrapper .input-group-text {
   color: #3ea03e;
 }
 
-.form-control:focus {
+.auth-page-wrapper .form-control:focus {
   box-shadow: 0 0 0 0.25rem rgba(62, 160, 62, 0.25);
   border-color: #3ea03e;
+}
+
+/* Убираем стандартное синее свечение (focus) для всех инпутов */
+.auth-page-wrapper .auth-card .form-control:focus {
+  border-color: #3ea03e; /* Твой зеленый цвет */
+  box-shadow: none; /* Нежное зеленое свечение вместо синего */
+  outline: 0;
+}
+
+/* Исправляем стиль для input-group-text (иконки), чтобы они не синели */
+.auth-page-wrapper .auth-card .input-group:focus-within .input-group-text {
+  border-color: none;
+  color: none;
+}
+
+/* Убираем синюю обводку у кнопок */
+.auth-page-wrapper .auth-card .btn:focus, 
+.auth-page-wrapper .auth-card .btn-check:focus + .btn,
+.auth-page-wrapper .auth-card .social-btn:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Специально для Google кнопки, чтобы при клике не было синего контура */
+.auth-page-wrapper .social-btn:active, .social-btn:focus {
+  background-color: #f8f9fa !important;
+  border-color: #ddd !important;
+  color: #212529 !important;
+}
+
+/* Для ссылки переключения (Вход/Регистрация) */
+.auth-page-wrapper .btn-link:focus {
+  box-shadow: none !important;
+  text-decoration: underline !important;
 }

@@ -332,7 +332,6 @@ html[lang="hy"] .carouselContainerHeadText {
     width: 100%;
     height: 450px; /* Установите желаемую высоту */
     object-fit: cover; /* Позволяет масштабировать изображение и обрезать его, чтобы заполнить заданные размеры */
-    border-radius: 10px 10px 0 0; /* Закругленные углы для изображений */
 }
 
 .carouselContainer .carousel-fade .carousel-item {

@@ -956,6 +956,24 @@
     "delete_no": "Отмена"
   },
 
+  "auth_page": {
+    "login_title": "Вход в аккаунт",
+    "register_title": "Регистрация",
+    "label_first_name": "Имя",
+    "placeholder_first_name": "Иван",
+    "label_last_name": "Фамилия",
+    "placeholder_last_name": "Иванов",
+    "label_email": "Email",
+    "label_password": "Пароль",
+    "label_confirm_password": "Повторите пароль",
+    "btn_login": "Войти",
+    "btn_create_account": "Создать аккаунт",
+    "or_social": "или войти через",
+    "switch_to_login": "Уже есть аккаунт? Войти",
+    "switch_to_register": "Нет аккаунта? Зарегистрироваться",
+    "error_password_match": "Пароли не совпадают"
+  },
+
   "footer": {
     "getConnected": "Присоединяйтесь к нам в соцсетях:",
     "description": "Ваш надежный партнер в открытии скрытых сокровищ Армении. Премиальный сервис и подлинные впечатления.",
