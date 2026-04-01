@@ -20,9 +20,9 @@
   margin: 0 auto;
 }
 
-.auth-page-wrapper .input-group-text {
+/* .auth-page-wrapper .input-group-text {
   color: #3ea03e;
-}
+} */
 
 .auth-page-wrapper .form-control:focus {
   box-shadow: 0 0 0 0.25rem rgba(62, 160, 62, 0.25);
