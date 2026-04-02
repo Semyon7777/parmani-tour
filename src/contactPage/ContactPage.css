@@ -47,9 +47,6 @@
   background-color: var(--tour-light-mint) !important;
 }
 
-.tour-contact-page-root .tour-text-green {
-  color: var(--tour-main-green);
-}
 
 .tour-contact-page-root .tour-icon-circle {
   background: white;
@@ -351,9 +348,9 @@
 
 .contactContent.visible { opacity: 1; transform: translateY(0); }
 
-.contactContent h3 { color: #145d04; font-weight: 600; margin-bottom: 15px; }
+.contactContent h3 { font-weight: 600; margin-bottom: 15px; }
 
-.contactInfoBlock p { color: #2e7d32; margin-bottom: 10px; }
+.contactInfoBlock p { margin-bottom: 10px; }
 
 .custom-input {
   border: 1px solid #AEE57D;

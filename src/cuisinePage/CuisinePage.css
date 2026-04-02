@@ -411,7 +411,7 @@
   .cuisine-page .feature-text-block { text-align: center; padding: 20px 10px; }
   .cuisine-page .image-frame img    { height: 360px; }
   .cuisine-page .traditions-grid    { grid-template-columns: repeat(2, 1fr); }
-  .cuisine-page .tour-cta-inner     { flex-direction: column; padding: 40px 32px; text-align: center; }
+  .cuisine-page .tour-cta-inner     { flex-direction: column; padding: 40px 5px; text-align: center; }
 }
 
 @media (max-width: 768px) {

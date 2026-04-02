@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
-import { Button, Card, Row, Col, Spinner, Container, Dropdown } from 'react-bootstrap';
+import { Button, Card, Row, Col, Spinner, Container, Dropdown, Modal } from 'react-bootstrap';
 import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Search, ArrowUpDown, Clock, ChevronRight, ChevronLeft, User, Heart } from 'lucide-react';
+import { Search, ArrowUpDown, Clock, ChevronRight, ChevronLeft, User, 
+  Heart, LogIn } from 'lucide-react';
 import toursData from "./toursData.json";
 import { supabase } from "../supabaseClient";
 import ToursPageHeroImg from "./axtala-img.webp";
@@ -242,6 +243,8 @@ const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle, currentUser }) => {
  
   // Локальный стейт только для блокировки кнопки пока идёт запрос
   const [pending, setPending] = useState(false);
+  
+  const [showLoginModal, setShowLoginModal] = useState(false);
  
   const handleToggleLike = async (e) => {
     e.preventDefault();
@@ -250,7 +253,8 @@ const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle, currentUser }) => {
 
     const user = currentUser;
     if (!user) {
-      alert(t('tour_info_page.please_login', 'Please login to save tours'));
+      // alert(t('tour_info_page.please_login', 'Please login to save tours'));
+        setShowLoginModal(true);
       return;
     }
  
@@ -326,6 +330,42 @@ const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle, currentUser }) => {
           <Button variant="success" className="w-100 rounded-pill">{t('viewTour')}</Button>
         </Link>
       </Card.Body>
+
+      {/* JSX для модалки */}
+      <Modal 
+        show={showLoginModal} 
+        onHide={() => setShowLoginModal(false)}
+        centered
+        className="auth-alert-modal"
+      >
+        <Modal.Body className="p-4 text-center">
+          <div className="auth-alert-icon mb-3">
+            <LogIn size={32} strokeWidth={2.5} />
+          </div>
+          <h4 className="fw-bold mb-2">{t('tour_info_page.login_required_title', 'Authentication Required')}</h4>
+          <p className="text-muted mb-4">
+            {t('tour_info_page.please_login', 'Please login to save your favorite tours and plan your trip.')}
+          </p>
+          <div className="d-grid gap-2">
+            <Link to="/login" className="mt-3">
+              <Button 
+                variant="success" 
+                className="py-2 fw-bold"
+              >
+                {t('auth_page.btn_login', 'Login')}
+              </Button>
+            </Link>
+            <Button 
+              variant="light" 
+              className="py-2 text-muted"
+              onClick={() => setShowLoginModal(false)}
+            >
+              {t('common.cancel', 'Maybe later')}
+            </Button>
+          </div>
+        </Modal.Body>
+      </Modal>
+
     </Card>
   );
 });

@@ -7,6 +7,7 @@ import { Leaf, Users, Calendar, MapPin, ArrowRight, TreePine,
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
+import GroupEcoToursHeadImg from "./images/Group_Eco_Tours_Head_img.webp"
 import "./GroupEcoTours.css";
 
 let toursCache = null;
@@ -90,6 +91,13 @@ function GroupEcoTours() {
       <NavbarCustom />
 
       <div className="scheduled-hero">
+        <img 
+          src={GroupEcoToursHeadImg} 
+          alt="Hero Background" 
+          className="hero-bg-img"
+          loading="eager" 
+          fetchpriority="high"
+        />
         <div className="hero-content text-center">
           <h1 className="hero-main-title">
             {t("group_eco_tours.page_title", "Eco & Group Tours")}
@@ -121,7 +129,6 @@ function GroupEcoTours() {
         </div>
       </Container>
 
-      <DynamicInfoSection activeTab={activeTab} currentLang={currentLang} />
 
       <TourGrid
         filteredTours={filteredTours}
@@ -133,6 +140,8 @@ function GroupEcoTours() {
         likedTourIds={likedTourIds}
         onLikeToggle={handleLikeToggle}
       />
+
+      <DynamicInfoSection activeTab={activeTab} currentLang={currentLang} />
 
       <TourCTA />
       <TourFAQ activeTab={activeTab} />

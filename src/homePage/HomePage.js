@@ -23,16 +23,14 @@ function HomePage() {
       <FirstPageSecondPart />
       <FirstPageThirdPart />
 
+      {/* 3. UPCOMING EVENTS */}
+      <UpcomingEventsSection />
 
       {/* 2. WHY CHOOSE US */}
       <TrustSection />
 
-      {/* 3. UPCOMING EVENTS */}
-      <UpcomingEventsSection />
-
       {/* 4. EXPLORE ARMENIA (Grid) */}
       <ExploreSection />
-
 
       <Footer />
     </div>
