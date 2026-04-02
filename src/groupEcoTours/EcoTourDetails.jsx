@@ -143,6 +143,31 @@ useEffect(() => {
               <p className="description-text">{getTranslation(tour.description)}</p>
             </section>
 
+            {/* ITINERARY */}
+            {tour.itinerary && tour.itinerary.length > 0 && (
+              <section className="info-block">
+                <h3>{t('group_eco_tours.eco.itinerary_title', 'Programme')}</h3>
+                <div className="eco-itinerary">
+                  {tour.itinerary.map((step, index) => (
+                    <div key={index} className="eco-itinerary-step">
+                      <div className="eco-itinerary-left">
+                        <span className="eco-itinerary-time">{step.time}</span>
+                        <div className="eco-itinerary-line" />
+                      </div>
+                      <div className="eco-itinerary-right">
+                        <h5 className="eco-itinerary-step-title">
+                          {getTranslation(step.title)}
+                        </h5>
+                        <p className="eco-itinerary-step-text">
+                          {getTranslation(step.text)}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
             <section className="info-block">
               <h3>{t('group_eco_tours.eco.whats_included')}</h3>
               <div className="included-grid">

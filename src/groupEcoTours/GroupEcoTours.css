@@ -538,6 +538,71 @@
   color: var(--text-gray);
 }
 
+/* ── ECO ITINERARY ───────────────────────────────────────── */
+.eco-details-page .eco-itinerary {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 16px;
+}
+
+.eco-details-page .eco-itinerary-step {
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+
+.eco-details-page .eco-itinerary-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  width: 56px;
+}
+
+.eco-details-page .eco-itinerary-time {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #3a7d44;
+  background: #e8f5e9;
+  border-radius: 20px;
+  padding: 3px 8px;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.eco-details-page .eco-itinerary-line {
+  width: 2px;
+  flex: 1;
+  background: #d0e8d5;
+  margin: 6px 0;
+  min-height: 24px;
+}
+
+/* Последний шаг — убираем линию */
+.eco-details-page .eco-itinerary-step:last-child .eco-itinerary-line {
+  display: none;
+}
+
+.eco-details-page .eco-itinerary-right {
+  padding-bottom: 24px;
+  padding-top: 2px;
+}
+
+.eco-details-page .eco-itinerary-step-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a2035;
+  margin: 0 0 6px;
+}
+
+.eco-details-page .eco-itinerary-step-text {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
 /* INCLUDED LIST */
 .eco-details-page .included-grid {
   display: grid;

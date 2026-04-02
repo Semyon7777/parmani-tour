@@ -866,6 +866,7 @@
   },
 
   "group_eco_tours": {
+    "page_title": "Խմբակային և էկո տուրեր",
     "hero_subtitle": "Ընտրեք ձեր ուղին. Փրկեք բնությունը կամ Բացահայտեք մշակույթը",
     "all_heart_title": "Սիրով պատրաստված",
     "all_heart_text": "Յուրաքանչյուր երթուղի մանրակրկիտ մշակված է տեղացիների կողմից",
@@ -927,6 +928,7 @@
     "common": { "back": "Հետ", "hours": "ժամ" },
     "tours": { "badge_eco": "ԷԿՈ ԱՌԱՔԵԼՈՒԹՅՈՒՆ" },
     "eco": {
+      "itinerary_title": "Ծրագիր",
       "mission_title": "Մեր առաքելությունը այս տուրում",
       "about_tour": "Տուրի մասին",
       "whats_included": "Ինչ է ներառված",
@@ -939,7 +941,7 @@
     },
     "buttons": { "join_mission": "Միանալ առաքելությանը" },
     "included_items": {
-      "Transfer": "Տրանսֆեր",
+      "Transfer": "Տրանսպորտ",
       "Eco-lunch": "Էկո-ճաշ",
       "Tree Seedlings": "Ծառերի տնկիներ",
       "Equipment": "Գույք",

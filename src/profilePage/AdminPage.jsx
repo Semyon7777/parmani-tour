@@ -329,12 +329,12 @@ function ToursTable() {
             <input placeholder="Название EN" onChange={e => setNewTour(p => ({ ...p, title: { ...p.title, en: e.target.value } }))} />
             <input placeholder="Название RU" onChange={e => setNewTour(p => ({ ...p, title: { ...p.title, ru: e.target.value } }))} />
             <input placeholder="Название HY" onChange={e => setNewTour(p => ({ ...p, title: { ...p.title, hy: e.target.value } }))} />
-            <input placeholder="Цена (напр: 15000 AMD)" onChange={e => setNewTour(p => ({ ...p, price: e.target.value }))} />
-            <input placeholder="Дата" onChange={e => setNewTour(p => ({ ...p, date: e.target.value }))} />
+            <input placeholder="Цена (напр: 15000)" onChange={e => setNewTour(p => ({ ...p, price: e.target.value }))} />
+            <input placeholder="Дата (DD-MM-YYYY)" onChange={e => setNewTour(p => ({ ...p, date: e.target.value }))} />
             <input placeholder="Мест" type="number" onChange={e => setNewTour(p => ({ ...p, spots: parseInt(e.target.value) }))} />
             <input placeholder="Людей (people)" type="number" onChange={e => setNewTour(p => ({ ...p, people: parseInt(e.target.value) }))} />
             <input placeholder="Транспорт" onChange={e => setNewTour(p => ({ ...p, transport: e.target.value }))} />
-            <input placeholder="URL картинки" onChange={e => setNewTour(p => ({ ...p, image: e.target.value }))} />
+            <input placeholder="URL картинки (https://...)" onChange={e => setNewTour(p => ({ ...p, image: e.target.value }))} />
             <select onChange={e => setNewTour(p => ({ ...p, type: e.target.value }))}>
               <option value="group">Group</option>
               <option value="eco">Eco</option>
@@ -436,7 +436,7 @@ function ToursTable() {
                               <input value={editData.date || ""} onChange={e => setEditData(p => ({ ...p, date: e.target.value }))} />
                             </div>
                             <div className="booking-edit-field">
-                              <label>Длительность (мин)</label>
+                              <label>Длительность (hours)</label>
                               <input type="number" value={editData.duration || ""} onChange={e => setEditData(p => ({ ...p, duration: parseInt(e.target.value) }))} />
                             </div>
                             <div className="booking-edit-field">

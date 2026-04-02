@@ -370,7 +370,7 @@ const TourGrid = React.memo(function TourGrid({
                         </div>
 
                         <div className="tour-action-area">
-                          <div className="tour-price-tag">{tour.price}</div>
+                          <div className="tour-price-tag">{tour.price} {t("group_eco_tours.amd", "AMD")}</div>
                           <Link
                             to={tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`}
                             onClick={e => handleTourClick(e, tour)}

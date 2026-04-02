@@ -935,6 +935,7 @@
   },
 
   "group_eco_tours": {
+    "page_title": "Group & Eco Tours",
     "hero_subtitle": "Choose your path: Save nature or Explore culture",
     "all_heart_title": "Made with Love",
     "all_heart_text": "Each route is carefully planned by locals",
@@ -996,6 +997,7 @@
     "common": { "back": "Back", "hours": "hours" },
     "tours": { "badge_eco": "ECO MISSION" },
     "eco": {
+      "itinerary_title": "Programme",
       "mission_title": "Our Mission in this tour",
       "about_tour": "About the tour",
       "whats_included": "What is included",
