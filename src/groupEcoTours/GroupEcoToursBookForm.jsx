@@ -205,7 +205,7 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
             <div className="gbm-tour-meta">
               {tour.date     && <span><Calendar size={13} /> {tour.date}</span>}
               {tourLocation  && <span><MapPin size={13} /> {tourLocation}</span>}
-              {tour.price    && <span className="gbm-price">{tour.price} / чел.</span>}
+              {tour.price    && <span className="gbm-price">{tour.price} AMD/ {t("group_eco_tours.per_person", "per person")}</span>}
               {tour.spots    && (
                 <span className="gbm-spots">
                   {tour.spots} {t("group_eco_tours.spots_left", "мест")}

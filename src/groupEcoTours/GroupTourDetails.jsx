@@ -161,7 +161,7 @@ const GroupTourDetails = () => {
             <div className="group-booking-panel">
               <div className="price-box">
                 <div className="price-circle">
-                  <span>{tour.price}</span>
+                  <span>{tour.price} AMD</span>
                 </div>
                 <p className="per-person">{t('group_eco_tours.group.per_person', 'per person')}</p>
               </div>

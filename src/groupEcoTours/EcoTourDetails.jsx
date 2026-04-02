@@ -186,7 +186,7 @@ useEffect(() => {
             <div className="eco-booking-card sticky-top" style={{ top: '100px', zIndex: 10 }}>
               <div className="card-top">
                 <span className="price-label">{t('group_eco_tours.eco.price_start')}</span>
-                <h2 className="price-value">{tour.price}</h2>
+                <h2 className="price-value">{tour.price} AMD</h2>
               </div>
               
               <div className="card-features">
