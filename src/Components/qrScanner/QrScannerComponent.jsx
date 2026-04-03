@@ -60,6 +60,8 @@ function QrScannerComponent() {
 
   // Обрабатываем отсканированный QR
   const handleScan = async (text, scanner) => {
+    console.log("--- 1. СТАРТ СКАНЕР ---");
+  console.log("Считанный текст:", text);
     // 1. Останавливаем камеру сразу
     try {
       if (scanner && scanner.getState() === 2) {
@@ -72,6 +74,11 @@ function QrScannerComponent() {
     setScanning(false);
     setLoading(true);
 
+    // Проверка переменных (безопасный способ для браузера)
+  console.log("--- 2. ПРОВЕРКА КЛЮЧЕЙ ---");
+  console.log("URL базы:", process.env.REACT_APP_SUPABASE_URL ? "ОК (есть)" : "ПУСТО (undefined)");
+  console.log("Ключ ANON:", process.env.REACT_APP_SUPABASE_ANON_KEY ? "ОК (есть)" : "ПУСТО (undefined)");
+
     // 2. Извлекаем ID из ссылки (https://parmanitour.com/verify/UUID)
     const match = text.match(/verify\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i);
 
@@ -82,6 +89,8 @@ function QrScannerComponent() {
     }
 
     const bookingId = match[1];
+    console.log("--- 3. ЗАПРОС К БАЗЕ ---");
+  console.log("Обновляем ID:", bookingId);
 
     // 3. Запрос к Supabase
     const { data: bookings, error } = await supabase
@@ -114,9 +123,12 @@ function QrScannerComponent() {
         checked_in: true, 
         scanned_at: new Date().toISOString() 
       })
-      .eq("id", bookingId);
+      .eq("id", bookingId)
 
       console.log("Update error:", updateError);
+      console.log("--- 4. ОТВЕТ СЕРВЕРА ---");
+    console.log("Ошибка (Error):", error);
+      
 
     setLoading(false);
 
