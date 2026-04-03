@@ -38,6 +38,7 @@ const NavbarCustom = ({ isHomePage }) => {
     return () => window.removeEventListener("user_name_updated", handleNameUpdate);
   }, []);
 
+
   useEffect(() => {
     // 1. Проверяем реальную сессию в фоне
     const checkSession = async () => {
@@ -143,16 +144,28 @@ const NavbarCustom = ({ isHomePage }) => {
   // 3. Тема
   const themeClass = isHomePage && !scrolled ? "nav-transparent" : "nav-solid";
 
-  // 3. Тема
-  const isTelegram = 
-  Boolean(window.Telegram?.WebApp) ||
-  navigator.userAgent.includes("Telegram") ||
-  document.referrer.includes("t.me") ||
-  window.location.href.includes("tgWebAppData");
+
+  function isTelegramInApp() {
+    // Detect on Android
+    if (typeof window.TelegramWebview !== 'undefined') {
+        return true;
+    }
+    // Detect on iOS
+    if (typeof window.TelegramWebviewProxy !== 'undefined' || 
+        typeof window.TelegramWebviewProxyProto !== 'undefined') {
+        return true;
+    }
+    // Detect Telegram Mini App (TMA)
+    if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData) {
+        return true;
+    }
+    return false;
+  }
+  
 
   return (
     <>
-    {isTelegram && <div className="tg-safe-area-filler" />}
+    {isTelegramInApp() && <div className="tg-safe-area-filler" />}
     <div className="navbar-container">
       <Navbar
         collapseOnSelect
