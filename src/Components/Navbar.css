@@ -606,10 +606,6 @@
   }
 }
 
-.navbar-container .navbar-fixed {
-  z-index: 1;
-}
-
 .tg-style {
   display: block;
   position: absolute;
@@ -619,4 +615,8 @@
   height: 200px;
   background-color: #000000; /* Или #0a260a, если хочешь зеленый верх */
   z-index: -1;
+}
+
+.navbar-container .nav-fixed .tg-style{
+  z-index: 1;
 }
