@@ -140,8 +140,16 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
       return t("group_booking.error_email", "Введите корректный email");
     if (!form.phone.trim())
       return t("group_booking.error_phone", "Введите телефон");
-    if (!form.guests_count || form.guests_count < 1 || form.guests_count > maxSpots)
-      return t("group_booking.error_guests", `От 1 до ${maxSpots} участников`);
+
+    // ПРОВЕРКА НА 0 И ДОСТУПНОСТЬ МЕСТ
+    const guests = parseInt(form.guests_count);
+    if (maxSpots <= 0) {
+      return t("group_booking.no_spots", "К сожалению, мест больше нет");
+    }
+    if (!guests || guests < 1 || guests > maxSpots) {
+      return t("group_booking.error_guests", `Доступно мест: ${maxSpots}`);
+    }
+
     if (!termsAccepted)
       return t("group_booking.error_terms", "Необходимо принять условия использования");
     return null;
@@ -156,6 +164,9 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
     setError("");
 
     try {
+      const guestsToBook = parseInt(form.guests_count);
+
+      // 1. Создаем бронирование в таблице bookings
       const { error: dbError } = await supabase.from("bookings").insert([{
         user_id:      authUser?.id || null,
         tour_id:      tour.id,
@@ -163,7 +174,7 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
         full_name:    form.full_name.trim(),
         email:        form.email.trim(),
         phone:        form.phone.trim(),
-        guests_count: parseInt(form.guests_count),
+        guests_count: guestsToBook,
         comment:      form.comment.trim() || null,
         location:     tourLocation || null,
         travel_date: tour.date ? tour.date.split(".").reverse().join("-") : null,
@@ -172,6 +183,22 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
       }]);
 
       if (dbError) throw dbError;
+
+      // 2. Уменьшаем количество мест в таблице туров
+      // ВАЖНО: убедись, что таблица называется правильно (например, 'group_tours' или 'tours')
+      const newSpotsCount = maxSpots - guestsToBook;
+
+      const { error: updateError } = await supabase
+        .from("group_tours") // ПРОВЕРЬ ИМЯ ТАБЛИЦЫ ТУТ
+        .update({ spots: newSpotsCount })
+        .eq("id", tour.id);
+
+      if (updateError) {
+        console.error("Ошибка при обновлении мест:", updateError);
+        // Мы не прерываем процесс, так как бронь уже создана, 
+        // но лучше залогировать это для админа.
+      }
+      
       setStep(2);
     } catch (err) {
       console.error(err);
@@ -354,10 +381,16 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
 
             {error && <div className="gbm-error">{error}</div>}
 
-            <button type="submit" className="gbm-submit" disabled={submitting}>
+            <button 
+              type="submit" 
+              className="gbm-submit" 
+              disabled={submitting || maxSpots <= 0} // Блокируем, если отправка ИЛИ нет мест
+            >
               {submitting
                 ? <><Loader size={16} className="gbm-spinner" /> {t("group_booking.sending", "Отправляем...")}</>
-                : t("group_booking.submit", "Записаться на тур")
+                : maxSpots <= 0 
+                  ? t("group_booking.sold_out", "Мест нет") // Текст, если всё раскуплено
+                  : t("group_booking.submit", "Записаться на тур")
               }
             </button>
 

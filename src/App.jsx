@@ -24,6 +24,7 @@ import "./App.css";
 import BookForm from "./Components/bookForm";
 import LegalPage from "./legalPage/LegalPage";
 import RouteTracker from "./Components/RouteTracker";
+import SecretScannerPage from "./Components/qrScanner/ScannerPage";
 import './i18n';
 
 import AdminRoute from "./profilePage/AdminRoute";
@@ -71,10 +72,11 @@ function App() {
             <Route path="/terms" element={<LegalPage type="terms" />} />
             <Route path="/privacy" element={<LegalPage type="privacy" />} />
             <Route path="/admin" element={
-          <AdminRoute>
-            <AdminPage />
-          </AdminRoute>
-        } />
+              <AdminRoute>
+                <AdminPage />
+              </AdminRoute>
+            } />
+            <Route path="/check-in-v1-x7z92" element={<SecretScannerPage />} />
           </Routes>
         </Router>
       </div>
