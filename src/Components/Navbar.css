@@ -606,35 +606,31 @@
   }
 }
 
-/* Базовый контейнер */
-.navbar-container {
-  position: relative;
+/* --------------------------------- */
+
+/* По умолчанию скрываем филлер */
+.tg-black-filler {
+  display: none;
 }
 
-/* Специальный стиль для Telegram */
-.is-telegram-browser .tg-safe-area-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  /* Высота подбирается под размер URL-бара Telegram на iOS */
-  height: 44px; 
-  background-color: #000000; /* Чисто черный цвет системы */
-  z-index: 1050; /* Выше чем Navbar, чтобы перекрывать скролл */
-  pointer-events: none;
-}
-
-/* Опускаем Navbar в Telegram, чтобы он не залез под черную полосу */
-.is-telegram-browser .custom-navbar {
-  margin-top: 44px !important;
-}
-
-/* Коррекция для iPhone с "челкой" (Safe Area) */
-@supports (padding-top: env(safe-area-inset-top)) {
-  .is-telegram-browser .tg-safe-area-bg {
-    height: calc(env(safe-area-inset-top) + 30px);
+/* Нацеливаемся на Telegram через проверку мобильных устройств */
+@media (max-width: 991px) {
+  /* Если мы в Telegram, показываем черный блок */
+  /* Используем селектор, который срабатывает почти во всех мобильных WebView */
+  :is(.navbar-container) .tg-black-filler {
+    display: block;
+    position: absolute;
+    /* Выносим его ВЫШЕ навбара */
+    top: -100px; 
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background-color: #000000; /* Или твой темно-зеленый */
+    z-index: -1;
   }
-  .is-telegram-browser .custom-navbar {
-    margin-top: calc(env(safe-area-inset-top) + 30px) !important;
+
+  .custom-navbar {
+    /* Убедись, что навбар не имеет прозрачности, которая пропускает свет сверху */
+    overflow: visible !important;
   }
 }
