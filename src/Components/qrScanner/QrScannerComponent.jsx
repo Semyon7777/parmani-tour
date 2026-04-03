@@ -84,24 +84,24 @@ function QrScannerComponent() {
     const bookingId = match[1];
 
     // 3. Запрос к Supabase
-    const { data: booking, error } = await supabase
+    const { data: bookings, error } = await supabase
       .from("bookings")
       .select("id, tour_name, full_name, status, checked_in, guests_count")
       .eq("id", bookingId)
       .maybeSingle();
 
-    if (error || !booking) {
+    if (error || !bookings) {
       setResult({ status: "not_found", message: "Билет не найден в системе" });
       setLoading(false);
       return;
     }
 
     // 4. ПРОВЕРКА: Использован ли билет?
-    if (booking.checked_in === true) {
+    if (bookings.checked_in === true) {
       setResult({ 
         status: "error", 
         message: "Билет уже был использован!", 
-        data: booking // Передаем данные, чтобы гид видел, КТО уже прошел
+        data: bookings // Передаем данные, чтобы гид видел, КТО уже прошел
       });
       setLoading(false);
       return;
@@ -114,15 +114,16 @@ function QrScannerComponent() {
         checked_in: true, 
         scanned_at: new Date().toISOString() 
       })
-      .eq("id", bookingId)
-      .select();
+      .eq("id", bookingId);
+
+      console.log("Update error:", updateError);
 
     setLoading(false);
 
     if (updateError) {
       setResult({ status: "error", message: "Ошибка при регистрации билета" });
     } else {
-      setResult({ status: "found", data: booking });
+      setResult({ status: "found", data: bookings });
     }
   };
 

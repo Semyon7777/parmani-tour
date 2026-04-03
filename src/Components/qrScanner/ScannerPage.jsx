@@ -8,6 +8,7 @@ const SecretScannerPage = () => {
 
   const MASTER_PASS = process.env.REACT_APP_SCANNER_PASS; 
 
+
   const handleLogin = (e) => {
     e.preventDefault();
     if (passcode === MASTER_PASS) {
