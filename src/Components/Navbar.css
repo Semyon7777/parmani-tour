@@ -608,41 +608,29 @@
 
 /* --------------------------------- */
 
-/* Прячем филлер везде, кроме Telegram */
+/* По умолчанию скрываем филлер */
 .tg-black-filler {
   display: none;
 }
 
+/* Нацеливаемся на Telegram через проверку мобильных устройств */
 @media (max-width: 991px) {
-  /* Включаем филлер только в Telegram */
-  .is-tg .tg-black-filler {
+  /* Если мы в Telegram, показываем черный блок */
+  /* Используем селектор, который срабатывает почти во всех мобильных WebView */
+  :is(.navbar-container) .tg-black-filler {
     display: block;
     position: absolute;
-    top: -100px; /* Вылет вверх за пределы экрана */
+    /* Выносим его ВЫШЕ навбара */
+    top: -100px; 
     left: 0;
     width: 100%;
     height: 100px;
-    background-color: #000000;
+    background-color: #000000; /* Или твой темно-зеленый */
     z-index: -1;
   }
 
-  /* --- ПЕРВАЯ СТРАНИЦА (Прозрачный навбар) --- */
-  /* Здесь мы не используем margin, чтобы не ломать анимацию появления */
-  .is-tg .custom-navbar.nav-abs {
-    padding-top: calc(env(safe-area-inset-top, 20px) + 5px) !important;
+  .custom-navbar {
+    /* Убедись, что навбар не имеет прозрачности, которая пропускает свет сверху */
     overflow: visible !important;
-  }
-
-  /* --- ОСТАЛЬНЫЕ СТРАНИЦЫ (Фиксированный зеленый навбар) --- */
-  .is-tg .custom-navbar.nav-fixed,
-  .is-tg .custom-navbar.nav-solid {
-    /* Добавляем отступ только когда навбар закрашен */
-    padding-top: env(safe-area-inset-top, 20px) !important;
-    border-top: 1px solid rgba(255,255,255,0.05); /* Тонкая линия разделения */
-  }
-
-  /* Исправляем проблему, когда навбар "прыгает" при скролле на главной */
-  .is-tg .nav-animate-in {
-    transform: translateY(0); /* Убеждаемся, что анимация не сдвигает его криво */
   }
 }

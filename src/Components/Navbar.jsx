@@ -145,18 +145,18 @@ const NavbarCustom = ({ isHomePage }) => {
   const themeClass = isHomePage && !scrolled ? "nav-transparent" : "nav-solid";
 
   // Styles only for telegram browser
-  const isTelegram = typeof window !== 'undefined' && /Telegram/i.test(navigator.userAgent);
+  // const isTelegram = typeof window !== 'undefined' && /Telegram/i.test(navigator.userAgent);
 
   return (
-    <div className={`navbar-container ${isTelegram ? 'is-tg' : ''}`}>
+    <div className="navbar-container">
       <Navbar
         collapseOnSelect
         expand="lg"
         className={`custom-navbar ${positionClass} ${animationClass} ${themeClass}`}
       >
 
-        {/* Филлер показываем только в Telegram */}
-        {isTelegram && <div className="tg-black-filler"></div>}
+        {/* Добавляем этот блок здесь */}
+        <div className="tg-black-filler"></div>
 
         <Container fluid className="px-3 px-lg-5">
           <LinkContainer to="/">
