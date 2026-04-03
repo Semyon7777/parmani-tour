@@ -9,8 +9,10 @@ import "./Navbar.css";
 
 const NavbarCustom = ({ isHomePage }) => {
   const { t, i18n } = useTranslation();
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(!isHomePage);
   const timeoutRef = useRef({});
+
+  const [isTelegram, setIsTelegram] = useState(false);
 
   // 1. Сразу инициализируем состояние из локального хранилища (МГНОВЕННО)
   const [firstName, setFirstName] = useState(localStorage.getItem("parmani_user_name") || "");
@@ -29,6 +31,13 @@ const NavbarCustom = ({ isHomePage }) => {
   };
 
   useEffect(() => {
+
+    // Более надежная проверка на Telegram + проверка на наличие в окне
+    const ua = window.navigator.userAgent || window.navigator.vendor || window.opera;
+    if (/Telegram/i.test(ua) || /FBAN/i.test(ua) || /FBAV/i.test(ua)) {
+      setIsTelegram(true);
+    }
+    
     // ✅ Слушаем обновление имени из SettingsTab
     const handleNameUpdate = (e) => {
       setFirstName(e.detail);
@@ -146,9 +155,10 @@ const NavbarCustom = ({ isHomePage }) => {
 
   // Styles only for telegram browser
   // const isTelegram = typeof window !== 'undefined' && /Telegram/i.test(navigator.userAgent);
+  
 
   return (
-    <div className={`navbar-container ${true ? 'is-tg' : ''}`}>
+    <div className={`navbar-container ${isTelegram ? 'is-tg' : ''}`}>
       <Navbar
         collapseOnSelect
         expand="lg"
