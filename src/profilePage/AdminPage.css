@@ -936,6 +936,18 @@
 
 .qr-retry-btn { margin-top: 16px; }
 
-@media (max-width: 480px) {
+@media (max-width: 700px) {
+
+  .admin-sidebar {
+    position: absolute;
+    margin-bottom: 50px;
+      
+  }
+
+  .admin-main {
+    margin-top: 400px;
+  }
+ 
+
   .qr-scanner-card { padding: 20px 14px; }
 }
