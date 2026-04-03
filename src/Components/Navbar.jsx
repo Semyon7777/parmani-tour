@@ -144,8 +144,13 @@ const NavbarCustom = ({ isHomePage }) => {
   // 3. Тема
   const themeClass = isHomePage && !scrolled ? "nav-transparent" : "nav-solid";
 
+  // Проверяем, открыт ли сайт внутри Telegram
+  const isTelegram = typeof window !== 'undefined' && /Telegram/i.test(navigator.userAgent);
+
   return (
-    <div className="navbar-container">
+    <div className={`navbar-container ${isTelegram ? 'is-telegram-browser' : ''}`}>
+    {/* Этот блок будет виден только в Telegram и перекроет "просвет" сверху */}
+    {isTelegram && <div className="tg-safe-area-bg"></div>}
       <Navbar
         collapseOnSelect
         expand="lg"
