@@ -114,7 +114,8 @@ function QrScannerComponent() {
         checked_in: true, 
         scanned_at: new Date().toISOString() 
       })
-      .eq("id", bookingId);
+      .eq("id", bookingId)
+      .select();
 
     setLoading(false);
 
