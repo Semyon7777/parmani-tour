@@ -3,9 +3,8 @@ import QRCode from 'qrcode';
 import { Calendar, User } from 'lucide-react';
 
 const useIsMobile = () => {
-  const [isMobile, setIsMobile] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth < 480);
   React.useEffect(() => {
-    setIsMobile(window.innerWidth < 480);
     const handler = () => setIsMobile(window.innerWidth < 480);
     window.addEventListener('resize', handler);
     return () => window.removeEventListener('resize', handler);
@@ -20,21 +19,16 @@ const DigitalTicket = ({ booking }) => {
   const qrValue = `https://parmanitour.com/verify/${booking.id}`;
 
   useEffect(() => {
-    if (!canvasRef.current) return; // уже есть
-    
-    // Небольшая задержка на случай если модалка ещё анимируется
-    const timer = setTimeout(() => {
+    if (canvasRef.current) {
       QRCode.toCanvas(canvasRef.current, qrValue, {
-        width: isMobile ? 140 : 170,
+        width: isMobile ? 140 : 170,  // QR меньше на мобиле
         margin: 2,
         color: {
           dark: '#0a260a',
           light: '#f5f5f5',
         },
-      }).catch(err => console.error('QR error:', err));
-    }, 100);
-
-    return () => clearTimeout(timer);
+      });
+    }
   }, [qrValue, isMobile]);
 
     const styles = {

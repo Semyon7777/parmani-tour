@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
+import { Html5Qrcode } from "html5-qrcode";
 import { 
-  Users, Calendar, Heart, Hotel, Globe, LogOut, 
-  Trash2, Edit2, Check, X, Plus, RefreshCw, 
-  Search, Save, ChevronDown, ChevronUp
+  Users, Calendar, Heart, Hotel, Globe, LogOut, XCircle,
+  Trash2, Edit2, Check, X, Plus, RefreshCw, CheckCircle, 
+  Search, Save, ChevronDown, ChevronUp, QrCode, Loader
 } from "lucide-react";
 import "./AdminPage.css";
 
@@ -40,6 +41,7 @@ function AdminPage() {
     { id: "profiles",        label: "Пользователи", icon: <Users size={18} /> },
     { id: "hotels",          label: "Отели",         icon: <Hotel size={18} /> },
     { id: "favourites",      label: "Избранное",     icon: <Heart size={18} /> },
+    { id: "qr_scanner", label: "QR Сканер", icon: <QrCode size={18} /> }
   ];
 
   if (!adminUser) return (
@@ -85,6 +87,7 @@ function AdminPage() {
         {activeTab === "profiles"        && <GenericTable table="profiles"   columns={["full_name", "email", "is_admin"]} />}
         {activeTab === "hotels"          && <HotelsTable />}
         {activeTab === "favourites"      && <GenericTable table="favourites" columns={["user_id", "tour_id"]} viewOnly />}
+        {activeTab === "qr_scanner" && <QrScannerTab />}
       </main>
     </div>
   );
@@ -826,6 +829,170 @@ function GenericTable({ table, columns, viewOnly = false }) {
   );
 }
 
+// ─── QR CODE ТАБЛИЦА ────────────────────────────────────
+function QrScannerTab() {
+  const scannerRef = useRef(null);
+  const [scanning, setScanning] = useState(false);
+  const [result, setResult] = useState(null); // { status: 'found'|'not_found'|'error', data }
+  const [loading, setLoading] = useState(false);
+
+  // Запускаем камеру
+  const startScanner = async () => {
+    setResult(null);
+    setScanning(true);
+
+    const scanner = new Html5Qrcode("qr-reader");
+    scannerRef.current = scanner;
+
+    try {
+      await scanner.start(
+        { facingMode: "environment" }, // задняя камера
+        { fps: 10, qrbox: { width: 250, height: 250 } },
+        (decodedText) => handleScan(decodedText, scanner),
+        () => {} // ошибки парсинга — игнорируем
+      );
+    } catch (err) {
+      setScanning(false);
+      setResult({ status: "error", message: "Нет доступа к камере" });
+    }
+  };
+
+  // Останавливаем камеру
+  const stopScanner = async () => {
+    if (scannerRef.current) {
+      await scannerRef.current.stop().catch(() => {});
+      scannerRef.current = null;
+    }
+    setScanning(false);
+  };
+
+  // Обрабатываем отсканированный QR
+  const handleScan = async (text, scanner) => {
+    // Останавливаем сразу чтобы не сканировал повторно
+    await scanner.stop().catch(() => {});
+    scannerRef.current = null;
+    setScanning(false);
+    setLoading(true);
+
+    // Извлекаем UUID из URL: https://parmanitour.com/verify/UUID
+    const match = text.match(
+      /verify\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i
+    );
+
+    if (!match) {
+      setResult({ status: "error", message: "Неверный QR-код" });
+      setLoading(false);
+      return;
+    }
+
+    const bookingId = match[1];
+
+    const { data, error } = await supabase
+      .from("bookings")
+      .select("tour_name, full_name, status, travel_date, guests_count")
+      .eq("id", bookingId)
+      .maybeSingle();
+
+    setLoading(false);
+
+    if (error || !data) {
+      setResult({ status: "not_found", message: "Бронирование не найдено" });
+      return;
+    }
+
+    setResult({ status: "found", data });
+  };
+
+  // Чистим при размонтировании
+  useEffect(() => {
+    return () => { stopScanner(); };
+  }, []);
+
+  return (
+    <div className="qr-scanner-root">
+      <div className="qr-scanner-card">
+
+        {/* Заголовок */}
+        <div className="qr-scanner-header">
+          <QrCode size={24} />
+          <h3>Сканер билетов</h3>
+        </div>
+
+        {/* Камера */}
+        {scanning && (
+          <div className="qr-video-wrapper">
+            <div id="qr-reader" style={{ width: "100%" }} />
+            <button className="qr-stop-btn" onClick={stopScanner}>
+              Отменить
+            </button>
+          </div>
+        )}
+
+        {/* Кнопка старта */}
+        {!scanning && !loading && (
+          <button className="qr-start-btn" onClick={startScanner}>
+            <QrCode size={20} />
+            Сканировать QR
+          </button>
+        )}
+
+        {/* Загрузка */}
+        {loading && (
+          <div className="qr-loading">
+            <Loader size={32} className="qr-spin" />
+            <p>Проверяем билет...</p>
+          </div>
+        )}
+
+        {/* Результат */}
+        {result && !loading && (
+          <div className={`qr-result qr-result--${result.status}`}>
+            {result.status === "found" ? (
+              <>
+                <CheckCircle size={48} className="qr-result-icon" />
+                <h4>Билет действителен</h4>
+                <div className="qr-result-info">
+                  <div className="qr-result-row">
+                    <span>Тур</span>
+                    <strong>{result.data.tour_name}</strong>
+                  </div>
+                  <div className="qr-result-row">
+                    <span>Гость</span>
+                    <strong>{result.data.full_name}</strong>
+                  </div>
+                  <div className="qr-result-row">
+                    <span>Дата</span>
+                    <strong>{result.data.travel_date || "—"}</strong>
+                  </div>
+                  <div className="qr-result-row">
+                    <span>Гостей</span>
+                    <strong>{result.data.guests_count}</strong>
+                  </div>
+                  <div className={`qr-status-badge qr-status--${result.data.status}`}>
+                    {result.data.status === "confirmed" ? "✓ Подтверждено"
+                      : result.data.status === "pending" ? "⏳ В обработке"
+                      : "✗ Отменено"}
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                <XCircle size={48} className="qr-result-icon" />
+                <h4>{result.message}</h4>
+              </>
+            )}
+
+            {/* Сканировать снова */}
+            <button className="qr-start-btn qr-retry-btn" onClick={startScanner}>
+              Сканировать ещё
+            </button>
+          </div>
+        )}
+
+      </div>
+    </div>
+  );
+}
 
 // ─── СКЕЛЕТОН ────────────────────────────────────────────────
 function AdminSkeleton() {
