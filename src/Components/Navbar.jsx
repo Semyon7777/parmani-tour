@@ -38,7 +38,6 @@ const NavbarCustom = ({ isHomePage }) => {
     return () => window.removeEventListener("user_name_updated", handleNameUpdate);
   }, []);
 
-
   useEffect(() => {
     // 1. Проверяем реальную сессию в фоне
     const checkSession = async () => {
@@ -145,7 +144,11 @@ const NavbarCustom = ({ isHomePage }) => {
   const themeClass = isHomePage && !scrolled ? "nav-transparent" : "nav-solid";
 
   // 3. Тема
-  const isTelegram = Boolean(window.Telegram?.WebApp) || navigator.userAgent.includes("Telegram");
+  const isTelegram = 
+  Boolean(window.Telegram?.WebApp) ||
+  navigator.userAgent.includes("Telegram") ||
+  document.referrer.includes("t.me") ||
+  window.location.href.includes("tgWebAppData");
 
   return (
     <>
