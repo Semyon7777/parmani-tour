@@ -936,7 +936,7 @@
 
 .qr-retry-btn { margin-top: 16px; }
 
-@media (max-width: 700px) {
+@media (max-width: 780px) {
 
   .admin-sidebar {
     position: absolute;
@@ -946,6 +946,7 @@
 
   .admin-main {
     margin-top: 400px;
+    width: 100%;
   }
  
 

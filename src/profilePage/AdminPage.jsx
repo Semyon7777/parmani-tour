@@ -829,7 +829,7 @@ function GenericTable({ table, columns, viewOnly = false }) {
   );
 }
 
-// ─── QR CODE ТАБЛИЦА ────────────────────────────────────
+// ─── QR SCANNER ТАБЛИЦА ────────────────────────────────────
 function QrScannerTab() {
   const scannerRef = useRef(null);
   const [scanning, setScanning] = useState(false);
@@ -837,25 +837,41 @@ function QrScannerTab() {
   const [loading, setLoading] = useState(false);
 
   // Запускаем камеру
-  const startScanner = async () => {
+  // 1. Кнопка теперь только включает режим сканирования
+  const startScanner = () => {
     setResult(null);
     setScanning(true);
-
-    const scanner = new Html5Qrcode("qr-reader");
-    scannerRef.current = scanner;
-
-    try {
-      await scanner.start(
-        { facingMode: "environment" }, // задняя камера
-        { fps: 10, qrbox: { width: 250, height: 250 } },
-        (decodedText) => handleScan(decodedText, scanner),
-        () => {} // ошибки парсинга — игнорируем
-      );
-    } catch (err) {
-      setScanning(false);
-      setResult({ status: "error", message: "Нет доступа к камере" });
-    }
   };
+
+  // 2. А этот код сам запустит камеру, как только появится div
+  useEffect(() => {
+    let html5QrCode = null;
+
+    if (scanning) {
+      // Даем 300мс, чтобы React отрисовал интерфейс
+      const timer = setTimeout(async () => {
+        try {
+          const element = document.getElementById("qr-reader");
+          if (!element) return;
+
+          html5QrCode = new Html5Qrcode("qr-reader");
+          scannerRef.current = html5QrCode;
+
+          await html5QrCode.start(
+            { facingMode: "environment" },
+            { fps: 10, qrbox: { width: 250, height: 250 } },
+            (decodedText) => handleScan(decodedText, html5QrCode),
+            () => {} 
+          );
+        } catch (err) {
+          alert("Ошибка: " + err);
+          setScanning(false);
+        }
+      }, 300);
+
+      return () => clearTimeout(timer);
+    }
+  }, [scanning]);
 
   // Останавливаем камеру
   const stopScanner = async () => {
@@ -869,11 +885,17 @@ function QrScannerTab() {
   // Обрабатываем отсканированный QR
   const handleScan = async (text, scanner) => {
     // Останавливаем сразу чтобы не сканировал повторно
-    await scanner.stop().catch(() => {});
-    scannerRef.current = null;
+    try {
+      // Останавливаем камеру
+      if (scanner && scanner.getState() === 2) { // 2 означает, что сканер запущен
+        await scanner.stop();
+      }
+    } catch (e) {
+      console.warn("Scanner stop error", e);
+    }
+    
     setScanning(false);
     setLoading(true);
-
     // Извлекаем UUID из URL: https://parmanitour.com/verify/UUID
     const match = text.match(
       /verify\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})/i
