@@ -267,11 +267,6 @@ function BookingsTab({ bookings, loading }) {
   const [showQR, setShowQR] = useState(false);
   const [selectedBooking, setSelectedBooking] = useState(null);
 
-  const handleOpenQR = (booking) => {
-    setSelectedBooking(booking);
-    setShowQR(true);
-  };
-
   if (loading) return (
     <div className="text-center py-5"><Spinner animation="border" variant="success" /></div>
   );
