@@ -343,7 +343,7 @@ function BookingsTab({ bookings, loading }) {
                 {/* Кнопка билета появляется только для подтвержденных туров */}
                 {booking.status === 'confirmed' && (
                   <button 
-                    className="btn btn-outline-success btn-sm mt-2" 
+                    className="btn btn-outline-success btn-sm" 
                     onClick={() => { setSelectedBooking(booking); setShowQR(true); }}
                   >
                     <QrCode size={16} className="me-1" /> QR Билет
