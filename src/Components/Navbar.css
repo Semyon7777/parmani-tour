@@ -607,9 +607,16 @@
 }
 
 .navbar {
-  /* Эффект матового стекла — выглядит очень дорого в стиле Apple/Untitled UI */
-  background: rgba(255, 255, 255, 0.8) !important;
-  backdrop-filter: blur(10px); 
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  /* Твой текущий фон */
+  background-color: #1a331a !important; 
+  
+  /* Растягиваем внутренний отступ сверху на величину «челки» или строки URL */
+  padding-top: calc(env(safe-area-inset-top) + 10px) !important;
+  
+  /* Поднимаем навбар выше, чтобы он перекрывал всё пространство до верха экрана */
+  margin-top: calc(-1 * env(safe-area-inset-top));
+  
+  position: sticky;
+  top: 0;
+  z-index: 9999;
 }
