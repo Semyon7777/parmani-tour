@@ -608,29 +608,42 @@
 
 /* --------------------------------- */
 
-/* По умолчанию скрываем филлер */
+/* 1. Базовое состояние - скрыто */
 .tg-black-filler {
   display: none;
 }
 
-/* Нацеливаемся на Telegram через проверку мобильных устройств */
+/* 2. Только для Telegram на мобильных устройствах */
 @media (max-width: 991px) {
-  /* Если мы в Telegram, показываем черный блок */
-  /* Используем селектор, который срабатывает почти во всех мобильных WebView */
-  :is(.navbar-container) .tg-black-filler {
+  .is-tg .tg-black-filler {
     display: block;
     position: absolute;
-    /* Выносим его ВЫШЕ навбара */
+    /* Вытягиваем блок вверх за пределы навбара */
     top: -100px; 
     left: 0;
     width: 100%;
     height: 100px;
-    background-color: #000000; /* Или твой темно-зеленый */
+    background-color: #000000; /* Черный как интерфейс Telegram */
     z-index: -1;
   }
 
-  .custom-navbar {
-    /* Убедись, что навбар не имеет прозрачности, которая пропускает свет сверху */
+  /* Исправляем отступ навбара на внутренних страницах */
+  /* Чтобы он не "прилипал" к самому верху URL-бара */
+  .is-tg .custom-navbar.nav-fixed {
+    padding-top: env(safe-area-inset-top, 20px) !important;
+  }
+
+  /* На главной странице, когда навбар прозрачный (nav-abs) */
+  .is-tg .custom-navbar.nav-abs {
+    /* Добавляем небольшой отступ, чтобы логотип не перекрывался URL-баром */
+    padding-top: calc(env(safe-area-inset-top, 20px) + 10px) !important;
+  }
+}
+
+/* 3. Глобальный фикс, чтобы контент не просвечивал ПРИ СКРОЛЛЕ ВНИЗ */
+@media (max-width: 991px) {
+  .is-tg .custom-navbar {
+    /* Это заставляет черный блок двигаться вместе с навбаром */
     overflow: visible !important;
   }
 }
