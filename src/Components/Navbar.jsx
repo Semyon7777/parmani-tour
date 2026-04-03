@@ -145,14 +145,14 @@ const NavbarCustom = ({ isHomePage }) => {
   const themeClass = isHomePage && !scrolled ? "nav-transparent" : "nav-solid";
 
   return (
+    <>
+    <div className="tg-safe-area-filler" />
     <div className="navbar-container">
       <Navbar
         collapseOnSelect
         expand="lg"
         className={`custom-navbar ${positionClass} ${animationClass} ${themeClass}`}
       >
-        <div className="tg-style"></div>
-        
         <Container fluid className="px-3 px-lg-5">
           <LinkContainer to="/">
             <Navbar.Brand className="brand-logo">
@@ -256,6 +256,7 @@ const NavbarCustom = ({ isHomePage }) => {
         </Container>
       </Navbar>
     </div>
+    </>
   );
 };
 

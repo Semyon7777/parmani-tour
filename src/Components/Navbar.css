@@ -606,17 +606,21 @@
   }
 }
 
-.tg-style {
-  display: block;
-  position: absolute;
-  top: -200px; /* Вылет вверх */
+
+/* ── Telegram in-app browser safe area fix ───────────────── */
+.tg-safe-area-filler {
+  position: fixed;
+  top: 0;
   left: 0;
-  width: 100%;
-  height: 200px;
-  background-color: #000000; /* Или #0a260a, если хочешь зеленый верх */
-  z-index: -1;
+  right: 0;
+  /* Заполняем ровно высоту safe area (статус бар Telegram) */
+  height: env(safe-area-inset-top, 0px);
+  background-color: #0a260a;
+  z-index: 9999;
 }
 
-.navbar-container .nav-fixed .tg-style{
-  z-index: 1;
+/* Сдвигаем сам навбар вниз на высоту safe area */
+.custom-navbar.nav-fixed,
+.custom-navbar.nav-abs {
+  top: env(safe-area-inset-top, 0px) !important;
 }
