@@ -608,42 +608,41 @@
 
 /* --------------------------------- */
 
-/* 1. Базовое состояние - скрыто */
+/* Прячем филлер везде, кроме Telegram */
 .tg-black-filler {
   display: none;
 }
 
-/* 2. Только для Telegram на мобильных устройствах */
 @media (max-width: 991px) {
+  /* Включаем филлер только в Telegram */
   .is-tg .tg-black-filler {
     display: block;
     position: absolute;
-    /* Вытягиваем блок вверх за пределы навбара */
-    top: -100px; 
+    top: -100px; /* Вылет вверх за пределы экрана */
     left: 0;
     width: 100%;
     height: 100px;
-    background-color: #000000; /* Черный как интерфейс Telegram */
+    background-color: #000000;
     z-index: -1;
   }
 
-  /* Исправляем отступ навбара на внутренних страницах */
-  /* Чтобы он не "прилипал" к самому верху URL-бара */
-  .is-tg .custom-navbar.nav-fixed {
-    padding-top: env(safe-area-inset-top, 20px) !important;
-  }
-
-  /* На главной странице, когда навбар прозрачный (nav-abs) */
+  /* --- ПЕРВАЯ СТРАНИЦА (Прозрачный навбар) --- */
+  /* Здесь мы не используем margin, чтобы не ломать анимацию появления */
   .is-tg .custom-navbar.nav-abs {
-    /* Добавляем небольшой отступ, чтобы логотип не перекрывался URL-баром */
-    padding-top: calc(env(safe-area-inset-top, 20px) + 10px) !important;
-  }
-}
-
-/* 3. Глобальный фикс, чтобы контент не просвечивал ПРИ СКРОЛЛЕ ВНИЗ */
-@media (max-width: 991px) {
-  .is-tg .custom-navbar {
-    /* Это заставляет черный блок двигаться вместе с навбаром */
+    padding-top: calc(env(safe-area-inset-top, 20px) + 5px) !important;
     overflow: visible !important;
+  }
+
+  /* --- ОСТАЛЬНЫЕ СТРАНИЦЫ (Фиксированный зеленый навбар) --- */
+  .is-tg .custom-navbar.nav-fixed,
+  .is-tg .custom-navbar.nav-solid {
+    /* Добавляем отступ только когда навбар закрашен */
+    padding-top: env(safe-area-inset-top, 20px) !important;
+    border-top: 1px solid rgba(255,255,255,0.05); /* Тонкая линия разделения */
+  }
+
+  /* Исправляем проблему, когда навбар "прыгает" при скролле на главной */
+  .is-tg .nav-animate-in {
+    transform: translateY(0); /* Убеждаемся, что анимация не сдвигает его криво */
   }
 }

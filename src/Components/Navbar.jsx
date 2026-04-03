@@ -155,8 +155,9 @@ const NavbarCustom = ({ isHomePage }) => {
         className={`custom-navbar ${positionClass} ${animationClass} ${themeClass}`}
       >
 
-        <div className="tg-black-filler"></div>
-        
+        {/* Филлер показываем только в Telegram */}
+        {isTelegram && <div className="tg-black-filler"></div>}
+
         <Container fluid className="px-3 px-lg-5">
           <LinkContainer to="/">
             <Navbar.Brand className="brand-logo">
