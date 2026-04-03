@@ -144,9 +144,12 @@ const NavbarCustom = ({ isHomePage }) => {
   // 3. Тема
   const themeClass = isHomePage && !scrolled ? "nav-transparent" : "nav-solid";
 
+  // 3. Тема
+  const isTelegram = Boolean(window.Telegram?.WebApp) || navigator.userAgent.includes("Telegram");
+
   return (
     <>
-    <div className="tg-safe-area-filler" />
+    {isTelegram && <div className="tg-safe-area-filler" />}
     <div className="navbar-container">
       <Navbar
         collapseOnSelect
