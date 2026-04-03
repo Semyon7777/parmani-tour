@@ -144,7 +144,7 @@ const NavbarCustom = ({ isHomePage }) => {
   // 3. Тема
   const themeClass = isHomePage && !scrolled ? "nav-transparent" : "nav-solid";
 
-
+  // TELEGRAM
   function isTelegramInApp() {
     // Detect on Android
     if (typeof window.TelegramWebview !== 'undefined') {
@@ -165,8 +165,8 @@ const NavbarCustom = ({ isHomePage }) => {
 
   return (
     <>
-    {isTelegramInApp() && <div className="tg-safe-area-filler" />}
-    <div className="navbar-container">
+    {isTelegramInApp() && <div className="tg-safe-area-filler" />} 
+    <div className="navbar-container"> 
       <Navbar
         collapseOnSelect
         expand="lg"

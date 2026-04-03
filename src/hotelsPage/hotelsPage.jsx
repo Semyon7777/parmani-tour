@@ -25,6 +25,7 @@ const HotelsPage = () => {
 
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     
     const CACHE_TIME = 10 * 60 * 1000; // 10 минут
 
@@ -41,8 +42,6 @@ const HotelsPage = () => {
     }
 
     fetchHotels();
-
-    window.scrollTo(0, 0);
 
   }, []);
 

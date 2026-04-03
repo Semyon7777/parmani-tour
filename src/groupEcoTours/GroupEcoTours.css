@@ -1094,7 +1094,7 @@
   }
 
   .faq-theme-group .minimal-faq-trigger .accordion-button:not(.collapsed) {
-      color: #3498db; /* Синий акцент для Групп */
+      color: #e67e22; /* Синий акцент для Групп */
   }
 
   .faq-theme-all .minimal-faq-trigger .accordion-button:not(.collapsed) {
