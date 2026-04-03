@@ -368,6 +368,8 @@
 
 .profile-page-root .booking-card-right {
   text-align: right;
+  display: flex;
+  gap: 20px;
 }
 
 .profile-page-root .booking-price {
@@ -394,6 +396,103 @@
 .profile-page-root .booking-status.cancelled {
   background: #f8d7da;
   color: #721c24;
+}
+
+/* ─── Модалка билета ─────────────────────────────── */
+.qr-ticket-modal .modal-dialog {
+  max-width: 380px;
+}
+
+.qr-ticket-modal .modal-content {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.qr-ticket-modal .modal-body {
+  position: relative;
+  padding: 50px 16px 16px; /* сверху место под кнопку закрытия */
+}
+
+/* Кнопка закрытия — БЕЗ привязки к .profile-page-root */
+.qr-ticket-modal .ticket-close-btn {
+  position: absolute;
+  top: 60px;
+  right: 90px;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  color: white;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 10;
+}
+
+.qr-ticket-modal .ticket-close-btn:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* Анимация билета */
+.qr-ticket-modal .modal-body > div {
+  animation: ticketSlideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes ticketSlideUp {
+  from { opacity: 0; transform: translateY(40px) scale(0.92); }
+  to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+
+/* Кнопка вызова QR в карточке бронирования */
+.qr-trigger-btn,
+.profile-page-root .qr-trigger-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f0fdf4;
+  color: #166534;
+  border: 1px solid #dcfce7;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.qr-trigger-btn:hover,
+.profile-page-root .qr-trigger-btn:hover {
+  background: #dcfce7;
+}
+
+/* ─── Адаптив для мобильных ─────────────────────────────── */
+
+/* Планшеты и небольшие экраны */
+@media (max-width: 902px) {
+  .qr-ticket-modal .modal-dialog {
+    max-width: 100%;
+    margin: 0 16px;
+  }
+
+  .qr-ticket-modal .modal-body {
+    padding: 44px 12px 12px;
+  }
+
+  .qr-ticket-modal .ticket-close-btn {
+    top: 9.5%;
+    right: 6%;
+  }
+}
+
+/* Маленькие телефоны */
+@media (max-width: 400px) {
+  .qr-ticket-modal .modal-dialog {
+    margin: 0 8px;
+  }
 }
 
 /* ── НАСТРОЙКИ ── */

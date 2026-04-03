@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Container, Row, Col, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Spinner, Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useNavigate, Link } from "react-router-dom";
 import { Heart, Clock, Settings, LogOut, User, Mail, Globe,
-    ChevronRight, Calendar, Leaf, Users } from "lucide-react";
+    ChevronRight, Calendar, Leaf, Users, QrCode, X } from "lucide-react";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
 import privateToursData from "../toursPage/toursData.json";
+import DigitalTicket from "../Components/DigitalTicket";
 import "./ProfilePage.css";
  
 // ─── СКЕЛЕТОН для карточек пока грузятся данные ───────────────
@@ -263,6 +264,13 @@ function FavouritesTab({ favourites, loading, onRemove }) {
 function BookingsTab({ bookings, loading }) {
   const { t } = useTranslation();
   const [filter, setFilter] = useState("all");
+  const [showQR, setShowQR] = useState(false);
+  const [selectedBooking, setSelectedBooking] = useState(null);
+
+  const handleOpenQR = (booking) => {
+    setSelectedBooking(booking);
+    setShowQR(true);
+  };
 
   if (loading) return (
     <div className="text-center py-5"><Spinner animation="border" variant="success" /></div>
@@ -326,13 +334,44 @@ function BookingsTab({ bookings, loading }) {
                 </div>
               </div>
               <div className="booking-card-right">
-                <div className="booking-price">{booking.total_price}</div>
-                <div className="booking-people">{booking.guests_count} {t("profile.people")}</div>
+                <div className="booking-card-right-info">
+                  <div className="booking-price">{booking.total_price}</div>
+                  <div className="booking-people">{booking.guests_count} {t("profile.people")}</div>
+                </div>
+
+                <div className="booking-card-right-qr">
+                {/* Кнопка билета появляется только для подтвержденных туров */}
+                {booking.status === 'confirmed' && (
+                  <button 
+                    className="btn btn-outline-success btn-sm mt-2" 
+                    onClick={() => { setSelectedBooking(booking); setShowQR(true); }}
+                  >
+                    <QrCode size={16} className="me-1" /> QR Билет
+                  </button>
+                )}
+                </div>
               </div>
+
             </div>
           ))}
         </div>
       )}
+
+      {/* Модальное окно для QR-билета */}
+      <Modal 
+        show={showQR} 
+        onHide={() => setShowQR(false)} 
+        centered 
+        dialogClassName="qr-ticket-modal"
+      >
+        <Modal.Body className="border-0 bg-transparent">
+          <button className="ticket-close-btn" onClick={() => setShowQR(false)}>
+            <X size={30} />
+          </button>
+          {selectedBooking && <DigitalTicket booking={selectedBooking} />}
+        </Modal.Body>
+      </Modal>
+      
     </div>
   );
 }

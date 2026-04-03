@@ -174,6 +174,8 @@ function ToursPageFirstPart() {
                   <Dropdown.Item eventKey="default">{t('tour_info_page.sort_default')}</Dropdown.Item>
                   <Dropdown.Item eventKey="priceAsc">{t('tour_info_page.sort_price_low')}</Dropdown.Item>
                   <Dropdown.Item eventKey="priceDesc">{t('tour_info_page.sort_price_high')}</Dropdown.Item>
+                  <Dropdown.Item eventKey="filter_1day">{t('tour_info_page.only_1day')}</Dropdown.Item>
+                  <Dropdown.Item eventKey="filter_multiday">{t('tour_info_page.only_multiday')}</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </div>
