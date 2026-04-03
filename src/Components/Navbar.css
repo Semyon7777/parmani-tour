@@ -606,6 +606,10 @@
   }
 }
 
+.navbar-container .navbar-fixed {
+  z-index: 1;
+}
+
 .tg-style {
   display: block;
   position: absolute;
