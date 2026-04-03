@@ -606,41 +606,10 @@
   }
 }
 
-/* --------------------------------- */
-
-/* --- ГАРАНТИРУЕМ ФОН НА ДРУГИХ СТРАНИЦАХ --- */
-.custom-navbar.nav-solid, 
-.custom-navbar.nav-fixed {
-    background-color: #0a260a !important; /* Твой темно-зеленый */
-    position: fixed !important;
-    top: 0;
-    width: 100%;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    z-index: 2000;
-}
-
-/* --- TELEGRAM FILLER --- */
-.tg-black-filler {
-    display: none; /* Прячем везде */
-}
-
-/* Принудительно показываем в Telegram-классе */
-.is-tg .tg-black-filler {
-    display: block;
-    position: absolute;
-    top: -200px; /* Вылет вверх */
-    left: 0;
-    width: 100%;
-    height: 200px;
-    background-color: #000000; /* Или #0a260a, если хочешь зеленый верх */
-    z-index: -1;
-}
-
-.is-tg .custom-navbar {
-    overflow: visible !important; /* Чтобы филлер не обрезался */
-}
-
-/* Если даже филлер не сработал, сдвигаем весь навбар в Telegram чуть ниже */
-.is-tg .custom-navbar.nav-fixed {
-    padding-top: env(safe-area-inset-top, 20px) !important;
+.tg-style {
+  position: relative;
+  background-color: black;
+  margin-bottom: 50px;
+  height: 40px;
+  width: 100%;
 }
