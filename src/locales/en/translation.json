@@ -1044,6 +1044,7 @@
     "status_confirmed": "Confirmed",
     "status_cancelled": "Cancelled",
     "people": "people",
+    "qr_ticket": "QR Ticket",
     "personal_info": "Personal info",
     "name": "Name",
     "name_placeholder": "Your name",

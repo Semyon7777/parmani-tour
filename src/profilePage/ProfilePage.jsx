@@ -342,7 +342,7 @@ function BookingsTab({ bookings, loading }) {
                     onClick={() => { setSelectedBooking(booking); setShowQR(true); }}
                   >
                     <QrCode size={35} className="" />
-                    <div className="booking-card-right-qr-text">QR Билет</div>
+                    <div className="booking-card-right-qr-text">{t("profile.qr_ticket")}</div>
                   </button>
                 )}
 

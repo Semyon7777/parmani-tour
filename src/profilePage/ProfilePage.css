@@ -495,11 +495,6 @@
     padding: 44px 12px 12px;
   }
 
-  .qr-ticket-modal .ticket-close-btn {
-    top: 10%;
-    right: 6%;
-  }
-
   .booking-card-right-qr-text {
     font-size: 0.7rem;
   }
@@ -511,6 +506,23 @@
 
   .booking-card-right-qr .btn {
     padding: 2px 5px 2px 5px;
+  }
+}
+
+@media (max-width: 991px) {
+  .qr-ticket-modal .modal-content {
+    margin-top: 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .qr-ticket-modal .modal-content {
+    margin-top: 0;
+  }
+
+  .qr-ticket-modal .ticket-close-btn {
+    top: 10%;
+    right: 6%;
   }
 }
 

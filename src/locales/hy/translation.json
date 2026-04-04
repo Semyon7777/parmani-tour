@@ -970,6 +970,7 @@
     "status_pending": "Մշակվում է",
     "status_confirmed": "Հաստատված",
     "status_cancelled": "Չեղարկված",
+    "qr_ticket":"QR Տոմս",
     "people": "մարդ",
     "personal_info": "Անձնական տվյալներ",
     "name": "Անուն",

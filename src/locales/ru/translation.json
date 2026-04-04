@@ -973,6 +973,7 @@
     "status_pending": "В обработке",
     "status_confirmed": "Подтверждено",
     "status_cancelled": "Отменено",
+    "qr_ticket": "QR Билет",
     "people": "человек",
     "personal_info": "Личные данные",
     "name": "Имя",
