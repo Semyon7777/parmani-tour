@@ -122,36 +122,36 @@
     margin: 10px 0 !important;
   }
 
-  .card-img {
+  .bookFormContainer .card-img {
     display: none;
   }
 
-  .card-body {
+  .bookFormContainer .card-body {
     padding: 15px;
   }
 
-  .form-control {
+  .bookFormContainer .form-control {
     font-size: 14px;
   }
 
-  .btn {
+  .bookFormContainer .btn {
     font-size: 14px;
     padding: 10px;
   }
 
-  .form-check-label {
+  .bookFormContainer .form-check-label {
     font-size: 14px;
   }
 
-  .d-md-flex {
+  .bookFormContainer .d-md-flex {
     display: block;
   }
 
-  .terms {
+  .bookFormContainer .terms {
     font-size: 14px;
   }
 
-  .modal-dialog {
+  .bookFormContainer .modal-dialog {
     margin: 15px;
   }
 

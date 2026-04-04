@@ -372,6 +372,12 @@
   gap: 20px;
 }
 
+.profile-page-root .booking-card-right-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .profile-page-root .booking-price {
   font-size: 1.1rem;
   font-weight: 700;
@@ -399,6 +405,13 @@
 }
 
 /* ─── Модалка билета ─────────────────────────────── */
+
+.booking-card-right-qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .qr-ticket-modal .modal-dialog {
   max-width: 380px;
 }
@@ -485,6 +498,19 @@
   .qr-ticket-modal .ticket-close-btn {
     top: 10%;
     right: 6%;
+  }
+
+  .booking-card-right-qr-text {
+    font-size: 0.7rem;
+  }
+
+  .booking-card-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .booking-card-right-qr .btn {
+    padding: 2px 5px 2px 5px;
   }
 }
 

@@ -341,9 +341,11 @@ function BookingsTab({ bookings, loading }) {
                     className="btn btn-outline-success btn-sm" 
                     onClick={() => { setSelectedBooking(booking); setShowQR(true); }}
                   >
-                    <QrCode size={16} className="me-1" /> QR Билет
+                    <QrCode size={35} className="" />
+                    <div className="booking-card-right-qr-text">QR Билет</div>
                   </button>
                 )}
+
                 </div>
               </div>
 
