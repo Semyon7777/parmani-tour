@@ -526,7 +526,7 @@
   .admin-sidebar {
     width: 100%;
     min-height: auto;
-    position: relative;
+    position: absolute;
     flex-direction: row;
     flex-wrap: wrap;
     padding: 12px;
