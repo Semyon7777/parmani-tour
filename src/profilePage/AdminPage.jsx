@@ -90,6 +90,36 @@ function AdminPage() {
   );
 }
 
+// Обновляет spots в group_eco_tours на основе изменения статуса
+const updateTourSpots = async (tourId, guestsCount, oldStatus, newStatus) => {
+  // Получаем текущее количество мест
+  const { data: tour } = await supabase
+    .from("group_eco_tours")
+    .select("spots")
+    .eq("id", tourId)
+    .maybeSingle();
+
+  if (!tour) return;
+
+  let spotsDelta = 0;
+
+  // Если было active (confirmed/pending) → стало cancelled/deleted → возвращаем места
+  const wasActive = oldStatus === "confirmed" || oldStatus === "pending";
+  const isActive  = newStatus === "confirmed" || newStatus === "pending";
+
+  if (wasActive && !isActive) {
+    spotsDelta = +guestsCount; // возвращаем места
+  } else if (!wasActive && isActive) {
+    spotsDelta = -guestsCount; // забираем места
+  }
+
+  if (spotsDelta !== 0) {
+    await supabase
+      .from("group_eco_tours")
+      .update({ spots: Math.max(0, tour.spots + spotsDelta) })
+      .eq("id", tourId);
+  }
+};
 
 // ─── ТАБЛИЦА БРОНИРОВАНИЙ ─────────────────────────────────────
 function BookingsTable() {
@@ -128,23 +158,51 @@ function BookingsTable() {
 
   const saveEdit = async () => {
     const { id, created_at, user_id, tour_id, ...updateData } = editData;
+    const oldBooking = bookings.find(b => b.id === editingId);
+    
     const { error } = await supabase.from("bookings").update(updateData).eq("id", editingId);
     if (!error) {
       setBookings(prev => prev.map(b => b.id === editingId ? { ...b, ...updateData } : b));
       setEditingId(null);
+
+      // Если статус изменился — обновляем spots
+      if (oldBooking?.status !== updateData.status && tour_id) {
+        await updateTourSpots(tour_id, updateData.guests_count || oldBooking.guests_count, oldBooking.status, updateData.status);
+      }
     }
   };
 
-  const quickStatus = async (id, status) => {
-    setBookings(prev => prev.map(b => b.id === id ? { ...b, status } : b));
-    const { error } = await supabase.from("bookings").update({ status }).eq("id", id);
-    if (error) load();
+  const quickStatus = async (id, newStatus) => {
+    const booking = bookings.find(b => b.id === id);
+    
+    // Оптимистично обновляем UI
+    setBookings(prev => prev.map(b => b.id === id ? { ...b, status: newStatus } : b));
+    
+    const { error } = await supabase.from("bookings").update({ status: newStatus }).eq("id", id);
+    
+    if (error) {
+      load(); // откат при ошибке
+      return;
+    }
+
+    // Обновляем spots если статус изменился с active на inactive или наоборот
+    if (booking?.tour_id) {
+      await updateTourSpots(booking.tour_id, booking.guests_count, booking.status, newStatus);
+    }
   };
 
   const deleteBooking = async (id) => {
     if (!window.confirm("Удалить бронирование?")) return;
+    
+    const booking = bookings.find(b => b.id === id);
     setBookings(prev => prev.filter(b => b.id !== id));
+    
     await supabase.from("bookings").delete().eq("id", id);
+
+    // Возвращаем места если бронь была активной
+    if (booking?.tour_id && (booking.status === "confirmed" || booking.status === "pending")) {
+      await updateTourSpots(booking.tour_id, booking.guests_count, booking.status, "cancelled");
+    }
   };
 
   const filtered = bookings.filter(b => {

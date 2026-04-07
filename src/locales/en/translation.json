@@ -993,6 +993,7 @@
       "bring_desc": "Comfortable shoes, sunglasses, and your best mood.",
       "per_person": "per person",
       "book": "Book a spot",
+      "no_spots": "No spots left",
       "limited": "Only {{count}} spots left!"
     },
 
@@ -1012,7 +1013,10 @@
       "hurry_up": "Join others in this mission"
     },
 
-    "buttons": { "join_mission": "Join the Mission" },
+    "buttons": {
+      "join_mission": "Join the mission",
+      "no_spots": "No spots left"
+    },
     "included_items": {
       "Transfer": "Transfer",
       "Eco-lunch": "Eco-lunch",

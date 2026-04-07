@@ -177,9 +177,21 @@ const GroupTourDetails = () => {
                 </div>
               </div>
 
-              <button className="group-action-btn" onClick={() => setBookingOpen(true)}>
-                {t('group_eco_tours.group.book', 'Book a spot')}
+              <button 
+                className="group-action-btn" 
+                onClick={() => setBookingOpen(true)}
+                disabled={tour.spots === 0}
+                style={{ 
+                  opacity: tour.spots === 0 ? 0.6 : 1, 
+                  cursor: tour.spots === 0 ? 'not-allowed' : 'pointer' 
+                }}
+              >
+                {tour.spots === 0 
+                  ? t('group_eco_tours.group.no_spots', 'No spots left') 
+                  : t('group_eco_tours.group.book', 'Book a spot')
+                }
               </button>
+              
               <div className="spots-counter">
                 <div className="progress-bar">
                   <div 

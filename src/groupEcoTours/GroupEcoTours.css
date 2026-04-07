@@ -682,6 +682,14 @@
   transform: translateY(-2px);
 }
 
+.eco-details-page .eco-main-btn:disabled {
+  background-color: #ccc; /* Серый цвет */
+  color: #888;
+  cursor: not-allowed;    /* Курсор в виде перечеркнутого круга */
+  opacity: 0.7;
+  transform: none !important; /* Отключаем анимации при наведении, если они есть */
+}
+
 .eco-details-page .guarantee-text {
   text-align: center;
   font-size: 12px;
@@ -940,6 +948,24 @@
 
 .group-details-page .group-action-btn:hover {
   background: var(--group-orange);
+}
+
+/* Стили для заблокированных кнопок бронирования */
+.group-details-page .group-action-btn:disabled,
+.group-details-page .gbm-submit:disabled {
+  background-color: #cccccc !important; /* Серый цвет фона */
+  color: #666666 !important;            /* Темно-серый текст для читаемости */
+  cursor: not-allowed !important;      /* Указатель "запрещено" */
+  opacity: 0.7;                        /* Легкая прозрачность */
+  transform: none !important;          /* Отключаем эффекты увеличения при наведении */
+  box-shadow: none !important;         /* Убираем тени */
+  border-color: #bbbbbb !important;
+}
+
+/* Убираем эффект наведения (hover) для заблокированной кнопки */
+.group-details-page .group-action-btn:disabled:hover {
+  background-color: #cccccc !important;
+  filter: none !important;
 }
 
 /* PROGRESS BAR */

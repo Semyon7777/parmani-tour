@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
@@ -72,6 +72,22 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
     if (isOpen) document.addEventListener("keydown", handleKey);
     return () => document.removeEventListener("keydown", handleKey);
   }, [isOpen, onClose]);
+
+  // Логика авто-перехода
+  const handleFinalRedirect = useCallback(() => {
+    if (onClose) onClose();
+    navigate("/group-eco-tours");
+  }, [onClose, navigate]); // Эти зависимости стабильны
+
+  useEffect(() => {
+    let timer;
+    if (step === 2) {
+      timer = setTimeout(() => {
+        handleFinalRedirect();
+      }, 5000);
+    }
+    return () => clearTimeout(timer);
+  }, [step, handleFinalRedirect]); // Теперь варнинга не будет
 
 
   // useEffect(() => {
@@ -189,7 +205,7 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
       const newSpotsCount = maxSpots - guestsToBook;
 
       const { error: updateError } = await supabase
-        .from("group_tours") // ПРОВЕРЬ ИМЯ ТАБЛИЦЫ ТУТ
+        .from("group_eco_tours") // ПРОВЕРЬ ИМЯ ТАБЛИЦЫ ТУТ
         .update({ spots: newSpotsCount })
         .eq("id", tour.id);
 
@@ -206,6 +222,7 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
     } finally {
       setSubmitting(false);
     }
+    
   };
 
   // ── Рендер ──────────────────────────────────────────────────
@@ -406,13 +423,17 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
             </div>
             <h3>{t("group_booking.success_title", "Заявка отправлена!")}</h3>
             <p>{t("group_booking.success_text", "Мы получили вашу заявку и скоро свяжемся с вами.")}</p>
+            
             <div className="gbm-success-tour">{tourTitle}</div>
+            
             {pricePerPerson > 0 && (
               <div className="gbm-success-price">
                 {form.guests_count} {t("group_booking.people_short", "чел.")} · {totalPrice}
               </div>
             )}
-            <button className="gbm-submit" onClick={onClose}>
+
+            {/* Кнопка теперь вызывает нашу функцию с редиректом */}
+            <button className="gbm-submit" onClick={handleFinalRedirect}>
               {t("group_booking.success_close", "Отлично, спасибо!")}
             </button>
           </div>

@@ -194,8 +194,15 @@ useEffect(() => {
                 <FeatureLine icon={<Leaf size={16} />} text={t('group_eco_tours.eco.impact')} />
               </div>
 
-              <button className="eco-main-btn" onClick={() => setBookingOpen(true)}>
-                {t('group_eco_tours.buttons.join_mission')}
+              <button 
+                className={`eco-main-btn ${tour.spots === 0 ? 'btn-disabled' : ''}`} 
+                onClick={() => tour.spots > 0 && setBookingOpen(true)}
+                disabled={tour.spots === 0}
+              >
+                {tour.spots === 0 
+                  ? t('group_eco_tours.buttons.no_spots') // Или 'Мест нет'
+                  : t('group_eco_tours.buttons.join_mission')
+                }
               </button>
 
               <div className="eco-spots-wrapper mt-4">

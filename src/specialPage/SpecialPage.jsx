@@ -451,39 +451,48 @@ function SchoolToursAlbum() {
   const schoolToursData = [
     {
       id: 1,
-      image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=500",
-      title: { en: "Matenadaran Workshop", ru: "Мастер-класс в Матенадаране", hy: "Մատենադարանի աշխատանոց" },
+      image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?q=80&w=500",
+      title: { 
+        en: "Yerevan City Landmarks", 
+        ru: "Достопримечательности Еревана", 
+        hy: "Երևանի տեսարժան վայրերը" 
+      },
       location: { en: "Yerevan", ru: "Ереван", hy: "Երևան" },
       age: { en: "10-15 Years", ru: "10-15 Лет", hy: "10-15 Տարեկան" }
     },
     {
       id: 2,
-      image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=500",
-      title: { en: "Amberd Fortress Quest", ru: "Квест в крепости Амберд", hy: "Ամբերդի ամրոցի քվեստ" },
+      image: "https://images.unsplash.com/photo-1590422749897-470490793739?q=80&w=500",
+      title: { 
+        en: "Treasures of Aragatsotn", 
+        ru: "Сокровища Арагацотна", 
+        hy: "Արագածոտնի գանձերը" 
+      },
       location: { en: "Aragatsotn", ru: "Арагацотн", hy: "Արագածոտն" },
       age: { en: "10-15 Years", ru: "10-15 Лет", hy: "10-15 Տարեկան" }
     },
     {
       id: 3,
-      image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=500",
-      title: { en: "Eco-Trail Dilijan", ru: "Эко-тропа в Дилижане", hy: "Դիլիջանի էկո-արահետ" },
-      location: { en: "Dilijan", ru: "Дилижан", hy: "Դիլիջան" },
+      image: "https://images.unsplash.com/photo-1625345710204-7a918a52932c?q=80&w=500",
+      title: { 
+        en: "Holy Etchmiadzin Journey", 
+        ru: "Путешествие в Святой Эчмиадзин", 
+        hy: "Ճանապարհորդություն Սուրբ Էջմիածին" 
+      },
+      location: { en: "Etchmiadzin", ru: "Эчмиадзин", hy: "Էջմիածին" },
       age: { en: "10-15 Years", ru: "10-15 Лет", hy: "10-15 Տարեկան" }
     },
     {
       id: 4,
-      image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=500",
-      title: { en: "Garni Temple History", ru: "История храма Гарни", hy: "Գառնիի տաճարի պատմություն" },
-      location: { en: "Garni", ru: "Гарни", hy: "Գառնի" },
+      image: "https://images.unsplash.com/photo-1582298285514-688942b083c7?q=80&w=500",
+      title: { 
+        en: "Garni & Tsaghkadzor Adventure", 
+        ru: "Приключения в Гарни и Цахкадзоре", 
+        hy: "Գառնի և Ծաղկաձոր արկածներ" 
+      },
+      location: { en: "Garni & Tsaghkadzor", ru: "Гарни и Цахкадзор", hy: "Գառնի և Ծաղկաձոր" },
       age: { en: "10-15 Years", ru: "10-15 Лет", hy: "10-15 Տարեկան" }
-    },
-    {
-      id: 5,
-      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=500",
-      title: { en: "Observatory Night", ru: "Ночь в обсерватории", hy: "Գիշեր աստղադիտարանում" },
-      location: { en: "Byurakan", ru: "Бюракан", hy: "Բյուրական" },
-      age: { en: "10-15 Years", ru: "10-15 Лет", hy: "10-15 Տարեկան" }
-    },
+    }
   ];
 
   const scroll = (direction) => {

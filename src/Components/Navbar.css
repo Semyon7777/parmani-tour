@@ -13,12 +13,12 @@
 }
 
 /* Убираем стандартную тень Bootstrap, которая тоже может выглядеть как белая полоса */
-.navbar {
+.navbar-container .navbar {
     box-shadow: none !important;
 }
 
 /* 1. АБСОЛЮТНОЕ ПОЛОЖЕНИЕ (Начало главной) */
-.custom-navbar.nav-abs {
+.navbar-container .custom-navbar.nav-abs {
     position: absolute !important;
     top: 0;
     width: 100%;
@@ -30,7 +30,7 @@
 /* Navbar.css */
 
 /* --- СОСТОЯНИЕ ABSOLUTE (Начало главной) --- */
-.custom-navbar.navbar-absolute {
+.navbar-container .custom-navbar.navbar-absolute {
   position: absolute !important;
   top: 0;
   left: 0;
@@ -42,7 +42,7 @@
 }
 
 /* --- СОСТОЯНИЕ FIXED (Все остальные случаи) --- */
-.custom-navbar.fixed-top {
+.navbar-container .custom-navbar.fixed-top {
   position: fixed !important;
   top: 0;
   left: 0;
@@ -54,7 +54,7 @@
 }
 
 /* 2. ФИКСИРОВАННОЕ ПОЛОЖЕНИЕ (После скролла / Другие страницы) */
-.custom-navbar.nav-fixed {
+.navbar-container .custom-navbar.nav-fixed {
     position: fixed !important;
     top: 0;
     width: 100%;
@@ -64,7 +64,7 @@
 }
 
 /* Анимация: Срабатывает ТОЛЬКО на главной при прокрутке вниз */
-.nav-slide-animation {
+.navbar-container .nav-slide-animation {
     animation: slideInNav 0.4s ease-out;
 }
 
@@ -74,11 +74,11 @@
 }
 
 /* Убираем любые тени или задержки при переходе между страницами */
-.navbar-scrolled {
+.navbar-container .navbar-scrolled {
     transition: background-color 0.3s ease;
 }
 
-.nav-animate-in {
+.navbar-container .nav-animate-in {
     animation: slideInNav 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     /* Гарантируем, что навар не появится раньше времени */
     visibility: visible !important;
@@ -537,7 +537,7 @@
 
 @media (max-width: 991px) {
   /* Контейнер для всех ссылок */
-  .navbar-nav {
+  .navbar-container .navbar-nav {
     padding: 5px 0;
     display: flex;
     flex-direction: column;
