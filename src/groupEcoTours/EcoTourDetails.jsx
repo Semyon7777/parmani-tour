@@ -10,6 +10,7 @@ import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
 import GroupEcoToursBookForm from './GroupEcoToursBookForm';
+import TourGallery from "../Components/TourGallery";
 import './GroupEcoTours.css';
 
 const EcoTourDetails = () => {
@@ -137,6 +138,11 @@ useEffect(() => {
               </div>
               <p className="mission-text">{getTranslation(tour.extra_details?.mission)}</p>
             </section>
+
+            <TourGallery
+              images={tour.gallery || []}
+              alt={getTranslation(tour.title)}
+            />
 
             <section className="info-block">
               <h3>{t('group_eco_tours.eco.about_tour')}</h3>

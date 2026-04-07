@@ -331,14 +331,34 @@ function ToursTable() {
 
   useEffect(() => { load(); }, [load]);
 
-  const startEdit = (tour) => { setEditingId(tour.id); setEditData({ ...tour }); setExpandedId(tour.id); };
+  const startEdit = (tour) => {
+    setEditingId(tour.id);
+    setEditData({
+      ...tour,
+      // Превращаем массив в текст с отступами для удобного редактирования
+      gallery: tour.gallery ? JSON.stringify(tour.gallery, null, 2) : "[]"
+    });
+    setExpandedId(tour.id);
+  };
   const cancelEdit = () => { setEditingId(null); setExpandedId(null); };
 
   const saveEdit = async () => {
-    const { error } = await supabase.from("group_eco_tours").update(editData).eq("id", editingId);
-    if (!error) {
-      setTours(prev => prev.map(t => t.id === editingId ? editData : t));
-      cancelEdit();
+    try {
+      const finalData = {
+        ...editData,
+        // Пытаемся превратить текст обратно в массив JSON
+        gallery: typeof editData.gallery === 'string' ? JSON.parse(editData.gallery) : editData.gallery
+      };
+
+      const { error } = await supabase.from("group_eco_tours").update(finalData).eq("id", editingId);
+      
+      if (!error) {
+        setTours(prev => prev.map(t => t.id === editingId ? finalData : t));
+        cancelEdit();
+      }
+    } catch (e) {
+      alert("Ошибка в формате JSON галереи! Проверьте запятые и кавычки.");
+      console.error("JSON Parse Error:", e);
     }
   };
 
@@ -541,6 +561,20 @@ function ToursTable() {
                           </div>
                         </div>
 
+                        <div className="tour-edit-section">
+                          <div className="tour-edit-section-title">gallery (JSON массив)</div>
+                          <div className="booking-edit-field">
+                            <textarea
+                              rows={8}
+                              // Используем текст из состояния
+                              value={editData.gallery || ""} 
+                              // Просто обновляем строку, не пытаясь её парсить мгновенно
+                              onChange={e => setEditData(p => ({ ...p, gallery: e.target.value }))}
+                              style={{ fontFamily: "monospace", fontSize: "0.8rem" }}
+                            />
+                          </div>
+                        </div>
+
                         <div className="booking-edit-actions">
                           <button className="admin-save-btn" onClick={saveEdit}><Save size={14} /> Сохранить</button>
                           <button className="admin-cancel-btn" onClick={cancelEdit}>Отмена</button>
@@ -577,6 +611,19 @@ function ToursTable() {
                             <span className="detail-label">Маршрут:</span>
                             <div className="itinerary-preview">
                               {tour.itinerary.map((step, i) => (
+                                <div key={i} className="itinerary-preview-step">
+                                  <span className="step-time">{step.time}</span>
+                                  <span>{typeof step.title === "object" ? (step.title?.ru || step.title?.en) : step.title}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {tour.gallery && Array.isArray(tour.gallery) && tour.gallery.length > 0 && (
+                          <div className="tour-detail-row">
+                            <span className="detail-label">gallery:</span>
+                            <div className="itinerary-preview">
+                              {tour.gallery.map((step, i) => (
                                 <div key={i} className="itinerary-preview-step">
                                   <span className="step-time">{step.time}</span>
                                   <span>{typeof step.title === "object" ? (step.title?.ru || step.title?.en) : step.title}</span>

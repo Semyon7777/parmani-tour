@@ -184,7 +184,7 @@ const TourInfo = ({ tourData }) => {
                         {item.featuresInclude.map((feat, i) => (
                           <ListGroup.Item key={i} className="border-0 px-0 d-flex align-items-start">
                             <CheckCircle size={18} className="text-success me-2 mt-1 flex-shrink-0" />
-                            <span className="small">{feat}</span>
+                            <span className="inclusions-section-included">{feat}</span>
                           </ListGroup.Item>
                         ))}
                       </ListGroup>
@@ -194,7 +194,7 @@ const TourInfo = ({ tourData }) => {
                         {item.featuresNotInclude.map((feat, i) => (
                           <ListGroup.Item key={i} className="border-0 px-0 d-flex align-items-start text-muted">
                             <XCircle size={18} className="text-danger me-2 mt-1 flex-shrink-0" />
-                            <span className="small">{feat}</span>
+                            <span className="inclusions-section-not-included">{feat}</span>
                           </ListGroup.Item>
                         ))}
                       </ListGroup>
@@ -203,38 +203,8 @@ const TourInfo = ({ tourData }) => {
                 ))}
               </Row>
             </section>
-
-            {/* 7. УСЛОВИЯ БРОНИРОВАНИЯ И ОТМЕНЫ - Using Bootstrap Tabs */}
-            <section className="booking-policies-section mt-5">
-              <h3 className="section-title mb-4">
-                <Info className="me-2 text-success" /> {t('tour_info_page.booking_conditions')}
-              </h3>
-              
-              <Tabs defaultActiveKey="booking" id="policy-tabs" className="custom-tabs flex-nowrap overflow-x-auto pb-1 responsive-tabs">
-                <Tab 
-                  eventKey="booking" 
-                  title={<span><Calendar size={18} className="me-2" /> {t('tour_info_page.booking_process')}</span>}
-                >
-                  <div className="p-4 rounded-bottom border border-top-0 bg-light">
-                    <p className="text-muted mb-0">
-                      {t('tour_info_page.booking_text', 'Бронирование подтверждается мгновенно. Оплата производится наличными гиду или картой в день тура.')}
-                    </p>
-                  </div>
-                </Tab>
-                <Tab 
-                  eventKey="cancellation" 
-                  title={<span><XCircle size={18} className="me-2" /> {t('tour_info_page.cancellation_policy')}</span>}
-                >
-                  <div className="p-4 rounded-bottom border border-top-0 bg-light">
-                    <p className="text-muted mb-0">
-                      {t('tour_info_page.cancel_text', 'Бесплатная отмена за 24 часа. При отмене менее чем за сутки удерживается 20% стоимости.')}
-                    </p>
-                  </div>
-                </Tab>
-              </Tabs>
-            </section>
           </Col>
-
+          
           {/* 6. ПРАВАЯ КОЛОНКА: STICKY BOOKING CARD */}
           <Col lg={4}>
             <div className="sticky-booking-card p-4 shadow-lg border-0">
@@ -270,6 +240,36 @@ const TourInfo = ({ tourData }) => {
           </Col>
 
           <Col xs={12}>
+            {/* 7. УСЛОВИЯ БРОНИРОВАНИЯ И ОТМЕНЫ - Using Bootstrap Tabs */}
+            <section className="booking-policies-section mt-5">
+              <h3 className="section-title mb-4">
+                <Info className="me-2 text-success" /> {t('tour_info_page.booking_conditions')}
+              </h3>
+              
+              <Tabs defaultActiveKey="booking" id="policy-tabs" className="custom-tabs flex-nowrap overflow-x-auto pb-1 responsive-tabs">
+                <Tab 
+                  eventKey="booking" 
+                  title={<span><Calendar size={18} className="me-2" /> {t('tour_info_page.booking_process')}</span>}
+                >
+                  <div className="p-4 rounded-bottom border border-top-0 bg-light">
+                    <p className="text-muted mb-0">
+                      {t('tour_info_page.booking_text', 'Бронирование подтверждается мгновенно. Оплата производится наличными гиду или картой в день тура.')}
+                    </p>
+                  </div>
+                </Tab>
+                <Tab 
+                  eventKey="cancellation" 
+                  title={<span><XCircle size={18} className="me-2" /> {t('tour_info_page.cancellation_policy')}</span>}
+                >
+                  <div className="p-4 rounded-bottom border border-top-0 bg-light">
+                    <p className="text-muted mb-0">
+                      {t('tour_info_page.cancel_text', 'Бесплатная отмена за 24 часа. При отмене менее чем за сутки удерживается 20% стоимости.')}
+                    </p>
+                  </div>
+                </Tab>
+              </Tabs>
+            </section>
+
             {/* БЛОК: РЕКОМЕНДАЦИИ - Horizontal scroll on Mobile */}
             <section className="you-might-like-section mt-5 pt-4">
               <h3 className="section-title mb-4">{t('tour_info_page.you_might_like', 'You might also like...')}</h3>
@@ -307,7 +307,6 @@ const TourInfo = ({ tourData }) => {
               </div>
             </section>
           </Col>
-          
         </Row>
       </Container>
     </div>

@@ -10,6 +10,7 @@ import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
 import GroupEcoToursBookForm from './GroupEcoToursBookForm';
+import TourGallery from "../Components/TourGallery";
 import './GroupEcoTours.css';
 
 
@@ -128,6 +129,12 @@ const GroupTourDetails = () => {
       <Container className="group-main-content">
         <Row className="gx-5">
           <Col lg={7}>
+
+            <TourGallery
+              images={tour.gallery || []}
+              alt={getTranslation(tour.title)}
+            />
+
             {/* Программа тура (Timeline) */}
             <section className="itinerary-section">
               <h2 className="section-title">{t('group_eco_tours.group.program_label', 'Tour Program')}</h2>

@@ -353,6 +353,10 @@
 
 @media(max-width:992px) {
 
+  .itinerary-text {
+    font-size: 0.9rem;
+  }
+
   .recommendation-item {
     height: 270px;
   }

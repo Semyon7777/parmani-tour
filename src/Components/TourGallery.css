@@ -1,0 +1,153 @@
+/* ── TourGallery.css ─────────────────────────────────────── */
+ 
+.tour-gallery {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  /* Фиксированная высота — адаптируется через media queries */
+  height: 420px;
+  margin-bottom: 32px;
+}
+
+.group-details-page .group-main-content .tour-gallery {
+  margin-top: 60px;
+}
+ 
+/* ── ГЛАВНОЕ ФОТО ────────────────────────────────────────── */
+.tour-gallery-main {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  min-width: 0; /* fix flex shrink */
+}
+ 
+.tour-gallery-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+ 
+.tour-gallery-main:hover .tour-gallery-main-img {
+  transform: scale(1.03);
+}
+ 
+/* Счётчик фото */
+.tour-gallery-counter {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  background: rgba(0, 0, 0, 0.379);
+  color: rgba(255, 255, 255, 0.636);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+}
+ 
+/* ── МИНИАТЮРЫ ───────────────────────────────────────────── */
+.tour-gallery-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* Ширина колонки миниатюр */
+  width: 110px;
+  flex-shrink: 0;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+}
+ 
+.tour-gallery-thumbs::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+ 
+.tour-gallery-thumb {
+  position: relative;
+  width: 100%;
+  /* Квадратные миниатюры */
+  aspect-ratio: 1 / 1;
+  border: none;
+  padding: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  background: #eee;
+}
+ 
+.tour-gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+ 
+/* Затемнение неактивных */
+.thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+  transition: background 0.2s ease;
+}
+ 
+.tour-gallery-thumb:hover .thumb-overlay {
+  background: rgba(0, 0, 0, 0.15);
+}
+ 
+/* Активная миниатюра */
+.tour-gallery-thumb.active {
+  outline: 3px solid #3a7d44;
+  outline-offset: -2px;
+  transform: scale(1.03);
+}
+ 
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .tour-gallery {
+    flex-direction: column;
+    height: auto;
+  }
+ 
+  .tour-gallery-main {
+    height: 260px;
+    flex: none;
+  }
+ 
+  .tour-gallery-thumbs {
+    flex-direction: row;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 76px;
+  }
+ 
+  .tour-gallery-thumb {
+    width: 76px;
+    height: 76px;
+    flex-shrink: 0;
+  }
+}
+ 
+@media (max-width: 480px) {
+  .tour-gallery-main {
+    height: 220px;
+    border-radius: 10px;
+  }
+ 
+  .tour-gallery-thumbs {
+    height: 64px;
+  }
+ 
+  .tour-gallery-thumb {
+    width: 64px;
+    height: 64px;
+    border-radius: 8px;
+  }
+}
