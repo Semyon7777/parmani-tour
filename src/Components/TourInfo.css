@@ -279,7 +279,101 @@
   align-items: center;
 }
 
-/* Добавь это в свой TourInfo.css */
+/* --- HORIZONTAL SCROLL CONTAINER --- */
+.recommendations-scroll-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 15px; /* Space for scrollbar */
+}
+
+.recommendations-scroll-container .row {
+  display: flex;
+  flex-wrap: nowrap; /* Forces everything into one line */
+  margin: 0;
+}
+
+/* 1. Remove the background and text color from the active tab */
+.booking-policies-section .custom-tabs .nav-link {
+  color: black !important;
+}
+
+/* --- FIXED CARD DIMENSIONS --- */
+.recommendation-item {
+  display: flex;
+  align-items: stretch; /* Forces all cards in row to match tallest */
+  flex: 0 0 75%;      /* Mobile: 75% width per card */
+  padding: 0 8px;     /* Gutter spacing */
+}
+
+/* --- IMAGE SIZING --- */
+.rel-img-wrapper {
+  width: 100%;
+  overflow: hidden;
+  height: 130px;      /* Fixed height for mobile */
+}
+
+/* --- TITLE FIX (The "Secret Sauce") --- */
+.tour-card-title {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  margin: 0;
+  
+  /* Force exactly 2 lines height */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  /* This ensures 1-line titles still take up 2-lines of space */
+  height: 2.8em; 
+  min-height: 2.8em; 
+}
+
+.related-tour-mini-card {
+  height: 100%;
+}
+
+.rel-img-container img{
+  height: 150px;
+  width: 100%;
+}
+
+/* --- LAPTOP / DESKTOP OVERRIDES --- */
+@media (min-width: 992px) {
+  .recommendation-item {
+    flex: 0 0 25%;   /* Exactly 4 cards visible */
+  }
+
+  .rel-img-wrapper {
+    height: 170px;   /* Taller images for desktop */
+  }
+  
+}
+
+@media(max-width:992px) {
+
+  .recommendation-item {
+    height: 270px;
+  }
+  
+  .rel-img-container img {
+    width: 300px;
+  }
+
+  .related-tour-mini-card-title h6 {
+    font-size: 0.85rem;
+  }
+}
+
+/* Custom Scrollbar for better UI */
+.recommendations-scroll-container::-webkit-scrollbar {
+  height: 4px;
+}
+.recommendations-scroll-container::-webkit-scrollbar-thumb {
+  background: #cbd5e0;
+  border-radius: 10px;
+}
 
 .tour-carousel .carousel-item img {
   height: 400px; /* Задай нужную тебе высоту (подбери под дизайн) */

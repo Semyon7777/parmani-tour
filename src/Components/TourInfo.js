@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Container, Row, Col, ListGroup, Image, Carousel } from 'react-bootstrap';
+import { Button, Container, Row, Col, ListGroup, Image, Carousel, Tab, Tabs } from 'react-bootstrap';
 import { 
   CheckCircle, XCircle, Clock, MapPin, Users, User, 
   Calendar, ArrowLeft, Map as MapIcon, ChevronDown, ChevronUp, Info 
@@ -203,6 +203,36 @@ const TourInfo = ({ tourData }) => {
                 ))}
               </Row>
             </section>
+
+            {/* 7. УСЛОВИЯ БРОНИРОВАНИЯ И ОТМЕНЫ - Using Bootstrap Tabs */}
+            <section className="booking-policies-section mt-5">
+              <h3 className="section-title mb-4">
+                <Info className="me-2 text-success" /> {t('tour_info_page.booking_conditions')}
+              </h3>
+              
+              <Tabs defaultActiveKey="booking" id="policy-tabs" className="custom-tabs flex-nowrap overflow-x-auto pb-1 responsive-tabs">
+                <Tab 
+                  eventKey="booking" 
+                  title={<span><Calendar size={18} className="me-2" /> {t('tour_info_page.booking_process')}</span>}
+                >
+                  <div className="p-4 rounded-bottom border border-top-0 bg-light">
+                    <p className="text-muted mb-0">
+                      {t('tour_info_page.booking_text', 'Бронирование подтверждается мгновенно. Оплата производится наличными гиду или картой в день тура.')}
+                    </p>
+                  </div>
+                </Tab>
+                <Tab 
+                  eventKey="cancellation" 
+                  title={<span><XCircle size={18} className="me-2" /> {t('tour_info_page.cancellation_policy')}</span>}
+                >
+                  <div className="p-4 rounded-bottom border border-top-0 bg-light">
+                    <p className="text-muted mb-0">
+                      {t('tour_info_page.cancel_text', 'Бесплатная отмена за 24 часа. При отмене менее чем за сутки удерживается 20% стоимости.')}
+                    </p>
+                  </div>
+                </Tab>
+              </Tabs>
+            </section>
           </Col>
 
           {/* 6. ПРАВАЯ КОЛОНКА: STICKY BOOKING CARD */}
@@ -238,6 +268,46 @@ const TourInfo = ({ tourData }) => {
               </div>
             </div>
           </Col>
+
+          <Col xs={12}>
+            {/* БЛОК: РЕКОМЕНДАЦИИ - Horizontal scroll on Mobile */}
+            <section className="you-might-like-section mt-5 pt-4">
+              <h3 className="section-title mb-4">{t('tour_info_page.you_might_like', 'You might also like...')}</h3>
+              
+              <div className="recommendations-scroll-container">
+                <Row className="flex-nowrap g-3 pb-3 m-0">
+                  {tourData.relatedTours.map((rel) => (
+                    <Col key={rel.id} className="recommendation-item">
+                      <div 
+                        className="related-tour-mini-card shadow-sm border-0 rounded-4 overflow-hidden d-flex flex-column"
+                        onClick={() => {
+                          navigate(`/private-tours/${rel.id}`);
+                          window.scrollTo(0, 0); 
+                        }}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        {/* Fixed height image container */}
+                        <div className="rel-img-container">
+                          <img src={rel.image} alt={rel.title} className="object-fit-cover" />
+                        </div>
+                        
+                        {/* Flex-grow ensures the body takes up all remaining space */}
+                        <div className="p-3 bg-white d-flex flex-column flex-grow-1 related-tour-mini-card-title">
+                          <h6 className="mb-2 fw-bold text-dark multi-line-truncate">
+                            {rel.title}
+                          </h6>
+                          <div className="mt-auto">
+                            <span className="text-success fw-bold small">{rel.price}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </Col>
+                  ))}
+                </Row>
+              </div>
+            </section>
+          </Col>
+          
         </Row>
       </Container>
     </div>

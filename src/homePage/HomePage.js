@@ -236,7 +236,7 @@ function UpcomingEventsSection() {
                     </div>
 
                     <div className="tour-action-area">
-                      <div className="tour-price-tag">{event.price}</div>
+                      <div className="tour-price-tag">{event.price} AMD</div>
                       <Link
                         to={event.type === "eco" ? `/eco-tour/${event.id}` : `/group-tour/${event.id}`}
                         onClick={(e) => handleTourClick(e, event)}

@@ -27,6 +27,20 @@ function TourPageDynamic() {
     );
   }
 
+  // 1. Фильтруем: убираем текущий тур из списка
+  // 2. Слайзим: берем первые 4 (если текущий был в топ-4, автоматически подтянется 5-й)
+  const relatedRaw = toursData
+    .filter(item => item.id !== tourId)
+    .slice(0, 4);
+
+  // 3. Маппим данные под нужный язык для превью карточек
+  const relatedToursFormatted = relatedRaw.map(rel => ({
+    id: rel.id,
+    title: rel.title[lang],
+    image: rel.imageUrl,
+    price: rel.price
+  }));
+
   // Формируем объект для твоего компонента TourInfo
   const myTourData = {
     id: tour.id,
@@ -53,7 +67,8 @@ function TourPageDynamic() {
         featuresInclude: tour.features.include[lang], 
         featuresNotInclude: tour.features.exclude[lang] 
       }
-    ]
+    ],
+    relatedTours: relatedToursFormatted
   };
 
   return (

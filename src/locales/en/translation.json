@@ -11,7 +11,7 @@
     "special": "Special Offers",
     "group_&_eco_tours": "Group & Eco Tours",
     "contact_button": "Contact",
-    "about": "About",
+    "about": "Armenia",
     "history": "History",
     "cuisine": "Cuisine",
     "culture": "Culture",
@@ -200,6 +200,13 @@
     "instant_confirm": "instant confirm",
     "no_prepayment": "no prepayment",
     "tour_book_button": "Book now",
+
+    "you_might_like": "You might also like...",
+    "booking_conditions": "Booking Conditions",
+    "booking_process": "Booking Process",
+    "cancellation_policy": "Cancellation & Modification",
+    "booking_text": "Tours start and end in Yerevan; starts elsewhere may incur price changes. Stops and site visits are possible if time permits; significant detours may require additional charges. Tours to Georgia require valid travel insurance and potentially a visa. For groups over 7 to Georgia, passport data is required. We recommend comfortable closed shoes and warm clothing, as climates vary. Respectful clothing is advised for churches (no open clothes; scarves for women). Pets are allowed only in cages with advance notice. Passengers are insured for traffic accidents up to 1,500,000 AMD for documented health expenses.",
+    "cancel_text": "No prepayment is required for standard bookings. Free cancellation or modification is available if the company is informed at least 24 hours before departure. If a cancellation or change occurs less than 24 hours before the tour, a 10% penalty of the total price may be charged. Full refunds are provided if the company cancels the tour due to weather or force majeure. Significant reductions in group size (over 10%) made last minute may not be eligible for full recalculation if third-party services like food or tickets are already booked.",
 
     "custom": {
       "title": "Didn't find the perfect route?",
