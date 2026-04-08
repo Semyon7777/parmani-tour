@@ -122,13 +122,35 @@ function UpcomingEventsSection() {
 
   useEffect(() => {
     const fetchUpcoming = async () => {
+      setLoading(true);
+      
+      // 1. Берем активные туры с местами (без лимита в 3, возьмем запас в 10)
       const { data, error } = await supabase
         .from('group_eco_tours')
         .select('id, type, title, date, price, image, location, spots')
         .eq('is_active', true)
-        .limit(3);
+        .gt('spots', 0)
+        .limit(10); 
 
-      if (!error) setEvents(data || []);
+      if (!error && data) {
+        const now = new Date();
+        now.setHours(0, 0, 0, 0); // Устанавливаем 00:00:00, чтобы сегодняшний тур не исчез раньше времени
+
+        const parseDate = (d) => {
+          const [day, month, year] = d.split('.').map(Number);
+          return new Date(year, month - 1, day);
+        };
+
+        const sortedAndFiltered = data
+          .filter(tour => {
+            const tourDate = parseDate(tour.date);
+            return tourDate >= now; // Теперь сравнение идет только по датам, без учета времени
+          })
+          .sort((a, b) => parseDate(a.date) - parseDate(b.date))
+          .slice(0, 3);
+
+        setEvents(sortedAndFiltered);
+      }
       setLoading(false);
     };
     fetchUpcoming();

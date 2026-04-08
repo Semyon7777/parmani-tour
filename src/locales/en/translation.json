@@ -303,7 +303,7 @@
     "error_name": "Please enter your name",
     "error_email": "Please enter a valid email",
     "error_phone": "Please enter your phone number",
-    "error_guests": "Between 1 and {{max}} participants",
+    "error_guests": "Between 1 and {{maxSpots}} participants",
     "error_terms": "Please accept the terms of use",
     "error_server": "Submission error. Please try again."
   },

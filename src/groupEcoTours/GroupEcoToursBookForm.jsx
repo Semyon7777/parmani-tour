@@ -163,7 +163,7 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
       return t("group_booking.no_spots", "К сожалению, мест больше нет");
     }
     if (!guests || guests < 1 || guests > maxSpots) {
-      return t("group_booking.error_guests", `Доступно мест: ${maxSpots}`);
+      return t("group_booking.error_guests", { maxSpots: maxSpots });
     }
 
     if (!termsAccepted)

@@ -14,7 +14,7 @@ import TourGallery from "../Components/TourGallery";
 import './GroupEcoTours.css';
 
 const EcoTourDetails = () => {
-const { id } = useParams();
+  const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
@@ -25,8 +25,8 @@ const { id } = useParams();
   const [loading, setLoading] = useState(!tourFromState);
   const currentLang = i18n.language || 'en';
 
-useEffect(() => {
-  window.scrollTo(0, 0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
 
     const fetchTourDetails = async () => {
       const CACHE_KEY = `eco_tour_${id}`;
@@ -78,8 +78,8 @@ useEffect(() => {
     };
 
     fetchTourDetails();
-  // Мы сознательно не добавляем tour в зависимости, чтобы избежать бесконечного цикла
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // Мы сознательно не добавляем tour в зависимости, чтобы избежать бесконечного цикла
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, tourFromState]);
 
   // Мемоизируем функцию перевода

@@ -81,19 +81,38 @@ function GroupEcoTours() {
   };
 
   const filteredTours = useMemo(() => {
-    // Фильтруем
+    // 1. Фильтруем по табу (как и было)
     const filtered = activeTab === "all"
       ? allTours
       : allTours.filter(tour => tour.type === activeTab);
 
-    // Сортируем (копия через spread [...], чтобы не мутировать стейт)
+    // Вспомогательная функция для превращения "DD.MM.YYYY" в объект Date
+    const parseDate = (dateStr) => {
+      if (!dateStr) return new Date(0);
+      const [day, month, year] = dateStr.split('.').map(Number);
+      // В JS месяцы начинаются с 0 (январь = 0, май = 4)
+      return new Date(year, month - 1, day);
+    };
+
+    // 2. Умная сортировка
     return [...filtered].sort((a, b) => {
       const sA = Number(a.spots) || 0;
       const sB = Number(b.spots) || 0;
 
+      // ПРАВИЛО 1: Если мест 0 — в самый конец
       if (sA === 0 && sB !== 0) return 1;
       if (sA !== 0 && sB === 0) return -1;
-      return sA - sB; 
+
+      // ПРАВИЛО 2: Сортировка по дате (от ближайших к дальним)
+      const dateA = parseDate(a.date);
+      const dateB = parseDate(b.date);
+
+      if (dateA.getTime() !== dateB.getTime()) {
+        return dateA - dateB; 
+      }
+
+      // ПРАВИЛО 3: Если даты совпали, показываем тот, где меньше мест
+      return sA - sB;
     });
   }, [allTours, activeTab]);
 
