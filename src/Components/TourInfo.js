@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import "./TourInfo.css";
 
 const TourInfo = ({ tourData }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   
   // Состояние для раскрытия секций "Read More"
@@ -18,6 +18,25 @@ const TourInfo = ({ tourData }) => {
   const toggleSection = (index) => {
     setExpandedSection(expandedSection === index ? null : index);
   };
+
+  // ✅ Хелпер для получения текста по языку
+  const lang = i18n.language || 'en';
+  const getText = (field) => {
+    if (!field) return '';
+    if (typeof field === 'string') return field;
+    return field[lang] || field['en'] || '';
+  };
+
+  // ✅ Защита от undefined
+  if (!tourData) return <div>Loading...</div>;
+
+  // ✅ Получаем include/exclude из правильного места
+  const featuresInclude = tourData.features?.include?.[lang] 
+    || tourData.features?.include?.['en'] 
+    || [];
+  const featuresExclude = tourData.features?.exclude?.[lang] 
+    || tourData.features?.exclude?.['en'] 
+    || [];
 
   return (
     <div className="tour-details-wrapper">
@@ -72,7 +91,7 @@ const TourInfo = ({ tourData }) => {
                   <Col md={6} className="mb-4 mb-md-0">
                     <div className="map-wrapper">
                       <Image 
-                        src={tourData.routeMap || tourData.image} 
+                        src={tourData.routeMap || tourData.imageUrl} 
                         fluid 
                         className="rounded-3 shadow-sm"
                         alt="Route Map"
@@ -101,72 +120,61 @@ const TourInfo = ({ tourData }) => {
             <section className="itinerary-details-section mb-5">
               <h3 className="section-title mb-4">{t('tour_info_page.itinerary')}</h3>
               <div className="custom-itinerary-list">
-                {tourData.sections.map((section, index) => {
+                {(tourData.sections || []).map((section, index) => {
                   const isExpanded = expandedSection === index;
                   return (
                     <div key={index} className={`itinerary-item ${isExpanded ? 'active' : ''}`}>
                       <div className="itinerary-trigger" onClick={() => toggleSection(index)}>
                         <div className="trigger-left">
                           <span className="itinerary-number">{index + 1}</span>
-                          <h5>{section.header}</h5>
+                          {/* ✅ getText */}
+                          <h5>{getText(section.header)}</h5>
                         </div>
                         <div className="trigger-right">
                           {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                         </div>
                       </div>
-                      
                       <div className={`itinerary-collapse ${isExpanded ? 'open' : ''}`}>
-                      <div className="itinerary-content p-4">
-                        <Row>
-                          {/* 1. КОЛОНКА С ТЕКСТОМ */}
-                          {/* Если картинка есть (неважно, строка или массив), отдаем тексту 7 колонок */}
-                          <Col md={section.image ? 7 : 12}>
-                            <p className="itinerary-text">{section.content}</p>
-                            {section.fullContent && <p className="itinerary-text mt-2">{section.fullContent}</p>}
-                          </Col>
-
-                          {/* 2. КОЛОНКА С КАРУСЕЛЬЮ */}
-                          {section.image && (
-                            <Col md={5}>
-                              <Carousel 
-                                // 1. Убираем fade — обычный слайд (сдвиг) работает на мобилках в разы быстрее
-                                fade={false} 
-                                slide={true}
-                                touch={true} // Включаем поддержку свайпов
-                                indicators={false}
-                                controls={Array.isArray(section.image) ? section.image.length > 1 : false}
-                                interval={null}
-                                className="itinerary-carousel shadow-sm border rounded-3 overflow-hidden"
-                              >
-                                {(Array.isArray(section.image) ? section.image : [section.image]).map((imgSrc, idx) => {
-                                  
-                                  // 2. АВТО-ОПТИМИЗАЦИЯ CLOUDINARY
-                                  // Если ссылка ведет на Cloudinary, добавляем параметры сжатия (w_600, f_auto, q_auto)
-                                  let optimizedSrc = imgSrc;
-                                  if (imgSrc.includes('cloudinary.com')) {
-                                    optimizedSrc = imgSrc.replace('/upload/', '/upload/w_600,c_fill,g_auto,f_auto,q_auto/');
-                                  }
-
-                                  return (
-                                    <Carousel.Item key={idx}>
-                                      <Image 
-                                        src={optimizedSrc} 
-                                        fluid 
-                                        alt={`${section.header} - ${idx + 1}`} 
-                                        loading="lazy"
-                                        className="w-100 object-fit-cover"
-                                        // Используем закругления и высоту, которые не «тормозят» рендеринг
-                                        style={{ height: '280px', willChange: 'transform' }} 
-                                      />
-                                    </Carousel.Item>
-                                  );
-                                })}
-                              </Carousel>
+                        <div className="itinerary-content p-4">
+                          <Row>
+                            <Col md={section.image ? 7 : 12}>
+                              {/* ✅ getText для контента */}
+                              <p className="itinerary-text">{getText(section.content)}</p>
+                              {section.fullContent && (
+                                <p className="itinerary-text mt-2">{getText(section.fullContent)}</p>
+                              )}
                             </Col>
-                          )}
-                        </Row>
+                            {section.image && (
+                              <Col md={5}>
+                                <Carousel 
+                                  fade={false} slide={true} touch={true}
+                                  indicators={false}
+                                  controls={Array.isArray(section.image) ? section.image.length > 1 : false}
+                                  interval={null}
+                                  className="itinerary-carousel shadow-sm border rounded-3 overflow-hidden"
+                                >
+                                  {(Array.isArray(section.image) ? section.image : [section.image]).map((imgSrc, idx) => {
+                                    let optimizedSrc = imgSrc;
+                                    if (imgSrc.includes('cloudinary.com')) {
+                                      optimizedSrc = imgSrc.replace('/upload/', '/upload/w_600,c_fill,g_auto,f_auto,q_auto/');
+                                    }
+                                    return (
+                                      <Carousel.Item key={idx}>
+                                        <Image 
+                                          src={optimizedSrc} fluid 
+                                          alt={`${getText(section.header)} - ${idx + 1}`}
+                                          loading="lazy" className="w-100 object-fit-cover"
+                                          style={{ height: '280px', willChange: 'transform' }} 
+                                        />
+                                      </Carousel.Item>
+                                    );
+                                  })}
+                                </Carousel>
+                              </Col>
+                            )}
+                          </Row>
+                        </div>
                       </div>
-                    </div>
                     </div>
                   );
                 })}
@@ -177,33 +185,26 @@ const TourInfo = ({ tourData }) => {
             <section className="inclusions-section bg-white p-4 rounded-4 shadow-sm border">
               <h3 className="section-title mb-4">{t('tour_info_page.whats_included')}</h3>
               <Row>
-                {/* ✅ Проверяем что tourData.include существует */}
-                {(tourData.include || []).map((item, idx) => (
-                  <React.Fragment key={idx}>
-                    <Col md={6} className="mb-3 mb-md-0">
-                      <ListGroup variant="flush">
-                        {/* ✅ Проверяем что featuresInclude существует */}
-                        {(item.featuresInclude || []).map((feat, i) => (
-                          <ListGroup.Item key={i} className="border-0 px-0 d-flex align-items-start">
-                            <CheckCircle size={18} className="text-success me-2 mt-1 flex-shrink-0" />
-                            <span className="inclusions-section-included">{feat}</span>
-                          </ListGroup.Item>
-                        ))}
-                      </ListGroup>
-                    </Col>
-                    <Col md={6}>
-                      <ListGroup variant="flush">
-                        {/* ✅ Проверяем что featuresNotInclude существует */}
-                        {(item.featuresNotInclude || []).map((feat, i) => (
-                          <ListGroup.Item key={i} className="border-0 px-0 d-flex align-items-start text-muted">
-                            <XCircle size={18} className="text-danger me-2 mt-1 flex-shrink-0" />
-                            <span className="inclusions-section-not-included">{feat}</span>
-                          </ListGroup.Item>
-                        ))}
-                      </ListGroup>
-                    </Col>
-                  </React.Fragment>
-                ))}
+                <Col md={6} className="mb-3 mb-md-0">
+                  <ListGroup variant="flush">
+                    {featuresInclude.map((feat, i) => (
+                      <ListGroup.Item key={i} className="border-0 px-0 d-flex align-items-start">
+                        <CheckCircle size={18} className="text-success me-2 mt-1 flex-shrink-0" />
+                        <span className="inclusions-section-included">{feat}</span>
+                      </ListGroup.Item>
+                    ))}
+                  </ListGroup>
+                </Col>
+                <Col md={6}>
+                  <ListGroup variant="flush">
+                    {featuresExclude.map((feat, i) => (
+                      <ListGroup.Item key={i} className="border-0 px-0 d-flex align-items-start text-muted">
+                        <XCircle size={18} className="text-danger me-2 mt-1 flex-shrink-0" />
+                        <span className="inclusions-section-not-included">{feat}</span>
+                      </ListGroup.Item>
+                    ))}
+                  </ListGroup>
+                </Col>
               </Row>
             </section>
           </Col>
