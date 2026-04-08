@@ -83,7 +83,7 @@ const TourInfo = ({ tourData }) => {
                   </Col>
                   <Col md={6}>
                     <div className="simple-timeline">
-                      {tourData.sections.map((step, idx) => (
+                      {(tourData.sections || []).map((step, idx) => (
                         <div key={idx} className="timeline-step">
                           <div className="step-dot"></div>
                           <div className="step-info">
@@ -177,11 +177,13 @@ const TourInfo = ({ tourData }) => {
             <section className="inclusions-section bg-white p-4 rounded-4 shadow-sm border">
               <h3 className="section-title mb-4">{t('tour_info_page.whats_included')}</h3>
               <Row>
-                {tourData.include.map((item, idx) => (
+                {/* ✅ Проверяем что tourData.include существует */}
+                {(tourData.include || []).map((item, idx) => (
                   <React.Fragment key={idx}>
                     <Col md={6} className="mb-3 mb-md-0">
                       <ListGroup variant="flush">
-                        {item.featuresInclude.map((feat, i) => (
+                        {/* ✅ Проверяем что featuresInclude существует */}
+                        {(item.featuresInclude || []).map((feat, i) => (
                           <ListGroup.Item key={i} className="border-0 px-0 d-flex align-items-start">
                             <CheckCircle size={18} className="text-success me-2 mt-1 flex-shrink-0" />
                             <span className="inclusions-section-included">{feat}</span>
@@ -191,7 +193,8 @@ const TourInfo = ({ tourData }) => {
                     </Col>
                     <Col md={6}>
                       <ListGroup variant="flush">
-                        {item.featuresNotInclude.map((feat, i) => (
+                        {/* ✅ Проверяем что featuresNotInclude существует */}
+                        {(item.featuresNotInclude || []).map((feat, i) => (
                           <ListGroup.Item key={i} className="border-0 px-0 d-flex align-items-start text-muted">
                             <XCircle size={18} className="text-danger me-2 mt-1 flex-shrink-0" />
                             <span className="inclusions-section-not-included">{feat}</span>
@@ -276,7 +279,7 @@ const TourInfo = ({ tourData }) => {
               
               <div className="recommendations-scroll-container">
                 <Row className="flex-nowrap g-3 pb-3 m-0">
-                  {tourData.relatedTours.map((rel) => (
+                  {(tourData.relatedTours || []).map((rel) => (
                     <Col key={rel.id} className="recommendation-item">
                       <div 
                         className="related-tour-mini-card shadow-sm border-0 rounded-4 overflow-hidden d-flex flex-column"
