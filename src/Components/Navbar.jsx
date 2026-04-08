@@ -146,19 +146,23 @@ const NavbarCustom = ({ isHomePage }) => {
 
   // TELEGRAM
   function isTelegramInApp() {
-    // Detect on Android
-    if (typeof window.TelegramWebview !== 'undefined') {
-        return true;
-    }
-    // Detect on iOS
-    if (typeof window.TelegramWebviewProxy !== 'undefined' || 
-        typeof window.TelegramWebviewProxyProto !== 'undefined') {
-        return true;
-    }
-    // Detect Telegram Mini App (TMA)
-    if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData) {
-        return true;
-    }
+    const ua = navigator.userAgent || '';
+
+    // ✅ Способ 1 — User Agent (работает на всех версиях и устройствах)
+    if (ua.includes('Telegram')) return true;
+
+    // ✅ Способ 2 — Telegram Mini App (актуальный API)
+    if (window.Telegram?.WebApp?.platform) return true;
+
+    // ✅ Способ 3 — старые версии Android
+    if (typeof window.TelegramWebview !== 'undefined') return true;
+
+    // ✅ Способ 4 — старые версии iOS  
+    if (
+      typeof window.TelegramWebviewProxy !== 'undefined' ||
+      typeof window.TelegramWebviewProxyProto !== 'undefined'
+    ) return true;
+
     return false;
   }
   
