@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import "./TourInfo.css";
 
 const TourInfo = ({ tourData }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   
   // Состояние для раскрытия секций "Read More"
@@ -18,6 +18,27 @@ const TourInfo = ({ tourData }) => {
   const toggleSection = (index) => {
     setExpandedSection(expandedSection === index ? null : index);
   };
+
+    // ✅ Язык с защитой от 'en-US' формата и undefined
+  const lang = i18n.language?.split('-')[0] || 'en';
+
+  // ✅ Универсальный хелпер для многоязычных полей
+  const getText = (field) => {
+    if (!field) return '';
+    if (typeof field === 'string') return field;
+    return field[lang] || field['en'] || Object.values(field)[0] || '';
+  };
+
+  // ✅ Защита пока данные не пришли
+  if (!tourData) return <div className="text-center p-5">Loading...</div>;
+
+  // ✅ Берём include/exclude из правильного места
+  const featuresInclude = tourData.features?.include?.[lang] 
+    || tourData.features?.include?.['en'] 
+    || [];
+  const featuresExclude = tourData.features?.exclude?.[lang] 
+    || tourData.features?.exclude?.['en'] 
+    || [];
 
   return (
     <div className="tour-details-wrapper">
@@ -87,7 +108,7 @@ const TourInfo = ({ tourData }) => {
                         <div key={idx} className="timeline-step">
                           <div className="step-dot"></div>
                           <div className="step-info">
-                            <span className="step-title">{step.header}</span>
+                            <span className="step-title">{getText(step.header)}</span>
                           </div>
                         </div>
                       ))}
@@ -108,7 +129,7 @@ const TourInfo = ({ tourData }) => {
                       <div className="itinerary-trigger" onClick={() => toggleSection(index)}>
                         <div className="trigger-left">
                           <span className="itinerary-number">{index + 1}</span>
-                          <h5>{section.header}</h5>
+                          <h5>{getText(section.header)}</h5>
                         </div>
                         <div className="trigger-right">
                           {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
@@ -121,8 +142,8 @@ const TourInfo = ({ tourData }) => {
                           {/* 1. КОЛОНКА С ТЕКСТОМ */}
                           {/* Если картинка есть (неважно, строка или массив), отдаем тексту 7 колонок */}
                           <Col md={section.image ? 7 : 12}>
-                            <p className="itinerary-text">{section.content}</p>
-                            {section.fullContent && <p className="itinerary-text mt-2">{section.fullContent}</p>}
+                            <p className="itinerary-text">{getText(section.content)}</p>
+                            {section.fullContent && <p className="itinerary-text mt-2">{getText(section.fullContent)}</p>}
                           </Col>
 
                           {/* 2. КОЛОНКА С КАРУСЕЛЬЮ */}
@@ -178,12 +199,12 @@ const TourInfo = ({ tourData }) => {
               <h3 className="section-title mb-4">{t('tour_info_page.whats_included')}</h3>
               <Row>
                 {/* ✅ Проверяем что tourData.include существует */}
-                {(tourData.include || []).map((item, idx) => (
+                {(tourData.include || featuresInclude || []).map((item, idx) => (
                   <React.Fragment key={idx}>
                     <Col md={6} className="mb-3 mb-md-0">
                       <ListGroup variant="flush">
                         {/* ✅ Проверяем что featuresInclude существует */}
-                        {(item.featuresInclude || []).map((feat, i) => (
+                        {(item.featuresInclude || featuresExclude || []).map((feat, i) => (
                           <ListGroup.Item key={i} className="border-0 px-0 d-flex align-items-start">
                             <CheckCircle size={18} className="text-success me-2 mt-1 flex-shrink-0" />
                             <span className="inclusions-section-included">{feat}</span>
