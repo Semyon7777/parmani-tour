@@ -10,7 +10,8 @@ function TourPageDynamic() {
   const { tourId } = useParams();
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const lang = i18n.language || "en";
+  
+  const lang = (i18n.language || "en").split('-')[0];
 
   useEffect(() => {
     window.scrollTo(0, 0);
