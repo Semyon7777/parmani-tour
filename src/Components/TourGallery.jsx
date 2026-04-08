@@ -67,4 +67,6 @@ function TourGallery({ images = [], alt = "Tour image" }) {
   );
 }
 
+// sdh;ajsfsjk
+
 export default TourGallery;
