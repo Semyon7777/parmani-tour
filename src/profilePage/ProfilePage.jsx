@@ -382,7 +382,10 @@ function SettingsTab({ user, setUser }) {
   const [saved, setSaved] = useState(false);
   const [saving, setSaving] = useState(false);
 
+  const NAME_LIMIT = 30;
+
   const handleSave = async () => {
+
     setSaving(true);
     const { data: { user: authUser } } = await supabase.auth.getUser();
 
@@ -416,6 +419,7 @@ function SettingsTab({ user, setUser }) {
           <input
             className="settings-input"
             value={name}
+            maxLength={NAME_LIMIT}
             onChange={e => setName(e.target.value)}
             placeholder={t("profile.name_placeholder", "Ваше имя")}
           />
