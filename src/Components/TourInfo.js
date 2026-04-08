@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import "./TourInfo.css";
 
 const TourInfo = ({ tourData }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   
   // Состояние для раскрытия секций "Read More"
@@ -18,6 +18,24 @@ const TourInfo = ({ tourData }) => {
   const toggleSection = (index) => {
     setExpandedSection(expandedSection === index ? null : index);
   };
+
+  // ============ DEBUG LOGS — удали после фикса ============
+  console.log('=== TourInfo DEBUG ===');
+  console.log('1. i18n.language:', i18n.language);
+  console.log('2. i18n.isInitialized:', i18n.isInitialized);
+  console.log('3. tourData received:', tourData);
+  console.log('4. tourData.features:', tourData?.features);
+  console.log('5. tourData.imageUrl:', tourData?.imageUrl);
+  console.log('6. tourData.title:', tourData?.title);
+  
+  const lang = (i18n.language || 'en').split('-')[0];
+  console.log('7. lang computed:', lang);
+  
+  const featuresInclude = tourData?.features?.include?.[lang] 
+    || tourData?.features?.include?.['en'] 
+    || [];
+  console.log('8. featuresInclude result:', featuresInclude);
+  // ============ END DEBUG ============
 
   return (
     <div className="tour-details-wrapper">
