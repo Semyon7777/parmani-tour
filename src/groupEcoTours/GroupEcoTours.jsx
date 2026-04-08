@@ -81,9 +81,20 @@ function GroupEcoTours() {
   };
 
   const filteredTours = useMemo(() => {
-    return activeTab === "all"
+    // Фильтруем
+    const filtered = activeTab === "all"
       ? allTours
       : allTours.filter(tour => tour.type === activeTab);
+
+    // Сортируем (копия через spread [...], чтобы не мутировать стейт)
+    return [...filtered].sort((a, b) => {
+      const sA = Number(a.spots) || 0;
+      const sB = Number(b.spots) || 0;
+
+      if (sA === 0 && sB !== 0) return 1;
+      if (sA !== 0 && sB === 0) return -1;
+      return sA - sB; 
+    });
   }, [allTours, activeTab]);
 
   return (

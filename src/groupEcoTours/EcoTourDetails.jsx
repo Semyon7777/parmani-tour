@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Container, Row, Col, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Spinner, Tabs, Tab } from 'react-bootstrap';
 import { 
-  Leaf, Calendar, MapPin, ArrowLeft, Info,
+  Leaf, Calendar, MapPin, ArrowLeft, Info, XCircle,
   CheckCircle2, Clock, ShieldCheck, TreePine 
 } from 'lucide-react';
 import NavbarCustom from "../Components/Navbar";
@@ -236,6 +236,42 @@ useEffect(() => {
               <p className="guarantee-text">{t('group_eco_tours.eco.no_prepayment')}</p>
             </div>
           </Col>
+
+          <Col xs={12}>
+            {/* 7. УСЛОВИЯ БРОНИРОВАНИЯ И ОТМЕНЫ - Using Bootstrap Tabs */}
+            <section className="booking-policies-section mt-5 mb-5">
+              <h3 className="section-title mb-4">
+                <Info className="me-2 text-success" /> {t('tour_info_page.booking_conditions')}
+              </h3>
+              
+              <Tabs defaultActiveKey="booking" id="policy-tabs" className="custom-tabs flex-nowrap overflow-x-auto pb-1 responsive-tabs">
+                <Tab 
+                  eventKey="booking" 
+                  title={<span><Calendar size={18} className="me-2" /> {t('tour_info_page.booking_process')}</span>}
+                >
+                  <div className="p-4 rounded-bottom border border-top-0 bg-light">
+                    <p className="text-muted mb-0">
+                      {t('tour_info_page.booking_text', 'Бронирование подтверждается мгновенно. Оплата производится наличными гиду или картой в день тура.')}
+                    </p>
+                  </div>
+                </Tab>
+                <Tab 
+                  eventKey="cancellation" 
+                  title={<span><XCircle size={18} className="me-2" /> {t('tour_info_page.cancellation_policy')}</span>}
+                >
+                  <div className="p-4 rounded-bottom border border-top-0 bg-light">
+                    <p className="text-muted mb-0">
+                      {t('tour_info_page.cancel_text', 'Бесплатная отмена за 24 часа. При отмене менее чем за сутки удерживается 20% стоимости.')}
+                    </p>
+                  </div>
+                </Tab>
+              </Tabs>
+            </section>
+
+            {/* БЛОК: РЕКОМЕНДАЦИИ - Horizontal scroll on Mobile */}
+            
+          </Col>
+
         </Row>
       </Container>
 
