@@ -87,69 +87,66 @@
     }
   },
   
-    "your_journey": "Your Journey",
-    "in_armenia": "IN ARMENIA",
-    "video_not_supported": "Your browser does not support the video tag.",
-    "your_opportunities": "Everything",
-    "while_traveling_in_armenia": "in one place",
-    "sub_headline": "Tours, transfers, accommodation and experiences in Armenia",
+  "your_journey": "Your Journey",
+  "in_armenia": "IN ARMENIA",
+  "video_not_supported": "Your browser does not support the video tag.",
+  "your_opportunities": "Everything",
+  "while_traveling_in_armenia": "in one place",
+  "sub_headline": "Tours, transfers, accommodation and experiences in Armenia",
 
-    "first_page_slides": {
-      "first_slide_title": "Tours in Armenia",
-      "first_slide_description": "Group, private and family tours across Armenia.",
+  "first_page_slides": {
+    "first_slide_title": "Tours in Armenia",
+    "first_slide_description": "Group, private and family tours across Armenia.",
 
-      "second_slide_title": "Transport & Taxi",
-      "second_slide_description": "Airport transfers, city rides, and trips anywhere in Armenia.",
+    "second_slide_title": "Transport & Taxi",
+    "second_slide_description": "Airport transfers, city rides, and trips anywhere in Armenia.",
 
-      "third_slide_title": "Hotel Booking",
-      "third_slide_description": "Book hotels and guesthouses across Armenia.",
+    "third_slide_title": "Hotel Booking",
+    "third_slide_description": "Book hotels and guesthouses across Armenia.",
 
-      "fourth_slide_title": "All in One Place",
-      "fourth_slide_description": "Tours, transport and accommodation together."
-    },
+    "fourth_slide_title": "All in One Place",
+    "fourth_slide_description": "Tours, transport and accommodation together."
+  },
 
-    "first_page_cards": {
-    "section_title": "What we offer",
-    "explore_all": "Explore all services",
+  "first_page_cards": {
+    "section_title": "Our Tour Collections",
+    "explore_all": "View all offers",
 
-    "tours_title": "Tours & Excursions",
-    "tours_text": "Discover Armenia with guided tours and unforgettable experiences.",
-    "tours_button": "Book",
+    "private_title": "Private Tours",
+    "private_text": "Exclusive journeys with a personal guide tailored to your interests.",
+    "private_button": "Explore",
 
-    "transfer_title": "Transfers & Taxi",
-    "transfer_text": "Comfortable and reliable transportation across the country.",
-    "transfer_button": "Book",
+    "group_eco_title": "Group & Eco Tours",
+    "group_eco_text": "Join like-minded travelers or take part in nature-saving missions.",
+    "group_eco_button": "Join",
 
-    "hotels_title": "Hotel Booking",
-    "hotels_text": "Find and book the best hotels at the best prices.",
-    "hotels_button": "Book",
+    "school_title": "School Tours",
+    "school_text": "Educational and fun excursions designed specifically for students.",
+    "school_button": "Details",
 
-    "custom_title": "All in One",
-    "custom_text": "Get tours, hotel booking, transfers and more in a single service.",
-    "custom_button": "Book"
-    },
+    "custom_title": "Custom Tour Builder",
+    "custom_text": "Didn't find the perfect route? Create your own dream trip from scratch.",
+    "custom_button": "Build Now"
+  },
 
-    "plane_to_armenia_alt": "Plane to Armenia",
-    "where_do_they_go_most_often": "Where do they go most often",
-    "see_more": "See more",
-    "khor_virap_title": "Khor Virap",
-    "khor_virap_text": "A beautiful beach destination.",
-    "devils_bridge_title": "Devil's bridge",
-    "devils_bridge_text": "A serene mountain retreat.",
-    "garni_temple_title": "Garni Temple",
-    "garni_temple_text": "An exciting city adventure.",
-    "wings_of_tatev_title": "Wings of Tatev",
-    "wings_of_tatev_text": "Ropeway",
-    "viewTour": "View Tour",
-    "priceLabel": "Price: {{price}}",
-    "price": "{{price}}",
-    "searchTours": "Search Tour",
-    "loadMore": "Load More",
-    "toursPage": {
-    "headInfo": "blabla",
+  "plane_to_armenia_alt": "Plane to Armenia",
+  "where_do_they_go_most_often": "Where do they go most often",
+  "see_more": "See more",
+  "khor_virap_title": "Khor Virap",
+  "khor_virap_text": "A beautiful beach destination.",
+  "devils_bridge_title": "Devil's bridge",
+  "devils_bridge_text": "A serene mountain retreat.",
+  "garni_temple_title": "Garni Temple",
+  "garni_temple_text": "An exciting city adventure.",
+  "wings_of_tatev_title": "Wings of Tatev",
+  "wings_of_tatev_text": "Ropeway",
+  "viewTour": "View Tour",
+  "priceLabel": "Price: {{price}}",
+  "price": "{{price}}",
+  "searchTours": "Search Tour",
+  "loadMore": "Load More",
+  "toursPage": {
     "headText": "Find your journey here!",
-    "infoText1": "blabla",
-    "infoText2": "blabla",
     "buttonText": "Reserve"
   },
 
@@ -1051,6 +1048,7 @@
     "no_bookings": "No bookings",
     "no_bookings_sub": "Your upcoming and past trips will appear here",
     "book_tour": "Book a tour",
+    "filter_all": "All",
     "status_pending": "Pending",
     "status_confirmed": "Confirmed",
     "status_cancelled": "Cancelled",

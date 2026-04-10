@@ -141,7 +141,7 @@ function ProfilePage() {
           <div className="profile-hero-inner">
             <div className="profile-avatar">
               {user.avatar_url
-                ? <img src={user.avatar_url} alt="avatar" />
+                ? <img src={user.avatar_url} alt="" />
                 : <span>{user.full_name?.[0]?.toUpperCase() || "U"}</span>
               }
             </div>

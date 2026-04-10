@@ -42,7 +42,7 @@ const Card = ({ title, text, imgSrc, buttonText, buttonLink }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="card m-3" style={{ width: "18rem" }}>
+    <div className="card m-3" style={{ width: "19rem" }}>
       <img src={imgSrc} className="card-img-top" alt={t(title)} loading="lazy"/>
       <div className="card-body">
         <h5 className="card-title">{t(title)}</h5>
@@ -62,32 +62,32 @@ const Card = ({ title, text, imgSrc, buttonText, buttonLink }) => {
 function CardComponents() {
   const cardsData = [
     {
-      title: "first_page_cards.tours_title",
-      text: "first_page_cards.tours_text",
+      title: "first_page_cards.private_title",
+      text: "first_page_cards.private_text",
       imgSrc: img1,
-      buttonText: "first_page_cards.tours_button",
+      buttonText: "first_page_cards.private_button",
       buttonLink: "/private-tours",
     },
     {
-      title: "first_page_cards.transfer_title",
-      text: "first_page_cards.transfer_text",
+      title: "first_page_cards.group_eco_title",
+      text: "first_page_cards.group_eco_text",
       imgSrc: img2,
-      buttonText: "first_page_cards.transfer_button",
-      buttonLink: "/transport",
+      buttonText: "first_page_cards.group_eco_button",
+      buttonLink: "/group-eco-tours",
     },
     {
-      title: "first_page_cards.hotels_title",
-      text: "first_page_cards.hotels_text",
+      title: "first_page_cards.school_title",
+      text: "first_page_cards.school_text",
       imgSrc: img3,
-      buttonText: "first_page_cards.hotels_button",
-      buttonLink: "/hotels",
+      buttonText: "first_page_cards.school_button",
+      buttonLink: "/special?tab=school",
     },
     {
       title: "first_page_cards.custom_title",
       text: "first_page_cards.custom_text",
       imgSrc: img4,
       buttonText: "first_page_cards.custom_button",
-      buttonLink: "/all-in-one",
+      buttonLink: "/special?tab=custom",
     },
   ];
 

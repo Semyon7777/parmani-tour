@@ -4,7 +4,7 @@
     "category": "cultural",
     "routeMap": "/TourImages/shirak_region/gyumri-city/route-map.webp",
     "routeSummary": "Yerevan → Gyumri → Yerevan",
-    "imageUrl": "/TourImages/shirak_region/gyumri-city/main.webp",
+    "imageUrl": "/TourImages/shirak_region/gyumri-city/2days_main.webp",
     "duration": "12",
     "durationUnit": "hours",
     "price": "53000 AMD",
@@ -192,8 +192,8 @@
       },
       {
         "header": {
-          "en": "Areni-1 Cave",
-          "ru": "Пещера Арени-1",
+          "en": "Areni Cave",
+          "ru": "Пещера Арени",
           "hy": "Արենիի քարանձավ"
         },
         "content": {
@@ -305,7 +305,7 @@
           "ru": " — крепость VII века, расположенная на высоте более 2300 метров на склонах . Она служила стратегическим оборонительным пунктом и резиденцией знати. С её территории открываются широкие панорамные виды на горные ландшафты.\n\nСегодня сохранившиеся стены позволяют представить масштаб средневековых укреплений, а горная среда усиливает общее впечатление.",
           "hy": " VII դարի բերդ է, որը գտնվում է  լանջին՝ ավելի քան 2300 մ բարձրության վրա։ Այն ծառայել է որպես պաշտպանական կառույց և ազնվականների նստավայր։ Այստեղից բացվում են լայն համայնապատկերներ լեռնային տարածքների վրա։\n\nԱյսօր պահպանված պատերը հնարավորություն են տալիս պատկերացնել միջնադարյան ամրաշինության հզորությունը, իսկ շրջապատող բնությունը լրացնում է ընդհանուր տպավորությունը։"
         },
-        "image": "/TourImages/aragatsotn_region/amberd_route/amberd.webp"
+        "image": "/TourImages/aragatsotn_region/amberd_route/main.webp"
       },
       {
         "header": {
@@ -440,7 +440,7 @@
           "ru": " связан с  и известен видом на .",
           "hy": " հայտնի է  տեսարանով։"
         },
-        "image": "/TourImages/ararat_region/dvin_route/khorvirap.webp"
+        "image": "/TourImages/vayots_dzor_region/areni_route/khorvirap.webp"
       },
       {
         "header": {
@@ -458,7 +458,7 @@
           "ru": " — малоизвестное ущелье с интересными скальными формами и спокойной атмосферой. Это отличное место для короткой прогулки вдали от туристических потоков.",
           "hy": " քիչ հայտնի կիրճ է՝ հետաքրքիր ժայռերով և հանգիստ բնությամբ։"
         },
-        "image": "/TourImages/ararat_region/dvin_route/angels.webp"
+        "image": "/TourImages/ararat_region/dvin_route/main.webp"
       },
       {
         "header": {
@@ -1130,7 +1130,7 @@
     "category": "cultural",
     "routeMap": "/TourImages/shirak_region/ereruyk-gyumri/route-map.webp",
     "routeSummary": "Yerevan → Gyumri → Yerevan",
-    "imageUrl": "/TourImages/shirak_region/gyumri-city/2days_main.webp",
+    "imageUrl": "/TourImages/shirak_region/gyumri-city/main.webp",
     "duration": "2",
     "durationUnit": "days",
     "price": "65000 AMD",
