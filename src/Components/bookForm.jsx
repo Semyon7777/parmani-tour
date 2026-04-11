@@ -125,6 +125,7 @@ function BookForm() {
             full_name: `${formData.firstName} ${formData.lastName}`,
             email: formData.email,
             phone: formData.phone,
+            guide: formData.guide,
             guests_count: numberOfPeople,
             travel_date: formData.startDate ? formData.startDate.toISOString().split('T')[0] : null,
             total_price: calculation?.finalPrice ? (calculation.finalPrice + " AMD") : "TBD",
@@ -418,7 +419,7 @@ function BookForm() {
       </Row>
       
       {/* Notification Modal */}
-      <Modal show={showAlert} onHide={() => setShowAlert(false)} centered>
+      <Modal show={showAlert} onHide={() => { setShowAlert(false); navigate("/private-tours"); }} centered>
         <Modal.Header 
           closeButton 
           style={{ 
@@ -434,7 +435,7 @@ function BookForm() {
           {t('bookForm.modalBody')}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="success" onClick={() => setShowAlert(false)}>{t('bookForm.closeButton')}</Button>
+          <Button variant="success" onClick={() => {setShowAlert(false); navigate("/private-tours"); }}>{t('bookForm.closeButton')}</Button>
         </Modal.Footer>
       </Modal>
           <ReCAPTCHA

@@ -4,7 +4,7 @@ import { supabase } from "../supabaseClient";
 import { 
   Users, Calendar, Heart, Hotel, Globe, LogOut,
   Trash2, Edit2, Check, X, Plus, RefreshCw, 
-  Search, Save, ChevronDown, ChevronUp, BarChart2, TrendingUp
+  Search, Save, ChevronDown, ChevronUp, TrendingUp
   } from "lucide-react";
 import "./AdminPage.css";
 
