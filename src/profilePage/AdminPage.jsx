@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import { 
   Users, Calendar, Heart, Hotel, Globe, LogOut,
   Trash2, Edit2, Check, X, Plus, RefreshCw, 
-  Search, Save, ChevronDown, ChevronUp
+  Search, Save, ChevronDown, ChevronUp, BarChart2, TrendingUp
   } from "lucide-react";
 import "./AdminPage.css";
 
@@ -82,7 +82,7 @@ function AdminPage() {
 
         {activeTab === "bookings"        && <BookingsTable />}
         {activeTab === "group_eco_tours" && <ToursTable />}
-        {activeTab === "profiles"        && <GenericTable table="profiles"   columns={["full_name", "email", "is_admin"]} />}
+        {activeTab === "profiles"        && <GenericTable table="profiles"   columns={["full_name", "email", "phone"]} />}
         {activeTab === "hotels"          && <HotelsTable />}
         {activeTab === "favourites"      && <GenericTable table="favourites" columns={["user_id", "tour_id"]} viewOnly />}
       </main>
@@ -408,7 +408,7 @@ function ToursTable() {
             <input placeholder="Название RU" onChange={e => setNewTour(p => ({ ...p, title: { ...p.title, ru: e.target.value } }))} />
             <input placeholder="Название HY" onChange={e => setNewTour(p => ({ ...p, title: { ...p.title, hy: e.target.value } }))} />
             <input placeholder="Цена (напр: 15000)" onChange={e => setNewTour(p => ({ ...p, price: e.target.value }))} />
-            <input placeholder="Дата (DD-MM-YYYY)" onChange={e => setNewTour(p => ({ ...p, date: e.target.value }))} />
+            <input placeholder="Дата (DD.MM.YYYY)" onChange={e => setNewTour(p => ({ ...p, date: e.target.value }))} />
             <input placeholder="Мест" type="number" onChange={e => setNewTour(p => ({ ...p, spots: parseInt(e.target.value) }))} />
             <input placeholder="Людей (people)" type="number" onChange={e => setNewTour(p => ({ ...p, people: parseInt(e.target.value) }))} />
             <input placeholder="Транспорт" onChange={e => setNewTour(p => ({ ...p, transport: e.target.value }))} />
@@ -836,6 +836,7 @@ function GenericTable({ table, columns, viewOnly = false }) {
   const [editingId, setEditingId] = useState(null);
   const [editData, setEditData]   = useState({});
   const [search, setSearch]       = useState("");
+  const [showAllStats, setShowAllStats] = useState(false);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -872,15 +873,68 @@ function GenericTable({ table, columns, viewOnly = false }) {
     return str.length > 60 ? str.slice(0, 60) + "..." : str;
   };
 
+  // ─── STATISTICS LOGIC ───────────────────────────────────────
+
+  const tourStats = useMemo(() => {
+    if (!rows.length) return [];
+
+    // Считаем вхождения каждого tour_id
+    const counts = rows.reduce((acc, row) => {
+      const id = row.tour_id;
+      if (id) acc[id] = (acc[id] || 0) + 1;
+      return acc;
+    }, {});
+
+    // Превращаем в массив и сортируем по убыванию
+    return Object.entries(counts)
+      .map(([id, count]) => ({ tourId: id, count }))
+      .sort((a, b) => b.count - a.count);
+  }, [rows]);
+
+  // Определяем, сколько строк показывать
+  const visibleStats = showAllStats ? tourStats : tourStats.slice(0, 4);
+
   return (
     <div className="admin-table-wrapper">
+      {/* ─── STATS HEADER ──────────────────────────────────── */}
+      {table === 'favourites' && tourStats.length > 0 && (
+        <div className="stats-container">
+          <div className="stats-header">
+            <h3><TrendingUp size={18} /> Рейтинг популярных туров</h3>
+            <span className="stats-count">Всего уникальных: {tourStats.length}</span>
+          </div>
+
+          <div className="stats-grid">
+            {visibleStats.map((item, index) => (
+              <div key={item.tourId} className="stat-pill">
+                <span className="stat-rank">{index + 1}</span>
+                <span className="stat-id">ID: {item.tourId}</span>
+                <span className="stat-qty">{item.count} чел.</span>
+              </div>
+            ))}
+          </div>
+
+          {tourStats.length > 4 && (
+            <button 
+              className="stats-expand-btn" 
+              onClick={() => setShowAllStats(!showAllStats)}
+            >
+              {showAllStats ? "Скрыть" : `Показать еще ${tourStats.length - 4}`}
+            </button>
+          )}
+        </div>
+      )}
       <div className="admin-toolbar">
         <div className="admin-search">
           <Search size={16} />
           <input placeholder="Поиск..." value={search} onChange={e => setSearch(e.target.value)} />
         </div>
+
         <button className="admin-refresh-btn" onClick={load}><RefreshCw size={16} /></button>
       </div>
+        <div className="table-count-badge">
+          {filtered.length} {filtered.length !== rows.length ? `из ${rows.length}` : 'записей'}
+        </div>
 
       {loading ? <AdminSkeleton /> : (
         <div className="generic-table-scroll">

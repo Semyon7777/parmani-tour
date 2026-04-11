@@ -158,9 +158,9 @@
     "routeMap": "/TourImages/vayots_dzor_region/areni_route/route-map.webp",
     "routeSummary": "Yerevan → Khor Virap → Areni Cave → Areni Winery → Noravank → Yerevan",
     "imageUrl": "/TourImages/vayots_dzor_region/areni_route/main.webp",
-    "duration": "9",
+    "duration": "9-10",
     "durationUnit": "hours",
-    "price": "52000 AMD",
+    "price": "59000 AMD",
     "title": {
       "en": "KHOR VIRAP – ARENI – NORAVANK",
       "ru": "ХОР ВИРАП – АРЕНИ – НОРАВАНК",
@@ -192,9 +192,9 @@
       },
       {
         "header": {
-          "en": "Areni Cave",
-          "ru": "Пещера Арени",
-          "hy": "Արենիի քարանձավ"
+          "en": "Birds' Cave (Areni-1)",
+          "ru": "Пещера Птиц (Арени-1)",
+          "hy": "Թռչունների քարանձավ (Արենի-1)"
         },
         "content": {
           "en": "Archaeological site with the world’s oldest winery.",
@@ -261,10 +261,10 @@
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {"vehicles": "Sedan", "price": "40000"},
+          {"vehicles": "Miniven", "price": "50000"}
         ],
-        "ticket_per_person": "0"
+        "ticket_per_person": "3500"
       }
     }
   },
@@ -275,9 +275,9 @@
     "routeMap": "/TourImages/aragatsotn_region/amberd_route/route-map.webp",
     "routeSummary": "Yerevan → Amberd → Kari Lake → Saghmosavank → Kasakh Gorge → Yerevan",
     "imageUrl": "/TourImages/aragatsotn_region/amberd_route/main.webp",
-    "duration": "9",
+    "duration": "8",
     "durationUnit": "hours",
-    "price": "52000 AMD",
+    "price": "44000 AMD",
     "title": {
       "en": "AMBERD – KARI LAKE – SAGHMOSAVANK – KASAKH GORGE",
       "ru": "АМБЕРД – ОЗЕРО КАРИ – САГМОСАВАНК – КАСАХСКОЕ УЩЕЛЬЕ",
@@ -378,10 +378,10 @@
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {"vehicles": "Sedan", "price": "30000"},
+          {"vehicles": "Miniven", "price": "35000"}
         ],
-        "ticket_per_person": "0"
+        "ticket_per_person": "1400"
       }
     }
   },
@@ -392,9 +392,9 @@
     "routeMap": "/TourImages/ararat_region/dvin_route/route-map.webp",
     "routeSummary": "Yerevan → Dvin → Khor Virap → Angels Gorge → Tiknuni Fortress → Yerevan",
     "imageUrl": "/TourImages/ararat_region/dvin_route/main.webp",
-    "duration": "9",
+    "duration": "8-9",
     "durationUnit": "hours",
-    "price": "52000 AMD",
+    "price": "44000 AMD",
     "title": {
       "en": "DVIN – KHOR VIRAP – ANGELS GORGE – TIKNUNI",
       "ru": "ДВИН – ХОР ВИРАП – УЩЕЛЬЕ АНГЕЛОВ – ТИКНУНИ",
@@ -495,8 +495,8 @@
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {"vehicles": "Sedan", "price": "30000"},
+          {"vehicles": "Miniven", "price": "40000"}
         ],
         "ticket_per_person": "0"
       }
@@ -509,9 +509,9 @@
     "routeMap": "/TourImages/syunik_region/karahunj_route/route-map.webp",
     "routeSummary": "Yerevan → Karahunj → Shaki Waterfall → Khndzoresk → Yerevan",
     "imageUrl": "/TourImages/syunik_region/karahunj_route/main.webp",
-    "duration": "12",
+    "duration": "12-13",
     "durationUnit": "hours",
-    "price": "62000 AMD",
+    "price": "118000 AMD",
     "title": {
       "en": "KARAHUNJ – SHAKI – KHNDZORESK",
       "ru": "КАРАУНДЖ – ШАКИ – ХНДЗОРЕСК",
@@ -612,8 +612,8 @@
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {"vehicles": "Sedan", "price": "80000"},
+          {"vehicles": "Miniven", "price": "95000"}
         ],
         "ticket_per_person": "0"
       }
@@ -643,8 +643,8 @@
       {
         "header": {
           "en": "Bjni Fortress",
-          "ru": "Крепость Бджни",
-          "hy": "Բջնի Բերդ"
+          "ru": "Крепость Бжни",
+          "hy": "Բջնի Բերդ, Ամրոց"
         },
         "content": {
           "en": "Medieval fortress overlooking the Hrazdan River gorge.",
@@ -661,9 +661,9 @@
       },
       {
         "header": {
-          "en": "Bjni Surb Astvatsatsin Church",
-          "ru": "Церковь Сурб Аствацацин в Бджни",
-          "hy": "Բջնի Սուրբ Աստվածածին Եկեղեցի"
+          "en": "St. Astvatsatsin Church (Bjni)",
+          "ru": "Церковь Сурб Аствацацин (Бжни)",
+          "hy": "Սուրբ Աստվածածին Եկեղեցի (Բջնի)"
         },
         "content": {
           "en": "11th-century Armenian Apostolic church.",
@@ -679,9 +679,9 @@
       },
       {
         "header": {
-          "en": "Makravank Monastery",
-          "ru": "Монастырь Макраванк",
-          "hy": "Մաքրավանք"
+          "en": "Makravank Monastery Complex",
+          "ru": "Монастырский комплекс Макраванк",
+          "hy": "Մաքրավանք վանական համալիր"
         },
         "content": {
           "en": "Monastic complex of the 11th–13th centuries.",
@@ -715,9 +715,9 @@
       },
       {
         "header": {
-          "en": "Kecharis Monastery",
-          "ru": "Монастырь Кечарис",
-          "hy": "Կեչառիս Վանք"
+          "en": "Kecharis Monastery Complex",
+          "ru": "Монастырский комплекс Кечарис",
+          "hy": "Կեչառիս Վանական համալիր"
         },
         "content": {
           "en": "Medieval monastic complex in Tsaghkadzor.",
@@ -780,9 +780,9 @@
     "routeMap": "/TourImages/lori_region/amrakits-hnevank/route-map.webp",
     "routeSummary": "Yerevan → Amrakits → Hnevank → Arevatsagi Dzor → Yerevan",
     "imageUrl": "/TourImages/lori_region/amrakits-hnevank/main.webp",
-    "duration": "10",
+    "duration": "11",
     "durationUnit": "hours",
-    "price": "52000 AMD",
+    "price": "59000 AMD",
     "title": {
       "en": "AMRAKITS – HNEVANK – AREVATSAGI GORGE",
       "ru": "АМРАКИЦ – ХНЕВАНК – УЩЕЛЬЕ АРЕВАЦАГИ",
@@ -796,9 +796,9 @@
     "sections": [
       {
         "header": {
-          "en": "Amrakits Church",
-          "ru": "Церковь Амракиц",
-          "hy": "Ամրակից եկեղեցի"
+          "en": "St. Nicholas the Wonderworker Church (Amrakits)",
+          "ru": "Церковь Святого Николая Чудотворца (Амракиц)",
+          "hy": "Սուրբ Նիկոլայ Հրաշագործ եկեղեցի (Ամրակից)"
         },
         "content": {
           "en": "Rural Armenian church surrounded by Lori’s mountain scenery.",
@@ -883,8 +883,8 @@
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "35000"},
-          {"vehicles": "Miniven", "price": "45000"}
+          {"vehicles": "Sedan", "price": "40000"},
+          {"vehicles": "Miniven", "price": "50000"}
         ],
         "ticket_per_person": "0"
       }
@@ -1030,9 +1030,9 @@
     "sections": [
       {
         "header": {
-          "en": "Charents Arch",
+          "en": "Arch of Charents",
           "ru": "Арка Чаренца",
-          "hy": "Չարենցի կամար"
+          "hy": "Չարենցի կամար հուշարձան"
         },
         "content": {
           "en": "Panoramic viewpoint with a symbolic view of Mount Ararat.",
@@ -1048,9 +1048,9 @@
       },
       {
         "header": {
-          "en": "Geghard Monastery",
-          "ru": "Монастырь Гегард",
-          "hy": "Գեղարդի վանք"
+          "en": "Geghard Monastery Complex",
+          "ru": "Монастырский комплекс Гегард",
+          "hy": "Գեղարդի վանական համալիր"
         },
         "content": {
           "en": "UNESCO-listed rock-cut monastery complex.",
@@ -1066,9 +1066,9 @@
       },
       {
         "header": {
-          "en": "Garni Temple",
-          "ru": "Храм Гарни",
-          "hy": "Գառնի տաճար"
+          "en": "Garni Pagan Temple",
+          "ru": "Языческий храм Гарни",
+          "hy": "Գառնի հեթանոսական տաճար"
         },
         "content": {
           "en": "1st-century pagan temple dedicated to the sun god Mihr.",
@@ -1419,9 +1419,9 @@
     "routeMap": "/TourImages/tavush_region/gosh/route-map.webp",
     "routeSummary": "Yerevan → Sevan → Gosh → Yerevan",
     "imageUrl": "/TourImages/tavush_region/gosh/sevan.webp",
-    "duration": "1",
+    "duration": "8-9",
     "durationUnit": "hours",
-    "price": "65000 AMD",
+    "price": "59000 AMD",
     "title": {
       "en": "SEVAN & GOSH NATURE TOUR",
       "ru": "ТУР СЕВАН И ГОШ",
@@ -1522,10 +1522,10 @@
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {"vehicles": "Sedan", "price": "40000"},
+          {"vehicles": "Miniven", "price": "50000"}
         ],
-        "ticket_per_person": "0"
+        "ticket_per_person": "5000"
       }
     }
   },
@@ -1536,9 +1536,9 @@
     "routeMap": "/TourImages/lori_region/haghpat-sanahin/route-map.webp",
     "routeSummary": "Yerevan → Haghpat → Zarni-Parni Cave Complex → Sanahin → Yerevan",
     "imageUrl": "/TourImages/lori_region/haghpat-sanahin/zarni-parni.webp",
-    "duration": "10",
+    "duration": "10 -11",
     "durationUnit": "hours",
-    "price": "52000 AMD",
+    "price": "81000 AMD",
     "title": {
       "en": "HAGHPAT – ZARNI-PARNI – SANAHIN",
       "ru": "АХПАТ – ЗАРНИ-ПАРНИ – САНАИН",
@@ -1552,9 +1552,9 @@
     "sections": [
       {
         "header": {
-          "en": "Haghpat Monastery",
-          "ru": "Монастырь Ахпат",
-          "hy": "Հաղպատ վանք"
+          "en": "Haghpat Monastery Complex",
+          "ru": "Монастырский комплекс Ахпат",
+          "hy": "Հաղպատի վանական համալիր"
         },
         "content": {
           "en": "UNESCO-listed medieval monastic complex.",
@@ -1570,9 +1570,9 @@
       },
       {
         "header": {
-          "en": "Zarni-Parni Cave Complex",
-          "ru": "Пещерный комплекс Зарни-Парни",
-          "hy": "Զարնի-Պարնի քարանձավային համալիր"
+          "en": "Zarni-Parni Cave-Fortress Complex",
+          "ru": "Пещерно-крепостной комплекс Зарни-Парни",
+          "hy": "«Զարնի-Պարնի» քարայրա-ամրոցային համալիր"
         },
         "content": {
           "en": "Historic cave complex carved into the cliffs of Lori.",
@@ -1588,9 +1588,9 @@
       },
       {
         "header": {
-          "en": "Sanahin Monastery",
-          "ru": "Монастырь Санаин",
-          "hy": "Սանահին վանք"
+          "en": "Sanahin Monastery Complex",
+          "ru": "Монастырский комплекс Санаин",
+          "hy": "Սանահինի վանական համալիր"
         },
         "content": {
           "en": "Historic monastic center and UNESCO World Heritage site.",
@@ -1621,8 +1621,8 @@
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {"vehicles": "Sedan", "price": "55000"},
+          {"vehicles": "Miniven", "price": "65000"}
         ],
         "ticket_per_person": "0"
       }
@@ -1635,9 +1635,9 @@
     "routeMap": "/TourImages/lori_region/haghpat-akhtala/route-map.webp",
     "routeSummary": "Yerevan → Zarni-Parni → Haghpat → Akhtala → Aramyants → Yerevan",
     "imageUrl": "/TourImages/lori_region/haghpat-akhtala/main.webp",
-    "duration": "10",
+    "duration": "12",
     "durationUnit": "hours",
-    "price": "52000 AMD",
+    "price": "96000 AMD",
     "title": {
       "en": "ZARNI-PARNI – HAGHPAT – AKHTALA – ARAMYANTS",
       "ru": "ЗАРНИ-ПАРНИ – АХПАТ – АХТАЛА – АРАМЯНЦ",
@@ -1651,9 +1651,9 @@
     "sections": [
       {
         "header": {
-          "en": "Zarni-Parni Cave Complex",
-          "ru": "Пещерный комплекс Зарни-Парни",
-          "hy": "Զարնի-Պարնի քարանձավային համալիր"
+          "en": "Zarni-Parni Cave-Fortress Complex",
+          "ru": "Пещерно-крепостной комплекс Зарни-Парни",
+          "hy": "«Զարնի-Պարնի» քարայրա-ամրոցային համալիր"
         },
         "content": {
           "en": "Historic rock-cut cave complex near the Debed Canyon.",
@@ -1669,9 +1669,9 @@
       },
       {
         "header": {
-          "en": "Haghpat Monastery",
-          "ru": "Монастырь Ахпат",
-          "hy": "Հաղպատ վանք"
+          "en": "Haghpat Monastery Complex",
+          "ru": "Монастырский комплекс Ахпат",
+          "hy": "Հաղպատի վանական համալիր"
         },
         "content": {
           "en": "UNESCO-listed medieval monastic complex.",
@@ -1689,7 +1689,7 @@
         "header": {
           "en": "Akhtala Monastery",
           "ru": "Монастырь Ахтала",
-          "hy": "Աղթալա վանք"
+          "hy": "Աղթալայի վանք"
         },
         "content": {
           "en": "Fortified monastery famous for its medieval frescoes.",
@@ -1707,7 +1707,7 @@
         "header": {
           "en": "Aramyants Castle",
           "ru": "Замок Арамянца",
-          "hy": "Արամյանցի ամրոց"
+          "hy": "Արամյանցի դղյակ"
         },
         "content": {
           "en": "Historic mansion built by the famous Armenian philanthropist.",
@@ -1738,23 +1738,23 @@
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {"vehicles": "Sedan", "price": "65000"},
+          {"vehicles": "Miniven", "price": "75000"}
         ],
-        "ticket_per_person": "0"
+        "ticket_per_person": "5000"
       }
     }
   },
 
   {
     "id": "kobayr-odzun-horomayr-ardvi",
-    "category": "cultural",
+    "category": ["cultural", "religious"],
     "routeMap": "/TourImages/lori_region/debed_monasteries/route-map.webp",
     "routeSummary": "Yerevan → Kobayr → Odzun → Horomayr → Ardvi → Yerevan",
     "imageUrl": "/TourImages/lori_region/debed_monasteries/odzun.webp",
-    "duration": "10",
+    "duration": "10-11",
     "durationUnit": "hours",
-    "price": "52000 AMD",
+    "price": "81000 AMD",
     "title": {
       "en": "KOBAYR – ODZUN – HOROMAYR – ARDVI",
       "ru": "КОБАЙР – ОДЗУН – ОРОМАЙР – АРДВИ",
@@ -1770,7 +1770,7 @@
         "header": {
           "en": "Kobayr Monastery",
           "ru": "Монастырь Кобайр",
-          "hy": "Քոբայր վանք"
+          "hy": "Քոբայրի վանք"
         },
         "content": {
           "en": "12th–13th century monastery built on a cliff above the Debed Canyon.",
@@ -1787,8 +1787,8 @@
       {
         "header": {
           "en": "Odzun Church",
-          "ru": "Церковь Одзуна",
-          "hy": "Օձուն եկեղեցի"
+          "ru": "Одзунский храм",
+          "hy": "Օձունի տաճար"
         },
         "content": {
           "en": "Early medieval Armenian basilica overlooking the Debed valley.",
@@ -1806,7 +1806,7 @@
         "header": {
           "en": "Horomayr Monastery",
           "ru": "Монастырь Оромайр",
-          "hy": "Հոռոմայր վանք"
+          "hy": "Հոռոմայրի վանք"
         },
         "content": {
           "en": "Medieval monastery complex hidden in the Debed Canyon.",
@@ -1822,9 +1822,9 @@
       },
       {
         "header": {
-          "en": "Ardvi Monastery",
-          "ru": "Монастырь Ардви",
-          "hy": "Արդվի վանք"
+          "en": "St. John Monastery (Ardvi)",
+          "ru": "Монастырь Сурб Ованес (Ардви)",
+          "hy": "Սուրբ Հովհանես վանք (Արդվի)"
         },
         "content": {
           "en": "Historic monastery associated with Armenian spiritual traditions.",
@@ -1869,9 +1869,9 @@
     "routeMap": "/TourImages/lori_region/tumanyan_route/route-map.webp",
     "routeSummary": "Yerevan → Kobayr → Dsegh (Tumanyan Museum) → Tsover Lake → Yerevan",
     "imageUrl": "/TourImages/lori_region/tumanyan_route/main.webp",
-    "duration": "9",
+    "duration": "10",
     "durationUnit": "hours",
-    "price": "48000 AMD",
+    "price": "77000 AMD",
     "title": {
       "en": "KOBAYR – DSEGH – TUMANYAN MUSEUM – TSOVER LAKE",
       "ru": "КОБАЙР – ДСЕХ – МУЗЕЙ ТУМАНЯНА – ОЗЕРО ЦОВЕР",
@@ -1921,9 +1921,9 @@
       },
       {
         "header": {
-          "en": "Tsover Lake",
-          "ru": "Озеро Цовер",
-          "hy": "Ծովեր լիճ"
+          "en": "Tsover Lake (Dsegh)",
+          "ru": "Озеро Цовер (Дсех)",
+          "hy": "Դսեղի ծովեր լիճ"
         },
         "content": {
           "en": "A quiet mountain lake surrounded by forests and alpine nature.",
@@ -1954,10 +1954,10 @@
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {"vehicles": "Sedan", "price": "52000"},
+          {"vehicles": "Miniven", "price": "65000"}
         ],
-        "ticket_per_person": "0"
+        "ticket_per_person": "1000"
       }
     }
   },
@@ -1970,7 +1970,7 @@
     "imageUrl": "/TourImages/tavush_region/ijevan_gastro/main.webp",
     "duration": "10",
     "durationUnit": "hours",
-    "price": "54000 AMD",
+    "price": "64000 AMD",
     "title": {
       "en": "IJEVAN – WINE & GASTRO TOUR",
       "ru": "ИДЖЕВАН – ВИННО-ГАСТРОНОМИЧЕСКИЙ ТУР",
@@ -2071,8 +2071,623 @@
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
+          {"vehicles": "Sedan", "price": "43000"},
+          {"vehicles": "Miniven", "price": "53000"}
+        ],
+        "ticket_per_person": "6500"
+      }
+    }
+  },
+
+  {
+    "id": "lori-berd-mayori-hnevank",
+    "category": ["nature", "cultural"],
+    "routeMap": "/TourImages/lori_region/lori_route/route-map.webp",
+    "routeSummary": "Yerevan → Lori Berd → Mayori Gorge → Hnevank → Yerevan",
+    "imageUrl": "/TourImages/lori_region/lori_route/main.webp",
+    "duration": "10",
+    "durationUnit": "hours",
+    "price": "64000 AMD",
+    "title": {
+      "en": "LORI BERD – MAYORI GORGE – HNEVANK",
+      "ru": "ЛОРИ БЕРД – УЩЕЛЬЕ МАЙОРИ – ХНЕВАНК",
+      "hy": "ԼՈՌԻ ԲԵՐԴ – ՄԱՅՈՐԻ ՁՈՐ – ՀՆԵՎԱՆՔ"
+    },
+    "description": {
+      "en": "An off-the-beaten-path journey into the Lori region, combining medieval fortresses, quiet canyon landscapes, and a sunset visit to a historic monastery.",
+      "ru": "Маршрут по менее туристическим местам Лорийского региона: средневековая крепость, уединённое ущелье и посещение монастыря на закате.",
+      "hy": "Ուղևորություն Լոռու քիչ հայտնի վայրերով՝ համադրելով միջնադարյան բերդը, խաղաղ կիրճը և մայրամուտի այցելությունը վանք։"
+    },
+    "sections": [
+      {
+        "header": {
+          "en": "Lori Berd Fortress",
+          "ru": "Крепость Лори Берд",
+          "hy": "Լոռի բերդ"
+        },
+        "content": {
+          "en": "Medieval fortress overlooking deep gorges.",
+          "ru": "Средневековая крепость над ущельями.",
+          "hy": "Միջնադարյան բերդ՝ կիրճերի վրա։"
+        },
+        "fullContent": {
+          "en": " is a 10th–11th century fortress that once served as an important political and military center of the Kingdom of Lori. It is strategically positioned on a plateau surrounded by deep gorges, making it naturally protected.\n\nToday, the ruins provide insight into medieval Armenian fortifications, while the surrounding landscape creates a strong visual contrast between human construction and природная изоляция региона.",
+          "ru": " — крепость X–XI веков, которая была важным политическим и военным центром Лорийского царства. Она расположена на плато, окружённом глубокими ущельями.\n\nСегодня руины позволяют представить устройство средневековых укреплений, а природное окружение усиливает ощущение изолированности и стратегической значимости.",
+          "hy": " X–XI դարերի բերդ է, որը եղել է Լոռու թագավորության կարևոր կենտրոններից մեկը։ Այն գտնվում է կիրճերով շրջապատված բարձունքի վրա։\n\nԱյսօր ավերակները հնարավորություն են տալիս պատկերացնել միջնադարյան պաշտպանական համակարգը, իսկ շրջապատող բնությունը ընդգծում է վայրի առանձնացվածությունը։"
+        },
+        "image": "/TourImages/lori_region/lori_route/lori-berd.webp"
+      },
+      {
+        "header": {
+          "en": "Mayori Gorge (Picnic Stop)",
+          "ru": "Ущелье Майори (пикник)",
+          "hy": "Մայորի ձոր (պիկնիկ)"
+        },
+        "content": {
+          "en": "Quiet natural area ideal for rest and picnic.",
+          "ru": "Тихое место для отдыха и пикника.",
+          "hy": "Հանգիստ վայր՝ պիկնիկի համար։"
+        },
+        "fullContent": {
+          "en": " is a calm and less-visited natural area, offering a peaceful break from the more historical parts of the tour. Surrounded by greenery, rock formations and свежий воздух, it provides an ideal setting for a picnic.\n\nUnlike major tourist locations, this stop focuses on relaxation and атмосфера — allowing visitors to slow down, enjoy the environment and experience a more personal connection with nature.",
+          "ru": " — спокойное и малоизвестное место, подходящее для отдыха. Окружённое зеленью и скалами, оно создаёт комфортную атмосферу для пикника.\n\nВ отличие от популярных туристических точек, здесь акцент делается на отдыхе и ощущении природы без суеты.",
+          "hy": " հանգիստ և քիչ այցելվող բնական տարածք է, որը առաջարկում է խաղաղ հանգիստ շրջագայության ավելի պատմական մասերից։ Շրջապատված կանաչապատմամբ, ժայռերով և մաքուր օդով, այն ապահովում է իդեալական միջավայր պիկնիկի համար։\n\nՀիմնական զբոսաշրջային վայրերից տարբերվող այս կանգառը կենտրոնանում է հանգստի և մթնոլորտի վրա՝ թույլ տալով այցելուներին դանդաղեցնել տեմպը, վայելել շրջակա միջավայրը և ավելի անձնական կապ զգալ բնության հետ։"
+        },
+        "image": "/TourImages/lori_region/lori_route/mayori.webp"
+      },
+      {
+        "header": {
+          "en": "Hnevank Monastery (Sunset)",
+          "ru": "Монастырь Хневaнк (закат)",
+          "hy": "Հնեվանք (մայրամուտ)"
+        },
+        "content": {
+          "en": "Medieval monastery with scenic sunset views.",
+          "ru": "Монастырь с видами на закат.",
+          "hy": "Վանք՝ մայրամուտի տեսարանով։"
+        },
+        "fullContent": {
+          "en": " is a medieval monastic complex located in a picturesque gorge. Built between the 7th and 12th centuries, it combines different architectural layers reflecting its long history.\n\nVisiting the monastery at sunset adds a distinct emotional dimension to the experience. The changing light, shadows across the stone walls, and the quiet surroundings create a reflective and атмосферное завершение дня.",
+          "ru": " — монастырский комплекс VII–XII веков, расположенный в живописном ущелье. Он сочетает разные архитектурные этапы.\n\nПосещение на закате делает это место особенно выразительным: свет и тени создают атмосферу спокойствия и завершённости дня.",
+          "hy": " VII–XII դարերի վանական համալիր է, որը գտնվում է գեղեցիկ կիրճում։ Այն ներկայացնում է տարբեր ժամանակաշրջանների ճարտարապետություն։\n\nՄայրամուտին այցելությունը ստեղծում է յուրահատուկ մթնոլորտ՝ լույսի և ստվերի խաղով։"
+        },
+        "image": "/TourImages/lori_region/lori_route/hnevank.webp"
+      }
+    ],
+    "features": {
+      "include": {
+        "en": ["Transportation", "Professional guide", "Picnic stop", "Sunset experience"],
+        "ru": ["Транспорт", "Профессиональный гид", "Пикник", "Закат"],
+        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Պիկնիկ", "Մայրամուտ"]
+      },
+      "exclude": {
+        "en": ["Lunch", "Personal expenses"],
+        "ru": ["Обед", "Личные расходы"],
+        "hy": ["Ճաշ", "Անձնական ծախսեր"]
+      }
+    },
+    "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
+          {"vehicles": "Sedan", "price": "43000"},
+          {"vehicles": "Miniven", "price": "53000"}
+        ],
+        "ticket_per_person": "0"
+      }
+    }
+  },
+
+  {
+    "id": "ejmiatsin-zvartnots-metsamor-voskevaz",
+    "category": "cultural",
+    "routeMap": "/TourImages/armavir_region/ejmiatsin_route/route-map.webp",
+    "routeSummary": "Yerevan → Etchmiadzin → Zvartnots → Metsamor → Voskevaz Winery → Yerevan",
+    "imageUrl": "/TourImages/armavir_region/ejmiatsin_route/main.webp",
+    "duration": "8",
+    "durationUnit": "hours",
+    "price": "48000 AMD",
+    "title": {
+      "en": "ETCHMIADZIN – ZVARTNOTS – METSAMOR – VOSKEVAZ",
+      "ru": "ЭЧМИАДЗИН – ЗВАРТНОЦ – МЕЦАМОР – ВОСКЕВАЗ",
+      "hy": "ԷՋՄԻԱԾԻՆ – ԶՎԱՐԹՆՈՑ – ՄԵԾԱՄՈՐ – ՈՍԿԵՎԱԶ"
+    },
+    "description": {
+      "en": "A cultural journey through Armenia’s spiritual heart, ancient architectural masterpieces, early civilization ruins, and modern winemaking traditions.",
+      "ru": "Культурное путешествие по духовному центру Армении, древним архитектурным памятникам, следам ранней цивилизации и традициям виноделия.",
+      "hy": "Մշակութային ուղևորություն Հայաստանի հոգևոր կենտրոնով, հնագույն ճարտարապետությամբ, վաղ քաղաքակրթության հետքերով և գինեգործական ավանդույթներով։"
+    },
+    "sections": [
+      {
+        "header": {
+          "en": "Etchmiadzin Cathedral",
+          "ru": "Эчмиадзинский кафедральный собор",
+          "hy": "Էջմիածնի Մայր Տաճար"
+        },
+        "content": {
+          "en": "The spiritual center of the Armenian Apostolic Church.",
+          "ru": "Духовный центр Армянской Апостольской Церкви.",
+          "hy": "Հայ Առաքելական Եկեղեցու հոգևոր կենտրոն։"
+        },
+        "fullContent": {
+          "en": " is considered the oldest cathedral in the world, traditionally dating back to the early 4th century after Armenia adopted Christianity as a state religion. It remains the spiritual center of the Armenian Apostolic Church.\n\nThe complex is not only a religious site but also a symbol of national identity and continuity. Its architecture reflects centuries of reconstruction and preservation, making it a living monument rather than a static historical structure.",
+          "ru": " считается одним из древнейших кафедральных соборов мира, традиционно датируемым IV веком, после принятия христианства Арменией.\n\nСегодня он является духовным центром Армянской Апостольской Церкви и важнейшим символом национальной идентичности.",
+          "hy": " Համարվում է աշխարհի ամենահին տաճարը, որը ավանդաբար թվագրվում է 4-րդ դարի սկզբին, այն բանից հետո, երբ Հայաստանում քրիստոնեությունը ընդունվեց որպես պետական ​​կրոն: Այն մնում է Հայ Առաքելական Եկեղեցու հոգևոր կենտրոնը:\n\nՀամալիրը ոչ միայն կրոնական վայր է, այլև ազգային ինքնության և շարունակականության խորհրդանիշ: Դրա ճարտարապետությունը արտացոլում է դարերի վերակառուցման և պահպանման գործընթացները, ինչը այն դարձնում է կենդանի հուշարձան, այլ ոչ թե ստատիկ պատմական կառույց:"
+        },
+        "image": "/TourImages/armavir_region/ejmiatsin_route/etchmiadzin.webp"
+      },
+      {
+        "header": {
+          "en": "Zvartnots Cathedral",
+          "ru": "Храм Звартноц",
+          "hy": "Զվարթնոցի տաճար"
+        },
+        "content": {
+          "en": "Ruins of a unique 7th-century cathedral.",
+          "ru": "Руины уникального храма VII века.",
+          "hy": "VII դարի եզակի տաճարի ավերակներ։"
+        },
+        "fullContent": {
+          "en": " is a 7th-century architectural masterpiece known for its innovative circular structure and advanced engineering for its time. Although it was destroyed in the 10th century, its ruins still demonstrate remarkable architectural ambition.\n\nThe site is recognized as a UNESCO World Heritage monument and remains one of the most visually striking examples of early medieval Armenian architecture.",
+          "ru": " — уникальный памятник VII века с инновационной круговой архитектурой. Несмотря на разрушение в X веке, руины демонстрируют высокий уровень инженерной мысли.\n\nХрам включён в список наследия ЮНЕСКО и считается одним из самых выразительных памятников армянской архитектуры.",
+          "hy": " VII դարի ճարտարապետական գլուխգործոց է՝ եզակի կառուցվածքով։"
+        },
+        "image": "/TourImages/armavir_region/ejmiatsin_route/zvartnots.webp"
+      },
+      {
+        "header": {
+          "en": "Metsamor Archaeological Site",
+          "ru": "Мецаморский археологический комплекс",
+          "hy": "Մեծամորի հնավայր"
+        },
+        "content": {
+          "en": "Ancient settlement and archaeological museum site.",
+          "ru": "Древнее поселение и археологический комплекс.",
+          "hy": "Հնագույն բնակավայր և թանգարանային համալիր։"
+        },
+        "fullContent": {
+          "en": " is one of the most important prehistoric and early Iron Age sites in Armenia. Excavations revealed fortified settlements, burial grounds and evidence of advanced metallurgy dating back thousands of years.\n\nThe site demonstrates that this region was not only inhabited but also technologically developed in ancient times, playing a key role in early Armenian civilization.",
+          "ru": " — один из важнейших археологических комплексов Армении. Здесь обнаружены укреплённые поселения, захоронения и следы древней металлургии.\n\nЭто место показывает высокий уровень развития ранних цивилизаций на территории Армении.",
+          "hy": " կարևոր հնագիտական կենտրոն է, որտեղ հայտնաբերվել են բնակավայրեր և մետաղագործության հետքեր։"
+        },
+        "image": "/TourImages/armavir_region/ejmiatsin_route/metsamor.webp"
+      },
+      {
+        "header": {
+          "en": "Voskevaz Winery",
+          "ru": "Винодельня Воскеваз",
+          "hy": "Ոսկեվազի գինեգործարան"
+        },
+        "content": {
+          "en": "Traditional Armenian wine tasting in historic winery.",
+          "ru": "Дегустация вина в традиционной винодельне.",
+          "hy": "Գինու համտես ավանդական գործարանում։"
+        },
+        "fullContent": {
+          "en": " is one of Armenia’s well-known wine producers, combining modern production techniques with traditional Armenian winemaking heritage.\n\nVisitors can explore the cellar, learn about indigenous grape varieties and taste wines that reflect both ancient traditions and modern craftsmanship.",
+          "ru": " — известный армянский производитель вина, сочетающий современные технологии и традиции виноделия.\n\nПосетители могут ознакомиться с производством и попробовать вина из местных сортов винограда.",
+          "hy": " հայկական հայտնի գինեգործարան է, որը համադրում է ավանդույթն ու ժամանակակից տեխնոլոգիաները։"
+        },
+        "image": "/TourImages/armavir_region/ejmiatsin_route/voskevaz.webp"
+      }
+    ],
+    "features": {
+      "include": {
+        "en": ["Transportation", "Professional guide", "Cultural tour", "Wine tasting"],
+        "ru": ["Транспорт", "Профессиональный гид", "Культурная экскурсия", "Дегустация вина"],
+        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Մշակութային տուր", "Գինու համտես"]
+      },
+      "exclude": {
+        "en": ["Lunch", "Personal expenses"],
+        "ru": ["Обед", "Личные расходы"],
+        "hy": ["Ճաշ", "Անձնական ծախսեր"]
+      }
+    },
+    "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
           {"vehicles": "Sedan", "price": "20000"},
           {"vehicles": "Miniven", "price": "26000"}
+        ],
+        "ticket_per_person": "0"
+      }
+    }
+  },
+
+  {
+    "id": "2days-khorvirap-areni-noravank-tatev",
+    "category": ["cultural", "nature"],
+    "routeMap": "/TourImages/syunik_region/khorvirap_tatev/route-map.webp",
+    "routeSummary": "Yerevan → Khor Virap → Areni Cave → Areni Winery → Noravank → Tatev Ropeway → Tatev Monastery → Devil’s Bridge → Return",
+    "imageUrl": "/TourImages/syunik_region/khorvirap_tatev/main.webp",
+    "duration": "2",
+    "durationUnit": "days",
+    "price": "98000 AMD",
+    "title": {
+      "en": "KHOR VIRAP – ARENI – NORAVANK – TATEV JOURNEY",
+      "ru": "ХОР ВИРАП – АРЕНИ – НОРАВАНК – ТАТЕВ ПУТЕШЕСТВИЕ",
+      "hy": "ԽՈՐ ՎԻՐԱՊ – ԱՐԵՆԻ – ՆՈՐԱՎԱՆՔ – ՏԱԹԵՎ ՈՒՂԵՎՈՐՈՒԹՅՈՒՆ"
+    },
+    "description": {
+      "en": "A two-day journey through southern Armenia combining sacred monasteries, ancient caves, wine heritage, dramatic canyons, and the iconic Tatev cable car experience.",
+      "ru": "Двухдневное путешествие по югу Армении: святые монастыри, древние пещеры, винные традиции, каньоны и канатная дорога Татев.",
+      "hy": "Երկօրյա ուղևորություն դեպի հարավային Հայաստան՝ սրբավայրեր, հնագույն քարանձավներ, գինեգործություն, կիրճեր և Տաթևի ճոպանուղի։"
+    },
+    "sections": [
+      {
+        "header": {
+          "en": "Khor Virap Monastery",
+          "ru": "Монастырь Хор Вирап",
+          "hy": "Խոր Վիրապ"
+        },
+        "content": {
+          "en": "One of Armenia’s most iconic monasteries with a direct view of Mount Ararat.",
+          "ru": "Один из самых известных монастырей Армении с видом на Арарат.",
+          "hy": "Հայաստանի ամենահայտնի վանքերից մեկը՝ Արարատի տեսարանով։"
+        },
+        "fullContent": {
+          "en": "Khor Virap Monastery is one of the most important religious sites in Armenia, closely connected with the adoption of Christianity in 301 AD. According to tradition, Gregory the Illuminator was imprisoned here for many years before Christianity became the state religion. The monastery is located in the Ararat plain and offers one of the closest and clearest views of Mount Ararat.",
+          "ru": "Монастырь Хор Вирап является одним из важнейших религиозных мест Армении и связан с принятием христианства в 301 году. По преданию, Григорий Просветитель был заключён здесь до принятия христианства как государственной религии. Отсюда открывается один из лучших видов на гору Арарат.",
+          "hy": "Խոր Վիրապի վանքը Հայաստանի կարևորագույն սրբավայրերից է և կապված է 301 թվականի քրիստոնեության ընդունման հետ։ Ավանդության համաձայն՝ Գրիգոր Լուսավորիչը այստեղ է բանտարկվել։ Վանքից բացվում է Արարատի ամենամոտ տեսարաններից մեկը։"
+        },
+        "image": "/TourImages/syunik_region/khorvirap_tatev/khorvirap.webp"
+      },
+      {
+        "header": {
+          "en": "Areni-1 Cave Complex",
+          "ru": "Пещера Арени-1",
+          "hy": "Արենի-1 քարանձավ"
+        },
+        "content": {
+          "en": "Archaeological cave where ancient human activity was discovered.",
+          "ru": "Археологическая пещера с древними находками.",
+          "hy": "Հնագիտական քարանձավ հին գտածոներով։"
+        },
+        "fullContent": {
+          "en": "Areni-1 Cave is one of the most important archaeological sites in Armenia, where ancient artifacts, tools, and even the world’s oldest known leather shoe were discovered. The cave provides evidence of early human settlement and ritual activity in the region thousands of years ago.",
+          "ru": "Пещера Арени-1 — важный археологический памятник, где были найдены древние артефакты и даже самая старая кожаная обувь в мире. Она свидетельствует о древнем поселении и деятельности человека тысячи лет назад.",
+          "hy": "Արենի-1 քարանձավում հայտնաբերվել են հնագույն իրեր, գործիքներ և աշխարհի ամենահին կաշվե կոշիկը։ Այն վկայում է հազարավոր տարիներ առաջ մարդկային գործունեության մասին։"
+        },
+        "image": "/TourImages/syunik_region/khorvirap_tatev/areni-cave.webp"
+      },
+      {
+        "header": {
+          "en": "Areni Wine Factory",
+          "ru": "Винный завод Арени",
+          "hy": "Արենիի գինու գործարան"
+        },
+        "content": {
+          "en": "Traditional Armenian wine tasting experience.",
+          "ru": "Дегустация армянского вина.",
+          "hy": "Հայկական գինու համտես։"
+        },
+        "fullContent": {
+          "en": "Areni Wine Factory represents one of the oldest wine-making traditions in the world, as the region of Areni is considered a historic center of viticulture. Visitors can learn about local grape varieties and taste wines produced using traditional Armenian methods.",
+          "ru": "Винодельня Арени отражает древние традиции виноделия, так как этот регион считается историческим центром производства вина. Посетители могут познакомиться с местными сортами винограда и попробовать вина.",
+          "hy": "Արենիի գինու գործարանը ներկայացնում է աշխարհի ամենահին գինեգործական ավանդույթներից մեկը։ Այստեղ կարելի է ծանոթանալ խաղողի տեսակներին և համտեսել տեղական գինիներ։"
+        },
+        "image": "/TourImages/syunik_region/khorvirap_tatev/areni-winery.webp"
+      },
+      {
+        "header": {
+          "en": "Noravank Monastery",
+          "ru": "Монастырь Нораванк",
+          "hy": "Նորավանք"
+        },
+        "content": {
+          "en": "Medieval monastery surrounded by red cliffs.",
+          "ru": "Монастырь среди красных скал.",
+          "hy": "Կարմիր ժայռերի մեջ գտնվող վանք։"
+        },
+        "fullContent": {
+          "en": "Noravank Monastery is a 13th-century religious complex located in a narrow gorge surrounded by dramatic red rock formations. It is considered one of the masterpieces of Armenian medieval architecture, combining natural landscape and human craftsmanship.",
+          "ru": "Нораванк — монастырский комплекс XIII века, расположенный в узком ущелье среди красных скал. Он считается шедевром армянской средневековой архитектуры.",
+          "hy": "Նորավանքը XIII դարի վանական համալիր է՝ կարմիր ժայռերի մեջ, համարվելով հայկական միջնադարյան ճարտարապետության գլուխգործոց։"
+        },
+        "image": "/TourImages/syunik_region/khorvirap_tatev/noravank.webp"
+      },
+      {
+        "header": {
+          "en": "Wings of Tatev Cable Car",
+          "ru": "Канатная дорога Татев",
+          "hy": "Տաթևի ճոպանուղի"
+        },
+        "content": {
+          "en": "One of the longest aerial cable cars in the world.",
+          "ru": "Одна из самых длинных канатных дорог в мире.",
+          "hy": "Աշխարհի ամենաերկար ճոպանուղիներից մեկը։"
+        },
+        "fullContent": {
+          "en": "The Wings of Tatev cable car crosses the deep Vorotan Gorge and connects Halidzor village with Tatev Monastery. It offers spectacular panoramic views of mountains, cliffs, and river valleys, making the journey itself part of the experience.",
+          "ru": "Канатная дорога Татев проходит через ущелье Воротан и соединяет деревню Алидзор с монастырём Татев. По пути открываются панорамные виды на горы и каньоны.",
+          "hy": "Տաթևի ճոպանուղին անցնում է Վորոտանի կիրճի վրայով և միացնում է Հալիձորն ու Տաթևի վանքը՝ բացելով համայնապատկերային տեսարաններ։"
+        },
+        "image": "/TourImages/syunik_region/khorvirap_tatev/tatev-cable.webp"
+      },
+      {
+        "header": {
+          "en": "Tatev Monastery",
+          "ru": "Монастырь Татев",
+          "hy": "Տաթևի վանք"
+        },
+        "content": {
+          "en": "Historic spiritual and educational center.",
+          "ru": "Исторический духовный центр.",
+          "hy": "Պատմական հոգևոր կենտրոն։"
+        },
+        "fullContent": {
+          "en": "Tatev Monastery is a 9th-century monastic complex that served as one of the most important spiritual and educational centers of medieval Armenia. It played a key role in science, philosophy, and manuscript production.",
+          "ru": "Татевский монастырь — комплекс IX века, который был важным духовным и образовательным центром средневековой Армении.",
+          "hy": "Տաթևի վանքը IX դարի համալիր է, որը եղել է միջնադարյան Հայաստանի կարևոր կրթական և հոգևոր կենտրոն։"
+        },
+        "image": "/TourImages/syunik_region/khorvirap_tatev/tatev.webp"
+      },
+      {
+        "header": {
+          "en": "Devil’s Bridge",
+          "ru": "Сатани կամուրջ",
+          "hy": "Սատանի կամուրջ"
+        },
+        "content": {
+          "en": "Natural rock formation with mineral pools.",
+          "ru": "Природный каменный мост с минеральными источниками.",
+          "hy": "Բնական կամուրջ՝ հանքային ջրերով։"
+        },
+        "fullContent": {
+          "en": "Devil’s Bridge is a natural rock formation over the Vorotan River, known for its mineral pools, caves, and unique geological structure formed over thousands of years.",
+          "ru": "Сатани կամուրջ — природное образование над рекой Воротан с минеральными источниками и пещерами.",
+          "hy": "Սատանի կամուրջը բնական գոյացություն է Վորոտան գետի վրա՝ հանքային ջրերով և քարանձավներով։"
+        },
+        "image": "/TourImages/syunik_region/khorvirap_tatev/devil-bridge.webp"
+      }
+    ],
+    "carousel": [
+      { "id": 0, "src": "/TourImages/carousel/khorvirap-1.jpg" },
+      { "id": 1, "src": "/TourImages/carousel/noravank-1.jpg" },
+      { "id": 2, "src": "/TourImages/carousel/tatev-1.jpg" },
+      { "id": 3, "src": "/TourImages/carousel/areni-1.jpg" }
+    ],
+    "features": {
+      "include": {
+        "en": ["Transportation", "Professional guide", "Wine tasting", "Cable car ticket"],
+        "ru": ["Транспорт", "Гид", "Дегустация вина", "Билет на канатную дорогу"],
+        "hy": ["Տրանսպորտ", "Գիդ", "Գինու համտես", "Ճոպանուղու տոմս"]
+      },
+      "exclude": {
+        "en": ["Lunch", "Personal expenses"],
+        "ru": ["Обед", "Личные расходы"],
+        "hy": ["Ճաշ", "Անձնական ծախսեր"]
+      }
+    },
+    "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
+          { "vehicles": "Sedan", "price": "30000" },
+          { "vehicles": "Miniven", "price": "40000" }
+        ],
+        "ticket_per_person": "5000"
+      }
+    }
+  },
+
+  {
+    "id": "khorvirap-areni-noravank-tatev-3day",
+    "category": ["cultural", "nature"],
+    "routeMap": "/TourImages/syunik_region/3day_khorvirap_tatev/route.webp",
+    "routeSummary": "Yerevan → Khor Virap → Areni Cave → Areni Winery → Noravank → Yeghegnadzor → Shaki Waterfall → Karahunj → Khndzoresk → Goris → Tatev → Return",
+    "imageUrl": "/TourImages/syunik_region/3day_khorvirap_tatev/main.webp",
+    "duration": "3",
+    "durationUnit": "days",
+    "price": "145000 AMD",
+    "title": {
+      "en": "KHOR VIRAP – ARENI – NORAVANK – TATEV – GORIS EXPEDITION",
+      "ru": "ХОР ВИРАП – АРЕНИ – НОРАВАНК – ТАТЕВ – ГОРИС ЭКСПЕДИЦИЯ",
+      "hy": "ԽՈՐ ՎԻՐԱՊ – ԱՐԵՆԻ – ՆՈՐԱՎԱՆՔ – ՏԱԹԵՎ – ԳՈՐԻՍ ԱՐՇԱՎ"
+    },
+    "description": {
+      "en": "A 3-day journey through southern Armenia covering monasteries, caves, wine heritage, waterfalls, canyon villages, and the Tatev region.",
+      "ru": "3-дневное путешествие по югу Армении: монастыри, пещеры, винодельни, водопады, каньоны и Татев.",
+      "hy": "3-օրյա ուղևորություն դեպի հարավային Հայաստան՝ վանքեր, քարանձավներ, գինեգործություն, ջրվեժներ և Տաթև։"
+    },
+    "sections": [
+      {
+        "header": {
+          "en": "Day 1 – Khor Virap, Areni & Noravank",
+          "ru": "День 1 – Хор Вирап, Арени и Нораванк",
+          "hy": "Օր 1 – Խոր Վիրապ, Արենի և Նորավանք"
+        },
+        "content": {
+          "en": "Religious landmarks, ancient cave and wine region.",
+          "ru": "Религиозные места, пещера и винный регион.",
+          "hy": "Սրբավայրեր, քարանձավ և գինեգործական շրջան։"
+        },
+        "fullContent": {
+          "en": "Day 1 starts with Khor Virap monastery with its direct view of Mount Ararat, continues to Areni Cave where ancient archaeological discoveries were made, proceeds to Areni Wine Factory for traditional wine tasting, and ends at Noravank monastery surrounded by dramatic red cliffs.",
+          "ru": "День 1 начинается с монастыря Хор Вирап с видом на Арарат, затем пещера Арени с археологическими находками, винодельня Арени и завершение в монастыре Нораванк среди красных скал.",
+          "hy": "Օր 1-ը սկսվում է Խոր Վիրապով, շարունակվում է Արենի քարանձավով և գինու գործարանով, ավարտվում Նորավանքով։"
+        },
+        "image": "/TourImages/syunik_region/3day/khorvirap-areni-noravank.webp"
+      },
+      {
+        "header": {
+          "en": "Day 2 – Shaki, Karahunj & Khndzoresk",
+          "ru": "День 2 – Шаки, Караундж и Хндзореск",
+          "hy": "Օր 2 – Շաքի, Քարահունջ և Խնձորեսկ"
+        },
+        "content": {
+          "en": "Waterfall, prehistoric site and cave village.",
+          "ru": "Водопад, древний комплекс и пещерное село.",
+          "hy": "Ջրվեժ, հնավայր և քարանձավային գյուղ։"
+        },
+        "fullContent": {
+          "en": "Day 2 includes Shaki Waterfall, one of the most powerful waterfalls in Armenia, Karahunj stone observatory complex, and the historic cave village of Khndzoresk with its swinging bridge over the gorge.",
+          "ru": "День 2 включает Шакиский водопад, Караундж и пещерное село Хндзореск с подвесным мостом.",
+          "hy": "Օր 2-ը ներառում է Շաքիի ջրվեժը, Քարահունջը և Խնձորեսկը։"
+        },
+        "image": "/TourImages/syunik_region/3day/shaki-karahunj-khndzoresk.webp"
+      },
+      {
+        "header": {
+          "en": "Day 3 – Tatev & Return",
+          "ru": "День 3 – Татев и возвращение",
+          "hy": "Օր 3 – Տաթև և վերադարձ"
+        },
+        "content": {
+          "en": "Cable car, monastery and canyon landscapes.",
+          "ru": "Канатная дорога, монастырь и каньоны.",
+          "hy": "Ճոպանուղի, վանք և կիրճեր։"
+        },
+        "fullContent": {
+          "en": "Day 3 focuses on Tatev cable car crossing Vorotan gorge, Tatev monastery as a major medieval center, Devil’s Bridge natural formation, and return journey.",
+          "ru": "День 3 посвящён Татеву, канатной дороге, монастырю и Чёртову мосту.",
+          "hy": "Օր 3-ը ներառում է Տաթևի ճոպանուղին, վանքը և Սատանի կամուրջը։"
+        },
+        "image": "/TourImages/syunik_region/3day/tatev.webp"
+      }
+    ],
+    "carousel": [
+      { "id": 0, "src": "/TourImages/carousel/khorvirap.jpg" },
+      { "id": 1, "src": "/TourImages/carousel/areni.jpg" },
+      { "id": 2, "src": "/TourImages/carousel/tatev.jpg" },
+      { "id": 3, "src": "/TourImages/carousel/khndzoresk.jpg" }
+    ],
+    "features": {
+      "include": {
+        "en": ["Transport", "Guide", "Hotel accommodation", "Wine tasting", "Cable car ticket"],
+        "ru": ["Транспорт", "Гид", "Проживание", "Дегустация вина", "Билет на канатную дорогу"],
+        "hy": ["Տրանսպորտ", "Գիդ", "Գիշերակաց", "Գինու համտես", "Ճոպանուղու տոմս"]
+      },
+      "exclude": {
+        "en": ["Lunch", "Personal expenses"],
+        "ru": ["Обед", "Личные расходы"],
+        "hy": ["Ճաշ", "Անձնական ծախսեր"]
+      }
+    },
+    "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
+          { "vehicles": "Sedan", "price": "30000" },
+          { "vehicles": "Miniven", "price": "40000" }
+        ],
+        "ticket_per_person": "5000"
+      }
+    }
+  },
+
+  {
+    "id": "orbelian-karahunj-shaki-vorotanavank",
+    "category": ["cultural", "nature"],
+    "routeMap": "/TourImages/syunik_region/orbelian_route/route-map.webp",
+    "routeSummary": "Yerevan → Orbelian Caravanserai → Karahunj → Shaki Waterfall → Vorotanavank → Yerevan",
+    "imageUrl": "/TourImages/syunik_region/orbelian_route/main.webp",
+    "duration": "11",
+    "durationUnit": "hours",
+    "price": "58000 AMD",
+    "title": {
+      "en": "ORBELIAN CARAVANSERAI – KARAHUNJ – SHAKI – VOROTANAVANK",
+      "ru": "КАРАВАН-САРАЙ ОРБЕЛЯНОВ – КАРАУНДЖ – ШАКИ – ВОРОТАНАВАНК",
+      "hy": "ՕՐԲԵԼՅԱՆՆԵՐԻ ՔԱՐԱՎԱՆԱՏՈՒՆ – ՔԱՐԱՀՈՒՆՋ – ՇԱՔԻ – ՈՐՈՏԱՆԱՎԱՆՔ"
+    },
+    "description": {
+      "en": "A journey through southern Armenia combining medieval trade infrastructure, prehistoric stone complexes, powerful natural landscapes and remote monastic heritage.",
+      "ru": "Путешествие по югу Армении, объединяющее средневековую торговую инфраструктуру, доисторические комплексы, мощную природу и удалённые монастыри.",
+      "hy": "Ուղևորություն դեպի հարավային Հայաստան՝ համադրելով միջնադարյան առևտրային կառույցները, նախապատմական հուշարձանները և հեռավոր վանական համալիրները։"
+    },
+    "sections": [
+      {
+        "header": {
+          "en": "Orbelian Caravanserai",
+          "ru": "Караван-сарай Орбелянов",
+          "hy": "Օրբելյանների քարավանատուն"
+        },
+        "content": {
+          "en": "Medieval caravanserai built for Silk Road traders.",
+          "ru": "Средневековый караван-сарай для торговцев Шёлкового пути.",
+          "hy": "Մետաքսի ճանապարհի առևտրականների համար կառուցված քարավանատուն։"
+        },
+        "fullContent": {
+          "en": " is a 14th-century caravanserai built to serve merchants traveling along the Silk Road. It provided shelter, safety and rest for caravans crossing mountainous terrain, playing an important role in regional trade networks.",
+          "ru": " — караван-сарай XIV века, построенный для торговцев Шёлкового пути. Он обеспечивал отдых и защиту караванов, проходивших через горные районы.",
+          "hy": " XIV դարի քարավանատուն է՝ Մետաքսի ճանապարհի առևտրականների համար։ Այն ապահովել է հանգիստ և անվտանգություն լեռնային ճանապարհներում։"
+        },
+        "image": "/TourImages/syunik_region/orbelian_route/caravanserai.webp"
+      },
+      {
+        "header": {
+          "en": "Karahunj (Zorats Karer)",
+          "ru": "Караундж (Зорац Карер)",
+          "hy": "Քարահունջ"
+        },
+        "content": {
+          "en": "Prehistoric stone complex possibly used for astronomical observations.",
+          "ru": "Доисторический каменный комплекс, возможно связанный с астрономией.",
+          "hy": "Նախապատմական քարային համալիր՝ հնարավոր աստղագիտական նշանակությամբ։"
+        },
+        "fullContent": {
+          "en": " is a prehistoric site consisting of standing stones, some with circular holes. Many researchers believe it may have been used for astronomical observation or ritual purposes.",
+          "ru": " — доисторический комплекс из стоящих камней, часть которых имеет отверстия. Считается, что он мог использоваться для наблюдений за небом или ритуалов.",
+          "hy": " նախապատմական քարային համալիր է՝ կանգուն քարերով և անցքերով։ Ենթադրվում է, որ այն կարող էր օգտագործվել աստղագիտական նպատակներով։"
+        },
+        "image": "/TourImages/syunik_region/orbelian_route/karahunj.webp"
+      },
+      {
+        "header": {
+          "en": "Shaki Waterfall",
+          "ru": "Водопад Шаки",
+          "hy": "Շաքիի ջրվեժ"
+        },
+        "content": {
+          "en": "Natural waterfall with strong flow in rocky canyon.",
+          "ru": "Природный водопад с сильным потоком в скальном каньоне.",
+          "hy": "Բնական ջրվեժ՝ ուժեղ հոսքով ժայռային կիրճում։"
+        },
+        "fullContent": {
+          "en": " is a powerful waterfall located in a rocky canyon. The water falls from a cliff into a narrow gorge, creating mist and strong sound that shape the atmosphere of the site.",
+          "ru": " — мощный водопад в скальном каньоне. Вода падает с высоты в узкое ущелье, создавая туман и сильный шум.",
+          "hy": " հզոր ջրվեժ է ժայռային կիրճում։ Ջուրը ընկնում է բարձրությունից՝ ստեղծելով մառախուղ և ձայնային էֆեկտ։"
+        },
+        "image": "/TourImages/syunik_region/orbelian_route/shaki.webp"
+      },
+      {
+        "header": {
+          "en": "Vorotanavank Monastery",
+          "ru": "Монастырь Воротнаванк",
+          "hy": "Որոտնավանք"
+        },
+        "content": {
+          "en": "Remote medieval monastery in mountainous isolation.",
+          "ru": "Удалённый средневековый монастырь в горах.",
+          "hy": "Հեռավոր միջնադարյան վանք լեռներում։"
+        },
+        "fullContent": {
+          "en": " is a 10th–11th century monastery located above the Vorotan River gorge. It served as a religious and cultural center for surrounding communities in a remote mountainous area.",
+          "ru": " — монастырь X–XI веков, расположенный над ущельем реки Воротан. Он служил религиозным и культурным центром региона.",
+          "hy": " X–XI դարերի վանք է՝ Որոտանի կիրճի վերևում։ Այն եղել է կրոնական և մշակութային կենտրոն։"
+        },
+        "image": "/TourImages/syunik_region/orbelian_route/vorotanavank.webp"
+      }
+    ],
+    "features": {
+      "include": {
+        "en": ["Transportation", "Professional guide", "Historical sites", "Nature stops"],
+        "ru": ["Транспорт", "Профессиональный гид", "Исторические места", "Природные остановки"],
+        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Պատմական վայրեր", "Բնության կանգառներ"]
+      },
+      "exclude": {
+        "en": ["Lunch", "Personal expenses"],
+        "ru": ["Обед", "Личные расходы"],
+        "hy": ["Ճաշ", "Անձնական ծախսեր"]
+      }
+    },
+    "budget": {
+      "title": "Բյուջե",
+      "pricing": {
+        "vehicles": [
+          { "vehicles": "Sedan", "price": "20000" },
+          { "vehicles": "Miniven", "price": "26000" }
         ],
         "ticket_per_person": "0"
       }
