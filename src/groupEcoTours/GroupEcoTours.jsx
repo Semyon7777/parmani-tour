@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
-import { Container, Row, Col, Accordion } from "react-bootstrap";
+import { Container, Row, Col, Accordion, Modal, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { Leaf, Users, Calendar, MapPin, ArrowRight, TreePine,
-   ShieldCheck, Coffee, Heart, MessageCircle, Map, Search, X } from "lucide-react";
+   ShieldCheck, Coffee, Heart, MessageCircle, Map, Search, 
+   X, LogIn } from "lucide-react";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { supabase } from "../supabaseClient";
@@ -200,13 +201,15 @@ const HeartButton = ({ tourId, isLiked, onLikeToggle, currentUser }) => {
   const { t } = useTranslation();
   const [pending, setPending] = useState(false);
 
+  const [showLoginModal, setShowLoginModal] = useState(false);
+
   const handleToggle = async (e) => {
     e.preventDefault();
     e.stopPropagation();
     if (pending) return;
 
     if (!currentUser) {
-      alert(t("group_eco_tours.please_login", "Please login to save tours"));
+      setShowLoginModal(true);
       return;
     }
 
@@ -231,6 +234,7 @@ const HeartButton = ({ tourId, isLiked, onLikeToggle, currentUser }) => {
   };
 
   return (
+    <>
     <button
       onClick={handleToggle}
       disabled={pending}
@@ -251,6 +255,41 @@ const HeartButton = ({ tourId, isLiked, onLikeToggle, currentUser }) => {
         style={{ transition: 'fill 0.15s ease, stroke 0.15s ease' }}
       />
     </button>
+    {/* JSX для модалки */}
+      <Modal 
+        show={showLoginModal} 
+        onHide={() => setShowLoginModal(false)}
+        centered
+        className="auth-alert-modal"
+      >
+        <Modal.Body className="p-4 text-center">
+          <div className="auth-alert-icon mb-3">
+            <LogIn size={32} strokeWidth={2.5} />
+          </div>
+          <h4 className="fw-bold mb-2">{t('tour_info_page.login_required_title', 'Authentication Required')}</h4>
+          <p className="text-muted mb-4">
+            {t('tour_info_page.please_login', 'Please login to save your favorite tours and plan your trip.')}
+          </p>
+          <div className="d-grid gap-2">
+            <Link to="/login" className="mt-3">
+              <Button 
+                variant="success" 
+                className="py-2 fw-bold w-100"
+              >
+                {t('auth_page.btn_login', 'Login')}
+              </Button>
+            </Link>
+            <Button 
+              variant="light" 
+              className="py-2 text-muted"
+              onClick={() => setShowLoginModal(false)}
+            >
+              {t('common.cancel', 'Maybe later')}
+            </Button>
+          </div>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 };
 

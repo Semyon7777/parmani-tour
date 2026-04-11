@@ -352,7 +352,7 @@ const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle, currentUser }) => {
             <Link to="/login" className="mt-3">
               <Button 
                 variant="success" 
-                className="py-2 fw-bold"
+                className="py-2 fw-bold w-100"
               >
                 {t('auth_page.btn_login', 'Login')}
               </Button>
