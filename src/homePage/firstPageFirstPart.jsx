@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import videoSrc from './first page images/xustup.mp4';
+import videoSrc from './first page images/xustup.mp4';        // 2.8MB LQ
+import videoHqSrc from './first page images/xustup_hq.mp4';   // ~5MB HQ
 import posterSrc from './homePage_poster.webp'; 
 import NavbarCustom from "../Components/Navbar";
 import "./firstPage.css";
@@ -8,39 +9,50 @@ import { useTranslation } from 'react-i18next';
 function FirstPageFirstPart() {
   const { t } = useTranslation();
   const videoRef = useRef(null); 
-
   const [showButtons, setShowButtons] = useState(false);
-  
-  // 1. Добавляем стейт для отслеживания ошибки автозапуска
   const [videoFailed, setVideoFailed] = useState(false); 
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    // 2. Проверяем автозапуск видео
-    if (videoRef.current) {
-      const playPromise = videoRef.current.play();
-      
-      if (playPromise !== undefined) {
-        playPromise.catch((error) => {
-          // Если автозапуск заблокирован (режим энергосбережения),
-          // переключаем стейт, чтобы скрыть видео и показать просто картинку
-          console.log("Autoplay blocked, switching to image:", error);
-          setVideoFailed(true); 
-        });
-      }
-    }
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Запускаем LQ видео
+    video.play().catch((error) => {
+      console.log("Autoplay blocked:", error);
+      setVideoFailed(true);
+    });
+
+    // Фоном грузим HQ
+    const hqVideo = document.createElement("video");
+    hqVideo.src = videoHqSrc;
+    hqVideo.preload = "auto";
+
+    hqVideo.addEventListener("canplaythrough", () => {
+      // Свапаем в момент когда петля начинается заново — пользователь не заметит
+      const swapOnLoop = () => {
+        video.src = videoHqSrc;
+        video.loop = true;
+        video.play().catch(console.warn);
+        video.removeEventListener("ended", swapOnLoop);
+        console.log("✅ Switched to HQ");
+      };
+      video.addEventListener("ended", swapOnLoop);
+    }, { once: true });
+
+    hqVideo.load();
+
+    return () => {
+      hqVideo.src = "";
+    };
   }, []);
 
   useEffect(() => {
     const handleScroll = () => setShowButtons(window.scrollY >= window.innerHeight);
-
     window.addEventListener('scroll', handleScroll);
     handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -64,7 +76,6 @@ function FirstPageFirstPart() {
         </div>
 
         <div className="video-container">
-          {/* 3. Умный рендеринг: если видео упало, показываем картинку. Если нет — видео. */}
           {videoFailed ? (
             <img 
               src={posterSrc} 

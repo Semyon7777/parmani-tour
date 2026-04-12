@@ -1868,7 +1868,7 @@
     "category": "cultural",
     "routeMap": "/TourImages/lori_region/tumanyan_route/route-map.webp",
     "routeSummary": "Yerevan → Kobayr → Dsegh (Tumanyan Museum) → Tsover Lake → Yerevan",
-    "imageUrl": "/TourImages/lori_region/tumanyan_route/main.webp",
+    "imageUrl": "/TourImages/lori_region/tumanyan_route/tsover-lake.webp",
     "duration": "10",
     "durationUnit": "hours",
     "price": "77000 AMD",
@@ -1899,7 +1899,7 @@
           "ru": " расположен на крутом склоне Дебедского ущелья. Монастырь был построен в XII–XIII веках и известен своими редкими фресками, в которых заметно влияние армянской и грузинской художественных традиций. Руины и окружающий горный пейзаж создают особенно впечатляющую атмосферу.",
           "hy": " գտնվում է Դեբեդի կիրճի ժայռոտ լանջին։ Այն կառուցվել է XII–XIII դարերում և հայտնի է իր յուրահատուկ որմնանկարներով։"
         },
-        "image": "/TourImages/lori_region/tumanyan_route/kobayr.webp"
+        "image": "/TourImages/lori_region/debed_monasteries/horomayr.webp"
       },
       {
         "header": {
@@ -1967,7 +1967,7 @@
     "category": "gastronomic",
     "routeMap": "/TourImages/tavush_region/ijevan_gastro/route-map.webp",
     "routeSummary": "Yerevan → Ijevan → Makaravank → Ijevan Dendropark → Wine & Gastronomy Experience → Yerevan",
-    "imageUrl": "/TourImages/tavush_region/ijevan_gastro/main.webp",
+    "imageUrl": "/TourImages/tavush_region/ijevan_gastro/dendropark.webp",
     "duration": "10",
     "durationUnit": "hours",
     "price": "64000 AMD",
@@ -2084,7 +2084,7 @@
     "category": ["nature", "cultural"],
     "routeMap": "/TourImages/lori_region/lori_route/route-map.webp",
     "routeSummary": "Yerevan → Lori Berd → Mayori Gorge → Hnevank → Yerevan",
-    "imageUrl": "/TourImages/lori_region/lori_route/lori-berd.webp",
+    "imageUrl": "/TourImages/lori_region/amrakits-hnevank/hnevank.webp",
     "duration": "10",
     "durationUnit": "hours",
     "price": "64000 AMD",
@@ -2183,7 +2183,7 @@
     "category": "cultural",
     "routeMap": "/TourImages/armavir_region/ejmiatsin_route/route-map.webp",
     "routeSummary": "Yerevan → Etchmiadzin → Zvartnots → Metsamor → Voskevaz Winery → Yerevan",
-    "imageUrl": "/TourImages/armavir_region/ejmiatsin_route/main.webp",
+    "imageUrl": "/TourImages/armavir_region/ejmiatsin_route/zvartnots.webp",
     "duration": "8",
     "durationUnit": "hours",
     "price": "48000 AMD",

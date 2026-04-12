@@ -258,7 +258,7 @@ html[lang="hy"] .carouselContainerHeadText {
 .carouselContainer .subHeadline {
     text-align: center;
     font-size: 2.3rem;
-    font-weight: 400;
+    font-weight: 600;
     color: #4682b4; /* Цвета стали (синий) */
 }
 
@@ -344,7 +344,7 @@ html[lang="hy"] .carouselContainerHeadText {
 }
 
 .carouselContainer .carousel .carousel-caption {
-    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон для подписей */
+    background-color: rgba(0, 0, 0, 0.733); /* Полупрозрачный фон для подписей */
     padding: 10px;
     border-radius: 10px 10px 10px 10px; /* Закругленные углы */
 }
@@ -438,11 +438,11 @@ html[lang="hy"] .carouselContainerHeadText {
     }
 
     .carouselContainer .headline {
-        font-size: 2rem;
+        font-size: 2.4rem;
     }
 
     .carouselContainer .subHeadline {
-        font-size: 1.5rem;
+        font-size: 1.9rem;
     }
 
     .carouselArea {

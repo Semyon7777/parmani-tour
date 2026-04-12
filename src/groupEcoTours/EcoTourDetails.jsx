@@ -244,7 +244,7 @@ const EcoTourDetails = () => {
                 <Info className="me-2 text-success" /> {t('tour_info_page.booking_conditions')}
               </h3>
               
-              <Tabs defaultActiveKey="booking" id="policy-tabs" className="custom-tabs flex-nowrap overflow-x-auto pb-1 responsive-tabs">
+              <Tabs defaultActiveKey="booking" id="policy-tabs" className="custom-tabs flex-nowrap overflow-x-auto responsive-tabs">
                 <Tab 
                   eventKey="booking" 
                   title={<span><Calendar size={18} className="me-2" /> {t('tour_info_page.booking_process')}</span>}

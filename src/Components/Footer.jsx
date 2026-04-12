@@ -42,7 +42,7 @@ export default function Footer() {
 
       {/* Основной контент */}
       <section className='footer-box'>
-        <MDBContainer fluid className='text-center text-md-start mt-5 px-4'>
+        <MDBContainer fluid className='mt-5 px-4 footer-box-container'>
           <MDBRow className='mt-3 d-flex justify-content-between align-items-start flex-nowrap-lg footer-box-items'>
             
             {/* 1. BRAND - 25% ширины */}

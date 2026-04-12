@@ -51,6 +51,11 @@
     }
 }
 
+@media (min-width: 991px) {
+  .footer-box .footer-box-container {
+    text-align: left;
+  }
+}
 /* weather api */
 
 .weather-container {
