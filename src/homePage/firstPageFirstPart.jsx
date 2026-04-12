@@ -15,7 +15,7 @@ const getCloudinaryUrl = () => {
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   if (!connection) return CLOUDINARY_URL_1080;
   const isSlow = connection.saveData || ["slow-2g", "2g", "3g"].includes(connection.effectiveType);
-  console.log(`🌐 Connection: ${connection.effectiveType || "unknown"}, slow: ${isSlow}`);
+  // console.log(`🌐 Connection: ${connection.effectiveType || "unknown"}, slow: ${isSlow}`);
   return isSlow ? CLOUDINARY_URL_720 : CLOUDINARY_URL_1080;
 };
 
@@ -37,7 +37,7 @@ function FirstPageFirstPart() {
 
     // Если HQ уже загружено — сразу запускаем его
     if (hqLoaded) {
-      console.log("✅ HQ cached, starting with HQ");
+      // console.log("✅ HQ cached, starting with HQ");
       video.src = hqLoadedUrl;
       video.loop = true;
       video.play().catch(() => setVideoFailed(true));
@@ -57,14 +57,14 @@ function FirstPageFirstPart() {
     const startHqLoad = () => {
       if (!hqVideoRef.current) return;
       const url = getCloudinaryUrl();
-      console.log("📦 Starting HQ download from Cloudinary...");
+      // console.log("📦 Starting HQ download from Cloudinary...");
       hqVideo.src = url;
       hqVideo.load();
 
       hqVideo.addEventListener("canplaythrough", () => {
         hqLoaded = true;
         hqLoadedUrl = url;
-        console.log("💾 HQ fully downloaded and ready");
+        // console.log("💾 HQ fully downloaded and ready");
       }, { once: true });
     };
 
@@ -80,11 +80,11 @@ function FirstPageFirstPart() {
         video.loop = true;
         video.play().catch(console.warn);
         video.removeEventListener("ended", handleEnded);
-        console.log("✅ Switched to HQ");
+        // console.log("✅ Switched to HQ");
       } else {
         video.currentTime = 0;
         video.play().catch(console.warn);
-        console.log("⏳ HQ not ready, replaying LQ...");
+        // console.log("⏳ HQ not ready, replaying LQ...");
       }
     };
 
@@ -95,13 +95,13 @@ function FirstPageFirstPart() {
       window.removeEventListener("load", startHqLoad);
 
       if (hqLoaded) {
-        console.log("✅ HQ fully loaded, keeping in cache");
+        // console.log("✅ HQ fully loaded, keeping in cache");
       } else {
         hqVideo.pause();
         hqVideo.src = "";
         hqVideo.load();
         hqVideoRef.current = null;
-        console.log("🛑 HQ not ready, download cancelled");
+        // console.log("🛑 HQ not ready, download cancelled");
       }
     };
   }, []);
