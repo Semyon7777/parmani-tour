@@ -1,14 +1,31 @@
 import React, { useEffect, useState, useRef } from "react";
-import videoSrc from './first page images/xustup.mp4';        // 2.8MB LQ
-import videoHqSrc from './first page images/xustup_hq.mp4';   // ~5MB HQ
+import videoSrc from './first page images/xustup.mp4';
 import posterSrc from './homePage_poster.webp'; 
 import NavbarCustom from "../Components/Navbar";
 import "./firstPage.css";
 import { useTranslation } from 'react-i18next';
 
+const CLOUDINARY_BASE = "https://res.cloudinary.com/dwqsqiezw/video/upload";
+const VIDEO_ID = "v1776034105/xustup_original_tm2xaf.mp4";
+
+const CLOUDINARY_URL_720 = `${CLOUDINARY_BASE}/q_auto,f_auto,w_1280,h_720/${VIDEO_ID}`;
+const CLOUDINARY_URL_1080 = `${CLOUDINARY_BASE}/q_auto,f_auto,w_1920,h_1080/${VIDEO_ID}`;
+
+const getCloudinaryUrl = () => {
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  if (!connection) return CLOUDINARY_URL_1080;
+  const isSlow = connection.saveData || ["slow-2g", "2g", "3g"].includes(connection.effectiveType);
+  console.log(`🌐 Connection: ${connection.effectiveType || "unknown"}, slow: ${isSlow}`);
+  return isSlow ? CLOUDINARY_URL_720 : CLOUDINARY_URL_1080;
+};
+
+let hqLoaded = false;
+let hqLoadedUrl = "";
+
 function FirstPageFirstPart() {
   const { t } = useTranslation();
   const videoRef = useRef(null); 
+  const hqVideoRef = useRef(null);
   const [showButtons, setShowButtons] = useState(false);
   const [videoFailed, setVideoFailed] = useState(false); 
 
@@ -18,33 +35,74 @@ function FirstPageFirstPart() {
     const video = videoRef.current;
     if (!video) return;
 
-    // Запускаем LQ видео
-    video.play().catch((error) => {
-      console.log("Autoplay blocked:", error);
-      setVideoFailed(true);
-    });
+    // Если HQ уже загружено — сразу запускаем его
+    if (hqLoaded) {
+      console.log("✅ HQ cached, starting with HQ");
+      video.src = hqLoadedUrl;
+      video.loop = true;
+      video.play().catch(() => setVideoFailed(true));
+      return;
+    }
 
-    // Фоном грузим HQ
-    const hqVideo = document.createElement("video");
-    hqVideo.src = videoHqSrc;
-    hqVideo.preload = "auto";
+    if (!hqVideoRef.current) {
+      const hqVideo = document.createElement("video");
+      hqVideo.preload = "auto";
+      hqVideoRef.current = hqVideo;
+    }
 
-    hqVideo.addEventListener("canplaythrough", () => {
-      // Свапаем в момент когда петля начинается заново — пользователь не заметит
-      const swapOnLoop = () => {
-        video.src = videoHqSrc;
+    const hqVideo = hqVideoRef.current;
+
+    video.play().catch(() => setVideoFailed(true));
+
+    const startHqLoad = () => {
+      if (!hqVideoRef.current) return;
+      const url = getCloudinaryUrl();
+      console.log("📦 Starting HQ download from Cloudinary...");
+      hqVideo.src = url;
+      hqVideo.load();
+
+      hqVideo.addEventListener("canplaythrough", () => {
+        hqLoaded = true;
+        hqLoadedUrl = url;
+        console.log("💾 HQ fully downloaded and ready");
+      }, { once: true });
+    };
+
+    if (document.readyState === "complete") {
+      startHqLoad();
+    } else {
+      window.addEventListener("load", startHqLoad, { once: true });
+    }
+
+    const handleEnded = () => {
+      if (hqLoaded) {
+        video.src = hqLoadedUrl;
         video.loop = true;
         video.play().catch(console.warn);
-        video.removeEventListener("ended", swapOnLoop);
+        video.removeEventListener("ended", handleEnded);
         console.log("✅ Switched to HQ");
-      };
-      video.addEventListener("ended", swapOnLoop);
-    }, { once: true });
+      } else {
+        video.currentTime = 0;
+        video.play().catch(console.warn);
+        console.log("⏳ HQ not ready, replaying LQ...");
+      }
+    };
 
-    hqVideo.load();
+    video.addEventListener("ended", handleEnded);
 
     return () => {
-      hqVideo.src = "";
+      video.removeEventListener("ended", handleEnded);
+      window.removeEventListener("load", startHqLoad);
+
+      if (hqLoaded) {
+        console.log("✅ HQ fully loaded, keeping in cache");
+      } else {
+        hqVideo.pause();
+        hqVideo.src = "";
+        hqVideo.load();
+        hqVideoRef.current = null;
+        console.log("🛑 HQ not ready, download cancelled");
+      }
     };
   }, []);
 
@@ -89,7 +147,6 @@ function FirstPageFirstPart() {
               id="myVideo" 
               muted 
               autoPlay 
-              loop 
               playsInline 
               poster={posterSrc}
               preload="auto" 
