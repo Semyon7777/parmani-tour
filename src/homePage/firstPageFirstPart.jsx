@@ -37,8 +37,6 @@ function FirstPageFirstPart() {
     const video = videoRef.current;
     if (!video) return;
 
-    alert(`isMobile: ${isMobile}\nVideo: ${isMobile ? "MOBILE" : "DESKTOP"}`);
-
     // Мобильный — просто запускаем мобильное видео, никакой логики LQ→HQ
     if (isMobile) {
       video.play().catch(() => setVideoFailed(true));
