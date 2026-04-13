@@ -1146,6 +1146,7 @@
     },
     "sections": [
       {
+        "day": 1,
         "header": {
           "en": "Yereruyk Church",
           "ru": "Церковь Ереруйк",
@@ -1164,6 +1165,7 @@
         "image": "/TourImages/shirak_region/ereruyk-gyumri/ereruyk.webp"
       },
       {
+        "day": 1,
         "header": {
           "en": "Akhoryan Reservoir",
           "ru": "Ахурянский водоём",
@@ -1182,6 +1184,7 @@
         "image": "/TourImages/shirak_region/ereruyk-gyumri/akhuryan.webp"
       },
       {
+        "day": 1,
         "header": {
           "en": "Gyumri City Tour",
           "ru": "Городской тур по Гюмри",
@@ -1200,6 +1203,7 @@
         "image": "/TourImages/shirak_region/ereruyk-gyumri/gyumri.webp"
       },
       {
+        "day": 1,
         "header": {
           "en": "Evening Cultural Event",
           "ru": "Вечернее культурное мероприятие",
@@ -1218,6 +1222,7 @@
         "image": "/TourImages/shirak_region/gyumri-city/evening-event.webp"
       },
       {
+        "day": 2,
         "header": {
           "en": "Sev Berd",
           "ru": "Сев Берд",
@@ -1236,6 +1241,7 @@
         "image": "/TourImages/shirak_region/ereruyk-gyumri/sev-berd.webp"
       },
       {
+        "day": 2,
         "header": {
           "en": "Optional Museum in Gyumri",
           "ru": "Дополнительный музей в Гюмри",
@@ -1254,6 +1260,7 @@
         "image": "/TourImages/shirak_region/gyumri-city/museum.webp"
       },
       {
+        "day": 2,
         "header": {
           "en": "Marmarashen Monastery",
           "ru": "Марамрашенский монастырь",
@@ -2300,7 +2307,7 @@
     "category": ["cultural", "nature"],
     "routeMap": "/TourImages/syunik_region/khorvirap_tatev/route-map.webp",
     "routeSummary": "Yerevan → Khor Virap → Areni Cave → Areni Winery → Noravank → Tatev Ropeway → Tatev Monastery → Devil’s Bridge → Return",
-    "imageUrl": "/TourImages/syunik_region/khorvirap_tatev/main.webp",
+    "imageUrl": "/TourImages/syunik_region/khorvirap_tatev/tatev.webp",
     "duration": "2",
     "durationUnit": "days",
     "price": "98000 AMD",
@@ -2316,6 +2323,7 @@
     },
     "sections": [
       {
+        "day": 1,
         "header": {
           "en": "Khor Virap Monastery",
           "ru": "Монастырь Хор Вирап",
@@ -2334,6 +2342,7 @@
         "image": "/TourImages/vayots_dzor_region/areni_route/khorvirap.webp"
       },
       {
+        "day": 1,
         "header": {
           "en": "Areni-1 Cave Complex",
           "ru": "Пещера Арени-1",
@@ -2352,6 +2361,7 @@
         "image": "/TourImages/vayots_dzor_region/areni_route/areni-cave.webp"
       },
       {
+        "day": 1,
         "header": {
           "en": "Areni Wine Factory",
           "ru": "Винный завод Арени",
@@ -2367,9 +2377,10 @@
           "ru": "Винодельня Арени отражает древние традиции виноделия, так как этот регион считается историческим центром производства вина. Посетители могут познакомиться с местными сортами винограда и попробовать вина.",
           "hy": "Արենիի գինու գործարանը ներկայացնում է աշխարհի ամենահին գինեգործական ավանդույթներից մեկը։ Այստեղ կարելի է ծանոթանալ խաղողի տեսակներին և համտեսել տեղական գինիներ։"
         },
-        "image": "/TourImages/syunik_region/khorvirap_tatev/areni-winery.webp"
+        "image": "/TourImages/vayots_dzor_region/areni_route/winery.webp"
       },
       {
+        "day": 1,
         "header": {
           "en": "Noravank Monastery",
           "ru": "Монастырь Нораванк",
@@ -2388,6 +2399,7 @@
         "image": "/TourImages/vayots_dzor_region/areni_route/noravank.webp"
       },
       {
+        "day": 2,
         "header": {
           "en": "Wings of Tatev Cable Car",
           "ru": "Канатная дорога Татев",
@@ -2406,6 +2418,7 @@
         "image": "/TourImages/syunik_region/khorvirap_tatev/tatev-cable.webp"
       },
       {
+        "day": 2,
         "header": {
           "en": "Tatev Monastery",
           "ru": "Монастырь Татев",
@@ -2424,6 +2437,7 @@
         "image": "/TourImages/syunik_region/khorvirap_tatev/tatev.webp"
       },
       {
+        "day": 2,
         "header": {
           "en": "Devil’s Bridge",
           "ru": "Сатани կամուրջ",
@@ -2473,106 +2487,278 @@
   },
 
   {
-    "id": "khorvirap-areni-noravank-tatev-3day",
+    "id": "south-armenia-3day-tour",
     "category": ["cultural", "nature"],
-    "routeMap": "/TourImages/syunik_region/3day_khorvirap_tatev/route.webp",
-    "routeSummary": "Yerevan → Khor Virap → Areni Cave → Areni Winery → Noravank → Yeghegnadzor → Shaki Waterfall → Karahunj → Khndzoresk → Goris → Tatev → Return",
-    "imageUrl": "/TourImages/syunik_region/3day_khorvirap_tatev/main.webp",
+    "routeMap": "/TourImages/syunik_region/3day_route/map.webp",
+    "routeSummary": "Yerevan → Areni → Noravank → Yeghegnadzor → Shaki → Karahunj → Khndzoresk → Goris → Tatev → Yerevan",
+    "imageUrl": "/TourImages/syunik_region/3day_route/main.webp",
     "duration": "3",
     "durationUnit": "days",
-    "price": "145000 AMD",
+    "price": "150000 AMD",
     "title": {
-      "en": "KHOR VIRAP – ARENI – NORAVANK – TATEV – GORIS EXPEDITION",
-      "ru": "ХОР ВИРАП – АРЕНИ – НОРАВАНК – ТАТЕВ – ГОРИС ЭКСПЕДИЦИЯ",
-      "hy": "ԽՈՐ ՎԻՐԱՊ – ԱՐԵՆԻ – ՆՈՐԱՎԱՆՔ – ՏԱԹԵՎ – ԳՈՐԻՍ ԱՐՇԱՎ"
+      "en": "3-DAY SOUTH ARMENIA TOUR",
+      "ru": "3-ДНЕВНЫЙ ТУР ПО ЮГУ АРМЕНИИ",
+      "hy": "3-ՕՐՅԱ ՏՈՒՐ ՀԱՅԱՍՏԱՆԻ ՀԱՐԱՎՈՒՄ"
     },
     "description": {
-      "en": "A 3-day journey through southern Armenia covering monasteries, caves, wine heritage, waterfalls, canyon villages, and the Tatev region.",
-      "ru": "3-дневное путешествие по югу Армении: монастыри, пещеры, винодельни, водопады, каньоны и Татев.",
-      "hy": "3-օրյա ուղևորություն դեպի հարավային Հայաստան՝ վանքեր, քարանձավներ, գինեգործություն, ջրվեժներ և Տաթև։"
+      "en": "A structured three-day journey through southern Armenia combining monasteries, archaeological sites, natural landmarks and authentic regional experiences.",
+      "ru": "Структурированное трёхдневное путешествие по югу Армении, объединяющее монастыри, археологические памятники, природные объекты и региональный колорит.",
+      "hy": "Կառուցվածքային եռօրյա ուղևորություն դեպի Հայաստանի հարավ՝ համադրելով վանքեր, հնագիտական վայրեր, բնություն և տեղական փորձառություն։"
     },
     "sections": [
       {
+        "day": 1,
         "header": {
-          "en": "Day 1 – Khor Virap, Areni & Noravank",
-          "ru": "День 1 – Хор Вирап, Арени и Нораванк",
-          "hy": "Օր 1 – Խոր Վիրապ, Արենի և Նորավանք"
+          "en": "Khor Virap Monastery",
+          "ru": "Монастырь Хор Вирап",
+          "hy": "Խոր Վիրապ վանք"
         },
         "content": {
-          "en": "Religious landmarks, ancient cave and wine region.",
-          "ru": "Религиозные места, пещера и винный регион.",
-          "hy": "Սրբավայրեր, քարանձավ և գինեգործական շրջան։"
+          "en": "Historic monastery with symbolic views of Mount Ararat.",
+          "ru": "Исторический монастырь с видом на Арарат.",
+          "hy": "Պատմական վանք՝ Արարատի տեսարանով։"
         },
         "fullContent": {
-          "en": "Day 1 starts with Khor Virap monastery with its direct view of Mount Ararat, continues to Areni Cave where ancient archaeological discoveries were made, proceeds to Areni Wine Factory for traditional wine tasting, and ends at Noravank monastery surrounded by dramatic red cliffs.",
-          "ru": "День 1 начинается с монастыря Хор Вирап с видом на Арарат, затем пещера Арени с археологическими находками, винодельня Арени и завершение в монастыре Нораванк среди красных скал.",
-          "hy": "Օր 1-ը սկսվում է Խոր Վիրապով, շարունակվում է Արենի քարանձավով և գինու գործարանով, ավարտվում Նորավանքով։"
+          "en": " is one of Armenia’s most important religious sites, closely associated with the adoption of Christianity in the early 4th century. Located near the Turkish border, it offers one of the closest and most iconic views of Mount Ararat.\n\nThe site combines spiritual meaning, historical depth and visual impact, making it one of the most visited landmarks in the country.",
+          "ru": " — один из важнейших религиозных объектов Армении, тесно связанный с принятием христианства в IV веке. Он расположен недалеко от границы и открывает один из самых близких видов на Арарат.\n\nМесто сочетает духовное значение, историческую глубину и сильное визуальное впечатление.",
+          "hy": " Հայաստանի կարևորագույն կրոնական վայրերից է, կապված IV դարում քրիստոնեության ընդունման հետ։ Այն գտնվում է սահմանին մոտ և բացում է Արարատի ամենամոտ ու խորհրդանշական տեսարաններից մեկը։\n\nՎայրը համադրում է հոգևոր նշանակություն, պատմական խորություն և ուժեղ տեսողական ազդեցություն։"
         },
-        "image": "/TourImages/syunik_region/3day/khorvirap-areni-noravank.webp"
+        "image": "/TourImages/syunik_region/3day_route/khorvirap.webp"
       },
       {
+        "day": 1,
         "header": {
-          "en": "Day 2 – Shaki, Karahunj & Khndzoresk",
-          "ru": "День 2 – Шаки, Караундж и Хндзореск",
-          "hy": "Օր 2 – Շաքի, Քարահունջ և Խնձորեսկ"
+          "en": "Areni-1 Cave",
+          "ru": "Пещера Арени-1",
+          "hy": "Արենի-1 քարանձավ"
         },
         "content": {
-          "en": "Waterfall, prehistoric site and cave village.",
-          "ru": "Водопад, древний комплекс и пещерное село.",
-          "hy": "Ջրվեժ, հնավայր և քարանձավային գյուղ։"
+          "en": "Archaeological cave with evidence of ancient winemaking.",
+          "ru": "Пещера с древними находками виноделия.",
+          "hy": "Հնագիտական քարանձավ՝ գինեգործության հետքերով։"
         },
         "fullContent": {
-          "en": "Day 2 includes Shaki Waterfall, one of the most powerful waterfalls in Armenia, Karahunj stone observatory complex, and the historic cave village of Khndzoresk with its swinging bridge over the gorge.",
-          "ru": "День 2 включает Шакиский водопад, Караундж и пещерное село Хндзореск с подвесным мостом.",
-          "hy": "Օր 2-ը ներառում է Շաքիի ջրվեժը, Քարահունջը և Խնձորեսկը։"
+          "en": " is one of the most important archaeological discoveries in Armenia, where evidence of the world’s oldest known winery was found. Excavations revealed tools, storage vessels and organic remains dating back over 6,000 years.\n\nThe site provides insight into early human life and the origins of viticulture in the region.",
+          "ru": " — одно из важнейших археологических открытий Армении, где были найдены следы древнейшей винодельни в мире. Археологи обнаружили инструменты и сосуды возрастом более 6000 лет.\n\nЭто место даёт представление о ранней жизни человека и развитии виноделия.",
+          "hy": " Հայաստանի կարևորագույն հնագիտական վայրերից է, որտեղ հայտնաբերվել են աշխարհի ամենահին գինեգործության հետքերը։ Այստեղ գտնվել են գործիքներ և տարաներ՝ ավելի քան 6000 տարվա պատմությամբ։\n\nՎայրը ցույց է տալիս մարդու վաղ կյանքի և գինեգործության զարգացման սկիզբը։"
         },
-        "image": "/TourImages/syunik_region/3day/shaki-karahunj-khndzoresk.webp"
+        "image": "/TourImages/syunik_region/3day_route/areni-cave.webp"
       },
       {
+        "day": 1,
         "header": {
-          "en": "Day 3 – Tatev & Return",
-          "ru": "День 3 – Татев и возвращение",
-          "hy": "Օր 3 – Տաթև և վերադարձ"
+          "en": "Areni Winery",
+          "ru": "Винодельня Арени",
+          "hy": "Արենի գինեգործարան"
         },
         "content": {
-          "en": "Cable car, monastery and canyon landscapes.",
-          "ru": "Канатная дорога, монастырь и каньоны.",
-          "hy": "Ճոպանուղի, վանք և կիրճեր։"
+          "en": "Wine tasting experience with local grape varieties.",
+          "ru": "Дегустация местных вин.",
+          "hy": "Տեղական գինիների համտես։"
         },
         "fullContent": {
-          "en": "Day 3 focuses on Tatev cable car crossing Vorotan gorge, Tatev monastery as a major medieval center, Devil’s Bridge natural formation, and return journey.",
-          "ru": "День 3 посвящён Татеву, канатной дороге, монастырю и Чёртову мосту.",
-          "hy": "Օր 3-ը ներառում է Տաթևի ճոպանուղին, վանքը և Սատանի կամուրջը։"
+          "en": " introduces visitors to Armenian winemaking traditions based on indigenous grape varieties. The region is known for its climate and soil conditions suitable for viticulture.\n\nThe experience combines tasting with understanding production processes and cultural significance of wine in Armenia.",
+          "ru": " знакомит с традициями армянского виноделия и местными сортами винограда. Регион известен благоприятными условиями для выращивания винограда.\n\nПосещение включает дегустацию и знакомство с процессом производства.",
+          "hy": " ներկայացնում է հայկական գինեգործության ավանդույթները և տեղական խաղողի տեսակները։ Տարածաշրջանը հայտնի է գինեգործության համար բարենպաստ պայմաններով։\n\nԱյցը ներառում է համտես և արտադրության գործընթացի ծանոթացում։"
         },
-        "image": "/TourImages/syunik_region/3day/tatev.webp"
+        "image": "/TourImages/syunik_region/3day_route/areni-wine.webp"
+      },
+      {
+        "day": 1,
+        "header": {
+          "en": "Noravank Monastery",
+          "ru": "Монастырь Нораванк",
+          "hy": "Նորավանք"
+        },
+        "content": {
+          "en": "Medieval monastery located in a narrow red-rock gorge.",
+          "ru": "Монастырь в ущелье красных скал.",
+          "hy": "Վանք՝ կարմիր ժայռերի կիրճում։"
+        },
+        "fullContent": {
+          "en": " is a 13th-century monastery surrounded by steep red cliffs. It is known for its unique architecture and dramatic setting within a narrow canyon.\n\nThe site represents a combination of природного ландшафта and medieval Armenian design.",
+          "ru": " — монастырь XIII века, расположенный среди красных скал в узком ущелье. Он известен своей архитектурой и необычным природным окружением.\n\nМесто сочетает природный ландшафт и средневековую архитектуру.",
+          "hy": " XIII դարի վանք է՝ շրջապատված կարմիր ժայռերով և տեղակայված նեղ կիրճում։ Այն հայտնի է իր յուրահատուկ ճարտարապետությամբ և բնությամբ։\n\nՎայրը համադրում է բնական լանդշաֆտն ու միջնադարյան ճարտարապետությունը։"
+        },
+        "image": "/TourImages/syunik_region/3day_route/noravank.webp"
+      },
+
+      {
+        "day": 2,
+        "header": {
+          "en": "Shaki Waterfall",
+          "ru": "Водопад Шаки",
+          "hy": "Շաքիի ջրվեժ"
+        },
+        "content": {
+          "en": "Powerful waterfall creating a dynamic natural landscape.",
+          "ru": "Мощный водопад с ярким природным эффектом.",
+          "hy": "Հզոր ջրվեժ՝ տպավորիչ բնությամբ։"
+        },
+        "fullContent": {
+          "en": " is one of the most visually striking waterfalls in southern Armenia, where water drops from a rocky cliff into a narrow canyon.\n\nThe site offers a combination of sound, movement and natural contrast, making it a strong scenic stop.",
+          "ru": " — один из самых зрелищных водопадов юга Армении. Вода падает с высоты в узкое ущелье, создавая сильный поток.\n\nЭто место сочетает звук, движение и природную динамику.",
+          "hy": " հարավային Հայաստանի ամենատպավորիչ ջրվեժներից է, որտեղ ջուրը ընկնում է ժայռից դեպի նեղ կիրճ։\n\nՎայրը ստեղծում է ձայնի, շարժման և բնության ուժեղ համադրություն։"
+        },
+        "image": "/TourImages/syunik_region/3day_route/shaki.webp"
+      },
+
+      {
+        "day": 2,
+        "header": {
+          "en": "Karahunj",
+          "ru": "Караундж",
+          "hy": "Քարահունջ"
+        },
+        "content": {
+          "en": "Ancient stone complex with possible astronomical purpose.",
+          "ru": "Древний каменный комплекс с возможным астрономическим значением.",
+          "hy": "Հնագույն քարային համալիր՝ հնարավոր աստղագիտական նշանակությամբ։"
+        },
+        "fullContent": {
+          "en": " consists of standing stones arranged across a large open area. Some stones contain holes that may have been used for observations.\n\nThe site remains one of the most mysterious prehistoric locations in Armenia.",
+          "ru": " состоит из стоящих камней, расположенных на большой территории. Некоторые имеют отверстия, возможно использовавшиеся для наблюдений.\n\nЭто одно из самых загадочных доисторических мест Армении.",
+          "hy": " բաղկացած է կանգուն քարերից, որոնք տարածված են մեծ տարածքում։ Որոշ քարեր ունեն անցքեր, որոնք կարող էին օգտագործվել դիտումների համար։\n\nՎայրը համարվում է Հայաստանի ամենախորհրդավոր հնավայրերից մեկը։"
+        },
+        "image": "/TourImages/syunik_region/3day_route/karahunj.webp"
+      },
+
+      {
+        "day": 2,
+        "header": {
+          "en": "Khndzoresk Swinging Bridge",
+          "ru": "Подвесной мост Хндзореска",
+          "hy": "Խնձորեսկի ճոճվող կամուրջ"
+        },
+        "content": {
+          "en": "Long suspension bridge over a deep gorge.",
+          "ru": "Длинный подвесной мост над ущельем.",
+          "hy": "Երկար կախովի կամուրջ կիրճի վրա։"
+        },
+        "fullContent": {
+          "en": " is a long suspension bridge stretching across a deep gorge and connecting two sides of the canyon. Walking across it provides a strong physical experience combined with panoramic views of the surrounding landscape.\n\nThe bridge has become one of the most recognizable attractions in the region, combining movement, height and scenery.",
+          "ru": " — длинный подвесной мост, перекинутый через глубокое ущелье и соединяющий две стороны каньона. Прогулка по нему создаёт яркое физическое ощущение и открывает панорамные виды.\n\nМост является одной из самых узнаваемых достопримечательностей региона.",
+          "hy": " երկար կախովի կամուրջ է, որը անցնում է խոր կիրճի վրայով և միացնում է երկու կողմերը։ Այն անցնելը ստեղծում է ֆիզիկական զգացողություն և բացում է համայնապատկերային տեսարաններ։\n\nԿամուրջը դարձել է տարածաշրջանի ամենահայտնի տեսարժան վայրերից մեկը։"
+        },
+        "image": "/TourImages/syunik_region/3day_route/khndzoresk-bridge.webp"
+      },
+      {
+        "day": 2,
+        "header": {
+          "en": "Old Khndzoresk Cave Village",
+          "ru": "Старый Хндзореск",
+          "hy": "Հին Խնձորեսկ"
+        },
+        "content": {
+          "en": "Historic cave settlement carved into the rocks.",
+          "ru": "Пещерное поселение в скалах.",
+          "hy": "Քարանձավային բնակավայր ժայռերի մեջ։"
+        },
+        "fullContent": {
+          "en": " is a historic cave village where people lived in rock-cut dwellings until the 20th century. The settlement includes houses, churches and storage spaces carved directly into the cliffs.\n\nIt reflects traditional rural life and adaptation to the natural environment over centuries.",
+          "ru": " — историческое пещерное поселение, где люди жили в вырубленных в скалах жилищах до XX века. Здесь сохранились дома, церкви и хозяйственные помещения.\n\nМесто отражает традиционный образ жизни и адаптацию к природе.",
+          "hy": " պատմական քարանձավային բնակավայր է, որտեղ մարդիկ ապրել են ժայռերում փորված տներում մինչև XX դար։ Այստեղ կան բնակարաններ, եկեղեցիներ և տնտեսական տարածքներ։\n\nՎայրը ցույց է տալիս ավանդական կյանքի ձևը և բնության հետ համակերպումը։"
+        },
+        "image": "/TourImages/syunik_region/3day_route/old-khndzoresk.webp"
+      },
+
+      {
+        "day": 3,
+        "header": {
+          "en": "Tatev Ropeway",
+          "ru": "Канатная дорога Татев",
+          "hy": "Տաթևի ճոպանուղի"
+        },
+        "content": {
+          "en": "One of the longest reversible ropeways in the world.",
+          "ru": "Одна из самых длинных реверсивных канатных дорог в мире.",
+          "hy": "Աշխարհի ամենաերկար ռեվերսիվ ճոպանուղիներից մեկը։"
+        },
+        "fullContent": {
+          "en": " stretches over the Vorotan Gorge and connects the village of Halidzor with Tatev Monastery. The ride covers a distance of several kilometers above deep canyon landscapes.\n\nIt is not only a means of transport but also a key visual and emotional experience, offering wide panoramic views of the region.",
+          "ru": " проходит над ущельем Воротан и соединяет село Алидзор с монастырем Татев. Дорога проходит на высоте над глубокими каньонами.\n\nЭто не только транспорт, но и важная часть впечатления благодаря панорамным видам.",
+          "hy": " անցնում է Որոտանի կիրճի վրայով և կապում է Հալիձոր գյուղը Տաթևի վանքի հետ։ Ճանապարհը անցնում է խոր կիրճերի վրայով։\n\nԱյն ոչ միայն տրանսպորտ է, այլև կարևոր փորձառություն՝ լայն տեսարաններով։"
+        },
+        "image": "/TourImages/syunik_region/3day_route/tatev-ropeway.webp"
+      },
+      {
+        "day": 3,
+        "header": {
+          "en": "Tatev Monastery",
+          "ru": "Монастырь Татев",
+          "hy": "Տաթևի վանական համալիր"
+        },
+        "content": {
+          "en": "Major medieval religious and educational center.",
+          "ru": "Крупный религиозный и образовательный центр.",
+          "hy": "Միջնադարյան կարևոր կրոնական և կրթական կենտրոն։"
+        },
+        "fullContent": {
+          "en": " was founded in the 9th century and became one of the most important religious and academic centers in medieval Armenia. It housed a university and played a key role in spiritual and intellectual life.\n\nThe monastery is located on a plateau above the Vorotan Gorge, emphasizing both its defensive and symbolic significance.",
+          "ru": " основан в IX веке и стал одним из важнейших религиозных и образовательных центров средневековой Армении. Здесь действовал университет.\n\nМонастырь расположен на плато над ущельем Воротан.",
+          "hy": " հիմնադրվել է IX դարում և դարձել է միջնադարյան Հայաստանի կարևոր կրոնական և կրթական կենտրոններից մեկը։ Այստեղ գործել է համալսարան։\n\nՎանքը գտնվում է Որոտանի կիրճի վերևում գտնվող բարձրադիր հարթակում։"
+        },
+        "image": "/TourImages/syunik_region/3day_route/tatev.webp"
+      },
+      {
+        "day": 3,
+        "header": {
+          "en": "Devil’s Bridge",
+          "ru": "Чёртов мост",
+          "hy": "Սատանի կամուրջ"
+        },
+        "content": {
+          "en": "Natural bridge formation over thermal waters.",
+          "ru": "Природный мост над источниками.",
+          "hy": "Բնական կամուրջ՝ տաք ջրերի վրա։"
+        },
+        "fullContent": {
+          "en": " is a natural rock formation located in the Vorotan Gorge. It was formed over time by mineral deposits and geological processes.\n\nThe area is also known for its warm mineral waters and caves, creating a unique natural environment.",
+          "ru": " — природное образование в ущелье Воротан, сформированное минеральными отложениями.\n\nЗдесь также находятся тёплые источники и пещеры.",
+          "hy": " բնական քարային գոյացություն է Որոտանի կիրճում, որը ձևավորվել է հանքային նստվածքներով։\n\nՏարածքը հայտնի է նաև տաք աղբյուրներով և քարանձավներով։"
+        },
+        "image": "/TourImages/syunik_region/3day_route/devilsbridge.webp"
+      },
+      {
+        "day": 3,
+        "header": {
+          "en": "Vorotanavank Monastery",
+          "ru": "Монастырь Воротнаванк",
+          "hy": "Որոտնավանք"
+        },
+        "content": {
+          "en": "Medieval monastery located near the Vorotan Gorge.",
+          "ru": "Средневековый монастырь рядом с ущельем.",
+          "hy": "Միջնադարյան վանք՝ կիրճի հարևանությամբ։"
+        },
+        "fullContent": {
+          "en": " is a medieval monastery complex built between the 10th and 11th centuries. It is located near the Vorotan Gorge and historically served as a regional religious center.\n\nThe architecture reflects traditional Armenian monastic design and integration with the surrounding landscape.",
+          "ru": " — монастырь X–XI веков, расположенный рядом с ущельем Воротан. Он играл роль регионального религиозного центра.\n\nАрхитектура соответствует традициям армянского зодчества.",
+          "hy": " X–XI դարերի վանական համալիր է, որը գտնվում է Որոտանի կիրճի մոտ։ Այն ծառայել է որպես տարածաշրջանային կրոնական կենտրոն։\n\nՃարտարապետությունը արտացոլում է հայկական ավանդական ոճը։"
+        },
+        "image": "/TourImages/syunik_region/3day_route/vorotanavank.webp"
       }
-    ],
-    "carousel": [
-      { "id": 0, "src": "/TourImages/carousel/khorvirap.jpg" },
-      { "id": 1, "src": "/TourImages/carousel/areni.jpg" },
-      { "id": 2, "src": "/TourImages/carousel/tatev.jpg" },
-      { "id": 3, "src": "/TourImages/carousel/khndzoresk.jpg" }
     ],
     "features": {
       "include": {
-        "en": ["Transport", "Guide", "Hotel accommodation", "Wine tasting", "Cable car ticket"],
-        "ru": ["Транспорт", "Гид", "Проживание", "Дегустация вина", "Билет на канатную дорогу"],
-        "hy": ["Տրանսպորտ", "Գիդ", "Գիշերակաց", "Գինու համտես", "Ճոպանուղու տոմս"]
+        "en": ["Transportation", "Guide", "3-day program"],
+        "ru": ["Транспорт", "Гид", "3-дневная программа"],
+        "hy": ["Տրանսպորտ", "Գիդ", "3-օրյա ծրագիր"]
       },
       "exclude": {
-        "en": ["Lunch", "Personal expenses"],
-        "ru": ["Обед", "Личные расходы"],
-        "hy": ["Ճաշ", "Անձնական ծախսեր"]
+        "en": ["Hotel", "Meals", "Tickets"],
+        "ru": ["Отель", "Питание", "Билеты"],
+        "hy": ["Հյուրանոց", "Սնունդ", "Տոմսեր"]
       }
     },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          { "vehicles": "Sedan", "price": "30000" },
-          { "vehicles": "Miniven", "price": "40000" }
+          { "vehicles": "Sedan", "price": "20000" },
+          { "vehicles": "Miniven", "price": "26000" }
         ],
-        "ticket_per_person": "5000"
+        "ticket_per_person": "0"
       }
     }
   },

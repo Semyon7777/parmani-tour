@@ -48,13 +48,15 @@ function TourPageDynamic() {
     title: tour.title[lang],
     duration: tour.duration,
     image: tour.imageUrl,
-    routeMap: tour.routeMap, // Передаем карту
+    routeMap: tour.routeMap,
+    durationUnit: tour.durationUnit, // Передаем карту
     price: tour.price,       // Передаем цену
     altText: tour.title[lang],
     buttonText: t('bookNow', 'Book Now'),
     
     // Обновленный маппинг для поддержки "Read More" и картинок
     sections: tour.sections.map(sec => ({
+      day: sec.day,
       header: sec.header[lang],
       content: sec.content[lang],
       fullContent: sec.fullContent ? sec.fullContent[lang] : null, // Добавили это

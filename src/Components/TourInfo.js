@@ -19,6 +19,7 @@ const TourInfo = ({ tourData }) => {
     setExpandedSection(expandedSection === index ? null : index);
   };
 
+
   return (
     <div className="tour-details-wrapper">
       {/* 1. ГЕРОЙ-БАННЕР */}
@@ -100,77 +101,170 @@ const TourInfo = ({ tourData }) => {
             {/* 4. ПОДРОБНАЯ ПРОГРАММА (READ MORE) */}
             <section className="itinerary-details-section mb-5">
               <h3 className="section-title mb-4">{t('tour_info_page.itinerary')}</h3>
-              <div className="custom-itinerary-list">
-                {tourData.sections.map((section, index) => {
-                  const isExpanded = expandedSection === index;
+
+              {tourData.durationUnit === "days" ? (
+                (() => {
+                  const days = tourData.sections.reduce((acc, section) => {
+                    const day = section.day ?? 1;
+                    if (!acc[day]) acc[day] = [];
+                    acc[day].push(section);
+                    return acc;
+                  }, {});
+
+                  const dayKeys = Object.keys(days).sort((a, b) => a - b);
+
                   return (
-                    <div key={index} className={`itinerary-item ${isExpanded ? 'active' : ''}`}>
-                      <div className="itinerary-trigger" onClick={() => toggleSection(index)}>
-                        <div className="trigger-left">
-                          <span className="itinerary-number">{index + 1}</span>
-                          <h5>{section.header}</h5>
-                        </div>
-                        <div className="trigger-right">
-                          {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-                        </div>
-                      </div>
-                      
-                      <div className={`itinerary-collapse ${isExpanded ? 'open' : ''}`}>
-                      <div className="itinerary-content p-4">
-                        <Row>
-                          {/* 1. КОЛОНКА С ТЕКСТОМ */}
-                          {/* Если картинка есть (неважно, строка или массив), отдаем тексту 7 колонок */}
-                          <Col md={section.image ? 7 : 12}>
-                            <p className="itinerary-text">{section.content}</p>
-                            {section.fullContent && <p className="itinerary-text mt-2">{section.fullContent}</p>}
-                          </Col>
+                    <Tabs
+                      defaultActiveKey={dayKeys[0]}
+                      id="itinerary-day-tabs"
+                      className="custom-tabs mb-3"
+                    >
+                      {dayKeys.map((day) => (
+                        <Tab
+                          key={day}
+                          eventKey={day}
+                          title={
+                            <span>
+                              <Calendar size={16} className="me-1" />
+                              {t('tour_info_page.day', 'Day')} {day}
+                            </span>
+                          }
+                        >
+                          <div className="custom-itinerary-list pt-2">
+                            {days[day].map((section, index) => {
+                              const sectionKey = `day${day}-${index}`;
+                              const isExpanded = expandedSection === sectionKey;
 
-                          {/* 2. КОЛОНКА С КАРУСЕЛЬЮ */}
-                          {section.image && (
-                            <Col md={5}>
-                              <Carousel 
-                                // 1. Убираем fade — обычный слайд (сдвиг) работает на мобилках в разы быстрее
-                                fade={false} 
-                                slide={true}
-                                touch={true} // Включаем поддержку свайпов
-                                indicators={false}
-                                controls={Array.isArray(section.image) ? section.image.length > 1 : false}
-                                interval={null}
-                                className="itinerary-carousel shadow-sm border rounded-3 overflow-hidden"
-                              >
-                                {(Array.isArray(section.image) ? section.image : [section.image]).map((imgSrc, idx) => {
-                                  
-                                  // 2. АВТО-ОПТИМИЗАЦИЯ CLOUDINARY
-                                  // Если ссылка ведет на Cloudinary, добавляем параметры сжатия (w_600, f_auto, q_auto)
-                                  let optimizedSrc = imgSrc;
-                                  if (imgSrc.includes('cloudinary.com')) {
-                                    optimizedSrc = imgSrc.replace('/upload/', '/upload/w_600,c_fill,g_auto,f_auto,q_auto/');
-                                  }
+                              return (
+                                <div key={sectionKey} className={`itinerary-item ${isExpanded ? 'active' : ''}`}>
+                                  <div className="itinerary-trigger" onClick={() => toggleSection(sectionKey)}>
+                                    <div className="trigger-left">
+                                      <span className="itinerary-number">{index + 1}</span>
+                                      <h5>{section.header}</h5>
+                                    </div>
+                                    <div className="trigger-right">
+                                      {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                                    </div>
+                                  </div>
 
-                                  return (
-                                    <Carousel.Item key={idx}>
-                                      <Image 
-                                        src={optimizedSrc} 
-                                        fluid 
-                                        alt={`${section.header} - ${idx + 1}`} 
-                                        loading="lazy"
-                                        className="w-100 object-fit-cover"
-                                        // Используем закругления и высоту, которые не «тормозят» рендеринг
-                                        style={{ height: '280px', willChange: 'transform' }} 
-                                      />
-                                    </Carousel.Item>
-                                  );
-                                })}
-                              </Carousel>
-                            </Col>
-                          )}
-                        </Row>
-                      </div>
-                    </div>
-                    </div>
+                                  <div className={`itinerary-collapse ${isExpanded ? 'open' : ''}`}>
+                                    <div className="itinerary-content p-4">
+                                      <Row>
+                                        <Col md={section.image ? 7 : 12}>
+                                          <p className="itinerary-text">{section.content}</p>
+                                          {section.fullContent && (
+                                            <p className="itinerary-text mt-2">{section.fullContent}</p>
+                                          )}
+                                        </Col>
+                                        {section.image && (
+                                          <Col md={5}>
+                                            <Carousel
+                                              fade={false}
+                                              slide={true}
+                                              touch={true}
+                                              indicators={false}
+                                              controls={Array.isArray(section.image) ? section.image.length > 1 : false}
+                                              interval={null}
+                                              className="itinerary-carousel shadow-sm border rounded-3 overflow-hidden"
+                                            >
+                                              {(Array.isArray(section.image) ? section.image : [section.image]).map((imgSrc, idx) => {
+                                                let optimizedSrc = imgSrc;
+                                                if (imgSrc.includes('cloudinary.com')) {
+                                                  optimizedSrc = imgSrc.replace('/upload/', '/upload/w_600,c_fill,g_auto,f_auto,q_auto/');
+                                                }
+                                                return (
+                                                  <Carousel.Item key={idx}>
+                                                    <Image
+                                                      src={optimizedSrc}
+                                                      fluid
+                                                      alt={`${section.header} - ${idx + 1}`}
+                                                      loading="lazy"
+                                                      className="w-100 object-fit-cover"
+                                                      style={{ height: '280px', willChange: 'transform' }}
+                                                    />
+                                                  </Carousel.Item>
+                                                );
+                                              })}
+                                            </Carousel>
+                                          </Col>
+                                        )}
+                                      </Row>
+                                    </div>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </Tab>
+                      ))}
+                    </Tabs>
                   );
-                })}
-              </div>
+                })()
+              ) : (
+                <div className="custom-itinerary-list">
+                  {tourData.sections.map((section, index) => {
+                    const isExpanded = expandedSection === index;
+                    return (
+                      <div key={index} className={`itinerary-item ${isExpanded ? 'active' : ''}`}>
+                        <div className="itinerary-trigger" onClick={() => toggleSection(index)}>
+                          <div className="trigger-left">
+                            <span className="itinerary-number">{index + 1}</span>
+                            <h5>{section.header}</h5>
+                          </div>
+                          <div className="trigger-right">
+                            {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                          </div>
+                        </div>
+
+                        <div className={`itinerary-collapse ${isExpanded ? 'open' : ''}`}>
+                          <div className="itinerary-content p-4">
+                            <Row>
+                              <Col md={section.image ? 7 : 12}>
+                                <p className="itinerary-text">{section.content}</p>
+                                {section.fullContent && (
+                                  <p className="itinerary-text mt-2">{section.fullContent}</p>
+                                )}
+                              </Col>
+                              {section.image && (
+                                <Col md={5}>
+                                  <Carousel
+                                    fade={false}
+                                    slide={true}
+                                    touch={true}
+                                    indicators={false}
+                                    controls={Array.isArray(section.image) ? section.image.length > 1 : false}
+                                    interval={null}
+                                    className="itinerary-carousel shadow-sm border rounded-3 overflow-hidden"
+                                  >
+                                    {(Array.isArray(section.image) ? section.image : [section.image]).map((imgSrc, idx) => {
+                                      let optimizedSrc = imgSrc;
+                                      if (imgSrc.includes('cloudinary.com')) {
+                                        optimizedSrc = imgSrc.replace('/upload/', '/upload/w_600,c_fill,g_auto,f_auto,q_auto/');
+                                      }
+                                      return (
+                                        <Carousel.Item key={idx}>
+                                          <Image
+                                            src={optimizedSrc}
+                                            fluid
+                                            alt={`${section.header} - ${idx + 1}`}
+                                            loading="lazy"
+                                            className="w-100 object-fit-cover"
+                                            style={{ height: '280px', willChange: 'transform' }}
+                                          />
+                                        </Carousel.Item>
+                                      );
+                                    })}
+                                  </Carousel>
+                                </Col>
+                              )}
+                            </Row>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </section>
 
             {/* 5. ВКЛЮЧЕНО / НЕ ВКЛЮЧЕНО */}
