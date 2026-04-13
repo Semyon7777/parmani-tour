@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import videoSrc from './first page images/xustup.mp4';
+import videoMobileSrc from './first page images/xustup_mobile.mp4';
 import posterSrc from './homePage_poster.webp'; 
 import NavbarCustom from "../Components/Navbar";
 import "./firstPage.css";
@@ -11,11 +12,12 @@ const VIDEO_ID = "v1776034105/xustup_original_tm2xaf.mp4";
 const CLOUDINARY_URL_720 = `${CLOUDINARY_BASE}/q_auto,f_auto,w_1280,h_720/${VIDEO_ID}`;
 const CLOUDINARY_URL_1080 = `${CLOUDINARY_BASE}/q_auto,f_auto,w_1920,h_1080/${VIDEO_ID}`;
 
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
 const getCloudinaryUrl = () => {
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   if (!connection) return CLOUDINARY_URL_1080;
   const isSlow = connection.saveData || ["slow-2g", "2g", "3g"].includes(connection.effectiveType);
-  // console.log(`🌐 Connection: ${connection.effectiveType || "unknown"}, slow: ${isSlow}`);
   return isSlow ? CLOUDINARY_URL_720 : CLOUDINARY_URL_1080;
 };
 
@@ -35,9 +37,14 @@ function FirstPageFirstPart() {
     const video = videoRef.current;
     if (!video) return;
 
-    // Если HQ уже загружено — сразу запускаем его
+    // Мобильный — просто запускаем мобильное видео, никакой логики LQ→HQ
+    if (isMobile) {
+      video.play().catch(() => setVideoFailed(true));
+      return;
+    }
+
+    // Десктоп — вся логика LQ→HQ как раньше
     if (hqLoaded) {
-      // console.log("✅ HQ cached, starting with HQ");
       video.src = hqLoadedUrl;
       video.loop = true;
       video.play().catch(() => setVideoFailed(true));
@@ -57,14 +64,12 @@ function FirstPageFirstPart() {
     const startHqLoad = () => {
       if (!hqVideoRef.current) return;
       const url = getCloudinaryUrl();
-      // console.log("📦 Starting HQ download from Cloudinary...");
       hqVideo.src = url;
       hqVideo.load();
 
       hqVideo.addEventListener("canplaythrough", () => {
         hqLoaded = true;
         hqLoadedUrl = url;
-        // console.log("💾 HQ fully downloaded and ready");
       }, { once: true });
     };
 
@@ -80,11 +85,9 @@ function FirstPageFirstPart() {
         video.loop = true;
         video.play().catch(console.warn);
         video.removeEventListener("ended", handleEnded);
-        // console.log("✅ Switched to HQ");
       } else {
         video.currentTime = 0;
         video.play().catch(console.warn);
-        // console.log("⏳ HQ not ready, replaying LQ...");
       }
     };
 
@@ -94,14 +97,11 @@ function FirstPageFirstPart() {
       video.removeEventListener("ended", handleEnded);
       window.removeEventListener("load", startHqLoad);
 
-      if (hqLoaded) {
-        // console.log("✅ HQ fully loaded, keeping in cache");
-      } else {
+      if (!hqLoaded) {
         hqVideo.pause();
         hqVideo.src = "";
         hqVideo.load();
         hqVideoRef.current = null;
-        // console.log("🛑 HQ not ready, download cancelled");
       }
     };
   }, []);
@@ -146,12 +146,14 @@ function FirstPageFirstPart() {
               ref={videoRef} 
               id="myVideo" 
               muted 
-              autoPlay 
+              autoPlay
+              loop
               playsInline 
               poster={posterSrc}
               preload="auto" 
             >
-              <source src={videoSrc} type="video/mp4" />
+              {/* Мобильный получает своё видео, десктоп — LQ */}
+              <source src={isMobile ? videoMobileSrc : videoSrc} type="video/mp4" />
               {t('video_not_supported')}
             </video>
           )}
