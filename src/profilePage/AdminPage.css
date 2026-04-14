@@ -830,3 +830,363 @@
   font-weight: 500;
   margin-bottom: 5px;
 }
+
+/* ─── LOCATIONS LIBRARY ──────────────────────────────────── */
+ 
+.loc-card {
+  background: var(--admin-card-bg, #fff);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+ 
+.loc-card:hover {
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+ 
+.loc-card-new {
+  border: 2px dashed #6366f1;
+  background: #f5f5ff;
+}
+ 
+.loc-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+}
+ 
+.loc-card-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+ 
+.loc-place-id {
+  font-family: monospace;
+  font-size: 12px;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 2px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+ 
+.loc-place-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+ 
+.loc-img-count {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #94a3b8;
+  flex-shrink: 0;
+}
+ 
+.loc-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+ 
+.loc-expand-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+ 
+.loc-expand-btn:hover {
+  background: #f1f5f9;
+}
+ 
+/* ─── ФОРМА РЕДАКТИРОВАНИЯ ──────────────────────────────── */
+ 
+.loc-edit-form {
+  padding: 0 16px 16px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+ 
+.loc-field-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+ 
+.loc-field-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+ 
+.loc-lang-badge {
+  font-size: 10px;
+  background: #6366f1;
+  color: #fff;
+  padding: 1px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+ 
+.loc-input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1e293b;
+  background: #fafafa;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+ 
+.loc-input:focus {
+  outline: none;
+  border-color: #6366f1;
+  background: #fff;
+}
+ 
+.loc-input:disabled {
+  background: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+ 
+.loc-textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1e293b;
+  background: #fafafa;
+  resize: vertical;
+  font-family: inherit;
+  line-height: 1.5;
+  transition: border-color 0.15s;
+  box-sizing: border-box;
+}
+ 
+.loc-textarea:focus {
+  outline: none;
+  border-color: #6366f1;
+  background: #fff;
+}
+ 
+/* ─── ЯЗЫКОВЫЕ ТАБЫ ─────────────────────────────────────── */
+ 
+.loc-lang-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 10px 0 4px;
+}
+ 
+.loc-lang-tab {
+  padding: 6px 16px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #f8fafc;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+ 
+.loc-lang-tab:hover {
+  border-color: #6366f1;
+  color: #6366f1;
+}
+ 
+.loc-lang-tab.active {
+  background: #6366f1;
+  border-color: #6366f1;
+  color: #fff;
+}
+ 
+/* ─── ИЗОБРАЖЕНИЯ ───────────────────────────────────────── */
+ 
+.loc-images-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+ 
+.loc-image-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  gap: 8px;
+}
+ 
+.loc-image-path {
+  font-family: monospace;
+  font-size: 12px;
+  color: #475569;
+  word-break: break-all;
+}
+ 
+.loc-image-remove {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 6px;
+  background: #fee2e2;
+  color: #ef4444;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+ 
+.loc-image-remove:hover {
+  background: #fca5a5;
+}
+ 
+.loc-image-add-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+ 
+.loc-add-img-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+ 
+.loc-add-img-btn:hover {
+  background: #4f46e5;
+}
+ 
+/* ─── КНОПКИ ДЕЙСТВИЙ ───────────────────────────────────── */
+ 
+.loc-edit-actions {
+  display: flex;
+  gap: 10px;
+  padding-top: 4px;
+}
+ 
+.loc-create-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+ 
+.loc-create-btn:hover {
+  background: #4f46e5;
+}
+ 
+/* ─── ПРЕВЬЮ ────────────────────────────────────────────── */
+ 
+.loc-preview {
+  padding: 12px 16px 16px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+ 
+.loc-preview-langs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+ 
+@media (max-width: 768px) {
+  .loc-preview-langs {
+    grid-template-columns: 1fr;
+  }
+}
+ 
+.loc-preview-lang-block {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+ 
+.loc-preview-lang-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6366f1;
+  margin-bottom: 4px;
+}
+ 
+.loc-preview-field {
+  font-size: 12px;
+  color: #475569;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+ 
+.loc-preview-key {
+  font-weight: 600;
+  color: #94a3b8;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+ 
+.loc-preview-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}

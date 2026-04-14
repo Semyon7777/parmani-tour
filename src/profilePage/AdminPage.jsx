@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import { 
   Users, Calendar, Heart, Hotel, Globe, LogOut,
-  Trash2, Edit2, Check, X, Plus, RefreshCw, 
+  Trash2, Edit2, Check, X, Plus, RefreshCw, Image,
   Search, Save, ChevronDown, ChevronUp, TrendingUp
   } from "lucide-react";
 import "./AdminPage.css";
@@ -40,6 +40,7 @@ function AdminPage() {
     { id: "profiles",        label: "Пользователи", icon: <Users size={18} /> },
     { id: "hotels",          label: "Отели",         icon: <Hotel size={18} /> },
     { id: "favourites",      label: "Избранное",     icon: <Heart size={18} /> },
+    { id: "locations_library", label: "Места", icon: <Globe size={18} /> }
   ];
 
   if (!adminUser) return (
@@ -85,6 +86,7 @@ function AdminPage() {
         {activeTab === "profiles"        && <GenericTable table="profiles"   columns={["full_name", "email", "phone"]} />}
         {activeTab === "hotels"          && <HotelsTable />}
         {activeTab === "favourites"      && <GenericTable table="favourites" columns={["user_id", "tour_id"]} viewOnly />}
+        {activeTab === "locations_library" && <LocationsLibrary />}
       </main>
     </div>
   );
@@ -997,6 +999,352 @@ function AdminSkeleton() {
           <div className="skeleton-block pulse" style={{ width: "15%" }} />
         </div>
       ))}
+    </div>
+  );
+}
+
+// ─── КОНСТАНТЫ ───────────────────────────────────────────────
+const LANGUAGES = [
+  { code: "en", label: "EN 🇬🇧" },
+  { code: "ru", label: "RU 🇷🇺" },
+  { code: "hy", label: "HY 🇦🇲" },
+];
+ 
+const TEXT_FIELDS = [
+  { key: "header",       label: "Заголовок",       rows: 1 },
+  { key: "content",      label: "Краткое описание", rows: 3 },
+  { key: "full_content", label: "Полное описание",  rows: 6 },
+];
+ 
+const EMPTY_MULTILANG = { en: "", ru: "", hy: "" };
+ 
+const emptyLocation = () => ({
+  place_id:     "",
+  header:       { ...EMPTY_MULTILANG },
+  content:      { ...EMPTY_MULTILANG },
+  full_content: { ...EMPTY_MULTILANG },
+  images:       [],
+});
+ 
+// ─── ДАТА ТУРОВ ───────────────────────────────────────
+function LocationsLibrary() {
+  const [locations, setLocations]   = useState([]);
+  const [loading, setLoading]       = useState(true);
+  const [search, setSearch]         = useState("");
+  const [editingId, setEditingId]   = useState(null); // place_id или "NEW"
+  const [editData, setEditData]     = useState(null);
+  const [activeLang, setActiveLang] = useState("en");
+  const [expanded, setExpanded]     = useState(null);
+  const [newImage, setNewImage]     = useState("");
+ 
+  // ─── ЗАГРУЗКА ────────────────────────────────────────────
+  const load = useCallback(async () => {
+    setLoading(true);
+    const { data } = await supabase
+      .from("locations_library")
+      .select("*")
+      .order("place_id");
+    setLocations(data || []);
+    setLoading(false);
+  }, []);
+ 
+  useEffect(() => { load(); }, [load]);
+ 
+  // ─── ПОИСК ───────────────────────────────────────────────
+  const filtered = locations.filter(loc => {
+    const q = search.toLowerCase();
+    return (
+      loc.place_id?.toLowerCase().includes(q) ||
+      loc.header?.en?.toLowerCase().includes(q) ||
+      loc.header?.ru?.toLowerCase().includes(q)
+    );
+  });
+ 
+  // ─── РЕДАКТИРОВАНИЕ ──────────────────────────────────────
+  const startEdit = (loc) => {
+    setEditData({
+      place_id:     loc.place_id,
+      header:       { ...EMPTY_MULTILANG, ...loc.header },
+      content:      { ...EMPTY_MULTILANG, ...loc.content },
+      full_content: { ...EMPTY_MULTILANG, ...loc.full_content },
+      images:       loc.images || [],
+    });
+    setEditingId(loc.place_id);
+    setActiveLang("en");
+    setNewImage("");
+  };
+ 
+  const startCreate = () => {
+    setEditData(emptyLocation());
+    setEditingId("NEW");
+    setActiveLang("en");
+    setNewImage("");
+  };
+ 
+  const cancelEdit = () => {
+    setEditingId(null);
+    setEditData(null);
+  };
+ 
+  // Обновить мультиязычное поле
+  const setField = (fieldKey, lang, value) => {
+    setEditData(prev => ({
+      ...prev,
+      [fieldKey]: { ...prev[fieldKey], [lang]: value },
+    }));
+  };
+ 
+  // ─── СОХРАНЕНИЕ ──────────────────────────────────────────
+  const save = async () => {
+    if (!editData.place_id.trim()) return alert("place_id не может быть пустым");
+ 
+    const payload = {
+      place_id:     editData.place_id.trim(),
+      header:       editData.header,
+      content:      editData.content,
+      full_content: editData.full_content,
+      images:       editData.images,
+    };
+ 
+    if (editingId === "NEW") {
+      const { error } = await supabase.from("locations_library").insert(payload);
+      if (error) return alert("Ошибка: " + error.message);
+    } else {
+      const { error } = await supabase
+        .from("locations_library")
+        .update(payload)
+        .eq("place_id", editingId);
+      if (error) return alert("Ошибка: " + error.message);
+    }
+ 
+    await load();
+    cancelEdit();
+  };
+ 
+  // ─── УДАЛЕНИЕ ────────────────────────────────────────────
+  const remove = async (place_id) => {
+    if (!window.confirm(`Удалить "${place_id}"?`)) return;
+    await supabase.from("locations_library").delete().eq("place_id", place_id);
+    setLocations(prev => prev.filter(l => l.place_id !== place_id));
+  };
+ 
+  // ─── ИЗОБРАЖЕНИЯ ─────────────────────────────────────────
+  const addImage = () => {
+    const url = newImage.trim();
+    if (!url) return;
+    setEditData(prev => ({ ...prev, images: [...prev.images, url] }));
+    setNewImage("");
+  };
+ 
+  const removeImage = (idx) => {
+    setEditData(prev => ({
+      ...prev,
+      images: prev.images.filter((_, i) => i !== idx),
+    }));
+  };
+ 
+  // ─── РЕНДЕР ФОРМЫ РЕДАКТИРОВАНИЯ ─────────────────────────
+  const renderEditForm = () => (
+    <div className="loc-edit-form">
+      {/* place_id */}
+      <div className="loc-field-row">
+        <label className="loc-field-label">place_id</label>
+        <input
+          className="loc-input"
+          value={editData.place_id}
+          disabled={editingId !== "NEW"}
+          onChange={e => setEditData(prev => ({ ...prev, place_id: e.target.value }))}
+          placeholder="например: etchmiadzin"
+        />
+      </div>
+ 
+      {/* Языковые табы */}
+      <div className="loc-lang-tabs">
+        {LANGUAGES.map(lang => (
+          <button
+            key={lang.code}
+            className={`loc-lang-tab ${activeLang === lang.code ? "active" : ""}`}
+            onClick={() => setActiveLang(lang.code)}
+          >
+            {lang.label}
+          </button>
+        ))}
+      </div>
+ 
+      {/* Текстовые поля для активного языка */}
+      {TEXT_FIELDS.map(field => (
+        <div key={field.key} className="loc-field-row">
+          <label className="loc-field-label">
+            {field.label}
+            <span className="loc-lang-badge">{activeLang.toUpperCase()}</span>
+          </label>
+          <textarea
+            className="loc-textarea"
+            rows={field.rows}
+            value={editData[field.key][activeLang] || ""}
+            onChange={e => setField(field.key, activeLang, e.target.value)}
+            placeholder={`${field.label} (${activeLang})`}
+          />
+        </div>
+      ))}
+ 
+      {/* Изображения */}
+      <div className="loc-field-row">
+        <label className="loc-field-label">
+          <Image size={14} style={{ marginRight: 4 }} />
+          Изображения (Cloudinary пути)
+        </label>
+ 
+        <div className="loc-images-list">
+          {editData.images.map((img, idx) => (
+            <div key={idx} className="loc-image-item">
+              <span className="loc-image-path">{img}</span>
+              <button className="loc-image-remove" onClick={() => removeImage(idx)}>
+                <X size={12} />
+              </button>
+            </div>
+          ))}
+        </div>
+ 
+        <div className="loc-image-add-row">
+          <input
+            className="loc-input"
+            value={newImage}
+            onChange={e => setNewImage(e.target.value)}
+            placeholder="regions/armavir/etchmiadzin/etchmiadzin_1"
+            onKeyDown={e => e.key === "Enter" && addImage()}
+          />
+          <button className="loc-add-img-btn" onClick={addImage}>
+            <Plus size={14} /> Добавить
+          </button>
+        </div>
+      </div>
+ 
+      {/* Кнопки */}
+      <div className="loc-edit-actions">
+        <button className="admin-save-btn" onClick={save}>
+          <Save size={14} /> Сохранить
+        </button>
+        <button className="admin-cancel-btn" onClick={cancelEdit}>
+          Отмена
+        </button>
+      </div>
+    </div>
+  );
+ 
+  // ─── РЕНДЕР КАРТОЧКИ ─────────────────────────────────────
+  const renderCard = (loc) => {
+    const isExpanded = expanded === loc.place_id;
+    const isEditing  = editingId === loc.place_id;
+ 
+    return (
+      <div key={loc.place_id} className="loc-card">
+        <div className="loc-card-header">
+          <div className="loc-card-info">
+            <span className="loc-place-id">{loc.place_id}</span>
+            <span className="loc-place-name">
+              {loc.header?.hy || loc.header?.ru || "—"}
+            </span>
+            {loc.images?.length > 0 && (
+              <span className="loc-img-count">
+                <Image size={12} /> {loc.images.length}
+              </span>
+            )}
+          </div>
+          <div className="loc-card-actions">
+            <button
+              className="admin-edit-btn"
+              onClick={() => isEditing ? cancelEdit() : startEdit(loc)}
+            >
+              <Edit2 size={14} />
+            </button>
+            <button
+              className="loc-expand-btn"
+              onClick={() => setExpanded(isExpanded ? null : loc.place_id)}
+            >
+              {isExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+            </button>
+            <button className="admin-delete-btn" onClick={() => remove(loc.place_id)}>
+              <Trash2 size={14} />
+            </button>
+          </div>
+        </div>
+ 
+        {/* Превью при раскрытии */}
+        {isExpanded && !isEditing && (
+          <div className="loc-preview">
+            <div className="loc-preview-langs">
+              {LANGUAGES.map(lang => (
+                <div key={lang.code} className="loc-preview-lang-block">
+                  <div className="loc-preview-lang-title">{lang.label}</div>
+                  <div className="loc-preview-field">
+                    <span className="loc-preview-key">Header:</span>
+                    <span>{loc.header?.[lang.code] || "—"}</span>
+                  </div>
+                  <div className="loc-preview-field">
+                    <span className="loc-preview-key">Content:</span>
+                    <span>{loc.content?.[lang.code] || "—"}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {loc.images?.length > 0 && (
+              <div className="loc-preview-images">
+                {loc.images.map((img, i) => (
+                  <span key={i} className="loc-image-path">{img}</span>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+ 
+        {/* Форма редактирования */}
+        {isEditing && renderEditForm()}
+      </div>
+    );
+  };
+ 
+  // ─── ОСНОВНОЙ РЕНДЕР ─────────────────────────────────────
+  return (
+    <div className="admin-table-wrapper">
+      <div className="admin-toolbar">
+        <div className="admin-search">
+          <Search size={16} />
+          <input
+            placeholder="Поиск по place_id или названию..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+        </div>
+        <button className="admin-refresh-btn" onClick={load}>
+          <RefreshCw size={16} />
+        </button>
+        <button className="loc-create-btn" onClick={startCreate}>
+          <Plus size={16} /> Новое место
+        </button>
+      </div>
+ 
+      {/* Форма создания нового */}
+      {editingId === "NEW" && (
+        <div className="loc-card loc-card-new">
+          <div className="loc-card-header">
+            <span className="loc-place-id">Новое место</span>
+          </div>
+          {renderEditForm()}
+        </div>
+      )}
+ 
+      {loading ? (
+        <div className="admin-empty">Загрузка...</div>
+      ) : (
+        <div className="admin-cards">
+          {filtered.length === 0 ? (
+            <div className="admin-empty">Ничего не найдено</div>
+          ) : (
+            filtered.map(renderCard)
+          )}
+        </div>
+      )}
     </div>
   );
 }
