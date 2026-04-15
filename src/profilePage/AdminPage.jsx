@@ -1026,7 +1026,7 @@ const emptyLocation = () => ({
   images:       [],
 });
  
-// ─── ДАТА ТУРОВ ───────────────────────────────────────
+// ─── ДАННЫЕ МЕСТ ───────────────────────────────────────
 function LocationsLibrary() {
   const [locations, setLocations]   = useState([]);
   const [loading, setLoading]       = useState(true);
@@ -1056,7 +1056,8 @@ function LocationsLibrary() {
     return (
       loc.place_id?.toLowerCase().includes(q) ||
       loc.header?.en?.toLowerCase().includes(q) ||
-      loc.header?.ru?.toLowerCase().includes(q)
+      loc.header?.ru?.toLowerCase().includes(q) ||
+      loc.header?.hy?.toLowerCase().includes(q)
     );
   });
  
@@ -1307,6 +1308,14 @@ function LocationsLibrary() {
   // ─── ОСНОВНОЙ РЕНДЕР ─────────────────────────────────────
   return (
     <div className="admin-table-wrapper">
+      {/* Добавляем этот блок */}
+      <div className="admin-main-header">
+        <p className="admin-subtitle">
+          Всего записей: <strong>{locations.length}</strong>
+          {search && ` (найдено: ${filtered.length})`}
+        </p>
+      </div>
+      
       <div className="admin-toolbar">
         <div className="admin-search">
           <Search size={16} />

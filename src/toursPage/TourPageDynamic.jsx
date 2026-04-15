@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import { supabase } from "../supabaseClient"; // Убедись, что путь верный
+import { supabase } from "../supabaseClient";
 import NavbarCustom from "../Components/Navbar";
 import TourInfo from "../Components/TourInfo";
 import Footer from "../Components/Footer";
@@ -13,44 +13,46 @@ function TourPageDynamic() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   
-  // Состояние для данных из библиотеки мест
+  // Состояние для сырых данных из Supabase
   const [dbPlaces, setDbPlaces] = useState([]);
 
   const lang = (i18n.language || "en").split('-')[0];
 
-  // Ищем базовую инфу в JSON
+  // Ищем тур в JSON
   const tour = toursData.find(item => item.id === tourId);
 
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    const fetchLibraryData = async () => {
+    if (!tour) return;
 
-      // 1. Пытаемся взять данные из кэша
+    const fetchLibraryData = async () => {
       const cacheKey = `tour_places_${tourId}`;
       const cachedData = getCached(cacheKey);
 
       if (cachedData) {
         setDbPlaces(cachedData);
-        return; // Выходим из функции, если данные в кэше найдены
+        return;
       }
 
       try {
+        // Определяем все нужные ID в зависимости от структуры тура
+        const allIds = tour.itinerary 
+          ? tour.itinerary.flatMap(dayItem => dayItem.ids) 
+          : (tour.itineraryIds || []);
+
+        if (allIds.length === 0) return;
+
         const { data, error } = await supabase
           .from('locations_library')
           .select('*')
-          .in('place_id', tour.itineraryIds);
+          .in('place_id', allIds);
 
         if (error) throw error;
 
-        // Сортируем данные согласно порядку ID в JSON
-        const sortedData = tour.itineraryIds.map(id => 
-          data.find(item => item.place_id === id)
-        ).filter(Boolean);
-
-        // 3. Сохраняем результат в кэш и в стейт
-        setDbPlaces(sortedData);
-        setCache(cacheKey, sortedData); 
+        // Сохраняем результат (порядок восстановим при маппинге ниже)
+        setDbPlaces(data);
+        setCache(cacheKey, data); 
 
       } catch (err) {
         console.error("Error fetching locations library:", err.message);
@@ -64,12 +66,47 @@ function TourPageDynamic() {
     return (
       <div className="text-center py-5">
         <h2>Tour not found</h2>
-        <button onClick={() => navigate('/private-tours')}>Back to Tours</button>
+        <button className="btn btn-primary" onClick={() => navigate('/private-tours')}>
+          Back to Tours
+        </button>
       </div>
     );
   }
 
-  // Related tours (остаются локальными)
+  // --- Формирование секций маршрута (itinerary) ---
+  let finalSections = [];
+
+  if (tour.itinerary) {
+    // 1. Логика для МНОГОДНЕВНОГО тура
+    finalSections = tour.itinerary.flatMap((dayGroup) => {
+      return dayGroup.ids.map(id => {
+        const place = dbPlaces.find(p => p.place_id === id);
+        if (!place) return null;
+        return {
+          day: dayGroup.day,
+          header: place.header[lang] || "",
+          content: place.content[lang] || "",
+          fullContent: place.full_content ? place.full_content[lang] : null,
+          image: place.images 
+        };
+      }).filter(Boolean);
+    });
+  } else if (tour.itineraryIds) {
+    // 2. Логика для ОДНОДНЕВНОГО тура
+    finalSections = tour.itineraryIds.map((id) => {
+      const place = dbPlaces.find(p => p.place_id === id);
+      if (!place) return null;
+      return {
+        day: 1, // Всегда 1 день
+        header: place.header[lang] || "",
+        content: place.content[lang] || "",
+        fullContent: place.full_content ? place.full_content[lang] : null,
+        image: place.images 
+      };
+    }).filter(Boolean);
+  }
+
+  // Похожие туры
   const relatedToursFormatted = toursData
     .filter(item => item.id !== tourId)
     .slice(0, 4)
@@ -80,9 +117,9 @@ function TourPageDynamic() {
       price: rel.price
     }));
 
-  // Формируем итоговый объект
+  // Собираем итоговый объект для компонента TourInfo
   const myTourData = {
-    id: tour.id,
+    ...tour,
     title: tour.title[lang],
     duration: tour.duration,
     image: tour.imageUrl,
@@ -91,19 +128,7 @@ function TourPageDynamic() {
     price: tour.price,
     altText: tour.title[lang],
     buttonText: t('bookNow', 'Book Now'),
-    
-    // Сюда попадают данные, "склеенные" из базы
-    // Внутри формирования myTourData
-    sections: dbPlaces.map((place) => ({
-      day: 1, 
-      header: place.header[lang],
-      content: place.content[lang],
-      fullContent: place.full_content ? place.full_content[lang] : null,
-      // Теперь передаем массив images
-      image: place.images 
-    })),
-    
-
+    sections: finalSections,
     carouselInfo: tour.carousel,
     include: [
       { 
@@ -114,12 +139,11 @@ function TourPageDynamic() {
     ],
     relatedTours: relatedToursFormatted
   };
-  
 
   return (
     <div className="tour-dynamic-page">
       <NavbarCustom />
-        <TourInfo tourData={myTourData} />
+      <TourInfo tourData={myTourData} />
       <Footer />
     </div>
   );
