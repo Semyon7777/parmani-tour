@@ -2,17 +2,29 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import { 
-  Users, Calendar, Heart, Hotel, Globe, LogOut,
-  Trash2, Edit2, Check, X, Plus, RefreshCw, Image,
-  Search, Save, ChevronDown, ChevronUp, TrendingUp
+  Users, Calendar, Heart, Hotel, Globe, LogOut, Lock, MapPin,
+  Trash2, Edit2, Check, X, Plus, RefreshCw, Image, Eye,
+  Search, Save, ChevronDown, ChevronUp, TrendingUp, EyeOff,
   } from "lucide-react";
 import "./AdminPage.css";
+
+const TAB_PASSWORDS = {
+  bookings:          "parmanibook",
+  group_eco_tours:   "parmanitours",
+  profiles:          "parmaniusers",
+  hotels:            "parmanihotels",
+  favourites:        "parmanifav",
+  locations_library: "parmaniloc",
+};
 
 // ─── ГЛАВНЫЙ КОМПОНЕНТ ────────────────────────────────────────
 function AdminPage() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("bookings");
   const [adminUser, setAdminUser] = useState(null);
+  const [unlockedTabs, setUnlockedTabs] = useState(new Set());
+
+  const handleUnlock = (tabId) => setUnlockedTabs(prev => new Set([...prev, tabId]));
 
   useEffect(() => {
     const checkAdmin = async () => {
@@ -33,6 +45,7 @@ function AdminPage() {
     await supabase.auth.signOut();
     navigate("/");
   };
+  
 
   const tabs = [
     { id: "bookings",        label: "Бронирования", icon: <Calendar size={18} /> },
@@ -40,7 +53,7 @@ function AdminPage() {
     { id: "profiles",        label: "Пользователи", icon: <Users size={18} /> },
     { id: "hotels",          label: "Отели",         icon: <Hotel size={18} /> },
     { id: "favourites",      label: "Избранное",     icon: <Heart size={18} /> },
-    { id: "locations_library", label: "Места", icon: <Globe size={18} /> }
+    { id: "locations_library", label: "Места", icon: <MapPin size={18} /> }
   ];
 
   if (!adminUser) return (
@@ -80,14 +93,77 @@ function AdminPage() {
             {tabs.find(t => t.id === activeTab)?.label}
           </h1>
         </div>
-
-        {activeTab === "bookings"        && <BookingsTable />}
-        {activeTab === "group_eco_tours" && <ToursTable />}
-        {activeTab === "profiles"        && <GenericTable table="profiles"   columns={["full_name", "email", "phone"]} />}
-        {activeTab === "hotels"          && <HotelsTable />}
-        {activeTab === "favourites"      && <GenericTable table="favourites" columns={["user_id", "tour_id"]} viewOnly />}
-        {activeTab === "locations_library" && <LocationsLibrary />}
+        {[
+          { id: "bookings",          component: <BookingsTable /> },
+          { id: "group_eco_tours",   component: <ToursTable /> },
+          { id: "profiles",          component: <GenericTable table="profiles" columns={["full_name", "email", "phone"]} /> },
+          { id: "hotels",            component: <HotelsTable /> },
+          { id: "favourites",        component: <GenericTable table="favourites" columns={["user_id", "tour_id"]} viewOnly /> },
+          { id: "locations_library", component: <LocationsLibrary /> },
+        ].map(({ id, component }) =>
+          activeTab === id && (
+            unlockedTabs.has(id)
+              ? component
+              : <TabPasswordGate key={id} tabId={id} onUnlock={handleUnlock} />
+          )
+        )}
       </main>
+    </div>
+  );
+}
+
+function TabPasswordGate({ tabId, onUnlock }) {
+  const [input, setInput] = useState("");
+  const [error, setError] = useState(false);
+  const [show, setShow] = useState(false);
+
+  const handleSubmit = () => {
+    if (input === TAB_PASSWORDS[tabId]) {
+      onUnlock(tabId);
+    } else {
+      setError(true);
+      setInput("");
+      setTimeout(() => setError(false), 1500);
+    }
+  };
+
+  return (
+    <div style={{
+      display: "flex", flexDirection: "column", alignItems: "center",
+      justifyContent: "center", height: "60vh", gap: "16px"
+    }}>
+      <Lock size={36} strokeWidth={1.5} color="#6c757d" />
+      <h3 style={{ margin: 0 }}>Введите пароль</h3>
+      <div style={{display: "flex", gap: "10px"}}>
+        <input
+          type={show ? "text" : "password"}
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => e.key === "Enter" && handleSubmit()}
+          autoFocus
+          style={{
+            padding: "10px 16px", borderRadius: "8px",
+            border: `1.5px solid ${error ? "#dc3545" : "#dee2e6"}`,
+            outline: "none", fontSize: "16px", width: "240px",
+          }}
+          placeholder="••••••••"
+        />
+        {error && <span style={{ color: "#dc3545", fontSize: "14px" }}>Неверный пароль</span>}
+        <button
+            onClick={() => setShow(p => !p)}
+            style={{
+              border: "none", cursor: "pointer", color: "#6c757d", padding: 0, background: "none"
+            }}
+          >
+            {show ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+        </div>
+      <button onClick={handleSubmit} style={{
+        padding: "10px 32px", borderRadius: "8px", border: "none",
+        background: "#198754", color: "#fff", fontWeight: 600, cursor: "pointer"
+      }}>
+        Войти
+      </button>
     </div>
   );
 }
