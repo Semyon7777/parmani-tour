@@ -1026,7 +1026,7 @@ const emptyLocation = () => ({
   images:       [],
 });
  
-// ─── ДАННЫЕ МЕСТ ───────────────────────────────────────
+// ─── ДАННЫЕ МЕСТ sights ───────────────────────────────────────
 function LocationsLibrary() {
   const [locations, setLocations]   = useState([]);
   const [loading, setLoading]       = useState(true);

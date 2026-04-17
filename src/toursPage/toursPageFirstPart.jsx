@@ -32,6 +32,10 @@ function ToursPageFirstPart() {
     { id: "gastronomic", name: t('tour_info_page.filter_gastro',    'Gastro') },
     { id: "religious",   name: t('tour_info_page.filter_religious', 'Religious') },
   ];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
  
   // Один запрос на все лайки пользователя при загрузке страницы
   useEffect(() => {
@@ -54,7 +58,13 @@ function ToursPageFirstPart() {
     fetchUserLikes();
   }, []);
  
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return; // пропускаем при монтировании
+    }
     toursTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }, [currentPage]);
  

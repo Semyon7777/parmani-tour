@@ -22,7 +22,7 @@ function TourPageDynamic() {
   const tour = toursData.find(item => item.id === tourId);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'instant' });
 
     if (!tour) return;
 
