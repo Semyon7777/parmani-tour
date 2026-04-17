@@ -1353,6 +1353,17 @@ function LocationsLibrary() {
         {/* Превью при раскрытии */}
         {isExpanded && !isEditing && (
           <div className="loc-preview">
+            
+            <div className="loc-preview-images" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+              {loc.images?.map((imgUrl, index) => (
+                <img 
+                  key={index} 
+                  src={imgUrl} 
+                  alt={`${loc.place_id}-${index}`} 
+                  style={{ width: "100px", height: "70px", objectFit: "cover", borderRadius: "4px" }} 
+                />
+              ))}
+            </div>
             <div className="loc-preview-langs">
               {LANGUAGES.map(lang => (
                 <div key={lang.code} className="loc-preview-lang-block">
@@ -1360,10 +1371,6 @@ function LocationsLibrary() {
                   <div className="loc-preview-field">
                     <span className="loc-preview-key">Header:</span>
                     <span>{loc.header?.[lang.code] || "—"}</span>
-                  </div>
-                  <div className="loc-preview-field">
-                    <span className="loc-preview-key">Content:</span>
-                    <span>{loc.content?.[lang.code] || "—"}</span>
                   </div>
                 </div>
               ))}
