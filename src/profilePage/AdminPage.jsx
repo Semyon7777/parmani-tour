@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useMemo, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import { 
@@ -93,20 +93,23 @@ function AdminPage() {
             {tabs.find(t => t.id === activeTab)?.label}
           </h1>
         </div>
-        {[
-          { id: "bookings",          component: <BookingsTable /> },
-          { id: "group_eco_tours",   component: <ToursTable /> },
-          { id: "profiles",          component: <GenericTable table="profiles" columns={["full_name", "email", "phone"]} /> },
-          { id: "hotels",            component: <HotelsTable /> },
-          { id: "favourites",        component: <GenericTable table="favourites" columns={["user_id", "tour_id"]} viewOnly /> },
-          { id: "locations_library", component: <LocationsLibrary /> },
-        ].map(({ id, component }) =>
-          activeTab === id && (
-            unlockedTabs.has(id)
-              ? component
-              : <TabPasswordGate key={id} tabId={id} onUnlock={handleUnlock} />
-          )
-        )}
+        { [
+            { id: "bookings",          component: <BookingsTable /> },
+            { id: "group_eco_tours",   component: <ToursTable /> },
+            { id: "profiles",          component: <GenericTable table="profiles" columns={["full_name", "email", "phone"]} /> },
+            { id: "hotels",            component: <HotelsTable /> },
+            { id: "favourites",        component: <GenericTable table="favourites" columns={["user_id", "tour_id"]} viewOnly /> },
+            { id: "locations_library", component: <LocationsLibrary /> },
+          ].map(({ id, component }) => (
+            <Fragment key={id}> 
+              {activeTab === id && (
+                unlockedTabs.has(id)
+                  ? component
+                  : <TabPasswordGate tabId={id} onUnlock={handleUnlock} />
+              )}
+            </Fragment>
+          ))
+        }
       </main>
     </div>
   );
