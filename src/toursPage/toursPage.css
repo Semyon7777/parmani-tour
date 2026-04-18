@@ -309,12 +309,12 @@
 /* Адаптив */
 @media (max-width: 576px) {
   .tour-page-container .pagination-btn {
-    width: 46px;
-    height: 46px;
+    width: 42px;
+    height: 42px;
     font-size: 12px;
   }
   .tour-page-container .custom-pagination {
-    gap: 5px;
+    gap: 3px;
     padding: 8px 12px;
   }
 }
