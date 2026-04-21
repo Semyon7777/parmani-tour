@@ -8,6 +8,8 @@ import Footer from "../Components/Footer";
 import toursData from "./toursData.json";
 import { getCached, setCache } from "../utils/tourCache";
 
+import SEO from "../Components/SEO";
+
 function TourPageDynamic() {
   const { tourId } = useParams();
   const { t, i18n } = useTranslation();
@@ -170,6 +172,13 @@ function TourPageDynamic() {
 
   return (
     <div className="tour-dynamic-page">
+          <SEO
+      title={tour.title[lang]}
+      description={tour.description?.[lang]}
+      image={`https://www.parmanitour.com${tour.imageUrl}`}
+      url={`/private-tours/${tourId}`}
+      lang={lang}
+    />
       <NavbarCustom />
       <TourInfo tourData={myTourData} />
       <Footer />

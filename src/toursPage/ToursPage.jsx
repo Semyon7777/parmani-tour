@@ -8,6 +8,8 @@ import { useTranslation } from 'react-i18next';
 import { Send } from "lucide-react"; 
 import "./toursPage.css";
 
+import SEO from "../Components/SEO";
+
 function ToursPage() {
     const { t } = useTranslation();
 
@@ -33,6 +35,12 @@ function ToursPage() {
     
     return (
         <div id="toursPage" className="tour-page-container">
+            <SEO
+            title="Private Tours"
+            description="Browse all private tours in Armenia — cultural, nature, gastronomic and multi-day routes."
+            url="/private-tours"
+            />
+
             <NavbarCustom />
             
             <ToursPageFirstPart />
