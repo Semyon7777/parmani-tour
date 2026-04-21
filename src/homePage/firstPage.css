@@ -344,7 +344,7 @@ html[lang="hy"] .carouselContainerHeadText {
 }
 
 .carouselContainer .carousel .carousel-caption {
-    background-color: rgba(0, 0, 0, 0.733); /* Полупрозрачный фон для подписей */
+    background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный фон для подписей */
     padding: 10px;
     border-radius: 10px 10px 10px 10px; /* Закругленные углы */
 }

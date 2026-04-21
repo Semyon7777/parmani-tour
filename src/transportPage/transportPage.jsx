@@ -5,6 +5,8 @@ import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import "./transportPage.css";
 
+import SEO from "../Components/SEO";
+
 const TransportPage = () => {
   const { t } = useTranslation();
 
@@ -14,6 +16,11 @@ const TransportPage = () => {
 
   return (
     <div className="transport-container">
+      <SEO
+        title="Transport Services"
+        description="Comfortable transport services across Armenia. Airport transfers and private drivers."
+        url="/transport"
+      />
       <NavbarCustom />
 
       {/* HERO SECTION */}

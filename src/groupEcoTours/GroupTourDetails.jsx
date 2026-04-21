@@ -13,6 +13,8 @@ import GroupEcoToursBookForm from './GroupEcoToursBookForm';
 import TourGallery from "../Components/TourGallery";
 import './GroupEcoTours.css';
 
+import SEO from "../Components/SEO";
+
 
 const GroupTourDetails = () => {
 
@@ -25,7 +27,7 @@ const GroupTourDetails = () => {
   const [tour, setTour] = useState(tourFromState || null);
   const [bookingOpen, setBookingOpen] = useState(false);
   const [loading, setLoading] = useState(!tourFromState);
-  const currentLang = i18n.language || 'en';
+  const currentLang = (i18n.language || 'en').split('-')[0];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -96,6 +98,14 @@ const GroupTourDetails = () => {
 
   return (
     <div className="group-details-page">
+      <SEO
+        title={tour.title[currentLang]}
+        description={tour.description?.[currentLang]}
+        image={`https://www.parmanitour.com${tour.imageUrl}`}
+        url={`/private-tours/${id}`}
+        lang={currentLang}
+      />
+      
       <NavbarCustom />
 
       {/* 1. BOLD HERO SECTION */}

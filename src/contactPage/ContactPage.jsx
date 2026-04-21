@@ -8,6 +8,8 @@ import emailjs from '@emailjs/browser';
 import ReCAPTCHA from "react-google-recaptcha";
 import "./ContactPage.css";
 
+import SEO from "../Components/SEO";
+
 function ContactPage() {
   const { t } = useTranslation();
 
@@ -17,6 +19,11 @@ function ContactPage() {
 
   return (
     <div className="tour-contact-page-root">
+      <SEO
+        title="Contact Us"
+        description="Contact Parmani Tour to book your Armenia tour or ask any questions."
+        url="/contact"
+      />
       <NavbarCustom />
 
       {/* Hero Section */}

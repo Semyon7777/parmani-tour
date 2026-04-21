@@ -11,6 +11,8 @@ import FirstPageThirdPart from "./firstPageThirdPart";
 import { supabase } from "../supabaseClient";
 import Footer from "../Components/Footer";
 
+import SEO from "../Components/SEO";
+
 // CSS
 import "./firstPage.css";
 
@@ -18,6 +20,12 @@ function HomePage() {
 
   return (
     <div id="homePage">
+      <SEO
+        title="Private Tours in Armenia"
+        description="Discover Armenia with Parmani Tour. Private day trips, multi-day tours, professional guides."
+        url="/"
+      />
+
       {/* 1. HERO & INTRO */}
       <FirstPageFirstPart />
       <FirstPageSecondPart />

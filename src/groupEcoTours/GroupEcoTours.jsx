@@ -11,6 +11,8 @@ import { supabase } from "../supabaseClient";
 import GroupEcoToursHeadImg from "./images/Group_Eco_Tours_Head_img.webp"
 import "./GroupEcoTours.css";
 
+import SEO from "../Components/SEO";
+
 let toursCache = null;
 
 function GroupEcoTours() {
@@ -119,6 +121,12 @@ function GroupEcoTours() {
 
   return (
     <div className="scheduled-page group-eco-tours-container">
+      <SEO
+        title="Group & Eco Tours"
+        description="Join our group and eco tours across Armenia. Affordable shared tours with professional guides."
+        url="/group-eco-tours"
+      />
+
       <NavbarCustom />
 
       <div className="scheduled-hero">

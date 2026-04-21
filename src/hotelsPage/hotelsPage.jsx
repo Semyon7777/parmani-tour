@@ -9,6 +9,8 @@ import Footer from "../Components/Footer";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "./hotelsPage.css";
 
+import SEO from "../Components/SEO";
+
 const HotelsPage = () => {
   const { t } = useTranslation();
   const [hotels, setHotels] = useState([]); // Состояние для отелей из БД
@@ -110,6 +112,11 @@ const HotelsPage = () => {
 
   return (
     <div className="hotels-page-wrapper">
+      <SEO
+        title="Hotels in Armenia"
+        description="Find comfortable hotels across Armenia. Book accommodation for your trip."
+        url="/hotels"
+      />
       <NavbarCustom />
 
       {/* HERO SECTION (без изменений) */}

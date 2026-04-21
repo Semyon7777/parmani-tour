@@ -16,6 +16,8 @@ import heroImg from "./images/aio-hero.webp";
 import serviceImg1 from "./images/service-hotel.jpg"; // Фото отеля
 import serviceImg2 from "./images/service-food.avif";  // Фото еды
 
+import SEO from "../Components/SEO";
+
 function AllInOne() {
   const { t } = useTranslation();
   const [isSubmitting, setIsSubmitting] = useState(false); // Состояние загрузки
@@ -84,6 +86,11 @@ function AllInOne() {
 
   return (
     <div className="aio-page">
+      <SEO
+        title="All-in-One Travel Package"
+        description="Complete travel packages in Armenia — tours, hotels and transport in one booking."
+        url="/all-in-one"
+      />
       <NavbarCustom />
 
       {/* --- HERO SECTION --- */}

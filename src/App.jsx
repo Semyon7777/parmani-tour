@@ -27,6 +27,8 @@ import RouteTracker from "./Components/RouteTracker";
 import SecretScannerPage from "./Components/qrScanner/ScannerPage";
 import './i18n';
 
+import { HelmetProvider } from 'react-helmet-async';
+
 import AdminRoute from "./profilePage/AdminRoute";
 import AdminPage from "./profilePage/AdminPage";
 
@@ -46,6 +48,7 @@ function App() {
   }, [i18n.language]);
 
   return (
+    <HelmetProvider>
       <div className="allPages">
         <Router>
           <RouteTracker /> {/* Вот здесь он будет "слушать" переходы */}
@@ -71,15 +74,12 @@ function App() {
             <Route path="/tours/booking/:tourName" element={<BookForm />} />
             <Route path="/terms" element={<LegalPage type="terms" />} />
             <Route path="/privacy" element={<LegalPage type="privacy" />} />
-            <Route path="/admin" element={
-              <AdminRoute>
-                <AdminPage />
-              </AdminRoute>
-            } />
+            <Route path="/admin" element={<AdminRoute><AdminPage /></AdminRoute>} />
             <Route path="/check-in-v1-x7z92" element={<SecretScannerPage />} />
           </Routes>
         </Router>
       </div>
+    </HelmetProvider>
   );
 }
 

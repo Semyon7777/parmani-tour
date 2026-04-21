@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient";
 import { 
   Users, Calendar, Heart, Hotel, Globe, LogOut, Lock, MapPin,
-  Trash2, Edit2, Check, X, Plus, RefreshCw, Image, Eye,
+  Trash2, Edit2, Check, X, Plus, RefreshCw, Image, Eye, Map,
   Search, Save, ChevronDown, ChevronUp, TrendingUp, EyeOff,
   } from "lucide-react";
 import "./AdminPage.css";
@@ -11,6 +11,7 @@ import "./AdminPage.css";
 const TAB_PASSWORDS = {
   bookings:          "parmanibook",
   group_eco_tours:   "parmanitours",
+  private_tours:     "parmaniprivate",
   profiles:          "parmaniusers",
   hotels:            "parmanihotels",
   favourites:        "parmanifav",
@@ -49,7 +50,8 @@ function AdminPage() {
 
   const tabs = [
     { id: "bookings",        label: "Бронирования", icon: <Calendar size={18} /> },
-    { id: "group_eco_tours", label: "Туры",          icon: <Globe size={18} /> },
+    { id: "group_eco_tours", label: "Group & Eco Туры",          icon: <Globe size={18} /> },
+    { id: "private_tours",   label: "Приватные туры", icon: <Map size={18} /> },
     { id: "profiles",        label: "Пользователи", icon: <Users size={18} /> },
     { id: "hotels",          label: "Отели",         icon: <Hotel size={18} /> },
     { id: "favourites",      label: "Избранное",     icon: <Heart size={18} /> },
@@ -96,6 +98,7 @@ function AdminPage() {
         { [
             { id: "bookings",          component: <BookingsTable /> },
             { id: "group_eco_tours",   component: <ToursTable /> },
+            { id: "private_tours",     component: <PrivateToursTable /> },
             { id: "profiles",          component: <GenericTable table="profiles" columns={["full_name", "email", "phone"]} /> },
             { id: "hotels",            component: <HotelsTable /> },
             { id: "favourites",        component: <GenericTable table="favourites" columns={["user_id", "tour_id"]} viewOnly /> },
@@ -727,6 +730,385 @@ function ToursTable() {
 }
 
 
+// ─── ТАБЛИЦА PRIVATE TOURS ────────────────────────────────────
+// ── Редактор itinerary_ids ────────────────────────────────────
+function ItineraryIdsEditor({ value, onChange }) {
+  const ids = value || [];
+
+  const updateId    = (i, val) => { const n = [...ids]; n[i] = val; onChange(n); };
+  const addId       = ()       => onChange([...ids, ""]);
+  const removeId    = (i)      => onChange(ids.filter((_, j) => j !== i));
+  const moveUp      = (i)      => { if (i === 0) return; const n = [...ids]; [n[i-1], n[i]] = [n[i], n[i-1]]; onChange(n); };
+  const moveDown    = (i)      => { if (i === ids.length - 1) return; const n = [...ids]; [n[i+1], n[i]] = [n[i], n[i+1]]; onChange(n); };
+
+  return (
+    <div className="visual-editor">
+      <div className="visual-editor-label">📍 Места маршрута ({ids.length})</div>
+      <div className="visual-editor-list">
+        {ids.map((id, i) => (
+          <div key={i} className="visual-editor-row">
+            <span className="visual-editor-index">{i + 1}</span>
+            <input
+              className="visual-editor-input"
+              value={id}
+              placeholder="place_id"
+              onChange={e => updateId(i, e.target.value)}
+            />
+            <div className="visual-editor-row-actions">
+              <button className="ve-btn ve-move" onClick={() => moveUp(i)}   disabled={i === 0}              title="Вверх">↑</button>
+              <button className="ve-btn ve-move" onClick={() => moveDown(i)} disabled={i === ids.length - 1} title="Вниз">↓</button>
+              <button className="ve-btn ve-remove" onClick={() => removeId(i)} title="Удалить">✕</button>
+            </div>
+          </div>
+        ))}
+      </div>
+      <button className="ve-add-btn" onClick={addId}>+ Добавить место</button>
+    </div>
+  );
+}
+// ── Редактор itinerary (многодневный) ─────────────────────────
+function ItineraryEditor({ value, onChange }) {
+  const days = value || [];
+
+  const addDay = () => onChange([...days, { day: days.length + 1, ids: [] }]);
+
+  const removeDay = (i) => onChange(
+    days.filter((_, j) => j !== i).map((d, j) => ({ ...d, day: j + 1 }))
+  );
+
+  const updateId = (di, ii, val) => onChange(
+    days.map((d, i) => i !== di ? d : { ...d, ids: d.ids.map((id, j) => j === ii ? val : id) })
+  );
+
+  const addId = (di) => onChange(
+    days.map((d, i) => i !== di ? d : { ...d, ids: [...d.ids, ""] })
+  );
+
+  const removeId = (di, ii) => onChange(
+    days.map((d, i) => i !== di ? d : { ...d, ids: d.ids.filter((_, j) => j !== ii) })
+  );
+
+  const moveId = (di, ii, dir) => onChange(
+    days.map((d, i) => {
+      if (i !== di) return d;
+      const n = [...d.ids];
+      const t = ii + dir;
+      if (t < 0 || t >= n.length) return d;
+      [n[t], n[ii]] = [n[ii], n[t]];
+      return { ...d, ids: n };
+    })
+  );
+
+  return (
+    <div className="visual-editor">
+      <div className="visual-editor-label">🗺 Маршрут по дням ({days.length} дн.)</div>
+      {days.map((dayGroup, di) => (
+        <div key={di} className="visual-editor-day">
+          <div className="visual-editor-day-header">
+            <span className="visual-editor-day-badge">День {dayGroup.day}</span>
+            <span className="visual-editor-day-count">{dayGroup.ids.length} мест</span>
+            <button className="ve-btn ve-remove" onClick={() => removeDay(di)}>✕ Удалить день</button>
+          </div>
+          <div className="visual-editor-list">
+            {dayGroup.ids.map((id, ii) => (
+              <div key={ii} className="visual-editor-row">
+                <span className="visual-editor-index">{ii + 1}</span>
+                <input
+                  className="visual-editor-input"
+                  value={id}
+                  placeholder="place_id"
+                  onChange={e => updateId(di, ii, e.target.value)}
+                />
+                <div className="visual-editor-row-actions">
+                  <button className="ve-btn ve-move" onClick={() => moveId(di, ii, -1)} disabled={ii === 0}>↑</button>
+                  <button className="ve-btn ve-move" onClick={() => moveId(di, ii,  1)} disabled={ii === dayGroup.ids.length - 1}>↓</button>
+                  <button className="ve-btn ve-remove" onClick={() => removeId(di, ii)}>✕</button>
+                </div>
+              </div>
+            ))}
+          </div>
+          <button className="ve-add-btn ve-add-small" onClick={() => addId(di)}>+ Добавить место</button>
+        </div>
+      ))}
+      <button className="ve-add-btn" onClick={addDay}>+ Добавить день</button>
+    </div>
+  );
+}
+// ── Редактор features ─────────────────────────────────────────
+function FeaturesEditor({ value, onChange }) {
+  const features = value || { include: { en: [], ru: [], hy: [] }, exclude: { en: [], ru: [], hy: [] } };
+  const langs = ["en", "ru", "hy"];
+
+  const updateItem = (section, lang, idx, val) => onChange({
+    ...features,
+    [section]: {
+      ...features[section],
+      [lang]: features[section][lang].map((item, i) => i === idx ? val : item)
+    }
+  });
+
+  const addItem = (section, lang) => onChange({
+    ...features,
+    [section]: {
+      ...features[section],
+      [lang]: [...(features[section]?.[lang] || []), ""]
+    }
+  });
+
+  const removeItem = (section, lang, idx) => onChange({
+    ...features,
+    [section]: {
+      ...features[section],
+      [lang]: features[section][lang].filter((_, i) => i !== idx)
+    }
+  });
+
+  return (
+    <div className="visual-editor">
+      <div className="visual-editor-label">🎒 Features</div>
+
+      {["include", "exclude"].map(section => (
+        <div key={section} className="visual-editor-features-section">
+          <div className="visual-editor-features-title">
+            {section === "include" ? "✅ Включено" : "❌ Не включено"}
+          </div>
+          <div className="visual-editor-features-grid">
+            {langs.map(lang => (
+              <div key={lang} className="visual-editor-features-col">
+                <div className="visual-editor-features-lang">{lang.toUpperCase()}</div>
+                {(features[section]?.[lang] || []).map((item, idx) => (
+                  <div key={idx} className="visual-editor-row">
+                    <input
+                      className="visual-editor-input"
+                      value={item}
+                      onChange={e => updateItem(section, lang, idx, e.target.value)}
+                    />
+                    <button className="ve-btn ve-remove" onClick={() => removeItem(section, lang, idx)}>✕</button>
+                  </div>
+                ))}
+                <button className="ve-add-btn ve-add-small" onClick={() => addItem(section, lang)}>
+                  + Добавить
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+// ── Главный компонент ─────────────────────────────────────────
+function PrivateToursTable() {
+  const [tours, setTours]           = useState([]);
+  const [loading, setLoading]       = useState(true);
+  const [search, setSearch]         = useState("");
+  const [editingId, setEditingId]   = useState(null);
+  const [editData, setEditData]     = useState({});
+  const [expandedId, setExpandedId] = useState(null);
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    const { data } = await supabase
+      .from("private_tours")
+      .select("*")
+      .order("id", { ascending: true });
+    setTours(data || []);
+    setLoading(false);
+  }, []);
+
+  useEffect(() => { load(); }, [load]);
+
+  const getTourType = (tour) => {
+    if (tour.itinerary)     return "multi";
+    if (tour.itinerary_ids) return "single";
+    return "unknown";
+  };
+
+  const startEdit = (tour) => {
+    setEditingId(tour.id);
+    setEditData({
+      itinerary_ids: tour.itinerary_ids ? [...tour.itinerary_ids]                    : null,
+      itinerary:     tour.itinerary     ? JSON.parse(JSON.stringify(tour.itinerary)) : null,
+      features:      tour.features      ? JSON.parse(JSON.stringify(tour.features))  : null,
+    });
+    setExpandedId(tour.id);
+  };
+
+  const cancelEdit = () => { setEditingId(null); setExpandedId(null); };
+
+  const saveEdit = async () => {
+    const { error } = await supabase
+      .from("private_tours")
+      .update({
+        itinerary_ids: editData.itinerary_ids,
+        itinerary:     editData.itinerary,
+        features:      editData.features,
+      })
+      .eq("id", editingId);
+
+    if (!error) {
+      setTours(prev => prev.map(t =>
+        t.id === editingId ? { ...t, ...editData } : t  // 👈 editData содержит itinerary_ids, itinerary, features
+      ));
+      cancelEdit();
+    } else {
+      alert("Ошибка сохранения: " + error.message);
+    }
+  };
+
+  const deleteTour = async (id) => {
+    if (!window.confirm(`Удалить тур "${id}"?`)) return;
+    setTours(prev => prev.filter(t => t.id !== id));
+    await supabase.from("private_tours").delete().eq("id", id);
+  };
+
+  const filtered = tours.filter(t =>
+    t.id.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div className="admin-table-wrapper">
+      <div className="admin-toolbar">
+        <div className="admin-search">
+          <Search size={16} />
+          <input
+            placeholder="Поиск по ID тура..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+        </div>
+        <div style={{ fontSize: "0.8rem", color: "#888", marginLeft: "auto", marginRight: "8px" }}>
+          Всего: {tours.length} туров
+        </div>
+        <button className="admin-refresh-btn" onClick={load}><RefreshCw size={16} /></button>
+      </div>
+
+      {loading ? <AdminSkeleton /> : (
+        <div className="admin-cards">
+          {filtered.length === 0 ? (
+            <div className="admin-empty">Туры не найдены</div>
+          ) : filtered.map(tour => {
+            const isEditing  = editingId === tour.id;
+            const isExpanded = expandedId === tour.id;
+            const type       = getTourType(tour);
+
+            return (
+              <div key={tour.id} className="tour-list-card">
+
+                {/* Заголовок */}
+                <div className="tour-list-header">
+                  <div className="tour-list-info">
+                    <div className="tour-list-title">{tour.id}</div>
+                    <div className="tour-list-meta">
+                      <span className={`type-badge ${type === "multi" ? "eco" : "group"}`}>
+                        {type === "multi" ? "📅 Многодневный" : type === "single" ? "🗓 Однодневный" : "❓"}
+                      </span>
+                      {tour.itinerary_ids && <span>📍 {tour.itinerary_ids.length} мест</span>}
+                      {tour.itinerary    && <span>🗺 {tour.itinerary.length} дн.</span>}
+                      <span style={{ color: tour.features ? "#22c55e" : "#ef4444" }}>
+                        {tour.features ? "✓ features" : "✗ features"}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="tour-list-actions">
+                    <button className="admin-edit-btn" onClick={() => isEditing ? cancelEdit() : startEdit(tour)}>
+                      <Edit2 size={14} />
+                    </button>
+                    <button className="admin-delete-btn" onClick={() => deleteTour(tour.id)}>
+                      <Trash2 size={14} />
+                    </button>
+                    <button className="admin-expand-btn" onClick={() => setExpandedId(isExpanded ? null : tour.id)}>
+                      {isExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Раскрытая панель */}
+                {isExpanded && (
+                  <div className="tour-list-expand">
+                    {isEditing ? (
+                      <div className="tour-edit-fields">
+
+                        {editData.itinerary_ids !== null && (
+                          <ItineraryIdsEditor
+                            value={editData.itinerary_ids}
+                            onChange={val => setEditData(p => ({ ...p, itinerary_ids: val }))}
+                          />
+                        )}
+
+                        {editData.itinerary !== null && (
+                          <ItineraryEditor
+                            value={editData.itinerary}
+                            onChange={val => setEditData(p => ({ ...p, itinerary: val }))}
+                          />
+                        )}
+
+                        <FeaturesEditor
+                          value={editData.features}
+                          onChange={val => setEditData(p => ({ ...p, features: val }))}
+                        />
+
+                        <div className="booking-edit-actions">
+                          <button className="admin-save-btn" onClick={saveEdit}>
+                            <Save size={14} /> Сохранить
+                          </button>
+                          <button className="admin-cancel-btn" onClick={cancelEdit}>Отмена</button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="tour-detail-view">
+                        {tour.itinerary_ids && (
+                          <div className="tour-detail-row">
+                            <span className="detail-label">itinerary_ids:</span>
+                            <div className="itinerary-preview">
+                              {tour.itinerary_ids.map((id, i) => (
+                                <div key={i} className="itinerary-preview-step">
+                                  <span className="step-time">{i + 1}</span>
+                                  <span>{id}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {tour.itinerary && (
+                          <div className="tour-detail-row">
+                            <span className="detail-label">itinerary:</span>
+                            <div className="itinerary-preview">
+                              {tour.itinerary.map((dayGroup, i) => (
+                                <div key={i} className="itinerary-preview-step">
+                                  <span className="step-time">День {dayGroup.day}</span>
+                                  <span>{dayGroup.ids?.join(", ")}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {tour.features && (
+                          <>
+                            <div className="tour-detail-row">
+                              <span className="detail-label">Включено (EN):</span>
+                              <span>{tour.features?.include?.en?.join(", ")}</span>
+                            </div>
+                            <div className="tour-detail-row">
+                              <span className="detail-label">Не включено (EN):</span>
+                              <span>{tour.features?.exclude?.en?.join(", ")}</span>
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
+
 // ─── ТАБЛИЦА ОТЕЛЕЙ (правильные колонки) ─────────────────────
 function HotelsTable() {
   const [hotels, setHotels]       = useState([]);
@@ -1084,7 +1466,7 @@ function AdminSkeleton() {
 
 // ─── КОНСТАНТЫ ───────────────────────────────────────────────
 const LANGUAGES = [
-  { code: "en", label: "EN 🇬🇧" },
+  { code: "en", label: "EN us" },
   { code: "ru", label: "RU 🇷🇺" },
   { code: "hy", label: "HY 🇦🇲" },
 ];

@@ -10,6 +10,8 @@ import emailjs from '@emailjs/browser';
 import customTourBuilderImg from "./images/Custom-Tour-Builder.webp"
 import "./SpecialPage.css";
 
+import SEO from "../Components/SEO";
+
 function SpecialPage() {
   const { t } = useTranslation();
   const location = useLocation();
@@ -144,6 +146,11 @@ function SpecialPage() {
 
   return (
     <div className="special-page">
+      <SEO
+        title="Special Offers"
+        description="Special tour offers and deals from Parmani Tour."
+        url="/special"
+      />
       <NavbarCustom />
 
       {/* HERO SECTION */}
