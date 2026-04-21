@@ -133,7 +133,7 @@ function ToursPageFirstPart() {
     <div className="tours-page-wrapper">
       <div className="tours-hero-simple">
         <img src={ToursPageHeroImg} alt="Hero" className="hero-bg-img" fetchpriority="high" />
-        <div className="hero-content text-center">
+        <div className="hero-content text-center mt-4">
           <h1 className="hero-title">{t('tour_info_page.title')}</h1>
           <p className="hero-subtitle">{t('tour_info_page.subtitle')}</p>
           <div className="search-box-container mx-auto">
@@ -150,7 +150,7 @@ function ToursPageFirstPart() {
         </div>
       </div>
  
-      <Container className="py-5">
+      <Container className="py-3">
         <div className="tours-list-header mb-4">
           <div>
             <h2 className="tours-list-title">{t('tour_info_page.all_tours_title', 'All Tours')}</h2>
@@ -164,7 +164,7 @@ function ToursPageFirstPart() {
           </div>
         </div>
  
-        <div className="filter-section-wrapper mb-5" ref={toursTopRef}>
+        <div className="filter-section-wrapper mb-4" ref={toursTopRef}>
           <div className="d-flex flex-wrap justify-content-between align-items-end gap-3">
             <div className="filter-left">
               <div className="category-pills d-flex flex-wrap gap-2">

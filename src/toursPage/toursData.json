@@ -3,7 +3,6 @@
     "id": "gyumri-cultural-tour",
     "category": "cultural",
     "routeMap": "/TourImages/shirak_region/gyumri-city/route-map.webp",
-    "routeSummary": "Yerevan → Gyumri → Yerevan",
     "imageUrl": "/TourImages/shirak_region/gyumri-city/2days_main.webp",
     "duration": "12",
     "durationUnit": "hours",
@@ -18,26 +17,18 @@
       "ru": "Знакомство с культурной столицей Армении через её церкви, исторические кварталы, музеи и неповторимую атмосферу Гюмри.",
       "hy": "Բացահայտեք Հայաստանի մշակութային մայրաքաղաք Գյումրին՝ իր եկեղեցիներով, պատմական թաղամասերով, թանգարաններով և յուրահատուկ քաղաքային մթնոլորտով։"
     },
-
-    "itineraryIds": ["yot_verk", "dzitoghtsyan", "amenaprkich", "frunzik_museum", "gyumri_courtyard", "gyumri_kumayri"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide service", "City walking tour", "Photo stops"],
-        "ru": ["Транспорт", "Услуги профессионального гида", "Пешеходная экскурсия", "Фото-остановки"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Քաղաքային քայլարշավ", "Լուսանկարման կանգառներ"]
-      },
-      "exclude": {
-        "en": ["Museum entrance tickets", "Lunch", "Personal expenses"],
-        "ru": ["Билеты в музеи", "Обед", "Личные расходы"],
-        "hy": ["Թանգարանների մուտքի տոմսեր", "Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "36000"},
-          {"vehicles": "Miniven", "price": "45000"}
+          {
+            "vehicles": "Sedan",
+            "price": "36000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "45000"
+          }
         ],
         "ticket_per_person": "3000"
       }
@@ -48,7 +39,6 @@
     "id": "khorvirap-areni-noravank",
     "category": "cultural",
     "routeMap": "/TourImages/vayots_dzor_region/areni_route/route-map.webp",
-    "routeSummary": "Yerevan → Khor Virap → Areni Cave → Areni Winery → Noravank → Yerevan",
     "imageUrl": "/TourImages/vayots_dzor_region/areni_route/main.webp",
     "duration": "9-10",
     "durationUnit": "hours",
@@ -63,26 +53,18 @@
       "ru": "Насыщенное путешествие, объединяющее религиозное наследие Армении, одну из древнейших винодельческих традиций мира, археологические открытия и впечатляющие природные ландшафты.",
       "hy": "Մշակութային և զգայական հագեցած ուղևորություն՝ համադրելով Հայաստանի կրոնական ժառանգությունը, հնագույն գինեգործությունը և տպավորիչ բնությունը։"
     },
-
-    "itineraryIds": ["khor_virap", "areni_cave", "areni_winery", "noravank"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide", "Wine tasting", "Cultural tour"],
-        "ru": ["Транспорт", "Профессиональный гид", "Дегустация вина", "Культурный тур"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Գինու համտես", "Մշակութային տուր"]
-      },
-      "exclude": {
-        "en": ["Lunch", "Personal expenses"],
-        "ru": ["Обед", "Личные расходы"],
-        "hy": ["Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "40000"},
-          {"vehicles": "Miniven", "price": "50000"}
+          {
+            "vehicles": "Sedan",
+            "price": "40000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "50000"
+          }
         ],
         "ticket_per_person": "3500"
       }
@@ -91,9 +73,11 @@
 
   {
     "id": "amberd-saghmosavank-kasakh",
-    "category": ["nature", "cultural"],
+    "category": [
+      "nature",
+      "cultural"
+    ],
     "routeMap": "/TourImages/aragatsotn_region/amberd_route/route-map.webp",
-    "routeSummary": "Yerevan → Amberd → Kari Lake → Saghmosavank → Kasakh Gorge → Yerevan",
     "imageUrl": "/TourImages/aragatsotn_region/amberd_route/main.webp",
     "duration": "8",
     "durationUnit": "hours",
@@ -108,25 +92,18 @@
       "ru": "Высокогорное путешествие по склонам Арагаца, сочетающее средневековое наследие, альпийские пейзажи и впечатляющие виды каньона.",
       "hy": "Բարձրադիր ուղևորություն Արագածի լանջերով՝ համադրելով միջնադարյան ժառանգությունը, ալպիական բնությունը և տպավորիչ կիրճային տեսարանները։"
     },
-    "itineraryIds": ["amberd", "kari_lake", "saghmosavank", "kasakh_gorge"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide", "Mountain landscapes", "Photo stops"],
-        "ru": ["Транспорт", "Профессиональный гид", "Горные пейзажи", "Остановки для фото"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Լեռնային տեսարաններ", "Լուսանկարման կանգառներ"]
-      },
-      "exclude": {
-        "en": ["Lunch", "Personal expenses"],
-        "ru": ["Обед", "Личные расходы"],
-        "hy": ["Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "30000"},
-          {"vehicles": "Miniven", "price": "35000"}
+          {
+            "vehicles": "Sedan",
+            "price": "30000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "35000"
+          }
         ],
         "ticket_per_person": "1400"
       }
@@ -135,9 +112,11 @@
 
   {
     "id": "dvin-khorvirap-angels-tiknuni",
-    "category": ["cultural", "nature"],
+    "category": [
+      "cultural",
+      "nature"
+    ],
     "routeMap": "/TourImages/ararat_region/dvin_route/route-map.webp",
-    "routeSummary": "Yerevan → Dvin → Khor Virap → Angels Gorge → Tiknuni Fortress → Yerevan",
     "imageUrl": "/TourImages/ararat_region/dvin_route/main.webp",
     "duration": "8-9",
     "durationUnit": "hours",
@@ -152,25 +131,18 @@
       "ru": "Путешествие по древней столице Армении, знаковым монастырям, скрытым ущельям и малоизвестным крепостям — погружение в раннюю историю страны.",
       "hy": "Ուղևորություն Հայաստանի հին մայրաքաղաքով, հայտնի վանքերով և քիչ հայտնի կիրճերով ու բերդերով՝ բացահայտելով երկրի վաղ պատմությունը։"
     },
-    "itineraryIds": ["dvin", "khor_virap", "angels_gorge", "tiknuni_fortress"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide", "Historical tour", "Photo stops"],
-        "ru": ["Транспорт", "Профессиональный гид", "Исторический тур", "Остановки для фото"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Պատմական տուր", "Լուսանկարման կանգառներ"]
-      },
-      "exclude": {
-        "en": ["Lunch", "Personal expenses"],
-        "ru": ["Обед", "Личные расходы"],
-        "hy": ["Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "30000"},
-          {"vehicles": "Miniven", "price": "40000"}
+          {
+            "vehicles": "Sedan",
+            "price": "30000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "40000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -179,9 +151,11 @@
 
   {
     "id": "karahunj-shaki-khndzoresk",
-    "category": ["nature", "cultural"],
+    "category": [
+      "nature",
+      "cultural"
+    ],
     "routeMap": "/TourImages/syunik_region/karahunj_route/route-map.webp",
-    "routeSummary": "Yerevan → Karahunj → Shaki Waterfall → Khndzoresk → Yerevan",
     "imageUrl": "/TourImages/syunik_region/karahunj_route/main.webp",
     "duration": "12-13",
     "durationUnit": "hours",
@@ -196,25 +170,18 @@
       "ru": "Насыщенное путешествие по самым загадочным и впечатляющим местам Армении: доисторический комплекс, мощная природа и уникальное пещерное поселение, отражающее жизнь людей на протяжении веков.",
       "hy": "Խորը և բազմաբովանդակ ուղևորություն Հայաստանի ամենախորհրդավոր և տպավորիչ վայրերով՝ նախապատմական հուշարձաններ, հզոր բնություն և յուրահատուկ քարանձավային բնակավայր։"
     },
-    "itineraryIds": ["carahunge", "shaki_waterfall", "khndzoresk_swinging_bridge", "old_khndzoresk"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide", "Adventure walk", "Photo stops"],
-        "ru": ["Транспорт", "Профессиональный гид", "Пешие прогулки", "Остановки для фото"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Քայլարշավ", "Լուսանկարման կանգառներ"]
-      },
-      "exclude": {
-        "en": ["Lunch", "Personal expenses"],
-        "ru": ["Обед", "Личные расходы"],
-        "hy": ["Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "80000"},
-          {"vehicles": "Miniven", "price": "95000"}
+          {
+            "vehicles": "Sedan",
+            "price": "80000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "95000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -225,7 +192,6 @@
     "id": "bjni-tsaghkadzor",
     "category": "cultural",
     "routeMap": "/TourImages/kotayq_region/bjni-tsaghkadzor/BjniTsaghkadzorTourLine.webp",
-    "routeSummary": "Yerevan → Bjni → Tsaghkadzor → Yerevan",
     "imageUrl": "/TourImages/kotayq_region/bjni-tsaghkadzor/bjni-tsaghkadzor.webp",
     "duration": "8",
     "durationUnit": "hours",
@@ -240,36 +206,28 @@
       "ru": "Откройте для себя средневековые крепости, древние монастыри и горный курорт Цахкадзор в рамках однодневного культурного путешествия.",
       "hy": "Բացահայտեք միջնադարյան բերդերը, հնագույն վանքերը և Ծաղկաձորի լեռնային հանգստավայրը մեկօրյա մշակութային և գեղատեսիլ ուղևորության ընթացքում։"
     },
-    "itineraryIds": ["bjni_fortress", "bjni_astvatsatsin_church", "makravank_hrazdan", "orbeli_brothers_house_museum", "kecharis_monastery", "tsaghkadzor_ropeway"],
-    "features": {
-      "include": {
-        "en": ["Comfortable transportation", "Professional guide service", "Hotel pickup and drop-off", "Bottled water"],
-        "ru": ["Комфортабельный транспорт", "Услуги профессионального гида", "Трансфер из/в отель", "Бутилированная вода"],
-        "hy": ["Հարմարավետ տրանսպորտ", "Պրոֆեսիոնալ գիդի ծառայություն", "Տրանսֆեր հյուրանոցից և հյուրանոց", "Շշալցված ջուր"]
-      },
-      "exclude": {
-        "en": ["Lunch", "Ropeway ticket", "Personal expenses"],
-        "ru": ["Обед", "Билет на канатную дорогу", "Личные расходы"],
-        "hy": ["Ճաշ", "Ճոպանուղու տոմս", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "30000"},
-          {"vehicles": "Miniven", "price": "40000"}
+          {
+            "vehicles": "Sedan",
+            "price": "30000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "40000"
+          }
         ],
         "ticket_per_person": "5000"
       }
     }
-  }, 
+  },
 
   {
     "id": "amrakits-hnevank-arevatsagi-dzor",
     "category": "nature",
     "routeMap": "/TourImages/lori_region/amrakits-hnevank/route-map.webp",
-    "routeSummary": "Yerevan → Amrakits → Hnevank → Arevatsagi Dzor → Yerevan",
     "imageUrl": "/TourImages/lori_region/amrakits-hnevank/main.webp",
     "duration": "11",
     "durationUnit": "hours",
@@ -284,25 +242,18 @@
       "ru": "Живописный тур с элементами хайкинга по средневековым монастырям Лори и впечатляющему ущелью Аревацаги с пикником на природе.",
       "hy": "Գեղատեսիլ քայլարշավային տուր Լոռու միջնադարյան վանքերով և տպավորիչ Արեւածագի ձորով՝ բնության գրկում պիկնիկով։"
     },
-    "itineraryIds": ["amrakits_church", "hnevank_monastery", "arevatsagi_gorge_hiking", "arevatsagi_gorge"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide", "Hiking сопровождение", "Picnic organization"],
-        "ru": ["Транспорт", "Услуги профессионального гида", "Сопровождение во время хайкинга", "Организация пикника"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Քայլարշավի ուղեկցություն", "Պիկնիկի կազմակերպում"]
-      },
-      "exclude": {
-        "en": ["Personal expenses", "Additional meals"],
-        "ru": ["Личные расходы", "Дополнительное питание"],
-        "hy": ["Անձնական ծախսեր", "Լրացուցիչ սնունդ"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "40000"},
-          {"vehicles": "Miniven", "price": "50000"}
+          {
+            "vehicles": "Sedan",
+            "price": "40000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "50000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -313,7 +264,6 @@
     "id": "ereruyk-gyumri-tour",
     "category": "cultural",
     "routeMap": "/TourImages/shirak_region/ereruyk-gyumri/route-map.webp",
-    "routeSummary": "Yerevan → Ereruyk → Akhuryan Reservoir → Sev Berd → Gyumri → Yerevan",
     "imageUrl": "/TourImages/shirak_region/ereruyk-gyumri/main.webp",
     "duration": "10-11",
     "durationUnit": "hours",
@@ -328,36 +278,28 @@
       "ru": "Путешествие к памятникам раннехристианской архитектуры, стратегическим крепостям и культурной столице Армении — Гюмри.",
       "hy": "Ուղևորություն դեպի վաղքրիստոնեական ճարտարապետություն, ռազմավարական բերդեր և Հայաստանի մշակութային մայրաքաղաք՝ Գյումրի։"
     },
-    "itineraryIds": ["ereruyk_basilica", "akhuryan_reservoir", "sev_berd", "gyumri_city_tour"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide service", "City walking tour", "Photo stops"],
-        "ru": ["Транспорт", "Услуги профессионального гида", "Пешеходная экскурсия по городу", "Остановки для фото"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդի ծառայություն", "Քայլարշավային քաղաքային տուր", "Լուսանկարման կանգառներ"]
-      },
-      "exclude": {
-        "en": ["Museum entrance tickets", "Lunch", "Personal expenses"],
-        "ru": ["Входные билеты в музеи", "Обед", "Личные расходы"],
-        "hy": ["Թանգարանների մուտքի տոմսեր", "Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "36000"},
-          {"vehicles": "Miniven", "price": "45000"}
+          {
+            "vehicles": "Sedan",
+            "price": "36000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "45000"
+          }
         ],
         "ticket_per_person": "3000"
       }
     }
   },
-  
+
   {
     "id": "garni-geghard-charents-arch",
     "category": "cultural",
     "routeMap": "/TourImages/kotayq_region/garni-geghard/route-map.webp",
-    "routeSummary": "Yerevan → Charents Arch → Geghard → Garni → Garni Gorge → Yerevan",
     "imageUrl": "/TourImages/kotayq_region/garni-geghard/main.webp",
     "duration": "7-8",
     "durationUnit": "hours",
@@ -372,25 +314,18 @@
       "ru": "Погружение в языческое прошлое Армении, скальные монастыри и впечатляющие каньонные пейзажи в рамках одного насыщенного путешествия.",
       "hy": "Բացահայտեք Հայաստանի հեթանոսական անցյալը, ժայռափոր վանքերը և տպավորիչ կիրճային բնապատկերները մեկ հագեցած ուղևորության ընթացքում։"
     },
-    "itineraryIds": ["charents_arch", "geghard_monastery", "garni_temple", "garni_gorge_symphony_of_tones"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide service", "Photo stops", "Bottled water"],
-        "ru": ["Транспорт", "Услуги профессионального гида", "Остановки для фото", "Бутилированная вода"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդի ծառայություն", "Լուսանկարման կանգառներ", "Շշալցված ջուր"]
-      },
-      "exclude": {
-        "en": ["Entrance tickets", "Lunch", "Personal expenses"],
-        "ru": ["Входные билеты", "Обед", "Личные расходы"],
-        "hy": ["Մուտքի տոմսեր", "Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "2500"
       }
@@ -401,7 +336,6 @@
     "id": "gyumri-2day-tour",
     "category": "cultural",
     "routeMap": "/TourImages/shirak_region/ereruyk-gyumri/route-map.webp",
-    "routeSummary": "Yerevan → Gyumri → Yerevan",
     "imageUrl": "/TourImages/shirak_region/gyumri-city/main.webp",
     "duration": "2",
     "durationUnit": "days",
@@ -416,39 +350,28 @@
       "ru": "Двухдневное путешествие по Гюмри и окрестностям с посещением исторических церквей, музеев, живописных мест и культурных мероприятий.",
       "hy": "Երկօրյա շրջագայություն Գյումրիում և հարակից վայրերում՝ պատմական եկեղեցիներ, թանգարաններ, բնական տեսարժան վայրեր և մշակութային փորձառություններ։"
     },
-    "itinerary": [
-      { "day": 1, "ids": ["ereruyk_basilica", "akhuryan_reservoir", "gyumri_city_tour", "garni_gorge_symphony_of_tones", "gyumri_evening_cultural_event"] },
-      { "day": 2, "ids": ["sev_berd", "frunzik_museum", "marmarashen_monastery"] }
-    ],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide service", "City walking tours", "Picnic / breakfast in nature", "Photo stops"],
-        "ru": ["Транспорт", "Услуги профессионального гида", "Пешеходные экскурсии", "Пикник/завтрак на природе", "Фото-остановки"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Քաղաքային քայլարշավներ", "Պիկնիկ/նախաճաշ բնության մեջ", "Լուսանկարման կանգառներ"]
-      },
-      "exclude": {
-        "en": ["Museum entrance tickets", "Evening event tickets", "Lunch", "Personal expenses"],
-        "ru": ["Билеты в музеи", "Билеты на вечерние мероприятия", "Обед", "Личные расходы"],
-        "hy": ["Թանգարանների մուտքի տոմսեր", "Երեկոյան միջոցառումների տոմսեր", "Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
     }
   },
-  
+
   {
     "id": "dilijan",
     "category": "cultural",
     "routeMap": "/TourImages/tavush_region/dilijan/route-map.webp",
-    "routeSummary": "Yerevan → Dilijan → Yerevan",
     "imageUrl": "/TourImages/tavush_region/dilijan/haghartsin.webp",
     "duration": "8",
     "durationUnit": "hours",
@@ -463,25 +386,18 @@
       "ru": "Исследуйте природу и культуру Дилижана: исторические монастыри, живописные озера, тропы национального парка и активный отдых на свежем воздухе.",
       "hy": "Բացահայտեք Դիլիջանի բնությունն ու մշակույթը՝ պատմական վանքեր, գեղեցիկ լճեր, ազգային պարկի ճամփորդություններ և բացօթյա ակտիվ հանգիստ։"
     },
-    "itineraryIds": ["haghartsin_monastery", "dilijan_national_park", "parz_lich", "old_dilijan"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide service", "Nature & city walks", "Outdoor activities", "Photo stops"],
-        "ru": ["Транспорт", "Услуги профессионального гида", "Прогулки по природе и городу", "Активный отдых на свежем воздухе", "Фото-остановки"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Բնության և քաղաքային քայլարշավներ", "Բացօթյա ակտիվություններ", "Լուսանկարման կանգառներ"]
-      },
-      "exclude": {
-        "en": ["Park entrance fees", "Activity fees", "Lunch", "Personal expenses"],
-        "ru": ["Вход в парк", "Оплата активностей", "Обед", "Личные расходы"],
-        "hy": ["Պարկի մուտքի տոմսեր", "Ակտիվությունների վճար", "Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "40000"},
-          {"vehicles": "Miniven", "price": "50000"}
+          {
+            "vehicles": "Sedan",
+            "price": "40000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "50000"
+          }
         ],
         "ticket_per_person": "1000"
       }
@@ -490,9 +406,11 @@
 
   {
     "id": "sevan-gosh",
-    "category": ["cultural", "nature"],
+    "category": [
+      "cultural",
+      "nature"
+    ],
     "routeMap": "/TourImages/tavush_region/gosh/route-map.webp",
-    "routeSummary": "Yerevan → Sevan → Gosh → Yerevan",
     "imageUrl": "/TourImages/tavush_region/gosh/sevan.webp",
     "duration": "8-9",
     "durationUnit": "hours",
@@ -507,25 +425,18 @@
       "ru": "Посещение озера Севан, монастыря Севанаванк и природы Тавуша с Гошаванком и озером Гош.",
       "hy": "Այցելություն Սևանա լիճ, Սևանավանք և Տավուշի բնություն՝ Գոշավանք և Գոշի լիճ։"
     },
-    "itineraryIds": ["lake_sevan", "sevanavank_monastery", "goshavank_monastery", "gosh_lake"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide service", "Nature walks", "Photo stops"],
-        "ru": ["Транспорт", "Услуги профессионального гида", "Прогулки на природе", "Фото-остановки"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Բնության զբոսանքներ", "Լուսանկարման կանգառներ"]
-      },
-      "exclude": {
-        "en": ["Activity fees", "Lunch", "Personal expenses"],
-        "ru": ["Оплата активностей", "Обед", "Личные расходы"],
-        "hy": ["Ակտիվությունների վճար", "Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "40000"},
-          {"vehicles": "Miniven", "price": "50000"}
+          {
+            "vehicles": "Sedan",
+            "price": "40000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "50000"
+          }
         ],
         "ticket_per_person": "5000"
       }
@@ -536,7 +447,6 @@
     "id": "haghpat-sanahin-zarni-parni",
     "category": "cultural",
     "routeMap": "/TourImages/lori_region/haghpat-sanahin/route-map.webp",
-    "routeSummary": "Yerevan → Haghpat → Zarni-Parni Cave Complex → Sanahin → Yerevan",
     "imageUrl": "/TourImages/lori_region/haghpat-sanahin/zarni-parni.webp",
     "duration": "10 -11",
     "durationUnit": "hours",
@@ -551,25 +461,18 @@
       "ru": "Путешествие к двум монастырям из списка ЮНЕСКО и уникальному пещерному комплексу Зарни-Парни, скрытому в скалах Лорийского ущелья.",
       "hy": "Ուղևորություն դեպի ՅՈՒՆԵՍԿՕ-ի ցանկում ընդգրկված երկու վանքեր և Զարնի-Պարնի եզակի քարանձավային համալիրը Լոռու կիրճում։"
     },
-    "itineraryIds": ["haghpat_monastery", "zarni_parni", "sanahin_monastery"],
-    "features": {
-      "include": {
-        "en": ["Comfortable transportation", "Professional guide service", "UNESCO heritage tour", "Photo stops"],
-        "ru": ["Комфортабельный транспорт", "Услуги профессионального гида", "Экскурсия по объектам ЮНЕСКО", "Остановки для фотографий"],
-        "hy": ["Հարմարավետ տրանսպորտ", "Պրոֆեսիոնալ գիդի ծառայություն", "ՅՈՒՆԵՍԿՕ ժառանգության տուր", "Լուսանկարման կանգառներ"]
-      },
-      "exclude": {
-        "en": ["Lunch", "Personal expenses"],
-        "ru": ["Обед", "Личные расходы"],
-        "hy": ["Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
-        "budget": {
+    "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "55000"},
-          {"vehicles": "Miniven", "price": "65000"}
+          {
+            "vehicles": "Sedan",
+            "price": "55000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "65000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -580,7 +483,6 @@
     "id": "zarni-parni-haghpat-akhtala-aramyants",
     "category": "cultural",
     "routeMap": "/TourImages/lori_region/haghpat-akhtala/route-map.webp",
-    "routeSummary": "Yerevan → Zarni-Parni → Haghpat → Akhtala → Aramyants → Yerevan",
     "imageUrl": "/TourImages/lori_region/haghpat-akhtala/main.webp",
     "duration": "12",
     "durationUnit": "hours",
@@ -595,25 +497,18 @@
       "ru": "Культурное путешествие по Лорийскому региону с посещением пещерного комплекса, монастыря ЮНЕСКО, средневековой крепости и исторического здания XIX века.",
       "hy": "Մշակութային ճանապարհորդություն Լոռու մարզով՝ ներառելով քարանձավային համալիր, ՅՈՒՆԵՍԿՕ-ի վանք, միջնադարյան բերդային համալիր և պատմական շինություն։"
     },
-    "itineraryIds": ["zarni_parni", "haghpat_monastery", "akhtala_monastery", "aramyants_castle"],
-    "features": {
-      "include": {
-        "en": ["Comfortable transportation", "Professional guide service", "Historical tour", "Photo stops"],
-        "ru": ["Комфортабельный транспорт", "Услуги профессионального гида", "Историческая экскурсия", "Остановки для фото"],
-        "hy": ["Հարմարավետ տրանսպորտ", "Պրոֆեսիոնալ գիդի ծառայություն", "Պատմական տուր", "Լուսանկարման կանգառներ"]
-      },
-      "exclude": {
-        "en": ["Lunch", "Personal expenses"],
-        "ru": ["Обед", "Личные расходы"],
-        "hy": ["Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
-        "budget": {
+    "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "65000"},
-          {"vehicles": "Miniven", "price": "75000"}
+          {
+            "vehicles": "Sedan",
+            "price": "65000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "75000"
+          }
         ],
         "ticket_per_person": "5000"
       }
@@ -622,9 +517,11 @@
 
   {
     "id": "kobayr-odzun-horomayr-ardvi",
-    "category": ["cultural", "religious"],
+    "category": [
+      "cultural",
+      "religious"
+    ],
     "routeMap": "/TourImages/lori_region/debed_monasteries/route-map.webp",
-    "routeSummary": "Yerevan → Kobayr → Odzun → Horomayr → Ardvi → Yerevan",
     "imageUrl": "/TourImages/lori_region/debed_monasteries/odzun.webp",
     "duration": "10-11",
     "durationUnit": "hours",
@@ -639,25 +536,18 @@
       "ru": "Путешествие по монастырям Лорийского региона, расположенным вдоль живописного каньона реки Дебед. Тур сочетает средневековую архитектуру, древнюю христианскую историю и впечатляющие горные пейзажи.",
       "hy": "Ուղևորություն Լոռու մարզի վանքերով՝ Դեբեդի կիրճի երկայնքով։ Տուրը համադրում է միջնադարյան ճարտարապետությունը, քրիստոնեական ժառանգությունը և տպավորիչ լեռնային բնապատկերները։"
     },
-    "itineraryIds": ["kobayr_monastery", "odzun_church", "horomayr_monastery", "ardvi_monastery"],
-    "features": {
-      "include": {
-        "en": ["Comfortable transportation", "Professional guide service", "Historical monastery tour", "Photo stops"],
-        "ru": ["Комфортабельный транспорт", "Услуги профессионального гида", "Экскурсия по монастырям", "Остановки для фотографий"],
-        "hy": ["Հարմարավետ տրանսպորտ", "Պրոֆեսիոնալ գիդի ծառայություն", "Վանական տուր", "Լուսանկարման կանգառներ"]
-      },
-      "exclude": {
-        "en": ["Lunch", "Personal expenses"],
-        "ru": ["Обед", "Личные расходы"],
-        "hy": ["Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -668,7 +558,6 @@
     "id": "kobayr-dsegh-tumanyan-tsover-lake",
     "category": "cultural",
     "routeMap": "/TourImages/lori_region/tumanyan_route/route-map.webp",
-    "routeSummary": "Yerevan → Kobayr → Dsegh (Tumanyan Museum) → Tsover Lake → Yerevan",
     "imageUrl": "/TourImages/lori_region/tumanyan_route/tsover-lake.webp",
     "duration": "10",
     "durationUnit": "hours",
@@ -683,25 +572,18 @@
       "ru": "Культурно-природный тур по Лорийскому региону, объединяющий средневековые монастыри, наследие великого армянского поэта Ованеса Туманяна и живописные горные пейзажи.",
       "hy": "Մշակութային և բնության տուր Լոռու մարզում՝ համադրելով միջնադարյան վանքերը, մեծ հայ բանաստեղծ Հովհաննես Թումանյանի ժառանգությունը և խաղաղ լեռնային բնապատկերները։"
     },
-    "itineraryIds": ["kobayr_monastery", "hovhannes_tumanyan_house-museum", "tsover_lake_dsegh"],
-    "features": {
-      "include": {
-        "en": ["Comfortable transportation", "Professional guide service", "Museum visit", "Photo stops"],
-        "ru": ["Комфортабельный транспорт", "Услуги профессионального гида", "Посещение музея", "Остановки для фотографий"],
-        "hy": ["Հարմարավետ տրանսպորտ", "Պրոֆեսիոնալ գիդի ծառայություն", "Թանգարանի այցելություն", "Լուսանկարման կանգառներ"]
-      },
-      "exclude": {
-        "en": ["Lunch", "Personal expenses"],
-        "ru": ["Обед", "Личные расходы"],
-        "hy": ["Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "52000"},
-          {"vehicles": "Miniven", "price": "65000"}
+          {
+            "vehicles": "Sedan",
+            "price": "52000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "65000"
+          }
         ],
         "ticket_per_person": "1000"
       }
@@ -712,7 +594,6 @@
     "id": "ijevan-gastro-wine-tour",
     "category": "gastronomic",
     "routeMap": "/TourImages/tavush_region/ijevan_gastro/route-map.webp",
-    "routeSummary": "Yerevan → Ijevan → Makaravank → Ijevan Dendropark → Wine & Gastronomy Experience → Yerevan",
     "imageUrl": "/TourImages/tavush_region/ijevan_gastro/dendropark.webp",
     "duration": "10",
     "durationUnit": "hours",
@@ -727,25 +608,18 @@
       "ru": "Гастрономическое и культурное путешествие в Тавуш: монастыри, зелёные леса, традиционная кухня, гата из тонира и дегустация вина в Иджеване.",
       "hy": "Գաստրո և մշակութային ուղևորություն Տավուշ՝ ներառելով վանքեր, անտառներ, ավանդական խոհանոց, թոնրի գաթա և գինու համտես։"
     },
-    "itineraryIds": ["makaravank_monastery", "ijevan_dendropark", "ijevan_gata_local_cuisine", "ijevan_winery"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide", "Wine tasting", "Gastro experience", "Photo stops"],
-        "ru": ["Транспорт", "Профессиональный гид", "Дегустация вина", "Гастрономический опыт", "Остановки для фото"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Գինու համտես", "Գաստրո փորձառություն", "Լուսանկարման կանգառներ"]
-      },
-      "exclude": {
-        "en": ["Additional meals", "Personal expenses"],
-        "ru": ["Дополнительное питание", "Личные расходы"],
-        "hy": ["Լրացուցիչ սնունդ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "43000"},
-          {"vehicles": "Miniven", "price": "53000"}
+          {
+            "vehicles": "Sedan",
+            "price": "43000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "53000"
+          }
         ],
         "ticket_per_person": "6500"
       }
@@ -754,9 +628,11 @@
 
   {
     "id": "lori-berd-mayori-hnevank",
-    "category": ["nature", "cultural"],
+    "category": [
+      "nature",
+      "cultural"
+    ],
     "routeMap": "/TourImages/lori_region/lori_route/route-map.webp",
-    "routeSummary": "Yerevan → Lori Berd → Mayori Gorge → Hnevank → Yerevan",
     "imageUrl": "/TourImages/lori_region/amrakits-hnevank/hnevank.webp",
     "duration": "10",
     "durationUnit": "hours",
@@ -771,25 +647,18 @@
       "ru": "Маршрут по менее туристическим местам Лорийского региона: средневековая крепость, уединённое ущелье и посещение монастыря на закате.",
       "hy": "Ուղևորություն Լոռու քիչ հայտնի վայրերով՝ համադրելով միջնադարյան բերդը, խաղաղ կիրճը և մայրամուտի այցելությունը վանք։"
     },
-    "itineraryIds": ["lori_berd_fortress", "mayori_gorge", "hnevank_monastery"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide", "Picnic stop", "Sunset experience"],
-        "ru": ["Транспорт", "Профессиональный гид", "Пикник", "Закат"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Պիկնիկ", "Մայրամուտ"]
-      },
-      "exclude": {
-        "en": ["Lunch", "Personal expenses"],
-        "ru": ["Обед", "Личные расходы"],
-        "hy": ["Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "43000"},
-          {"vehicles": "Miniven", "price": "53000"}
+          {
+            "vehicles": "Sedan",
+            "price": "43000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "53000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -800,7 +669,6 @@
     "id": "ejmiatsin-zvartnots-metsamor-voskevaz",
     "category": "cultural",
     "routeMap": "/TourImages/armavir_region/ejmiatsin_route/route-map.webp",
-    "routeSummary": "Yerevan → Etchmiadzin → Zvartnots → Metsamor → Voskevaz Winery → Yerevan",
     "imageUrl": "/TourImages/armavir_region/ejmiatsin_route/zvartnots.webp",
     "duration": "8",
     "durationUnit": "hours",
@@ -815,25 +683,18 @@
       "ru": "Культурное путешествие по духовному центру Армении, древним архитектурным памятникам, следам ранней цивилизации и традициям виноделия.",
       "hy": "Մշակութային ուղևորություն Հայաստանի հոգևոր կենտրոնով, հնագույն ճարտարապետությամբ, վաղ քաղաքակրթության հետքերով և գինեգործական ավանդույթներով։"
     },
-    "itineraryIds": ["etchmiadzin_cathedral", "zvartnots_cathedral", "metsamor_site", "voskevaz_winery"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide", "Cultural tour", "Wine tasting"],
-        "ru": ["Транспорт", "Профессиональный гид", "Культурная экскурсия", "Дегустация вина"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Մշակութային տուր", "Գինու համտես"]
-      },
-      "exclude": {
-        "en": ["Lunch", "Personal expenses"],
-        "ru": ["Обед", "Личные расходы"],
-        "hy": ["Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -842,9 +703,11 @@
 
   {
     "id": "2days-khorvirap-areni-noravank-tatev",
-    "category": ["cultural", "nature"],
+    "category": [
+      "cultural",
+      "nature"
+    ],
     "routeMap": "/TourImages/syunik_region/khorvirap_tatev/route-map.webp",
-    "routeSummary": "Yerevan → Khor Virap → Areni Cave → Areni Winery → Noravank → Tatev Ropeway → Tatev Monastery → Devil’s Bridge → Return",
     "imageUrl": "/TourImages/syunik_region/khorvirap_tatev/tatev.webp",
     "duration": "2",
     "durationUnit": "days",
@@ -859,28 +722,18 @@
       "ru": "Двухдневное путешествие по югу Армении: святые монастыри, древние пещеры, винные традиции, каньоны и канатная дорога Татев.",
       "hy": "Երկօրյա ուղևորություն դեպի հարավային Հայաստան՝ սրբավայրեր, հնագույն քարանձավներ, գինեգործություն, կիրճեր և Տաթևի ճոպանուղի։"
     },
-    "itinerary": [
-      { "day": 1, "ids": ["khor_virap", "areni_cave", "areni_winery", "noravank"] },
-      { "day": 2, "ids": ["wings_of_tatev", "tatev_monastery", "devils_bridge"] }
-    ],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide", "Wine tasting", "Cable car ticket"],
-        "ru": ["Транспорт", "Гид", "Дегустация вина", "Билет на канатную дорогу"],
-        "hy": ["Տրանսպորտ", "Գիդ", "Գինու համտես", "Ճոպանուղու տոմս"]
-      },
-      "exclude": {
-        "en": ["Lunch", "Personal expenses"],
-        "ru": ["Обед", "Личные расходы"],
-        "hy": ["Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          { "vehicles": "Sedan", "price": "30000" },
-          { "vehicles": "Miniven", "price": "40000" }
+          {
+            "vehicles": "Sedan",
+            "price": "30000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "40000"
+          }
         ],
         "ticket_per_person": "5000"
       }
@@ -889,10 +742,12 @@
 
   {
     "id": "south-armenia-3day-tour",
-    "category": ["cultural", "nature"],
+    "category": [
+      "cultural",
+      "nature"
+    ],
     "routeMap": "/TourImages/syunik_region/3day_route/route-map.webp",
-    "routeSummary": "Yerevan → Areni → Noravank → Yeghegnadzor → Shaki → Karahunj → Khndzoresk → Goris → Tatev → Yerevan",
-    "imageUrl": "/TourImages/syunik_region/karahunj_route/shaki.webp",
+    "imageUrl": "/TourImages/syunik_region/3day_route/main.webp",
     "duration": "3",
     "durationUnit": "days",
     "price": "150000 AMD",
@@ -906,29 +761,18 @@
       "ru": "Структурированное трёхдневное путешествие по югу Армении, объединяющее монастыри, археологические памятники, природные объекты и региональный колорит.",
       "hy": "Կառուցվածքային եռօրյա ուղևորություն դեպի Հայաստանի հարավ՝ համադրելով վանքեր, հնագիտական վայրեր, բնություն և տեղական փորձառություն։"
     },
-    "itinerary": [
-      { "day": 1, "ids": ["khor_virap", "areni_cave", "areni_winery", "noravank"] },
-      { "day": 2, "ids": ["shaki_waterfall", "carahunge", "khndzoresk_swinging_bridge", "old_khndzoresk"] },
-      { "day": 3, "ids": ["wings_of_tatev", "tatev_monastery", "devils_bridge", "vorotanavank_monastery"] }
-    ],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Guide", "3-day program"],
-        "ru": ["Транспорт", "Гид", "3-дневная программа"],
-        "hy": ["Տրանսպորտ", "Գիդ", "3-օրյա ծրագիր"]
-      },
-      "exclude": {
-        "en": ["Hotel", "Meals", "Tickets"],
-        "ru": ["Отель", "Питание", "Билеты"],
-        "hy": ["Հյուրանոց", "Սնունդ", "Տոմսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          { "vehicles": "Sedan", "price": "20000" },
-          { "vehicles": "Miniven", "price": "26000" }
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -937,9 +781,11 @@
 
   {
     "id": "orbelian-karahunj-shaki-vorotanavank",
-    "category": ["cultural", "nature"],
+    "category": [
+      "cultural",
+      "nature"
+    ],
     "routeMap": "/TourImages/syunik_region/orbelian_route/route-map.webp",
-    "routeSummary": "Yerevan → Orbelian Caravanserai → Karahunj → Shaki Waterfall → Vorotanavank → Yerevan",
     "imageUrl": "/TourImages/syunik_region/orbelian_route/main.webp",
     "duration": "11",
     "durationUnit": "hours",
@@ -954,25 +800,18 @@
       "ru": "Путешествие по югу Армении, объединяющее средневековую торговую инфраструктуру, доисторические комплексы, мощную природу и удалённые монастыри.",
       "hy": "Ուղևորություն դեպի հարավային Հայաստան՝ համադրելով միջնադարյան առևտրային կառույցները, նախապատմական հուշարձանները և հեռավոր վանական համալիրները։"
     },
-    "itineraryIds": ["orbelian_caravanserai", "carahunge", "shaki_waterfall", "vorotanavank_monastery"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Professional guide", "Historical sites", "Nature stops"],
-        "ru": ["Транспорт", "Профессиональный гид", "Исторические места", "Природные остановки"],
-        "hy": ["Տրանսպորտ", "Պրոֆեսիոնալ գիդ", "Պատմական վայրեր", "Բնության կանգառներ"]
-      },
-      "exclude": {
-        "en": ["Lunch", "Personal expenses"],
-        "ru": ["Обед", "Личные расходы"],
-        "hy": ["Ճաշ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          { "vehicles": "Sedan", "price": "20000" },
-          { "vehicles": "Miniven", "price": "26000" }
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -981,9 +820,11 @@
 
   {
     "id": "south-armenia-2day-tour",
-    "category": ["cultural", "nature"],
+    "category": [
+      "cultural",
+      "nature"
+    ],
     "routeMap": "/TourImages/syunik_region/2day_route/map.webp",
-    "routeSummary": "Yerevan → Noravank → Shaki → Karahunj → Tatev → Yerevan",
     "imageUrl": "/TourImages/syunik_region/2day_route/main.webp",
     "duration": "2",
     "durationUnit": "days",
@@ -998,28 +839,18 @@
       "ru": "Двухдневное путешествие по югу Армении, объединяющее монастыри, природные достопримечательности и доисторические памятники в насыщенном маршруте.",
       "hy": "Երկօրյա ուղևորություն դեպի Հայաստանի հարավ՝ համադրելով վանքեր, բնություն և հնագույն հուշարձաններ հագեցած ծրագրում։"
     },
-    "itinerary": [
-      { "day": 1, "ids": ["noravank", "shaki_waterfall", "carahunge"] },
-      { "day": 2, "ids": ["wings_of_tatev", "tatev_monastery", "devils_bridge", "vorotanavank_monastery"] }
-    ],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Guide", "2-day program"],
-        "ru": ["Транспорт", "Гид", "2-дневная программа"],
-        "hy": ["Տրանսպորտ", "Գիդ", "2-օրյա ծրագիր"]
-      },
-      "exclude": {
-        "en": ["Hotel", "Meals", "Tickets"],
-        "ru": ["Отель", "Питание", "Билеты"],
-        "hy": ["Հյուրանոց", "Սնունդ", "Տոմսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -1028,10 +859,12 @@
 
   {
     "id": "tatev-devils-bridge",
-    "category": ["cultural", "nature"],
+    "category": [
+      "cultural",
+      "nature"
+    ],
     "routeMap": "/TourImages/syunik_region/tatev_express/map.webp",
-    "routeSummary": "Yerevan → Tatev → Devil’s Bridge → Yerevan",
-    "imageUrl": "/TourImages/syunik_region/tatev_express/main.webp",
+    "imageUrl": "/TourImages/syunik_region/khorvirap_tatev/tatev-cable.webp",
     "duration": "12",
     "durationUnit": "hours",
     "price": "52000 AMD",
@@ -1045,25 +878,18 @@
       "ru": "Однодневное путешествие на юг Армении с акцентом на регион Татева, объединяющее панорамную канатную дорогу, средневековое наследие и природные объекты.",
       "hy": "Մեկօրյա ուղևորություն դեպի Հայաստանի հարավ՝ կենտրոնանալով Տաթևի տարածաշրջանի վրա, համադրելով ճոպանուղու տեսարանները, միջնադարյան ժառանգությունն ու բնական հուշարձանները։"
     },
-    "itineraryIds": ["wings_of_tatev", "tatev_monastery", "devils_bridge"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Guide service", "Full-day program"],
-        "ru": ["Транспорт", "Услуги гида", "Однодневная программа"],
-        "hy": ["Տրանսպորտ", "Գիդի ծառայություն", "Մեկօրյա ծրագիր"]
-      },
-      "exclude": {
-        "en": ["Meals", "Ropeway ticket", "Personal expenses"],
-        "ru": ["Питание", "Билет на канатную дорогу", "Личные расходы"],
-        "hy": ["Սնունդ", "Ճոպանուղու տոմս", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -1072,10 +898,12 @@
 
   {
     "id": "shaki-vahanavank-halidzor-tour",
-    "category": ["cultural", "nature"],
+    "category": [
+      "cultural",
+      "nature"
+    ],
     "routeMap": "/TourImages/syunik_region/shaki_vahanavank/map.webp",
-    "routeSummary": "Yerevan → Shaki → Vahanavank → Halidzor → Yerevan",
-    "imageUrl": "/TourImages/syunik_region/shaki_vahanavank/main.webp",
+    "imageUrl": "/TourImages/syunik_region/karahunj_route/shaki.webp",
     "duration": "12",
     "durationUnit": "hours",
     "price": "52000 AMD",
@@ -1089,25 +917,18 @@
       "ru": "Однодневное путешествие на юг Армении, объединяющее природные пейзажи, монастырское наследие и исторические укрепления в одном маршруте.",
       "hy": "Մեկօրյա ուղևորություն դեպի Հայաստանի հարավ՝ համադրելով բնական տեսարաններ, վանական ժառանգություն և պատմական ամրոցներ մեկ ծրագրում։"
     },
-    "itineraryIds": ["shaki_waterfall", "vaha", "devils_bridge", "vahanavank_monastery", "halidzor_fortress"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Guide service", "Full-day program"],
-        "ru": ["Транспорт", "Услуги гида", "Однодневная программа"],
-        "hy": ["Տրանսպորտ", "Գիդի ծառայություն", "Մեկօրյա ծրագիր"]
-      },
-      "exclude": {
-        "en": ["Meals", "Tickets", "Personal expenses"],
-        "ru": ["Питание", "Билеты", "Личные расходы"],
-        "hy": ["Սնունդ", "Տոմսեր", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -1116,9 +937,11 @@
 
   {
     "id": "debed-canyon-odzun-bardzrakaash-tour",
-    "category": ["nature", "cultural"],
+    "category": [
+      "nature",
+      "cultural"
+    ],
     "routeMap": "/TourImages/lori_region/debed_odzun/map.webp",
-    "routeSummary": "Yerevan → Debed Canyon → Bardzrakaash → Odzun → Yerevan",
     "imageUrl": "/TourImages/lori_region/debed_odzun/main.webp",
     "duration": "12",
     "durationUnit": "hours",
@@ -1133,25 +956,18 @@
       "ru": "Однодневное путешествие на север Армении с акцентом на ущелье Дебед, сочетающее природные виды, монастыри и спокойную атмосферу отдыха на природе.",
       "hy": "Մեկօրյա ուղևորություն դեպի Հայաստանի հյուսիս՝ կենտրոնանալով Դեբեդի կիրճի վրա, համադրելով բնությունը, վանքերը և հանգիստ բացօթյա միջավայրը։"
     },
-    "itineraryIds": ["debed_canyon", "bardzrakash_monastery", "odzun_church"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Guide service", "Picnic stop"],
-        "ru": ["Транспорт", "Услуги гида", "Остановка для пикника"],
-        "hy": ["Տրանսպորտ", "Գիդի ծառայություն", "Պիկնիկի կանգառ"]
-      },
-      "exclude": {
-        "en": ["Meals", "Tickets", "Personal expenses"],
-        "ru": ["Питание", "Билеты", "Личные расходы"],
-        "hy": ["Սնունդ", "Տոմսեր", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -1160,9 +976,11 @@
 
   {
     "id": "tatev-halidzor-tour",
-    "category": ["cultural", "nature"],
+    "category": [
+      "cultural",
+      "nature"
+    ],
     "routeMap": "/TourImages/syunik_region/tatev_halidzor/map.webp",
-    "routeSummary": "Yerevan → Tatev → Halidzor → Yerevan",
     "imageUrl": "/TourImages/syunik_region/tatev_halidzor/main.webp",
     "duration": "12",
     "durationUnit": "hours",
@@ -1177,37 +995,31 @@
       "ru": "Однодневное путешествие на юг Армении с акцентом на регион Татева, объединяющее канатную дорогу, монастырское наследие и историческую крепость.",
       "hy": "Մեկօրյա ուղևորություն դեպի Հայաստանի հարավ՝ կենտրոնանալով Տաթևի տարածաշրջանի վրա, համադրելով ճոպանուղին, վանական ժառանգությունը և պատմական բերդը։"
     },
-    "itineraryIds": ["wings_of_tatev", "tatev_monastery", "halidzor_fortress"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Guide service", "Full-day program"],
-        "ru": ["Транспорт", "Услуги гида", "Однодневная программа"],
-        "hy": ["Տրանսպորտ", "Գիդի ծառայություն", "Մեկօրյա ծրագիր"]
-      },
-      "exclude": {
-        "en": ["Meals", "Ropeway ticket", "Personal expenses"],
-        "ru": ["Питание", "Билет на канатную дорогу", "Личные расходы"],
-        "hy": ["Սնունդ", "Ճոպանուղու տոմս", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
     }
   },
-
   {
     "id": "khor-virap-shnaghogh-vahanavank-tour",
-    "category": ["cultural", "nature"],
+    "category": [
+      "cultural",
+      "nature"
+    ],
     "routeMap": "/TourImages/syunik_region/khorvirap_shnaghogh/map.webp",
     "imageUrl": "/TourImages/syunik_region/khorvirap_shnaghogh/main.webp",
-    "routeSummary": "Yerevan → Khor Virap → Shnaghogh Waterfall → Vahanavank → Yerevan",
     "duration": "12",
     "durationUnit": "hours",
     "price": "52000 AMD",
@@ -1221,7 +1033,6 @@
       "ru": "Однодневный маршрут по югу Армении, объединяющий известное религиозное наследие, скрытые водопады и тихие монастырские локации.",
       "hy": "Մեկօրյա ուղևորություն դեպի Հայաստանի հարավ՝ համադրելով հայտնի հոգևոր ժառանգությունը, թաքնված ջրվեժները և հանգիստ վանական միջավայրերը։"
     },
-    "itineraryIds": ["khor_virap", "vahanavank_monastery"],
     "sections": [
       {
         "header": {
@@ -1242,24 +1053,18 @@
         "image": "/TourImages/syunik_region/khorvirap_shnaghogh/shnaghogh.webp"
       }
     ],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Guide service", "Full-day program"],
-        "ru": ["Транспорт", "Услуги гида", "Однодневная программа"],
-        "hy": ["Տրանսպորտ", "Գիդի ծառայություն", "Մեկօրյա ծրագիր"]
-      },
-      "exclude": {
-        "en": ["Meals", "Tickets", "Personal expenses"],
-        "ru": ["Питание", "Билеты", "Личные расходы"],
-        "hy": ["Սնունդ", "Տոմսեր", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -1271,7 +1076,6 @@
     "category": "nature",
     "routeMap": "/TourImages/lori_region/trchkan_hnevank/map.webp",
     "imageUrl": "/TourImages/lori_region/trchkan_hnevank/main.webp",
-    "routeSummary": "Yerevan → Trchkan Waterfall → Hnevank → Arevatsagi Dzor → Yerevan",
     "duration": "12",
     "durationUnit": "hours",
     "price": "52000 AMD",
@@ -1285,25 +1089,18 @@
       "ru": "Однодневный маршрут, объединяющий мощный водопад, средневековый монастырь и живописное ущелье с акцентом на природу.",
       "hy": "Մեկօրյա ուղևորություն՝ համադրելով Հայաստանի ամենահզոր ջրվեժներից մեկը, միջնադարյան վանքը և գեղատեսիլ կիրճը՝ բնության կենտրոնական փորձառությամբ։"
     },
-    "itineraryIds": ["trchkan_waterfall", "hnevank_monastery", "arevatsagi_gorge"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Guide service", "Nature stops"],
-        "ru": ["Транспорт", "Услуги гида", "Остановки на природе"],
-        "hy": ["Տրանսպորտ", "Գիդի ծառայություն", "Բնության կանգառներ"]
-      },
-      "exclude": {
-        "en": ["Meals", "Personal expenses"],
-        "ru": ["Питание", "Личные расходы"],
-        "hy": ["Սնունդ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -1312,10 +1109,12 @@
 
   {
     "id": "haghartsin-parz-lake-matosavank-tour",
-    "category": ["nature", "cultural"],
+    "category": [
+      "nature",
+      "cultural"
+    ],
     "routeMap": "/TourImages/tavush_region/haghartsin_parz/map.webp",
     "imageUrl": "/TourImages/tavush_region/haghartsin_parz/main.webp",
-    "routeSummary": "Yerevan → Haghartsin → Parz Lake → Matosavank → Yerevan",
     "duration": "12",
     "durationUnit": "hours",
     "price": "52000 AMD",
@@ -1329,26 +1128,18 @@
       "ru": "Однодневный маршрут по Дилижанскому национальному парку с монастырями, лесами и горным озером.",
       "hy": "Մեկօրյա ուղևորություն Դիլիջանի ազգային պարկում՝ համադրելով վանական ժառանգությունը, անտառները և լեռնային լիճը։"
     },
-    "itineraryIds": ["haghartsin_monastery", "parz_lich", "matosavank_monastery"],
-
-    "features": {
-      "include": {
-        "en": ["Transportation", "Guide service", "National park entry"],
-        "ru": ["Транспорт", "Услуги гида", "Вход в национальный парк"],
-        "hy": ["Տրանսպորտ", "Գիդի ծառայություն", "Ազգային պարկի մուտք"]
-      },
-      "exclude": {
-        "en": ["Meals", "Personal expenses"],
-        "ru": ["Питание", "Личные расходы"],
-        "hy": ["Սնունդ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -1357,10 +1148,12 @@
 
   {
     "id": "odzun-srvegh-aghjkaberd-tour",
-    "category": ["cultural", "nature"],
+    "category": [
+      "cultural",
+      "nature"
+    ],
     "routeMap": "/TourImages/lori_region/odzun_srvegh/map.webp",
     "imageUrl": "/TourImages/lori_region/odzun_srvegh/main.webp",
-    "routeSummary": "Yerevan → Odzun → Srvegh Monastery → Aghjkaberd → Yerevan",
     "duration": "12",
     "durationUnit": "hours",
     "price": "52000 AMD",
@@ -1374,25 +1167,18 @@
       "ru": "Однодневный маршрут по Лори, включающий один из важнейших раннесредневековых храмов Армении, скрытые монастыри и древние крепости.",
       "hy": "Մեկօրյա ուղևորություն Լոռիում՝ համադրելով Հայաստանի վաղ միջնադարյան կարևոր վանքերից մեկը, թաքնված վանական վայրերը և հին ամրոցները։"
     },
-    "itineraryIds": ["odzun_church", "srvegh_monastery", "aghjkaberd_fortress"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Guide service", "Historical route"],
-        "ru": ["Транспорт", "Услуги гида", "Исторический маршрут"],
-        "hy": ["Տրանսպորտ", "Գիդի ծառայություն", "Պատմական տուր"]
-      },
-      "exclude": {
-        "en": ["Meals", "Personal expenses"],
-        "ru": ["Питание", "Личные расходы"],
-        "hy": ["Սնունդ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -1404,7 +1190,6 @@
     "category": ["nature", "cultural"],
     "routeMap": "/TourImages/sevan_region/sevan_noratus_dilijan/map.webp",
     "imageUrl": "/TourImages/sevan_region/sevan_noratus_dilijan/main.webp",
-    "routeSummary": "Yerevan → Lake Sevan → Sevanavank → Noratus Khachkars → Haghartsin → Yerevan",
     "duration": "12",
     "durationUnit": "hours",
     "price": "55000 AMD",
@@ -1418,25 +1203,18 @@
       "ru": "Однодневный маршрут, объединяющий озеро Севан, монастыри, крупнейшее кладбище хачкаров и леса Дилижана.",
       "hy": "Մեկօրյա ուղևորություն՝ համադրելով Սևանը, միջնադարյան վանքերը, խաչքարերի ամենամեծ դաշտը և Դիլիջանի անտառները։"
     },
-    "itineraryIds": ["lake_sevan", "sevanavank_monastery", "noratus_khachkars", "haghartsin_monastery"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Guide service", "Multi-region route"],
-        "ru": ["Транспорт", "Услуги гида", "Межрегиональный маршрут"],
-        "hy": ["Տրանսպորտ", "Գիդի ծառայություն", "Միջմարզային տուր"]
-      },
-      "exclude": {
-        "en": ["Meals", "Personal expenses"],
-        "ru": ["Питание", "Личные расходы"],
-        "hy": ["Սնունդ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -1445,10 +1223,12 @@
 
   {
     "id": "saghmosavank-harichavank-kari-lake-aragats-tour",
-    "category": ["cultural", "nature"],
+    "category": [
+      "cultural",
+      "nature"
+    ],
     "routeMap": "/TourImages/aragats_region/saghmosavank_harich/map.webp",
     "imageUrl": "/TourImages/aragats_region/saghmosavank_harich/main.webp",
-    "routeSummary": "Yerevan → Saghmosavank → Harichavank → Kari Lake → Yerevan",
     "duration": "10",
     "durationUnit": "hours",
     "price": "45000 AMD",
@@ -1462,25 +1242,18 @@
       "ru": "Маршрут, объединяющий средневековые монастыри и высокогорные пейзажи Арагаца с каньонами и озером Кари.",
       "hy": "Ուղևորություն, որը համադրում է միջնադարյան վանքերը և Արագածի բարձր լեռնային բնապատկերները՝ կիրճերով և Քարի լճով։"
     },
-    "itineraryIds": ["saghmosavank", "harichavank_monastery", "kari_lake"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Guide service", "Mountain route"],
-        "ru": ["Транспорт", "Услуги гида", "Горный маршрут"],
-        "hy": ["Տրանսպորտ", "Գիդի ծառայություն", "Լեռնային տուր"]
-      },
-      "exclude": {
-        "en": ["Meals", "Personal expenses"],
-        "ru": ["Питание", "Личные расходы"],
-        "hy": ["Սնունդ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          {"vehicles": "Sedan", "price": "20000"},
-          {"vehicles": "Miniven", "price": "26000"}
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
@@ -1489,10 +1262,12 @@
 
   {
     "id": "areni-bird-cave-hermon-tanahat-tour",
-    "category": ["cultural", "nature"],
+    "category": [
+      "cultural",
+      "nature"
+    ],
     "routeMap": "/TourImages/vayots_dzor/areni_hermon_tanahat/map.webp",
     "imageUrl": "/TourImages/vayots_dzor/areni_hermon_tanahat/main.webp",
-    "routeSummary": "Yerevan → Areni → Areni-1 Cave → Hermon Monastery → Tanahat Monastery → Yerevan",
     "duration": "11",
     "durationUnit": "hours",
     "price": "50000 AMD",
@@ -1506,7 +1281,6 @@
       "ru": "Маршрут по Вайоц Дзору, объединяющий древние винодельческие традиции, пещеру с археологическими находками и уединённые средневековые монастыри.",
       "hy": "Ուղևորություն Վայոց Ձորում՝ համադրելով հնագույն գինեգործական ավանդույթները, նախապատմական քարանձավը և մեկուսացված միջնադարյան վանքերը։"
     },
-    "itineraryIds": ["areni_cave", "hermon_monastery", "tanahat_monastery"],
     "sections": [
       {
         "header": {
@@ -1527,36 +1301,32 @@
         "image": "/TourImages/vayots_dzor/areni_hermon_tanahat/areni.webp"
       }
     ],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Guide service", "Historical route"],
-        "ru": ["Транспорт", "Услуги гида", "Исторический маршрут"],
-        "hy": ["Տրանսպորտ", "Գիդի ծառայություն", "Պատմական տուր"]
-      },
-      "exclude": {
-        "en": ["Meals", "Personal expenses"],
-        "ru": ["Питание", "Личные расходы"],
-        "hy": ["Սնունդ", "Անձնական ծախսեր"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          { "vehicles": "Sedan", "price": "20000" },
-          { "vehicles": "Miniven", "price": "26000" }
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }
     }
   },
-
+  
   {
     "id": "proshaberd-selim-herher-gladzor-tour",
-    "category": ["cultural", "nature"],
+    "category": [
+      "cultural",
+      "nature"
+    ],
     "routeMap": "/TourImages/vayots_dzor/proshaberd_selim_gladzor/map.webp",
     "imageUrl": "/TourImages/vayots_dzor/proshaberd_selim_gladzor/main.webp",
-    "routeSummary": "Yerevan → Selim Caravanserai → Herher Reservoir → Gladzor University → Proshaberd → Noravank (optional) → Yerevan",
     "duration": "12",
     "durationUnit": "hours",
     "price": "55000 AMD",
@@ -1570,25 +1340,18 @@
       "ru": "Исторический маршрут по Вайоц Дзору, включающий наследие Шёлкового пути, руины средневекового университета и крепости региона.",
       "hy": "Պատմական ուղևորություն Վայոց Ձորում՝ համադրելով Մետաքսի ճանապարհի ժառանգությունը, միջնադարյան համալսարանը և ամրոցային հուշարձանները։"
     },
-    "itineraryIds": ["orbelian_caravanserai", "herher_reservoir", "gladzor_university_museum", "proshaberd"],
-    "features": {
-      "include": {
-        "en": ["Transportation", "Guide service", "Historical Silk Road route"],
-        "ru": ["Транспорт", "Услуги гида", "Исторический маршрут Шёлкового пути"],
-        "hy": ["Տրանսպորտ", "Գիդի ծառայություն", "Մետաքսի ճանապարհի տուր"]
-      },
-      "exclude": {
-        "en": ["Meals", "Personal expenses", "Noravank visit (optional)"],
-        "ru": ["Питание", "Личные расходы", "Посещение Нораванка (опционально)"],
-        "hy": ["Սնունդ", "Անձնական ծախսեր", "Նորավանք (ըստ ցանկության)"]
-      }
-    },
     "budget": {
       "title": "Բյուջե",
       "pricing": {
         "vehicles": [
-          { "vehicles": "Sedan", "price": "20000" },
-          { "vehicles": "Miniven", "price": "26000" }
+          {
+            "vehicles": "Sedan",
+            "price": "20000"
+          },
+          {
+            "vehicles": "Miniven",
+            "price": "26000"
+          }
         ],
         "ticket_per_person": "0"
       }

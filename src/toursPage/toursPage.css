@@ -54,7 +54,7 @@
 
 .tour-page-container .tours-hero-simple {
   position: relative; /* Чтобы картинка позиционировалась внутри */
-  height: 60vh;
+  height: 55vh;
   min-height: 400px;
   overflow: hidden;
   display: flex;

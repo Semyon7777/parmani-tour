@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { supabase } from "../supabaseClient";
@@ -12,21 +12,61 @@ function TourPageDynamic() {
   const { tourId } = useParams();
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  
-  // Состояние для сырых данных из Supabase
+
   const [dbPlaces, setDbPlaces] = useState([]);
+  const [tourMeta, setTourMeta] = useState(null);
 
   const lang = (i18n.language || "en").split('-')[0];
+  const tour = useMemo(
+    () => toursData.find(item => item.id === tourId),
+    [tourId]
+  );
 
-  // Ищем тур в JSON
-  const tour = toursData.find(item => item.id === tourId);
+  // Определяем тип тура сразу
+  const isMultiDay = useMemo(() => Boolean(tourMeta?.itinerary), [tourMeta]);
 
+  // --- Эффект 1: Загружаем features + itinerary_ids из Supabase ---
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-
     if (!tour) return;
 
-    const fetchLibraryData = async () => {
+    const fetchMeta = async () => {
+      const metaCacheKey = `tour_meta_${tourId}`;
+      const cachedMeta = getCached(metaCacheKey);
+
+      if (cachedMeta) {
+        setTourMeta(cachedMeta);
+        return;
+      }
+
+      const { data, error } = await supabase
+        .from('private_tours')
+        .select('itinerary_ids, itinerary, features')
+        .eq('id', tourId)
+        .single();
+
+      if (!error && data) {
+        setTourMeta(data);
+        setCache(metaCacheKey, data);
+      }
+    };
+
+    fetchMeta();
+  }, [tourId, tour]);
+
+  // --- Эффект 2: Загружаем места ---
+  // Многодневный: ids из локального JSON, не ждём tourMeta
+  // Однодневный: ids из tourMeta, ждём его
+  useEffect(() => {
+    if (!tour) return;
+
+    const allIds = isMultiDay
+      ? tourMeta?.itinerary?.flatMap(d => d.ids)  // ❌ tourMeta может быть null здесь
+      : tourMeta?.itinerary_ids;            // из Supabase
+
+    if (!allIds || allIds.length === 0) return;
+
+    const fetchPlaces = async () => {
       const cacheKey = `tour_places_${tourId}`;
       const cachedData = getCached(cacheKey);
 
@@ -35,32 +75,22 @@ function TourPageDynamic() {
         return;
       }
 
-      try {
-        // Определяем все нужные ID в зависимости от структуры тура
-        const allIds = tour.itinerary 
-          ? tour.itinerary.flatMap(dayItem => dayItem.ids) 
-          : (tour.itineraryIds || []);
+      const { data, error } = await supabase
+        .from('locations_library')
+        .select('*')
+        .in('place_id', allIds);
 
-        if (allIds.length === 0) return;
-
-        const { data, error } = await supabase
-          .from('locations_library')
-          .select('*')
-          .in('place_id', allIds);
-
-        if (error) throw error;
-
-        // Сохраняем результат (порядок восстановим при маппинге ниже)
+      if (!error && data) {
         setDbPlaces(data);
-        setCache(cacheKey, data); 
-
-      } catch (err) {
-        console.error("Error fetching locations library:", err.message);
-      } 
+        setCache(cacheKey, data);
+      }
     };
 
-    fetchLibraryData();
-  }, [tourId, tour]);
+    fetchPlaces();
+  }, [tourId, tour, isMultiDay, tourMeta?.itinerary_ids, tourMeta?.itinerary]);
+  //                        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  // для многодневных это undefined — эффект сработает сразу
+  // для однодневных — сработает когда tourMeta придёт
 
   if (!tour) {
     return (
@@ -73,13 +103,13 @@ function TourPageDynamic() {
     );
   }
 
-  // --- Формирование секций маршрута (itinerary) ---
+  // --- Формирование секций ---
   let finalSections = [];
 
-  if (tour.itinerary) {
-    // 1. Логика для МНОГОДНЕВНОГО тура
-    finalSections = tour.itinerary.flatMap((dayGroup) => {
-      return dayGroup.ids.map(id => {
+  if (isMultiDay) {
+    // ids берём из локального JSON
+    finalSections = (tourMeta?.itinerary ?? []).flatMap((dayGroup) =>
+      dayGroup.ids.map(id => {
         const place = dbPlaces.find(p => p.place_id === id);
         if (!place) return null;
         return {
@@ -87,26 +117,25 @@ function TourPageDynamic() {
           header: place.header[lang] || "",
           content: place.content[lang] || "",
           fullContent: place.full_content ? place.full_content[lang] : null,
-          image: place.images 
+          image: place.images
         };
-      }).filter(Boolean);
-    });
-  } else if (tour.itineraryIds) {
-    // 2. Логика для ОДНОДНЕВНОГО тура
-    finalSections = tour.itineraryIds.map((id) => {
+      }).filter(Boolean)
+    );
+  } else if (tourMeta?.itinerary_ids) {
+    // ids берём из Supabase
+    finalSections = tourMeta.itinerary_ids.map(id => {
       const place = dbPlaces.find(p => p.place_id === id);
       if (!place) return null;
       return {
-        day: 1, // Всегда 1 день
+        day: 1,
         header: place.header[lang] || "",
         content: place.content[lang] || "",
         fullContent: place.full_content ? place.full_content[lang] : null,
-        image: place.images 
+        image: place.images
       };
     }).filter(Boolean);
   }
 
-  // Похожие туры
   const relatedToursFormatted = toursData
     .filter(item => item.id !== tourId)
     .slice(0, 4)
@@ -117,7 +146,6 @@ function TourPageDynamic() {
       price: rel.price
     }));
 
-  // Собираем итоговый объект для компонента TourInfo
   const myTourData = {
     ...tour,
     title: tour.title[lang],
@@ -131,10 +159,10 @@ function TourPageDynamic() {
     sections: finalSections,
     carouselInfo: tour.carousel,
     include: [
-      { 
-        title: t('tourDetails', 'Tour Details'), 
-        featuresInclude: tour.features.include[lang], 
-        featuresNotInclude: tour.features.exclude[lang] 
+      {
+        title: t('tourDetails', 'Tour Details'),
+        featuresInclude: tourMeta?.features?.include?.[lang] ?? [],
+        featuresNotInclude: tourMeta?.features?.exclude?.[lang] ?? []
       }
     ],
     relatedTours: relatedToursFormatted
