@@ -150,13 +150,17 @@ const NavbarCustom = ({ isHomePage }) => {
 useEffect(() => {
   const check = () => {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
-    
+
+    // Проверяем что возвращает env()
+    const testEl = document.createElement('div');
+    testEl.style.height = 'env(safe-area-inset-top, 999px)';
+    document.body.appendChild(testEl);
+    const computed = window.getComputedStyle(testEl).height;
+    document.body.removeChild(testEl);
+
     alert(
-      "check called!\n" +
-      "Telegram UA: " + /Telegram/i.test(ua) + "\n" +
       "TgProxy: " + !!window.TelegramWebviewProxy + "\n" +
-      "TgProxyProto: " + !!window.TelegramWebviewProxyProto + "\n" +
-      "Android: " + (/android/i.test(ua) && ua.includes('Version/4.0'))
+      "env(safe-area-inset-top): " + computed
     );
 
     if (/Telegram/i.test(ua))             { setIsTelegram(true); return; }
@@ -168,7 +172,7 @@ useEffect(() => {
   check();
   const timer = setTimeout(check, 300);
   return () => clearTimeout(timer);
-}, []); // ✅ пустой массив — правильно, setIsTelegram стабильна
+}, []);
   
 
   return (
