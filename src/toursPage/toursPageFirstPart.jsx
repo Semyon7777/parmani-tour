@@ -372,7 +372,7 @@ const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle, currentUser }) => {
               className="py-2 text-muted"
               onClick={() => setShowLoginModal(false)}
             >
-              {t('common.cancel', 'Maybe later')}
+              {t('auth_page.cancel', 'Maybe later')}
             </Button>
           </div>
         </Modal.Body>

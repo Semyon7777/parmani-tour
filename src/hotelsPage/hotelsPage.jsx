@@ -160,7 +160,6 @@ const HotelsPage = () => {
       </section>
 
       {/* HOTELS LIST - Теперь с пагинацией и фильтром */}
-      {/* HOTELS LIST - Мгновенный рендер каркаса */}
       <section id="hotels-list" className="hotels-grid-section">
         <Container>
           <div className="section-title text-center">
@@ -304,16 +303,15 @@ const HotelsPage = () => {
           <div className="form-container-box fade-up">
             <div className="form-inner-header">
               <h3>{t("hotels_page.form_title")}</h3>
-              <p>{t("hotels_page.form_subtitle_extra")}</p>
             </div>
             <Form className="hotels-booking-form">
                {/* Твои поля формы */}
                <Row className="g-3">
                   <Col md={6}><Form.Control type="text" placeholder={t("hotels_page.form_name")} className="form-input-field" /></Col>
                   <Col md={6}><Form.Control type="email" placeholder={t("hotels_page.form_email")} className="form-input-field" /></Col>
-                  <Col md={4}><div className="input-with-label"><label>Check-in</label><Form.Control type="date" className="form-input-field" /></div></Col>
-                  <Col md={4}><div className="input-with-label"><label>Check-out</label><Form.Control type="date" className="form-input-field" /></div></Col>
-                  <Col md={4}><div className="input-with-label"><label>Guests</label><Form.Control type="number" placeholder="2" className="form-input-field" /></div></Col>
+                  <Col md={4}><div className="input-with-label"><label>{t("hotels_page.check_in")}</label><Form.Control type="date" className="form-input-field" /></div></Col>
+                  <Col md={4}><div className="input-with-label"><label>{t("hotels_page.check_out")}</label><Form.Control type="date" className="form-input-field" /></div></Col>
+                  <Col md={4}><div className="input-with-label"><label>{t("hotels_page.guests")}</label><Form.Control type="number" placeholder="2" min={0} className="form-input-field" /></div></Col>
                   <Col xs={12}>
                     <button type="button" className="form-submit-btn" onClick={() => handleWhatsApp("New Booking Request")}>
                       {t("hotels_page.send_request")}

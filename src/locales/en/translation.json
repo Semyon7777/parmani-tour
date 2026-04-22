@@ -199,6 +199,9 @@
     "no_prepayment": "no prepayment",
     "tour_book_button": "Book now",
 
+    "login_required_title": "Authentication Required",
+    "please_login": "Please login to save your favorite tours and plan your trip.",
+
     "you_might_like": "You might also like...",
     "booking_conditions": "Booking Conditions",
     "booking_process": "Booking Process",
@@ -385,6 +388,9 @@
     "form_pref_text": "Prefer an instant answer? Most clients text us on WhatsApp.",
     "form_name": "Your Name",
     "form_email": "Email Address",
+    "check_in": "Check-in",
+    "check_out": "Check-out",
+    "guests": "Guests",
     "form_guests": "Number of guests",
     "send_request": "Send Request via WhatsApp",
     "items": {
@@ -966,6 +972,9 @@
     "spots_left": "spots left",
     "mission": "Mission",
     "btn_join": "Join Now",
+    "cta_title": "Didn't find a suitable date?",
+    "cta_text": "We can organize a private tour for your group on any day!",
+    "cta_btn": "Contact Us",
     "faq": {
       "main_title": "Frequently Asked Questions",
       "subtitle_all": "General Information",
@@ -1086,7 +1095,8 @@
     "or_social": "or sign in with",
     "switch_to_login": "Already have an account? Login",
     "switch_to_register": "No account? Register now",
-    "error_password_match": "Passwords do not match"
+    "error_password_match": "Passwords do not match",
+    "cancel": "Maybe later"
   },
 
   "footer": {

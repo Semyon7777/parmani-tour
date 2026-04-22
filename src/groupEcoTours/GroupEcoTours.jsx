@@ -606,11 +606,11 @@ const TourCTA = () => {
   return (
     <div className="tour-cta-banner my-5">
       <Container className="text-center p-5 rounded-4 bg-dark text-white">
-        <h2 className="mb-3">{t("tours.cta_title", "Didn't find a suitable date?")}</h2>
-        <p className="mb-4 opacity-75">{t("tours.cta_text", "We can organize a private tour for your group on any day!")}</p>
+        <h2 className="mb-3">{t("group_eco_tours.cta_title", "Didn't find a suitable date?")}</h2>
+        <p className="mb-4 opacity-75">{t("group_eco_tours.cta_text", "We can organize a private tour for your group on any day!")}</p>
         <a href="https://wa.me/yournumber" className="btn btn-success btn-lg rounded-pill px-4 d-inline-flex align-items-center gap-2">
           <MessageCircle size={20} />
-          {t("tours.cta_btn", "Contact Us")}
+          {t("group_eco_tours.cta_btn", "Contact Us")}
         </a>
       </Container>
     </div>
