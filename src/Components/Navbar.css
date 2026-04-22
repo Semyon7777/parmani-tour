@@ -610,11 +610,10 @@
 /* ── Telegram in-app browser safe area fix ───────────────── */
 .tg-safe-area-filler {
   position: fixed;
-  top: -200px;
+  top: 0;
   left: 0;
   right: 0;
-  /* Заполняем ровно высоту safe area (статус бар Telegram) */
-  height: 200px;
+  height: env(safe-area-inset-top, 50px);
   width: 100%;
   background-color: #000000;
   z-index: 9999;
