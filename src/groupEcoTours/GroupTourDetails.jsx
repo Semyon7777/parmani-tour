@@ -130,7 +130,7 @@ const GroupTourDetails = () => {
         <Container>
           <div className="strip-grid">
             <StripItem icon={<Users size={20} />} label={t('group_eco_tours.group.size')} value={`${t('group_eco_tours.up_to')} ${tour.people} ${t('group_eco_tours.people')}`} />
-            <StripItem icon={<Bus size={20} />} label={t('group_eco_tours.group.transport')} value={getTranslation(tour.transport)} />
+            <StripItem icon={<Bus size={20} />} label={t('group_eco_tours.group.transport')} value={`${t("group_eco_tours." + getTranslation(tour.transport).toLowerCase())}`} />
             <StripItem icon={<Clock size={20} />} label={t('group_eco_tours.group.duration')} value={`${tour.duration} ${t('group_eco_tours.group.hours')}`} />
           </div>
         </Container>
@@ -228,7 +228,7 @@ const GroupTourDetails = () => {
                 <Info className="me-2 text-success" /> {t('tour_info_page.booking_conditions')}
               </h3>
               
-              <Tabs defaultActiveKey="booking" id="policy-tabs" className="custom-tabs flex-nowrap overflow-x-auto responsive-tabs">
+              <Tabs defaultActiveKey="booking" id="policy-tabs" className="custom-tabs flex-nowrap responsive-tabs">
                 <Tab 
                   eventKey="booking" 
                   title={<span><Calendar size={18} className="me-2" /> {t('tour_info_page.booking_process')}</span>}

@@ -22,6 +22,10 @@ function AuthPage() {
     lastName: ""
   });
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Очищаем ошибку при переключении входа/регистрации
   useEffect(() => {
     setError(null);
