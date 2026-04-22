@@ -347,10 +347,10 @@ html[lang="hy"] .carouselContainerHeadText {
     background-color: rgba(223, 216, 216, 0.8); /* Полупрозрачный фон для подписей */
     padding: 10px;
     border-radius: 10px 10px 10px 10px; /* Закругленные углы */
-    backdrop-filter: blur(1px);
+    backdrop-filter: blur(1.5px);
     
     /* 3. Обязательно добавьте префикс для поддержки в Safari (iPhone) */
-    -webkit-backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1.5px);
 }
 
 .carouselContainer .carousel .carousel-caption h3,
