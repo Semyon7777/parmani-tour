@@ -147,32 +147,33 @@ const NavbarCustom = ({ isHomePage }) => {
   // TELEGRAM
   const [isTelegram, setIsTelegram] = useState(false);
 
-useEffect(() => {
-  const check = () => {
-    const ua = navigator.userAgent || navigator.vendor || window.opera;
+  useEffect(() => {
+    const check = () => {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      
+      const isTg = (
+        /Telegram/i.test(ua) ||
+        !!window.TelegramWebviewProxy ||
+        !!window.TelegramWebviewProxyProto ||
+        (/android/i.test(ua) && ua.includes('Version/4.0'))
+      );
 
-    // Проверяем что возвращает env()
-    const testEl = document.createElement('div');
-    testEl.style.height = 'env(safe-area-inset-top, 999px)';
-    document.body.appendChild(testEl);
-    const computed = window.getComputedStyle(testEl).height;
-    document.body.removeChild(testEl);
+      if (isTg) {
+        setIsTelegram(true);
 
-    alert(
-      "TgProxy: " + !!window.TelegramWebviewProxy + "\n" +
-      "env(safe-area-inset-top): " + computed
-    );
+        // Пробуем взять высоту из Telegram WebApp API
+        const tgHeaderHeight = window.Telegram?.WebApp?.headerColor
+          ? window.Telegram.WebApp.viewportHeight
+          : null;
 
-    if (/Telegram/i.test(ua))             { setIsTelegram(true); return; }
-    if (window.TelegramWebviewProxy)      { setIsTelegram(true); return; }
-    if (window.TelegramWebviewProxyProto) { setIsTelegram(true); return; }
-    if (/android/i.test(ua) && ua.includes('Version/4.0')) { setIsTelegram(true); return; }
-  };
+        alert("tgHeaderHeight: " + tgHeaderHeight);
+      }
+    };
 
-  check();
-  const timer = setTimeout(check, 300);
-  return () => clearTimeout(timer);
-}, []);
+    check();
+    const timer = setTimeout(check, 300);
+    return () => clearTimeout(timer);
+  }, []);
   
 
   return (
