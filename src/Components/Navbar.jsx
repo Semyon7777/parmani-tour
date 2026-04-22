@@ -145,50 +145,35 @@ const NavbarCustom = ({ isHomePage }) => {
   const themeClass = isHomePage && !scrolled ? "nav-transparent" : "nav-solid";
 
   // TELEGRAM
-  /**
- * Detects if the site is running inside the Telegram In-App Browser 
- * or a Telegram Mini App across all devices (iOS, Android, etc.)
- */
-function isTelegramInApp() {
-  const ua = navigator.userAgent || navigator.vendor || window.opera;
+  function isTelegramInApp() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
 
-  // 1. Direct UA Check (Works for Android and standard iOS settings)
-  const isTgUA = /Telegram/i.test(ua);
-  if (isTgUA) return true;
+    // 1. Стандартная проверка
+    if (/Telegram/i.test(ua)) return true;
 
-  // 2. The "iPhone Pro Max" Fix (Desktop Mode detection)
-  // New iPhones often report as 'MacIntel', but real Macs don't have multi-touch.
-  const isFakingMac = (
-    navigator.platform === 'MacIntel' && 
-    navigator.maxTouchPoints > 1 && 
-    !window.MSStream
-  );
+    // 2. Проверка iOS — убираем зависимость от navigator.platform
+    const isIOS = /iPhone|iPad|iPod/.test(ua) ||
+                  // Новый способ для iPhone 15+ и iPad
+                  (
+                    /Macintosh/.test(ua) &&
+                    typeof navigator.maxTouchPoints === 'number' &&
+                    navigator.maxTouchPoints > 1
+                  );
 
-  // 3. Check for Telegram-specific objects injected into the window
-  const hasTgObjects = !!(
-    window.TelegramWebviewProxy || 
-    window.TelegramWebviewProxyProto || 
-    window.TelegramWebview ||
-    (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.platform !== 'unknown')
-  );
+    // 3. Telegram прокси
+    const hasTgProxy = !!(
+      window.TelegramWebviewProxy ||
+      window.TelegramWebviewProxyProto ||
+      window.location.hash.includes('tgWebAppData')
+    );
 
-  // 4. Check for WebKit message handlers (Specific to Telegram on newer iOS)
-  const hasTgHandlers = !!(
-    window.webkit && 
-    window.webkit.messageHandlers && 
-    window.webkit.messageHandlers.eventHandler
-  );
+    if (isIOS && hasTgProxy) return true;
 
-  return !!(isTgUA || (isFakingMac && (hasTgObjects || hasTgHandlers)) || hasTgObjects);
-}
+    // 4. Android
+    if (/android/i.test(ua) && ua.includes('Version/4.0')) return true;
 
-  // Automatically apply a class to the body for CSS targeting
-  document.addEventListener('DOMContentLoaded', () => {
-    if (isTelegramInApp()) {
-      document.body.classList.add('is-telegram');
-      console.log("Telegram Browser Detected");
-    }
-  });
+    return false;
+  }
   
 
   return (
