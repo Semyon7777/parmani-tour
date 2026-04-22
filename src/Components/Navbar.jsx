@@ -148,28 +148,17 @@ const NavbarCustom = ({ isHomePage }) => {
   function isTelegramInApp() {
     const ua = navigator.userAgent || navigator.vendor || window.opera;
 
-    // 1. Стандартная проверка
+    // 1. Стандартная проверка UA
     if (/Telegram/i.test(ua)) return true;
 
-    // 2. Проверка iOS — убираем зависимость от navigator.platform
-    const isIOS = /iPhone|iPad|iPod/.test(ua) ||
-                  // Новый способ для iPhone 15+ и iPad
-                  (
-                    /Macintosh/.test(ua) &&
-                    typeof navigator.maxTouchPoints === 'number' &&
-                    navigator.maxTouchPoints > 1
-                  );
-
-    // 3. Telegram прокси
-    const hasTgProxy = !!(
+    // 2. Если есть Telegram прокси — это точно Telegram, на любом устройстве
+    if (
       window.TelegramWebviewProxy ||
       window.TelegramWebviewProxyProto ||
       window.location.hash.includes('tgWebAppData')
-    );
+    ) return true;
 
-    if (isIOS && hasTgProxy) return true;
-
-    // 4. Android
+    // 3. Android fallback
     if (/android/i.test(ua) && ua.includes('Version/4.0')) return true;
 
     return false;
