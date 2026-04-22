@@ -145,29 +145,29 @@ const NavbarCustom = ({ isHomePage }) => {
   const themeClass = isHomePage && !scrolled ? "nav-transparent" : "nav-solid";
 
   // TELEGRAM
-  function isTelegramInApp() {
-    const ua = navigator.userAgent || navigator.vendor || window.opera;
+  const [isTelegram, setIsTelegram] = useState(false);
 
-    // 1. Стандартная проверка UA
-    if (/Telegram/i.test(ua)) return true;
+  useEffect(() => {
+    const check = () => {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      if (/Telegram/i.test(ua))              { setIsTelegram(true); return; }
+      if (window.TelegramWebviewProxy)       { setIsTelegram(true); return; }
+      if (window.TelegramWebviewProxyProto)  { setIsTelegram(true); return; }
+      if (/android/i.test(ua) && ua.includes('Version/4.0')) { setIsTelegram(true); return; }
+    };
 
-    // 2. Если есть Telegram прокси — это точно Telegram, на любом устройстве
-    if (
-      window.TelegramWebviewProxy ||
-      window.TelegramWebviewProxyProto ||
-      window.location.hash.includes('tgWebAppData')
-    ) return true;
+    // Проверяем сразу
+    check();
 
-    // 3. Android fallback
-    if (/android/i.test(ua) && ua.includes('Version/4.0')) return true;
-
-    return false;
-  }
+    // И ещё раз через 300ms — на случай если Telegram не успел инжектировать прокси
+    const timer = setTimeout(check, 300);
+    return () => clearTimeout(timer);
+  }, []);
   
 
   return (
     <>
-    {isTelegramInApp() && <div className="tg-safe-area-filler" />} 
+    {isTelegram && <div className="tg-safe-area-filler" />} 
     <div className="navbar-container"> 
       <Navbar
         collapseOnSelect
