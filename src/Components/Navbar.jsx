@@ -147,22 +147,28 @@ const NavbarCustom = ({ isHomePage }) => {
   // TELEGRAM
   const [isTelegram, setIsTelegram] = useState(false);
 
-  useEffect(() => {
-    const check = () => {
-      const ua = navigator.userAgent || navigator.vendor || window.opera;
-      if (/Telegram/i.test(ua))              { setIsTelegram(true); return; }
-      if (window.TelegramWebviewProxy)       { setIsTelegram(true); return; }
-      if (window.TelegramWebviewProxyProto)  { setIsTelegram(true); return; }
-      if (/android/i.test(ua) && ua.includes('Version/4.0')) { setIsTelegram(true); return; }
-    };
+useEffect(() => {
+  const check = () => {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    
+    alert(
+      "check called!\n" +
+      "Telegram UA: " + /Telegram/i.test(ua) + "\n" +
+      "TgProxy: " + !!window.TelegramWebviewProxy + "\n" +
+      "TgProxyProto: " + !!window.TelegramWebviewProxyProto + "\n" +
+      "Android: " + (/android/i.test(ua) && ua.includes('Version/4.0'))
+    );
 
-    // Проверяем сразу
-    check();
+    if (/Telegram/i.test(ua))             { setIsTelegram(true); return; }
+    if (window.TelegramWebviewProxy)      { setIsTelegram(true); return; }
+    if (window.TelegramWebviewProxyProto) { setIsTelegram(true); return; }
+    if (/android/i.test(ua) && ua.includes('Version/4.0')) { setIsTelegram(true); return; }
+  };
 
-    // И ещё раз через 300ms — на случай если Telegram не успел инжектировать прокси
-    const timer = setTimeout(check, 300);
-    return () => clearTimeout(timer);
-  }, []);
+  check();
+  const timer = setTimeout(check, 300);
+  return () => clearTimeout(timer);
+}, []); // ✅ пустой массив — правильно, setIsTelegram стабильна
   
 
   return (
