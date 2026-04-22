@@ -166,7 +166,7 @@ const NavbarCustom = ({ isHomePage }) => {
           ? window.Telegram.WebApp.viewportHeight
           : null;
 
-        alert("tgHeaderHeight: " + tgHeaderHeight);
+        // alert("tgHeaderHeight: " + tgHeaderHeight);
       }
     };
 
