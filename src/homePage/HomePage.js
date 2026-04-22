@@ -18,6 +18,21 @@ import "./firstPage.css";
 
 function HomePage() {
 
+  useEffect(() => {
+    const ua = navigator.userAgent;
+    const info = [
+      "UA: " + ua,
+      "platform: " + navigator.platform,
+      "maxTouchPoints: " + navigator.maxTouchPoints,
+      "TgProxy: " + !!window.TelegramWebviewProxy,
+      "TgProxyProto: " + !!window.TelegramWebviewProxyProto,
+      "hash: " + window.location.hash,
+    ].join("\n");
+
+    // Показываем прямо на экране
+    alert(info);
+  }, []);
+
   return (
     <div id="homePage">
       <SEO
@@ -25,6 +40,7 @@ function HomePage() {
         description="Discover Armenia with Parmani Tour. Private day trips, multi-day tours, professional guides."
         url="/"
       />
+      
 
       {/* 1. HERO & INTRO */}
       <FirstPageFirstPart />
