@@ -347,13 +347,16 @@ html[lang="hy"] .carouselContainerHeadText {
     background-color: rgba(223, 216, 216, 0.8); /* Полупрозрачный фон для подписей */
     padding: 10px;
     border-radius: 10px 10px 10px 10px; /* Закругленные углы */
+    backdrop-filter: blur(1px);
+    
+    /* 3. Обязательно добавьте префикс для поддержки в Safari (iPhone) */
+    -webkit-backdrop-filter: blur(1px);
 }
 
 .carouselContainer .carousel .carousel-caption h3,
 .carouselContainer .carousel .carousel-caption p {
     color: black;
     font-family: cursive;
-    filter: blur(8%);
 } 
 
 .planeToArmenia {
