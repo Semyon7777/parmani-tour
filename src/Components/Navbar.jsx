@@ -146,22 +146,30 @@ const NavbarCustom = ({ isHomePage }) => {
 
   // TELEGRAM
   function isTelegramInApp() {
-    const ua = navigator.userAgent || '';
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    
+    // 1. Стандартная проверка (если UA не подменен)
+    if (/Telegram/i.test(ua)) return true;
 
-    // ✅ Способ 1 — User Agent (работает на всех версиях и устройствах)
-    if (ua.includes('Telegram')) return true;
+    // 2. Проверка для iOS (на Pro Max часто возвращается 'Macintosh')
+    // Но у настоящего мака нет тачскрина с поддержкой нескольких касаний
+    const isIOS = /iPhone|iPad|iPod/.test(ua) || 
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 
-    // ✅ Способ 2 — Telegram Mini App (актуальный API)
-    if (window.Telegram?.WebApp?.platform) return true;
+    // 3. Главный признак встроенных браузеров Telegram на iOS:
+    // Telegram накладывает свои Proxy-объекты для связи с нативным кодом,
+    // даже если это просто вкладка браузера, а не Mini App.
+    const hasTgProxy = !!(
+      window.TelegramWebviewProxy || 
+      window.TelegramWebviewProxyProto ||
+      // Иногда помогает проверка специфического хеша, если ссылка пришла из чата
+      window.location.hash.includes('tgWebAppData')
+    );
 
-    // ✅ Способ 3 — старые версии Android
-    if (typeof window.TelegramWebview !== 'undefined') return true;
+    if (isIOS && hasTgProxy) return true;
 
-    // ✅ Способ 4 — старые версии iOS  
-    if (
-      typeof window.TelegramWebviewProxy !== 'undefined' ||
-      typeof window.TelegramWebviewProxyProto !== 'undefined'
-    ) return true;
+    // 4. Дополнительный хак для Android
+    if (/android/i.test(ua) && ua.includes('Version/4.0')) return true;
 
     return false;
   }
