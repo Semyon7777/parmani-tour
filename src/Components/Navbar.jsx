@@ -150,27 +150,16 @@ const NavbarCustom = ({ isHomePage }) => {
   useEffect(() => {
     const check = () => {
       const ua = navigator.userAgent || navigator.vendor || window.opera;
-      
-      const isTg = (
-        /Telegram/i.test(ua) ||
-        !!window.TelegramWebviewProxy ||
-        !!window.TelegramWebviewProxyProto ||
-        (/android/i.test(ua) && ua.includes('Version/4.0'))
-      );
-
-      if (isTg) {
-        setIsTelegram(true);
-
-        // Пробуем взять высоту из Telegram WebApp API
-        const tgHeaderHeight = window.Telegram?.WebApp?.headerColor
-          ? window.Telegram.WebApp.viewportHeight
-          : null;
-
-        // alert("tgHeaderHeight: " + tgHeaderHeight);
-      }
+      if (/Telegram/i.test(ua))              { setIsTelegram(true); return; }
+      if (window.TelegramWebviewProxy)       { setIsTelegram(true); return; }
+      if (window.TelegramWebviewProxyProto)  { setIsTelegram(true); return; }
+      if (/android/i.test(ua) && ua.includes('Version/4.0')) { setIsTelegram(true); return; }
     };
 
+    // Проверяем сразу
     check();
+
+    // И ещё раз через 300ms — на случай если Telegram не успел инжектировать прокси
     const timer = setTimeout(check, 300);
     return () => clearTimeout(timer);
   }, []);
