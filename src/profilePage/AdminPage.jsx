@@ -394,8 +394,220 @@ function BookingsTable() {
   );
 }
 
+// ─── ITINERARY EDITOR ─────────────────────────────────────────────────────────
+function GroupEcoItineraryEditor({ value = [], onChange }) {
+  const items = Array.isArray(value) ? value : [];
 
-// ─── ТАБЛИЦА ТУРОВ (список с полными полями) ──────────────────
+  const update = (i, field, lang, val) => {
+    const next = items.map((item, idx) =>
+      idx !== i ? item : {
+        ...item,
+        [field]: lang ? { ...item[field], [lang]: val } : val,
+      }
+    );
+    onChange(next);
+  };
+
+  const add = () => onChange([...items, {
+    time: "",
+    title: { en: "", ru: "", hy: "" },
+    text:  { en: "", ru: "", hy: "" },
+  }]);
+
+  const remove = (i) => onChange(items.filter((_, idx) => idx !== i));
+
+  const move = (i, dir) => {
+    const next = [...items];
+    const swap = i + dir;
+    if (swap < 0 || swap >= next.length) return;
+    [next[i], next[swap]] = [next[swap], next[i]];
+    onChange(next);
+  };
+
+  return (
+    <div className="dyn-editor">
+      {items.map((item, i) => (
+        <div key={i} className="dyn-step-card">
+          <div className="dyn-step-header">
+            <span className="dyn-step-num">#{i + 1}</span>
+            <input
+              className="dyn-time-input"
+              placeholder="09:00"
+              value={item.time || ""}
+              onChange={e => update(i, "time", null, e.target.value)}
+            />
+            <div className="dyn-step-controls">
+              <button onClick={() => move(i, -1)} disabled={i === 0} title="Вверх">↑</button>
+              <button onClick={() => move(i, 1)} disabled={i === items.length - 1} title="Вниз">↓</button>
+              <button className="dyn-remove-btn" onClick={() => remove(i)} title="Удалить">
+                <X size={12} />
+              </button>
+            </div>
+          </div>
+
+          <div className="dyn-lang-grid">
+            {["en", "ru", "hy"].map(lng => (
+              <div key={lng} className="dyn-lang-col">
+                <div className="dyn-lang-label">{lng.toUpperCase()}</div>
+                <input
+                  placeholder={`Title (${lng})`}
+                  value={item.title?.[lng] || ""}
+                  onChange={e => update(i, "title", lng, e.target.value)}
+                />
+                <textarea
+                  rows={2}
+                  placeholder={`Description (${lng})`}
+                  value={item.text?.[lng] || ""}
+                  onChange={e => update(i, "text", lng, e.target.value)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <button className="dyn-add-btn" onClick={add}>
+        <Plus size={14} /> Добавить шаг
+      </button>
+    </div>
+  );
+}
+// ─── EXTRA DETAILS EDITOR ─────────────────────────────────────────────────────
+function GroupEcoExtraDetailsEditor({ value = {}, tourType = "group", onChange }) {
+  const included = Array.isArray(value.included) ? value.included : [];
+
+  const setMission = (lang, val) =>
+    onChange({ ...value, mission: { ...value.mission, [lang]: val } });
+
+  const setDuration = (val) =>
+    onChange({ ...value, duration: val });
+
+  const updateIncluded = (i, val) => {
+    const next = [...included];
+    next[i] = val;
+    onChange({ ...value, included: next });
+  };
+
+  const addIncluded  = () => onChange({ ...value, included: [...included, ""] });
+  const removeIncluded = (i) => onChange({ ...value, included: included.filter((_, idx) => idx !== i) });
+
+  return (
+    <div className="dyn-editor">
+
+      {/* ECO: mission */}
+      {tourType === "eco" && (
+        <div className="dyn-section">
+          <div className="dyn-section-title">🌿 Mission</div>
+          <div className="dyn-lang-grid">
+            {["en", "ru", "hy"].map(lng => (
+              <div key={lng} className="dyn-lang-col">
+                <div className="dyn-lang-label">{lng.toUpperCase()}</div>
+                <textarea
+                  rows={2}
+                  placeholder={`Mission (${lng})`}
+                  value={value.mission?.[lng] || ""}
+                  onChange={e => setMission(lng, e.target.value)}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* GROUP: duration */}
+      {tourType === "group" && (
+        <div className="dyn-section">
+          <div className="dyn-section-title">⏱ Duration</div>
+          <input
+            className="dyn-single-input"
+            placeholder="например: 4 hours"
+            value={value.duration || ""}
+            onChange={e => setDuration(e.target.value)}
+          />
+        </div>
+      )}
+
+      {/* Included */}
+      <div className="dyn-section">
+        <div className="dyn-section-title">✅ Included</div>
+        {included.map((item, i) => (
+          <div key={i} className="dyn-included-row">
+            <input
+              placeholder="например: Transfer"
+              value={item}
+              onChange={e => updateIncluded(i, e.target.value)}
+            />
+            <button className="dyn-remove-btn" onClick={() => removeIncluded(i)}>
+              <X size={12} />
+            </button>
+          </div>
+        ))}
+        <button className="dyn-add-btn" onClick={addIncluded}>
+          <Plus size={14} /> Добавить пункт
+        </button>
+      </div>
+    </div>
+  );
+}
+// ─── GALLERY EDITOR ───────────────────────────────────────────────────────────
+function GroupEcoGalleryEditor({ value = [], onChange }) {
+  const [newUrl, setNewUrl] = useState("");
+  const items = Array.isArray(value) ? value : [];
+
+  const add = () => {
+    const url = newUrl.trim();
+    if (!url) return;
+    onChange([...items, url]);
+    setNewUrl("");
+  };
+
+  const remove = (i) => onChange(items.filter((_, idx) => idx !== i));
+
+  const move = (i, dir) => {
+    const next = [...items];
+    const swap = i + dir;
+    if (swap < 0 || swap >= next.length) return;
+    [next[i], next[swap]] = [next[swap], next[i]];
+    onChange(next);
+  };
+
+  return (
+    <div className="dyn-editor">
+      <div className="gallery-editor-grid">
+        {items.map((url, i) => (
+          <div key={i} className="gallery-editor-item">
+            <img src={url} alt={`gallery-${i}`} className="gallery-editor-thumb" />
+            <div className="gallery-editor-overlay">
+              <span className="gallery-editor-num">#{i + 1}</span>
+              <div className="gallery-editor-controls">
+                <button onClick={() => move(i, -1)} disabled={i === 0} title="←">←</button>
+                <button onClick={() => move(i, 1)} disabled={i === items.length - 1} title="→">→</button>
+                <button className="dyn-remove-btn" onClick={() => remove(i)} title="Удалить">
+                  <X size={12} />
+                </button>
+              </div>
+            </div>
+            <div className="gallery-editor-url" title={url}>{url.split("/").pop()}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="dyn-included-row">
+        <input
+          className="loc-input"
+          placeholder="https://res.cloudinary.com/..."
+          value={newUrl}
+          onChange={e => setNewUrl(e.target.value)}
+          onKeyDown={e => e.key === "Enter" && add()}
+        />
+        <button className="dyn-add-btn" onClick={add}>
+          <Plus size={14} /> Добавить
+        </button>
+      </div>
+    </div>
+  );
+}
+// ─── ТАБЛИЦА Group & Eco ТУРОВ (список с полными полями) ──────────────────
 function ToursTable() {
   const [tours, setTours]         = useState([]);
   const [loading, setLoading]     = useState(true);
@@ -417,32 +629,22 @@ function ToursTable() {
 
   const startEdit = (tour) => {
     setEditingId(tour.id);
-    setEditData({
-      ...tour,
-      // Превращаем массив в текст с отступами для удобного редактирования
-      gallery: tour.gallery ? JSON.stringify(tour.gallery, null, 2) : "[]"
-    });
+    setEditData({ ...tour }); 
     setExpandedId(tour.id);
   };
+
   const cancelEdit = () => { setEditingId(null); setExpandedId(null); };
 
   const saveEdit = async () => {
     try {
-      const finalData = {
-        ...editData,
-        // Пытаемся превратить текст обратно в массив JSON
-        gallery: typeof editData.gallery === 'string' ? JSON.parse(editData.gallery) : editData.gallery
-      };
-
-      const { error } = await supabase.from("group_eco_tours").update(finalData).eq("id", editingId);
-      
+      const { error } = await supabase.from("group_eco_tours").update(editData).eq("id", editingId);
       if (!error) {
-        setTours(prev => prev.map(t => t.id === editingId ? finalData : t));
+        setTours(prev => prev.map(t => t.id === editingId ? editData : t));
         cancelEdit();
       }
     } catch (e) {
-      alert("Ошибка в формате JSON галереи! Проверьте запятые и кавычки.");
-      console.error("JSON Parse Error:", e);
+      alert("Ошибка сохранения");
+      console.error(e);
     }
   };
 
@@ -620,43 +822,28 @@ function ToursTable() {
                         </div>
 
                         <div className="tour-edit-section">
-                          <div className="tour-edit-section-title">
-                            extra_details (JSON) — eco: {"{ mission: {en,ru,hy}, included: [] }"} / group: {"{ duration: '', included: [] }"}
-                          </div>
-                          <div className="booking-edit-field">
-                            <textarea
-                              rows={6}
-                              value={editData.extra_details ? JSON.stringify(editData.extra_details, null, 2) : ""}
-                              onChange={e => { try { setEditData(p => ({ ...p, extra_details: JSON.parse(e.target.value) })); } catch {} }}
-                              style={{ fontFamily: "monospace", fontSize: "0.8rem" }}
-                            />
-                          </div>
+                          <div className="tour-edit-section-title">Extra Details</div>
+                          <GroupEcoExtraDetailsEditor
+                            value={editData.extra_details || {}}
+                            tourType={editData.type || "group"}
+                            onChange={val => setEditData(p => ({ ...p, extra_details: val }))}
+                          />
                         </div>
 
                         <div className="tour-edit-section">
-                          <div className="tour-edit-section-title">itinerary (JSON массив)</div>
-                          <div className="booking-edit-field">
-                            <textarea
-                              rows={8}
-                              value={editData.itinerary ? JSON.stringify(editData.itinerary, null, 2) : ""}
-                              onChange={e => { try { setEditData(p => ({ ...p, itinerary: JSON.parse(e.target.value) })); } catch {} }}
-                              style={{ fontFamily: "monospace", fontSize: "0.8rem" }}
-                            />
-                          </div>
+                          <div className="tour-edit-section-title">Itinerary</div>
+                          <GroupEcoItineraryEditor
+                            value={editData.itinerary || []}
+                            onChange={val => setEditData(p => ({ ...p, itinerary: val }))}
+                          />
                         </div>
 
                         <div className="tour-edit-section">
-                          <div className="tour-edit-section-title">gallery (JSON массив)</div>
-                          <div className="booking-edit-field">
-                            <textarea
-                              rows={8}
-                              // Используем текст из состояния
-                              value={editData.gallery || ""} 
-                              // Просто обновляем строку, не пытаясь её парсить мгновенно
-                              onChange={e => setEditData(p => ({ ...p, gallery: e.target.value }))}
-                              style={{ fontFamily: "monospace", fontSize: "0.8rem" }}
-                            />
-                          </div>
+                          <div className="tour-edit-section-title">Gallery</div>
+                          <GroupEcoGalleryEditor
+                            value={editData.gallery || []}
+                            onChange={val => setEditData(p => ({ ...p, gallery: val }))}
+                          />
                         </div>
 
                         <div className="booking-edit-actions">

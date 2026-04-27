@@ -666,8 +666,6 @@
 
 .tour-edit-fields { display: flex; flex-direction: column; gap: 16px; }
 
-.tour-edit-section {}
-
 .tour-edit-section-title {
   font-size: 0.75rem;
   font-weight: 700;
@@ -682,6 +680,101 @@
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 10px;
 }
+
+/* ─── Dynamic Editors ─── */
+.dyn-editor { display: flex; flex-direction: column; gap: 12px; }
+
+.dyn-section { display: flex; flex-direction: column; gap: 8px; }
+.dyn-section-title { font-size: 12px; font-weight: 600; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.dyn-lang-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+.dyn-lang-col { display: flex; flex-direction: column; gap: 4px; }
+.dyn-lang-label { font-size: 10px; font-weight: 700; color: #888; }
+.dyn-lang-col input, .dyn-lang-col textarea { width: 100%; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 12px; resize: vertical; }
+
+.dyn-step-card { border: 1px solid #e8e8e8; border-radius: 8px; padding: 12px; background: #fafafa; display: flex; flex-direction: column; gap: 10px; }
+.dyn-step-header { display: flex; align-items: center; gap: 8px; }
+.dyn-step-num { font-size: 11px; font-weight: 700; color: #aaa; min-width: 24px; }
+.dyn-time-input { width: 80px; padding: 4px 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; font-weight: 600; }
+.dyn-step-controls { margin-left: auto; display: flex; gap: 4px; }
+.dyn-step-controls button { padding: 2px 6px; border: 1px solid #ddd; border-radius: 4px; background: #fff; cursor: pointer; font-size: 12px; }
+.dyn-step-controls button:disabled { opacity: 0.3; cursor: default; }
+
+.dyn-included-row { display: flex; gap: 6px; align-items: center; }
+.dyn-included-row input { flex: 1; padding: 6px 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; }
+
+.dyn-single-input { padding: 6px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; width: 200px; }
+
+.dyn-remove-btn { padding: 4px 6px; border: 1px solid #fca5a5; border-radius: 4px; background: #fff5f5; color: #ef4444; cursor: pointer; display: flex; align-items: center; }
+.dyn-add-btn { display: flex; align-items: center; gap: 4px; padding: 6px 12px; border: 1px dashed #a3e635; border-radius: 6px; background: #f7ffe5; color: #65a30d; font-size: 12px; cursor: pointer; width: fit-content; }
+.dyn-add-btn:hover { background: #ecfccb; }
+
+.gallery-editor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.gallery-editor-item {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e8e8e8;
+  background: #f5f5f5;
+}
+
+.gallery-editor-thumb {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-editor-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 6px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+}
+
+.gallery-editor-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.gallery-editor-controls {
+  display: flex;
+  gap: 3px;
+}
+
+.gallery-editor-controls button {
+  padding: 2px 5px;
+  border: none;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.8);
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.gallery-editor-controls button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.gallery-editor-url {
+  padding: 4px 6px;
+  font-size: 10px;
+  color: #888;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* ----------------------------------------- */
 
 .booking-edit-field textarea {
   width: 100%;
