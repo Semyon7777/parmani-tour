@@ -446,6 +446,13 @@ const TourGrid = React.memo(function TourGrid({
                           </div>
                         </div>
 
+                        {/* {tour.spots <= 10 ? 
+                            <div className="detail-item spots">
+                              <span className="spots-dot"></span>
+                              {t("group_eco_tours.only")} {tour.spots} {t("group_eco_tours.spots_left")}
+                            </div>
+                          : <div style={{marginBottom: "30px"}}></div>} */}
+
                         <div className="tour-action-area">
                           <div className="tour-price-tag">{tour.price} {t("group_eco_tours.amd", "AMD")}</div>
                           <Link

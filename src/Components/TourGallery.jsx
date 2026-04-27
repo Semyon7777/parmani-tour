@@ -9,11 +9,11 @@ import "./TourGallery.css";
  */
 function TourGallery({ images = [], alt = "Tour image" }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [displayIndex, setDisplayIndex] = useState(0); // what's actually visible
+  const [isLoading, setIsLoading] = useState(false);
 
-  // Если нет картинок — не рендерим вообще
   if (!images || images.length === 0) return null;
 
-  // Cloudinary оптимизация — вставляем параметры если ссылка с cloudinary
   const optimize = (url, width = 1200) => {
     if (!url) return url;
     if (url.includes("cloudinary.com") && url.includes("/upload/")) {
@@ -22,42 +22,59 @@ function TourGallery({ images = [], alt = "Tour image" }) {
     return url;
   };
 
-  const activeImage = images[activeIndex];
+  const handleThumbClick = (i) => {
+    if (i === activeIndex) return;
+    setIsLoading(true);
+    setActiveIndex(i); // start loading new image in background
+  };
 
   return (
     <div className="tour-gallery">
-      {/* Большое главное фото */}
       <div className="tour-gallery-main">
+        {/* Current visible image — stays until new one is ready */}
         <img
-          src={optimize(activeImage, 1200)}
+          src={optimize(images[displayIndex], 1200)}
           alt={alt}
           className="tour-gallery-main-img"
-          loading="lazy"
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
         />
-        {/* Счётчик */}
+
+        {/* New image loading in background, invisible until ready */}
+        {isLoading && (
+          <img
+            key={activeIndex}
+            src={optimize(images[activeIndex], 1200)}
+            alt={alt}
+            className="tour-gallery-main-img"
+            style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0 }}
+            onLoad={() => {
+              setDisplayIndex(activeIndex);
+              setIsLoading(false);
+            }}
+            onError={() => {
+              setDisplayIndex(activeIndex);
+              setIsLoading(false);
+            }}
+          />
+        )}
+
         {images.length > 1 && (
           <div className="tour-gallery-counter">
-            {activeIndex + 1} / {images.length}
+            {displayIndex + 1} / {images.length}
           </div>
         )}
       </div>
 
-      {/* Миниатюры справа — показываем только если больше 1 фото */}
       {images.length > 1 && (
         <div className="tour-gallery-thumbs">
           {images.map((img, i) => (
             <button
               key={i}
               className={`tour-gallery-thumb ${i === activeIndex ? "active" : ""}`}
-              onClick={() => setActiveIndex(i)}
+              onClick={() => handleThumbClick(i)}
               aria-label={`Photo ${i + 1}`}
             >
-              <img
-                src={optimize(img, 300)}
-                alt={`${alt} ${i + 1}`}
-                loading="lazy"
-              />
-              {/* Затемнение неактивных */}
+              <img src={optimize(img, 300)} alt={`${alt} ${i + 1}`} loading="lazy" />
               {i !== activeIndex && <div className="thumb-overlay" />}
             </button>
           ))}

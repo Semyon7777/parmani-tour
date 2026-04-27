@@ -242,7 +242,11 @@ function FavouritesTab({ favourites, loading, onRemove }) {
                   : tour.title}
               </h5>
               <div className="profile-tour-footer">
-                <span className="profile-tour-price">{tour.price}</span>
+                <span className="profile-tour-price">
+                  {tour.price?.toString().toLowerCase().includes("amd")
+                      ? tour.price
+                      : `${tour.price} AMD`}
+                </span>
                 <Link
                   to={tour.type === "private" ? `/private-tours/${tour.id}` : tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`}
                   className="profile-tour-link"

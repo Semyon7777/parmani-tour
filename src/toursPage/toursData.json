@@ -1188,8 +1188,8 @@
   {
     "id": "sevan-sevanavank-noratus-haghartsin-tour",
     "category": ["nature", "cultural"],
-    "routeMap": "/TourImages/sevan_region/sevan_noratus_dilijan/map.webp",
-    "imageUrl": "/TourImages/sevan_region/sevan_noratus_dilijan/main.webp",
+    "routeMap": "/TourImages/gegharkunik_region/sevan_noratus_dilijan/map.webp",
+    "imageUrl": "/TourImages/gegharkunik_region/sevan_noratus_dilijan/main.webp",
     "duration": "12",
     "durationUnit": "hours",
     "price": "55000 AMD",
