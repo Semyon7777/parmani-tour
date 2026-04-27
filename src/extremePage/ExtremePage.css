@@ -1,0 +1,238 @@
+.extreme-page {
+  min-height: 100vh;
+  background: #f8f9fa;
+}
+
+/* Hero */
+.extreme-hero {
+  height: 55vh;
+  min-height: 350px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.extreme-hero-content h1 {
+  color: #fff;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.extreme-hero-content p {
+  color: rgba(255,255,255,0.7);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+/* Фильтры */
+.extreme-filters {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px 20px 24px;
+  flex-wrap: wrap;
+}
+
+.extreme-filter-btn {
+  padding: 10px 24px;
+  border: 2px solid #dee2e6;
+  border-radius: 50px;
+  background: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #555;
+}
+
+.extreme-filter-btn:hover {
+  border-color: #0f3460;
+  color: #0f3460;
+}
+
+.extreme-filter-btn.active {
+  background: #0f3460;
+  border-color: #0f3460;
+  color: #fff;
+}
+
+/* Сетка карточек */
+.extreme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  padding: 0 40px 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .extreme-grid { padding: 0 16px 40px; }
+}
+
+/* Карточка */
+.extreme-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+}
+
+.extreme-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* Картинка */
+.extreme-card-image {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.extreme-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.extreme-card:hover .extreme-card-image img {
+  transform: scale(1.05);
+}
+
+.extreme-difficulty-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.extreme-season-badges {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  gap: 4px;
+}
+
+.extreme-season-badge {
+  font-size: 1.1rem;
+  background: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Тело карточки */
+.extreme-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.extreme-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 8px;
+}
+
+.extreme-card-desc {
+  font-size: 0.88rem;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.extreme-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.extreme-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+}
+
+.extreme-meta-label {
+  color: #888;
+  font-weight: 500;
+}
+
+.extreme-price {
+  font-weight: 700;
+  color: #0f3460;
+  font-size: 0.95rem;
+}
+
+/* Включено */
+.extreme-includes {
+  margin-bottom: 16px;
+}
+
+.extreme-includes-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+.extreme-includes ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.extreme-includes ul li {
+  font-size: 0.78rem;
+  background: #edf2ff;
+  color: #4c6ef5;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
+/* Кнопка */
+.extreme-contact-btn {
+  margin-top: auto;
+  width: 100%;
+  padding: 12px;
+  background: #0f3460;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.extreme-contact-btn:hover {
+  background: #16213e;
+}

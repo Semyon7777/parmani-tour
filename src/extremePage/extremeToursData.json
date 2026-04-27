@@ -1,0 +1,194 @@
+[
+  {
+    "id": "horse-riding",
+    "season": ["summer", "autumn", "spring"],
+    "category": "land",
+    "imageUrl": "https://res.cloudinary.com/dwqsqiezw/image/upload/v1777100189/horse-riding_urjlj3.webp",
+    "title": {
+      "en": "Horse Riding",
+      "ru": "Конные прогулки",
+      "hy": "Ձիավարություն"
+    },
+    "description": {
+      "en": "Explore Armenia's landscapes on horseback through mountain trails and villages.",
+      "ru": "Исследуйте пейзажи Армении верхом на лошади по горным тропам и деревням.",
+      "hy": "Բացահայտեք Հայաստանի բնությունը ձիով լեռնային արահետներով և գյուղերով։"
+    },
+    "duration": {
+      "en": "2-4 hours",
+      "ru": "2-4 часа",
+      "hy": "2-4 ժամ"
+    },
+    "includes": {
+      "en": ["Horse & equipment", "Instructor", "Insurance"],
+      "ru": ["Лошадь и снаряжение", "Инструктор", "Страховка"],
+      "hy": ["Ձի և սարքավորում", "Հրահանգիչ", "Ապահովագրություն"]
+    },
+    "price": {
+      "en": "from 15000 AMD",
+      "ru": "от 15000 AMD",
+      "hy": "15000 AMD-ից"
+    },
+    "difficulty": "easy"
+  },
+  {
+    "id": "quadracycle",
+    "season": ["summer", "autumn", "spring"],
+    "category": "land",
+    "imageUrl": "https://res.cloudinary.com/dwqsqiezw/image/upload/v1777100385/quad-biking_hh0wdo.webp",
+    "title": {
+      "en": "Quad Biking",
+      "ru": "Квадроциклы",
+      "hy": "Քվադրոցիկլ"
+    },
+    "description": {
+      "en": "Ride powerful quad bikes through off-road Armenian terrain and scenic routes.",
+      "ru": "Езда на мощных квадроциклах по бездорожью Армении и живописным маршрутам.",
+      "hy": "Հայաստանի անճանապարհ տեղանքով և գեղատեսիլ երթուղիներով քվադրոցիկլ վարել։"
+    },
+    "duration": {
+      "en": "1-3 hours",
+      "ru": "1-3 часа",
+      "hy": "1-3 ժամ"
+    },
+    "includes": {
+      "en": ["Quad bike", "Helmet & gear", "Instructor"],
+      "ru": ["Квадроцикл", "Шлем и снаряжение", "Инструктор"],
+      "hy": ["Քվադրոցիկլ", "Սաղավարт և սարքավորում", "Հրահանգիչ"]
+    },
+    "price": {
+      "en": "from 20000 AMD",
+      "ru": "от 20000 AMD",
+      "hy": "20000 AMD-ից"
+    },
+    "difficulty": "medium"
+  },
+  {
+    "id": "snowmobile",
+    "season": ["winter"],
+    "category": "snow",
+    "imageUrl": "/TourImages/extreme/snowmobile.webp",
+    "title": {
+      "en": "Snowmobile",
+      "ru": "Снегоход",
+      "hy": "Ձնակառք"
+    },
+    "description": {
+      "en": "Race through snowy Armenian mountains on powerful snowmobiles.",
+      "ru": "Мчитесь по заснеженным горам Армении на мощных снегоходах.",
+      "hy": "Հայաստանի ձյունածածկ լեռներով արագընթաց ձնակառքով։"
+    },
+    "duration": {
+      "en": "1-2 hours",
+      "ru": "1-2 часа",
+      "hy": "1-2 ժամ"
+    },
+    "includes": {
+      "en": ["Snowmobile", "Warm suit", "Helmet", "Instructor"],
+      "ru": ["Снегоход", "Тёплый костюм", "Шлем", "Инструктор"],
+      "hy": ["Ձնակառք", "Ջերմ հագուստ", "Սաղավարտ", "Հրահանգիչ"]
+    },
+    "price": {
+      "en": "from 25000 AMD",
+      "ru": "от 25000 AMD",
+      "hy": "25000 AMD-ից"
+    },
+    "difficulty": "medium"
+  },
+  {
+    "id": "tubing",
+    "season": ["winter"],
+    "category": "snow",
+    "imageUrl": "/TourImages/extreme/tubing.webp",
+    "title": {
+      "en": "Tubing",
+      "ru": "Тюбинг",
+      "hy": "Թյուբինգ"
+    },
+    "description": {
+      "en": "Slide down snowy slopes on inflatable tubes — fun for all ages.",
+      "ru": "Катайтесь со снежных склонов на надувных тюбах — весело для всех возрастов.",
+      "hy": "Սահեք ձյունե լանջերով փչովի թյուբերով — զվարճալի բոլոր տարիքների համար։"
+    },
+    "duration": {
+      "en": "1-3 hours",
+      "ru": "1-3 часа",
+      "hy": "1-3 ժամ"
+    },
+    "includes": {
+      "en": ["Tube rental", "Safety equipment"],
+      "ru": ["Аренда тюба", "Снаряжение безопасности"],
+      "hy": ["Թյուբի վարձույթ", "Անվտանգության սարքավորում"]
+    },
+    "price": {
+      "en": "from 8000 AMD",
+      "ru": "от 8000 AMD",
+      "hy": "8000 AMD-ից"
+    },
+    "difficulty": "easy"
+  },
+  {
+    "id": "bicycle-tour",
+    "season": ["summer", "spring", "autumn"],
+    "category": "land",
+    "imageUrl": "/TourImages/extreme/bicycle.webp",
+    "title": {
+      "en": "Bicycle Tour",
+      "ru": "Велотур",
+      "hy": "Հեծանվային տուր"
+    },
+    "description": {
+      "en": "Explore Armenia's countryside and historic sites on two wheels.",
+      "ru": "Исследуйте армянскую природу и исторические места на двух колёсах.",
+      "hy": "Բացահայտեք Հայաստանի բնությունն ու պատմական վայրերը երկու անիվով։"
+    },
+    "duration": {
+      "en": "3-6 hours",
+      "ru": "3-6 часов",
+      "hy": "3-6 ժամ"
+    },
+    "includes": {
+      "en": ["Bicycle & helmet", "Guide", "Water"],
+      "ru": ["Велосипед и шлем", "Гид", "Вода"],
+      "hy": ["Հեծանիվ և սաղավարտ", "Գիդ", "Ջուր"]
+    },
+    "price": {
+      "en": "from 12000 AMD",
+      "ru": "от 12000 AMD",
+      "hy": "12000 AMD-ից"
+    },
+    "difficulty": "medium"
+  },
+  {
+    "id": "camping",
+    "season": ["summer", "spring", "autumn"],
+    "category": "outdoor",
+    "imageUrl": "/TourImages/extreme/camping.webp",
+    "title": {
+      "en": "Camping Night",
+      "ru": "Ночёвка в палатке",
+      "hy": "Վրանային գիշերակաց"
+    },
+    "description": {
+      "en": "Spend a night under the stars in Armenia's mountains with a campfire and stargazing.",
+      "ru": "Проведите ночь под звёздами в горах Армении с костром и наблюдением за звёздами.",
+      "hy": "Անցկացրեք գիշեր Հայաստանի լեռներում՝ կրակի մոտ և աստղերի դիտարկմամբ։"
+    },
+    "duration": {
+      "en": "1 night",
+      "ru": "1 ночь",
+      "hy": "1 գիշեր"
+    },
+    "includes": {
+      "en": ["Tent & sleeping bag", "Campfire", "Dinner & breakfast", "Guide"],
+      "ru": ["Палатка и спальник", "Костёр", "Ужин и завтрак", "Гид"],
+      "hy": ["Վրան և քնապարկ", "Կրակ", "Ընթրիք և նախաճաշ", "Գիդ"]
+    },
+    "price": {
+      "en": "from 30000 AMD",
+      "ru": "от 30000 AMD",
+      "hy": "30000 AMD-ից"
+    },
+    "difficulty": "easy"
+  }
+]

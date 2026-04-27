@@ -228,6 +228,10 @@
   opacity: 1;
 }
 
+.itinerary-content .itinerary-text {
+  margin-bottom: 5px !important;
+}
+
 /* Анимация самой карточки при активации */
 .itinerary-item {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);

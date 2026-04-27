@@ -11,6 +11,7 @@ import ContactPage from "./contactPage/ContactPage";
 import SpecialPage from "./specialPage/SpecialPage";
 import ProfilePage from "./profilePage/ProfilePage";
 import GroupEcoTours from "./groupEcoTours/GroupEcoTours";
+import ExtremePage from "./extremePage/ExtremePage";
 import EcoTourDetails from "./groupEcoTours/EcoTourDetails";
 import GroupTourDetails from "./groupEcoTours/GroupTourDetails";
 import AboutUsPage from "./aboutUs/AboutUs";
@@ -63,6 +64,7 @@ function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/login" element={<AuthPage />} />
             <Route path="/group-eco-tours" element={<GroupEcoTours />}/>
+            <Route path="/extreme-tours" element={<ExtremePage />} />
             <Route path="/eco-tour/:id" element={<EcoTourDetails />} />
             <Route path="/group-tour/:id" element={<GroupTourDetails />} />
             <Route path="/history" element={<HistoryPage />}/>

@@ -4,6 +4,7 @@
     "tours_button": "Tours",
     "private_tours": "Private Tours",
     "school_tours": "School Tours",
+    "extreme_tours": "Extreme Tours",
     "services": "Services",
     "hotels": "Hotels",
     "transport": "Transport",
@@ -1042,6 +1043,22 @@
       "Water": "Water",
       "Entrance Tickets": "Entrance Tickets"
     }
+  },
+
+  "extreme": {
+    "title": "Extreme & Adventure Tours",
+    "subtitle": "Push your limits in the heart of Armenia",
+    "all": "All",
+    "summer": "Summer",
+    "winter": "Winter",
+    "difficulty": "Difficulty",
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard",
+    "duration": "Duration",
+    "includes": "Includes",
+    "contact": "Book via Contact",
+    "price": "Price"
   },
 
   "profile": {

@@ -1634,21 +1634,41 @@ function LocationsLibrary() {
       </div>
  
       {/* Текстовые поля для активного языка */}
-      {TEXT_FIELDS.map(field => (
-        <div key={field.key} className="loc-field-row">
-          <label className="loc-field-label">
-            {field.label}
-            <span className="loc-lang-badge">{activeLang.toUpperCase()}</span>
-          </label>
-          <textarea
-            className="loc-textarea"
-            rows={field.rows}
-            value={editData[field.key][activeLang] || ""}
-            onChange={e => setField(field.key, activeLang, e.target.value)}
-            placeholder={`${field.label} (${activeLang})`}
-          />
-        </div>
-      ))}
+      {TEXT_FIELDS.map(field => {
+        const currentValue = editData[field.key][activeLang] || "";
+        const wordCount = field.key === "full_content"
+          ? currentValue.trim() === "" ? 0 : currentValue.trim().split(/\s+/).length
+          : null;
+
+        return (
+          <div key={field.key} className="loc-field-row">
+            <label className="loc-field-label">
+              {field.label}
+              <span className="loc-lang-badge">{activeLang.toUpperCase()}</span>
+              {wordCount !== null && (
+                <>
+                <span style={{
+                  marginLeft: 8,
+                  fontSize: 11,
+                  color: wordCount > 200 ? "#e74c3c" : "#888",
+                  fontWeight: "normal",
+                }}>
+                  {wordCount} слов 
+                </span>
+                <p className="small mb-0">maximum-150!</p>
+                </>
+              )}
+            </label>
+            <textarea
+              className="loc-textarea"
+              rows={field.rows}
+              value={currentValue}
+              onChange={e => setField(field.key, activeLang, e.target.value)}
+              placeholder={`${field.label} (${activeLang})`}
+            />
+          </div>
+        );
+      })}
  
       {/* Изображения */}
       <div className="loc-field-row">

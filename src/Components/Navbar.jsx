@@ -200,6 +200,7 @@ const NavbarCustom = ({ isHomePage }) => {
                 <LinkContainer to="/private-tours"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.private_tours")}</NavDropdown.Item></LinkContainer>
                 <LinkContainer to="/group-eco-tours"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.group_&_eco_tours")}</NavDropdown.Item></LinkContainer>
                 <LinkContainer to={{ pathname: "/special", search: "?tab=school" }}><NavDropdown.Item className="dropdown-item">{t("navbar_custom.school_tours")}</NavDropdown.Item></LinkContainer>
+                {/* <LinkContainer to="/extreme-tours"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.extreme_tours")}</NavDropdown.Item></LinkContainer> */}
               </NavDropdown>
 
               <NavDropdown
