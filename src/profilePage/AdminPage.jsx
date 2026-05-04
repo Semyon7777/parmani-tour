@@ -205,6 +205,7 @@ const updateTourSpots = async (tourId, guestsCount, oldStatus, newStatus) => {
   }
 };
 
+
 // ─── ТАБЛИЦА БРОНИРОВАНИЙ ─────────────────────────────────────
 function BookingsTable() {
   const [bookings, setBookings]   = useState([]);
@@ -393,6 +394,7 @@ function BookingsTable() {
     </div>
   );
 }
+
 
 // ─── ITINERARY EDITOR ─────────────────────────────────────────────────────────
 function GroupEcoItineraryEditor({ value = [], onChange }) {

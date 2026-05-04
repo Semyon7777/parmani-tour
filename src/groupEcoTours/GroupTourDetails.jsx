@@ -162,6 +162,30 @@ const GroupTourDetails = () => {
               </div>
             </section>
 
+            <section className="included-excluded-section mt-4">
+              <h2 className="section-title">{t('group_eco_tours.included_items.included_excluded')}</h2>
+              <Row >
+                <Col md={6}>
+                  <div className="included-card">
+                    <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
+                      {tour.extra_details.included?.map((item, index) => (
+                        <li key={index} className='fs-5 mb-1'>✅ {t(`group_eco_tours.included_items.${item.toLowerCase()}`)}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </Col>
+                <Col md={6}>
+                  <div className="excluded-card">
+                    <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
+                      {tour.extra_details.excluded?.map((item, index) => (
+                        <li key={index} className='fs-5 mb-1'>❌ {t(`group_eco_tours.included_items.${item.toLowerCase()}`)}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </Col>
+              </Row>
+            </section>
+
             <section className="important-info">
               <div className="info-card">
                 <Info size={24} className="text-orange" />
@@ -172,6 +196,7 @@ const GroupTourDetails = () => {
               </div>
             </section>
           </Col>
+          
 
           {/* Правая колонка - Бронирование */}
           <Col lg={5}>

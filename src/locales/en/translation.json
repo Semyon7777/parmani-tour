@@ -732,35 +732,46 @@
 
   "about": {
     "hero": {
-      "title": "About Our Company",
-      "subtitle": "Creating meaningful journeys across Armenia with professionalism and care."
+      "label": "Our Story",
+      "title": "In Love with Armenia",
+      "subtitle": "We create journeys that connect people with the soul of this ancient land."
+    },
+    "stats": {
+      "years": "Years of experience",
+      "clients": "Happy tourists",
+      "tours": "Unique tours",
+      "guides": "Local guides"
     },
     "mission": {
-      "title": "Our Mission",
-      "text": "Our mission is to provide authentic, safe, and unforgettable travel experiences. We combine local knowledge with international service standards to deliver excellence."
+      "label": "Mission",
+      "title": "More than a travel agency",
+      "text": "We believe that travel should transform a person. Our goal is not just to show sights, but to reveal Armenia the way locals know it."
     },
     "values": {
-      "title": "Our Core Values",
+      "label": "What we believe in",
+      "title": "Our values",
       "professionalism": {
         "title": "Professionalism",
-        "text": "We operate with responsibility, precision, and attention to every detail."
+        "text": "Every tour is thought out to the smallest detail. Our guides are experts in their field with years of experience."
       },
       "trust": {
-        "title": "Trust & Transparency",
-        "text": "Clear communication and honest pricing are the foundation of our relationships."
+        "title": "Trust",
+        "text": "Transparent prices, honest reviews, and full support at every stage of the journey."
       },
       "local": {
-        "title": "Local Expertise",
-        "text": "Our deep understanding of Armenia allows us to create unique and meaningful journeys."
+        "title": "Local knowledge",
+        "text": "We know Armenia from the inside—hidden gems, the best routes, and authentic cuisine."
       }
     },
     "team": {
-      "title": "Our Team",
-      "text": "Our team consists of passionate travel specialists who love Armenia and are dedicated to sharing its beauty with the world."
+      "label": "People",
+      "title": "Meet the team",
+      "text": "We are a team of passionate Armenians who want to share the beauty of our country with every guest."
     },
     "cta": {
-      "title": "Let’s Plan Your Journey",
-      "text": "Contact us today and allow us to create a travel experience tailored just for you."
+      "title": "Ready to discover Armenia?",
+      "text": "Message us—we will find the perfect itinerary just for you.",
+      "button": "Contact us"
     }
   },
 
@@ -1034,14 +1045,16 @@
       "no_spots": "No spots left"
     },
     "included_items": {
-      "Transfer": "Transfer",
-      "Eco-lunch": "Eco-lunch",
-      "Tree Seedlings": "Tree Seedlings",
-      "Equipment": "Equipment",
-      "Professional Guide": "Professional Guide",
-      "Guide": "Guide",
-      "Water": "Water",
-      "Entrance Tickets": "Entrance Tickets"
+      "included_excluded": "What's included",
+      "transfer": "Transfer",
+      "eco_lunch": "Eco-lunch",
+      "tree_seedlings": "Tree Seedlings",
+      "equipment": "Equipment",
+      "professional_guide": "Professional Guide",
+      "guide": "Guide",
+      "water": "Water",
+      "lunch": "Lunch",
+      "entrance_tickets": "Entrance Tickets"
     }
   },
 

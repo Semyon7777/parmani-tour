@@ -268,7 +268,7 @@ const NavbarCustom = ({ isHomePage }) => {
                 onMouseLeave={() => handleMouseLeave('lang')}
                 onToggle={(isOpen) => handleToggle('lang', isOpen)}
               >
-                <NavDropdown.Item onClick={() => changeLanguage("en")}>🇺🇸 EN</NavDropdown.Item>
+                <NavDropdown.Item onClick={() => changeLanguage("en")}>🇬🇧 EN</NavDropdown.Item>
                 <NavDropdown.Item onClick={() => changeLanguage("ru")}>🇷🇺 RU</NavDropdown.Item>
                 <NavDropdown.Item onClick={() => changeLanguage("hy")}>🇦🇲 HY</NavDropdown.Item>
               </NavDropdown>
