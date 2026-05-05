@@ -1,133 +1,229 @@
-/* Footer */
+/* ═══════════════════════════════════════════
+   PARMANI TOUR — FOOTER
+   Clean neutral style on white body
+═══════════════════════════════════════════ */
 
-.footerContainer {
-    display: flex;
-    flex-direction: column;
-    min-height: 50vh;
-    justify-content: flex-end;
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── ПЕРЕМЕННЫЕ ── */
+:root {
+  --ft-bg:          #f5f5f5;
+  --ft-surface:     #ebebeb;
+  --ft-border:      #d6d6d6;
+  --ft-gold:        #2e2e2e;
+  --ft-gold-hover:  #404040;
+  --ft-text:        #3a3a3a;
+  --ft-text-dim:    #7a7a7a;
+  --ft-dark:        #1a1a1a;
 }
 
-.social-icon:hover .fab.fa-facebook-f {
-    color: #3b5998;
-}
-  
-.social-icon:hover .fab.fa-telegram {
-    color: #0A66C2;
-}
-
-.social-icon:hover .fab.fa-instagram {
-    color: #c13584;
+/* ══════════════════════════════
+   ОБЩИЙ КОНТЕЙНЕР
+══════════════════════════════ */
+.text-center.text-lg-start {
+  background-color: var(--ft-bg) !important;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ft-text);
 }
 
-.social-icon:hover .fab.fa-whatsapp {
-    color: #4FCE5D;
+/* ══════════════════════════════
+   ВЕРХНЯЯ ПОЛОСКА — СОЦСЕТИ
+══════════════════════════════ */
+.text-center.text-lg-start > section:first-child {
+  background-color: var(--ft-surface);
+  border-bottom: 1px solid var(--ft-border) !important;
+  padding: 20px 48px !important;
 }
 
-.social-icon:hover .fab.fa-tiktok {
-    color: #ff0050;
+.footer-get-connected {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ft-text-dim);
 }
 
-.social-icon:hover .fab.fa-viber {
-    color: #7360f2;
-}
-
-.social-icon:hover .fab.fa-youtube {
-    color: #FF0000;
-}
-
-/* .social-icon:hover .fab.fa-tiktok {
-    color: #000000;
-} */
-
-
-
+/* ── Иконки соцсетей (top bar) ── */
 .social-icon {
-    font-size: 1.4rem; 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ft-border);
+  font-size: 1.1rem !important;
+  color: var(--ft-text) !important;        /* visible default — dark gray */
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  margin: 0 5px !important;
+  background: #fff;
 }
 
-@media(max-width: 768px){
-    .footerContainer {
-        margin-top: 200px !important;
-    }
+/* ── Brand hover colours ── */
+.social-icon:hover { color: var(--ft-text); }
 
-    .text-uppercase {
-      justify-content: center;
-    }
+.social-icon:hover {
+  border-color: currentColor;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
 }
 
-@media (min-width: 991px) {
-  .footer-box .footer-box-container {
-    text-align: left;
-  }
+/* ══════════════════════════════
+   ОСНОВНАЯ СЕКЦИЯ
+══════════════════════════════ */
+.footer-box {
+  padding-bottom: 12px;
 }
-/* weather api */
 
-.weather-container {
-    background: linear-gradient(135deg, #2ecc71, #27ae60); /* Зеленый градиентный фон */
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+.footer-box-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ── Лого + название бренда ── */
+.footer-box h6.text-uppercase.fw-bold {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em;
+  color: var(--ft-dark) !important;
+  text-transform: none !important;
+}
+
+/* Заголовки колонок */
+.footer-box .mb-2.text-uppercase.fw-bold:not(:has(img)) {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.18em;
+  color: var(--ft-dark) !important;        /* darker so they're readable */
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--ft-border);
+}
+
+.footer-get-connected-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Описание компании */
+.footer-box p {
+  font-size: 0.875rem !important;
+  line-height: 1.75;
+  color: var(--ft-text);
+  margin-bottom: 6px;
+}
+
+/* Ссылки в колонках */
+.footer-box a.text-reset {
+  font-size: 0.9rem;
+  color: var(--ft-text) !important;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: inline-block;
+}
+
+.footer-box a.text-reset:hover {
+  color: var(--ft-gold) !important;
+}
+
+/* Спецпредложения — золотой акцент */
+.footer-box a.text-reset.fw-bold {
+  color: var(--ft-gold) !important;
+  font-weight: 500 !important;
+}
+
+.footer-box a.text-reset.fw-bold:hover {
+  color: var(--ft-gold-hover) !important;
+}
+
+/* ══════════════════════════════
+   МЕССЕНДЖЕРЫ ПОД ОПИСАНИЕМ
+══════════════════════════════ */
+
+/* Label "Написать нам" */
+.footer-messenger-label {
+  font-size: 0.65rem !important;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ft-text-dim) !important;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Wrapper row */
+.footer-messenger-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+}
+
+/* Messenger icons — slightly smaller than top-bar but still big enough */
+.footer-messenger-row .social-icon {
+  width: 38px !important;
+  height: 38px !important;
+  font-size: 1rem !important;
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════
+   КОПИРАЙТ
+══════════════════════════════ */
+.text-center.text-lg-start > div:last-child {
+  background-color: var(--ft-surface) !important;
+  border-top: 1px solid var(--ft-border);
+  color: var(--ft-text-dim);
+  font-size: 0.8rem;
+  padding: 14px 48px !important;
+  text-align: center;
+}
+
+.text-center.text-lg-start > div:last-child strong {
+  color: var(--ft-text);
+  font-weight: 500;
+}
+
+/* ══════════════════════════════
+   АДАПТИВ
+══════════════════════════════ */
+@media (max-width: 991px) {
+  .footer-box-container {
     text-align: center;
-    max-width: 250px;
-    margin: -20px 20px 20px 20px;
-    color: #fff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: transform 0.3s ease;
   }
-  
-  .weather-container:hover {
-    transform: scale(1.05); /* Плавное увеличение при наведении */
-  }
-  
-  .weather-info i {
-    margin-right: 8px;
-    font-size: 1.3rem; /* Увеличенные иконки */
-  }
-  
-  .weather-city {
-    display: flex;
-    justify-content: end;
-    margin-right: 5px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #fff;
-  }
-  
-  .weather-temp {
-    font-size: 1.4rem;
-    margin: 10px 0;
-    color: #ffeaa7; /* Акцент на температуре */
-  }
-  
-  .weather-desc {
-    font-size: 1rem;
-    color: #dfe6e9;
-  }
-  
-  .error-message {
-    color: #e74c3c;
-    font-weight: bold;
-    margin: 8px 0;
-    font-size: 1rem;
-  }
-  
-  .loading-message {
-    font-size: 1rem;
-    color: #74b9ff;
-  }
-  
-  /* Плавные переходы для всех элементов */
-  .weather-info, .error-message, .loading-message {
-    transition: all 0.3s ease;
-  }
-  
-  @media (max-width: 1024px) {
-    
-    .weather-container {
-      display: none; /* Hide weather container on screens 1024px and below */
-    }
 
+  .footer-messenger-row {
+    justify-content: center;
   }
-  
-  
+
+  .footer-messenger-label {
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .text-center.text-lg-start > section:first-child {
+    padding: 16px 24px !important;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-parmani-tour-container {
+    justify-content: center;
+  }
+
+  .text-center.text-lg-start > div:last-child {
+    padding: 14px 24px !important;
+  }
+
+  .footer-get-connected-container {
+    display: none;
+  }
+}
