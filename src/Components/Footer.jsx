@@ -22,7 +22,7 @@ export default function Footer() {
           <a href='https://www.instagram.com/parmanitour?igsh=dzRnenQ0ZGJycTEw&utm_source=qr' className='m-3 text-reset social-icon'>
             <MDBIcon fab icon="instagram" />
           </a>
-          <a href='https://wa.me/37493641069' className='m-3 text-reset social-icon'>
+          <a href='https://wa.me/37495283022' className='m-3 text-reset social-icon'>
             <MDBIcon fab icon="whatsapp" />
           </a>
           <a href='https://t.me/parmani_tour' className='m-3 text-reset social-icon'>
@@ -37,9 +37,9 @@ export default function Footer() {
           <a href='https://www.facebook.com/profile.php?id=61565286992607' className='m-3 text-reset social-icon'>
             <MDBIcon fab icon="viber" />
           </a>
-          <a href='https://www.youtube.com/channel/UCOI_Dsynx11USy4tzBAj5eg' className='m-3 text-reset social-icon'>
+          {/* <a href='https://www.youtube.com/channel/UCOI_Dsynx11USy4tzBAj5eg' className='m-3 text-reset social-icon'>
             <MDBIcon fab icon="youtube" />
-          </a>
+          </a> */}
         </div>
       </section>
 
