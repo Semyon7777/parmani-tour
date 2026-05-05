@@ -27,6 +27,10 @@
     color: #ff0050;
 }
 
+.social-icon:hover .fab.fa-viber {
+    color: #7360f2;
+}
+
 .social-icon:hover .fab.fa-youtube {
     color: #FF0000;
 }
