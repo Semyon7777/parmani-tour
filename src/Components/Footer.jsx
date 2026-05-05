@@ -57,7 +57,7 @@ export default function Footer() {
                 <a href='https://t.me/parmanitour' className='text-reset social-icon d-flex justify-content-center' aria-label="Telegram">
                   <MDBIcon fab icon="telegram" />
                 </a>
-                <a href='https://viber.me/37495283022' className='text-reset social-icon d-flex justify-content-center' aria-label="Viber">
+                <a href='viber://chat?number=%2B37495283022' className='text-reset social-icon d-flex justify-content-center' aria-label="Viber">
                   <MDBIcon fab icon="viber" />
                 </a>
               </div>
