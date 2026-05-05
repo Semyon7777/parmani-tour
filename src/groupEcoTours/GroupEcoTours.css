@@ -1050,6 +1050,35 @@
   .stat-badge svg { color: #2ecc71; }
   .perk-badge svg { color: #3498db; }
 
+
+  .tour-cta-banner .tour-cta-banner-container{
+    display: flex;
+    justify-content: center;
+    border-radius: 1rem !important;
+  }
+
+  .tour-cta-banner .tour-cta-banner-container .tour-cta-banner-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .tour-cta-banner {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+    .tour-cta-banner .tour-cta-banner-container{
+      flex-direction: column;
+      border-radius: 20px !important;
+    }
+    .tour-cta-banner .tour-cta-banner-container .tour-cta-banner-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
   /* FAQ */
 
   /* Контейнер и обертка */

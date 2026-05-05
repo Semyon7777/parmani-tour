@@ -3,7 +3,7 @@ import { Container, Row, Col, Accordion, Modal, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { Leaf, Users, Calendar, MapPin, ArrowRight, TreePine,
-   ShieldCheck, Coffee, Heart, MessageCircle, Map, Search, 
+   ShieldCheck, Coffee, Heart, Map, Search, 
    X, LogIn } from "lucide-react";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
@@ -612,13 +612,50 @@ const TourCTA = () => {
   const { t } = useTranslation();
   return (
     <div className="tour-cta-banner my-5">
-      <Container className="text-center p-5 rounded-4 bg-dark text-white">
+      <Container className="text-center p-5 bg-dark text-white tour-cta-banner-container">
+        <Col className="tour-cta-banner-col">
         <h2 className="mb-3">{t("group_eco_tours.cta_title", "Didn't find a suitable date?")}</h2>
         <p className="mb-4 opacity-75">{t("group_eco_tours.cta_text", "We can organize a private tour for your group on any day!")}</p>
-        <a href="https://wa.me/yournumber" className="btn btn-success btn-lg rounded-pill px-4 d-inline-flex align-items-center gap-2">
-          <MessageCircle size={20} />
-          {t("group_eco_tours.cta_btn", "Contact Us")}
-        </a>
+        </Col>
+
+        <Col>
+
+        <div className="d-flex justify-content-center align-items-center gap-3 flex-wrap">
+          {/* WhatsApp */}
+          <a
+            href="https://wa.me/37495283022"
+            className="btn btn-lg rounded-pill px-4 d-inline-flex align-items-center gap-2"
+            style={{ backgroundColor: '#25d366', color: '#fff' }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-whatsapp" style={{ fontSize: '1.2rem' }} />
+            WhatsApp
+          </a>
+
+          {/* Telegram */}
+          <a
+            href="https://t.me/parmanitour"
+            className="btn btn-lg rounded-pill px-4 d-inline-flex align-items-center gap-2"
+            style={{ backgroundColor: '#229ed9', color: '#fff' }}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-telegram" style={{ fontSize: '1.2rem' }} />
+            Telegram
+          </a>
+
+          {/* Viber */}
+          <a
+            href="viber://chat?number=%2B37495283022"
+            className="btn btn-lg rounded-pill px-4 d-inline-flex align-items-center gap-2"
+            style={{ backgroundColor: '#7360f2', color: '#fff' }}
+          >
+            <i className="fab fa-viber" style={{ fontSize: '1.2rem' }} />
+            Viber
+          </a>
+        </div>
+        </Col>
       </Container>
     </div>
   );
