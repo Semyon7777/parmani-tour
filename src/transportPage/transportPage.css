@@ -128,3 +128,9 @@
   background-color: #b9f3d2;
   color: #1e4632;
 }
+
+@media(max-width: 600px) {
+  .transport-hero-section .transport-hero-buttons > button {
+    margin-bottom: 15px;
+  }
+}

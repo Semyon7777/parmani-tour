@@ -135,7 +135,7 @@ function ContactPage() {
             </div>
           </div>
         </div>
-        
+
       </Container>
 
       {/* ── CONCIERGE SECTION ── */}
@@ -283,10 +283,26 @@ function ContactWithUs() {
     setIsSubmitting(true);
     setErrorMessage("");
 
-    try {
-      const token = await recaptchaRef.current.executeAsync();
-      if (!token) { setErrorMessage("Captcha verification failed."); setIsSubmitting(false); return; }
+    // Сбрасываем капчу перед каждой попыткой
+    recaptchaRef.current.reset();
 
+    let token;
+    try {
+      token = await recaptchaRef.current.executeAsync();
+    } catch (err) {
+      setErrorMessage("Ошибка проверки капчи. Попробуйте ещё раз.");
+      setIsSubmitting(false);
+      recaptchaRef.current.reset();
+      return;
+    }
+
+    if (!token) {
+      setErrorMessage("Captcha verification failed.");
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
       const serviceID  = "service_fkaou6c";
       const templateID = "template_taw2p8j";
       const publicKey  = "IUMzWx8Tsm9hYF3UR";
@@ -309,6 +325,7 @@ function ContactWithUs() {
     } catch (err) {
       console.error('FAILED...', err);
       setErrorMessage(t("contact_page.error_send") + " (" + (err.text || "Check console") + ")");
+      recaptchaRef.current.reset(); // сбрасываем и при ошибке отправки
     } finally {
       setIsSubmitting(false);
     }

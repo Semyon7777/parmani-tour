@@ -312,6 +312,12 @@
     color: white !important;
 }
 
+/* Viber Style */
+.q-btn.viber {
+    background-color: #7360f2;
+    color: white !important;
+}
+
 .q-btn:hover {
     filter: brightness(1.1);
 }

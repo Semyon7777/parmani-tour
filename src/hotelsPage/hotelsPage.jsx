@@ -21,8 +21,8 @@ const HotelsPage = () => {
   const [filteredHotels, setFilteredHotels] = useState(null); // Отфильтрованные отели
   
 
-  const phone = "37493641069";
-  const email = "info@yourtravel.am";
+  const phone = "37495283022";
+  const email = "parmanitour@gmail.com";
   
 
 

@@ -8,6 +8,7 @@ import {
   CheckCircle, Calendar, Users, MessageCircle, Mail, Send,
   ArrowRight, Star, ShieldCheck, CreditCard
 } from "lucide-react";
+import { FaViber } from "react-icons/fa";
 import emailjs from '@emailjs/browser';
 
 import "./AllInOne.css";
@@ -232,14 +233,17 @@ function AllInOne() {
             <p>{t("aio.quick.desc", "Message us directly. We usually reply within 15 minutes.")}</p>
           </div>
           <div className="quick-contact-actions">
-            <a href="https://wa.me/your_number" target="_blank" rel="noreferrer" className="q-btn whatsapp">
+            <a href="https://wa.me/37495283022" target="_blank" rel="noreferrer" className="q-btn whatsapp">
               <MessageCircle size={20} /> WhatsApp
             </a>
-            <a href="mailto:your_email@gmail.com" className="q-btn email">
-              <Mail size={20} /> Gmail
-            </a>
-            <a href="https://t.me/your_username" target="_blank" rel="noreferrer" className="q-btn telegram">
+            <a href="https://t.me/parmanitour" target="_blank" rel="noreferrer" className="q-btn telegram">
               <Send size={20} /> Telegram
+            </a>
+            <a href="viber://chat?number=%2B37495283022" target="_blank" rel="noreferrer" className="q-btn viber">
+              <FaViber size={20} /> Viber
+            </a>
+            <a href="mailto:parmanitour@gmail.com" className="q-btn email">
+              <Mail size={20} /> Gmail
             </a>
           </div>
         </div>
