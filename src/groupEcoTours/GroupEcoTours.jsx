@@ -619,42 +619,53 @@ const TourCTA = () => {
         </Col>
 
         <Col>
+          <div className="d-flex justify-content-center align-items-center gap-3 flex-wrap">
 
-        <div className="d-flex justify-content-center align-items-center gap-3 flex-wrap">
-          {/* WhatsApp */}
-          <a
-            href="https://wa.me/37495283022"
-            className="btn btn-lg rounded-pill px-4 d-inline-flex align-items-center gap-2"
-            style={{ backgroundColor: '#25d366', color: '#fff' }}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="fab fa-whatsapp" style={{ fontSize: '1.2rem' }} />
-            WhatsApp
-          </a>
+            {/* WhatsApp */}
+            <a
+              href="https://wa.me/37495283022"
+              className="btn btn-lg rounded-pill px-4 d-inline-flex align-items-center gap-2"
+              style={{ backgroundColor: '#25d366', color: '#fff' }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-whatsapp" style={{ fontSize: '1.2rem' }} />
+              WhatsApp
+            </a>
 
-          {/* Telegram */}
-          <a
-            href="https://t.me/parmanitour"
-            className="btn btn-lg rounded-pill px-4 d-inline-flex align-items-center gap-2"
-            style={{ backgroundColor: '#229ed9', color: '#fff' }}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="fab fa-telegram" style={{ fontSize: '1.2rem' }} />
-            Telegram
-          </a>
+            {/* Telegram */}
+            <a
+              href="https://t.me/parmanitour"
+              className="btn btn-lg rounded-pill px-4 d-inline-flex align-items-center gap-2"
+              style={{ backgroundColor: '#229ed9', color: '#fff' }}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-telegram" style={{ fontSize: '1.2rem' }} />
+              Telegram
+            </a>
 
-          {/* Viber */}
-          <a
-            href="viber://chat?number=%2B37495283022"
-            className="btn btn-lg rounded-pill px-4 d-inline-flex align-items-center gap-2"
-            style={{ backgroundColor: '#7360f2', color: '#fff' }}
-          >
-            <i className="fab fa-viber" style={{ fontSize: '1.2rem' }} />
-            Viber
-          </a>
-        </div>
+            {/* Viber */}
+            <a
+              href="viber://chat?number=%2B37495283022"
+              className="btn btn-lg rounded-pill px-4 d-inline-flex align-items-center gap-2"
+              style={{ backgroundColor: '#7360f2', color: '#fff' }}
+            >
+              <i className="fab fa-viber" style={{ fontSize: '1.2rem' }} />
+              Viber
+            </a>
+
+            {/* Email */}
+            <a
+              href="mailto:info@parmanitour.com"
+              className="btn btn-lg rounded-pill px-4 d-inline-flex align-items-center gap-2"
+              style={{ backgroundColor: '#4a4a4a', color: '#fff' }}
+            >
+              <i className="fas fa-envelope" style={{ fontSize: '1.2rem' }} />
+              Email
+            </a>
+
+          </div>
         </Col>
       </Container>
     </div>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import Footer from "../Components/Footer";
 import { Container, Row, Col, Card, Accordion, Form, Button, Spinner, Alert, Modal } from "react-bootstrap";
-import { FaWhatsapp, FaTelegramPlane, FaInstagram, FaMapMarkerAlt, FaClock, FaPhoneAlt } from 'react-icons/fa';
+import { FaWhatsapp, FaTelegramPlane, FaInstagram, FaMapMarkerAlt, FaClock, FaPhoneAlt,
+   FaViber, FaFacebook, FaTiktok, FaYoutube } from 'react-icons/fa';
 import NavbarCustom from "../Components/Navbar";
 import { useTranslation } from "react-i18next";
 import emailjs from '@emailjs/browser';
@@ -59,15 +60,19 @@ function ContactPage() {
                 <Card.Body className="p-4">
                   <h5 className="fw-bold mb-3 tour-text-green">{t("contact_page.reach_us", "Свяжитесь с нами")}</h5>
                   <div className="d-grid gap-3">
-                    <a href="https://wa.me/your_number" target="_blank" rel="noreferrer" className="tour-social-btn tour-btn-wa">
+                    <a href="https://wa.me/37495283022" target="_blank" rel="noreferrer" className="tour-social-btn tour-btn-wa">
                       <FaWhatsapp className="me-2" /> WhatsApp
                     </a>
-                    <a href="https://t.me/your_username" target="_blank" rel="noreferrer" className="tour-social-btn tour-btn-tg">
+                    <a href="https://t.me/parmanitour" target="_blank" rel="noreferrer" className="tour-social-btn tour-btn-tg">
                       <FaTelegramPlane className="me-2" /> Telegram
                     </a>
-                    <a href="https://instagram.com/your_profile" target="_blank" rel="noreferrer" className="tour-social-btn tour-btn-ig">
-                      <FaInstagram className="me-2" /> Instagram Direct
+                    <a href="viber://chat?number=%2B37495283022" target="_blank" rel="noreferrer" className="tour-social-btn tour-btn-viber">
+                      <FaViber className="me-2" /> Viber
                     </a>
+                    
+                    {/* <a href="https://instagram.com/your_profile" target="_blank" rel="noreferrer" className="tour-social-btn tour-btn-ig">
+                      <FaInstagram className="me-2" /> Instagram
+                    </a> */}
                   </div>
                 </Card.Body>
               </Card>
@@ -79,14 +84,14 @@ function ContactPage() {
                     <div className="tour-icon-circle me-3"><FaMapMarkerAlt /></div>
                     <div>
                       <h6 className="fw-bold mb-0">{t("contact_page.office", "Офис")}</h6>
-                      <small className="text-muted">Yerevan, Armenia</small>
+                      <small className="text-muted">Tsaghkadzor, Armenia</small>
                     </div>
                   </div>
                   <div className="d-flex mb-3 align-items-start">
                     <div className="tour-icon-circle me-3"><FaPhoneAlt /></div>
                     <div>
                       <h6 className="fw-bold mb-0">{t("contact_page.phone", "Телефон")}</h6>
-                      <small className="text-muted">+374 XX XXX XXX</small>
+                      <small className="text-muted">+374 95283022</small>
                     </div>
                   </div>
                   <div className="d-flex align-items-start">
@@ -102,6 +107,35 @@ function ContactPage() {
             </div>
           </Col>
         </Row>
+
+        {/* CTA внутри секции */}
+        <div className="concierge-cta mt-5">
+          <div className="concierge-cta-inner">
+            <div className="concierge-cta-left">
+              <div className="concierge-live-dot">
+                <span className="live-pulse" />
+                <span>{t("contact_page.concierge.online", "Консьерж онлайн")}</span>
+              </div>
+              <h3>{t("contact_page.concierge.cta_title", "Готовы помочь прямо сейчас")}</h3>
+              <p>{t("contact_page.concierge.cta_text", "Напишите нам — ответим в течение нескольких минут.")}</p>
+            </div>
+            <div className="concierge-cta-right">
+              <a href="https://www.instagram.com/parmanitour" target="_blank" rel="noreferrer" className="concierge-cta-btn ig">
+                <FaInstagram /> Instagram
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=61565286992607" target="_blank" rel="noreferrer" className="concierge-cta-btn fb">
+                <FaFacebook /> Facebook
+              </a>
+              <a href="https://www.tiktok.com/@parmanitour" target="_blank" rel="noreferrer" className="concierge-cta-btn tt">
+                <FaTiktok /> Tik Tok
+              </a>
+              <a href="https://www.youtube.com/channel/UCOI_Dsynx11USy4tzBAj5eg" target="_blank" rel="noreferrer" className="concierge-cta-btn yt">
+                <FaYoutube /> YouTube
+              </a>
+            </div>
+          </div>
+        </div>
+        
       </Container>
 
       {/* ── CONCIERGE SECTION ── */}
@@ -211,28 +245,6 @@ function ConciergeSection() {
             </Col>
           ))}
         </Row>
-
-        {/* CTA внутри секции */}
-        <div className="concierge-cta">
-          <div className="concierge-cta-inner">
-            <div className="concierge-cta-left">
-              <div className="concierge-live-dot">
-                <span className="live-pulse" />
-                <span>{t("contact_page.concierge.online", "Консьерж онлайн")}</span>
-              </div>
-              <h3>{t("contact_page.concierge.cta_title", "Готовы помочь прямо сейчас")}</h3>
-              <p>{t("contact_page.concierge.cta_text", "Напишите нам — ответим в течение нескольких минут.")}</p>
-            </div>
-            <div className="concierge-cta-right">
-              <a href="https://wa.me/your_number" target="_blank" rel="noreferrer" className="concierge-cta-btn wa">
-                <FaWhatsapp /> WhatsApp
-              </a>
-              <a href="https://t.me/your_username" target="_blank" rel="noreferrer" className="concierge-cta-btn tg">
-                <FaTelegramPlane /> Telegram
-              </a>
-            </div>
-          </div>
-        </div>
       </Container>
     </section>
   );
@@ -315,9 +327,9 @@ function ContactWithUs() {
       <Row className="gy-4">
         <Col md={6} className="contactInfoBlock fade-in-scroll">
           <h3>{t("contact_page.info_title")}</h3>
-          <p><strong>{t("contact_page.phone")}:</strong> +374 XX XXX XXX</p>
-          <p><strong>{t("contact_page.email")}:</strong> info@parmanitour.com</p>
-          <p><strong>{t("contact_page.address")}:</strong> Yerevan, Armenia</p>
+          <p><strong>{t("contact_page.phone")}:</strong> +374 95283022</p>
+          <p><strong>{t("contact_page.email")}:</strong> parmanitour@gmail.com</p>
+          <p><strong>{t("contact_page.address")}:</strong> Tsaghkadzor, Armenia</p>
         </Col>
 
         <Col md={6} className="fade-in-scroll">

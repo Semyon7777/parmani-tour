@@ -78,7 +78,10 @@
 
 .tour-contact-page-root .tour-btn-wa { background-color: #25D366 !important; box-shadow: 0 4px 12px rgba(37,211,102,0.25) !important; }
 .tour-contact-page-root .tour-btn-tg { background-color: #0088CC !important; box-shadow: 0 4px 12px rgba(0,136,204,0.25) !important; }
-.tour-contact-page-root .tour-btn-ig { background: linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%) !important; box-shadow: 0 4px 12px rgba(220,39,67,0.25) !important; }
+.tour-contact-page-root .tour-btn-viber { 
+  background-color: #7360F2 !important; 
+  box-shadow: 0 4px 12px rgba(115, 96, 242, 0.25) !important; 
+}
 .tour-contact-page-root .tour-social-btn:hover { filter: brightness(1.1); color: white !important; }
 
 /* ── TRUST STRIP ──────────────────────────────────────────── */
@@ -274,6 +277,26 @@
 .concierge-cta-btn:hover { transform: scale(1.04); color: white; filter: brightness(1.1); }
 .concierge-cta-btn.wa { background: #25D366; }
 .concierge-cta-btn.tg { background: #0088CC; }
+
+.concierge-cta .concierge-cta-right .ig { 
+  background: linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%) !important; 
+  box-shadow: 0 4px 12px rgba(220,39,67,0.25) !important; 
+}
+
+.concierge-cta .concierge-cta-right .fb { 
+  background: linear-gradient(45deg, #1877F2 0%, #0056b3 100%) !important; 
+  box-shadow: 0 4px 12px rgba(24, 119, 242, 0.25) !important; 
+}
+
+.concierge-cta .concierge-cta-right .tt { 
+  background-color: #010101 !important; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important; 
+}
+
+.concierge-cta .concierge-cta-right .yt { 
+  background-color: #FF0000 !important; 
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.25) !important; 
+}
 
 /* ── FAQ ──────────────────────────────────────────────────── */
 .tour-contact-page-root .faq-title {

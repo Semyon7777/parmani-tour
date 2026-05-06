@@ -60,6 +60,9 @@ export default function Footer() {
                 <a href='viber://chat?number=%2B37495283022' className='text-reset social-icon d-flex justify-content-center' aria-label="Viber">
                   <MDBIcon fab icon="viber" />
                 </a>
+                <a href='mailto:parmanitour@gmail.com' className='text-reset social-icon d-flex justify-content-center' aria-label="envelope">
+                  <MDBIcon fas icon="envelope" />
+                </a>
               </div>
             </MDBCol>
 
