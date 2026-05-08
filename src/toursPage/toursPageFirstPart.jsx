@@ -40,7 +40,6 @@ function ToursPageFirstPart() {
   // Один запрос на все лайки пользователя при загрузке страницы
   useEffect(() => {
     const fetchUserLikes = async () => {
-      setLoading(false);
       const { data: { user } } = await supabase.auth.getUser();
       currentUserRef.current = user;
       setCurrentUser(user);
@@ -55,6 +54,7 @@ function ToursPageFirstPart() {
         setLikedTourIds(new Set(data.map(row => row.tour_id)));
       }
     };
+    setLoading(false);
     fetchUserLikes();
   }, []);
  
@@ -89,7 +89,7 @@ function ToursPageFirstPart() {
     }, 300);
   };
   const handleCategoryChange= (catId)  => { setActiveCategory(catId); updateParams({ cat: catId, page: "1" }); };
-  const handleSortChange  = (sortType) => { setSortBy(sortType);    updateParams({ sort: sortType }); };
+  const handleSortChange = (sortType) => { setSortBy(sortType); updateParams({ sort: sortType, page: "1" }); };
   const resetFilters      = () => { setSearchQuery(""); setActiveCategory("all"); setSortBy("default"); setSearchParams({}); };
  
   const processedTours = useMemo(() => {
