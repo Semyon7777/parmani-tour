@@ -106,21 +106,16 @@ function FirstPageFirstPart() {
     };
   }, []);
 
-  const firstContainerRef = useRef(null);
-
   useEffect(() => {
-    const handleScroll = () => {
-      const threshold = firstContainerRef.current?.offsetHeight ?? window.innerHeight;
-      setShowButtons(window.scrollY >= threshold);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    const handleScroll = () => setShowButtons(window.scrollY >= window.innerHeight);
+    window.addEventListener('scroll', handleScroll);
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <div>
-      <div className="first-container" ref={firstContainerRef}>
+      <div className="first-container">
         <div className={`top-buttons ${showButtons ? 'buttons-fixed show' : 'hide'}`}>
           <div className={`flex-container ${showButtons ? 'buttons-fixed-flex-container' : 'hide'}`}>
             <div className="buttonGroupContainer">

@@ -8,8 +8,7 @@
 }
 
 .first-container {
-    height: 100vh;        /* фолбэк для старых */
-    height: 100dvh;       /* реальная высота на iOS Safari */
+    height: 100vh;
     overflow: hidden;
     margin: 0;
     border: 0;
@@ -42,7 +41,6 @@ video::-webkit-media-controls {
     height: 100%;
     z-index: 0;
     object-fit: cover;
-    height: 100dvh;
 }
 
 .hero-video-fallback {
