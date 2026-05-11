@@ -1,23 +1,14 @@
 // src/i18n.js
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import LanguageDetector from 'i18next-browser-languagedetector';
+import LanguageDetector from 'i18next-browser-languagedetector'; // <--- 1. Импортируем детектор
 
 import enTranslation from './locales/en/translation.json';
 import ruTranslation from './locales/ru/translation.json';
 import hyTranslation from './locales/hy/translation.json';
 
-// ← ДОБАВЛЕНО: синхронно до рендера React
-const savedLang = (
-  localStorage.getItem('i18nextLng') || 
-  navigator.language || 
-  'ru'
-).split('-')[0];
-document.documentElement.lang = savedLang;
-document.documentElement.lang = savedLang;
-
 i18n
-  .use(LanguageDetector)
+  .use(LanguageDetector) // <--- 2. Подключаем детектор
   .use(initReactI18next)
   .init({
     resources: {
@@ -25,20 +16,21 @@ i18n
       ru: { translation: ruTranslation },
       hy: { translation: hyTranslation },
     },
-    fallbackLng: 'en',
+    // lng: 'en', // <--- 3. УДАЛИТЕ или закомментируйте эту строку! (иначе автоопределение не сработает)
+    fallbackLng: 'en', // Если язык пользователя не найден (например, французский), включится английский
     
+    // Настройки детектора (опционально)
     detection: {
+      // Где искать язык и в каком порядке
       order: ['localStorage', 'cookie', 'navigator', 'htmlTag'],
+      
+      // Куда сохранять выбор языка, чтобы запомнить его для следующего визита
       caches: ['localStorage', 'cookie'],
-      lookupLocalStorage: 'i18nextLng',
     },
 
     interpolation: {
       escapeValue: false,
     },
   });
-
-// После инициализации синхронизируем ещё раз на случай если детектор нашёл другой язык
-document.documentElement.lang = i18n.language.split('-')[0];
 
 export default i18n;
