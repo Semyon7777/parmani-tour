@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Footer from "../Components/Footer";
 import { Container, Row, Col, Card, Accordion, Form, Button, Spinner, Alert, Modal } from "react-bootstrap";
 import { FaWhatsapp, FaTelegramPlane, FaInstagram, FaMapMarkerAlt, FaClock, FaPhoneAlt,
-   FaViber, FaFacebook, FaTiktok, FaYoutube } from 'react-icons/fa';
+   FaViber, FaFacebook, FaTiktok, FaYoutube, FaEnvelope } from 'react-icons/fa';
 import NavbarCustom from "../Components/Navbar";
 import { useTranslation } from "react-i18next";
 import emailjs from '@emailjs/browser';
@@ -69,10 +69,9 @@ function ContactPage() {
                     <a href="viber://chat?number=%2B37495283022" target="_blank" rel="noreferrer" className="tour-social-btn tour-btn-viber">
                       <FaViber className="me-2" /> Viber
                     </a>
-                    
-                    {/* <a href="https://instagram.com/your_profile" target="_blank" rel="noreferrer" className="tour-social-btn tour-btn-ig">
-                      <FaInstagram className="me-2" /> Instagram
-                    </a> */}
+                    <a href="mailto:parmanitour@gmail.com" target="_blank" rel="noreferrer" className="tour-social-btn tour-btn-mail">
+                      <FaEnvelope className="me-2" /> Email
+                    </a>
                   </div>
                 </Card.Body>
               </Card>
@@ -80,14 +79,7 @@ function ContactPage() {
               {/* Контакты */}
               <Card className="border-0 shadow-sm tour-side-card tour-bg-mint">
                 <Card.Body className="p-4">
-                  <div className="d-flex mb-3 align-items-start">
-                    <div className="tour-icon-circle me-3"><FaMapMarkerAlt /></div>
-                    <div>
-                      <h6 className="fw-bold mb-0">{t("contact_page.office", "Офис")}</h6>
-                      <small className="text-muted">Tsaghkadzor, Armenia</small>
-                    </div>
-                  </div>
-                  <div className="d-flex mb-3 align-items-start">
+                  <div className="d-flex mb-2 align-items-start">
                     <div className="tour-icon-circle me-3"><FaPhoneAlt /></div>
                     <div>
                       <h6 className="fw-bold mb-0">{t("contact_page.phone", "Телефон")}</h6>

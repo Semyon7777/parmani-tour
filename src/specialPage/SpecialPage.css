@@ -349,6 +349,25 @@
   background: #f0f4ff;
   color: #3498db;
 }
+.sp-action-link.telegram {
+  background: #e8f4fc;
+  color: #229ed9;
+}
+
+.sp-action-link.telegram:hover {
+  background: #229ed9;
+  color: #fff;
+}
+
+.sp-action-link.viber {
+  background: #f0eefe;
+  color: #7360f2;
+}
+
+.sp-action-link.viber:hover {
+  background: #7360f2;
+  color: #fff;
+}
 
 .sp-action-link.email:hover {
   background: #3498db;

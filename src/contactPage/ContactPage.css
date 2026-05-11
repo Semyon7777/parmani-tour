@@ -14,7 +14,8 @@
 /* ── HERO ─────────────────────────────────────────────────── */
 .tour-contact-page-root .tour-hero-header {
   background: linear-gradient(180deg, #ffffff 0%, var(--tour-light-mint) 100%);
-  padding: 60px 0;
+  padding: 55px 0;
+  padding-bottom: 40px;
   border-bottom: 1px solid #e0eee0;
 }
 
@@ -81,6 +82,10 @@
 .tour-contact-page-root .tour-btn-viber { 
   background-color: #7360F2 !important; 
   box-shadow: 0 4px 12px rgba(115, 96, 242, 0.25) !important; 
+}
+.tour-contact-page-root .tour-btn-mail { 
+  background-color: #4A90E2 !important; 
+  box-shadow: 0 4px 12px rgba(74, 144, 226, 0.25) !important; 
 }
 .tour-contact-page-root .tour-social-btn:hover { filter: brightness(1.1); color: white !important; }
 

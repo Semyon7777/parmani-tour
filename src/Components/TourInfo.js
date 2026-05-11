@@ -1,22 +1,42 @@
-import React, { useState } from 'react';
-import { Button, Container, Row, Col, ListGroup, Image, Carousel, Tab, Tabs } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Button, Container, Row, Col, ListGroup, Image, Carousel, Tab, Tabs, Modal } from 'react-bootstrap';
 import { 
-  CheckCircle, XCircle, Clock, MapPin, Users, User, 
+  CheckCircle, XCircle, Clock, MapPin, Users, User, LogIn,
   Calendar, ArrowLeft, Map as MapIcon, ChevronDown, ChevronUp, Info 
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import "./TourInfo.css";
 
+import { supabase } from "../supabaseClient";
+
 const TourInfo = ({ tourData }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+
+  const [currentUser, setCurrentUser] = useState(null);
+  const [showLoginModal, setShowLoginModal] = useState(false);
   
   // Состояние для раскрытия секций "Read More"
   const [expandedSection, setExpandedSection] = useState(null);
 
   const toggleSection = (index) => {
     setExpandedSection(expandedSection === index ? null : index);
+  };
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setCurrentUser(session?.user ?? null);
+    });
+  }, []);
+
+  const handleBooking = () => {
+    if (!currentUser) {
+      setShowLoginModal(true);
+      return;
+    }
+    navigate(`/tours/booking/${tourData.id}`);
   };
 
 
@@ -323,7 +343,7 @@ const TourInfo = ({ tourData }) => {
               <Button 
                 variant="success" 
                 className="w-100 py-3 fw-bold booking-main-btn mb-3"
-                onClick={() => navigate(`/tours/booking/${tourData.id}`)}
+                onClick={handleBooking}   // ← было navigate(...)
               >
                 {t('tour_info_page.tour_book_button')}
               </Button>
@@ -406,6 +426,39 @@ const TourInfo = ({ tourData }) => {
           </Col>
         </Row>
       </Container>
+
+      <Modal
+        show={showLoginModal}
+        onHide={() => setShowLoginModal(false)}
+        centered
+        className="auth-alert-modal"
+      >
+        <Modal.Body className="p-4 text-center">
+          <div className="auth-alert-icon mb-3">
+            <LogIn size={32} strokeWidth={2.5} />
+          </div>
+          <h4 className="fw-bold mb-2">
+            {t('tour_info_page.login_required_title', 'Authentication Required')}
+          </h4>
+          <p className="text-muted mb-4">
+            {t('tour_info_page.please_login', 'Please login to book this tour.')}
+          </p>
+          <div className="d-grid gap-2">
+            <Link to="/login">
+              <Button variant="success" className="py-2 fw-bold w-100">
+                {t('auth_page.btn_login', 'Login')}
+              </Button>
+            </Link>
+            <Button
+              variant="light"
+              className="py-2 text-muted"
+              onClick={() => setShowLoginModal(false)}
+            >
+              {t('auth_page.cancel', 'Maybe later')}
+            </Button>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { Container, Row, Col, Form, Modal, Button, Accordion, Alert, Spinner } f
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import { Map, Bus, BookOpen, Utensils, Send, CheckCircle, GraduationCap,
-   Plus, Trash2, FileText, MapPin, ChevronLeft, ChevronRight, MessageCircle, Mail } from "lucide-react";
+   Plus, Trash2, FileText, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 import emailjs from '@emailjs/browser';
 import customTourBuilderImg from "./images/Custom-Tour-Builder.webp"
 import "./SpecialPage.css";
@@ -307,24 +307,32 @@ function SpecialPage() {
               </div>
 
               {/* === БЛОК ПРЯМОЙ СВЯЗИ === */}
-                <div className="sp-direct-contact-box">
-                  <div className="sp-direct-content">
-                    <div className="sp-direct-text">
-                      <h4>{t("special.direct.title", "Have more questions?")}</h4>
-                      <p>{t("special.direct.desc", "Skip the form and reach us directly via your favorite platform.")}</p>
-                    </div>
-                    <div className="sp-direct-actions">
-                      <a href="https://wa.me/yournumber" target="_blank" rel="noreferrer" className="sp-action-link whatsapp">
-                        <MessageCircle size={20} />
-                        <span>WhatsApp</span>
-                      </a>
-                      <a href="mailto:your@email.com" className="sp-action-link email">
-                        <Mail size={20} />
-                        <span>Email</span>
-                      </a>
-                    </div>
+              <div className="sp-direct-contact-box">
+                <div className="sp-direct-content">
+                  <div className="sp-direct-text">
+                    <h4>{t("special.direct.title", "Have more questions?")}</h4>
+                    <p>{t("special.direct.desc", "Skip the form and reach us directly via your favorite platform.")}</p>
+                  </div>
+                  <div className="sp-direct-actions">
+                    <a href="https://wa.me/37495283022" target="_blank" rel="noreferrer" className="sp-action-link whatsapp">
+                      <i className="fab fa-whatsapp" style={{ fontSize: '1.1rem' }} />
+                      <span>WhatsApp</span>
+                    </a>
+                    <a href="https://t.me/parmanitour" target="_blank" rel="noreferrer" className="sp-action-link telegram">
+                      <i className="fab fa-telegram" style={{ fontSize: '1.1rem' }} />
+                      <span>Telegram</span>
+                    </a>
+                    <a href="viber://chat?number=%2B37495283022" className="sp-action-link viber">
+                      <i className="fab fa-viber" style={{ fontSize: '1.1rem' }} />
+                      <span>Viber</span>
+                    </a>
+                    <a href="mailto:parmanitour@gmail.com" className="sp-action-link email">
+                      <i className="fas fa-envelope" style={{ fontSize: '1.1rem' }} />
+                      <span>Email</span>
+                    </a>
                   </div>
                 </div>
+              </div>
               {/* {CustomFAQ()} */}
               <CustomFAQ t={t} />
             </div>
