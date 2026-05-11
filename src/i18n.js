@@ -33,4 +33,7 @@ i18n
     },
   });
 
+// Устанавливаем lang на html сразу после инициализации
+document.documentElement.lang = i18n.language.split('-')[0];
+
 export default i18n;

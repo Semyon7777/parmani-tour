@@ -39,13 +39,9 @@ function App() {
   const { i18n } = useTranslation(); // Инициализируем i18n внутри компонента
 
   useEffect(() => {
-    // Этот код срабатывает каждый раз, когда меняется язык
-    // Он берет текущий язык (en, ru или hy) и записывает его в <html lang="...">
-    document.documentElement.lang = i18n.language;
-    
-    // Дополнительный лайфхак: если вы хотите менять шрифты для всего сайта сразу,
-    // можно менять и класс у body
-    document.body.className = `lang-${i18n.language}`;
+    const lang = i18n.language.split('-')[0]; // "ru-RU" → "ru"
+    document.documentElement.lang = lang;
+    document.body.className = `lang-${lang}`;
   }, [i18n.language]);
 
   return (
