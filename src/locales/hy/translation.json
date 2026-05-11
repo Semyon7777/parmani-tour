@@ -1200,6 +1200,16 @@
     },
     "last_updated": "Վերջին թարմացում",
     "contact_notice": "Իրավական հարցերի դեպքում դիմեք աջակցությանը։"
+  },
+
+  "terms": {
+    "form": {
+      "recaptcha_text": "Այս կայքը պաշտպանված է reCAPTCHA-ով և կիրառվում է Google-ի",
+      "recaptcha_privacy": "Գաղտնիության քաղաքականությունը",
+      "recaptcha_and": "և",
+      "recaptcha_terms": "Ծառայության պայմանները",
+      "recaptcha_apply": "։"
+    }
   }
 
 }

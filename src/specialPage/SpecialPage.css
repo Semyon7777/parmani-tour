@@ -16,8 +16,7 @@
 
 /* --- HERO SECTION --- */
 .special-page .special-hero {
-  background: linear-gradient(rgba(11, 22, 13, 0.7), rgba(11, 22, 13, 0.7)), 
-              url('./images/special-hero.jpg') center/cover no-repeat;
+  background: linear-gradient(rgba(11, 22, 13, 0.7), rgba(11, 22, 13, 0.7));
   height: 45vh; /* Компактный герой */
   display: flex;
   align-items: center;
@@ -797,4 +796,8 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+body {
+  overflow-x: hidden !important;
 }

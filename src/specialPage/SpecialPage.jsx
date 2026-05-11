@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import { Container, Row, Col, Form, Modal, Button, Accordion, Alert, Spinner } from "react-bootstrap";
@@ -8,6 +8,8 @@ import { Map, Bus, BookOpen, Utensils, Send, CheckCircle, GraduationCap,
    Plus, Trash2, FileText, MapPin, ChevronLeft, ChevronRight } from "lucide-react";
 import emailjs from '@emailjs/browser';
 import customTourBuilderImg from "./images/Custom-Tour-Builder.webp"
+import specialHeroImg from './images/special-hero.webp';
+import ReCAPTCHA from "react-google-recaptcha";
 import "./SpecialPage.css";
 
 import SEO from "../Components/SEO";
@@ -16,6 +18,9 @@ function SpecialPage() {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
+
+  const recaptchaRef = useRef();
+  const captchaTokenRef = useRef(null);
 
   // --- ЛОГИКА ВКЛАДОК И URL ---
   // Читаем ?tab= из URL, если его нет — ставим "custom"
@@ -86,9 +91,23 @@ function SpecialPage() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleShowPreview = (e) => {
+  const handleShowPreview = async (e) => {
     e.preventDefault();
-    setShowModal(true);
+
+  recaptchaRef.current.reset();
+
+  let token;
+  try {
+    token = await recaptchaRef.current.executeAsync();
+  } catch (err) {
+    // покажите ошибку пользователю если нужно
+    return;
+  }
+
+  if (!token) return;
+
+  captchaTokenRef.current = token;
+  setShowModal(true);
   };
 
   const handleFinalSubmit = () => {
@@ -107,6 +126,7 @@ function SpecialPage() {
       date: formData.date,
       destinations: activeTab === "custom" ? formattedDestinations : "Fixed School Program",
       wishes: formData.wishes || "No special wishes",
+      'g-recaptcha-response': captchaTokenRef.current
     };
 
     emailjs.send(
@@ -154,7 +174,7 @@ function SpecialPage() {
       <NavbarCustom />
 
       {/* HERO SECTION */}
-      <section className="special-hero">
+      <section className="special-hero" style={{ backgroundImage: `linear-gradient(rgba(11, 22, 13, 0.7), rgba(11, 22, 13, 0.7)), url(${specialHeroImg})`}}>
         <div className="special-hero-content">
           <h1>{t("special.hero.title")}</h1>
           <p>{t("special.hero.subtitle")}</p>
@@ -300,6 +320,18 @@ function SpecialPage() {
                       <button type="submit" className="submit-btn-full">
                         {t("special.form.submit_btn")} <Send size={18} />
                       </button>
+
+                      <p className="recaptcha-disclaimer mt-3 mb-0">
+                        {t("terms.form.recaptcha_text")}{" "}
+                        <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">
+                          {t("terms.form.recaptcha_privacy")}
+                        </a>{" "}
+                        {t("terms.form.recaptcha_and")}{" "}
+                        <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">
+                          {t("terms.form.recaptcha_terms")}
+                        </a>{" "}
+                        {t("terms.form.recaptcha_apply")}
+                      </p>
                     </Form>
                   </div>
                 </div>
@@ -450,6 +482,13 @@ function SpecialPage() {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {/* Одна капча для всей страницы */}
+      <ReCAPTCHA
+        ref={recaptchaRef}
+        size="invisible"
+        sitekey="6Lc3ZHMsAAAAAOWWtv3oxB3DtuzHbvNZrdrSOdU1"
+      />
 
       <Footer />
     </div>

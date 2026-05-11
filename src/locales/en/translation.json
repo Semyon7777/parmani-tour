@@ -1243,6 +1243,16 @@
     },
     "last_updated": "Last updated",
     "contact_notice": "For legal inquiries, please contact our support team."
+  },
+
+  "terms": {
+    "form": {
+      "recaptcha_text": "This site is protected by reCAPTCHA and the Google",
+      "recaptcha_privacy": "Privacy Policy",
+      "recaptcha_and": "and",
+      "recaptcha_terms": "Terms of Service",
+      "recaptcha_apply": "apply."
+    }
   }
 }
 

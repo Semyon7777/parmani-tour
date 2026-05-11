@@ -1203,6 +1203,16 @@
     },
     "last_updated": "Последнее обновление",
     "contact_notice": "По юридическим вопросам свяжитесь со службой поддержки."
+  },
+
+  "terms": {
+    "form": {
+      "recaptcha_text": "Этот сайт защищён reCAPTCHA и применяется",
+      "recaptcha_privacy": "Политика конфиденциальности",
+      "recaptcha_and": "и",
+      "recaptcha_terms": "Условия использования",
+      "recaptcha_apply": "Google."
+    }
   }
 
 }

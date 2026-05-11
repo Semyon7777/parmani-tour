@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Footer from "../Components/Footer";
 import { Container, Row, Col, Card, Accordion, Form, Button, Spinner, Alert, Modal } from "react-bootstrap";
-import { FaWhatsapp, FaTelegramPlane, FaInstagram, FaMapMarkerAlt, FaClock, FaPhoneAlt,
+import { FaWhatsapp, FaTelegramPlane, FaInstagram, FaClock, FaPhoneAlt,
    FaViber, FaFacebook, FaTiktok, FaYoutube, FaEnvelope } from 'react-icons/fa';
 import NavbarCustom from "../Components/Navbar";
 import { useTranslation } from "react-i18next";
@@ -367,9 +367,15 @@ function ContactWithUs() {
 
             {/* Добавляем этот блок текста */}
             <p className="recaptcha-disclaimer mt-3">
-              This site is protected by reCAPTCHA and the Google 
-              <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer"> Privacy Policy</a> and 
-              <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer"> Terms of Service</a> apply.
+              {t("terms.form.recaptcha_text")}{" "}
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">
+                {t("terms.form.recaptcha_privacy")}
+              </a>{" "}
+              {t("terms.form.recaptcha_and")}{" "}
+              <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer">
+                {t("terms.form.recaptcha_terms")}
+              </a>{" "}
+              {t("terms.form.recaptcha_apply")}
             </p>
           </Form>
         </Col>
