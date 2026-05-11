@@ -33,4 +33,10 @@ i18n
     },
   });
 
+i18n.on('initialized', () => {
+  const lang = i18n.language.split('-')[0];
+  document.documentElement.lang = lang;
+  document.body.className = `lang-${lang}`;
+});
+
 export default i18n;
