@@ -8,7 +8,12 @@ import ruTranslation from './locales/ru/translation.json';
 import hyTranslation from './locales/hy/translation.json';
 
 // ← ДОБАВЛЕНО: синхронно до рендера React
-const savedLang = (localStorage.getItem('i18nextLng') || 'ru').split('-')[0];
+const savedLang = (
+  localStorage.getItem('i18nextLng') || 
+  navigator.language || 
+  'ru'
+).split('-')[0];
+document.documentElement.lang = savedLang;
 document.documentElement.lang = savedLang;
 
 i18n
@@ -25,6 +30,7 @@ i18n
     detection: {
       order: ['localStorage', 'cookie', 'navigator', 'htmlTag'],
       caches: ['localStorage', 'cookie'],
+      lookupLocalStorage: 'i18nextLng',
     },
 
     interpolation: {
