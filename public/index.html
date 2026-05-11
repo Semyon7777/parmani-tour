@@ -21,8 +21,9 @@
         lang = lang.split('-')[0];
         if (!['ru', 'en', 'hy'].includes(lang)) lang = 'en';
         document.documentElement.lang = lang;
+        document.body.className = 'lang-' + lang; // ← добавьте эту строку
       })();
-  </script>
+    </script>
     <title>Parmani Tour</title>
 
   </head>

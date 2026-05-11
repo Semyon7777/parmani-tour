@@ -96,13 +96,13 @@ video::-webkit-media-controls {
 }
 
 /* Для русского (Montserrat) */
-html[lang="ru"] .animated-text {
+body .lang-ru .animated-text {
     font-family: "PT Sans", Arial, Helvetica, sans-serif;
     font-weight: 800 !important; /* Делаем чуть жирнее для компенсации стиля */
 }
 
 /* Для армянского (Noto Sans Armenian) */
-html[lang="hy"] .animated-text {
+body .lang-ru .animated-text {
     font-family: "Noto Sans Armenian", sans-serif;
     font-weight: 700 !important;
     line-height: 1.2; /* Армянские буквы высокие, лучше добавить межстрочный интервал */
@@ -218,13 +218,13 @@ html[lang="hy"] .animated-text {
 }
 
 /* Для русского (Montserrat) */
-html[lang="ru"] .carouselContainerHeadText {
+body .lang-ru .carouselContainerHeadText {
     font-family: "Times New Roman", Georgia, serif;
     font-weight: 800 !important; /* Делаем чуть жирнее для компенсации стиля */
 }
 
 /* Для армянского (Noto Sans Armenian) */
-html[lang="hy"] .carouselContainerHeadText {
+body .lang-ru .carouselContainerHeadText {
     font-family: "Noto Sans Armenian", sans-serif;
     font-weight: 700 !important;
     line-height: 1.2; /* Армянские буквы высокие, лучше добавить межстрочный интервал */
