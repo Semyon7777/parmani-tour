@@ -38,6 +38,12 @@ function App() {
 
   const { i18n } = useTranslation(); // Инициализируем i18n внутри компонента
 
+  useEffect(() => {
+    const lang = i18n.language.split('-')[0]; // "ru-RU" → "ru"
+    document.documentElement.lang = lang;
+    document.body.className = `lang-${lang}`;
+  }, [i18n.language]);
+
   return (
     <HelmetProvider>
       <div className="allPages">
