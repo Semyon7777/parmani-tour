@@ -72,7 +72,7 @@ export default async (request, context) => {
 
     // Вставляем мета-теги
     const injectedHtml = html.replace(
-      '<title>',
+      '</head>',
       `<meta name="description" content="${description.slice(0, 155)}" />
       <link rel="canonical" href="${canonical}" />
       <meta property="og:title" content="${title} — Parmani Tour" />
@@ -96,7 +96,7 @@ export default async (request, context) => {
         }
       })}
       </script>
-      <title>`
+      </head>`
     );
 
     return new Response(injectedHtml, {
