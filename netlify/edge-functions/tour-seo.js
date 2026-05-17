@@ -4,43 +4,37 @@ export default async (request, context) => {
   const url = new URL(request.url);
   const pathname = url.pathname;
 
+  // Парсим язык и тип из URL
+  // Новый формат: /:lang/eco-tour/:id
+  const parts = pathname.split('/').filter(Boolean);
+  // parts[0] = lang, parts[1] = tour type, parts[2] = id
+  const lang = parts[0];
+  const tourSegment = parts[1];
+  const tourId = parts[2];
+
+  const validLangs = ['en', 'ru', 'hy'];
+  if (!validLangs.includes(lang) || !tourId) return context.next();
+
   let tourType = null;
-  let tourId = null;
+  if (tourSegment === 'eco-tour') tourType = 'eco';
+  else if (tourSegment === 'group-tour') tourType = 'group';
+  else if (tourSegment === 'private-tours') tourType = 'private';
+  else return context.next();
+
   let title = '';
   let description = '';
   let image = '';
 
-  // Определяем тип и ID
-  if (pathname.startsWith('/eco-tour/')) {
-    tourType = 'eco';
-    tourId = pathname.replace('/eco-tour/', '');
-  } else if (pathname.startsWith('/group-tour/')) {
-    tourType = 'group';
-    tourId = pathname.replace('/group-tour/', '');
-  } else if (pathname.startsWith('/private-tours/')) {
-    tourType = 'private';
-    tourId = pathname.replace('/private-tours/', '');
-  }
-
-  if (!tourId) return context.next();
-
-  // Язык из браузера
-  const acceptLang = request.headers.get('accept-language') || 'en';
-  const lang = acceptLang.split(',')[0].split('-')[0];
-  const validLang = ['en', 'ru', 'hy'].includes(lang) ? lang : 'en';
-
   try {
     if (tourType === 'private') {
-      // Данные из локального JSON
       const tour = toursData.find(t => t.id === tourId);
       if (!tour) return context.next();
 
-      title = tour.title?.[validLang] || tour.title?.en || '';
-      description = tour.description?.[validLang] || tour.description?.en || '';
+      title = tour.title?.[lang] || tour.title?.en || '';
+      description = tour.description?.[lang] || tour.description?.en || '';
       image = `https://www.parmanitour.com${tour.imageUrl}`;
 
     } else {
-      // Данные из Supabase (eco и group туры)
       const supabaseUrl = Deno.env.get('REACT_APP_SUPABASE_URL');
       const supabaseKey = Deno.env.get('REACT_APP_SUPABASE_ANON_KEY');
 
@@ -58,23 +52,28 @@ export default async (request, context) => {
       const tour = data?.[0];
       if (!tour) return context.next();
 
-      title = tour.title?.[validLang] || tour.title?.en || '';
-      description = tour.description?.[validLang] || tour.description?.en || '';
+      title = tour.title?.[lang] || tour.title?.en || '';
+      description = tour.description?.[lang] || tour.description?.en || '';
       image = tour.image || '';
     }
 
     const siteUrl = 'https://www.parmanitour.com';
     const canonical = `${siteUrl}${pathname}`;
 
-    // Получаем оригинальный HTML
     const originalResponse = await context.next();
     const html = await originalResponse.text();
 
-    // Вставляем мета-теги
+    // hreflang теги для всех языков
+    const basePath = `/${tourSegment}/${tourId}`;
+    const hreflangTags = ['en', 'ru', 'hy'].map(l =>
+      `<link rel="alternate" hreflang="${l}" href="${siteUrl}/${l}${basePath}" />`
+    ).join('\n');
+
     const injectedHtml = html.replace(
       '</head>',
       `<meta name="description" content="${description.slice(0, 155)}" />
       <link rel="canonical" href="${canonical}" />
+      ${hreflangTags}
       <meta property="og:title" content="${title} — Parmani Tour" />
       <meta property="og:description" content="${description.slice(0, 155)}" />
       <meta property="og:image" content="${image}" />
@@ -113,5 +112,9 @@ export default async (request, context) => {
 };
 
 export const config = {
-  path: ["/eco-tour/*", "/group-tour/*", "/private-tours/*"]
+  path: [
+    "/en/eco-tour/*", "/ru/eco-tour/*", "/hy/eco-tour/*",
+    "/en/group-tour/*", "/ru/group-tour/*", "/hy/group-tour/*",
+    "/en/private-tours/*", "/ru/private-tours/*", "/hy/private-tours/*"
+  ]
 };
