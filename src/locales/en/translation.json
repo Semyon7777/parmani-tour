@@ -834,7 +834,9 @@
       "cta_text": "Download our catalog of school tours or contact us for organization.",
       "cta_btn": "Contact Manager",
       "album_title": "Educational Adventures",
-      "album_subtitle": "Unique programs for school groups: from ancient history to modern ecology"
+      "album_subtitle": "Unique programs for school groups: from ancient history to modern ecology",
+      "contact_modal_title": "Contact Us",
+      "contact_modal_desc": "Choose your preferred way to reach us"
     },
     "faq": {
       "custom_title": "Tailored to Your Desires",

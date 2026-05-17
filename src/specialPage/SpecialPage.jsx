@@ -62,6 +62,7 @@ function SpecialPage() {
   });
 
   const [showModal, setShowModal] = useState(false);
+  const [showContactModal, setShowContactModal] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -409,7 +410,37 @@ function SpecialPage() {
                   <h3>{t("special.school.cta_title")}</h3>
                   <p>{t("special.school.cta_text")}</p>
                   <div className="cta-buttons">
-                    <button className="btn-primary-school">{t("special.school.cta_btn")}</button>
+                    <button className="btn-primary-school" onClick={() => setShowContactModal(true)}>
+                      {t("special.school.cta_btn")}
+                    </button>
+                    <Modal show={showContactModal} onHide={() => setShowContactModal(false)} centered>
+                      <Modal.Header closeButton>
+                        <Modal.Title>{t("special.school.contact_modal_title", "Contact Us")}</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body className="p-4">
+                        <p className="text-muted text-center mb-4">
+                          {t("special.school.contact_modal_desc", "Choose your preferred way to reach us")}
+                        </p>
+                        <div className="d-flex flex-column gap-3">
+                          <a href="https://wa.me/37495283022" target="_blank" rel="noreferrer" className="sp-action-link whatsapp w-100 justify-content-center">
+                            <i className="fab fa-whatsapp" style={{ fontSize: '1.2rem' }} />
+                            <span>WhatsApp</span>
+                          </a>
+                          <a href="https://t.me/parmanitour" target="_blank" rel="noreferrer" className="sp-action-link telegram w-100 justify-content-center">
+                            <i className="fab fa-telegram" style={{ fontSize: '1.2rem' }} />
+                            <span>Telegram</span>
+                          </a>
+                          <a href="viber://chat?number=%2B37495283022" className="sp-action-link viber w-100 justify-content-center">
+                            <i className="fab fa-viber" style={{ fontSize: '1.2rem' }} />
+                            <span>Viber</span>
+                          </a>
+                          <a href="mailto:parmanitour@gmail.com" className="sp-action-link email w-100 justify-content-center">
+                            <i className="fas fa-envelope" style={{ fontSize: '1.2rem' }} />
+                            <span>Email</span>
+                          </a>
+                        </div>
+                      </Modal.Body>
+                    </Modal>
                   </div>
                 </div>
               </div>

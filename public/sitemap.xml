@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://parmanitour.netlify.app/</loc><priority>1.0</priority></url>
+  <url><loc>https://parmanitour.netlify.app/private-tours</loc><priority>0.9</priority></url>
+  <url><loc>https://parmanitour.netlify.app/group-eco-tours</loc><priority>0.9</priority></url>
+  <url><loc>https://parmanitour.netlify.app/extreme-tours</loc><priority>0.8</priority></url>
+  <url><loc>https://parmanitour.netlify.app/hotels</loc><priority>0.8</priority></url>
+  <url><loc>https://parmanitour.netlify.app/transport</loc><priority>0.7</priority></url>
+  <url><loc>https://parmanitour.netlify.app/all-in-one</loc><priority>0.7</priority></url>
+  <url><loc>https://parmanitour.netlify.app/history</loc><priority>0.6</priority></url>
+  <url><loc>https://parmanitour.netlify.app/cuisine</loc><priority>0.6</priority></url>
+  <url><loc>https://parmanitour.netlify.app/culture</loc><priority>0.6</priority></url>
+  <url><loc>https://parmanitour.netlify.app/nature</loc><priority>0.6</priority></url>
+  <url><loc>https://parmanitour.netlify.app/about-us</loc><priority>0.5</priority></url>
+  <url><loc>https://parmanitour.netlify.app/contact</loc><priority>0.5</priority></url>
+</urlset>
