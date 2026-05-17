@@ -12,14 +12,14 @@ exports.handler = async function(event, context) {
 
   let groupEcoRoutes = [];
   try {
-    const url = `${process.env.SUPABASE_URL}/rest/v1/group_eco_tours?select=id,type`;
+    const url = `${process.env.REACT_APP_SUPABASE_URL}/rest/v1/group_eco_tours?select=id,type`;
     console.log('Fetching:', url);
-    console.log('Key exists:', !!process.env.SUPABASE_ANON_KEY);
+    console.log('Key exists:', !!process.env.REACT_APP_SUPABASE_ANON_KEY);
 
     const response = await fetch(url, {
       headers: {
-        apikey: process.env.SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${process.env.SUPABASE_ANON_KEY}`
+        apikey: process.env.REACT_APP_SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${process.env.REACT_APP_SUPABASE_ANON_KEY}`
       }
     });
 
