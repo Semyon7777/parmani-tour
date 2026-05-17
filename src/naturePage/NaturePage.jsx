@@ -21,7 +21,8 @@ const sections = [
 ];
 
 function NaturePage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = (i18n.language || 'en').split('-')[0];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -33,6 +34,7 @@ function NaturePage() {
         title="Nature of Armenia"
         description="Mountains, lakes, forests and gorges — explore Armenia's stunning natural landscapes with Parmani Tour."
         url="/nature"
+        lang={lang}
         schema={{
           "@context": "https://schema.org",
           "@type": "WebPage",

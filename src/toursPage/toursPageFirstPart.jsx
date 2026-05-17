@@ -9,7 +9,7 @@ import { supabase } from "../supabaseClient";
 import ToursPageHeroImg from "./axtala-img.webp";
  
 function ToursPageFirstPart() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const location = useLocation();
   const lang = location.pathname.split('/')[1] || 'en';
  
@@ -251,7 +251,7 @@ function ToursPageFirstPart() {
  
 // ─── КАРТОЧКА ТУРА ────────────────────────────────────────────
 const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle, currentUser }) => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const location = useLocation();
   const lang = location.pathname.split('/')[1] || 'en';
  

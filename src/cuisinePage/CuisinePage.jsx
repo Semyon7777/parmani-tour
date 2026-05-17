@@ -51,7 +51,8 @@ function FadeIn({ children, className = "", delay = 0 }) {
 }
 
 function CuisinePage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = (i18n.language || 'en').split('-')[0];
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
@@ -77,6 +78,7 @@ function CuisinePage() {
         title="Armenian Cuisine"
         description="Taste the best of Armenian food. Traditional dishes, local restaurants and food tours across Armenia."
         url="/cuisine"
+        lang={lang}
         schema={{
           "@context": "https://schema.org",
           "@type": "WebPage",

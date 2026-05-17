@@ -11,7 +11,8 @@ import "./toursPage.css";
 import SEO from "../Components/SEO";
 
 function ToursPage() {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const lang = (i18n.language || 'en').split('-')[0];
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -39,6 +40,7 @@ function ToursPage() {
             title="Private Tours in Armenia"
             description="Browse all private tours in Armenia — cultural, nature, gastronomic and multi-day routes. Professional guides, comfortable transport."
             url="/private-tours"
+            lang={lang}
             schema={{
                 "@context": "https://schema.org",
                 "@type": "ItemList",

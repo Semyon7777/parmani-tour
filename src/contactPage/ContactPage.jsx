@@ -12,7 +12,8 @@ import "./ContactPage.css";
 import SEO from "../Components/SEO";
 
 function ContactPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = (i18n.language || 'en').split('-')[0];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -24,6 +25,7 @@ function ContactPage() {
         title="Contact Us"
         description="Contact Parmani Tour to book your Armenia tour or ask any questions."
         url="/contact"
+        lang={lang}
         schema={{
           "@context": "https://schema.org",
           "@type": "ContactPage",

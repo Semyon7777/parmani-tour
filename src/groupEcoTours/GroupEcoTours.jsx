@@ -125,6 +125,7 @@ function GroupEcoTours() {
         title="Group & Eco Tours in Armenia"
         description="Join our group and eco tours across Armenia. Affordable shared tours with professional guides."
         url="/group-eco-tours"
+        lang={currentLang}
         schema={{
           "@context": "https://schema.org",
           "@type": "ItemList",

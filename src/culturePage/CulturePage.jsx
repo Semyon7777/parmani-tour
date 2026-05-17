@@ -11,7 +11,8 @@ import "./CulturePage.css";
 import SEO from "../Components/SEO";
 
 function CulturePage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = (i18n.language || 'en').split('-')[0];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -23,6 +24,7 @@ function CulturePage() {
         title="Armenian Culture"
         description="Discover Armenian culture, traditions, music, art and way of life. A journey through centuries of heritage."
         url="/culture"
+        lang={lang}
         schema={{
           "@context": "https://schema.org",
           "@type": "WebPage",

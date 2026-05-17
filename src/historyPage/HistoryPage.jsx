@@ -9,7 +9,8 @@ import heroImg from "./images/history-hero.png";
 import SEO from "../Components/SEO";
 
 function HistoryPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = (i18n.language || 'en').split('-')[0];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -48,6 +49,7 @@ function HistoryPage() {
         title="History of Armenia"
         description="Explore the rich history of Armenia — ancient temples, monasteries and cultural heritage dating back thousands of years."
         url="/history"
+        lang={lang}
         schema={{
           "@context": "https://schema.org",
           "@type": "WebPage",

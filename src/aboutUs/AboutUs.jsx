@@ -6,6 +6,8 @@ import teamImg from "./images/team.jpg";
 import officeImg from "./images/office.jpg";
 import "./AboutUs.css";
 
+import SEO from "../Components/SEO";
+
 const stats = [
   { key: "years", value: "8+" },
   { key: "clients", value: "2K+" },
@@ -20,8 +22,9 @@ const values = [
 ];
 
 function AboutPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const sectionsRef = useRef([]);
+  const lang = (i18n.language || 'en').split('-')[0];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -49,6 +52,20 @@ function AboutPage() {
 
   return (
     <div className="about-page">
+      <SEO
+        title="About Us"
+        description="Learn about Parmani Tour — our team, mission and passion for Armenian tourism. We create unforgettable experiences."
+        url="/about-us"
+        lang={lang}
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "AboutPage",
+          "name": "About Parmani Tour",
+          "description": "Learn about Parmani Tour",
+          "url": "https://www.parmanitour.com/about-us"
+        }}
+      />
+
       <NavbarCustom />
 
       {/* HERO */}
