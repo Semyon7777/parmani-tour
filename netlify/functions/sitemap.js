@@ -10,23 +10,26 @@ exports.handler = async function(event, context) {
 
   const tourRoutes = toursData.map(tour => `/private-tours/${tour.id}`);
 
-  // Берём group и eco туры из Supabase
   let groupEcoRoutes = [];
   try {
-    const response = await fetch(
-      `${process.env.SUPABASE_URL}/rest/v1/group_eco_tours?select=id,type`,
-      {
-        headers: {
-          apikey: process.env.SUPABASE_ANON_KEY,
-          Authorization: `Bearer ${process.env.SUPABASE_ANON_KEY}`
-        }
+    const url = `${process.env.SUPABASE_URL}/rest/v1/group_eco_tours?select=id,type`;
+    console.log('Fetching:', url);
+    console.log('Key exists:', !!process.env.SUPABASE_ANON_KEY);
+
+    const response = await fetch(url, {
+      headers: {
+        apikey: process.env.SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${process.env.SUPABASE_ANON_KEY}`
       }
-    );
+    });
+
+    console.log('Response status:', response.status);
     const data = await response.json();
-    
-    groupEcoRoutes = data.map(item => 
-      item.type === 'eco' 
-        ? `/eco-tour/${item.id}` 
+    console.log('Data received:', JSON.stringify(data));
+
+    groupEcoRoutes = data.map(item =>
+      item.type === 'eco'
+        ? `/eco-tour/${item.id}`
         : `/group-tour/${item.id}`
     );
   } catch (err) {
