@@ -36,9 +36,21 @@ function ToursPage() {
     return (
         <div id="toursPage" className="tour-page-container">
             <SEO
-            title="Private Tours"
-            description="Browse all private tours in Armenia — cultural, nature, gastronomic and multi-day routes."
+            title="Private Tours in Armenia"
+            description="Browse all private tours in Armenia — cultural, nature, gastronomic and multi-day routes. Professional guides, comfortable transport."
             url="/private-tours"
+            schema={{
+                "@context": "https://schema.org",
+                "@type": "ItemList",
+                "name": "Private Tours in Armenia",
+                "description": "Browse all private tours in Armenia",
+                "url": "https://www.parmanitour.com/private-tours",
+                "provider": {
+                "@type": "TravelAgency",
+                "name": "Parmani Tour",
+                "url": "https://www.parmanitour.com"
+                }
+            }}
             />
 
             <NavbarCustom />

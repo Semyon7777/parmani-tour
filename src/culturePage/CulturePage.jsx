@@ -8,6 +8,8 @@ import monasteryImg from "./images/monastery.jpg";
 import manuscriptImg from "./images/manuscript.jpg";
 import "./CulturePage.css";
 
+import SEO from "../Components/SEO";
+
 function CulturePage() {
   const { t } = useTranslation();
 
@@ -17,6 +19,19 @@ function CulturePage() {
 
   return (
     <div className="culture-page">
+      <SEO
+        title="Armenian Culture"
+        description="Discover Armenian culture, traditions, music, art and way of life. A journey through centuries of heritage."
+        url="/culture"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Armenian Culture",
+          "description": "Discover Armenian culture and traditions",
+          "url": "https://www.parmanitour.com/culture"
+        }}
+      />
+
       <NavbarCustom />
 
       {/* HERO */}

@@ -11,6 +11,7 @@ import canyonImg from "./images/canyon.jpg";
 import heroImg from "./images/nature-hero.jpg"; 
 
 import "./NaturePage.css";
+import SEO from "../Components/SEO";
 
 const sections = [
   { key: "mountains", img: mountainsImg, tag: "Highlands" },
@@ -28,6 +29,19 @@ function NaturePage() {
 
   return (
     <div className="nature-page">
+      <SEO
+        title="Nature of Armenia"
+        description="Mountains, lakes, forests and gorges — explore Armenia's stunning natural landscapes with Parmani Tour."
+        url="/nature"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Nature of Armenia",
+          "description": "Explore Armenia's stunning natural landscapes",
+          "url": "https://www.parmanitour.com/nature"
+        }}
+      />
+
       <NavbarCustom />
 
       {/* HERO: Reduced height for better focus */}

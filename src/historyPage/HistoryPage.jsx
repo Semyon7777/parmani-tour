@@ -6,6 +6,7 @@ import Footer from "../Components/Footer";
 import "./HistoryPage.css";
 
 import heroImg from "./images/history-hero.png";
+import SEO from "../Components/SEO";
 
 function HistoryPage() {
   const { t } = useTranslation();
@@ -43,6 +44,18 @@ function HistoryPage() {
 
   return (
     <div className="history-page">
+      <SEO
+        title="History of Armenia"
+        description="Explore the rich history of Armenia — ancient temples, monasteries and cultural heritage dating back thousands of years."
+        url="/history"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "History of Armenia",
+          "description": "Explore the rich history of Armenia",
+          "url": "https://www.parmanitour.com/history"
+        }}
+      />
 
         <NavbarCustom />
 

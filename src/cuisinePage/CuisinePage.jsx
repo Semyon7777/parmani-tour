@@ -11,6 +11,7 @@ import gataImg from "./images/gata.jpg";
 import heroImg from "./images/cuisine-hero.webp";
 
 import "./CuisinePage.css";
+import SEO from "../Components/SEO";
 
 const dishes = [
   { key: "khorovats", img: khorovatsImg, labelKey: "cuisine.dishes.khorovats.label" },
@@ -72,6 +73,19 @@ function CuisinePage() {
 
   return (
     <div className="cuisine-page">
+      <SEO
+        title="Armenian Cuisine"
+        description="Taste the best of Armenian food. Traditional dishes, local restaurants and food tours across Armenia."
+        url="/cuisine"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Armenian Cuisine",
+          "description": "Taste the best of Armenian food",
+          "url": "https://www.parmanitour.com/cuisine"
+        }}
+      />
+
       <NavbarCustom />
 
       {/* ── HERO ── */}

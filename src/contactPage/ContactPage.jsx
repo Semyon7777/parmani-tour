@@ -24,6 +24,17 @@ function ContactPage() {
         title="Contact Us"
         description="Contact Parmani Tour to book your Armenia tour or ask any questions."
         url="/contact"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "ContactPage",
+          "name": "Contact Parmani Tour",
+          "url": "https://www.parmanitour.com/contact",
+          "provider": {
+            "@type": "TravelAgency",
+            "name": "Parmani Tour",
+            "url": "https://www.parmanitour.com"
+          }
+        }}
       />
       <NavbarCustom />
 

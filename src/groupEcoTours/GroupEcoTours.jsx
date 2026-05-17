@@ -122,9 +122,21 @@ function GroupEcoTours() {
   return (
     <div className="scheduled-page group-eco-tours-container">
       <SEO
-        title="Group & Eco Tours"
+        title="Group & Eco Tours in Armenia"
         description="Join our group and eco tours across Armenia. Affordable shared tours with professional guides."
         url="/group-eco-tours"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "Group & Eco Tours in Armenia",
+          "description": "Join our group and eco tours across Armenia",
+          "url": "https://www.parmanitour.com/group-eco-tours",
+          "provider": {
+            "@type": "TravelAgency",
+            "name": "Parmani Tour",
+            "url": "https://www.parmanitour.com"
+          }
+        }}
       />
 
       <NavbarCustom />
