@@ -1,3 +1,11 @@
+[[edge_functions]]
+  path = "/eco-tour/*"
+  function = "tour-seo"
+
+[[edge_functions]]
+  path = "/group-tour/*"
+  function = "tour-seo"
+
 [[redirects]]
   from = "/sitemap.xml"
   to = "/.netlify/functions/sitemap"
