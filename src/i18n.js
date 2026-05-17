@@ -21,10 +21,8 @@ i18n
     
     // Настройки детектора (опционально)
     detection: {
-      // Где искать язык и в каком порядке
-      order: ['localStorage', 'cookie', 'navigator', 'htmlTag'],
-      
-      // Куда сохранять выбор языка, чтобы запомнить его для следующего визита
+      order: ['path', 'localStorage', 'cookie', 'navigator', 'htmlTag'],
+      lookupFromPathIndex: 0,
       caches: ['localStorage', 'cookie'],
     },
 

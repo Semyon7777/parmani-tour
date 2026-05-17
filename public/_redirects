@@ -1,2 +1,8 @@
 /sitemap.xml /.netlify/functions/sitemap 200!
-/*    /index.html   200
+/en/* /index.html 200
+/ru/* /index.html 200
+/hy/* /index.html 200
+/en /index.html 200
+/ru /index.html 200
+/hy /index.html 200
+/*  /index.html 200

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
+import { useNavigate, useLocation } from 'react-router-dom';
 import { LinkContainer } from "react-router-bootstrap";
 import { useTranslation } from "react-i18next";
 import MyIcon from './aragats-transparent.png';
@@ -133,8 +134,24 @@ const NavbarCustom = ({ isHomePage }) => {
     }
   };
 
-  const changeLanguage = (lng) => i18n.changeLanguage(lng);
-  const getCurrentLanguageLabel = () => i18n.language ? i18n.language.split("-")[0].toUpperCase() : "EN";
+  const navigate = useNavigate();
+  const location = useLocation();
+  const lang = location.pathname.split('/')[1] || 'en';
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    const currentPath = location.pathname;
+    const pathParts = currentPath.split('/');
+    // Меняем первый сегмент URL (язык)
+    pathParts[1] = lng;
+    navigate(pathParts.join('/'));
+  };
+
+  const getCurrentLanguageLabel = () => {
+    const pathLang = location.pathname.split('/')[1];
+    if (['en', 'ru', 'hy'].includes(pathLang)) return pathLang.toUpperCase();
+    return i18n.language ? i18n.language.split("-")[0].toUpperCase() : "EN";
+  };
 
   // ЛОГИКА КЛАССОВ:
   // 1. Позиция
@@ -175,7 +192,7 @@ const NavbarCustom = ({ isHomePage }) => {
         className={`custom-navbar ${positionClass} ${animationClass} ${themeClass}`}
       >
         <Container fluid className="px-3 px-lg-5">
-          <LinkContainer to="/">
+          <LinkContainer to={`/${lang}`}>
             <Navbar.Brand className="brand-logo">
               <img src={MyIcon} alt="Logo" className="logo-image-bg" />
               Parmani<span>Tour</span>
@@ -186,7 +203,7 @@ const NavbarCustom = ({ isHomePage }) => {
 
           <Navbar.Collapse>
             <Nav className="ms-auto align-items-center home-button-mobile-style-correcting">
-              <LinkContainer to="/"><Nav.Link className="nav-link-item">{t("navbar_custom.home_button")}</Nav.Link></LinkContainer>
+              <LinkContainer to={`/${lang}`}><Nav.Link className="nav-link-item">{t("navbar_custom.home_button")}</Nav.Link></LinkContainer>
               
               <NavDropdown
                 title={t("navbar_custom.tours_button")}
@@ -197,9 +214,9 @@ const NavbarCustom = ({ isHomePage }) => {
                 onToggle={(isOpen) => handleToggle('tours', isOpen)}
                 renderMenuOnMount
               >
-                <LinkContainer to="/private-tours"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.private_tours")}</NavDropdown.Item></LinkContainer>
-                <LinkContainer to="/group-eco-tours"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.group_&_eco_tours")}</NavDropdown.Item></LinkContainer>
-                <LinkContainer to={{ pathname: "/special", search: "?tab=school" }}><NavDropdown.Item className="dropdown-item">{t("navbar_custom.school_tours")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to={`/${lang}/private-tours`}><NavDropdown.Item className="dropdown-item">{t("navbar_custom.private_tours")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to={`/${lang}/group-eco-tours`}><NavDropdown.Item className="dropdown-item">{t("navbar_custom.group_&_eco_tours")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to={{ pathname: `/${lang}/special`, search: "?tab=school" }}><NavDropdown.Item className="dropdown-item">{t("navbar_custom.school_tours")}</NavDropdown.Item></LinkContainer>
                 {/* <LinkContainer to="/extreme-tours"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.extreme_tours")}</NavDropdown.Item></LinkContainer> */}
               </NavDropdown>
 
@@ -212,14 +229,14 @@ const NavbarCustom = ({ isHomePage }) => {
                 onToggle={(isOpen) => handleToggle('services', isOpen)}
                 renderMenuOnMount
               >
-                <LinkContainer to="/hotels"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.hotels")}</NavDropdown.Item></LinkContainer>
-                <LinkContainer to="/transport"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.transport")}</NavDropdown.Item></LinkContainer>
-                <LinkContainer to="/all-in-one"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.all_in_one")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to={`/${lang}/hotels`}><NavDropdown.Item className="dropdown-item">{t("navbar_custom.hotels")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to={`/${lang}/transport`}><NavDropdown.Item className="dropdown-item">{t("navbar_custom.transport")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to={`/${lang}/all-in-one`}><NavDropdown.Item className="dropdown-item">{t("navbar_custom.all_in_one")}</NavDropdown.Item></LinkContainer>
                 <NavDropdown.Divider />
-                <LinkContainer to="/special"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.special")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to={`/${lang}/special`}><NavDropdown.Item className="dropdown-item">{t("navbar_custom.special")}</NavDropdown.Item></LinkContainer>
               </NavDropdown>
 
-              <LinkContainer to="/contact"><Nav.Link className="nav-link-item">{t("navbar_custom.contact_button")}</Nav.Link></LinkContainer>
+              <LinkContainer to={`/${lang}/contact`}><Nav.Link className="nav-link-item">{t("navbar_custom.contact_button")}</Nav.Link></LinkContainer>
 
               <NavDropdown
                 title={t("navbar_custom.about")}
@@ -230,10 +247,10 @@ const NavbarCustom = ({ isHomePage }) => {
                 onToggle={(isOpen) => handleToggle('about', isOpen)}
                 // renderMenuOnMount
               >
-                <LinkContainer to="/history"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.history")}</NavDropdown.Item></LinkContainer>
-                <LinkContainer to="/cuisine"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.cuisine")}</NavDropdown.Item></LinkContainer>
-                <LinkContainer to="/nature"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.nature")}</NavDropdown.Item></LinkContainer>
-                <LinkContainer to="/culture"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.culture")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to={`/${lang}/history`}><NavDropdown.Item className="dropdown-item">{t("navbar_custom.history")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to={`/${lang}/cuisine`}><NavDropdown.Item className="dropdown-item">{t("navbar_custom.cuisine")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to={`/${lang}/nature`}><NavDropdown.Item className="dropdown-item">{t("navbar_custom.nature")}</NavDropdown.Item></LinkContainer>
+                <LinkContainer to={`/${lang}/culture`}><NavDropdown.Item className="dropdown-item">{t("navbar_custom.culture")}</NavDropdown.Item></LinkContainer>
               </NavDropdown>
 
               {/* СЕКЦИЯ ПРОФИЛЯ */}
@@ -247,12 +264,12 @@ const NavbarCustom = ({ isHomePage }) => {
                   onMouseLeave={() => handleMouseLeave('user')}
                   onToggle={(isOpen) => handleToggle('user', isOpen)}
                 >
-                  <LinkContainer to="/profile"><NavDropdown.Item className="dropdown-item">{t("navbar_custom.profile_button")}</NavDropdown.Item></LinkContainer>
+                  <LinkContainer to={`/${lang}/profile`}><NavDropdown.Item className="dropdown-item">{t("navbar_custom.profile_button")}</NavDropdown.Item></LinkContainer>
                   <NavDropdown.Divider />
                   <NavDropdown.Item onClick={handleLogout} className="dropdown-item text-danger"><LogOut size={16} className="me-2" />{t("navbar_custom.logout")}</NavDropdown.Item>
                 </NavDropdown>
               ) : (
-                <LinkContainer to="/profile">
+                <LinkContainer to={`/${lang}/profile`}>
                   <Nav.Link className="nav-link-item login-btn-highlight"><LogIn size={18} className="me-1" />{t("navbar_custom.login_button")}</Nav.Link>
                 </LinkContainer>
               )}

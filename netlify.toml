@@ -1,13 +1,37 @@
 [[edge_functions]]
-  path = "/eco-tour/*"
+  path = "/en/eco-tour/*"
   function = "tour-seo"
 
 [[edge_functions]]
-  path = "/group-tour/*"
+  path = "/ru/eco-tour/*"
   function = "tour-seo"
 
 [[edge_functions]]
-  path = "/private-tours/*"
+  path = "/hy/eco-tour/*"
+  function = "tour-seo"
+
+[[edge_functions]]
+  path = "/en/group-tour/*"
+  function = "tour-seo"
+
+[[edge_functions]]
+  path = "/ru/group-tour/*"
+  function = "tour-seo"
+
+[[edge_functions]]
+  path = "/hy/group-tour/*"
+  function = "tour-seo"
+
+[[edge_functions]]
+  path = "/en/private-tours/*"
+  function = "tour-seo"
+
+[[edge_functions]]
+  path = "/ru/private-tours/*"
+  function = "tour-seo"
+
+[[edge_functions]]
+  path = "/hy/private-tours/*"
   function = "tour-seo"
 
 [[redirects]]
