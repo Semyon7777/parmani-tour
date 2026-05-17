@@ -172,13 +172,26 @@ function TourPageDynamic() {
 
   return (
     <div className="tour-dynamic-page">
-          <SEO
-      title={tour.title[lang]}
-      description={tour.description?.[lang]}
-      image={`https://www.parmanitour.com${tour.imageUrl}`}
-      url={`/private-tours/${tourId}`}
-      lang={lang}
-    />
+      <SEO
+        title={tour.title[lang]}
+        description={tour.description?.[lang]}
+        image={`https://www.parmanitour.com${tour.imageUrl}`}
+        url={`/private-tours/${tourId}`}
+        lang={lang}
+        tourSchema={{
+          "@context": "https://schema.org",
+          "@type": "TouristTrip",
+          "name": tour.title[lang],
+          "description": tour.description?.[lang],
+          "image": `https://www.parmanitour.com${tour.imageUrl}`,
+          "url": `https://www.parmanitour.com/private-tours/${tourId}`,
+          "provider": {
+            "@type": "TravelAgency",
+            "name": "Parmani Tour",
+            "url": "https://www.parmanitour.com"
+          }
+        }}
+      />
       <NavbarCustom />
       <TourInfo tourData={myTourData} />
       <Footer />
