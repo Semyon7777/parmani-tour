@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
-
 // Images
 import mountainsImg from "./images/mountains.jpg";
 import lakeImg from "./images/lake.jpg";
