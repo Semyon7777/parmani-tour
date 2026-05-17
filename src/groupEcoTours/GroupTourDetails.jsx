@@ -99,13 +99,26 @@ const GroupTourDetails = () => {
   return (
     <div className="group-details-page">
       <SEO
-        title={tour.title[currentLang]}
-        description={tour.description?.[currentLang]}
-        image={`https://www.parmanitour.com${tour.imageUrl}`}
-        url={`/private-tours/${id}`}
+        title={getTranslation(tour.title)}
+        description={getTranslation(tour.description)}
+        image={tour.image}
+        url={`/group-tour/${id}`}
         lang={currentLang}
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "TouristTrip",
+          "name": getTranslation(tour.title),
+          "description": getTranslation(tour.description),
+          "image": tour.image,
+          "url": `https://www.parmanitour.com/group-tour/${id}`,
+          "touristType": "Group tourism",
+          "provider": {
+            "@type": "TravelAgency",
+            "name": "Parmani Tour",
+            "url": "https://www.parmanitour.com"
+          }
+        }}
       />
-      
       <NavbarCustom />
 
       {/* 1. BOLD HERO SECTION */}

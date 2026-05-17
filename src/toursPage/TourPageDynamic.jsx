@@ -178,13 +178,14 @@ function TourPageDynamic() {
         image={`https://www.parmanitour.com${tour.imageUrl}`}
         url={`/private-tours/${tourId}`}
         lang={lang}
-        tourSchema={{
+        schema={{
           "@context": "https://schema.org",
           "@type": "TouristTrip",
           "name": tour.title[lang],
           "description": tour.description?.[lang],
           "image": `https://www.parmanitour.com${tour.imageUrl}`,
           "url": `https://www.parmanitour.com/private-tours/${tourId}`,
+          "touristType": "Cultural tourism",
           "provider": {
             "@type": "TravelAgency",
             "name": "Parmani Tour",

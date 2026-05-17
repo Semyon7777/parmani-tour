@@ -108,11 +108,25 @@ const EcoTourDetails = () => {
   return (
     <div className="eco-details-page">
       <SEO
-        title={tour.title[currentLang]}
-        description={tour.description?.[currentLang]}
-        image={`https://www.parmanitour.com${tour.imageUrl}`}
-        url={`/private-tours/${id}`}
+        title={getTranslation(tour.title)}
+        description={getTranslation(tour.description)}
+        image={tour.image}
+        url={`/eco-tour/${id}`}
         lang={currentLang}
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "TouristTrip",
+          "name": getTranslation(tour.title),
+          "description": getTranslation(tour.description),
+          "image": tour.image,
+          "url": `https://www.parmanitour.com/eco-tour/${id}`,
+          "touristType": "Eco tourism",
+          "provider": {
+            "@type": "TravelAgency",
+            "name": "Parmani Tour",
+            "url": "https://www.parmanitour.com"
+          }
+        }}
       />
 
       <NavbarCustom />
