@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
 import { Button, Card, Row, Col, Spinner, Container, Dropdown, Modal } from 'react-bootstrap';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Search, ArrowUpDown, Clock, ChevronRight, ChevronLeft, User, 
   Heart, LogIn } from 'lucide-react';
@@ -10,7 +10,8 @@ import ToursPageHeroImg from "./axtala-img.webp";
  
 function ToursPageFirstPart() {
   const { t, i18n } = useTranslation();
-  const lang = i18n.language || "en";
+  const location = useLocation();
+  const lang = location.pathname.split('/')[1] || 'en';
  
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
@@ -251,7 +252,8 @@ function ToursPageFirstPart() {
 // ─── КАРТОЧКА ТУРА ────────────────────────────────────────────
 const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle, currentUser }) => {
   const { t, i18n } = useTranslation();
-  const lang = (i18n.language || "en").split("-")[0];
+  const location = useLocation();
+  const lang = location.pathname.split('/')[1] || 'en';
  
   // Локальный стейт только для блокировки кнопки пока идёт запрос
   const [pending, setPending] = useState(false);
@@ -338,7 +340,7 @@ const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle, currentUser }) => {
           <span>{tour.duration} {tour.durationUnit === 'days' ? t('tour_info_page.days') : t('tour_info_page.hours')}</span>
         </div>
         <Card.Text className="text-muted small flex-grow-1">{tour.description[lang]}</Card.Text>
-        <Link to={`/private-tours/${tour.id}`} className="mt-3">
+        <Link to={`/${lang}/private-tours/${tour.id}`} className="mt-3">
           <Button variant="success" className="w-100 rounded-pill">{t('viewTour')}</Button>
         </Link>
       </Card.Body>
