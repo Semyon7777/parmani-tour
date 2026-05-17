@@ -1,6 +1,6 @@
 const toursData = require('../../src/toursPage/toursData.json');
 
-exports.handler = async () => {
+exports.handler = async function(event, context) {
   
   const staticRoutes = [
     '/', '/private-tours', '/group-eco-tours', '/extreme-tours',
@@ -9,7 +9,6 @@ exports.handler = async () => {
   ];
 
   const tourRoutes = toursData.map(tour => `/private-tours/${tour.id}`);
-
   const allRoutes = [...staticRoutes, ...tourRoutes];
   const baseUrl = 'https://parmanitour.netlify.app';
 
@@ -22,7 +21,10 @@ ${allRoutes.map(route => `  <url>
 
   return {
     statusCode: 200,
-    headers: { 'Content-Type': 'application/xml' },
+    headers: { 
+      'Content-Type': 'application/xml; charset=utf-8',
+      'Cache-Control': 'public, max-age=3600'
+    },
     body: xml
   };
 };
