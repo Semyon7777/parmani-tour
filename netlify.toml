@@ -6,6 +6,10 @@
   path = "/group-tour/*"
   function = "tour-seo"
 
+[[edge_functions]]
+  path = "/private-tours/*"
+  function = "tour-seo"
+
 [[redirects]]
   from = "/sitemap.xml"
   to = "/.netlify/functions/sitemap"
