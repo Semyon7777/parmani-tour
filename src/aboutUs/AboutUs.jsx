@@ -137,7 +137,7 @@ function AboutPage() {
         <div className="ab-cta-inner fade-up">
           <h2>{t("about.cta.title")}</h2>
           <p>{t("about.cta.text")}</p>
-          <a href="/contact" className="ab-cta-btn">{t("about.cta.button", "Get in touch")}</a>
+          <a href={`${lang}/contact`} className="ab-cta-btn">{t("about.cta.button", "Get in touch")}</a>
         </div>
       </section>
 

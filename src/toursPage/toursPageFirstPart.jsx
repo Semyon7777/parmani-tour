@@ -361,7 +361,7 @@ const AlbumCard = React.memo(({ tour, isLiked, onLikeToggle, currentUser }) => {
             {t('tour_info_page.please_login', 'Please login to save your favorite tours and plan your trip.')}
           </p>
           <div className="d-grid gap-2">
-            <Link to="/login" className="mt-3">
+            <Link to={`/${lang}/login`} className="mt-3">
               <Button 
                 variant="success" 
                 className="py-2 fw-bold w-100"

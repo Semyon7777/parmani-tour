@@ -180,7 +180,7 @@ function CuisinePage() {
               <h2>{t("cuisine.tour_cta.title", "Explore Armenian Cuisine on a Gastronomic Tour")}</h2>
               <p>{t("cuisine.tour_cta.text", "Visit local markets, taste traditional dishes and learn recipes from Armenian families.")}</p>
             </div>
-            <Link to="/private-tours?cat=gastronomic&page=1" className="cuisine-tour-btn">
+            <Link to={`/${lang}/private-tours?cat=gastronomic&page=1`} className="cuisine-tour-btn">
               {t("cuisine.tour_cta.btn", "View Gastronomic Tours")}
             </Link>
           </div>

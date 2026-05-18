@@ -8,11 +8,13 @@ import NavbarCustom from "../Components/Navbar";
 import "./AuthPage.css";
 
 function AuthPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isRegister, setIsRegister] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+
+  const lang = (i18n.language || 'en').split('-')[0];
 
   const [formData, setFormData] = useState({
     email: "",
@@ -38,7 +40,7 @@ function AuthPage() {
   const handleSocialLogin = async (provider) => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: provider,
-      options: { redirectTo: window.location.origin + "/profile" }
+      options: { redirectTo: window.location.origin + `/${lang}/profile` }
     });
     if (error) setError(error.message);
   };
@@ -69,7 +71,7 @@ function AuthPage() {
       });
 
       if (signUpError) setError(signUpError.message);
-      else navigate("/profile");
+      else navigate(`/${lang}/profile`);
     } else {
       const { error: signInError } = await supabase.auth.signInWithPassword({
         email: email.trim(),
@@ -77,7 +79,7 @@ function AuthPage() {
       });
 
       if (signInError) setError(signInError.message);
-      else navigate("/profile");
+      else navigate(`/${lang}/profile`);
     }
     setLoading(false);
   };

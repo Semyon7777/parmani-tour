@@ -22,6 +22,8 @@ function BookForm() {
   const { tourName } = useParams(); 
   const cleanTourName = tourName.replace("-reservation", "");
   const [calculation, setCalculation] = useState(null);
+
+  const lang = (i18n.language || 'en').split('-')[0];
   
   // 1. Создаем реф для капчи
   const recaptchaRef = useRef(); 
@@ -179,7 +181,7 @@ function BookForm() {
 
       setTimeout(() => {
         setShowAlert(false);
-        navigate("/private-tours");
+        navigate(`/${lang}/private-tours`);
       }, 5000);
 
     } catch (err) {
@@ -405,7 +407,7 @@ function BookForm() {
                     )}
 
                     <div className="d-flex justify-content-end pt-3">
-                      <Link to="/private-tours">
+                      <Link to={`/${lang}/private-tours`}>
                         <Button variant='light' size='lg'>{t('bookForm.goBack')}</Button>
                       </Link>
                       <Button className='ms-2' variant='warning' size='lg' type="submit" disabled={isSubmitting}>{t('bookForm.submitForm')}</Button>
@@ -419,7 +421,7 @@ function BookForm() {
       </Row>
       
       {/* Notification Modal */}
-      <Modal show={showAlert} onHide={() => { setShowAlert(false); navigate("/private-tours"); }} centered>
+      <Modal show={showAlert} onHide={() => { setShowAlert(false); navigate(`/${lang}/private-tours`); }} centered>
         <Modal.Header 
           closeButton 
           style={{ 
@@ -435,7 +437,7 @@ function BookForm() {
           {t('bookForm.modalBody')}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="success" onClick={() => {setShowAlert(false); navigate("/private-tours"); }}>{t('bookForm.closeButton')}</Button>
+          <Button variant="success" onClick={() => {setShowAlert(false); navigate(`/${lang}/private-tours`); }}>{t('bookForm.closeButton')}</Button>
         </Modal.Footer>
       </Modal>
           <ReCAPTCHA

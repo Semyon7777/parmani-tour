@@ -71,7 +71,7 @@ function ToursPage() {
                                 </p>
                             </Col>
                             <Col lg={4} className="text-lg-end">
-                                <Link to="/special">
+                                <Link to={`/${lang}/special`}>
                                     <Button variant="light" className="cta-btn-modern">
                                         {t('tour_info_page.custom.button')} <Send size={18} className="ms-2" />
                                     </Button>

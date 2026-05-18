@@ -5,11 +5,10 @@ import img1 from "./first page images/cardImg1.webp";
 import img2 from "./first page images/cardImg2.webp";
 import img3 from "./first page images/cardImg3.webp";
 import img4 from "./first page images/cardImg4.webp";
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 
 function FirstPageThirdPart() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className="thirdContainer">
@@ -19,20 +18,6 @@ function FirstPageThirdPart() {
 
       <div className="cards">
         <CardComponents />
-      </div>
-
-      <div className="EndbtnContainer" style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}>
-        <Link to="/services">
-          <Button
-            variant="hided"
-            className={`EndbtnContainerButton ${
-              i18n.language === "hy" || i18n.language === "ru"
-                ? "EndbtnContainerButton-ru-hy"
-                : ""
-            }`}
-          >
-          </Button>
-        </Link>
       </div>
     </div>
   );
@@ -60,34 +45,37 @@ const Card = ({ title, text, imgSrc, buttonText, buttonLink }) => {
 };
 
 function CardComponents() {
+  const { i18n } = useTranslation();
+  const lang = (i18n.language || 'en').split('-')[0];
+
   const cardsData = [
     {
       title: "first_page_cards.private_title",
       text: "first_page_cards.private_text",
       imgSrc: img1,
       buttonText: "first_page_cards.private_button",
-      buttonLink: "/private-tours",
+      buttonLink: `/${lang}/private-tours`,
     },
     {
       title: "first_page_cards.group_eco_title",
       text: "first_page_cards.group_eco_text",
       imgSrc: img2,
       buttonText: "first_page_cards.group_eco_button",
-      buttonLink: "/group-eco-tours",
+      buttonLink: `/${lang}/group-eco-tours`,
     },
     {
       title: "first_page_cards.school_title",
       text: "first_page_cards.school_text",
       imgSrc: img3,
       buttonText: "first_page_cards.school_button",
-      buttonLink: "/special?tab=school",
+      buttonLink: `/${lang}/special?tab=school`,
     },
     {
       title: "first_page_cards.custom_title",
       text: "first_page_cards.custom_text",
       imgSrc: img4,
       buttonText: "first_page_cards.custom_button",
-      buttonLink: "/special?tab=custom",
+      buttonLink: `/${lang}/special?tab=custom`,
     },
   ];
 

@@ -76,8 +76,9 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
   // Логика авто-перехода
   const handleFinalRedirect = useCallback(() => {
     if (onClose) onClose();
-    navigate("/group-eco-tours");
-  }, [onClose, navigate]); // Эти зависимости стабильны
+    navigate(`/${lang}/group-eco-tours`);
+    // Теперь React пересоздаст эту функцию каждый раз, когда lang изменится
+  }, [onClose, navigate, lang]); // Эти зависимости стабильны
 
   useEffect(() => {
     let timer;
@@ -272,7 +273,7 @@ function GroupEcoToursBookForm({ tour, isOpen, onClose }) {
             <p>{t("group_booking.login_text", "Для бронирования тура необходима авторизация")}</p>
             <button
               className="gbm-submit"
-              onClick={() => { onClose(); navigate("/login"); }}
+              onClick={() => { onClose(); navigate(`/${lang}/login`); }}
             >
               {t("group_booking.go_login", "Войти или зарегистрироваться")}
             </button>

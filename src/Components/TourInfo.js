@@ -12,7 +12,9 @@ import "./TourInfo.css";
 import { supabase } from "../supabaseClient";
 
 const TourInfo = ({ tourData }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = (i18n.language || 'en').split('-')[0];
+
   const navigate = useNavigate();
 
   const [currentUser, setCurrentUser] = useState(null);
@@ -36,7 +38,7 @@ const TourInfo = ({ tourData }) => {
       setShowLoginModal(true);
       return;
     }
-    navigate(`/tours/booking/${tourData.id}`);
+    navigate(`${lang}/tours/booking/${tourData.id}`);
   };
 
 
@@ -398,7 +400,7 @@ const TourInfo = ({ tourData }) => {
                       <div 
                         className="related-tour-mini-card shadow-sm border-0 rounded-4 overflow-hidden d-flex flex-column"
                         onClick={() => {
-                          navigate(`/private-tours/${rel.id}`);
+                          navigate(`${lang}/private-tours/${rel.id}`);
                           window.scrollTo(0, 0); 
                         }}
                         style={{ cursor: 'pointer' }}
@@ -444,7 +446,7 @@ const TourInfo = ({ tourData }) => {
             {t('tour_info_page.please_login', 'Please login to book this tour.')}
           </p>
           <div className="d-grid gap-2">
-            <Link to="/login">
+            <Link to={`${lang}/login`}>
               <Button variant="success" className="py-2 fw-bold w-100">
                 {t('auth_page.btn_login', 'Login')}
               </Button>

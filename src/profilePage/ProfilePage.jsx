@@ -29,9 +29,10 @@ function SkeletonCard() {
  
 // ─── ГЛАВНЫЙ КОМПОНЕНТ ────────────────────────────────────────
 function ProfilePage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("favourites");
+  const currentLang = i18n.language || 'en';
  
   // ✅ ВЕСЬ стейт живёт здесь — переключение табов не вызывает повторных запросов
   const [user, setUser]               = useState(null);
@@ -52,7 +53,7 @@ function ProfilePage() {
   const loadAllData = async () => {
     // ── Шаг 1: авторизация (быстро, из кеша Supabase SDK) ──────
     const { data: { user: authUser }, error: authError } = await supabase.auth.getUser();
-    if (authError || !authUser) { navigate("/login"); return; }
+    if (authError || !authUser) { navigate(`/${currentLang}/login`); return; }
  
     // ── Шаг 2: три запроса ПАРАЛЛЕЛЬНО ─────────────────────────
     // Раньше: profile → (открыл таб) → favourites → (открыл таб) → bookings
@@ -115,7 +116,7 @@ function ProfilePage() {
  
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    navigate("/");
+    navigate(`/${currentLang}`);
   };
  
   if (loadingProfile) {
@@ -210,7 +211,7 @@ function FavouritesTab({ favourites, loading, onRemove }) {
       <Heart size={48} className="empty-icon" />
       <h4>{t("profile.no_favourites", "Нет избранных туров")}</h4>
       <p>{t("profile.no_favourites_sub", "Добавляй туры в избранное и они появятся здесь")}</p>
-      <Link to="/group-eco-tours" className="profile-cta-btn">
+      <Link to={`/${currentLang}/group-eco-tours`} className="profile-cta-btn">
         {t("profile.browse_tours", "Посмотреть туры")}
       </Link>
     </div>
@@ -248,7 +249,7 @@ function FavouritesTab({ favourites, loading, onRemove }) {
                       : `${tour.price} AMD`}
                 </span>
                 <Link
-                  to={tour.type === "private" ? `/private-tours/${tour.id}` : tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`}
+                  to={tour.type === "private" ? `/${currentLang}/private-tours/${tour.id}` : tour.type === "eco" ? `/${currentLang}/eco-tour/${tour.id}` : `/${currentLang}/group-tour/${tour.id}`}
                   className="profile-tour-link"
                 >
                   {t("profile.view", "Открыть")} <ChevronRight size={14} />
@@ -266,10 +267,12 @@ function FavouritesTab({ favourites, loading, onRemove }) {
 // ─── ТАБ: БРОНИРОВАНИЯ ────────────────────────────────────────
 // Только отображает данные — никаких запросов, никаких useEffect
 function BookingsTab({ bookings, loading }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [filter, setFilter] = useState("all");
   const [showQR, setShowQR] = useState(false);
   const [selectedBooking, setSelectedBooking] = useState(null);
+
+  const currentLang = i18n.language || 'en';
 
   if (loading) return (
     <div className="text-center py-5"><Spinner animation="border" variant="success" /></div>
@@ -280,7 +283,7 @@ function BookingsTab({ bookings, loading }) {
       <Clock size={48} className="empty-icon" />
       <h4>{t("profile.no_bookings", "Нет бронирований")}</h4>
       <p>{t("profile.no_bookings_sub", "Ваши будущие и прошлые поездки появятся здесь")}</p>
-      <Link to="/private-tours" className="profile-cta-btn">
+      <Link to={`/${currentLang}/private-tours`} className="profile-cta-btn">
         {t("profile.book_tour", "Забронировать тур")}
       </Link>
     </div>

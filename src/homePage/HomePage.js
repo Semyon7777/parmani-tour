@@ -18,12 +18,29 @@ import "./firstPage.css";
 
 function HomePage() {
 
+  const { i18n } = useTranslation();
+  const lang = (i18n.language || 'en').split('-')[0];
+
+
+  const descriptions = {
+    en: "Discover Armenia with Parmani Tour. Private day trips, multi-day tours, professional guides.",
+    ru: "Откройте Армению с Parmani Tour. Частные туры, многодневные маршруты, профессиональные гиды.",
+    hy: "Բացահայտեք Հայաստանը Parmani Tour-ի հետ։ Մասնավոր տուրեր, բազմօրյա երթուղիներ, մասնագետ ուղեկցորդներ։"
+  };
+
+  const titles = {
+    en: "Private Tours in Armenia",
+    ru: "Туры по Армении",
+    hy: "Տուրեր Հայաստանում"
+  };
+
   return (
     <div id="homePage">
       <SEO
-        title="Private Tours in Armenia"
-        description="Discover Armenia with Parmani Tour. Private day trips, multi-day tours, professional guides."
+        title={titles[lang] || titles.en}
+        description={descriptions[lang] || descriptions.en}
         url="/"
+        lang={lang}
       />
       
 
@@ -117,7 +134,6 @@ function ExploreSection() {
 }
 
 // --- НОВЫЙ КОМПОНЕНТ: БЛИЖАЙШИЕ ТУРЫ ---
-
 function UpcomingEventsSection() {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || "en";
@@ -199,12 +215,12 @@ function UpcomingEventsSection() {
         tourData = data;
       }
 
-      const path = event.type === "eco" ? `/eco-tour/${event.id}` : `/group-tour/${event.id}`;
+      const path = event.type === "eco" ? `/${currentLang}/eco-tour/${event.id}` : `/${currentLang}/group-tour/${event.id}`;
       navigate(path, { state: { tour: tourData } });
 
     } catch (err) {
       console.error("Error:", err);
-      navigate(event.type === "eco" ? `/eco-tour/${event.id}` : `/group-tour/${event.id}`);
+      navigate(event.type === "eco" ? `/${currentLang}/eco-tour/${event.id}` : `/${currentLang}/group-tour/${event.id}`);
     }
   };
 
@@ -220,7 +236,7 @@ function UpcomingEventsSection() {
             </div>
             <h2 className="home-section-title home-coming-soon-title -m-0">{t("home_page.upcoming.title", "Скоро в программе")}</h2>
           </div>
-          <Link to="/group-eco-tours" className="view-all-link text-success d-md-block">
+          <Link to={`/${currentLang}/group-eco-tours`} className="view-all-link text-success d-md-block">
             {t("home_page.upcoming.view_all")} <ArrowRight size={18} />
           </Link>
         </div>
@@ -269,7 +285,7 @@ function UpcomingEventsSection() {
                     <div className="tour-action-area">
                       <div className="tour-price-tag">{event.price} AMD</div>
                       <Link
-                        to={event.type === "eco" ? `/eco-tour/${event.id}` : `/group-tour/${event.id}`}
+                        to={event.type === "eco" ? `/${currentLang}/eco-tour/${event.id}` : `/${currentLang}/group-tour/${event.id}`}
                         onClick={(e) => handleTourClick(e, event)}
                         className="tour-btn-minimal"
                       >

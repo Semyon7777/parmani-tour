@@ -219,10 +219,12 @@ const TourCardSkeleton = () => (
 
 // ─── КНОПКА-СЕРДЕЧКО ─────────────────────────────────────────
 const HeartButton = ({ tourId, isLiked, onLikeToggle, currentUser }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [pending, setPending] = useState(false);
 
   const [showLoginModal, setShowLoginModal] = useState(false);
+
+  const lang = (i18n.language || 'en').split('-')[0];
 
   const handleToggle = async (e) => {
     e.preventDefault();
@@ -292,7 +294,7 @@ const HeartButton = ({ tourId, isLiked, onLikeToggle, currentUser }) => {
             {t('tour_info_page.please_login', 'Please login to save your favorite tours and plan your trip.')}
           </p>
           <div className="d-grid gap-2">
-            <Link to="/login" className="mt-3">
+            <Link to={`/${lang}/login`} className="mt-3">
               <Button 
                 variant="success" 
                 className="py-2 fw-bold w-100"
@@ -350,11 +352,11 @@ const TourGrid = React.memo(function TourGrid({
         if (error) throw error;
         tourData = data;
       }
-      const path = tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`;
+      const path = tour.type === "eco" ? `/${currentLang}/eco-tour/${tour.id}` : `/${currentLang}/group-tour/${tour.id}`;
       navigate(path, { state: { tour: tourData } });
     } catch (err) {
       console.error("Error:", err);
-      navigate(tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`);
+      navigate(tour.type === "eco" ? `${currentLang}/eco-tour/${tour.id}` : `${currentLang}/group-tour/${tour.id}`);
     }
   };
 
@@ -469,7 +471,7 @@ const TourGrid = React.memo(function TourGrid({
                         <div className="tour-action-area">
                           <div className="tour-price-tag">{tour.price} {t("group_eco_tours.amd", "AMD")}</div>
                           <Link
-                            to={tour.type === "eco" ? `/eco-tour/${tour.id}` : `/group-tour/${tour.id}`}
+                            to={tour.type === "eco" ? `${currentLang}/eco-tour/${tour.id}` : `/${currentLang}/group-tour/${tour.id}`}
                             onClick={e => handleTourClick(e, tour)}
                             className="tour-btn-minimal"
                           >

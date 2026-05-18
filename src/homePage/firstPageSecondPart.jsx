@@ -61,12 +61,14 @@ function FirstPageSecondPart() {
 }
 
 function UncontrolledExample() {
-  const { t } = useTranslation(); // Используйте useTranslation
+  const { t, i18n } = useTranslation(); // Используйте useTranslation
+  const lang = (i18n.language || 'en').split('-')[0];
+
   const carouselItems = [
-    { imgSrc: img1, title: t('first_page_slides.first_slide_title'), description: t('first_page_slides.first_slide_description'), link: "/private-tours" },
-    { imgSrc: img2, title: t('first_page_slides.second_slide_title'), description: t('first_page_slides.second_slide_description'), link: "/transport" },
-    { imgSrc: img3, title: t('first_page_slides.third_slide_title'), description: t('first_page_slides.third_slide_description'), link: "/hotels" },
-    { imgSrc: img4, title: t('first_page_slides.fourth_slide_title'), description: t('first_page_slides.fourth_slide_description'), link: "/all-in-one" },
+    { imgSrc: img1, title: t('first_page_slides.first_slide_title'), description: t('first_page_slides.first_slide_description'), link: `/${lang}/private-tours` },
+    { imgSrc: img2, title: t('first_page_slides.second_slide_title'), description: t('first_page_slides.second_slide_description'), link: `/${lang}/transport` },
+    { imgSrc: img3, title: t('first_page_slides.third_slide_title'), description: t('first_page_slides.third_slide_description'), link: `/${lang}/hotels` },
+    { imgSrc: img4, title: t('first_page_slides.fourth_slide_title'), description: t('first_page_slides.fourth_slide_description'), link: `/${lang}/all-in-one` },
   ];
 
   return (
