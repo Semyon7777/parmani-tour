@@ -14,7 +14,7 @@ function AuthPage() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const lang = (i18n.language || 'en').split('-')[0];
+  const lang = (i18n?.language || 'en').split('-')[0];
 
   const [formData, setFormData] = useState({
     email: "",
@@ -38,6 +38,7 @@ function AuthPage() {
   };
 
   const handleSocialLogin = async (provider) => {
+
     const { error } = await supabase.auth.signInWithOAuth({
       provider: provider,
       options: { redirectTo: window.location.origin + `/${lang}/profile` }
