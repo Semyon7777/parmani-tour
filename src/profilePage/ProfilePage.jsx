@@ -211,7 +211,7 @@ function FavouritesTab({ favourites, loading, onRemove }) {
       <Heart size={48} className="empty-icon" />
       <h4>{t("profile.no_favourites", "Нет избранных туров")}</h4>
       <p>{t("profile.no_favourites_sub", "Добавляй туры в избранное и они появятся здесь")}</p>
-      <Link to={`/${currentLang}/group-eco-tours`} className="profile-cta-btn">
+      <Link to={`/${currentLang}/private-tours`} className="profile-cta-btn">
         {t("profile.browse_tours", "Посмотреть туры")}
       </Link>
     </div>
@@ -283,7 +283,7 @@ function BookingsTab({ bookings, loading }) {
       <Clock size={48} className="empty-icon" />
       <h4>{t("profile.no_bookings", "Нет бронирований")}</h4>
       <p>{t("profile.no_bookings_sub", "Ваши будущие и прошлые поездки появятся здесь")}</p>
-      <Link to={`/${currentLang}/private-tours`} className="profile-cta-btn">
+      <Link to={`/${currentLang}/group-eco-tours`} className="profile-cta-btn">
         {t("profile.book_tour", "Забронировать тур")}
       </Link>
     </div>
