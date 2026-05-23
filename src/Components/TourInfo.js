@@ -38,7 +38,7 @@ const TourInfo = ({ tourData }) => {
       setShowLoginModal(true);
       return;
     }
-    navigate(`${lang}/tours/booking/${tourData.id}`);
+    navigate(`/${lang}/tours/booking/${tourData.id}`);
   };
 
 
@@ -446,7 +446,7 @@ const TourInfo = ({ tourData }) => {
             {t('tour_info_page.please_login', 'Please login to book this tour.')}
           </p>
           <div className="d-grid gap-2">
-            <Link to={`${lang}/login`}>
+            <Link to={`/${lang}/login`}>
               <Button variant="success" className="py-2 fw-bold w-100">
                 {t('auth_page.btn_login', 'Login')}
               </Button>
