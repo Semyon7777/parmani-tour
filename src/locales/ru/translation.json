@@ -1215,6 +1215,15 @@
       "recaptcha_terms": "Условия использования",
       "recaptcha_apply": "Google."
     }
+  },
+
+  "ticket": {
+    "title": "ЭЛЕКТРОННЫЙ БИЛЕТ",
+    "date_pending": "Дата уточняется",
+    "guests": "{{count}} чел.",
+    "show_code": "Покажите этот код на входе",
+    "download": "Скачать",
+    "share": "Поделиться"
   }
 
 }

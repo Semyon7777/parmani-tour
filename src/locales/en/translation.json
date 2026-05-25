@@ -1255,6 +1255,15 @@
       "recaptcha_terms": "Terms of Service",
       "recaptcha_apply": "apply."
     }
+  },
+
+  "ticket": {
+    "title": "ELECTRONIC TICKET",
+    "date_pending": "Date TBD",
+    "guests": "{{count}} guests",
+    "show_code": "Show this code at the entrance",
+    "download": "Download Ticket",
+    "share": "Share Ticket"
   }
 }
 

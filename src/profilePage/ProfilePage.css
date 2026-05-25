@@ -430,7 +430,7 @@
 /* Кнопка закрытия — БЕЗ привязки к .profile-page-root */
 .qr-ticket-modal .ticket-close-btn {
   position: absolute;
-  top: 60px;
+  top: 65px;
   right: 90px;
   background: rgba(255,255,255,0.15);
   border: none;
@@ -492,7 +492,7 @@
   }
 
   .qr-ticket-modal .modal-body {
-    padding: 44px 12px 12px;
+    padding: 58px 12px 12px;
   }
 
   .booking-card-right-qr-text {
@@ -521,7 +521,7 @@
   }
 
   .qr-ticket-modal .ticket-close-btn {
-    top: 10%;
+    top: 12%;
     right: 6%;
   }
 }

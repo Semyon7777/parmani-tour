@@ -78,7 +78,7 @@ const Calculator = ({
       turnoverTax: Math.round(turnoverTax),
       corporateTax: Math.round(corporateTax),
       cleanProfit: Math.round(cleanProfit),
-      finalPrice: Math.round(finalPriceK),
+      finalPrice: Math.ceil(finalPriceK / 500) * 500,
       checkSum: Math.round(x + turnoverTax + cleanProfit + corporateTax)
     };
 

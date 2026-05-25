@@ -31,7 +31,7 @@ function SkeletonCard() {
 function ProfilePage() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
-  const [activeTab, setActiveTab] = useState("favourites");
+  const [activeTab, setActiveTab] = useState("bookings");
   const currentLang = i18n.language || 'en';
  
   // ✅ ВЕСЬ стейт живёт здесь — переключение табов не вызывает повторных запросов
@@ -128,8 +128,8 @@ function ProfilePage() {
   }
  
   const tabs = [
-    { id: "favourites", label: t("profile.tab_favourites", "Избранное"),    icon: <Heart size={18} /> },
     { id: "bookings",   label: t("profile.tab_bookings",   "Бронирования"), icon: <Clock size={18} /> },
+    { id: "favourites", label: t("profile.tab_favourites", "Избранное"),    icon: <Heart size={18} /> },
     { id: "settings",  label: t("profile.tab_settings",   "Настройки"),    icon: <Settings size={18} /> },
   ];
  
@@ -171,15 +171,15 @@ function ProfilePage() {
         </div>
  
         {/* Данные уже в стейте — переключение табов мгновенное */}
+        {activeTab === "bookings" && (
+          <BookingsTab bookings={bookings} loading={loadingBookings} />
+        )}
         {activeTab === "favourites" && (
           <FavouritesTab
             favourites={favourites}
             loading={loadingFavourites}
             onRemove={removeFavourite}
           />
-        )}
-        {activeTab === "bookings" && (
-          <BookingsTab bookings={bookings} loading={loadingBookings} />
         )}
         {activeTab === "settings" && (
           <SettingsTab user={user} setUser={setUser} />

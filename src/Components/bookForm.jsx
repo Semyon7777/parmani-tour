@@ -128,8 +128,18 @@ function BookForm() {
             email: formData.email,
             phone: formData.phone,
             guide: formData.guide,
+            tickets: formData.pincode,
+            food: formData.course,
             guests_count: numberOfPeople,
-            travel_date: formData.startDate ? formData.startDate.toISOString().split('T')[0] : null,
+            travel_date: formData.startDate
+              ? formData.startDate.toLocaleString('ru-RU', {
+                  day: '2-digit',
+                  month: '2-digit', 
+                  year: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })
+              : null,
             total_price: calculation?.finalPrice ? (calculation.finalPrice + " AMD") : "TBD",
             status: 'pending'
           }]);
@@ -181,7 +191,7 @@ function BookForm() {
 
       setTimeout(() => {
         setShowAlert(false);
-        navigate(`/${lang}/private-tours`);
+        navigate(`/${lang}/profile`);
       }, 5000);
 
     } catch (err) {
@@ -394,7 +404,7 @@ function BookForm() {
                         <div className="price-box-left">
                           <div className="price-small">{t('bookForm.estimated_price')}</div>
                           <div className="price-main">
-                            {(Math.round((calculation.finalPrice/ 1000)) * 1000).toLocaleString()} ֏
+                            {calculation.finalPrice.toLocaleString()} ֏
                           </div>
                         </div>
 
@@ -421,7 +431,7 @@ function BookForm() {
       </Row>
       
       {/* Notification Modal */}
-      <Modal show={showAlert} onHide={() => { setShowAlert(false); navigate(`/${lang}/private-tours`); }} centered>
+      <Modal show={showAlert} onHide={() => { setShowAlert(false); navigate(`/${lang}/profile`); }} centered>
         <Modal.Header 
           closeButton 
           style={{ 
