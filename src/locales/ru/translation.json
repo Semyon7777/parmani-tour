@@ -953,6 +953,7 @@
     "mission": "Миссия",
     "btn_join": "Присоединиться",
     "minivan": "Минивэн",
+    "minibus": "Микроавтобус",
     "cta_title": "Не нашли подходящую дату?",
     "cta_text": "Мы можем организовать частный тур для вашей группы в любой день!",
     "cta_btn": "Связаться с нами",
@@ -1015,8 +1016,16 @@
       "tree_seedlings": "Саженцы деревьев",
       "equipment": "Инвентарь",
       "professional_guide": "Профессиональный гид",
-      "guide": "Гид",
-      "water": "Вода"
+      "armenian-speaking_guide": "Армяноговорящий гид",
+      "water": "Вода",
+      "transport": "Транспорт",
+      "bottled_water": "Питьевая вода",
+      "lunch_box": "Ланч-бокс",
+      "personal_expenses": "Личные расходы",
+      "museum_entrance_tickets": "Входные билеты в музеи",
+      "wi-fi_in_transport": "Wi-Fi в транспорте",
+      "small_lunch_box": "Маленький ланч-бокс",
+      "meals": "Питание"
     }
   },
 

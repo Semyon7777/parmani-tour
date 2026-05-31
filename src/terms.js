@@ -17,7 +17,7 @@ const termsContent = {
   We reserve the right to make changes to this agreement. Continuing to use the website after changes are made constitutes your acceptance of the new terms.
   
   ## 6. Contact
-  If you have any questions about the terms of use or data processing, you can contact us at: [your_email@example.com].
+  If you have any questions about the terms of use or data processing, you can contact us at: parmanitour@gmail.com.
   `,
     ru: `
   ## 1. Сбор и использование данных
@@ -36,7 +36,7 @@ const termsContent = {
   Мы оставляем за собой право вносить изменения в настоящее соглашение. Продолжение использования сайта после внесения изменений означает ваше согласие с новыми условиями.
   
   ## 6. Контакты
-  Если у вас есть вопросы по поводу условий использования или обработки данных, вы можете связаться с нами по адресу электронной почты: [ваша_почта@example.com].
+  Если у вас есть вопросы по поводу условий использования или обработки данных, вы можете связаться с нами по адресу электронной почты: parmanitour@gmail.com.
   `,
     hy: `
   ## 1. Տվյալների հավաքում և օգտագործում
@@ -55,7 +55,7 @@ const termsContent = {
   Մենք ourselves իրավունք ենք վերապահում փոփոխություններ կատարելու այս համաձայնագրում: Կայքի շարունակական օգտագործումը փոփոխություններից հետո նշանակում է ձեր համաձայնությունը նոր պայմանների հետ:
   
   ## 6. Կապ
-  Եթե դուք ունեք որևէ հարցեր օգտագործման պայմանների կամ տվյալների մշակման մասին, կարող եք կապվել մեզ հետ էլեկտրոնային փոստի հասցեով: [ձեր_էլ_փոստը@example.com].
+  Եթե դուք ունեք որևէ հարցեր օգտագործման պայմանների կամ տվյալների մշակման մասին, կարող եք կապվել մեզ հետ էլեկտրոնային փոստի հասցեով: parmanitour@gmail.com.
   `
   };
   

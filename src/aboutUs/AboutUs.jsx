@@ -2,18 +2,16 @@ import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import teamImg from "./images/team.jpg";
-import officeImg from "./images/office.jpg";
 import "./AboutUs.css";
 
 import SEO from "../Components/SEO";
 
-const stats = [
-  { key: "years", value: "8+" },
-  { key: "clients", value: "2K+" },
-  { key: "tours", value: "50+" },
-  { key: "guides", value: "12" },
-];
+// const stats = [
+//   { key: "years", value: "8+" },
+//   { key: "clients", value: "2K+" },
+//   { key: "tours", value: "50+" },
+//   { key: "guides", value: "12" },
+// ];
 
 const values = [
   { key: "professionalism", icon: "✦" },
@@ -80,19 +78,19 @@ function AboutPage() {
       </section>
 
       {/* STATS */}
-      <section className="ab-stats" ref={addRef}>
+      {/* <section className="ab-stats" ref={addRef}>
         {stats.map((s) => (
           <div className="ab-stat-item fade-up" key={s.key}>
             <span className="ab-stat-value">{s.value}</span>
             <span className="ab-stat-label">{t(`about.stats.${s.key}`)}</span>
           </div>
         ))}
-      </section>
+      </section> */}
 
       {/* MISSION */}
       <section className="ab-mission" ref={addRef}>
         <div className="ab-mission-img-wrap fade-left">
-          <img src={officeImg} alt="Office" className="ab-mission-img" />
+          <img src="https://res.cloudinary.com/dwqsqiezw/image/upload/v1780267710/hsffs_t3q2bf.webp" alt="Office" className="ab-mission-img" />
           <div className="ab-mission-img-accent" />
         </div>
         <div className="ab-mission-text fade-right">
@@ -127,7 +125,7 @@ function AboutPage() {
           <p>{t("about.team.text")}</p>
         </div>
         <div className="ab-team-img-wrap fade-right">
-          <img src={teamImg} alt="Team" className="ab-team-img" />
+          <img src="https://res.cloudinary.com/dwqsqiezw/image/upload/v1780267499/shfl_ulbfjy.webp" alt="Team" className="ab-team-img" />
           <div className="ab-team-img-accent" />
         </div>
       </section>
@@ -137,7 +135,7 @@ function AboutPage() {
         <div className="ab-cta-inner fade-up">
           <h2>{t("about.cta.title")}</h2>
           <p>{t("about.cta.text")}</p>
-          <a href={`${lang}/contact`} className="ab-cta-btn">{t("about.cta.button", "Get in touch")}</a>
+          <a href={`/${lang}/contact`} className="ab-cta-btn">{t("about.cta.button", "Get in touch")}</a>
         </div>
       </section>
 

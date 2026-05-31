@@ -5,7 +5,7 @@ import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import "./HistoryPage.css";
 
-import heroImg from "./images/history-hero.png";
+import heroImg from "./images/history-hero.webp";
 import SEO from "../Components/SEO";
 
 function HistoryPage() {

@@ -950,6 +950,7 @@
     "mission": "Առաքելություն",
     "btn_join": "Միանալ հիմա",
     "minivan": "Մինիվեն",
+    "minibus": "Միկրոավտոբուս",
     "cta_title": "Չգտա՞ք հարմար ամսաթիվ:",
     "cta_text": "Մենք կարող ենք կազմակերպել անհատական տուր ձեր խմբի համար ցանկացած օր:",
     "cta_btn": "Կապնվել մեզ հետ",
@@ -1012,8 +1013,16 @@
       "tree_seedlings": "Ծառերի տնկիներ",
       "equipment": "Գույք",
       "professional_guide": "Պրոֆեսիոնալ գիդ",
-      "guide": "Գիդ",
-      "water": "Ջուր"
+      "armenian-speaking_guide": "Հայախոս ուղեկցորդ",
+      "water": "Ջուր",
+      "transport": "Տրանսպորտ",
+      "bottled_water": "Խմելու ջուր",
+      "lunch_box": "Լանչ-բոքս",
+      "personal_expenses": "Անձնական ծախսեր",
+      "museum_entrance_tickets": "Թանգարանների մուտքի տոմսեր",
+      "wi-fi_in_transport": "Wi-Fi տրանսպորտում",
+      "small_lunch_box": "Փոքր լանչ-բոքս",
+      "meals": "Սնունդ"
     }
   },
 

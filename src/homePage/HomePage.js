@@ -23,15 +23,15 @@ function HomePage() {
 
 
   const descriptions = {
-    en: "Discover Armenia with Parmani Tour. Private day trips, multi-day tours, professional guides.",
-    ru: "Откройте Армению с Parmani Tour. Частные туры, многодневные маршруты, профессиональные гиды.",
-    hy: "Բացահայտեք Հայաստանը Parmani Tour-ի հետ։ Մասնավոր տուրեր, բազմօրյա երթուղիներ, մասնագետ ուղեկցորդներ։"
+    en: "Travel Armenia like a local. Unique experiences, breathtaking landscapes, and unforgettable memories with Parmani Tour.",
+    ru: "Путешествуйте по Армении как местный житель. Уникальные впечатления, потрясающие пейзажи и незабываемые воспоминания с Parmani Tour.",
+    hy: "Բացահայտեք Հայաստանը տեղացու աչքերով։ Յուրահատուկ փորձառություններ, տպավորիչ բնություն և անմոռանալի հիշողություններ Parmani Tour-ի հետ։"
   };
 
   const titles = {
-    en: "Private Tours in Armenia",
-    ru: "Туры по Армении",
-    hy: "Տուրեր Հայաստանում"
+    en: "Your Armenian Adventure Starts Here",
+    ru: "Ваше путешествие по Армении начинается здесь",
+    hy: "Ձեր հայկական արկածը սկսվում է այստեղ"
   };
 
   return (

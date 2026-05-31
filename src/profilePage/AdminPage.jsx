@@ -639,7 +639,6 @@ function GroupEcoGalleryEditor({ value = [], onChange }) {
     </div>
   );
 }
-
 // ─── ТАБЛИЦА Group & Eco ТУРОВ ────────────────────────────────────────────────
 function ToursTable() {
   const [tours, setTours]           = useState([]);
@@ -1208,27 +1207,6 @@ function ToursTable() {
                                       ? (step.title?.ru || step.title?.en)
                                       : step.title}
                                   </span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                        {/* FIX: gallery теперь рендерится как картинки, а не как itinerary */}
-                        {tour.gallery && Array.isArray(tour.gallery) && tour.gallery.length > 0 && (
-                          <div className="tour-detail-row">
-                            <span className="detail-label">Галерея ({tour.gallery.length}):</span>
-                            <div className="gallery-editor-grid">
-                              {tour.gallery.map((url, i) => (
-                                <div key={i} className="gallery-editor-item">
-                                  <img
-                                    src={url}
-                                    alt={`gallery-${i}`}
-                                    className="gallery-editor-thumb"
-                                    loading="lazy"
-                                  />
-                                  <div className="gallery-editor-url" title={url}>
-                                    {url.split("/").pop()}
-                                  </div>
                                 </div>
                               ))}
                             </div>

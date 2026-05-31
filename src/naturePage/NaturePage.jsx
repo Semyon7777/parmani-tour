@@ -11,6 +11,7 @@ import heroImg from "./images/nature-hero.jpg";
 
 import "./NaturePage.css";
 import SEO from "../Components/SEO";
+import { useNavigate } from "react-router-dom";
 
 const sections = [
   { key: "mountains", img: mountainsImg, tag: "Highlands" },
@@ -22,6 +23,8 @@ const sections = [
 function NaturePage() {
   const { t, i18n } = useTranslation();
   const lang = (i18n.language || 'en').split('-')[0];
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -85,7 +88,12 @@ function NaturePage() {
       <section className="nature-bottom-cta">
         <div className="cta-mini-card">
           <h2>{t("nature.final.title")}</h2>
-          <button className="btn-moss">{t("nature.cta.primary", "Plan a Trip")}</button>
+          <button 
+            className="btn-moss" 
+            onClick={() => navigate(`/${lang}/private-tours`)}
+          >
+            {t("nature.cta.primary", "Plan a Trip")}
+          </button>
         </div>
       </section>
 

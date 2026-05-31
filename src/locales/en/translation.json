@@ -987,6 +987,7 @@
     "mission": "Mission",
     "btn_join": "Join Now",
     "minivan": "Minivan",
+    "minibus": "Minibus",
     "cta_title": "Didn't find a suitable date?",
     "cta_text": "We can organize a private tour for your group on any day!",
     "cta_btn": "Contact Us",
@@ -1053,10 +1054,18 @@
       "tree_seedlings": "Tree Seedlings",
       "equipment": "Equipment",
       "professional_guide": "Professional Guide",
-      "guide": "Guide",
+      "armenian-speaking_guide": "Armenian-speaking guide",
       "water": "Water",
       "lunch": "Lunch",
-      "entrance_tickets": "Entrance Tickets"
+      "entrance_tickets": "Entrance Tickets",
+      "transport": "Transport",
+      "bottled_water": "Bottled water",
+      "lunch_box": "Lunch box",
+      "personal_expenses": "Personal expenses",
+      "museum_entrance_tickets": "Museum entrance tickets",
+      "wi-fi_in_transport": "Wi-Fi in transport",
+      "small_lunch_box": "Small lunch box",
+      "meals": "Meals"
     }
   },
 

@@ -54,10 +54,6 @@ function GroupEcoTours() {
       }
     };
 
-    console.log(toursCache);
-    
-    
-
     // ✅ Загружаем туры и лайки параллельно
     const fetchUserLikes = async () => {
       const { data: { user } } = await supabase.auth.getUser();
