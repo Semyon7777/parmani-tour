@@ -39,37 +39,50 @@ const DigitalTicket = ({ booking }) => {
   // ✅ Скачать тикет как PNG
   const handleDownload = async () => {
     if (!cardRef.current) return;
-    const canvas = await html2canvas(cardRef.current, { scale: 2 });
-    const link = document.createElement('a');
-    link.download = `parmani-ticket-${booking.id.slice(0, 8)}.png`;
-    link.href = canvas.toDataURL('image/png');
-    link.click();
+    try {
+      const canvas = await html2canvas(cardRef.current, {
+        scale: 2,
+        useCORS: true,
+        // ✅ Игнорируем кнопки при скриншоте
+        ignoreElements: (el) => el.id === 'ticket-buttons',
+      });
+      const link = document.createElement('a');
+      link.download = `parmani-ticket-${booking.id.slice(0, 8)}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    } catch (err) {
+      console.error("Download error:", err);
+    }
   };
 
-  // ✅ Поделиться (мобильный Web Share API или копирование ссылки)
+  // ✅ share
   const handleShare = async () => {
     if (!cardRef.current) return;
-
-    const canvas = await html2canvas(cardRef.current, { scale: 2 });
-
-    canvas.toBlob(async (blob) => {
-      const file = new File([blob], `parmani-ticket-${booking.id.slice(0, 8)}.png`, { type: 'image/png' });
-
-      if (navigator.share && navigator.canShare({ files: [file] })) {
-        // ✅ Мобильный — нативный шеринг
-        await navigator.share({
-          title: 'Parmani Tour Ticket',
-          text: `${booking.tour_name} — ${booking.travel_date}`,
-          files: [file],
-        });
-      } else {
-        // ✅ Десктоп — скачиваем картинку
-        const link = document.createElement('a');
-        link.download = `parmani-ticket-${booking.id.slice(0, 8)}.png`;
-        link.href = canvas.toDataURL('image/png');
-        link.click();
-      }
-    });
+    try {
+      const canvas = await html2canvas(cardRef.current, {
+        scale: 2,
+        useCORS: true,
+        // ✅ Игнорируем кнопки при скриншоте
+        ignoreElements: (el) => el.id === 'ticket-buttons',
+      });
+      canvas.toBlob(async (blob) => {
+        const file = new File([blob], `parmani-ticket-${booking.id.slice(0, 8)}.png`, { type: 'image/png' });
+        if (navigator.share && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            title: 'Parmani Tour Ticket',
+            text: `${booking.tour_name} — ${booking.travel_date}`,
+            files: [file],
+          });
+        } else {
+          const link = document.createElement('a');
+          link.download = `parmani-ticket-${booking.id.slice(0, 8)}.png`;
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+        }
+      });
+    } catch (err) {
+      console.error("Share error:", err);
+    }
   };
 
   const styles = {
@@ -181,7 +194,7 @@ const DigitalTicket = ({ booking }) => {
   };
 
   return (
-    <div style={styles.card}>
+    <div ref={cardRef} style={styles.card}>
       <div style={styles.header}>
         <div style={styles.logo}>
           PARMANI <span style={{ color: '#4caf50' }}>TOUR</span>
@@ -221,14 +234,14 @@ const DigitalTicket = ({ booking }) => {
         <div style={styles.hint}>{t('ticket.show_code')}</div>
       </div>
 
-        <div style={{ display: 'flex', gap: '10px', marginTop: '5px', justifyContent: 'center', marginBottom: "10px" }}>
-          <button onClick={handleDownload} style={btnStyle}>
-            <Download size={16} /> {t('ticket.download')}
-          </button>
-          <button onClick={handleShare} style={btnStyle}>
-            <Share2 size={16} /> {t('ticket.share')}
-          </button>
-        </div>
+      <div id="ticket-buttons" style={{ display: 'flex', gap: '10px', marginTop: '5px', justifyContent: 'center', marginBottom: '10px' }}>
+        <button onClick={handleDownload} style={btnStyle}>
+          <Download size={16} /> {t('ticket.download')}
+        </button>
+        <button onClick={handleShare} style={btnStyle}>
+          <Share2 size={16} /> {t('ticket.share')}
+        </button>
+      </div>
     </div>
   );
 };
