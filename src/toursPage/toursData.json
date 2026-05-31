@@ -1012,64 +1012,6 @@
       }
     }
   },
-  {
-    "id": "khor-virap-shnaghogh-vahanavank-tour",
-    "category": [
-      "cultural",
-      "nature"
-    ],
-    "routeMap": "/TourImages/syunik_region/khorvirap_shnaghogh/map.webp",
-    "imageUrl": "/TourImages/syunik_region/khorvirap_shnaghogh/main.webp",
-    "duration": "12",
-    "durationUnit": "hours",
-    "price": "52000 AMD",
-    "title": {
-      "en": "KHOR VIRAP & SOUTHERN WATERFALL ROUTE",
-      "ru": "ХОР ВИРАП И ЮЖНЫЕ ПРИРОДНЫЕ ВОДОПАДЫ",
-      "hy": "ԽՈՐ ՎԻՐԱՊ ԵՎ ՀԱՐԱՎԱՅԻՆ ՋՐՎԵԺՆԵՐ"
-    },
-    "description": {
-      "en": "A full-day southern Armenia journey combining iconic religious heritage, hidden natural waterfalls and quiet monastic landscapes away from main tourist flows.",
-      "ru": "Однодневный маршрут по югу Армении, объединяющий известное религиозное наследие, скрытые водопады и тихие монастырские локации.",
-      "hy": "Մեկօրյա ուղևորություն դեպի Հայաստանի հարավ՝ համադրելով հայտնի հոգևոր ժառանգությունը, թաքնված ջրվեժները և հանգիստ վանական միջավայրերը։"
-    },
-    "sections": [
-      {
-        "header": {
-          "en": "Shnaghogh Waterfall",
-          "ru": "Водопад Шнагахох",
-          "hy": "Շնահողի ջրվեժ"
-        },
-        "content": {
-          "en": "Hidden waterfall surrounded by untouched nature.",
-          "ru": "Скрытый водопад в дикой природе.",
-          "hy": "Թաքնված ջրվեժ՝ վայրի բնության մեջ։"
-        },
-        "fullContent": {
-          "en": " is a lesser-known natural waterfall located in a remote and quiet environment. It is surrounded by forested terrain and natural rock formations.\n\nThe site is valued for its calm atmosphere and untouched natural setting, ideal for short stops and relaxation.",
-          "ru": " — малоизвестный водопад в удалённой природной зоне.\n\nОн окружён лесами и скалами, создавая спокойную атмосферу.",
-          "hy": " քիչ հայտնի ջրվեժ է՝ հեռավոր և հանգիստ միջավայրում։ Այն շրջապատված է անտառներով և ժայռերով։\n\nՎայրը գնահատվում է իր հանգիստ և մաքուր բնական միջավայրով։"
-        },
-        "image": "/TourImages/syunik_region/khorvirap_shnaghogh/shnaghogh.webp"
-      }
-    ],
-    "budget": {
-      "title": "Բյուջե",
-      "pricing": {
-        "vehicles": [
-          {
-            "vehicles": "Sedan",
-            "price": "20000"
-          },
-          {
-            "vehicles": "Miniven",
-            "price": "26000"
-          }
-        ],
-        "ticket_per_person": "0"
-      }
-    }
-  },
 
   {
     "id": "trchkan-hnevank-arevatsagi-dzor-tour",
@@ -1227,8 +1169,8 @@
       "cultural",
       "nature"
     ],
-    "routeMap": "/TourImages/aragats_region/saghmosavank_harich/map.webp",
-    "imageUrl": "/TourImages/aragats_region/saghmosavank_harich/main.webp",
+    "routeMap": "/TourImages/aragatsotn_region/saghmosavank_harich/map.webp",
+    "imageUrl": "/TourImages/aragatsotn_region/saghmosavank_harich/main.webp",
     "duration": "10",
     "durationUnit": "hours",
     "price": "45000 AMD",
@@ -1266,8 +1208,8 @@
       "cultural",
       "nature"
     ],
-    "routeMap": "/TourImages/vayots_dzor/areni_hermon_tanahat/map.webp",
-    "imageUrl": "/TourImages/vayots_dzor/areni_hermon_tanahat/main.webp",
+    "routeMap": "/TourImages/vayots_dzor_region/areni_hermon_tanahat/map.webp",
+    "imageUrl": "/TourImages/vayots_dzor_region/areni_hermon_tanahat/main.webp",
     "duration": "11",
     "durationUnit": "hours",
     "price": "50000 AMD",
@@ -1325,8 +1267,8 @@
       "cultural",
       "nature"
     ],
-    "routeMap": "/TourImages/vayots_dzor/proshaberd_selim_gladzor/map.webp",
-    "imageUrl": "/TourImages/vayots_dzor/proshaberd_selim_gladzor/main.webp",
+    "routeMap": "/TourImages/vayots_dzor_region/proshaberd_selim_gladzor/map.webp",
+    "imageUrl": "/TourImages/vayots_dzor_region/proshaberd_selim_gladzor/main.webp",
     "duration": "12",
     "durationUnit": "hours",
     "price": "55000 AMD",
