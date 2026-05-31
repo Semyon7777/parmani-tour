@@ -477,6 +477,7 @@ function GroupEcoItineraryEditor({ value = [], onChange }) {
 // ─── EXTRA DETAILS EDITOR ─────────────────────────────────────────────────────
 function GroupEcoExtraDetailsEditor({ value = {}, tourType = "group", onChange }) {
   const included = Array.isArray(value.included) ? value.included : [];
+  const excluded = Array.isArray(value.excluded) ? value.excluded : [];
 
   const setMission = (lang, val) =>
     onChange({ ...value, mission: { ...value.mission, [lang]: val } });
@@ -485,13 +486,19 @@ function GroupEcoExtraDetailsEditor({ value = {}, tourType = "group", onChange }
     onChange({ ...value, duration: val });
 
   const updateIncluded = (i, val) => {
-    const next = [...included];
-    next[i] = val;
+    const next = [...included]; next[i] = val;
     onChange({ ...value, included: next });
   };
-
-  const addIncluded  = () => onChange({ ...value, included: [...included, ""] });
+  const addIncluded    = () => onChange({ ...value, included: [...included, ""] });
   const removeIncluded = (i) => onChange({ ...value, included: included.filter((_, idx) => idx !== i) });
+
+  // FIX: добавлены excluded для group туров
+  const updateExcluded = (i, val) => {
+    const next = [...excluded]; next[i] = val;
+    onChange({ ...value, excluded: next });
+  };
+  const addExcluded    = () => onChange({ ...value, excluded: [...excluded, ""] });
+  const removeExcluded = (i) => onChange({ ...value, excluded: excluded.filter((_, idx) => idx !== i) });
 
   return (
     <div className="dyn-editor">
@@ -548,9 +555,32 @@ function GroupEcoExtraDetailsEditor({ value = {}, tourType = "group", onChange }
           <Plus size={14} /> Добавить пункт
         </button>
       </div>
+
+      {/* FIX: Excluded — только для group туров (в базе есть excluded только у group) */}
+      {tourType === "group" && (
+        <div className="dyn-section">
+          <div className="dyn-section-title">❌ Excluded</div>
+          {excluded.map((item, i) => (
+            <div key={i} className="dyn-included-row">
+              <input
+                placeholder="например: Lunch"
+                value={item}
+                onChange={e => updateExcluded(i, e.target.value)}
+              />
+              <button className="dyn-remove-btn" onClick={() => removeExcluded(i)}>
+                <X size={12} />
+              </button>
+            </div>
+          ))}
+          <button className="dyn-add-btn" onClick={addExcluded}>
+            <Plus size={14} /> Добавить пункт
+          </button>
+        </div>
+      )}
     </div>
   );
 }
+
 // ─── GALLERY EDITOR ───────────────────────────────────────────────────────────
 function GroupEcoGalleryEditor({ value = [], onChange }) {
   const [newUrl, setNewUrl] = useState("");
@@ -578,7 +608,7 @@ function GroupEcoGalleryEditor({ value = [], onChange }) {
       <div className="gallery-editor-grid">
         {items.map((url, i) => (
           <div key={i} className="gallery-editor-item">
-            <img src={url} alt={`gallery-${i}`} className="gallery-editor-thumb" />
+            <img src={url} alt={`gallery-${i}`} className="gallery-editor-thumb" loading="lazy" />
             <div className="gallery-editor-overlay">
               <span className="gallery-editor-num">#{i + 1}</span>
               <div className="gallery-editor-controls">
@@ -609,16 +639,37 @@ function GroupEcoGalleryEditor({ value = [], onChange }) {
     </div>
   );
 }
-// ─── ТАБЛИЦА Group & Eco ТУРОВ (список с полными полями) ──────────────────
+
+// ─── ТАБЛИЦА Group & Eco ТУРОВ ────────────────────────────────────────────────
 function ToursTable() {
-  const [tours, setTours]         = useState([]);
-  const [loading, setLoading]     = useState(true);
-  const [editingId, setEditingId] = useState(null);
-  const [editData, setEditData]   = useState({});
-  const [showAdd, setShowAdd]     = useState(false);
-  const [newTour, setNewTour]     = useState({ type: "group", is_active: true });
-  const [search, setSearch]       = useState("");
+  const [tours, setTours]           = useState([]);
+  const [loading, setLoading]       = useState(true);
+  const [editingId, setEditingId]   = useState(null);
+  const [editData, setEditData]     = useState({});
+  const [showAdd, setShowAdd]       = useState(false);
+  const [search, setSearch]         = useState("");
   const [expandedId, setExpandedId] = useState(null);
+
+  // FIX: полный начальный стейт для новго тура
+  const emptyTour = {
+    id: "",
+    type: "group",
+    is_active: true,
+    title:       { en: "", ru: "", hy: "" },
+    location:    { en: "", ru: "", hy: "" },
+    description: { en: "", ru: "", hy: "" },
+    price: "",
+    date: "",
+    spots: "",
+    people: "",
+    duration: "",
+    transport: "",
+    image: "",
+    extra_details: {},
+    itinerary: [],
+    gallery: [],
+  };
+  const [newTour, setNewTour] = useState(emptyTour);
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -631,7 +682,7 @@ function ToursTable() {
 
   const startEdit = (tour) => {
     setEditingId(tour.id);
-    setEditData({ ...tour }); 
+    setEditData({ ...tour });
     setExpandedId(tour.id);
   };
 
@@ -639,13 +690,15 @@ function ToursTable() {
 
   const saveEdit = async () => {
     try {
-      const { error } = await supabase.from("group_eco_tours").update(editData).eq("id", editingId);
-      if (!error) {
-        setTours(prev => prev.map(t => t.id === editingId ? editData : t));
-        cancelEdit();
-      }
+      const { error } = await supabase
+        .from("group_eco_tours")
+        .update(editData)
+        .eq("id", editingId);
+      if (error) throw error;
+      setTours(prev => prev.map(t => t.id === editingId ? editData : t));
+      cancelEdit();
     } catch (e) {
-      alert("Ошибка сохранения");
+      alert("Ошибка сохранения: " + e.message);
       console.error(e);
     }
   };
@@ -661,58 +714,237 @@ function ToursTable() {
     await supabase.from("group_eco_tours").delete().eq("id", id);
   };
 
+  // FIX: правильная вставка со всеми полями + валидация id
   const addTour = async () => {
-    const { data, error } = await supabase.from("group_eco_tours").insert([newTour]).select().single();
-    if (!error && data) {
+    if (!newTour.id?.trim()) {
+      alert("Укажи ID тура (например: garni-eco)");
+      return;
+    }
+    if (!newTour.title?.en && !newTour.title?.ru) {
+      alert("Укажи название тура хотя бы на одном языке");
+      return;
+    }
+
+    const tourToInsert = {
+      ...newTour,
+      spots:    newTour.spots    ? parseInt(newTour.spots)    : null,
+      people:   newTour.people   ? parseInt(newTour.people)   : null,
+      duration: newTour.duration ? parseInt(newTour.duration) : null,
+    };
+
+    const { data, error } = await supabase
+      .from("group_eco_tours")
+      .insert([tourToInsert])
+      .select()
+      .single();
+
+    if (error) {
+      alert("Ошибка добавления: " + error.message);
+      console.error(error);
+      return;
+    }
+    if (data) {
       setTours(prev => [data, ...prev]);
       setShowAdd(false);
-      setNewTour({ type: "group", is_active: true });
+      setNewTour(emptyTour);
     }
   };
 
-  const getTitle = (t) => typeof t.title === "object" ? (t.title?.ru || t.title?.en || "") : (t.title || "");
+  const getTitle = (t) =>
+    typeof t.title === "object"
+      ? (t.title?.ru || t.title?.en || "")
+      : (t.title || "");
 
-  const filtered = tours.filter(t => getTitle(t).toLowerCase().includes(search.toLowerCase()));
+  const filtered = tours.filter(t =>
+    getTitle(t).toLowerCase().includes(search.toLowerCase())
+  );
+
+  // helpers для newTour
+  const setNew = (field, val) => setNewTour(p => ({ ...p, [field]: val }));
+  const setNewLang = (field, lang, val) =>
+    setNewTour(p => ({ ...p, [field]: { ...p[field], [lang]: val } }));
 
   return (
     <div className="admin-table-wrapper">
       <div className="admin-toolbar">
         <div className="admin-search">
           <Search size={16} />
-          <input placeholder="Поиск туров..." value={search} onChange={e => setSearch(e.target.value)} />
+          <input
+            placeholder="Поиск туров..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
         </div>
         <button className="admin-add-btn" onClick={() => setShowAdd(!showAdd)}>
           <Plus size={16} /> Добавить тур
         </button>
-        <button className="admin-refresh-btn" onClick={load}><RefreshCw size={16} /></button>
+        <button className="admin-refresh-btn" onClick={load}>
+          <RefreshCw size={16} />
+        </button>
       </div>
 
-      {/* Форма добавления */}
+      {/* ── Форма добавления ── */}
       {showAdd && (
         <div className="admin-add-form">
           <h4>Новый тур</h4>
           <div className="add-form-grid">
-            <input placeholder="Название EN" onChange={e => setNewTour(p => ({ ...p, title: { ...p.title, en: e.target.value } }))} />
-            <input placeholder="Название RU" onChange={e => setNewTour(p => ({ ...p, title: { ...p.title, ru: e.target.value } }))} />
-            <input placeholder="Название HY" onChange={e => setNewTour(p => ({ ...p, title: { ...p.title, hy: e.target.value } }))} />
-            <input placeholder="Цена (напр: 15000)" onChange={e => setNewTour(p => ({ ...p, price: e.target.value }))} />
-            <input placeholder="Дата (DD.MM.YYYY)" onChange={e => setNewTour(p => ({ ...p, date: e.target.value }))} />
-            <input placeholder="Мест" type="number" onChange={e => setNewTour(p => ({ ...p, spots: parseInt(e.target.value) }))} />
-            <input placeholder="Людей (people)" type="number" onChange={e => setNewTour(p => ({ ...p, people: parseInt(e.target.value) }))} />
-            <input placeholder="Транспорт" onChange={e => setNewTour(p => ({ ...p, transport: e.target.value }))} />
-            <input placeholder="URL картинки (https://...)" onChange={e => setNewTour(p => ({ ...p, image: e.target.value }))} />
-            <select onChange={e => setNewTour(p => ({ ...p, type: e.target.value }))}>
-              <option value="group">Group</option>
-              <option value="eco">Eco</option>
-            </select>
+
+            {/* FIX: поле ID */}
+            <div className="booking-edit-field" style={{ gridColumn: "1 / -1" }}>
+              <label>ID тура <span style={{ color: "red" }}>*</span></label>
+              <input
+                placeholder="например: garni-eco (уникальный, латиница, через дефис)"
+                value={newTour.id}
+                onChange={e => setNew("id", e.target.value.toLowerCase().replace(/\s+/g, "-"))}
+              />
+            </div>
+
+            <div className="booking-edit-field">
+              <label>Тип</label>
+              <select value={newTour.type} onChange={e => setNew("type", e.target.value)}>
+                <option value="group">Group</option>
+                <option value="eco">Eco</option>
+              </select>
+            </div>
+
+            {/* Название */}
+            {["en", "ru", "hy"].map(lng => (
+              <div key={lng} className="booking-edit-field">
+                <label>Название {lng.toUpperCase()}</label>
+                <input
+                  placeholder={`Название (${lng})`}
+                  value={newTour.title[lng]}
+                  onChange={e => setNewLang("title", lng, e.target.value)}
+                />
+              </div>
+            ))}
+
+            {/* Локация */}
+            {["en", "ru", "hy"].map(lng => (
+              <div key={lng} className="booking-edit-field">
+                <label>Локация {lng.toUpperCase()}</label>
+                <input
+                  placeholder={`Локация (${lng})`}
+                  value={newTour.location[lng]}
+                  onChange={e => setNewLang("location", lng, e.target.value)}
+                />
+              </div>
+            ))}
+
+            <div className="booking-edit-field">
+              <label>Цена</label>
+              <input
+                placeholder="15000"
+                value={newTour.price}
+                onChange={e => setNew("price", e.target.value)}
+              />
+            </div>
+            <div className="booking-edit-field">
+              <label>Дата (DD.MM.YYYY)</label>
+              <input
+                placeholder="20.06.2026"
+                value={newTour.date}
+                onChange={e => setNew("date", e.target.value)}
+              />
+            </div>
+            <div className="booking-edit-field">
+              <label>Мест (spots)</label>
+              <input
+                type="number"
+                placeholder="15"
+                value={newTour.spots}
+                onChange={e => setNew("spots", e.target.value)}
+              />
+            </div>
+            <div className="booking-edit-field">
+              <label>Людей (people)</label>
+              <input
+                type="number"
+                placeholder="20"
+                value={newTour.people}
+                onChange={e => setNew("people", e.target.value)}
+              />
+            </div>
+            <div className="booking-edit-field">
+              <label>Длительность часов (duration)</label>
+              <input
+                type="number"
+                placeholder="9"
+                value={newTour.duration}
+                onChange={e => setNew("duration", e.target.value)}
+              />
+            </div>
+            <div className="booking-edit-field">
+              <label>Транспорт</label>
+              <input
+                placeholder="Bus / Minivan"
+                value={newTour.transport}
+                onChange={e => setNew("transport", e.target.value)}
+              />
+            </div>
+            <div className="booking-edit-field" style={{ gridColumn: "1 / -1" }}>
+              <label>URL главной картинки</label>
+              <input
+                placeholder="https://res.cloudinary.com/..."
+                value={newTour.image}
+                onChange={e => setNew("image", e.target.value)}
+              />
+            </div>
+
+            {/* Описание */}
+            {["en", "ru", "hy"].map(lng => (
+              <div key={lng} className="booking-edit-field">
+                <label>Описание {lng.toUpperCase()}</label>
+                <textarea
+                  rows={3}
+                  placeholder={`Описание (${lng})`}
+                  value={newTour.description[lng]}
+                  onChange={e => setNewLang("description", lng, e.target.value)}
+                />
+              </div>
+            ))}
           </div>
+
+          {/* Extra details для нового тура */}
+          <div className="tour-edit-section" style={{ marginTop: 12 }}>
+            <div className="tour-edit-section-title">Extra Details</div>
+            <GroupEcoExtraDetailsEditor
+              value={newTour.extra_details}
+              tourType={newTour.type}
+              onChange={val => setNew("extra_details", val)}
+            />
+          </div>
+
+          {/* Itinerary для нового тура */}
+          <div className="tour-edit-section" style={{ marginTop: 12 }}>
+            <div className="tour-edit-section-title">Itinerary</div>
+            <GroupEcoItineraryEditor
+              value={newTour.itinerary}
+              onChange={val => setNew("itinerary", val)}
+            />
+          </div>
+
+          {/* Gallery для нового тура */}
+          <div className="tour-edit-section" style={{ marginTop: 12 }}>
+            <div className="tour-edit-section-title">Gallery</div>
+            <GroupEcoGalleryEditor
+              value={newTour.gallery}
+              onChange={val => setNew("gallery", val)}
+            />
+          </div>
+
           <div className="add-form-actions">
-            <button className="admin-save-btn" onClick={addTour}><Save size={14} /> Сохранить</button>
-            <button className="admin-cancel-btn" onClick={() => setShowAdd(false)}>Отмена</button>
+            <button className="admin-save-btn" onClick={addTour}>
+              <Save size={14} /> Сохранить
+            </button>
+            <button className="admin-cancel-btn" onClick={() => { setShowAdd(false); setNewTour(emptyTour); }}>
+              Отмена
+            </button>
           </div>
         </div>
       )}
 
+      {/* ── Список туров ── */}
       {loading ? <AdminSkeleton /> : (
         <div className="admin-cards">
           {filtered.map(tour => {
@@ -721,27 +953,38 @@ function ToursTable() {
 
             return (
               <div key={tour.id} className={`tour-list-card ${!tour.is_active ? "inactive" : ""}`}>
-                {/* Заголовок строки */}
+
+                {/* Заголовок карточки */}
                 <div className="tour-list-header">
-                  {tour.image && <img src={tour.image} alt="" className="tour-list-thumb" loading="lazy" />}
+                  {tour.image && (
+                    <img src={tour.image} alt="" className="tour-list-thumb" loading="lazy" />
+                  )}
                   <div className="tour-list-info">
                     <div className="tour-list-title">{getTitle(tour)}</div>
                     <div className="tour-list-meta">
                       <span className={`type-badge ${tour.type}`}>{tour.type}</span>
-                      {tour.price && <span>💰 {tour.price}</span>}
-                      {tour.date  && <span>📅 {tour.date}</span>}
-                      {tour.spots && <span>👥 {tour.spots} мест</span>}
+                      {tour.price  && <span>💰 {tour.price}</span>}
+                      {tour.date   && <span>📅 {tour.date}</span>}
+                      {tour.spots  && <span>👥 {tour.spots} мест</span>}
                       <span className={`active-badge ${tour.is_active ? "on" : "off"}`}>
                         {tour.is_active ? "Активен" : "Скрыт"}
                       </span>
                     </div>
                   </div>
                   <div className="tour-list-actions">
-                    <button className="admin-edit-btn" onClick={() => isEditing ? cancelEdit() : startEdit(tour)}><Edit2 size={14} /></button>
-                    <button className={`admin-toggle-btn ${tour.is_active ? "active" : "inactive"}`} onClick={() => toggleActive(tour.id, tour.is_active)} title={tour.is_active ? "Скрыть" : "Показать"}>
+                    <button className="admin-edit-btn" onClick={() => isEditing ? cancelEdit() : startEdit(tour)}>
+                      <Edit2 size={14} />
+                    </button>
+                    <button
+                      className={`admin-toggle-btn ${tour.is_active ? "active" : "inactive"}`}
+                      onClick={() => toggleActive(tour.id, tour.is_active)}
+                      title={tour.is_active ? "Скрыть" : "Показать"}
+                    >
                       {tour.is_active ? <Check size={14} /> : <X size={14} />}
                     </button>
-                    <button className="admin-delete-btn" onClick={() => deleteTour(tour.id)}><Trash2 size={14} /></button>
+                    <button className="admin-delete-btn" onClick={() => deleteTour(tour.id)}>
+                      <Trash2 size={14} />
+                    </button>
                     <button className="admin-expand-btn" onClick={() => setExpandedId(isExpanded ? null : tour.id)}>
                       {isExpanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                     </button>
@@ -760,7 +1003,10 @@ function ToursTable() {
                             {["en", "ru", "hy"].map(lng => (
                               <div key={lng} className="booking-edit-field">
                                 <label>{lng.toUpperCase()}</label>
-                                <input value={typeof editData.title === "object" ? (editData.title?.[lng] || "") : ""} onChange={e => setEditData(p => ({ ...p, title: { ...p.title, [lng]: e.target.value } }))} />
+                                <input
+                                  value={typeof editData.title === "object" ? (editData.title?.[lng] || "") : ""}
+                                  onChange={e => setEditData(p => ({ ...p, title: { ...p.title, [lng]: e.target.value } }))}
+                                />
                               </div>
                             ))}
                           </div>
@@ -772,7 +1018,10 @@ function ToursTable() {
                             {["en", "ru", "hy"].map(lng => (
                               <div key={lng} className="booking-edit-field">
                                 <label>{lng.toUpperCase()}</label>
-                                <input value={typeof editData.location === "object" ? (editData.location?.[lng] || "") : ""} onChange={e => setEditData(p => ({ ...p, location: { ...p.location, [lng]: e.target.value } }))} />
+                                <input
+                                  value={typeof editData.location === "object" ? (editData.location?.[lng] || "") : ""}
+                                  onChange={e => setEditData(p => ({ ...p, location: { ...p.location, [lng]: e.target.value } }))}
+                                />
                               </div>
                             ))}
                           </div>
@@ -784,7 +1033,11 @@ function ToursTable() {
                             {["en", "ru", "hy"].map(lng => (
                               <div key={lng} className="booking-edit-field">
                                 <label>{lng.toUpperCase()}</label>
-                                <textarea rows={3} value={typeof editData.description === "object" ? (editData.description?.[lng] || "") : ""} onChange={e => setEditData(p => ({ ...p, description: { ...p.description, [lng]: e.target.value } }))} />
+                                <textarea
+                                  rows={3}
+                                  value={typeof editData.description === "object" ? (editData.description?.[lng] || "") : ""}
+                                  onChange={e => setEditData(p => ({ ...p, description: { ...p.description, [lng]: e.target.value } }))}
+                                />
                               </div>
                             ))}
                           </div>
@@ -795,27 +1048,64 @@ function ToursTable() {
                           <div className="tour-edit-row">
                             <div className="booking-edit-field">
                               <label>Цена</label>
-                              <input value={editData.price || ""} onChange={e => setEditData(p => ({ ...p, price: e.target.value }))} />
+                              <input
+                                value={editData.price || ""}
+                                onChange={e => setEditData(p => ({ ...p, price: e.target.value }))}
+                              />
                             </div>
                             <div className="booking-edit-field">
-                              <label>Дата</label>
-                              <input value={editData.date || ""} onChange={e => setEditData(p => ({ ...p, date: e.target.value }))} />
+                              <label>Дата (DD.MM.YYYY)</label>
+                              <input
+                                value={editData.date || ""}
+                                onChange={e => setEditData(p => ({ ...p, date: e.target.value }))}
+                              />
                             </div>
                             <div className="booking-edit-field">
-                              <label>Длительность (hours)</label>
-                              <input type="number" value={editData.duration || ""} onChange={e => setEditData(p => ({ ...p, duration: parseInt(e.target.value) }))} />
+                              <label>Длительность (часов)</label>
+                              <input
+                                type="number"
+                                value={editData.duration || ""}
+                                onChange={e => setEditData(p => ({ ...p, duration: parseInt(e.target.value) || null }))}
+                              />
                             </div>
                             <div className="booking-edit-field">
                               <label>Мест (spots)</label>
-                              <input type="number" value={editData.spots || ""} onChange={e => setEditData(p => ({ ...p, spots: parseInt(e.target.value) }))} />
+                              <input
+                                type="number"
+                                value={editData.spots || ""}
+                                onChange={e => setEditData(p => ({ ...p, spots: parseInt(e.target.value) || null }))}
+                              />
+                            </div>
+                            {/* FIX: добавлено поле people */}
+                            <div className="booking-edit-field">
+                              <label>Людей (people)</label>
+                              <input
+                                type="number"
+                                value={editData.people || ""}
+                                onChange={e => setEditData(p => ({ ...p, people: parseInt(e.target.value) || null }))}
+                              />
+                            </div>
+                            {/* FIX: добавлено поле transport */}
+                            <div className="booking-edit-field">
+                              <label>Транспорт</label>
+                              <input
+                                value={editData.transport || ""}
+                                onChange={e => setEditData(p => ({ ...p, transport: e.target.value }))}
+                              />
                             </div>
                             <div className="booking-edit-field">
                               <label>URL картинки</label>
-                              <input value={editData.image || ""} onChange={e => setEditData(p => ({ ...p, image: e.target.value }))} />
+                              <input
+                                value={editData.image || ""}
+                                onChange={e => setEditData(p => ({ ...p, image: e.target.value }))}
+                              />
                             </div>
                             <div className="booking-edit-field">
                               <label>Тип</label>
-                              <select value={editData.type || "group"} onChange={e => setEditData(p => ({ ...p, type: e.target.value }))}>
+                              <select
+                                value={editData.type || "group"}
+                                onChange={e => setEditData(p => ({ ...p, type: e.target.value }))}
+                              >
                                 <option value="group">Group</option>
                                 <option value="eco">Eco</option>
                               </select>
@@ -849,34 +1139,61 @@ function ToursTable() {
                         </div>
 
                         <div className="booking-edit-actions">
-                          <button className="admin-save-btn" onClick={saveEdit}><Save size={14} /> Сохранить</button>
-                          <button className="admin-cancel-btn" onClick={cancelEdit}>Отмена</button>
+                          <button className="admin-save-btn" onClick={saveEdit}>
+                            <Save size={14} /> Сохранить
+                          </button>
+                          <button className="admin-cancel-btn" onClick={cancelEdit}>
+                            Отмена
+                          </button>
                         </div>
                       </div>
                     ) : (
+                      /* ── View режим (просмотр) ── */
                       <div className="tour-detail-view">
                         {tour.location && (
                           <div className="tour-detail-row">
                             <span className="detail-label">Локация:</span>
-                            <span>{typeof tour.location === "object" ? (tour.location?.ru || tour.location?.en) : tour.location}</span>
+                            <span>
+                              {typeof tour.location === "object"
+                                ? (tour.location?.ru || tour.location?.en)
+                                : tour.location}
+                            </span>
                           </div>
                         )}
                         {tour.description && (
                           <div className="tour-detail-row">
                             <span className="detail-label">Описание:</span>
-                            <span>{typeof tour.description === "object" ? (tour.description?.ru || tour.description?.en) : tour.description}</span>
+                            <span>
+                              {typeof tour.description === "object"
+                                ? (tour.description?.ru || tour.description?.en)
+                                : tour.description}
+                            </span>
                           </div>
                         )}
                         {tour.duration && (
                           <div className="tour-detail-row">
                             <span className="detail-label">Длительность:</span>
-                            <span>{tour.duration} мин</span>
+                            <span>{tour.duration} ч</span>
+                          </div>
+                        )}
+                        {tour.people && (
+                          <div className="tour-detail-row">
+                            <span className="detail-label">Людей:</span>
+                            <span>{tour.people}</span>
+                          </div>
+                        )}
+                        {tour.transport && (
+                          <div className="tour-detail-row">
+                            <span className="detail-label">Транспорт:</span>
+                            <span>{tour.transport}</span>
                           </div>
                         )}
                         {tour.extra_details && (
                           <div className="tour-detail-row">
-                            <span className="detail-label">extra_details:</span>
-                            <pre className="json-preview">{JSON.stringify(tour.extra_details, null, 2)}</pre>
+                            <span className="detail-label">Extra details:</span>
+                            <pre className="json-preview">
+                              {JSON.stringify(tour.extra_details, null, 2)}
+                            </pre>
                           </div>
                         )}
                         {tour.itinerary && Array.isArray(tour.itinerary) && tour.itinerary.length > 0 && (
@@ -886,20 +1203,32 @@ function ToursTable() {
                               {tour.itinerary.map((step, i) => (
                                 <div key={i} className="itinerary-preview-step">
                                   <span className="step-time">{step.time}</span>
-                                  <span>{typeof step.title === "object" ? (step.title?.ru || step.title?.en) : step.title}</span>
+                                  <span>
+                                    {typeof step.title === "object"
+                                      ? (step.title?.ru || step.title?.en)
+                                      : step.title}
+                                  </span>
                                 </div>
                               ))}
                             </div>
                           </div>
                         )}
+                        {/* FIX: gallery теперь рендерится как картинки, а не как itinerary */}
                         {tour.gallery && Array.isArray(tour.gallery) && tour.gallery.length > 0 && (
                           <div className="tour-detail-row">
-                            <span className="detail-label">gallery:</span>
-                            <div className="itinerary-preview">
-                              {tour.gallery.map((step, i) => (
-                                <div key={i} className="itinerary-preview-step">
-                                  <span className="step-time">{step.time}</span>
-                                  <span>{typeof step.title === "object" ? (step.title?.ru || step.title?.en) : step.title}</span>
+                            <span className="detail-label">Галерея ({tour.gallery.length}):</span>
+                            <div className="gallery-editor-grid">
+                              {tour.gallery.map((url, i) => (
+                                <div key={i} className="gallery-editor-item">
+                                  <img
+                                    src={url}
+                                    alt={`gallery-${i}`}
+                                    className="gallery-editor-thumb"
+                                    loading="lazy"
+                                  />
+                                  <div className="gallery-editor-url" title={url}>
+                                    {url.split("/").pop()}
+                                  </div>
                                 </div>
                               ))}
                             </div>

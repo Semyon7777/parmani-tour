@@ -135,7 +135,7 @@ const EcoTourDetails = () => {
       <div className="eco-hero" style={{ backgroundImage: `url(${tour.image}?auto=format&fit=crop&w=1600&q=75)` }}>
         <div className="eco-hero-overlay">
           <Container>
-            <button className="back-btn" onClick={() => navigate(-1)}>
+            <button className="back-btn" onClick={() => navigate(`/${currentLang}/group-eco-tours`)}>
               <ArrowLeft size={20} /> {t('group_eco_tours.common.back')}
             </button>
             <div className="hero-content-box">

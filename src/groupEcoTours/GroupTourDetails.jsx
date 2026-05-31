@@ -95,7 +95,6 @@ const GroupTourDetails = () => {
 
   if (!tour) return <div className="text-center py-5">{t('group_eco_tours.not_found', 'Tour not found')}</div>;
 
-
   return (
     <div className="group-details-page">
       <SEO
@@ -125,7 +124,7 @@ const GroupTourDetails = () => {
       <div className="group-hero" style={{ backgroundImage: `url(${tour.image}?width=1200&quality=80)` }}>
         <div className="group-hero-overlay">
           <Container>
-            <button className="group-back-btn" onClick={() => navigate(-1)}>
+            <button className="group-back-btn" onClick={() => navigate(`/${currentLang}/group-eco-tours`)}>
               <ArrowLeft size={20} />
             </button>
             <div className="group-hero-label">
