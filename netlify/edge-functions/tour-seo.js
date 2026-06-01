@@ -69,34 +69,38 @@ export default async (request, context) => {
       `<link rel="alternate" hreflang="${l}" href="${siteUrl}/${l}${basePath}" />`
     ).join('\n');
 
-    const injectedHtml = html.replace(
-      '</head>',
-      `<meta name="description" content="${description.slice(0, 155)}" />
-      <link rel="canonical" href="${canonical}" />
-      ${hreflangTags}
-      <meta property="og:title" content="${title} — Parmani Tour" />
-      <meta property="og:description" content="${description.slice(0, 155)}" />
-      <meta property="og:image" content="${image}" />
-      <meta property="og:url" content="${canonical}" />
-      <meta property="og:type" content="website" />
-      <script type="application/ld+json">
-      ${JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "TouristTrip",
-        "name": title,
-        "description": description,
-        "image": image,
-        "url": canonical,
-        "touristType": tourType === 'eco' ? 'Eco tourism' : tourType === 'group' ? 'Group tourism' : 'Cultural tourism',
-        "provider": {
-          "@type": "TravelAgency",
-          "name": "Parmani Tour",
-          "url": siteUrl
-        }
-      })}
-      </script>
-      </head>`
-    );
+    const injectedHtml = html
+      .replace(
+        /<meta name="description"[^>]*>/,
+        `<meta name="description" content="${description.slice(0, 155)}" />`
+      )
+      .replace(
+        '</head>',
+        `<link rel="canonical" href="${canonical}" />
+        ${hreflangTags}
+        <meta property="og:title" content="${title} — Parmani Tour" />
+        <meta property="og:description" content="${description.slice(0, 155)}" />
+        <meta property="og:image" content="${image}" />
+        <meta property="og:url" content="${canonical}" />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">
+        ${JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "TouristTrip",
+          "name": title,
+          "description": description,
+          "image": image,
+          "url": canonical,
+          "touristType": tourType === 'eco' ? 'Eco tourism' : tourType === 'group' ? 'Group tourism' : 'Cultural tourism',
+          "provider": {
+            "@type": "TravelAgency",
+            "name": "Parmani Tour",
+            "url": siteUrl
+          }
+        })}
+        </script>
+        </head>`
+      );
 
     return new Response(injectedHtml, {
       headers: {
