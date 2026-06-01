@@ -35,6 +35,12 @@
   function = "tour-seo"
 
 [[redirects]]
+  from = "https://parmanitour.netlify.app/*"
+  to = "https://www.parmanitour.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/sitemap.xml"
   to = "/.netlify/functions/sitemap"
   status = 200
