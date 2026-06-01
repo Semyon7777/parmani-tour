@@ -208,7 +208,7 @@ function UpcomingEventsSection() {
       if (!tourData) {
         const { data, error } = await supabase
           .from('group_eco_tours')
-          .select('id, type, title, date, price, image, location, spots')
+          .select('*')
           .eq('id', event.id)
           .single();
         if (error) throw error;
