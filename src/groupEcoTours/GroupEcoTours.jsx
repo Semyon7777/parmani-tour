@@ -92,8 +92,9 @@ function GroupEcoTours() {
     // Вспомогательная функция для превращения "DD.MM.YYYY" в объект Date
     const parseDate = (dateStr) => {
       if (!dateStr) return new Date(0);
-      const [day, month, year] = dateStr.split('.').map(Number);
-      // В JS месяцы начинаются с 0 (январь = 0, май = 4)
+      // Заменяем армянскую точку на обычную
+      const normalized = dateStr.replace(/[․]/g, '.');
+      const [day, month, year] = normalized.split('.').map(Number);
       return new Date(year, month - 1, day);
     };
 

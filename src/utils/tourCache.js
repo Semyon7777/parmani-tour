@@ -1,8 +1,10 @@
 // const CACHE_TTL = 1000 * 60 * 60 * 24; // 24 часа
 
+const CACHE_TTL = 1000 * 60 * 15; // 15 rope
+
 // const CACHE_TTL = 1000 * 60; // 1 минута (60 000 миллисекунд)
 
-const CACHE_TTL = 0; // aranc spaselu
+// const CACHE_TTL = 0; aranc spaselu
 
 export function getCached(key) {
   try {

@@ -206,7 +206,7 @@ const EcoTourDetails = () => {
                 {tour.extra_details?.included?.map((item, index) => (
                   <div className="inc-item" key={index}>
                     <CheckCircle2 size={18} /> 
-                    <span>{t(`group_eco_tours.included_items.${item}`, item)}</span>
+                    <span>{t(`group_eco_tours.included_items.${item.toLowerCase()}`, item)}</span>
                   </div>
                 ))}
               </div>

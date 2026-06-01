@@ -157,6 +157,11 @@ const GroupTourDetails = () => {
               alt={getTranslation(tour.title)}
             />
 
+            <section className="info-block">
+              <h3>{t('group_eco_tours.eco.about_tour')}</h3>
+              <p className="description-text">{getTranslation(tour.description)}</p>
+            </section>
+
             {/* Программа тура (Timeline) */}
             <section className="itinerary-section">
               <h2 className="section-title">{t('group_eco_tours.group.program_label', 'Tour Program')}</h2>

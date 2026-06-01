@@ -1008,6 +1008,7 @@
       "no_spots": "Տեղեր չկան"
     },
     "included_items": {
+      "included_excluded": "Ինչ է ներառված",
       "transfer": "Տրանսպորտ",
       "eco_lunch": "Էկո-ճաշ",
       "tree_seedlings": "Ծառերի տնկիներ",
@@ -1015,7 +1016,9 @@
       "professional_guide": "Պրոֆեսիոնալ գիդ",
       "armenian-speaking_guide": "Հայախոս ուղեկցորդ",
       "water": "Ջուր",
+      "gear": "Պարագաներ",
       "transport": "Տրանսպորտ",
+      "ropeway_tickets": "Ճոպանուղու տոմսեր",
       "bottled_water": "Խմելու ջուր",
       "lunch_box": "Լանչ-բոքս",
       "personal_expenses": "Անձնական ծախսեր",

@@ -1011,6 +1011,7 @@
       "no_spots": "Мест больше нет"
     },
     "included_items": {
+      "included_excluded": "Что включено",
       "transfer": "Трансфер",
       "eco_lunch": "Эко-ланч",
       "tree_seedlings": "Саженцы деревьев",
@@ -1019,6 +1020,8 @@
       "armenian-speaking_guide": "Армяноговорящий гид",
       "water": "Вода",
       "transport": "Транспорт",
+      "gear": "Инвентарь",
+      "ropeway_tickets": "Билеты на канатную дорогу",
       "bottled_water": "Питьевая вода",
       "lunch_box": "Ланч-бокс",
       "personal_expenses": "Личные расходы",
