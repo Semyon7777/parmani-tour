@@ -20,18 +20,17 @@ function ToursPage() {
 
     // Данные для FAQ (можно потом вынести в отдельный JSON)
     const tourFaqs = [
-        {
-            q: t('tour_info_page.faq.q1'),
-            a: t('tour_info_page.faq.a1')
-        },
-        {
-            q: t('tour_info_page.faq.q2'),
-            a: t('tour_info_page.faq.a2')
-        },
-        {
-            q: t('tour_info_page.faq.q3'),
-            a: t('tour_info_page.faq.a3')
-        }
+        { q: t('tour_info_page.faq.q1'), a: t('tour_info_page.faq.a1') },
+        { q: t('tour_info_page.faq.q2'), a: t('tour_info_page.faq.a2') },
+        { q: t('tour_info_page.faq.q3'), a: t('tour_info_page.faq.a3') },
+        { q: t('tour_info_page.faq.q4'), a: t('tour_info_page.faq.a4') },
+        { q: t('tour_info_page.faq.q5'), a: t('tour_info_page.faq.a5') },
+        { q: t('tour_info_page.faq.q6'), a: t('tour_info_page.faq.a6') },
+        { q: t('tour_info_page.faq.q7'), a: t('tour_info_page.faq.a7') },
+        { q: t('tour_info_page.faq.q8'), a: t('tour_info_page.faq.a8') },
+        { q: t('tour_info_page.faq.q9'), a: t('tour_info_page.faq.a9') },
+        { q: t('tour_info_page.faq.q10'), a: t('tour_info_page.faq.a10') },
+        { q: t('tour_info_page.faq.q11'), a: t('tour_info_page.faq.a11') }
     ];
     
     return (

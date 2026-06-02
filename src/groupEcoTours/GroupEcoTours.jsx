@@ -566,21 +566,21 @@ const DynamicInfoSection = ({ activeTab, currentLang }) => {
                 <div className="stat-badge">
                   <TreePine size={30} />
                   <div className="stat-text">
-                    <span className="stat-number">150+</span>
+                    <span className="stat-number">18+</span>
                     <span className="stat-label">{t("group_eco_tours.stats_trees", "Trees Planted")}</span>
                   </div>
                 </div>
                 <div className="stat-badge">
                   <Leaf size={30} />
                   <div className="stat-text">
-                    <span className="stat-number">500kg+</span>
+                    <span className="stat-number">50kg+</span>
                     <span className="stat-label">{t("group_eco_tours.stats_waste", "Waste Collected")}</span>
                   </div>
                 </div>
                 <div className="stat-badge">
                   <Map size={30} />
                   <div className="stat-text">
-                    <span className="stat-number">12+</span>
+                    <span className="stat-number">4+</span>
                     <span className="stat-label">{t("group_eco_tours.stats_areas", "Areas Improved")}</span>
                   </div>
                 </div>
