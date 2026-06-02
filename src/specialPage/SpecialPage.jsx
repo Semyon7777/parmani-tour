@@ -536,47 +536,47 @@ function SchoolToursAlbum() {
   const schoolToursData = [
     {
       id: 1,
-      image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?q=80&w=500",
+      image: "https://res.cloudinary.com/dwqsqiezw/image/upload/v1780395215/history-hero_osuvqi.webp",
       title: { 
         en: "Yerevan City Landmarks", 
         ru: "Достопримечательности Еревана", 
         hy: "Երևանի տեսարժան վայրերը" 
       },
       location: { en: "Yerevan", ru: "Ереван", hy: "Երևան" },
-      age: { en: "10-15 Years", ru: "10-15 Лет", hy: "10-15 Տարեկան" }
+      age: { en: "8-15 Years", ru: "8-15 Лет", hy: "8-15 Տարեկան" }
     },
     {
       id: 2,
-      image: "https://images.unsplash.com/photo-1590422749897-470490793739?q=80&w=500",
+      image: "https://res.cloudinary.com/dwqsqiezw/image/upload/v1780395514/Armenian_alphabet_001_an535p.webp",
       title: { 
-        en: "Treasures of Aragatsotn", 
-        ru: "Сокровища Арагацотна", 
-        hy: "Արագածոտնի գանձերը" 
+        en: "Aragatsotn: Oshakan, Alphabet Alley & Byurakan", 
+        ru: "Арагацотн: Ошакан, Аллея букв и Бюракан", 
+        hy: "Արագածոտն՝ Օշական, Տառերի պուրակ և Բյուրական" 
       },
       location: { en: "Aragatsotn", ru: "Арагацотн", hy: "Արագածոտն" },
-      age: { en: "10-15 Years", ru: "10-15 Лет", hy: "10-15 Տարեկան" }
+      age: { en: "8-15 Years", ru: "8-15 Лет", hy: "8-15 Տարեկան" }
     },
     {
       id: 3,
-      image: "https://images.unsplash.com/photo-1625345710204-7a918a52932c?q=80&w=500",
+      image: "https://res.cloudinary.com/dwqsqiezw/image/upload/w_600,c_fill,g_auto,f_auto,q_auto/v1776165535/etchmiadzin1_aqmnrd.webp",
       title: { 
         en: "Holy Etchmiadzin Journey", 
         ru: "Путешествие в Святой Эчмиадзин", 
         hy: "Ճանապարհորդություն Սուրբ Էջմիածին" 
       },
       location: { en: "Etchmiadzin", ru: "Эчмиадзин", hy: "Էջմիածին" },
-      age: { en: "10-15 Years", ru: "10-15 Лет", hy: "10-15 Տարեկան" }
+      age: { en: "8-15 Years", ru: "8-15 Лет", hy: "8-15 Տարեկան" }
     },
     {
       id: 4,
-      image: "https://images.unsplash.com/photo-1582298285514-688942b083c7?q=80&w=500",
+      image: "https://res.cloudinary.com/dwqsqiezw/image/upload/v1780349955/main_ywabtb.webp",
       title: { 
         en: "Garni & Tsaghkadzor Adventure", 
         ru: "Приключения в Гарни и Цахкадзоре", 
         hy: "Գառնի և Ծաղկաձոր արկածներ" 
       },
       location: { en: "Garni & Tsaghkadzor", ru: "Гарни и Цахкадзор", hy: "Գառնի և Ծաղկաձոր" },
-      age: { en: "10-15 Years", ru: "10-15 Лет", hy: "10-15 Տարեկան" }
+      age: { en: "8-15 Years", ru: "8-15 Лет", hy: "8-15 Տարեկան" }
     }
   ];
 
