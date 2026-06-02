@@ -185,7 +185,6 @@
 
 .concierge-card:hover {
   box-shadow: 0 8px 28px rgba(45,106,79,0.1);
-  transform: translateY(-3px);
 }
 
 .concierge-card-icon {
@@ -279,7 +278,7 @@
   color: white;
 }
 
-.concierge-cta-btn:hover { transform: scale(1.04); color: white; filter: brightness(1.1); }
+.concierge-cta-btn:hover { color: white; filter: brightness(1.1); }
 .concierge-cta-btn.wa { background: #25D366; }
 .concierge-cta-btn.tg { background: #0088CC; }
 
@@ -349,7 +348,6 @@
   border-radius: 12px;
   padding: 10px;
   opacity: 0;
-  transform: translateY(20px);
   transition: all 0.6s ease;
 }
 

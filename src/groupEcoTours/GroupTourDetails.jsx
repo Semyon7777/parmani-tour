@@ -182,7 +182,7 @@ const GroupTourDetails = () => {
             <section className="included-excluded-section mt-4">
               <h2 className="section-title">{t('group_eco_tours.included_items.included_excluded')}</h2>
               <Row >
-                <Col md={6}>
+                <Col md={6} className='mb-3'>
                   <div className="included-card">
                     <ul style={{ listStyleType: 'none', padding: 0, margin: 0 }}>
                       {tour.extra_details.included?.map((item, index) => (
