@@ -700,13 +700,25 @@ const TourFAQ = ({ activeTab }) => {
     ],
     eco: [
       { q: "group_eco_tours.faq.eco_about_q", a: "group_eco_tours.faq.eco_about_a" },
-      { q: "group_eco_tours.faq.eco_q1",      a: "group_eco_tours.faq.eco_a1" },
-      { q: "group_eco_tours.faq.common_q2",   a: "group_eco_tours.faq.common_a2" }
+      { q: t('group_eco_tours.faq.eco_q1'), a: t('group_eco_tours.faq.eco_a1') },
+      { q: t('group_eco_tours.faq.eco_q2'), a: t('group_eco_tours.faq.eco_a2') }
     ],
     group: [
       { q: "group_eco_tours.faq.group_about_q", a: "group_eco_tours.faq.group_about_a" },
-      { q: "group_eco_tours.faq.group_q1",      a: "group_eco_tours.faq.group_a1" },
-      { q: "group_eco_tours.faq.common_q1",     a: "group_eco_tours.faq.common_a1" }
+      { q: t('group_eco_tours.faq.group_q1'),  a: t('group_eco_tours.faq.group_a1') },
+      { q: t('group_eco_tours.faq.group_q2'),  a: t('group_eco_tours.faq.group_a2') },
+      { q: t('group_eco_tours.faq.group_q3'),  a: t('group_eco_tours.faq.group_a3') },
+      { q: t('group_eco_tours.faq.group_q4'),  a: t('group_eco_tours.faq.group_a4') },
+      { q: t('group_eco_tours.faq.group_q5'),  a: t('group_eco_tours.faq.group_a5') },
+      { q: t('group_eco_tours.faq.group_q6'),  a: t('group_eco_tours.faq.group_a6') },
+      { q: t('group_eco_tours.faq.group_q7'),  a: t('group_eco_tours.faq.group_a7') },
+      { q: t('group_eco_tours.faq.group_q8'),  a: t('group_eco_tours.faq.group_a8') },
+      { q: t('group_eco_tours.faq.group_q9'),  a: t('group_eco_tours.faq.group_a9') },
+      { q: t('group_eco_tours.faq.group_q10'), a: t('group_eco_tours.faq.group_a10') },
+      { q: t('group_eco_tours.faq.group_q11'), a: t('group_eco_tours.faq.group_a11') },
+      { q: t('group_eco_tours.faq.group_q12'), a: t('group_eco_tours.faq.group_a12') },
+      { q: t('group_eco_tours.faq.group_q13'), a: t('group_eco_tours.faq.group_a13') },
+      { q: t('group_eco_tours.faq.group_q14'), a: t('group_eco_tours.faq.group_a14') }
     ]
   };
 
