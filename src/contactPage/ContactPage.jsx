@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Footer from "../Components/Footer";
-import { Container, Row, Col, Card, Accordion, Form, Button, Spinner, Alert, Modal } from "react-bootstrap";
+import { Container, Row, Col, Card, Form, Button, Spinner, Alert, Modal } from "react-bootstrap";
 import { FaWhatsapp, FaTelegramPlane, FaInstagram, FaClock, FaPhoneAlt,
    FaViber, FaFacebook, FaTiktok, FaYoutube, FaEnvelope } from 'react-icons/fa';
 import NavbarCustom from "../Components/Navbar";
@@ -145,9 +145,6 @@ function ContactPage() {
 
       {/* ── CONCIERGE SECTION ── */}
       <ConciergeSection />
-
-      {/* FAQ */}
-      <ContactFAQ />
 
       <Footer />
     </div>
@@ -406,44 +403,6 @@ function ContactWithUs() {
 
       <ReCAPTCHA ref={recaptchaRef} size="invisible" sitekey="6Lc3ZHMsAAAAAOWWtv3oxB3DtuzHbvNZrdrSOdU1" />
     </Container>
-  );
-}
-
-
-// ─── FAQ ──────────────────────────────────────────────────────
-function ContactFAQ() {
-  const { t } = useTranslation();
-
-  const faqs = [
-    { q: t("contact_page.faq.faq_q1"), a: t("contact_page.faq.faq_a1") },
-    { q: t("contact_page.faq.faq_q2"), a: t("contact_page.faq.faq_a2") },
-    { q: t("contact_page.faq.faq_q3"), a: t("contact_page.faq.faq_a3") },
-    { q: t("contact_page.faq.faq_q4"), a: t("contact_page.faq.faq_a4") },
-    { q: t("contact_page.faq.faq_q5"), a: t("contact_page.faq.faq_a5") },
-  ];
-
-  return (
-    <div className="tour-faq-wrapper py-5">
-      <Container>
-        <div className="faq-header text-center mb-5">
-          <h2 className="faq-title">{t("contact_page.faq.faq_title")}</h2>
-        </div>
-        <Row className="justify-content-center">
-          <Col lg={8}>
-            <div className="faq-list">
-              <Accordion flush>
-                {faqs.map((faq, i) => (
-                  <Accordion.Item eventKey={String(i)} key={i} className="faq-item">
-                    <Accordion.Header className="faq-question">{faq.q}</Accordion.Header>
-                    <Accordion.Body className="faq-answer-inner">{faq.a}</Accordion.Body>
-                  </Accordion.Item>
-                ))}
-              </Accordion>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </div>
   );
 }
 

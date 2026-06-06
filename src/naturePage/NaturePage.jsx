@@ -67,7 +67,6 @@ function NaturePage() {
             <div className="nature-col-image">
               <div className="img-container">
                 <img src={section.img} alt={section.key} />
-                <span className="row-number">0{index + 1}</span>
               </div>
             </div>
             
@@ -76,8 +75,8 @@ function NaturePage() {
               <h2>{t(`nature.sections.${section.key}.title`)}</h2>
               <div className="divider-sm"></div>
               <p>{t(`nature.sections.${section.key}.text`)}</p>
-              <button className="text-link-btn">
-                {t("common.discover_more", "Discover More")}
+              <button className="text-link-btn" onClick={() => navigate(`/${lang}/private-tours`)}>
+                {t("nature.discover_more", "Discover More")}
               </button>
             </div>
           </div>

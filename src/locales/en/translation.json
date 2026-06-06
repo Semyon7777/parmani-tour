@@ -636,7 +636,7 @@
     },
     "facts": {
       "f1": "Years of culinary tradition",
-      "f2": "Protected heritage (lavash)",
+      "f2": "Protected heritage",
       "f3": "Traditional dishes",
       "f4": "Months of preserved foods"
     },
@@ -743,7 +743,8 @@
     "final": {
       "title": "Discover Untouched Beauty",
       "text": "From sunrise over the mountains to sunset by the lakes, Armenia’s nature offers serenity and adventure in equal measure."
-    }
+    },
+    "discover_more": "Discover More"
   },
 
   "about": {
