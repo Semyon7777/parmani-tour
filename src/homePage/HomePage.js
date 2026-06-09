@@ -278,7 +278,15 @@ function UpcomingEventsSection() {
                       </div>
                       <div className="detail-item spots">
                         <span className="spots-dot"></span>
-                        {t("group_eco_tours.only")} {event.spots} {t("group_eco_tours.spots_left")}
+                        {event.spots < 6 ? (
+                          <span className="spots-warning">
+                            {t("group_eco_tours.only")} {event.spots} {t("group_eco_tours.spots_left")}
+                          </span>
+                        ) : (
+                          <span className="spots-available">
+                            {t("group_eco_tours.book_now")}
+                          </span>
+                        )}
                       </div>
                     </div>
 

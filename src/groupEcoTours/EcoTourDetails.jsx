@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Spinner, Tabs, Tab } from 'react-bootstrap';
 import { 
   Leaf, Calendar, MapPin, ArrowLeft, Info, XCircle,
-  CheckCircle2, Clock, ShieldCheck, TreePine 
+  CheckCircle2, Clock, TreePine 
 } from 'lucide-react';
 import NavbarCustom from "../Components/Navbar";
 import Footer from "../Components/Footer";
@@ -222,7 +222,7 @@ const EcoTourDetails = () => {
               </div>
               
               <div className="card-features">
-                <FeatureLine icon={<ShieldCheck size={16} />} text={t('group_eco_tours.eco.insurance')} />
+                {/* <FeatureLine icon={<ShieldCheck size={16} />} text={t('group_eco_tours.eco.insurance')} /> */}
                 <FeatureLine icon={<Leaf size={16} />} text={t('group_eco_tours.eco.impact')} />
               </div>
 
@@ -237,27 +237,29 @@ const EcoTourDetails = () => {
                 }
               </button>
 
-              <div className="eco-spots-wrapper mt-4">
-                <div className="d-flex justify-content-between mb-2">
-                  <span className="spots-left-text">
-                    {t('group_eco_tours.eco.limited_spots', { count: tour.spots })}
-                  </span>
-                </div>
-                
-                <div className="eco-progress-container">
-                  <div 
-                    className="eco-progress-fill" 
-                    style={{ 
-                      width: `${tour.people > 0 ? (tour.spots / tour.people) * 100 : 0}%` 
-                    }}
-                  ></div>
-                </div>
+              {tour.spots < 6 && (
+                <div className="eco-spots-wrapper mt-4">
+                  <div className="d-flex justify-content-between mb-2">
+                    <span className="spots-left-text">
+                      {t('group_eco_tours.eco.limited_spots', { count: tour.spots })}
+                    </span>
+                  </div>
+                  
+                  <div className="eco-progress-container">
+                    <div 
+                      className="eco-progress-fill" 
+                      style={{ 
+                        width: `${tour.people > 0 ? (tour.spots / tour.people) * 100 : 0}%` 
+                      }}
+                    ></div>
+                  </div>
 
-                <div className="eco-spots-notice-simple">
-                  <Info size={16} className="me-2" />
-                  {t('group_eco_tours.eco.hurry_up')}
+                  <div className="eco-spots-notice-simple">
+                    <Info size={16} className="me-2" />
+                    {t('group_eco_tours.eco.hurry_up')}
+                  </div>
                 </div>
-              </div>
+              )}
               
               <p className="guarantee-text">{t('group_eco_tours.eco.no_prepayment')}</p>
             </div>
