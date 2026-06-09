@@ -94,7 +94,7 @@ function App() {
             {/* Без языка — секретные страницы */}
             <Route path="/check-in-v1-x7z92" element={<SecretScannerPage />} />
 
-            {/* Любой другой URL → редирект на /en */}
+            {/* Любой другой URL → показываем HomePage */}
             <Route path="*" element={<Navigate to="/en" replace />} />
           </Routes>
         </Router>
