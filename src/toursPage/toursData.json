@@ -219,7 +219,7 @@
             "price": "40000"
           }
         ],
-        "ticket_per_person": "5000"
+        "ticket_per_person": "4000"
       }
     }
   },
@@ -343,7 +343,7 @@
     "title": {
       "en": "GYUMRI 2-DAY CULTURAL TOUR",
       "ru": "2-ДНЕВНЫЙ КУЛЬТУРНЫЙ ТУР ПО ГЮМРИ",
-      "hy": "ԳՅՈՒՄՐԻ 2-ՕՐՅԱ ԹՈՒՐ ՄՇԱԿՈՒԹԱՅԻՆ"
+      "hy": "ԳՅՈՒՄՐՈՒ 2-ՕՐՅԱ ՄՇԱԿՈՒԹԱՅԻՆ ԹՈՒՐ"
     },
     "description": {
       "en": "A two-day journey exploring Gyumri and nearby attractions, including historic churches, museums, scenic spots and cultural experiences.",
@@ -356,14 +356,14 @@
         "vehicles": [
           {
             "vehicles": "Sedan",
-            "price": "20000"
+            "price": "55000"
           },
           {
             "vehicles": "Miniven",
-            "price": "26000"
+            "price": "70000"
           }
         ],
-        "ticket_per_person": "0"
+        "ticket_per_person": "6000"
       }
     }
   },
@@ -542,11 +542,11 @@
         "vehicles": [
           {
             "vehicles": "Sedan",
-            "price": "20000"
+            "price": "55000"
           },
           {
             "vehicles": "Miniven",
-            "price": "26000"
+            "price": "67000"
           }
         ],
         "ticket_per_person": "0"
@@ -696,7 +696,7 @@
             "price": "26000"
           }
         ],
-        "ticket_per_person": "0"
+        "ticket_per_person": "14000"
       }
     }
   },
@@ -728,11 +728,11 @@
         "vehicles": [
           {
             "vehicles": "Sedan",
-            "price": "30000"
+            "price": "190000"
           },
           {
             "vehicles": "Miniven",
-            "price": "40000"
+            "price": "250000"
           }
         ],
         "ticket_per_person": "5000"
@@ -767,14 +767,14 @@
         "vehicles": [
           {
             "vehicles": "Sedan",
-            "price": "20000"
+            "price": "250000"
           },
           {
             "vehicles": "Miniven",
-            "price": "26000"
+            "price": "400000"
           }
         ],
-        "ticket_per_person": "0"
+        "ticket_per_person": "20000"
       }
     }
   },
@@ -806,14 +806,14 @@
         "vehicles": [
           {
             "vehicles": "Sedan",
-            "price": "20000"
+            "price": "92000"
           },
           {
             "vehicles": "Miniven",
-            "price": "26000"
+            "price": "120000"
           }
         ],
-        "ticket_per_person": "0"
+        "ticket_per_person": "1500"
       }
     }
   },
@@ -845,11 +845,11 @@
         "vehicles": [
           {
             "vehicles": "Sedan",
-            "price": "20000"
+            "price": "190000"
           },
           {
             "vehicles": "Miniven",
-            "price": "26000"
+            "price": "250000"
           }
         ],
         "ticket_per_person": "0"
@@ -884,14 +884,14 @@
         "vehicles": [
           {
             "vehicles": "Sedan",
-            "price": "20000"
+            "price": "112000"
           },
           {
             "vehicles": "Miniven",
-            "price": "26000"
+            "price": "143000"
           }
         ],
-        "ticket_per_person": "0"
+        "ticket_per_person": "9000"
       }
     }
   },
