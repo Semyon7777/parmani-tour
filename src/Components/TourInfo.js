@@ -48,7 +48,7 @@ const TourInfo = ({ tourData }) => {
       <div className="tour-hero-section" style={{ backgroundImage: `url(${tourData.image})` }}>
         <div className="tour-hero-overlay">
           <Container>
-            <button className="tour-back-btn" onClick={() => navigate(-1)}>
+            <button className="tour-back-btn" onClick={() => navigate(`/${lang}/private-tours`)}>
               <ArrowLeft size={20} />
               <span>{t('tour_info_page.back_button')}</span>
             </button>
