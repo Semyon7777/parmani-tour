@@ -38,6 +38,7 @@ exports.handler = async function(event, context) {
 
   // Генерируем URL для каждого языка
   const urls = [];
+  const route = `/private-tours/${tour.id}`;
   for (const route of allRoutes) {
     for (const lang of LANGS) {
       urls.push({
