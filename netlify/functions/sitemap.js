@@ -3,7 +3,7 @@ const toursData = require('../../src/toursPage/toursData.json');
 exports.handler = async function(event, context) {
 
   const LANGS = ['en', 'ru', 'hy'];
-  const baseUrl = 'https://parmanitour.com';
+  const baseUrl = 'https://www.parmanitour.com'; // www-piti vor ogni
 
   const staticRoutes = [
     '/', '/private-tours', '/group-eco-tours', '/extreme-tours',
