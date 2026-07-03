@@ -45,9 +45,3 @@
   to = "/.netlify/functions/sitemap"
   status = 200
   force = true
-
-[[redirects]]
-  from = "https://parmanitour.com/*"
-  to = "https://www.parmanitour.com/:splat"
-  status = 301
-  force = true  
