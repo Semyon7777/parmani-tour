@@ -84,40 +84,41 @@ function GroupEcoTours() {
   };
 
   const filteredTours = useMemo(() => {
-    // 1. Фильтруем по табу (как и было)
     const filtered = activeTab === "all"
       ? allTours
       : allTours.filter(tour => tour.type === activeTab);
 
-    // Вспомогательная функция для превращения "DD.MM.YYYY" в объект Date
     const parseDate = (dateStr) => {
       if (!dateStr) return new Date(0);
-      // Заменяем армянскую точку на обычную
-      const normalized = dateStr.replace(/[․]/g, '.');
+      const normalized = dateStr.replace(/[^0-9]/g, (char) => '.');
       const [day, month, year] = normalized.split('.').map(Number);
       return new Date(year, month - 1, day);
     };
 
-    // 2. Умная сортировка
-    return [...filtered].sort((a, b) => {
-      const sA = Number(a.spots) || 0;
-      const sB = Number(b.spots) || 0;
+    const now = new Date();
+    now.setHours(0, 0, 0, 0);
 
-      // ПРАВИЛО 1: Если мест 0 — в самый конец
-      if (sA === 0 && sB !== 0) return 1;
-      if (sA !== 0 && sB === 0) return -1;
+    return [...filtered]
+      .filter(tour => {
+        const tourDate = parseDate(tour.date);
+        return tourDate >= now;
+      })
+      .sort((a, b) => {
+        const sA = Number(a.spots) || 0;
+        const sB = Number(b.spots) || 0;
 
-      // ПРАВИЛО 2: Сортировка по дате (от ближайших к дальним)
-      const dateA = parseDate(a.date);
-      const dateB = parseDate(b.date);
+        if (sA === 0 && sB !== 0) return 1;
+        if (sA !== 0 && sB === 0) return -1;
 
-      if (dateA.getTime() !== dateB.getTime()) {
-        return dateA - dateB; 
-      }
+        const dateA = parseDate(a.date);
+        const dateB = parseDate(b.date);
 
-      // ПРАВИЛО 3: Если даты совпали, показываем тот, где меньше мест
-      return sA - sB;
-    });
+        if (dateA.getTime() !== dateB.getTime()) {
+          return dateA - dateB;
+        }
+
+        return sA - sB;
+      });
   }, [allTours, activeTab]);
 
   return (

@@ -158,24 +158,32 @@ function UpcomingEventsSection() {
         .limit(10); 
 
       if (!error && data) {
-        const now = new Date();
-        now.setHours(0, 0, 0, 0); // Устанавливаем 00:00:00, чтобы сегодняшний тур не исчез раньше времени
+  console.log('Все туры из Supabase:', data);
+  
+  const now = new Date();
+  now.setHours(0, 0, 0, 0);
 
-        const parseDate = (d) => {
-          const [day, month, year] = d.split('.').map(Number);
-          return new Date(year, month - 1, day);
-        };
+  const parseDate = (d) => {
+    if (!d) return new Date(0);
+    const normalized = d.replace(/[^0-9]/g, (char) => char === '.' ? '.' : '.');
+    const parts = normalized.split('.').map(Number);
+    if (parts.length !== 3) return new Date(0);
+    const [day, month, year] = parts;
+    return new Date(year, month - 1, day);
+  };
 
-        const sortedAndFiltered = data
-          .filter(tour => {
-            const tourDate = parseDate(tour.date);
-            return tourDate >= now; // Теперь сравнение идет только по датам, без учета времени
-          })
-          .sort((a, b) => parseDate(a.date) - parseDate(b.date))
-          .slice(0, 3);
+  const sortedAndFiltered = data
+    .filter(tour => {
+      const tourDate = parseDate(tour.date);
+      console.log(`${tour.title?.en} | date: ${tour.date} | show: ${tourDate >= now}`);
+      return tourDate >= now;
+    })
+    .sort((a, b) => parseDate(a.date) - parseDate(b.date))
+    .slice(0, 3);
 
-        setEvents(sortedAndFiltered);
-      }
+  console.log('После фильтрации:', sortedAndFiltered);
+  setEvents(sortedAndFiltered);
+}
       setLoading(false);
     };
     fetchUpcoming();
@@ -197,6 +205,7 @@ function UpcomingEventsSection() {
       console.error("Prefetch error:", err);
     }
   }, []);
+  
 
   // Клик — точно как в TourGrid
   const handleTourClick = async (e, event) => {
