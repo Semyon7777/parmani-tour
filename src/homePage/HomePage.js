@@ -39,7 +39,7 @@ function HomePage() {
       <SEO
         title={titles[lang] || titles.en}
         description={descriptions[lang] || descriptions.en}
-        url="/"
+        url=""
         lang={lang}
       />
       
