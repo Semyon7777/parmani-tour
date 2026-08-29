@@ -47,38 +47,18 @@ function ProfilePage() {
  
   useEffect(() => {
     window.scrollTo(0, 0);
-    let handled = false;
 
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-      if (session) {
-        handled = true;
-        loadAllData(session.user);
-      } else if (event === "SIGNED_OUT") {
-        // Настоящий выход — редиректим сразу
-        handled = true;
-        navigate(`/${currentLang}/login`);
+      if (event === "SIGNED_IN" || event === "INITIAL_SESSION") {
+        if (session) {
+          loadAllData(session.user);
+        } else {
+          navigate(`/${currentLang}/login`);
+        }
       }
-      // если session === null и event === "INITIAL_SESSION" —
-      // ничего не делаем, ждём: возможно, идёт обмен OAuth-кода
     });
 
-    // Страховка: если через 2 сек так и нет сессии — тогда точно не залогинен
-    const timer = setTimeout(() => {
-      if (!handled) {
-        supabase.auth.getSession().then(({ data: { session } }) => {
-          if (session) {
-            loadAllData(session.user);
-          } else {
-            navigate(`/${currentLang}/login`);
-          }
-        });
-      }
-    }, 2000);
-
-    return () => {
-      authListener.subscription.unsubscribe();
-      clearTimeout(timer);
-    };
+    return () => authListener.subscription.unsubscribe();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
  
     const loadAllData = async (authUser) => {
