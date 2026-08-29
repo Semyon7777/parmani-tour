@@ -47,10 +47,21 @@ function ProfilePage() {
  
   useEffect(() => {
     window.scrollTo(0, 0);
-    loadAllData();
+
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_IN" || event === "INITIAL_SESSION") {
+        if (session) {
+          loadAllData(session.user);
+        } else {
+          navigate(`/${currentLang}/login`);
+        }
+      }
+    });
+
+    return () => authListener.subscription.unsubscribe();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
  
-  const loadAllData = async () => {
+  const loadAllData = async (authUser) => {
     // ── Шаг 1: авторизация (быстро, из кеша Supabase SDK) ──────
     const { data: { user: authUser }, error: authError } = await supabase.auth.getUser();
     if (authError || !authUser) { navigate(`/${currentLang}/login`); return; }

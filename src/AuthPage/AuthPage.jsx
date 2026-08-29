@@ -60,7 +60,7 @@ function AuthPage() {
         return;
       }
 
-      const { error: signUpError } = await supabase.auth.signUp({
+      const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
         email: email.trim(),
         password: password,
         options: {
@@ -70,6 +70,14 @@ function AuthPage() {
           }
         }
       });
+
+      if (signUpError) {
+        setError(signUpError.message);
+      } else if (!signUpData.session) {
+        setError(t("auth_page.check_email_to_confirm", "Проверьте почту для подтверждения аккаунта"));
+      } else {
+        navigate(`/${lang}/profile`);
+      }
 
       if (signUpError) setError(signUpError.message);
       else navigate(`/${lang}/profile`);

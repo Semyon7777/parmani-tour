@@ -181,7 +181,6 @@ function UpcomingEventsSection() {
     .sort((a, b) => parseDate(a.date) - parseDate(b.date))
     .slice(0, 3);
 
-  console.log('После фильтрации:', sortedAndFiltered);
   setEvents(sortedAndFiltered);
 }
       setLoading(false);
