@@ -158,7 +158,6 @@ function UpcomingEventsSection() {
         .limit(10); 
 
       if (!error && data) {
-  console.log('Все туры из Supabase:', data);
   
   const now = new Date();
   now.setHours(0, 0, 0, 0);
@@ -175,7 +174,6 @@ function UpcomingEventsSection() {
   const sortedAndFiltered = data
     .filter(tour => {
       const tourDate = parseDate(tour.date);
-      console.log(`${tour.title?.en} | date: ${tour.date} | show: ${tourDate >= now}`);
       return tourDate >= now;
     })
     .sort((a, b) => parseDate(a.date) - parseDate(b.date))
