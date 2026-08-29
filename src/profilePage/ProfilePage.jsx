@@ -61,53 +61,49 @@ function ProfilePage() {
     return () => authListener.subscription.unsubscribe();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
  
-  const loadAllData = async (authUser) => {
-    // ── Шаг 1: авторизация (быстро, из кеша Supabase SDK) ──────
-    const { data: { user: authUser }, error: authError } = await supabase.auth.getUser();
-    if (authError || !authUser) { navigate(`/${currentLang}/login`); return; }
- 
-    // ── Шаг 2: три запроса ПАРАЛЛЕЛЬНО ─────────────────────────
-    // Раньше: profile → (открыл таб) → favourites → (открыл таб) → bookings
-    // Сейчас: всё сразу, пользователь видит шапку профиля почти мгновенно
-    const [profileRes, favRes, bookingsRes] = await Promise.all([
-      supabase.from("profiles").select("*").eq("id", authUser.id).maybeSingle(),
-      supabase.from("favourites").select("tour_id").eq("user_id", authUser.id),
-      supabase.from("bookings").select("*").eq("user_id", authUser.id).order("created_at", { ascending: false }),
-    ]);
- 
-    // ── Профиль ────────────────────────────────────────────────
-    const profileData = profileRes.data;
-    setUser(
-      profileData
-        ? { ...profileData, email: authUser.email }
-        : { id: authUser.id, full_name: authUser.user_metadata?.full_name || "Traveler",
-            email: authUser.email, avatar_url: authUser.user_metadata?.avatar_url }
-    );
-    setLoadingProfile(false); // ← шапка профиля теперь видна
- 
-    // ── Бронирования ───────────────────────────────────────────
-    if (!bookingsRes.error) setBookings(bookingsRes.data || []);
-    setLoadingBookings(false);
+    const loadAllData = async (authUser) => {
+      // ── Три запроса ПАРАЛЛЕЛЬНО ─────────────────────────
+      // Раньше: profile → (открыл таб) → favourites → (открыл таб) → bookings
+      // Сейчас: всё сразу, пользователь видит шапку профиля почти мгновенно
+      const [profileRes, favRes, bookingsRes] = await Promise.all([
+        supabase.from("profiles").select("*").eq("id", authUser.id).maybeSingle(),
+        supabase.from("favourites").select("tour_id").eq("user_id", authUser.id),
+        supabase.from("bookings").select("*").eq("user_id", authUser.id).order("created_at", { ascending: false }),
+      ]);
+  
+      // ── Профиль ────────────────────────────────────────────────
+      const profileData = profileRes.data;
+      setUser(
+        profileData
+          ? { ...profileData, email: authUser.email }
+          : { id: authUser.id, full_name: authUser.user_metadata?.full_name || "Traveler",
+              email: authUser.email, avatar_url: authUser.user_metadata?.avatar_url }
+      );
+      setLoadingProfile(false); // ← шапка профиля теперь видна
+  
+      // ── Бронирования ───────────────────────────────────────────
+      if (!bookingsRes.error) setBookings(bookingsRes.data || []);
+      setLoadingBookings(false);
 
- 
-    // ── Избранное: смешиваем Supabase + JSON ───────────────────
-    const favIds = (favRes.data || []).map(f => f.tour_id);
- 
-    if (favIds.length > 0) {
-      // Групповые туры берём из Supabase
-      const { data: dbTours } = await supabase
-        .from("group_eco_tours")
-        .select("id, title, image, price, location, type, date")
-        .in("id", favIds);
- 
-      // Приватные туры берём из локального JSON (без сетевого запроса)
-      const jsonTours = privateToursData
-        .filter(tour => favIds.includes(tour.id))
-        .map(tour => ({ ...tour, image: tour.imageUrl || tour.image, type: "private" }));
- 
-      setFavourites([...(dbTours || []), ...jsonTours]);
-    }
-    setLoadingFavourites(false);
+  
+      // ── Избранное: смешиваем Supabase + JSON ───────────────────
+      const favIds = (favRes.data || []).map(f => f.tour_id);
+  
+      if (favIds.length > 0) {
+        // Групповые туры берём из Supabase
+        const { data: dbTours } = await supabase
+          .from("group_eco_tours")
+          .select("id, title, image, price, location, type, date")
+          .in("id", favIds);
+  
+        // Приватные туры берём из локального JSON (без сетевого запроса)
+        const jsonTours = privateToursData
+          .filter(tour => favIds.includes(tour.id))
+          .map(tour => ({ ...tour, image: tour.imageUrl || tour.image, type: "private" }));
+  
+        setFavourites([...(dbTours || []), ...jsonTours]);
+      }
+      setLoadingFavourites(false);
   };
  
   // ✅ ОПТИМИСТИЧНОЕ удаление из избранного:
