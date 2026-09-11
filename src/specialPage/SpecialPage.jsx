@@ -15,9 +15,37 @@ import "./SpecialPage.css";
 import SEO from "../Components/SEO";
 
 function SpecialPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const location = useLocation();
+  const lang = (i18n.language || 'en').split('-')[0];
   const navigate = useNavigate();
+
+  const seoTexts = {
+    custom: {
+      title: {
+        en: "Custom Tour Builder",
+        ru: "Индивидуальный тур",
+        hy: "Անհատական տուր"
+      },
+      description: {
+        en: "Design your own private tour of Armenia — choose destinations, dates and group size, and we'll handle the logistics.",
+        ru: "Создайте собственный частный тур по Армении — выберите направления, даты и количество человек, а логистику возьмём на себя мы.",
+        hy: "Ստեղծեք ձեր սեփական մասնավոր տուրը Հայաստանում. ընտրեք ուղղությունները, ամսաթվերը և խմբի չափը, իսկ լոգիստիկան կհոգանք մենք."
+      }
+    },
+    school: {
+      title: {
+        en: "School Tours",
+        ru: "Школьные туры",
+        hy: "Դպրոցական տուրեր"
+      },
+      description: {
+        en: "Educational school trips across Armenia with professional guides, transport and tailored programs.",
+        ru: "Образовательные школьные поездки по Армении с профессиональными гидами, транспортом и индивидуальными программами.",
+        hy: "Կրթական դպրոցական ճամփորդություններ Հայաստանում՝ պրոֆեսիոնալ գիդերով, տրանսպորտով և հարմարեցված ծրագրերով."
+      }
+    }
+  };
 
   const recaptchaRef = useRef();
   const captchaTokenRef = useRef(null);
@@ -168,9 +196,10 @@ function SpecialPage() {
   return (
     <div className="special-page">
       <SEO
-        title="Special Offers"
-        description="Special tour offers and deals from Parmani Tour."
-        url="/special"
+        title={seoTexts[activeTab]?.title[lang] || seoTexts.custom.title.en}
+        description={seoTexts[activeTab]?.description[lang] || seoTexts.custom.description.en}
+        url={`/special${location.search}`}
+        lang={lang}
       />
       <NavbarCustom />
 

@@ -9,11 +9,12 @@ function SEO({ title, description, image, url, lang = "en", schema = null }) {
   const fullTitle = title ? `${title} — ${siteName}` : siteName;
   const metaDesc  = description || defaultDescription;
   const metaImage = image || defaultImage;
-  const canonical = url ? `${siteUrl}/${lang}${url}` : siteUrl;
+  const cleanUrl = url === "/" ? "" : (url || "");
+  const canonical = `${siteUrl}/${lang}${cleanUrl}`;
 
-  const hreflangTags = url ? ['en', 'ru', 'hy'].map(l => (
-    <link key={l} rel="alternate" hreflang={l} href={`${siteUrl}/${l}${url}`} />
-  )) : null;
+  const hreflangTags = ['en', 'ru', 'hy'].map(l => (
+      <link key={l} rel="alternate" hreflang={l} href={`${siteUrl}/${l}${cleanUrl}`} />
+    ));
 
   return (
     <Helmet>
