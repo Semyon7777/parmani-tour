@@ -8,8 +8,22 @@ import "./transportPage.css";
 import SEO from "../Components/SEO";
 
 const TransportPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = (i18n.language || 'en').split('-')[0];
   const [showContactModal, setShowContactModal] = useState(false);
+
+  const seoTexts = {
+    title: {
+      en: "Transport Services",
+      ru: "Транспортные услуги",
+      hy: "Փոխադրման ծառայություններ"
+    },
+    description: {
+      en: "Comfortable transport services across Armenia. Airport transfers and private drivers.",
+      ru: "Комфортные транспортные услуги по всей Армении. Трансферы из аэропорта и частные водители.",
+      hy: "Հարմարավետ փոխադրման ծառայություններ ողջ Հայաստանում։ Օդանավակայանի տրանսֆերներ և անհատական վարորդներ."
+    }
+  };
 
   React.useEffect(() => {
       window.scrollTo(0, 0);
@@ -18,9 +32,10 @@ const TransportPage = () => {
   return (
     <div className="transport-container">
       <SEO
-        title="Transport Services"
-        description="Comfortable transport services across Armenia. Airport transfers and private drivers."
+        title={seoTexts.title[lang] || seoTexts.title.en}
+        description={seoTexts.description[lang] || seoTexts.description.en}
         url="/transport"
+        lang={lang}
       />
       <NavbarCustom />
 

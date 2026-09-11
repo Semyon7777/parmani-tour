@@ -12,7 +12,21 @@ import "./hotelsPage.css";
 import SEO from "../Components/SEO";
 
 const HotelsPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = (i18n.language || 'en').split('-')[0];
+
+  const seoTexts = {
+    title: {
+      en: "Hotels in Armenia",
+      ru: "Отели в Армении",
+      hy: "Հյուրանոցներ Հայաստանում"
+    },
+    description: {
+      en: "Find comfortable hotels across Armenia. Book accommodation for your trip.",
+      ru: "Найдите комфортные отели по всей Армении. Забронируйте проживание для вашей поездки.",
+      hy: "Գտեք հարմարավետ հյուրանոցներ ողջ Հայաստանում։ Ամրագրեք կացարան ձեր ճամփորդության համար."
+    }
+  };
   const [hotels, setHotels] = useState([]); // Состояние для отелей из БД
   const [loading, setLoading] = useState(true); // Состояние загрузки
   const [currentPage, setCurrentPage] = useState(1);
@@ -113,9 +127,10 @@ const HotelsPage = () => {
   return (
     <div className="hotels-page-wrapper">
       <SEO
-        title="Hotels in Armenia"
-        description="Find comfortable hotels across Armenia. Book accommodation for your trip."
+        title={seoTexts.title[lang] || seoTexts.title.en}
+        description={seoTexts.description[lang] || seoTexts.description.en}
         url="/hotels"
+        lang={lang}
       />
       <NavbarCustom />
 

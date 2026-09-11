@@ -20,7 +20,21 @@ import serviceImg2 from "./images/service-food.avif";  // Фото еды
 import SEO from "../Components/SEO";
 
 function AllInOne() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = (i18n.language || 'en').split('-')[0];
+
+  const seoTexts = {
+    title: {
+      en: "All-in-One Travel Package",
+      ru: "Комплексный турпакет",
+      hy: "Համալիր ուղևորության փաթեթ"
+    },
+    description: {
+      en: "Complete travel packages in Armenia — tours, hotels and transport in one booking.",
+      ru: "Комплексные турпакеты по Армении — туры, отели и транспорт в одном бронировании.",
+      hy: "Ամբողջական ճամփորդական փաթեթներ Հայաստանում՝ տուրեր, հյուրանոցներ և տրանսպորտ մեկ ամրագրման մեջ."
+    }
+  };
   const [isSubmitting, setIsSubmitting] = useState(false); // Состояние загрузки
   const [modalStatus, setModalStatus] = useState({ show: false, success: true });
   
@@ -88,9 +102,10 @@ function AllInOne() {
   return (
     <div className="aio-page">
       <SEO
-        title="All-in-One Travel Package"
-        description="Complete travel packages in Armenia — tours, hotels and transport in one booking."
+        title={seoTexts.title[lang] || seoTexts.title.en}
+        description={seoTexts.description[lang] || seoTexts.description.en}
         url="/all-in-one"
+        lang={lang}
       />
       <NavbarCustom />
 

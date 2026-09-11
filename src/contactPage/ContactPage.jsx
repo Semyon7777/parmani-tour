@@ -15,6 +15,19 @@ function ContactPage() {
   const { t, i18n } = useTranslation();
   const lang = (i18n.language || 'en').split('-')[0];
 
+  const seoTexts = {
+    title: {
+      en: "Contact Us",
+      ru: "Связаться с нами",
+      hy: "Կապ մեզ հետ"
+    },
+    description: {
+      en: "Contact Parmani Tour to book your Armenia tour or ask any questions.",
+      ru: "Свяжитесь с Parmani Tour, чтобы забронировать тур по Армении или задать вопросы.",
+      hy: "Կապվեք Parmani Tour-ի հետ՝ ձեր Հայաստանի տուրը ամրագրելու կամ հարցեր տալու համար."
+    }
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -22,8 +35,8 @@ function ContactPage() {
   return (
     <div className="tour-contact-page-root">
       <SEO
-        title="Contact Us"
-        description="Contact Parmani Tour to book your Armenia tour or ask any questions."
+        title={seoTexts.title[lang] || seoTexts.title.en}
+        description={seoTexts.description[lang] || seoTexts.description.en}
         url="/contact"
         lang={lang}
         schema={{
