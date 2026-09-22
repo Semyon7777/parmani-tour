@@ -10,7 +10,7 @@ function SEO({ title, description, image, url, lang = "en", schema = null }) {
   const metaDesc  = description || defaultDescription;
   const metaImage = image || defaultImage;
   const cleanUrl = url === "/" ? "" : (url || "");
-  const canonical = `${siteUrl}/${lang}${cleanUrl}`;
+  const canonical = url ? `${siteUrl}/${lang}${url}` : `${siteUrl}/${lang}`;
 
   const hreflangTags = ['en', 'ru', 'hy'].map(l => (
       <link key={l} rel="alternate" hreflang={l} href={`${siteUrl}/${l}${cleanUrl}`} />
