@@ -45,3 +45,21 @@
   to = "/.netlify/functions/sitemap"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/en/"
+  to = "/en"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/ru/"
+  to = "/ru"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/hy/"
+  to = "/hy"
+  status = 301
+  force = true
