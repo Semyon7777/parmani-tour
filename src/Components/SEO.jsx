@@ -13,8 +13,8 @@ function SEO({ title, description, image, url, lang = "en", schema = null }) {
   const canonical = `${siteUrl}/${lang}${cleanUrl}`;
 
   const hreflangTags = ['en', 'ru', 'hy'].map(l => (
-      <link key={l} rel="alternate" hreflang={l} href={`${siteUrl}/${l}${cleanUrl}`} />
-    ));
+    <link key={l} rel="alternate" hreflang={l} href={`${siteUrl}/${l}${cleanUrl}`} />
+  ));
 
   return (
     <Helmet>
@@ -23,6 +23,7 @@ function SEO({ title, description, image, url, lang = "en", schema = null }) {
       <meta name="description" content={metaDesc} />
       <link rel="canonical" href={canonical} />
       {hreflangTags}
+      <link rel="alternate" hreflang="x-default" href={`${siteUrl}/en${cleanUrl}`} />
       <meta property="og:site_name" content={siteName} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonical} />
